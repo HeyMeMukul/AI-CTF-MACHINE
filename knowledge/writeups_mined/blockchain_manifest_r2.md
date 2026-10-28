@@ -1,0 +1,502 @@
+# Blockchain Writeups Mined (R2) — Manifest
+
+> Technique-only index. No private keys, no flag values. Each line: event/challenge link | difficulty | 1-line technique chain.
+> Count: 488 lines. Mined 2026-10-16 via WebSearch plus WebFetch/GitHub-tree verification; R1 overlap filtered (0 allowed target, <5% gate).
+
+## Method
+
+- Searched 2024-2026 CTF editions (SekaiCTF/DiceCTF/corCTF/COMPFEST/GreyCTF/R3CTF/HTB), L2/AA/intent/restaking/MEV topics, Vyper/Cairo/Solana/Move tracks, FV-escape cases.
+- Verified URLs via WebSearch/WebFetch results and GitHub recursive-tree listings (every github blob/tree URL exists in the cached tree).
+- Per-challenge solution files (Solve.s.sol, Exploit.t.sol, attacker contracts, walkthrough md) indexed individually; audit reports (Code4rena/Zellic/TOB/ChainSecurity) as hard finding sources.
+- Hard challenges only; single-call trivials and non-blockchain entries excluded.
+
+## Writeups
+
+- [Paradigm CTF 2023](https://github.com/bentobox19/paradigm-ctf) | hard | Black Sheep Huff bytecode optimization exploit
+- [Paradigm CTF 2021](https://github.com/MrToph/paradigm-ctf) | hard | JOP chain opcode-level drain via Uniswap
+- [Paradigm CTF 2021](https://medium.com/furucombo/sharing-some-paradigm-ctf-solutions-befac01800e3) | hard | Broker Uniswap v2 price manipulation drain
+- [Paradigm CTF 2021](https://ashiq.co.za/posts/Paradigm-CTF-2021-Writeups) | hard | Broker rate manipulation via token purchase
+- [Paradigm CTF 2021](https://diligence.security/blog/2021/02/paradigm-ctf-winner) | hard | Upgrade bypass via lending push pattern
+- [DownUnderCTF 2024](https://github.com/rstacks/DownUnderCTF2024-writeup) | hard | Blockchain challenge private key exposure drain
+- [DownUnderCTF 2024](https://ouuan.moe/post/2024/07/ductf-2024) | hard | Vector overflow pwn via struct corruption
+- [DownUnderCTF 2024](https://warlocksmurf.github.io/posts/ductf2024) | hard | Blockchain tx.origin authentication bypass
+- [DownUnderCTF 2023](https://meashiri.github.io/ctf-writeups/posts/202309-ductf) | hard | Eight Five Four Five storage reveal via cast
+- [DownUnderCTF 2023](https://github.com/RM260/DownUnderCTF_2023) | hard | Monkeing Around ERC20 approval race drain
+- [DownUnderCTF 2023](https://gerrardtai.com/ductf) | hard | Eight Five Four Five solve via cast send
+- [DownUnderCTF 2023](https://github.com/i-m-down-QQ/writeups/blob/main/2023/DownUnderCTF_2023.md) | hard | Immutable CREATE2 selfdestruct redploy
+- [DownUnderCTF 2022](https://github.com/josephsurin/my-ctf-challenges) | hard | EVM Vault Mechanism bytecode golf drain
+- [SekaiCTF 2024](https://princeoftm.medium.com/sekai-ctf-2024-2365a41dff21) | hard | ZOO assembly fallback function pointer corruption
+- [SekaiCTF 2024](https://blog.solidity.kr/posts/(ctf)-2024-SekaiCTF) | hard | ZOO memory manipulation via assembly fallback
+- [SekaiCTF 2025](https://blog.blockmagnates.com/sekaictf2025-sekai-meme-launcher-writeup-5cb104c8be45) | hard | Meme Launcher Yul swap logic bug drain
+- [SekaiCTF 2025](https://blog.zeroc0077.com/sekaictf2025) | hard | Stray Cat via ticket signature replay
+- [SekaiCTF 2025](https://github.com/project-sekai-ctf/sekaictf-2025) | hard | PP Farming flashloan oracle manipulation
+- [GreyCTF 2025](https://github.com/NUSGreyhats/greyctf25-challs-public/blob/main/qualifiers/blockchain/launchpad/Exploit.sol) | hard | Launchpad Uniswap LP token manipulation drain
+- [GreyCTF 2025](https://chovid99.github.io/posts/greyctf-2025/) | hard | Launchpad virtual liquidity inflation attack
+- [GreyCTF 2024](https://icypetal.github.io/posts/GreyCTF-2024-Finals) | hard | Gnosis Unsafe ecrecover signature bypass drain
+- [GreyCTF 2024](https://beefwhale.github.io/) | hard | GreyCTF blockchain challenge Gnosis safe drain
+- [Damn Vulnerable DeFi v4](https://github.com/SunWeb3Sec/damn-vulnerable-defi-v4-solutions/blob/main/writeup.md) | hard | Unstoppable ERC4626 balance accounting DoS
+- [Damn Vulnerable DeFi v4](https://github.com/0xjesstech/DamnVulnerableDefiV4) | hard | Naive Receiver multicall flashloan fee drain
+- [Damn Vulnerable DeFi v4](https://github.com/0xSynthrax/damn-vulnerable-defi-solutions) | hard | Truster flashloan arbitrary call approve drain
+- [Damn Vulnerable DeFi v4](https://github.com/MikeSpa/DamnVulnerableDeFi) | hard | Side Entrance flashloan deposit accounting bypass
+- [Damn Vulnerable DeFi v4](https://github.com/ilainy/damn-vulnerable-defi-v4-solutions) | hard | The Rewarder merkle proof double-claim drain
+- [Damn Vulnerable DeFi v4](https://github.com/astierfe/damn-vulnerable-defi-writeups) | hard | Selfie governance snapshot manipulation drain
+- [Damn Vulnerable DeFi v4](https://github.com/Chujimafa/damn-vulnerable-defi-v4.1.0-solutions/blob/master/WalkThrough/damn-vulnerable-defi-v4-full-solutions-walkthrough.md) | hard | Puppet v2 Uniswap v2 spot price oracle manipulation
+- [Damn Vulnerable DeFi v4](https://github.com/0xJuancito/damn-vulnerable-defi-solutions) | hard | Backdoor Safe wallet initialization drain
+- [Damn Vulnerable DeFi v4](https://coinsbench.com/damn-vulnerable-defi-solutions-1-unstoppable-c1ea40fdd43e) | hard | Unstoppable force-feed token balance DoS
+- [Damn Vulnerable DeFi v4](https://coinsbench.com/damn-vulnerable-defi-challenges-17-curvy-puppet-walkthrough-0147fef8b737) | hard | Curvy Puppet read-only reentrancy price manipulation
+- [Damn Vulnerable DeFi v4](https://coinsbench.com/challenge-13-wallet-mining-damn-vulnerable-defi-v4-ebfe262ed4c3) | hard | Wallet Mining CREATE2 address collision drain
+- [Damn Vulnerable DeFi v4](https://coinsbench.com/solving-damn-vulnerable-defi-v4-level-7-compromised-2ec5a2aa6816) | hard | Compromised oracle price manipulation drain
+- [Damn Vulnerable DeFi v4](https://medium.com/@joichiro.sai/exploring-damn-vulnerable-defi-v4-naive-receiver-6cbcbd25809e) | hard | Naive Receiver multicall fee exhaustion drain
+- [Damn Vulnerable DeFi v4](https://medium.com/@joichiro.sai/exploring-damn-vulnerable-defi-v4-the-rewarder-0585ef3ff992) | hard | The Rewarder identical claim replay drain
+- [Damn Vulnerable DeFi v4](https://medium.com/@opensiddhu993/challenge-5-the-rewarder-damn-vulnerable-defi-v4-lazy-solutions-series-a08e32b84df9) | hard | The Rewarder batch claim duplication drain
+- [Damn Vulnerable DeFi v4](https://medium.com/@maggie.chujifan/damn-vulnerable-defi-v4-walkthrough-challenges-1-18-breakdown-6316d34a8492) | hard | Puppet v3 TWAP oracle manipulation drain
+- [Damn Vulnerable DeFi v4](https://github.com/0xscarfac3/damnvulnerabledefi-v4-solutions) | hard | Climber vault scheduled task bypass drain
+- [Damn Vulnerable DeFi v4](https://github.com/alekoisaev/damn-vulnerable-defi-V4) | hard | Withdrawal bridge signature replay drain
+- [Damn Vulnerable DeFi v4](https://coinsbench.com/damn-vulnerable-defi-v4-solutions-11-backdoor-197ff11e7beb) | hard | Backdoor WalletRegistry validation bypass
+- [Damn Vulnerable DeFi v4](https://coinsbench.com/damn-vulnerable-defi-v4-solutions-13-wallet-mining-c7431b442230) | hard | Wallet Mining single-transaction CREATE2 drain
+- [Damn Vulnerable DeFi v4](https://github.com/HamMnatsakanyan/damn-vulnerable-defi-solutions) | hard | ABI Smuggling calldata encoding bypass drain
+- [HTB Cyber Apocalypse 2024](https://github.com/hackthebox/cyber-apocalypse-2024) | hard | Blockchain challenge reentrancy guard bypass
+- [HTB Cyber Apocalypse 2025](https://github.com/hackthebox/cyber-apocalypse-2025) | hard | Blockchain challenge access control bypass drain
+- [HTB Business CTF 2025](https://github.com/hackthebox/business-ctf-2025) | hard | Spectral reentrancy guard logic bypass drain
+- [HTB Business CTF 2025](https://1337sheets.com/htb-blackout-blockchain-challenge-global-cyber-skills-benchmark-ctf-operation-blackout) | hard | Blockout VCNKv2 control unit emergency exploit
+- [R3CTF 2025](https://github.com/r3kapig/r3ctf-2025) | hard | Blackchain signature malleability drain
+- [R3CTF 2025](https://github.com/r3kapig/writeup) | hard | Blockchain challenge custom signature bypass
+- [corCTF 2024](https://github.com/rstacks/corCTF2024-writeup) | hard | Tribunal delegatecall storage collision drain
+- [corCTF 2025](https://github.com/Crusaders-of-Rust/corctf-2024-public-challenge-repo) | hard | Blockchain challenge access control bypass
+- [DiceCTF 2024](https://github.com/ZhangZhuoSJTU/ctf-collection/blob/main/ctf-pwn/dicectf_2025_debugapwner/writeup.md) | hard | Winter Winternitz signature forgery drain
+- [BlazCTF 2024](https://github.com/DeFiHackLabs/blazctf-2024-writeup/blob/main/writeup/cyber-cartel.md) | hard | Cyber Cartel signature append forgery drain
+- [BlazCTF 2024](https://github.com/DeFiHackLabs/blazctf-2024-writeup) | hard | Chisel as a Service assembly bug drain
+- [ImaginaryCTF 2024](https://medium.com/@s4bot3ur/bank-bank-revenge-imaginary-ctf-2024-aa364085f476) | hard | Bank deposit integer underflow drain
+- [ITSEC Summit CTF 2025](https://medium.com/@firdausfarul/itsec-summit-ctf-2025-blockchain-writeup-a3881ded185e) | hard | Bank of People EIP-7702 reentrancy drain
+- [NNSCTF 2025](https://github.com/paveledits/Writeups/blob/main/NNSCTF%202025/Blockchain-huffameg/Writeup.md) | hard | Huffameg selector validation bypass drain
+- [SECCON 2024](https://github.com/tl2cents/CTF-Writeups) | hard | Trillion Ether dynamic array overflow drain
+- [COMPFEST CTF 2025](https://github.com/minaminao/ctf-blockchain/blob/main/README.md) | hard | Synthetic Manipulation flashloan oracle drain
+- [EVM Puzzles](https://dev.to/erhant/evm-puzzles-walkthrough-471a) | hard | EVM bytecode golf storage manipulation
+- [Curta CTF](https://blog.chainlight.io/curta-ctf-write-up-d544fb841c41) | hard | CREATE2 vanity address brute-force solve
+- [Smart Contract CTF](https://github.com/kxvrh/Smart-Contract-CTF-Writeup/blob/main/flash_loan_writeup.md) | hard | FlashLoan liquidation logic manipulation drain
+- [CTF Blockchain Collection](https://github.com/demis1997/blockchain-ctf-collection) | hard | Multi-challenge EVM exploit technique reference
+- [Web3 Security CTF](https://github.com/thevillagehacker/Web3-Security/blob/main/CTF/Block%20chain_ctf-writeups.md) | hard | Multi-challenge DeFi hack technique reference
+- [Damn Vulnerable DeFi v4](https://www.damnvulnerabledefi.xyz/v4-release) | hard | V4 release notes and challenge overview
+- [DiceCTF 2025](https://github.com/dicegang/dicectf-quals-2024-challenges) | hard | Blockchain challenge flashloan oracle drain
+- [Paradigm CTF 2022](https://amanusk.medium.com/paradigm-ctf-cairo-solutions-3a4b31210918) | hard | Cairo proxy salt reuse drain via clone
+- [Paradigm CTF 2023](https://github.com/marktoda/paradigm-ctf-2023) | hard | Dragon Tyrant race progression heuristic attack
+- [ParadigmCTF2023/BlackSheep](https://github.com/minaminao/ctf-blockchain/tree/main/src/ParadigmCTF2023/BlackSheep) | hard | Huff CHECKVALUE+CHECKSIG gate steering via fallback value
+- [ParadigmCTF2023/CosmicRadiation](https://github.com/minaminao/ctf-blockchain/tree/main/src/ParadigmCTF2023/CosmicRadiation) | hard | radiation-state puzzle with foundry solve scripts
+- [ParadigmCTF2023/GrainsOfSand](https://github.com/minaminao/ctf-blockchain/tree/main/src/ParadigmCTF2023/GrainsOfSand) | hard | fee-on-transfer dust harvest via 1-wei loops
+- [ParadigmCTF2023/SkillBasedGame](https://github.com/minaminao/ctf-blockchain/tree/main/src/ParadigmCTF2023/SkillBasedGame) | hard | on-chain PRNG prediction for game outcomes
+- [ParadigmCTF2022/CairoAuction](https://github.com/minaminao/ctf-blockchain/tree/main/src/ParadigmCTF2022/CairoAuction) | hard | Cairo auction logic with felt-string handling
+- [ParadigmCTF2022/CairoProxy](https://github.com/minaminao/ctf-blockchain/tree/main/src/ParadigmCTF2022/CairoProxy) | hard | Cairo proxy ABI-merge mint via utils selector
+- [ParadigmCTF2022/Lockbox2](https://github.com/minaminao/ctf-blockchain/tree/main/src/ParadigmCTF2022/Lockbox2) | hard | delegatecall storage overwrite to drain lockbox
+- [ParadigmCTF2022/MerkleDrop](https://github.com/minaminao/ctf-blockchain/tree/main/src/ParadigmCTF2022/MerkleDrop) | hard | intermediate-node claim in merkle airdrop tree
+- [ParadigmCTF2022/OtterSwap](https://github.com/minaminao/ctf-blockchain/tree/main/src/ParadigmCTF2022/OtterSwap) | hard | AMM swap math edge-case drain
+- [ParadigmCTF2022/Rescue](https://github.com/minaminao/ctf-blockchain/tree/main/src/ParadigmCTF2022/Rescue) | hard | rescue-pattern fund recovery across contracts
+- [ParadigmCTF2022/Trapdooor](https://github.com/minaminao/ctf-blockchain/tree/main/src/ParadigmCTF2022/Trapdooor) | hard | foundry cheatcode-constrained trap puzzle
+- [ParadigmCTF2022/Vanity](https://github.com/minaminao/ctf-blockchain/tree/main/src/ParadigmCTF2022/Vanity) | hard | precompile-driven vanity puzzle
+- [ParadigmCTF2022/SourceCode](https://github.com/minaminao/ctf-blockchain/tree/main/src/ParadigmCTF2022/SourceCode) | hard | quine sourcecode-reveal puzzle
+- [ParadigmCTF2021/Bouncer](https://github.com/minaminao/ctf-blockchain/tree/main/src/ParadigmCTF2021/Bouncer) | hard | auth-gated bouncer bypass
+- [ParadigmCTF2021/Farmer](https://github.com/minaminao/ctf-blockchain/tree/main/src/ParadigmCTF2021/Farmer) | hard | COMP-WETH-DAI sandwich sequencing
+- [ParadigmCTF2021/Secure](https://github.com/minaminao/ctf-blockchain/tree/main/src/ParadigmCTF2021/Secure) | hard | WETH logic with approval edge cases
+- [ParadigmCTF2021/Babysandbox](https://github.com/minaminao/ctf-blockchain/tree/main/src/ParadigmCTF2021/Babysandbox) | hard | staticcall-vs-call sandbox escape
+- [ParadigmCTF2021/Rever](https://github.com/minaminao/ctf-blockchain/tree/main/src/ParadigmCTF2021/Rever) | hard | palindrome bytecode-golf detector
+- [ParadigmCTF2021/Babycrypto](https://github.com/minaminao/ctf-blockchain/tree/main/src/ParadigmCTF2021/Babycrypto) | hard | same-nonce ECDSA key recovery
+- [MEVShareCTF/10x](https://github.com/minaminao/ctf-blockchain/tree/main/src/MEVShareCTF/10x) | hard | back-run bundle via MEV-Share matchmaker
+- [MEVShareCTF/20x](https://github.com/minaminao/ctf-blockchain/tree/main/src/MEVShareCTF/20x) | hard | back-run bundle via MEV-Share matchmaker
+- [MEVShareCTF/30x](https://github.com/minaminao/ctf-blockchain/tree/main/src/MEVShareCTF/30x) | hard | back-run bundle via MEV-Share matchmaker
+- [MEVShareCTF/40x](https://github.com/minaminao/ctf-blockchain/tree/main/src/MEVShareCTF/40x) | hard | back-run bundle via MEV-Share matchmaker
+- [MEVShareCTF/base](https://github.com/minaminao/ctf-blockchain/tree/main/src/MEVShareCTF/base) | hard | base MEV-Share bundle template
+- [COMPFEST2025/snake_inception](https://github.com/minaminao/ctf-blockchain/tree/main/src/Compfest2025/SnakeInception) | hard | Vyper snake-case logic manipulation
+- [COMPFEST2025/SyntheticManipulation](https://github.com/minaminao/ctf-blockchain/tree/main/src/Compfest2025/SyntheticManipulation) | hard | synthetic-asset price manipulation
+- [corCTF2023/BabyWallet](https://github.com/minaminao/ctf-blockchain/tree/main/src/CorCTF2023/BabyWallet) | hard | wallet auth bypass
+- [corCTF2024/Exchange](https://github.com/minaminao/ctf-blockchain/tree/main/src/CorCTF2024/Exchange) | hard | exchange logic flaw with tribunal flow
+- [DiceCTF2024/Floordrop](https://github.com/minaminao/ctf-blockchain/tree/main/src/DiceCTF2024/Floordrop) | hard | front-run geth mempool drop race
+- [DiceCTF2025/GoldenBridge](https://github.com/minaminao/ctf-blockchain/tree/main/src/DiceCTF2025/GoldenBridge) | hard | bridge message validation flaw
+- [SmileyCTF/MultisigWallet](https://github.com/minaminao/ctf-blockchain/tree/main/src/SmileyCTF/MultisigWallet) | hard | ECDSA malleability multisig replay
+- [SEETF2023/MurkySEEPass](https://github.com/minaminao/ctf-blockchain/tree/main/src/SEETF2023/MurkySEEPass) | hard | zero-iteration loop verification bypass
+- [SEETF2023/FeatheredFortune](https://github.com/minaminao/ctf-blockchain/tree/main/src/SEETF2023/OperationFeatheredFortuneFiasco) | hard | abi.encodePacked collision exploit
+- [SEETF2023/PigeonBank](https://github.com/minaminao/ctf-blockchain/tree/main/src/SEETF2023/PigeonBank) | hard | reentrancy bank drain
+- [SEETF2023/PigeonVault](https://github.com/minaminao/ctf-blockchain/tree/main/src/SEETF2023/PigeonVault) | hard | vault accounting bypass
+- [SCAN2024/Bridge](https://github.com/minaminao/ctf-blockchain/tree/main/src/Scan2024CTF/Bridge) | hard | bridge validation bypass
+- [SCAN2024/Drainer](https://github.com/minaminao/ctf-blockchain/tree/main/src/Scan2024CTF/Drainer) | hard | drainer approval trap
+- [FullWeakEngineerCTF/SaveTheKappa](https://github.com/minaminao/ctf-blockchain/tree/main/src/FullWeakEngineerCTF/SaveTheKappa) | hard | kappa rescue state puzzle
+- [BlazCTF2023/Ghost](https://github.com/minaminao/ctf-blockchain/tree/main/src/BlazCTF2023/Ghost) | hard | ghost-state EVM puzzle
+- [BlazCTF2023/Jambo](https://github.com/minaminao/ctf-blockchain/tree/main/src/BlazCTF2023/Jambo) | hard | jambo logic puzzle
+- [BlazCTF2023/Maze](https://github.com/minaminao/ctf-blockchain/tree/main/src/BlazCTF2023/Maze) | hard | maze bytecode traversal
+- [BalsnCTF2022/CairoReverse](https://github.com/minaminao/ctf-blockchain/tree/main/src/BalsnCTF2022/CairoReverse) | hard | Cairo decompiler reverse with thoth
+- [BalsnCTF2022/NFTMarketplace](https://github.com/minaminao/ctf-blockchain/tree/main/src/BalsnCTF2022/NFTMarketplace) | hard | pre-init order plus ERC20/721 selector confusion
+- [QuillCTF2022/D3l3g4t3](https://github.com/minaminao/ctf-blockchain/tree/main/src/QuillCTF2022/D3l3g4t3) | hard | delegatecall injection puzzle
+- [QuillCTF2022/SafeNFT](https://github.com/minaminao/ctf-blockchain/tree/main/src/QuillCTF2022/SafeNFT) | hard | ERC721 _safeMint reentrancy
+- [QuillCTF2022/VIPBank](https://github.com/minaminao/ctf-blockchain/tree/main/src/QuillCTF2022/VIPBank) | hard | VIP-gated bank bypass
+- [QuillCTF2022/RoadClosed](https://github.com/minaminao/ctf-blockchain/tree/main/src/QuillCTF2022/RoadClosed) | hard | road-closed logic gate bypass
+- [QuillCTF2022/ConfidentialHash](https://github.com/minaminao/ctf-blockchain/tree/main/src/QuillCTF2022/ConfidentialHash) | hard | commit-hash puzzle
+- [DeFiSummit/BorrowInsecureOracle](https://github.com/minaminao/ctf-blockchain/tree/main/src/DeFiSecuritySummitStanford/BorrowSystemInsecureOracle) | hard | lending against insecure oracle
+- [DeFiSummit/InSecureumLenderPool](https://github.com/minaminao/ctf-blockchain/tree/main/src/DeFiSecuritySummitStanford/InSecureumLenderPool) | hard | flash-loan lender pool exploit
+- [DeFiSummit/InsecureDexLP](https://github.com/minaminao/ctf-blockchain/tree/main/src/DeFiSecuritySummitStanford/InsecureDexLP) | hard | ERC223 tokenFallback reentrancy on DEX LP
+- [0x41414141CTF/Crackme](https://github.com/minaminao/ctf-blockchain/tree/main/src/0x41414141CTF/Crackme) | hard | Solidity crackme decompile
+- [0x41414141CTF/CryptoCasino](https://github.com/minaminao/ctf-blockchain/tree/main/src/0x41414141CTF/CryptoCasino) | hard | casino condition-check bypass
+- [0x41414141CTF/RichClub](https://github.com/minaminao/ctf-blockchain/tree/main/src/0x41414141CTF/RichClub) | hard | DEX plus flash-loan rich-club drain
+- [EkoPartyCTF2022/Greedy](https://github.com/minaminao/ctf-blockchain/tree/main/src/EkoPartyCTF2022/Greedy) | hard | greedy accounting drain
+- [EkoPartyCTF2022/Piggy](https://github.com/minaminao/ctf-blockchain/tree/main/src/EkoPartyCTF2022/Piggy) | hard | piggy-bank logic bypass
+- [Curta/TwoTimesFourIsEight](https://github.com/minaminao/ctf-blockchain/tree/main/src/Curta/1_TwoTimesFourIsEight) | hard | Curta math-gate puzzle
+- [Curta/Lana](https://github.com/minaminao/ctf-blockchain/tree/main/src/Curta/20_Lana) | hard | LLVM-flavored EVM puzzle
+- [Curta/F1A9](https://github.com/minaminao/ctf-blockchain/tree/main/src/Curta/2_F1A9) | hard | Curta gate puzzle
+- [Curta/TinySig](https://github.com/minaminao/ctf-blockchain/tree/main/src/Curta/3_TinySig) | hard | tiny-signature puzzle
+- [CaptureTheEther/AccountTakeover](https://github.com/minaminao/ctf-blockchain/tree/main/src/CaptureTheEther/AccountTakeover) | hard | same-nonce ECDSA key recovery
+- [CaptureTheEther/Donation](https://github.com/minaminao/ctf-blockchain/tree/main/src/CaptureTheEther/Donation) | hard | donation-scale overflow drain
+- [CaptureTheEther/FuzzyIdentity](https://github.com/minaminao/ctf-blockchain/tree/main/src/CaptureTheEther/FuzzyIdentity) | hard | 28-bit CREATE2 brute-force identity
+- [CaptureTheEther/Mapping](https://github.com/minaminao/ctf-blockchain/tree/main/src/CaptureTheEther/Mapping) | hard | storage-slot mapping reset
+- [CaptureTheEther/PublicKey](https://github.com/minaminao/ctf-blockchain/tree/main/src/CaptureTheEther/PublicKey) | hard | RLP ECDSA pubkey recovery
+- [CaptureTheEther/TokenBank](https://github.com/minaminao/ctf-blockchain/tree/main/src/CaptureTheEther/TokenBank) | hard | ERC223 tokenFallback reentrancy
+- [CaptureTheEther/TokenWhale](https://github.com/minaminao/ctf-blockchain/tree/main/src/CaptureTheEther/TokenWhale) | hard | subtraction underflow whale mint
+- [CaptureTheEther/RetirementFund](https://github.com/minaminao/ctf-blockchain/tree/main/src/CaptureTheEther/RetirementFund) | hard | selfdestruct-forced overflow
+- [DownUnderCTF2022/CryptoCasino](https://github.com/minaminao/ctf-blockchain/tree/main/src/DownUnderCTF2022/CryptoCasino) | hard | casino randomness prediction
+- [DownUnderCTF2022/EVMVaultMechanism](https://github.com/minaminao/ctf-blockchain/tree/main/src/DownUnderCTF2022/EVMVaultMechanism) | hard | bytecode-golf vault mechanism
+- [MapleCTF2022/Maplebacoin](https://github.com/minaminao/ctf-blockchain/tree/main/src/MapleCTF2022/Maplebacoin) | hard | reentrancy coin drain
+- [LACTF2024/remis-world](https://github.com/minaminao/ctf-blockchain/tree/main/src/LACTF2024/RemisWorld) | hard | remi world state puzzle
+- [OsuGamingCTF2024/OsuCoin](https://github.com/minaminao/ctf-blockchain/tree/main/src/Osu!GamingCTF2024/Osu!Coin) | hard | osu coin logic flaw
+- [SekaiCTF2023/Re-Remix](https://github.com/minaminao/ctf-blockchain/tree/main/src/ProjectSekaiCTF2023/ReRemix) | hard | read-only reentrancy remix
+- [SekaiCTF2024/PlayToEarn](https://github.com/minaminao/ctf-blockchain/tree/main/src/ProjectSekaiCTF2024/PlayToEarn) | hard | ecrecover zero-address burn bypass
+- [SekaiCTF2024/Zoo](https://github.com/minaminao/ctf-blockchain/tree/main/src/ProjectSekaiCTF2024/Zoo) | hard | Yul fallback memory corruption
+- [SekaiCTF2022/RandomSong](https://github.com/minaminao/ctf-blockchain/tree/main/src/ProjectSekaiCTF2022/RandomSong) | hard | Chainlink VRF-gated song puzzle
+- [SECCON2024/vote4b](https://github.com/minaminao/ctf-blockchain/tree/main/src/SECCONBeginnersCTF2024/vote4b) | hard | ERC721 _safeMint vote reentrancy
+- [Ethernaut/AlienCodex](https://github.com/minaminao/ctf-blockchain/tree/main/src/Ethernaut/AlienCodex) | hard | array-length underflow storage overwrite
+- [Ethernaut/GatekeeperOne](https://github.com/minaminao/ctf-blockchain/tree/main/src/Ethernaut/GatekeeperOne) | hard | gas-mod plus tx.origin gate
+- [Ethernaut/GatekeeperTwo](https://github.com/minaminao/ctf-blockchain/tree/main/src/Ethernaut/GatekeeperTwo) | hard | extcodesize-zero constructor gate
+- [Ethernaut/HigherOrder](https://github.com/minaminao/ctf-blockchain/tree/main/src/Ethernaut/HigherOrder) | hard | calldata selector confusion
+- [Ethernaut/Motorbike](https://github.com/minaminao/ctf-blockchain/tree/main/src/Ethernaut/Motorbike) | hard | uninitialized UUPS impl takeover
+- [Ethernaut/PuzzleWallet](https://github.com/minaminao/ctf-blockchain/tree/main/src/Ethernaut/PuzzleWallet) | hard | multicall double-deposit plus admin collision
+- [Ethernaut/DoubleEntryPoint](https://github.com/minaminao/ctf-blockchain/tree/main/src/Ethernaut/DoubleEntryPoint) | hard | forwarder double-entrypoint sweep
+- [Ethernaut/DexTwo](https://github.com/minaminao/ctf-blockchain/tree/main/src/Ethernaut/DexTwo) | hard | custom-token price drain
+- [Ethernaut/GoodSamaritan](https://github.com/minaminao/ctf-blockchain/tree/main/src/Ethernaut/GoodSamaritan) | hard | faked-error wallet drain
+- [Ethernaut/Stake](https://github.com/minaminao/ctf-blockchain/tree/main/src/Ethernaut/Stake) | hard | unchecked-call stake bypass
+- [EthernautDAO/CarMarket](https://github.com/minaminao/ctf-blockchain/tree/main/src/EthernautDAO/CarMarket) | hard | delegatecall address(this) mismatch
+- [EthernautDAO/EthernautDaoToken](https://github.com/minaminao/ctf-blockchain/tree/main/src/EthernautDAO/EthernautDaoToken) | hard | permit-vs-bot race token grab
+- [EthernautDAO/VendingMachine](https://github.com/minaminao/ctf-blockchain/tree/main/src/EthernautDAO/VendingMachine) | hard | call-based reentrancy vend
+- [NumenCTF/ASSLOT](https://github.com/minaminao/ctf-blockchain/tree/main/src/NumenCTF/ASSLOT) | hard | staticcall value-shifting slot puzzle
+- [NumenCTF/Counter](https://github.com/minaminao/ctf-blockchain/tree/main/src/NumenCTF/Counter) | hard | raw-EVM counter overwrite
+- [NumenCTF/GOATFinance](https://github.com/minaminao/ctf-blockchain/tree/main/src/NumenCTF/GOATFinance) | hard | GOAT finance logic drain
+- [NumenCTF/HEXP](https://github.com/minaminao/ctf-blockchain/tree/main/src/NumenCTF/HEXP) | hard | blockhash-gasprice parity gate
+- [NumenCTF/LenderPool](https://github.com/minaminao/ctf-blockchain/tree/main/src/NumenCTF/LenderPool) | hard | lender pool flash logic flaw
+- [NumenCTF/SimpleCall](https://github.com/minaminao/ctf-blockchain/tree/main/src/NumenCTF/SimpleCall) | hard | low-level call reentry
+- [NumenCTF/Wallet](https://github.com/minaminao/ctf-blockchain/tree/main/src/NumenCTF/Wallet) | hard | wallet auth bypass
+- [OakCosmWasm/Mjolnir](https://github.com/minaminao/ctf-blockchain/tree/main/src/OakSecurityCosmWasmCTF/01-Mjolnir) | hard | CosmWasm auth flaw lvl1
+- [OakCosmWasm/Gungnir](https://github.com/minaminao/ctf-blockchain/tree/main/src/OakSecurityCosmWasmCTF/02-Gungnir) | hard | CosmWasm auth flaw lvl2
+- [OakCosmWasm/Laevateinn](https://github.com/minaminao/ctf-blockchain/tree/main/src/OakSecurityCosmWasmCTF/03-Laevateinn) | hard | CosmWasm funds flaw lvl3
+- [OakCosmWasm/Gram](https://github.com/minaminao/ctf-blockchain/tree/main/src/OakSecurityCosmWasmCTF/04-Gram) | hard | CosmWasm funds flaw lvl4
+- [0CTF2022/TctfNftMarket](https://github.com/minaminao/ctf-blockchain/tree/main/src/0CTF2022/TctfNftMarket) | hard | calldata-bug NFT market drain
+- [MetaTrustCTF/ECDSA](https://github.com/minaminao/ctf-blockchain/tree/main/src/MetaTrustCTF/ECDSA) | hard | ECDSA nonce-puzzle signing flaw
+- [HuffChallenge/1](https://github.com/minaminao/ctf-blockchain/tree/main/src/HuffChallenge/challenge1) | hard | Huff bytecode golf puzzle
+- [HuffChallenge/3](https://github.com/minaminao/ctf-blockchain/tree/main/src/HuffChallenge/challenge3) | hard | Huff selector-validation puzzle
+- [HuffChallenge/5](https://github.com/minaminao/ctf-blockchain/tree/main/src/HuffChallenge/challenge5) | hard | Huff advanced puzzle
+- [FvictorioEVMPuzzles](https://github.com/minaminao/ctf-blockchain/tree/main/src/FvictorioEVMPuzzles) | hard | EVM puzzle set index
+- [ParadigmCTF2023/black-sheep](https://github.com/paradigmxyz/paradigm-ctf-2023/tree/main/black-sheep) | hard | Huff CHECKVALUE gate with 15-wei path
+- [ParadigmCTF2023/cosmic-radiation](https://github.com/paradigmxyz/paradigm-ctf-2023/tree/main/cosmic-radiation) | hard | radiation DECAY state machine solve
+- [ParadigmCTF2023/dai-plus-plus](https://github.com/paradigmxyz/paradigm-ctf-2023/tree/main/dai-plus-plus) | hard | DAI++ account-manager invariant break
+- [ParadigmCTF2023/dodont](https://github.com/paradigmxyz/paradigm-ctf-2023/tree/main/dodont) | hard | DVM clone re-init inside flash callback
+- [ParadigmCTF2023/dragon-tyrant](https://github.com/paradigmxyz/paradigm-ctf-2023/tree/main/dragon-tyrant) | hard | dragon-tyrant item-shop race logic
+- [ParadigmCTF2023/dropper](https://github.com/paradigmxyz/paradigm-ctf-2023/tree/main/dropper) | hard | dropper claim-distribution flaw
+- [ParadigmCTF2023/enterprise-blockchain](https://github.com/paradigmxyz/paradigm-ctf-2023/tree/main/enterprise-blockchain) | hard | forged L2-to-L1 remote message
+- [ParadigmCTF2023/free-real-estate](https://github.com/paradigmxyz/paradigm-ctf-2023/tree/main/free-real-estate) | hard | real-estate price-state flaw
+- [ParadigmCTF2023/grains-of-sand](https://github.com/paradigmxyz/paradigm-ctf-2023/tree/main/grains-of-sand) | hard | fee-dust 1-wei withdraw loop
+- [ParadigmCTF2023/hopping-into-place](https://github.com/paradigmxyz/paradigm-ctf-2023/tree/main/hopping-into-place) | hard | hopper state-transition flaw
+- [ParadigmCTF2023/jotterp](https://github.com/paradigmxyz/paradigm-ctf-2023/tree/main/jotterp) | hard | jotterp note logic flaw
+- [ParadigmCTF2023/one-hundred-percent](https://github.com/paradigmxyz/paradigm-ctf-2023/tree/main/one-hundred-percent) | hard | percent-rounding vault flaw
+- [ParadigmCTF2023/oven](https://github.com/paradigmxyz/paradigm-ctf-2023/tree/main/oven) | hard | oven baking-state flaw
+- [ParadigmCTF2023/skill-based-game](https://github.com/paradigmxyz/paradigm-ctf-2023/tree/main/skill-based-game) | hard | on-chain RNG skill-game prediction
+- [ParadigmCTF2023/suspicious-charity](https://github.com/paradigmxyz/paradigm-ctf-2023/tree/main/suspicious-charity) | hard | cache-key collision solver-bot arbitrage
+- [ParadigmCTF2023/token-locker](https://github.com/paradigmxyz/paradigm-ctf-2023/tree/main/token-locker) | hard | ERC20/721 selector-clash lock
+- [SekaiCTF2025/sekai-lending](https://github.com/project-sekai-ctf/sekaictf-2025/tree/main/blockchains/sekai-lending/challenge) | hard | lending oracle-manipulation CTF
+- [SekaiCTF2025/sekai-meme-launcher](https://github.com/project-sekai-ctf/sekaictf-2025/tree/main/blockchains/sekai-meme-launcher/challenge) | hard | Yul swap-logic meme-launcher bug
+- [SekaiCTF2025/stray-cat](https://github.com/project-sekai-ctf/sekaictf-2025/tree/main/blockchains/stray-cat/challenge) | hard | ticket signature-replay stray-cat
+- [SekaiCTF2025/ticket-master](https://github.com/project-sekai-ctf/sekaictf-2025/tree/main/blockchains/ticket-master/challenge) | hard | ticket-master access flaw
+- [SekaiCTF2025/meme-launcher-solve](https://github.com/project-sekai-ctf/sekaictf-2025/blob/main/blockchains/sekai-meme-launcher/solution/script/Solve.s.sol) | hard | official Solve script for Yul swap bug
+- [SekaiCTF2025/meme-launcher-solve2](https://github.com/project-sekai-ctf/sekaictf-2025/blob/main/blockchains/sekai-meme-launcher/solution/script/Solve2.s.sol) | hard | alternate Solve script for Yul swap bug
+- [HTB-CA2024/LuckyFaucet](https://github.com/hackthebox/cyber-apocalypse-2024/blob/main/blockchain/Lucky%20Faucet%20%5BEasy%5D/README.md) | hard | faucet logic flaw
+- [HTB-CA2024/Recovery](https://github.com/hackthebox/cyber-apocalypse-2024/blob/main/blockchain/Recovery%20%5BEasy%5D/README.md) | hard | lost-address recovery puzzle
+- [HTB-CA2024/RussianRoulette](https://github.com/hackthebox/cyber-apocalypse-2024/blob/main/blockchain/Russian%20Roulette%20%5BVery%20Easy%5D/README.md) | hard | roulette randomness puzzle
+- [HTB-CA2025/EldoriaGate](https://github.com/hackthebox/cyber-apocalypse-2025/blob/main/blockchain/EldoriaGate%20%5BMedium%5D/README.md) | hard | gate-logic bypass
+- [HTB-CA2025/Eldorion](https://github.com/hackthebox/cyber-apocalypse-2025/blob/main/blockchain/Eldorion%20%5BVery%20Easy%5D/README.md) | hard | intro vault puzzle
+- [HTB-CA2025/HeliosDEX](https://github.com/hackthebox/cyber-apocalypse-2025/blob/main/blockchain/HeliosDEX%20%5BEasy%5D/README.md) | hard | DEX price-logic flaw
+- [BlazCTF2024/8inch](https://github.com/DeFiHackLabs/blazctf-2024-writeup/blob/main/writeup/8inch.md) | hard | 8inch logic-flaw writeup
+- [BlazCTF2024/doju](https://github.com/DeFiHackLabs/blazctf-2024-writeup/blob/main/writeup/doju.md) | hard | doju logic-flaw writeup
+- [BlazCTF2024/i-love-revmc](https://github.com/DeFiHackLabs/blazctf-2024-writeup/blob/main/writeup/i-love-revmc.md) | hard | revmc assembly-bug writeup
+- [BlazCTF2024/oh-fuck-pendle](https://github.com/DeFiHackLabs/blazctf-2024-writeup/blob/main/writeup/oh-fuck-pendle.md) | hard | pendle-market logic flaw
+- [HITCON2024/lustrous](https://github.com/DeFiHackLabs/hitcon-ctf-2024-writeup/blob/main/writeup/lustrous.md) | hard | Vyper concat zero-overwrite plus reentrancy
+- [HITCON2024/noexitroom](https://github.com/DeFiHackLabs/hitcon-ctf-2024-writeup/blob/main/writeup/noexitroom.md) | hard | beacon-channel-room escape chain
+- [DVDv4/Compromised-astierfe](https://github.com/astierfe/damn-vulnerable-defi-writeups/blob/main/reports/compromised/Compromised_exploit.md) | hard | median-oracle key-leak flip walkthrough
+- [DVDv4/CurvyPuppet-astierfe](https://github.com/astierfe/damn-vulnerable-defi-writeups/blob/main/reports/curvy-puppet/Curvy_puppet_exploit.md) | hard | Curve virtual-price skew walkthrough
+- [DVDv4/NaiveReceiver-astierfe](https://github.com/astierfe/damn-vulnerable-defi-writeups/blob/main/reports/naive-receiver/naive_receiver_exploit.md) | hard | multicall fee-drain walkthrough
+- [DVDv4/PuppetV2-astierfe](https://github.com/astierfe/damn-vulnerable-defi-writeups/blob/main/reports/puppet-v2/puppetv2_exploit.md) | hard | V2 spot-borrow walkthrough
+- [DVDv4/PuppetV3-astierfe](https://github.com/astierfe/damn-vulnerable-defi-writeups/blob/main/reports/puppet-v3/Puppetv3_exploit.md) | hard | TWAP-warp borrow walkthrough
+- [DVDv4/Puppet-astierfe](https://github.com/astierfe/damn-vulnerable-defi-writeups/blob/main/reports/puppet/puppet_exploit.md) | hard | V1 spot-borrow walkthrough
+- [DVDv4/Selfie-astierfe](https://github.com/astierfe/damn-vulnerable-defi-writeups/blob/main/reports/selfie/selfie_exploit.md) | hard | flash-governance warp walkthrough
+- [DVDv4/Shards-astierfe](https://github.com/astierfe/damn-vulnerable-defi-writeups/blob/main/reports/shards/REPORT_EXPLOIT.md) | hard | fractional-shard ordering walkthrough
+- [DVDv4/SideEntrance-astierfe](https://github.com/astierfe/damn-vulnerable-defi-writeups/blob/main/reports/side-entrance/Sideentrance_exploit.md) | hard | deposit-as-repayment walkthrough
+- [DVDv4/Rewarder-astierfe](https://github.com/astierfe/damn-vulnerable-defi-writeups/blob/main/reports/the-rewarder/the_rewarder_exploit.md) | hard | same-round replay walkthrough
+- [DVDv4/Truster-astierfe](https://github.com/astierfe/damn-vulnerable-defi-writeups/blob/main/reports/truster/truster_exploit.md) | hard | approve-via-loan walkthrough
+- [DVDv4/Unstoppable-astierfe](https://github.com/astierfe/damn-vulnerable-defi-writeups/blob/main/reports/unstoppable/unstoppable_exploit.md) | hard | donation-invariant DoS walkthrough
+- [DVDv4/ABISmuggling-ilainy](https://github.com/ilainy/damn-vulnerable-defi-v4-solutions/blob/main/ABI%20Smuggling/README.md) | hard | offset-decoy selector walkthrough
+- [DVDv4/Backdoor-ilainy](https://github.com/ilainy/damn-vulnerable-defi-v4-solutions/blob/main/Backdoor/README.md) | hard | Safe setup delegatecall walkthrough
+- [DVDv4/Climber-ilainy](https://github.com/ilainy/damn-vulnerable-defi-v4-solutions/blob/main/Climber/README.md) | hard | execute-before-check walkthrough
+- [DVDv4/Compromised-ilainy](https://github.com/ilainy/damn-vulnerable-defi-v4-solutions/blob/main/Compromised/README.md) | hard | median flip walkthrough
+- [DVDv4/CurvyPuppet-ilainy](https://github.com/ilainy/damn-vulnerable-defi-v4-solutions/blob/main/Curvy%20Puppet/README.md) | hard | LP-oracle skew walkthrough
+- [DVDv4/CurvyPuppet-test-ilainy](https://github.com/ilainy/damn-vulnerable-defi-v4-solutions/blob/main/Curvy%20Puppet/CurvyPuppet.t.sol) | hard | foundry PoC for LP-oracle skew
+- [DVDv4/FreeRider-ilainy](https://github.com/ilainy/damn-vulnerable-defi-v4-solutions/blob/main/Free%20Rider/README.md) | hard | buyMany bounty-reentry walkthrough
+- [DVDv4/NaiveReceiver-ilainy](https://github.com/ilainy/damn-vulnerable-defi-v4-solutions/blob/main/Naive%20receiver/README.md) | hard | forwarder tail-spoof walkthrough
+- [DVDv4/PuppetV2-ilainy](https://github.com/ilainy/damn-vulnerable-defi-v4-solutions/blob/main/Puppet%20V2/README.md) | hard | V2 spot-borrow walkthrough
+- [DVDv4/PuppetV3-ilainy](https://github.com/ilainy/damn-vulnerable-defi-v4-solutions/blob/main/Puppet%20V3/README.md) | hard | TWAP borrow walkthrough
+- [DVDv4/Puppet-ilainy](https://github.com/ilainy/damn-vulnerable-defi-v4-solutions/blob/main/Puppet/README.md) | hard | V1 spot-borrow walkthrough
+- [DVDv4/Selfie-ilainy](https://github.com/ilainy/damn-vulnerable-defi-v4-solutions/blob/main/Selfie/README.md) | hard | flash-governance walkthrough
+- [DVDv4/Shards-ilainy](https://github.com/ilainy/damn-vulnerable-defi-v4-solutions/blob/main/Shards/README.md) | hard | shard ordering walkthrough
+- [DVDv4/SideEntrance-ilainy](https://github.com/ilainy/damn-vulnerable-defi-v4-solutions/blob/main/Side%20Entrance/README.md) | hard | deposit-credit walkthrough
+- [DVDv4/Rewarder-ilainy](https://github.com/ilainy/damn-vulnerable-defi-v4-solutions/blob/main/The%20Rewarder/README.md) | hard | snapshot replay walkthrough
+- [DVDv4/Truster-ilainy](https://github.com/ilainy/damn-vulnerable-defi-v4-solutions/blob/main/Truster/README.md) | hard | arbitrary-call loan walkthrough
+- [DVDv4/Unstoppable-ilainy](https://github.com/ilainy/damn-vulnerable-defi-v4-solutions/blob/main/Unstoppable/README.md) | hard | share-invariant DoS walkthrough
+- [DVDv4/WalletMining-ilainy](https://github.com/ilainy/damn-vulnerable-defi-v4-solutions/blob/main/Wallet%20Mining/README.md) | hard | impl-takeover replay walkthrough
+- [DVDv4/WalletMining-test-ilainy](https://github.com/ilainy/damn-vulnerable-defi-v4-solutions/blob/main/Wallet%20Mining/WalletMining.t.sol) | hard | foundry PoC for wallet replay
+- [DVDv4/Withdrawal-ilainy](https://github.com/ilainy/damn-vulnerable-defi-v4-solutions/blob/main/Withdrawal%20/README.md) | hard | dual-leg withdrawal walkthrough
+- [DVDv4/CurvyPuppet-chujimafa](https://github.com/Chujimafa/damn-vulnerable-defi-v4.1.0-solutions/blob/master/WalkThrough/Curvy_Puppet_Walkthrough.md) | hard | read-only reentrancy price walkthrough
+- [DVDv4/NaiveReceiver-chujimafa](https://github.com/Chujimafa/damn-vulnerable-defi-v4.1.0-solutions/blob/master/WalkThrough/Naive_receiver_Walkthrough.md) | hard | EIP712 delegatecall flash-loan walkthrough
+- [DVD/AttackBackdoor-MikeSpa](https://github.com/MikeSpa/DamnVulnerableDeFi/blob/main/contracts/attacker-contracts/AttackBackdoor.sol) | hard | Safe-init attacker contract
+- [DVD/AttackClimber-MikeSpa](https://github.com/MikeSpa/DamnVulnerableDeFi/blob/main/contracts/attacker-contracts/AttackClimberTimelock.sol) | hard | timelock-bundle attacker contract
+- [DVD/AttackFreeRider-MikeSpa](https://github.com/MikeSpa/DamnVulnerableDeFi/blob/main/contracts/attacker-contracts/AttackFreeRider.sol) | hard | 777-reentry buyer contract
+- [DVD/AttackNaiveReceiver-MikeSpa](https://github.com/MikeSpa/DamnVulnerableDeFi/blob/main/contracts/attacker-contracts/AttackNaiveReceiver.sol) | hard | multicall fee-drain attacker
+- [DVD/AttackRewarder-MikeSpa](https://github.com/MikeSpa/DamnVulnerableDeFi/blob/main/contracts/attacker-contracts/AttackRewarder.sol) | hard | flash-reward attacker contract
+- [DVD/AttackSelfie-MikeSpa](https://github.com/MikeSpa/DamnVulnerableDeFi/blob/main/contracts/attacker-contracts/AttackSelfie.sol) | hard | governance-flash attacker contract
+- [DVD/AttackSideEntrance-MikeSpa](https://github.com/MikeSpa/DamnVulnerableDeFi/blob/main/contracts/attacker-contracts/AttackSideEntrance.sol) | hard | deposit-credit attacker contract
+- [DVD/AttackTruster-MikeSpa](https://github.com/MikeSpa/DamnVulnerableDeFi/blob/main/contracts/attacker-contracts/AttackTrusterLenderPool.sol) | hard | approve-call attacker contract
+- [DVD/AttackVault-MikeSpa](https://github.com/MikeSpa/DamnVulnerableDeFi/blob/main/contracts/attacker-contracts/AttackVault.sol) | hard | vault-drain attacker contract
+- [DVD/WRITEUP-MikeSpa](https://github.com/MikeSpa/DamnVulnerableDeFi/blob/main/WRITEUP.md) | hard | multi-challenge DVD writeup
+- [Code4rena/2024-01-opus](https://code4rena.com/reports/2024-01-opus) | hard | 2024 contest high-severity findings with PoC test cases
+- [Code4rena/2024-01-renft](https://code4rena.com/reports/2024-01-renft) | hard | 2024 NFT marketplace findings with PoC tests
+- [Code4rena/2024-03-revert-lend](https://code4rena.com/reports/2024-03-revert-lend) | hard | 2024 lending oracle plus liquidation findings with PoC tests
+- [Code4rena/2024-06-vultisig](https://code4rena.com/reports/2024-06-vultisig) | hard | 2024 contest high-severity findings with PoC test cases
+- [Code4rena/2024-06-size](https://code4rena.com/reports/2024-06-size) | hard | 2024 contest high-severity findings with PoC test cases
+- [Code4rena/2024-05-predy](https://code4rena.com/reports/2024-05-predy) | hard | 2024 contest high-severity findings with PoC test cases
+- [Code4rena/2024-07-benddao](https://code4rena.com/reports/2024-07-benddao) | hard | 2024 governance timelock findings with PoC tests
+- [Code4rena/2024-01-decent](https://code4rena.com/reports/2024-01-decent) | hard | 2024 contest high-severity findings with PoC test cases
+- [Code4rena/2024-04-renzo](https://code4rena.com/reports/2024-04-renzo) | hard | 2024 contest high-severity findings with PoC test cases
+- [Code4rena/2024-07-basin](https://code4rena.com/reports/2024-07-basin) | hard | 2024 contest high-severity findings with PoC test cases
+- [Code4rena/2024-02-thruster](https://code4rena.com/reports/2024-02-thruster) | hard | 2024 contest high-severity findings with PoC test cases
+- [Code4rena/2024-03-ondo-finance](https://code4rena.com/reports/2024-03-ondo-finance) | hard | 2024 contest high-severity findings with PoC test cases
+- [Code4rena/2024-05-loop](https://code4rena.com/reports/2024-05-loop) | hard | 2024 contest high-severity findings with PoC test cases
+- [Code4rena/2024-06-krystal-defi](https://code4rena.com/reports/2024-06-krystal-defi) | hard | 2024 contest high-severity findings with PoC test cases
+- [Code4rena/2024-07-optimism](https://code4rena.com/reports/2024-07-optimism) | hard | 2024 contest high-severity findings with PoC test cases
+- [Code4rena/2024-03-pooltogether](https://code4rena.com/reports/2024-03-pooltogether) | hard | 2024 AMM pricing plus LP findings with PoC tests
+- [Code4rena/2024-03-taiko](https://code4rena.com/reports/2024-03-taiko) | hard | 2024 contest high-severity findings with PoC test cases
+- [Code4rena/2024-05-arbitrum-foundation](https://code4rena.com/reports/2024-05-arbitrum-foundation) | hard | 2024 contest high-severity findings with PoC test cases
+- [Code4rena/2024-05-munchables](https://code4rena.com/reports/2024-05-munchables) | hard | 2024 contest high-severity findings with PoC test cases
+- [Code4rena/2024-07-reserve](https://code4rena.com/reports/2024-07-reserve) | hard | 2024 stablecoin reserve findings with PoC tests
+- [Code4rena/2024-02-spectra](https://code4rena.com/reports/2024-02-spectra) | hard | 2024 contest high-severity findings with PoC test cases
+- [Code4rena/2024-01-canto](https://code4rena.com/reports/2024-01-canto) | hard | 2024 contest high-severity findings with PoC test cases
+- [Code4rena/2024-04-dyad](https://code4rena.com/reports/2024-04-dyad) | hard | 2024 contest high-severity findings with PoC test cases
+- [Code4rena/2024-05-olas](https://code4rena.com/reports/2024-05-olas) | hard | 2024 contest high-severity findings with PoC test cases
+- [Code4rena/2024-07-traitforge](https://code4rena.com/reports/2024-07-traitforge) | hard | 2024 contest high-severity findings with PoC test cases
+- [Code4rena/2024-03-neobase](https://code4rena.com/reports/2024-03-neobase) | hard | 2024 contest high-severity findings with PoC test cases
+- [Code4rena/2024-02-althea-liquid-infrastructure](https://code4rena.com/reports/2024-02-althea-liquid-infrastructure) | hard | 2024 contest high-severity findings with PoC test cases
+- [Code4rena/2024-02-hydradx](https://code4rena.com/reports/2024-02-hydradx) | hard | 2024 contest high-severity findings with PoC test cases
+- [Code4rena/2024-03-coinbase](https://code4rena.com/reports/2024-03-coinbase) | hard | 2024 contest high-severity findings with PoC test cases
+- [Code4rena/2024-02-tapioca](https://code4rena.com/reports/2024-02-tapioca) | hard | 2024 contest high-severity findings with PoC test cases
+- [Code4rena/2024-05-bakerfi](https://code4rena.com/reports/2024-05-bakerfi) | hard | 2024 contest high-severity findings with PoC test cases
+- [Code4rena/2024-01-curves](https://code4rena.com/reports/2024-01-curves) | hard | 2024 AMM pricing plus LP findings with PoC tests
+- [Code4rena/2024-07-dittoeth](https://code4rena.com/reports/2024-07-dittoeth) | hard | 2024 contest high-severity findings with PoC test cases
+- [Code4rena/2024-09-panoptic](https://code4rena.com/reports/2024-09-panoptic) | hard | 2024 contest high-severity findings with PoC test cases
+- [Code4rena/2024-03-acala](https://code4rena.com/reports/2024-03-acala) | hard | 2024 contest high-severity findings with PoC test cases
+- [Code4rena/2024-03-zksync](https://code4rena.com/reports/2024-03-zksync) | hard | 2024 contest high-severity findings with PoC test cases
+- [Code4rena/2024-04-panoptic](https://code4rena.com/reports/2024-04-panoptic) | hard | 2024 contest high-severity findings with PoC test cases
+- [Code4rena/2024-03-phala-network](https://code4rena.com/reports/2024-03-phala-network) | hard | 2024 contest high-severity findings with PoC test cases
+- [Code4rena/2024-02-wise-lending](https://code4rena.com/reports/2024-02-wise-lending) | hard | 2024 lending oracle plus liquidation findings with PoC tests
+- [Code4rena/2024-04-lavarage](https://code4rena.com/reports/2024-04-lavarage) | hard | 2024 contest high-severity findings with PoC test cases
+- [Code4rena/2024-08-superposition](https://code4rena.com/reports/2024-08-superposition) | hard | 2024 perps funding plus margin findings with PoC tests
+- [Code4rena/2024-01-init-capital-invitational](https://code4rena.com/reports/2024-01-init-capital-invitational) | hard | 2024 contest high-severity findings with PoC test cases
+- [Code4rena/2024-02-uniswap-foundation](https://code4rena.com/reports/2024-02-uniswap-foundation) | hard | 2024 AMM pricing plus LP findings with PoC tests
+- [Code4rena/2024-03-abracadabra-money](https://code4rena.com/reports/2024-03-abracadabra-money) | hard | 2024 contest high-severity findings with PoC test cases
+- [Code4rena/2024-06-panoptic](https://code4rena.com/reports/2024-06-panoptic) | hard | 2024 contest high-severity findings with PoC test cases
+- [Code4rena/2024-08-wildcat](https://code4rena.com/reports/2024-08-wildcat) | hard | 2024 contest high-severity findings with PoC test cases
+- [Code4rena/2024-11-ethena-labs](https://code4rena.com/reports/2024-11-ethena-labs) | hard | 2024 staking rewards-math findings with PoC tests
+- [Code4rena/2024-01-salty](https://code4rena.com/reports/2024-01-salty) | hard | 2024 contest high-severity findings with PoC test cases
+- [Code4rena/2024-03-canto](https://code4rena.com/reports/2024-03-canto) | hard | 2024 contest high-severity findings with PoC test cases
+- [Code4rena/2024-03-dittoeth](https://code4rena.com/reports/2024-03-dittoeth) | hard | 2024 contest high-severity findings with PoC test cases
+- [Code4rena/2024-03-gitcoin](https://code4rena.com/reports/2024-03-gitcoin) | hard | 2024 contest high-severity findings with PoC test cases
+- [Code4rena/2024-10-coded-estate](https://code4rena.com/reports/2024-10-coded-estate) | hard | 2024 contest high-severity findings with PoC test cases
+- [Code4rena/2024-04-gondi](https://code4rena.com/reports/2024-04-gondi) | hard | 2024 contest high-severity findings with PoC test cases
+- [Code4rena/2024-02-ai-arena](https://code4rena.com/reports/2024-02-ai-arena) | hard | 2024 contest high-severity findings with PoC test cases
+- [Code4rena/2024-06-badger](https://code4rena.com/reports/2024-06-badger) | hard | 2024 contest high-severity findings with PoC test cases
+- [Code4rena/2024-06-thorchain](https://code4rena.com/reports/2024-06-thorchain) | hard | 2024 contest high-severity findings with PoC test cases
+- [Code4rena/2024-07-munchables](https://code4rena.com/reports/2024-07-munchables) | hard | 2024 contest high-severity findings with PoC test cases
+- [Code4rena/2024-05-canto](https://code4rena.com/reports/2024-05-canto) | hard | 2024 contest high-severity findings with PoC test cases
+- [Code4rena/2024-09-kakarot](https://code4rena.com/reports/2024-09-kakarot) | hard | 2024 contest high-severity findings with PoC test cases
+- [Code4rena/2024-08-basin](https://code4rena.com/reports/2024-08-basin) | hard | 2024 contest high-severity findings with PoC test cases
+- [Code4rena/2024-09-fenix-finance](https://code4rena.com/reports/2024-09-fenix-finance) | hard | 2024 contest high-severity findings with PoC test cases
+- [Code4rena/2024-10-kleidi](https://code4rena.com/reports/2024-10-kleidi) | hard | 2024 contest high-severity findings with PoC test cases
+- [Code4rena/2024-10-ronin](https://code4rena.com/reports/2024-10-ronin) | hard | 2024 contest high-severity findings with PoC test cases
+- [Code4rena/2024-10-ramses-exchange](https://code4rena.com/reports/2024-10-ramses-exchange) | hard | 2024 contest high-severity findings with PoC test cases
+- [Code4rena/2024-06-gondi](https://code4rena.com/reports/2024-06-gondi) | hard | 2024 contest high-severity findings with PoC test cases
+- [Code4rena/2024-10-superposition](https://code4rena.com/reports/2024-10-superposition) | hard | 2024 perps funding plus margin findings with PoC tests
+- [Code4rena/2024-12-benddao-invitational](https://code4rena.com/reports/2024-12-benddao-invitational) | hard | 2024 governance timelock findings with PoC tests
+- [Code4rena/2024-08-axelar-network](https://code4rena.com/reports/2024-08-axelar-network) | hard | 2024 bridge message-validation findings with PoC tests
+- [Code4rena/2024-12-flex-perpetuals](https://code4rena.com/reports/2024-12-flex-perpetuals) | hard | 2024 perps funding plus margin findings with PoC tests
+- [Code4rena/2024-12-lambowin](https://code4rena.com/reports/2024-12-lambowin) | hard | 2024 contest high-severity findings with PoC test cases
+- [Code4rena/2024-04-noya](https://code4rena.com/reports/2024-04-noya) | hard | 2024 contest high-severity findings with PoC test cases
+- [Code4rena/2024-07-loopfi](https://code4rena.com/reports/2024-07-loopfi) | hard | 2024 contest high-severity findings with PoC test cases
+- [Code4rena/2024-10-loopfi](https://code4rena.com/reports/2024-10-loopfi) | hard | 2024 contest high-severity findings with PoC test cases
+- [Code4rena/2024-08-chakra](https://code4rena.com/reports/2024-08-chakra) | hard | 2024 contest high-severity findings with PoC test cases
+- [Code4rena/2024-11-nibiru](https://code4rena.com/reports/2024-11-nibiru) | hard | 2024 contest high-severity findings with PoC test cases
+- [Code4rena/2024-12-unruggable-invitational](https://code4rena.com/reports/2024-12-unruggable-invitational) | hard | 2024 contest high-severity findings with PoC test cases
+- [Code4rena/2024-12-secondswap](https://code4rena.com/reports/2024-12-secondswap) | hard | 2024 AMM pricing plus LP findings with PoC tests
+- [Code4rena/2024-12-bakerfi-invitational](https://code4rena.com/reports/2024-12-bakerfi-invitational) | hard | 2024 contest high-severity findings with PoC test cases
+- [Code4rena/2025-01-pump-science](https://code4rena.com/reports/2025-01-pump-science) | hard | 2025 contest high-severity findings with PoC test cases
+- [Code4rena/2025-08-meteora-dynamic-bonding-curve](https://code4rena.com/reports/2025-08-meteora-dynamic-bonding-curve) | hard | 2025 AMM pricing plus LP findings with PoC tests
+- [Code4rena/2025-01-liquid-ron](https://code4rena.com/reports/2025-01-liquid-ron) | hard | 2025 contest high-severity findings with PoC test cases
+- [Code4rena/2025-01-iq-ai](https://code4rena.com/reports/2025-01-iq-ai) | hard | 2025 contest high-severity findings with PoC test cases
+- [Code4rena/2024-11-mantra-dex](https://code4rena.com/reports/2024-11-mantra-dex) | hard | 2024 AMM pricing plus LP findings with PoC tests
+- [Code4rena/2024-11-mantra-chain](https://code4rena.com/reports/2024-11-mantra-chain) | hard | 2024 contest high-severity findings with PoC test cases
+- [Code4rena/2025-01-initia-move](https://code4rena.com/reports/2025-01-initia-move) | hard | 2025 contest high-severity findings with PoC test cases
+- [Code4rena/2025-02-thorwallet](https://code4rena.com/reports/2025-02-thorwallet) | hard | 2025 contest high-severity findings with PoC test cases
+- [Code4rena/2025-03-nudgexyz](https://code4rena.com/reports/2025-03-nudgexyz) | hard | 2025 contest high-severity findings with PoC test cases
+- [Code4rena/2025-04-forte-float128-solidity-library](https://code4rena.com/reports/2025-04-forte-float128-solidity-library) | hard | 2025 contest high-severity findings with PoC test cases
+- [Code4rena/2025-04-bitvault](https://code4rena.com/reports/2025-04-bitvault) | hard | 2025 vault share-math plus access findings with PoC tests
+- [Code4rena/2025-02-initia-cosmos](https://code4rena.com/reports/2025-02-initia-cosmos) | hard | 2025 contest high-severity findings with PoC test cases
+- [Code4rena/2025-01-next-generation](https://code4rena.com/reports/2025-01-next-generation) | hard | 2025 contest high-severity findings with PoC test cases
+- [Code4rena/2025-03-silo-finance](https://code4rena.com/reports/2025-03-silo-finance) | hard | 2025 contest high-severity findings with PoC test cases
+- [Code4rena/2025-04-cabal-liquid-staking-token](https://code4rena.com/reports/2025-04-cabal-liquid-staking-token) | hard | 2025 staking rewards-math findings with PoC tests
+- [Code4rena/2025-05-upside](https://code4rena.com/reports/2025-05-upside) | hard | 2025 contest high-severity findings with PoC test cases
+- [Code4rena/2025-03-starknet-perpetual](https://code4rena.com/reports/2025-03-starknet-perpetual) | hard | 2025 perps funding plus margin findings with PoC tests
+- [Code4rena/2025-09-layerzero-endpoint-v2-sui](https://code4rena.com/reports/2025-09-layerzero-endpoint-v2-sui) | hard | 2025 bridge message-validation findings with PoC tests
+- [Code4rena/2025-05-blackhole](https://code4rena.com/reports/2025-05-blackhole) | hard | 2025 contest high-severity findings with PoC test cases
+- [Code4rena/2025-04-kinetiq](https://code4rena.com/reports/2025-04-kinetiq) | hard | 2025 contest high-severity findings with PoC test cases
+- [Code4rena/2025-04-virtuals-protocol](https://code4rena.com/reports/2025-04-virtuals-protocol) | hard | 2025 contest high-severity findings with PoC test cases
+- [Code4rena/2025-06-panoptic-hypovault](https://code4rena.com/reports/2025-06-panoptic-hypovault) | hard | 2025 vault share-math plus access findings with PoC tests
+- [Code4rena/2025-07-lido-finance](https://code4rena.com/reports/2025-07-lido-finance) | hard | 2025 staking rewards-math findings with PoC tests
+- [Code4rena/2025-08-morpheus](https://code4rena.com/reports/2025-08-morpheus) | hard | 2025 contest high-severity findings with PoC test cases
+- [Code4rena/2025-01-initia-rollup-modules](https://code4rena.com/reports/2025-01-initia-rollup-modules) | hard | 2025 contest high-severity findings with PoC test cases
+- [Code4rena/2025-02-blend-v2-audit-certora-formal-verification](https://code4rena.com/reports/2025-02-blend-v2-audit-certora-formal-verification) | hard | 2025 lending oracle plus liquidation findings with PoC tests
+- [Code4rena/2025-08-solana-foundation](https://code4rena.com/reports/2025-08-solana-foundation) | hard | 2025 contest high-severity findings with PoC test cases
+- [Code4rena/2025-10-covenant](https://code4rena.com/reports/2025-10-covenant) | hard | 2025 contest high-severity findings with PoC test cases
+- [Code4rena/2025-10-sequence](https://code4rena.com/reports/2025-10-sequence) | hard | 2025 contest high-severity findings with PoC test cases
+- [Code4rena/2025-10-hybra-finance](https://code4rena.com/reports/2025-10-hybra-finance) | hard | 2025 contest high-severity findings with PoC test cases
+- [Code4rena/2025-08-flare-fasset](https://code4rena.com/reports/2025-08-flare-fasset) | hard | 2025 contest high-severity findings with PoC test cases
+- [Code4rena/2025-11-sequence-transaction-rails](https://code4rena.com/reports/2025-11-sequence-transaction-rails) | hard | 2025 contest high-severity findings with PoC test cases
+- [Code4rena/2025-11-megapot](https://code4rena.com/reports/2025-11-megapot) | hard | 2025 contest high-severity findings with PoC test cases
+- [Code4rena/2025-11-garden](https://code4rena.com/reports/2025-11-garden) | hard | 2025 contest high-severity findings with PoC test cases
+- [Code4rena/2025-11-merkl](https://code4rena.com/reports/2025-11-merkl) | hard | 2025 contest high-severity findings with PoC test cases
+- [Code4rena/2025-11-ekubo](https://code4rena.com/reports/2025-11-ekubo) | hard | 2025 contest high-severity findings with PoC test cases
+- [Code4rena/2025-10-layerzero-starknet-endpoint](https://code4rena.com/reports/2025-10-layerzero-starknet-endpoint) | hard | 2025 bridge message-validation findings with PoC tests
+- [Code4rena/2025-10-reflector-v3](https://code4rena.com/reports/2025-10-reflector-v3) | hard | 2025 contest high-severity findings with PoC test cases
+- [Code4rena/2025-07-gte-spot-clob-and-router](https://code4rena.com/reports/2025-07-gte-spot-clob-and-router) | hard | 2025 contest high-severity findings with PoC test cases
+- [Code4rena/2025-08-gte-perps-and-launchpad](https://code4rena.com/reports/2025-08-gte-perps-and-launchpad) | hard | 2025 perps funding plus margin findings with PoC tests
+- [Code4rena/2025-11-brix-money](https://code4rena.com/reports/2025-11-brix-money) | hard | 2025 contest high-severity findings with PoC test cases
+- [Code4rena/2025-09-succinct](https://code4rena.com/reports/2025-09-succinct) | hard | 2025 contest high-severity findings with PoC test cases
+- [Code4rena/2025-09-monad](https://code4rena.com/reports/2025-09-monad) | hard | 2025 contest high-severity findings with PoC test cases
+- [Code4rena/2025-12-panoptic-next-core](https://code4rena.com/reports/2025-12-panoptic-next-core) | hard | 2025 contest high-severity findings with PoC test cases
+- [Code4rena/2025-02-recall](https://code4rena.com/reports/2025-02-recall) | hard | 2025 contest high-severity findings with PoC test cases
+- [Code4rena/2025-11-sukukfi](https://code4rena.com/reports/2025-11-sukukfi) | hard | 2025 contest high-severity findings with PoC test cases
+- [Code4rena/2026-03-intuition](https://code4rena.com/reports/2026-03-intuition) | hard | 2026 contest high-severity findings with PoC test cases
+- [Code4rena/2025-11-swafe](https://code4rena.com/reports/2025-11-swafe) | hard | 2025 contest high-severity findings with PoC test cases
+- [Code4rena/2026-04-layerzero-stellar-endpoint](https://code4rena.com/reports/2026-04-layerzero-stellar-endpoint) | hard | 2026 bridge message-validation findings with PoC tests
+- [Code4rena/2026-01-olas](https://code4rena.com/reports/2026-01-olas) | hard | 2026 contest high-severity findings with PoC test cases
+- [Code4rena/2026-04-monetrix](https://code4rena.com/reports/2026-04-monetrix) | hard | 2026 contest high-severity findings with PoC test cases
+- [Code4rena/2026-02-jupiter-lend](https://code4rena.com/reports/2026-02-jupiter-lend) | hard | 2026 lending oracle plus liquidation findings with PoC tests
+- [Code4rena/2026-04-k2](https://code4rena.com/reports/2026-04-k2) | hard | 2026 contest high-severity findings with PoC test cases
+- [Zellic/algebraic-attacks-on-zk-hash-functions](https://www.zellic.io/blog/algebraic-attacks-on-zk-hash-functions) | hard | ZK hash-function algebraic attack analysis
+- [Zellic/binance-bridge-hack-in-laymans-terms](https://www.zellic.io/blog/binance-bridge-hack-in-laymans-terms) | hard | BNB bridge forged-proof post-mortem explainer
+- [Zellic/breaking-down-the-economics-of-defi-hacks](https://www.zellic.io/blog/breaking-down-the-economics-of-defi-hacks) | hard | DeFi hack economics plus role-play modeling
+- [Zellic/browsing-for-bugs-3m-bug-in-premia-finance](https://www.zellic.io/blog/browsing-for-bugs-3m-bug-in-premia-finance) | hard | Premia option-pool pricing bug breakdown
+- [Zellic/cairo-security-primer](https://www.zellic.io/blog/cairo-security-primer) | hard | Cairo/Starknet security primer for auditors
+- [Zellic/erc-4337-primer](https://www.zellic.io/blog/erc-4337-primer) | hard | ERC-4337 EntryPoint plus paymaster primer
+- [Zellic/exploring-erc-4626](https://www.zellic.io/blog/exploring-erc-4626) | hard | ERC4626 inflation plus donation primer
+- [Zellic/formal-verification-weth](https://www.zellic.io/blog/formal-verification-weth) | hard | WETH formal-verification case study
+- [Zellic/how-not-to-create-a-cdp-or-lending-protocol](https://www.zellic.io/blog/how-not-to-create-a-cdp-or-lending-protocol) | hard | CDP lending-protocol design pitfalls
+- [Zellic/how-to-create-an-ethereum-ctf-challenge](https://www.zellic.io/blog/how-to-create-an-ethereum-ctf-challenge) | hard | Ethereum CTF challenge-design guide
+- [Zellic/move-fast-and-break-things-pt-1](https://www.zellic.io/blog/move-fast-and-break-things-pt-1) | hard | Move language bug patterns part 1
+- [Zellic/move-fast-break-things-move-security-part-2](https://www.zellic.io/blog/move-fast-break-things-move-security-part-2) | hard | Move language bug patterns part 2
+- [Zellic/safemoon-exploit-explained](https://www.zellic.io/blog/safemoon-exploit-explained) | hard | SafeMoon mint-burn access exploit explainer
+- [Zellic/the-billion-dollar-move-bug](https://www.zellic.io/blog/the-billion-dollar-move-bug) | hard | Move VM integer-overflow DoS analysis
+- [Zellic/the-vulnerabilities-youll-write-with-anchor](https://www.zellic.io/blog/the-vulnerabilities-youll-write-with-anchor) | hard | Anchor missing-check vulnerability catalog
+- [Zellic/top-10-aptos-move-bugs](https://www.zellic.io/blog/top-10-aptos-move-bugs) | hard | top-10 Aptos Move bug patterns
+- [Zellic/your-sandwich-is-my-lunch-how-to-drain-mev-contracts-v2](https://www.zellic.io/blog/your-sandwich-is-my-lunch-how-to-drain-mev-contracts-v2) | hard | draining MEV-contract sandwich patterns
+- [Zellic/how-does-tornado-cash-work](https://www.zellic.io/blog/how-does-tornado-cash-work) | hard | Tornado Cash circuit plus nullifier explainer
+- [Zellic/csprngs-how-to-properly-generate-random-numbers](https://www.zellic.io/blog/csprngs-how-to-properly-generate-random-numbers) | hard | on-chain randomness design guide
+- [TrailOfBits/building-secure-uniswap-v4-hooks](https://blog.trailofbits.com/2026/07/30/building-secure-uniswap-v4-hooks) | hard | Uniswap v4 hook security patterns
+- [TrailOfBits/spotting-issues-in-defi-with-dimensional-analysis](https://blog.trailofbits.com/2026/03/24/spotting-issues-in-defi-with-dimensional-analysis) | hard | dimensional-analysis DeFi audit technique
+- [TrailOfBits/balancer-hack-analysis-and-guidance-for-the-defi-ecosystem](https://blog.trailofbits.com/2025/11/07/balancer-hack-analysis-and-guidance-for-the-defi-ecosystem) | hard | Balancer 2025 hack analysis plus guidance
+- [TrailOfBits/how-sui-move-rethinks-flash-loan-security](https://blog.trailofbits.com/2025/09/10/how-sui-move-rethinks-flash-loan-security) | hard | Sui Move flash-loan security model
+- [TrailOfBits/implement-eip-7730-today](https://blog.trailofbits.com/2025/08/27/implement-eip-7730-today) | hard | EIP-7730 clear-signing wallet guide
+- [TrailOfBits/unleashing-medusa-fast-and-scalable-smart-contract-fuzzing](https://blog.trailofbits.com/2025/02/14/unleashing-medusa-fast-and-scalable-smart-contract-fuzzing) | hard | Medusa fuzzing at scale
+- [TrailOfBits/differential-fuzz-testing-upgradeable-smart-contracts-with-diffusc](https://blog.trailofbits.com/2023/07/07/differential-fuzz-testing-upgradeable-smart-contracts-with-diffusc) | hard | diffusc upgradeable differential fuzzing
+- [TrailOfBits/reusable-properties-ethereum-contracts-echidna](https://blog.trailofbits.com/2023/02/27/reusable-properties-ethereum-contracts-echidna) | hard | reusable Echidna properties catalog
+- [TrailOfBits/ecdsa-handle-with-care](https://blog.trailofbits.com/2020/06/11/ecdsa-handle-with-care) | hard | ECDSA malleability handling guide
+- [TrailOfBits/accidentally-stepping-on-a-defi-lego](https://blog.trailofbits.com/2020/08/05/accidentally-stepping-on-a-defi-lego) | hard | DeFi composability footgun analysis
+- [TrailOfBits/using-echidna-to-test-a-smart-contract-library](https://blog.trailofbits.com/2020/08/17/using-echidna-to-test-a-smart-contract-library) | hard | Echidna library-testing walkthrough
+- [TrailOfBits/246-findings-from-our-smart-contract-audits-an-executive-summary](https://blog.trailofbits.com/2019/08/08/246-findings-from-our-smart-contract-audits-an-executive-summary) | hard | 246-findings audit-pattern summary
+- [ChainSecurity/curve-lp-oracle-manipulation-post-mortem](https://www.chainsecurity.com/blog/curve-lp-oracle-manipulation-post-mortem/) | hard | Curve LP-oracle manipulation post-mortem
+- [ChainSecurity/heartbreaks-curve-lp-oracles](https://www.chainsecurity.com/blog/heartbreaks-curve-lp-oracles/) | hard | Curve LP-oracle heartbreak cases
+- [ChainSecurity/eigenlayer-secure-integration](https://www.chainsecurity.com/blog/eigenlayer-secure-integration/) | hard | EigenLayer secure-integration guide
+- [ChainSecurity/f-x-protocol-circumventing-access-control-with-a-double-flash-loan-attack](https://www.chainsecurity.com/blog/f-x-protocol-circumventing-access-control-with-a-double-flash-loan-attack/) | hard | double flash-loan access-control bypass
+- [ChainSecurity/the-hitchhikers-guide-to-rebasing-tokens](https://www.chainsecurity.com/blog/the-hitchhikers-guide-to-rebasing-tokens/) | hard | rebasing-token integration guide
+- [ChainSecurity/the-real-minimal-proxy---powered-by-eip-7702](https://www.chainsecurity.com/blog/the-real-minimal-proxy---powered-by-eip-7702/) | hard | EIP-7702 minimal-proxy pattern
+- [ChainSecurity/oracle-manipulation-after-merge](https://www.chainsecurity.com/blog/oracle-manipulation-after-merge/) | hard | post-merge oracle-manipulation analysis
+- [ChainSecurity/constantinople-enables-new-reentrancy-attack](https://www.chainsecurity.com/blog/constantinople-enables-new-reentrancy-attack/) | hard | Constantinople SSTORE reentrancy analysis
+- [ChainSecurity/address-collisions-a-birthday-paradox](https://www.chainsecurity.com/blog/address-collisions-a-birthday-paradox/) | hard | address-collision birthday analysis
+- [ChainSecurity/auditors-wishlist-for-ethereum-security-in-2026](https://www.chainsecurity.com/blog/auditors-wishlist-for-ethereum-security-in-2026/) | hard | 2026 auditor wishlist patterns
+- [ChainSecurity/dont-let-your-off-chain-components-get-confused](https://www.chainsecurity.com/blog/dont-let-your-off-chain-components-get-confused/) | hard | off-chain confusion solver-bot flaws
+- [ChainSecurity/a-compound-proposal-decoder](https://www.chainsecurity.com/blog/a-compound-proposal-decoder/) | hard | Compound proposal-decoder tooling
+- [Zellic-Reports/ether.fi-266-267](https://reports.zellic.io/publications/etherfi-266-267) | hard | ether.fi restaking audit findings
+- [Zellic-Reports/YeiFinance-Oracle](https://reports.zellic.io/publications/oracle) | hard | Yei money-market oracle audit findings
+- [Zellic-Reports/Definitive-2024](https://github.com/Zellic/publications/blob/master/Definitive%202024%20-%20Zellic%20Audit%20Report.pdf) | hard | Definitive audit-report findings PDF
+- [Zellic-Reports/Singularity-2024](https://cdn.prod.website-files.com/698804e49acdae2a58df2f4e/698c657981ebd0b4f4cc06d4_Singularity%20-%20Zellic%20Audit%20Report.pdf) | hard | Singularity darkpool reentrancy findings
+- [L2/Arbitrum-audit-writeup](https://github.com/EduardoFernandess/audit-writeup-arbitrum) | hard | Arbitrum bridge plus BoLD audit writeup
+- [L2/Arbitrum-inbox-init](https://medium.com/@0xriptide/hackers-in-arbitrums-inbox-ca23272641a2) | hard | DelayedInbox initializer storage-wipe bug
+- [L2/Optimism-portal-value](https://paragraph.com/@shanmuga-bharathi/security-research-disclosure-optimism-bridge-portal) | hard | OptimismPortal msg.value-vs-_value mismatch
+- [L2/Arbitrum-BOLD-sequencer](https://github.com/code-423n4/2024-05-arbitrum-foundation-findings/issues/26) | hard | BOLD force-inclusion delay sequencer censorship
+- [L2/Arbitrum-bridge-surface](https://dev.to/dannydoes_2abdf9c/smart-contract-vulnerability-surface-analysis-arbitrum-bridge-gl3) | hard | Arbitrum bridge attack-surface analysis
+- [L2/bridging-finality](https://jumpcrypto.com/resources/bridging-and-finality-optimism-and-arbitrum) | hard | Optimism-Arbitrum finality comparison
+- [L2/sequencing-walkthrough](https://docs.l2beat.com/code_walkthroughs/arbitrum/sequencing.html) | hard | Arbitrum sequencing plus force-inclusion walkthrough
+- [AA/eth-infinitism-contracts](https://github.com/eth-infinitism/account-abstraction) | hard | EntryPoint plus BaseAccount reference
+- [AA/ERC-4337-spec](https://github.com/ethereum/ERCs/blob/master/ERCS/erc-4337.md) | hard | ERC-4337 alt-mempool specification
+- [AA/OZ-4337-audit](https://www.openzeppelin.com/news/erc-4337-account-abstraction-incremental-audit) | hard | EntryPoint v0.7 audit findings
+- [AA/4337-reading-material](https://docs.erc4337.io/resources/reading-material.html) | hard | bundler plus paymaster reading index
+- [AA/ERC4337-magicians-replay](https://ethereum-magicians.org/t/erc-4337-account-abstraction-via-entry-point-contract-specification/7160/22) | hard | cross-chain UserOp replay discussion
+- [AA/ERC4337-magicians-griefing](https://ethereum-magicians.org/t/erc-4337-account-abstraction-via-entry-point-contract-specification/7160/28) | hard | validation-griefing mempool discussion
+- [AA/gasless-smart-account](https://github.com/chainwright/gasless-smart-account) | hard | sponsor-paymaster allowlist bypass tests
+- [AA/passkeys-smart-wallet](https://github.com/passkeys-4337/smart-wallet) | hard | passkey-controlled smart-wallet reference
+- [AA/verifying-paymaster](https://github.com/dngr2/paymaster) | hard | non-reverting verifying-paymaster suite
+- [MEV/sandwich-simulator](https://github.com/KushagraKanaujia/mev-sandwich-bot) | hard | optimal front-run quadratic solver
+- [MEV/subway-reference](https://github.com/korchix/mevBot) | hard | Yul sandwich reference bot
+- [MEV/sandwich-practice](https://github.com/hubdr/MEV-sandwitch-subway) | hard | practical sandwich example
+- [MEV/private-L2-mempools](https://ui.adsabs.harvard.edu/abs/2026arXiv260119570G/abstract) | hard | private-L2-mempool sandwich feasibility study
+- [FV/fuzzing-comparison](https://github.com/devdacian/solidity-fuzzing-comparison) | hard | Foundry-Echidna-Medusa-Halmos-Certora showdown
+- [FV/fuzz-vs-fv-showdown](https://github.com/Certora/fuzz-vs-fv-showdown) | hard | Certora fuzz-vs-formal benchmark set
+- [FV/certora-vs-echidna-eBTC](https://allthingsfuzzy.substack.com/p/certora-vs-echidna-a-case-study-on) | hard | eBTC invariant-testing case study
+- [FV/eBTC-invariants](https://github.com/nican0r/eBTC-certora-vs-echidna/blob/main/Invariants.MD) | hard | eBTC invariant spec file
+- [FV/echidna-intro](https://github.com/klauswaiss/trail-of-bits-building-secure-contracts/blob/master/program-analysis/echidna/introduction/fuzzing-introduction.md) | hard | Echidna property-fuzzing introduction
+- [Solana/solana-ctf-14](https://github.com/preeeetham/solana_ctf) | hard | 14-challenge Anchor CTF with exploits
+- [Solana/missing-signer-check](https://github.com/BlockChomper/solana-ctf/tree/master/missing-signer-check) | hard | missing-signer CTF challenge
+- [Solana/missing-signer-README](https://github.com/BlockChomper/solana-ctf/blob/master/missing-signer-check/README.md) | hard | missing-signer challenge briefing
+- [Solana/security-pitfalls](https://github.com/hifey62/solana-security-pitfalls) | hard | five-pitfall vulnerable-vs-secure pairs
+- [Solana/anchor-security-5](https://github.com/TobiAdeniji94/solana-anchor-security) | hard | five Anchor vuln-vs-fix programs
+- [Solana/updraft-signer-check](https://updraft.cyfrin.io/courses/solana/common-bugs/missing-signer-check) | hard | oracle missing-signer challenge
+- [Solana/moar-horse-5](https://github.com/otter-sec/sol-ctf-framework/tree/main/examples/moar-horse-5) | hard | OtterSec sol-ctf horse challenge
+- [Solana/anker-audit](https://neodyme.io/reports/Anker.pdf) | hard | Anker missing-check audit report
+- [Solana/SseRex](https://arxiv.org/pdf/2603.16349) | hard | symbolic execution for Solana bugs
+- [Solana/anchor-CVE-2026-45137](https://vuldb.com/cve/CVE-2026-45137) | hard | Anchor Program-id check bypass vuln
+- [Vyper/offensive-vyper](https://medium.com/@jtriley15/offensive-vyper-an-evm-ctf-aa172ae34452) | hard | Vyper-native CTF series intro
+- [Vyper/incident-analysis](https://www.certik.com/blog/vyper-incident-anaylsis) | hard | Vyper lock-failure incident analysis
+- [Vyper/reentrancy-0day](https://highlandsecurity.substack.com/p/post-mortem-vyper-reentrancy-0-day) | hard | Vyper 0-day post-mortem
+- [Vyper/59m-losses](https://www.chaincatcher.com/en/article/2098263) | hard | Vyper-lock loss roundup analysis
+- [Vyper/curve-incident](https://www.web3isgoinggreat.com/single/vyper-vulnerability) | hard | Curve Vyper incident record
+- [Vyper/0day-economics](https://medium.com/@afterdark_labs/how-a-vyper-0-day-led-to-tens-of-millions-of-dollars-in-hacked-funds-d220fa8f41fe) | hard | Vyper 0-day economics deep-dive
+- [Vyper/CVE-2023-42441](https://app.opencve.io/cve/CVE-2023-42441) | hard | empty-string nonreentrant lock CVE
+- [Cairo/balsn-gist](https://gist.github.com/YSc21/b1cf72f4cc124c84f13028c1dc6f1ecd) | hard | Balsn Cairo-reverse plus NFT-market notes
+- [Move/MOVEment-aptos-2022](https://leoq7.com/2022/12/CTF-Movement-Aptos) | hard | MOVEment swap-plus-lock solutions
+- [Move/MOVEment-amber](https://medium.com/amber-group/movement-ctf-2022-writeup-4904ff8a82e) | hard | Amber MOVEment top-10 solutions
+- [Move/sui-workshop](https://medium.com/@monethic/sui-move-security-workshop-writeup-material-480c5e7d1da3) | hard | Sui entry-plus-visibility lab writeups
+- [Move/suictf](https://github.com/chennethelius/suictf) | hard | Sui Move plus PTB CTF set
+- [Move/move-over-ctf](https://yashwanth1208.github.io/blog/move-over-ctf-writeup) | hard | OZ Move-over eight-level solutions
+- [Move/sui-ctf-framework](https://deepwiki.com/otter-sec/sui-ctf-framework/4-move-contract-reference) | hard | OtterSec Sui CTF contract reference
+- [Move/aptos-vm-bug](https://www.scworld.com/brief/aptos-move-vm-bug-identified) | hard | Aptos MoveVM overflow-DoS report
+- [DB/defi-incident-db](https://github.com/securitymath/defi-incident-db) | hard | curated DeFi incident post-mortem DB
+- [DB/defi-security-incident](https://github.com/kismp123/DeFi-Security-Incident) | hard | 821-incident 2020-2026 PoC database
+- [DB/defi-hacks-2024](https://www.smartcontractaudit.com/guides/defi-hacks-2024-roundup) | hard | 2024 200-incident loss roundup
+- [DB/eigenlayer-review-3](https://skynet.certik.com/third-party-audit-reports/jqfm0se0f03r/bBK8Pg07hcEHIQvvpHsY7/580b78addc14d0d1f971b567de2857e2/eigenlayer-3.pdf) | hard | EigenLayer review-3 findings PDF
+- [DB/eigenlayer-rewards](https://skynet.certik.com/third-party-audit-reports/jqfm0se0f03r/1IWPRNMPOEjdn2vD3anq9U/41187b3a5f979369411209a5190c9bf2/Sigma_Prime_Eigen_Labs_EigenLayer_Rewards_Coordinator_Security_Assessment_Report_v1.1.pdf) | hard | EigenLayer rewards-coordinator findings PDF
+- [DB/compfest-coin-2026](https://github.com/sajjadium/ctf-archives/tree/main/ctfs/COMPFEST/2026/blockchain/Compfest_Coin) | hard | COMPFEST 2026 coin archive

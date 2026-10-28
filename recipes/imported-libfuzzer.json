@@ -1,0 +1,42 @@
+{
+ "id": "imported-libfuzzer",
+ "domain": "pwn",
+ "title": "libFuzzer coverage-guided fuzzing",
+ "signals": [
+  "C/C++ source available",
+  "byte-oriented parser",
+  "Clang toolchain",
+  "need a crash or coverage"
+ ],
+ "preconditions": [
+  "target compiles with clang",
+  "a deterministic parse entry point exists"
+ ],
+ "steps": [
+  "Write `extern \"C\" int LLVMFuzzerTestOneInput(const uint8_t *data, size_t size)` around the parser; never read stdin or files in the harness.",
+  "Reject inputs below the minimum size and cap size so one input cannot allocate unbounded memory.",
+  "Build with `clang++ -fsanitize=fuzzer,address -fno-omit-frame-pointer -g -O1 harness.cc target.cc -o fuzz`.",
+  "Seed `corpus/` with valid samples and add a dictionary of protocol tokens; run `./fuzz corpus -max_total_time=300 -artifact_prefix=artifacts/`.",
+  "Reproduce and triage the first artifact with ASan; use `-minimize_crash=1` to shrink it before analysis."
+ ],
+ "falsifier": "No new coverage after several minutes and no crash; the harness may not reach the parser or instrumentation is missing.",
+ "pitfalls": [
+  "harness reads a file/stdin instead of `data`",
+  "leaks or `exit()` inside the harness",
+  "no seed corpus",
+  "unbounded loop on malformed input"
+ ],
+ "sources": [
+  "https://github.com/trailofbits/skills/tree/main/plugins/testing-handbook-skills/skills/libfuzzer"
+ ],
+ "fixtures": [],
+ "verified_by": "source:Trail of Bits",
+ "last_verified": "2026-10-20",
+ "verified": false,
+ "verification": "source",
+ "license": "CC-BY-SA-4.0",
+ "ctf_domains": [
+  "pwn",
+  "rev"
+ ]
+}

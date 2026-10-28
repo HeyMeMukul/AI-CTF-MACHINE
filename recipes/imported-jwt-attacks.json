@@ -1,0 +1,43 @@
+{
+ "id": "imported-jwt-attacks",
+ "domain": "web-ctf",
+ "title": "JWT attack matrix",
+ "signals": [
+  "JWT in cookie/header",
+  "role/admin claim",
+  "JWKS endpoint",
+  "kid header",
+  "weak secret hint"
+ ],
+ "preconditions": [
+  "a valid token",
+  "the verification behavior can be observed"
+ ],
+ "steps": [
+  "Decode header/payload; note `alg`, `kid`, `jku`, `x5u`, `iss`, `aud`, and the claim that gates the flag.",
+  "Try `alg:none` (empty signature) and algorithm confusion: RS256 public key used as HS256 secret.",
+  "Crack a weak HMAC secret with `hashcat -m 16500 jwt.txt wordlist`; re-sign with the recovered key.",
+  "Test `kid` path traversal/SQLi, `jku`/`x5u` pointing at an attacker-controlled JWKS, and claim/audience abuse.",
+  "Verify the server accepts the forged token with one request; do not spray tokens."
+ ],
+ "falsifier": "The library pins the algorithm, rejects `none`, validates `kid`/`jku`, and the secret is strong.",
+ "pitfalls": [
+  "library-specific alg handling",
+  "public key format",
+  "audience/issuer checks",
+  "clock skew",
+  "rate limits"
+ ],
+ "sources": [
+  "https://github.com/mukul975/Anthropic-Cybersecurity-Skills/tree/main/skills/testing-for-json-web-token-vulnerabilities"
+ ],
+ "fixtures": [],
+ "verified_by": "source:Anthropic Cybersecurity Skills",
+ "last_verified": "2026-10-20",
+ "verified": false,
+ "verification": "source",
+ "license": "Apache-2.0",
+ "ctf_domains": [
+  "web-ctf"
+ ]
+}

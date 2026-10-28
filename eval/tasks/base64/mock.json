@@ -1,0 +1,24 @@
+[
+ {
+  "content": "",
+  "tool_calls": [
+   {
+    "name": "bash",
+    "arguments": {
+     "cmd": "base64 -d given/cipher.txt"
+    }
+   }
+  ]
+ },
+ {
+  "content": "",
+  "tool_calls": [
+   {
+    "name": "submit_flag",
+    "arguments": {
+     "flag": "{{FLAG}}"
+    }
+   }
+  ]
+ }
+]

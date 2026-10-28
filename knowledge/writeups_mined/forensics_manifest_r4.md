@@ -1,0 +1,317 @@
+# forensics Writeups Mined — Manifest r4, browser-swarm batch ( technique-only, no flags )
+
+Mined 2026-10-17 by 8 reader subagents via real browsers (Playwright snapshots; Medium member-only pieces via medium-unlocker.inulute.com -> Freedium mirror; GitHub/team-blog/pro-research sources). Rows filtered (video/bare-profile/placeholder links dropped) and deduped by URL within the batch and against the full corpus. Difficulty as labeled by readers. Format: `- [source/challenge](URL) | difficulty | technique-chain`. No flag values anywhere.
+
+## batch 2026-10-17-browser-swarm (129 rows, 64 easy)
+
+- [WaniCTF 2024 tiny_usb ISO](https://infosecwriteups.com/wanictf-2024-forensic-challenges-43d5ba370d98) | easy | mount ISO, list files, extract FLAG.PNG via file manager
+- [WolvCTF 2024 Hidden data comment](https://infosecwriteups.com/wolvctf-2024-forensics-challenges-3f307fab6576) | easy | file, exiftool, read PNG text comment field directly
+- [THM Security Footage MJPEG carve](https://infosecwriteups.com/tryhackme-security-footage-ctf-challenge-writeup-e9b451cded7e) | easy | foremost carve pcap to 541 JPEGs, feh slideshow review
+- [HTB Cap pcap FTP creds](https://infosecwriteups.com/cap-htb-walkthrough-by-reju-kole-213efe7b6655) | easy | Wireshark download pcap, filter ftp, recover user pass
+- [THM Smag Grotto pcap creds](https://infosecwriteups.com/thm-smag-grotto-learn-web-security-privilege-escalation-walkthrough-637fe042f292) | easy | Wireshark open pcap, grep login.php, reuse creds hosts file
+- [THM Volatility imageinfo pslist](https://infosecwriteups.com/forensics-memory-analysis-with-volatility-6f2b9e859765) | easy | volatility imageinfo profile, pslist netscan handles examination
+- [CTF Newbies file triage primer](https://infosecwriteups.com/investigating-the-files-with-forensics-ctf-newbies-69dfa8cd25f4) | easy | file strings binwalk exiftool Python triage workflow
+- [UofTCTF 2025 forensics decrypt](https://infosecwriteups.com/forensic-and-pwn-uoftctf-2025-806d8400ee97) | medium | python decrypt output, strings analysis, pwn companion notes
+- [Connectors CTF 2025 macro doc](https://infosecwriteups.com/connectors-ctf-2025-dfir-challenges-6d66c31cce9a) | medium | unzip docm, vbaData.xml macro, oledump olevba deobfuscate
+- [picoCTF RED red.png LSB](https://infosecwriteups.com/cracking-forensics-ctfs-2-0-picoctf-c2ee4c9cb462) | easy | exiftool strings, binwalk embed check, zsteg all base64
+- [PicoCTF Git disk archaeology](https://infosecwriteups.com/digging-up-the-dead-disk-forensics-git-object-archaeology-picoctf-walkthrough-465fcfdefd07) | medium | mount image, git cat-file batch objects, strings grep blob
+- [PicoCTF 2025 hashcrack IDs](https://infosecwriteups.com/picoctf-2025-walkthrough-24b753e81721) | easy | hashes.com identify MD5 SHA1 SHA256, decode.fr crack
+- [PcapPoisoning packet 507 strings](https://medium.com/@erichdryn/pcappoisoning-picoctf-writeup-5a20d4515eea) | easy | Wireshark manual payload hunt, strings trace.pcap grep format
+- [Verify hash decrypt cosmetic](https://medium.com/@erichdryn/verify-picoctf-writeup-c428893b2cc9) | easy | sha256 checksum match, openssl pbkdf2 decrypt correct file
+- [Eavesdrop Wireshark VoIP RTP](https://medium.com/@kautsar.muwahhid/picoctf-write-up-eavesdrop-a26aeaa4b9cc) | easy | Wireshark RTP stream analysis, export audio, transcribe flag
+- [PicoCTF 2024 full 8-challenge](https://fireynacho.medium.com/picoctf-2024-forensics-writeup-8ef6265a049b) | medium | QR checksum photo polyglot APK endianness disk chain
+- [RED red.png zsteg CyberChef](https://medium.com/@divyanshurds.kumar/picoctf-forensic-ctf-writeup-d4b1dcf554fb) | easy | exiftool then steghide fail, zsteg alpha base64 CyberChef
+- [Scan Surprise drop-in QR](https://medium.com/@alishbamalik1080/forensics-picoctf-2024-writeups-b24b0d07e9bb) | easy | unzip nested home, eog PNG, zbarimg QR decode
+- [Disguised PNG as PDF](https://medium.com/@ArkaPriyaDas/pico-ctf-challenge-walkthrough-forensics-d2679d20375e) | easy | xxd PNG header, grep strings, carve embedded file
+- [FindAndOpen base64 unzip](https://systemweakness.com/findandopen-picoctf-2023-writeup-e6113cc1d235) | easy | filter ethernet length anomaly, base64 decode, unzip password
+- [TFC 2023 List RCE pcap](https://systemweakness.com/tfc-ctf-2023-list-forensics-3d1353d8d597) | medium | Wireshark URL decode command, python extract param packets, replay
+- [LA CTF CATS EXIF map](https://systemweakness.com/ctf-writeup-la-ctf-2023-e827c9cd47c4) | easy | PIC2MAP EXIF GPS, Google address sanctuary domain flag
+- [Wireshark Ann Decover email](https://systemweakness.com/wireshark-a-forensic-investigation-6bf04f57aca2) | easy | open pcap Wireshark, filter smtp pop, read email headers
+- [Warzone1 Brim Zone1.pcap](https://systemweakness.com/warzone1-writeup-tryhackme-a2353388b295) | easy | Brim import pcap, Suricata alerts pivot, extract artifacts
+- [Warzone2 Brim NetworkMiner](https://systemweakness.com/packet-analysis-of-an-intrusion-using-brim-network-miner-931872bcb35c) | medium | Brim Suricata trojan alert, NetworkMiner files hosts creds
+- [DumpMe Triage-Memory hash](https://medium.com/@i227446/dumpme-blue-team-ctf-memory-forensics-writeup-cyber-defenders-cf4fb09187ec) | easy | sha1sum memory image, volatility imageinfo profile select
+- [THM TheHive pcap observable](https://medium.com/@sp1d3y.sh/thehive-task-5-on-thm-6678872ded00) | easy | Wireshark filter exfil protocol, upload observable, fetch flag.html
+- [THM DFIR Extracted KeePass XOR](https://medium.com/@makhentosch/thm-dfir-extracted-restore-the-stolen-file-from-pcap-19fc73c0ca0a) | medium | tshark tcp.dstport 1337 extract, XOR 0x41 base64 rebuild dump
+- [CyberSpaceCTF 2024 Memory](https://medium.com/@chaoskist/cyberspacectf-2024-memory-forensic-challenge-35d1ea05ea33) | medium | Volatility3 pslist netscan, CyberChef recipes decode secrets
+- [IEEE Victoris RTP count](https://medium.com/@yousefmosaed1980/ieee-victoris-3-0-ctf-forensics-b397fc9c14af) | easy | tshark rtp count filter, Wireshark telephony analysis, bank scam
+- [CyberDefenders WireDive SMB](https://medium.com/@chaoskist/cyberdefenders-write-up-wiredive-a74a7b07a7f2) | medium | Wireshark SMB T1041 T1048, carve transferred files, timeline hosts
+- [LetsDefend Windows Memory Dump](https://medium.com/@chaoskist/letsdefend-write-up-windows-memory-dump-f988896a5185) | easy | volatility imageinfo, pslist dlllist malfind investigation summary
+- [THM Extracted procdump KeePass](https://medium.com/@stray0x1/extracted-tryhackme-writeup-2dee2c5f1e83) | medium | powershell procdump trace, XOR 0x41 0x42 rebuild, keepass2john crack
+- [HTB Meerkat pcap flags ATTCK](https://medium.com/fmisec/meerkat-write-up-hack-the-box-7602bbbcee39) | easy | Wireshark network log, map techniques T1098, answer portal
+- [Flag Forge pcap multi-skill](https://medium.com/@evilattitude345/ctf-challenge-flag-forge-pcap-analysis-43f9dd22ec92) | medium | Wireshark crypto reversing chain, carve encoded payloads, decode
+- [picoCTF forensics PDF metadata](https://medium.com/@achuworks2005/picoctf-forensics-challenges-writeup-546960f6b97b) | easy | pdfinfo properties base64, steghide jpg, xxd hex decode
+- [RED wget file strings](https://medium.com/@limutosgerald/picoctf-2025-red-467dd04e751a) | easy | wget file xdg-open, exiftool strings zsteg base64 echo
+- [picoGym St3g0 medium image](https://medium.com/@flowerbed/forensics-picogym-st3g0-2e8ffb38fd13) | medium | download image, exiftool binwalk stegsolve LSB analysis
+- [picoCTF information cat.jpg](https://medium.com/@sobatistacyber/picoctf-writeup-information-0f0ac53ccbf6) | easy | exiftool License field base64, recognise cGljb prefix decode
+- [THM Volatility lab intro](https://medium.com/@ksinclair6/tryhackme-volatility-write-up-cea1d2f8460a) | easy | volatility framework install, imageinfo pslist artifact extraction
+- [THM Profiles Linux custom](https://medium.com/@josephalan17201972/profiles-tryhackme-write-up-linux-memory-forensics-using-volatility-building-custom-profiles-for-3b08456750d0) | medium | compile kernel symbols, build profile, volatility linux_pslist
+- [THM Volatility SOC Level1](https://medium.com/@jcm3/volatility-tryhackme-walkthrough-8a607cda032f) | easy | AttackBox volatility, imageinfo bulk_extractor pcap, dlllist netscan
+- [HTB Phreaky 3915 packets](https://medium.com/@rahulhoysala07/hack-the-box-forensics-phreaky-writeup-9fde5c245f75) | medium | Wireshark 3915 packet triage, filter DTMF SIP, decode sequence
+- [THM Profiles Volatility 101](https://medium.com/@lukewago/tryhackme-profiles-write-up-60202db52210) | easy | volatile data theory, volatility install, memory dump analysis
+- [THM Memory Forensics hashdump](https://medium.com/@yousef.oya/memory-forensics-tryhackme-4b729491720c) | medium | volatility hashdump Win7 profile, john rockyou NTLM crack
+- [PCAP Forensics pivot lateral](https://medium.com/@t4nu1/pcap-forensics-walkthrough-c294b5e67028) | medium | Wireshark compromised host filter, follow streams, carve lateral tools
+- [BlueHens Name Calling chicken](https://medium.com/@ksreemosmar/name-calling-bluehens-ctf-2026-forensics-writeup-e32594fcca13) | easy | frame contains chicken filter, Export HTTP chicken.jpg zip
+- [BlueHens Freakquency Audacity](https://medium.com/@ksreemosmar/freakquency-bluehens-ctf-2026-7f83a511c407) | easy | Audacity spectrogram view, decode hidden audio message tones
+- [Mob Psycho APK unzip](https://medium.com/@laflamablanka/picoctf-mob-psycho-8a69dfe88077) | medium | unzip APK, dex jadx review, asset string extraction
+- [Polyglot PNG PDF IEND](https://medium.com/@wh04m1i/secret-of-the-polyglot-picoctf-fd46cf1a9b5a) | easy | file xxd PNG IEND PDF header, feh plus evince halves
+- [picoCTF 2024 8-forensics hub](https://medium.com/@prismo_tr/picoctf-2024-forensics-e5721788bb12) | medium | Scan Verify See Polyglot Psycho endianness diary chain
+- [CanYouSee AperiSolve steghide](https://medium.com/@erichdryn/canyousee-picoctf-writeup-5d0f742367ed) | easy | AperiSolve strings detect, steghide extract hidden zip decode
+- [Polyglot fluent PNG PDF](https://medium.com/@sriharishjayabalan/secret-of-the-polyglot-picoctf-practice-challenge-write-up-b82b79833941) | easy | file contradiction, dd split IEND, join leet halves
+- [CanYouSee cat strings](https://medium.com/@0x0s0u01/pico-ctf-series-3-canyousee-297650f1d754) | easy | unzip archive, cat strings binary, AperiSolve confirm steghide
+- [Polyglot Linux own env](https://medium.com/@kautsar.muwahhid/picoctf-write-up-secret-of-the-polyglot-bd7a4485c1fa) | easy | file hex inspection, image plus document viewers, combine
+- [PicoCTF RED easy binwalk](https://akashxak.medium.com/picoctf-2025-writeup-easy-15154b74a145) | easy | binwalk compressed check, zsteg all planes, base64 decode
+- [RED CHECKLSB poem](https://medium.com/@thepickachu/picoctf-challenge-writeup-red-forensics-544c28e310de) | easy | exiftool poem first letters, zsteg LSB base64 decode
+- [RED poem LSB confirm](https://medium.com/@hackingstudent6/red-forensics-picoctf-2025-280086e41a45) | easy | exiftool poem CHECKLSB hint, zsteg red.png decode base64
+- [DFIR/BengalSEO Part1 Anatomy](https://thedfirreport.com/2026/08/24/bengalseo-part-1-anatomy-of-the-operation/) | medium | SEO-poisoning, fake-installer, RAT persistence, credential harvesting timeline
+- [DFIR/Bumblebee AdaptixC2 Akira](https://thedfirreport.com/2026/06/29/from-bing-search-to-ransomware-bumblebee-and-adaptixc2-deliver-akira-3/) | hard | Bing malvertising, Bumblebee loader, AdaptixC2, Akira ransomware deployment
+- [DFIR/EtherRat TukTuk Gentleman](https://thedfirreport.com/2026/05/11/flash-alert-etherrat-and-tuktuk-c2-end-in-the-gentleman-ransomware/) | medium | React2Shell exploit, EtherRAT, TukTuk C2, ransomware chain
+- [DFIR/ActiveMQ LockBit](https://thedfirreport.com/2026/02/23/apache-activemq-exploit-leads-to-lockbit-ransomware/) | medium | CVE-2023-46604 ActiveMQ RCE, lateral movement, LockBit encryption
+- [DFIR/Lynx Ransomware RDP](https://thedfirreport.com/2025/12/17/cats-got-your-files-lynx-ransomware/) | easy | exposed RDP, valid creds, Netscan discovery, Lynx deploy
+- [DFIR/Lunar Spider BruteRatel](https://thedfirreport.com/2025/09/29/from-a-single-click-how-lunar-spider-enabled-a-near-two-month-intrusion/) | hard | phishing click, Latrodectus, BruteRatel, Cobalt Strike dwell
+- [DFIR/KongTuke FileFix Interlock](https://thedfirreport.com/2025/07/14/kongtuke-filefix-leads-to-new-interlock-rat-variant/) | medium | FileFix clipboard lure, KongTuke, Interlock RAT persistence
+- [DFIR/RansomHub Password Spray](https://thedfirreport.com/2025/06/30/hide-your-rdp-password-spray-leads-to-ransomhub-deployment/) | easy | RDP spray, valid accounts, Cobalt Strike, RansomHub
+- [DFIR/ELPACO Confluence Mimic](https://thedfirreport.com/2025/05/19/another-confluence-bites-the-dust-falling-to-elpaco-team-ransomware/) | medium | Confluence RCE, ELPACO-team, Mimic ransomware, data theft
+- [DFIR/Navigating Through Fog](https://thedfirreport.com/2025/04/28/navigating-through-the-fog/) | hard | SonicWall creds, DonPAPI DPAPI dump, Certipy ADCS, Sliver C2
+- [DFIR/BlackSuit Ransomware](https://thedfirreport.com/2024/08/26/blacksuit-ransomware/) | hard | Cobalt Strike beacon, SharpHound Rubeus, SystemBC, pass-the-hash
+- [DFIR/Egg-Cellent Resume More_eggs](https://thedfirreport.com/2024/12/02/the-curious-case-of-an-egg-cellent-resume/) | medium | fake resume zip, More_eggs DLL, Edge history, CloudFlare tunnel
+- [DFIR/Trigona 3 Hours](https://thedfirreport.com/2024/01/29/buzzing-on-christmas-eve-trigona-ransomware-in-3-hours/) | easy | exposed RDP, Defender disable, batch scripts, Trigona double-extortion
+- [DFIR/SQL BlueSky Ransomware](https://thedfirreport.com/2023/12/04/sql-brute-force-leads-to-bluesky-ransomware/) | easy | MSSQL brute force, xp_cmdshell, Cobalt Strike, BlueSky encrypt
+- [DFIR/OneNote to RansomNote](https://thedfirreport.com/2024/04/01/from-onenote-to-ransomnote-an-ice-cold-intrusion/) | medium | OneNote lure, BATLOADER, IcedID, ransomware staging
+- [Huntress/2025 Threat Report RATs](https://www.huntress.com/blog/huntress-2025-cyber-threat-report-proliferating-rats-evolving-ransomware-and-other-findings/) | medium | AsyncRAT Jupyter, RMM abuse, LOLBins Sysinternals, infostealer trend
+- [Huntress/Cleo CVE-2024-50623](https://www.huntress.com/blog/threat-advisory-oh-no-cleo-cleo-software-actively-being-exploited-in-the-wild/) | hard | Cleo LexiCom RCE, autorun abuse, nltest recon, EDR detection
+- [Huntress/SonicWall SSLVPN Compromise](https://www.huntress.com/blog/sonicwall-sslvpn-compromise/) | medium | stolen firewall backups, valid VPN creds, network scanning, account takeover
+- [Huntress/Identities New Perimeter](https://www.huntress.com/blog/identities-are-the-new-perimeter-endpoints-are-only-the-beginning/) | medium | MFA bypass, session hijack, rogue OAuth, endpoint-identity pivot
+- [RedCanary/2024 Threat Detection Report](https://redcanary.com/threat-detection-report/) | medium | Cloud Accounts surge, Email Forwarding Rule, PowerShell, ChromeLoader malvertising
+- [RedCanary/2025 ClickFix Fake Updates](https://redcanary.com/blog/threat-detection/2026-threat-detection-report/) | medium | ClickFix clipboard, fake browser updates, SocGholish, identity attacks
+- [SpecterOps/ADCS Paths Part1](https://specterops.io/blog/2024/01/24/adcs-attack-paths-in-bloodhound-part-1/) | hard | ESC1 misconfigured templates, BloodHound paths, detection remediation
+- [SpecterOps/Juicing ntds.dit](https://specterops.io/blog/) | hard | offline ntds.dit, DSInternals Golden SAML, hash extraction
+- [0xdf/HTB Sherlock Meerkat](https://0xdf.gitlab.io/2023/01/14/htb-sherlock-meerkat.html/) | easy | Suricata alerts, PCAP credential stuffing, Bonitasoft CVE-2022-25237
+- [0xdf/HTB Sherlock Brutus](https://0xdf.gitlab.io/2023/02/04/htb-sherlock-brutus.html/) | easy | auth.log wtmp, SSH brute force, useradd persistence T1136
+- [0xdf/HTB Sherlock BFT MFT](https://0xdf.gitlab.io/2023/03/11/htb-sherlock-bft.html/) | easy | MFT parsing, Zimmerman MFTECmd, ZoneID ADS timeline
+- [0xdf/HTB Sherlock Unit42](https://0xdf.gitlab.io/2023/04/08/htb-sherlock-unit42.html/) | easy | Sysmon logs, UltraVNC backdoor, campaign IOC matching
+- [0xdf/HTB Sherlock Noted](https://0xdf.gitlab.io/2023/05/20/htb-sherlock-noted.html/) | easy | Notepad++ session AppData, deleted notes, extortion artifacts
+- [0xdf/HTB Sherlock Bumblebee phpBB](https://0xdf.gitlab.io/2023/06/17/htb-sherlock-bumblebee.html/) | easy | SQLite phpBB DB, Apache access logs, webshell upload
+- [0xdf/HTB Sherlock KnockKnock](https://0xdf.gitlab.io/2023/07/22/htb-sherlock-knockknock.html/) | easy | PCAP FTP port-knocking, password spray SSH, GonnaCry
+- [0xdf/HTB Sherlock Noxious LLMNR](https://0xdf.gitlab.io/2024/02/10/htb-sherlock-noxious.html/) | medium | LLMNR poisoning, rogue device, Responder hashes, lateral movement
+- [0xdf/HTB Sherlock Subatomic Electron](https://0xdf.gitlab.io/2024/03/16/htb-sherlock-subatomic.html/) | medium | Electron app malware, Discord token hijack, startup persistence
+- [0xdf/HTB Sherlock Nubilum CloudTrail](https://0xdf.gitlab.io/2024/05/11/htb-sherlock-nubilum-1.html/) | medium | AWS CloudTrail, Gitea exploit, PoshC2 cloud forensics
+- [0xdf/HTB Sherlock Constellation](https://0xdf.gitlab.io/2024/06/01/htb-sherlock-constellation.html/) | medium | insider threat, Discord Google timeline, URL forensics
+- [0xdf/HTB Sherlock Pikaptcha](https://0xdf.gitlab.io/2024/08/24/htb-sherlock-pikaptcha.html/) | easy | Registry Explorer, fake CAPTCHA, PowerShell Run dialog, NetworkMiner
+- [Medium/LogJammer Sherlock](https://medium.com/@clh0011/htb-writeup-solve-the-sherlock-logjammer-bc95b3860868/) | easy | cleared evtx, Security System Defender Firewall, scheduled tasks
+- [Medium/THM Autopsy jcm3](https://medium.com/@jcm3/autopsy-tryhackme-walkthrough-f6ac929fd4ca/) | easy | Autopsy ingest, Windows Linux artifacts, deleted file recovery
+- [Medium/THM Unattended Registry](https://secnish.medium.com/unattended-writeup-tryhackme-medium-level-detailed-walkthrough-30aaf244ea0c/) | medium | NTUSER.DAT Registry Explorer, KAPE triage, timeframe access
+- [Medium/THM Chrome DPAPI](https://medium.com/@MrHDK/try-hack-me-writeup-chrome-e1ba7d80914b/) | hard | SMB2 carve, dnSpy transfer.exe, AES decrypt, Login Data Mimikatz
+- [Medium/THM Security Footage](https://0xar0x1.medium.com/security-footage-tryhackme-writeup-2adee2c57ec3/) | medium | pcap foremost carve, jpg reassembly, fragmented footage recovery
+- [Medium/Packed Light HackerHolidays](https://medium.com/@devdebug/packed-light-hacker-holidays-day-4-tryhackme-writeup-5f663171ea5a/) | easy | Wireshark HTTP objects, updates.py, cookie exfil Base64 XOR
+- [Medium/HackerHolidays AfterHours WMI](https://dhanushnehru.medium.com/hacker-holidays-2026-day-12-walkthrough-after-hours-582f6bded460/) | medium | WMI repository strings, decompress layers, decompile persistence payload
+- [Medium/DPAPI Blob Hunting](https://medium.com/@toneillcodes/dpapi-blob-hunting-967d2baead6a/) | medium | magic bytes 01000000D08C9DDF, filesystem registry hunter, Credentials path
+- [Medium/BrunnerCTF VeraCrypt](https://medium.com/@manageesh11/brunnerctf-2025-forensics-writeup-08338b04865c/) | hard | browser history, test.hc container, deleted note password, keyfile mount
+- [CyberDefenders/RedLine Memory](https://medium.com/@cyberforensicator57/cyberdefenders-org-redline-blue-team-challenge-walkthrough-e2735698a814/) | medium | Volatility pstree malfind, RWX injection, VPN process tracing
+- [CyberDefenders/DeepDive Volatility](https://medium.com/@cyberforensicator57/cyberdefenders-org-deepdive-ctf-walkthrough-ec18eab90956/) | medium | profile detection, pslist netscan, timeline deep dive
+- [CyberDefenders/XWorm Malware](https://cyberdefenders.org/blueteam-ctf-challenges/xworm/) | medium | DIE PEStudio dnSpy, ProcMon RegShot, persistence C2 extraction
+- [CyberDefenders/Phobos Ransomware](https://cyberdefenders.org/blueteam-ctf-challenges/phobos/) | hard | x32dbg IDA Ghidra, encryption routine, IOC extraction
+- [CyberDefenders/Stealer Tealer](https://cyberdefenders.org/blueteam-ctf-challenges/tealer/) | hard | IDA CAPA PEbear, RC4 strings, dynamic API resolution
+- [CyberDefenders/Ancientland LockBit](https://cyberdefenders.org/blueteam-ctf-challenges/ancientland-breach-lockbit/) | hard | leaked VPN config, obfuscated malware, kernel exploit, beacon decrypt
+- [HTB/Sherlock Crown Jewel-1](https://app.hackthebox.com/sherlocks/crown-jewel-1/) | medium | VSS shadow, NTDS.dit dump, AD enumeration secretsdump
+- [HTB/Sherlock Crown Jewel-2](https://app.hackthebox.com/sherlocks/crown-jewel-2/) | medium | lateral movement, pass-the-hash 4624 type9 seclogo
+- [HTB/Sherlock Tracer PsExec](https://app.hackthebox.com/sherlocks/tracer/) | medium | SOC alerts, PsExec lateral, timeline correlation
+- [HTB/Sherlock TickTock Phish](https://app.hackthebox.com/sherlocks/ticktock/) | medium | spear-phish headers, email forensics, payload tracing
+- [HTB/Sherlock Jugglin WSL](https://app.hackthebox.com/sherlocks/jugglin/) | medium | WSL abuse, distro artifacts, threat actor persistence
+- [HTB/Sherlock Ultimatum WP](https://app.hackthebox.com/sherlocks/ultimatum/) | medium | WordPress compromise, plugin exploit, actor attribution
+- [HTB/Sherlock Ore Grafana](https://app.hackthebox.com/sherlocks/ore/) | medium | Grafana exploit, XMRIG CatScale miner, Unix logs
+- [HTB/Sherlock Campfire-1 Kerberoast](https://app.hackthebox.com/sherlocks/campfire-1/) | easy | Kerberoasting 4769, PowerView Rubeus, ticket cracking
+- [HTB/Sherlock Campfire-2 ASREP](https://app.hackthebox.com/sherlocks/campfire-2/) | easy | AS-REP roast, event logs, compromised accounts
+- [HTB/Sherlock JenkreadD Jenkins](https://app.hackthebox.com/sherlocks/jenkreadd/) | easy | Jenkins CVE-2024-23897 arbitrary read, log analysis
+- [HTB/Sherlock Packet Puzzle](https://app.hackthebox.com/sherlocks/packet-puzzle/) | easy | PCAP Japanese crypto case, protocol dissection, exfil hunt
+- [HTB/Sherlock Litter DNS](https://app.hackthebox.com/sherlocks/litter/) | medium | DNS tunneling, log aggregation, timeline construction
+- [HTB/Sherlock Vantage Network](https://app.hackthebox.com/sherlocks/vantage/) | easy | network analysis, IDS correlation, traffic triage
+- [HTB/Sherlock MisCloud GCP](https://app.hackthebox.com/sherlocks/miscloud/) | medium | GCP breach, Gitea vuln, cloud audit logs
+- [HTB/Sherlock Safecracker File](https://app.hackthebox.com/sherlocks/safecracker/) | easy | malicious file forensics, header analysis, payload extraction
+- [HTB/Sherlock Nuts Image](https://app.hackthebox.com/sherlocks/nuts/) | medium | forensic image analysis, file carving, hidden data
+- [HTB/Sherlock Fragility Exfil](https://app.hackthebox.com/sherlocks/fragility/) | medium | exfiltrated file, secret message decoding, artifact correlation
+- [HTB/Sherlock Jinkies Invest](https://app.hackthebox.com/sherlocks/jinkies/) | medium | multi-artifact investigation, timeline synthesis, case solving
+- [HTB/Sherlock Loggy Timeline](https://app.hackthebox.com/sherlocks/loggy/) | easy | log aggregation, timeline construction, event sequencing
+- [HTB/Sherlock Recollection Memory](https://app.hackthebox.com/sherlocks/recollection/) | easy | Volatility memory, process analysis, injection detection
+- [GitHub/Oldstrongnrd Sherlocks BFT](https://github.com/oldstrongnrd/htb-writeups/) | easy | MFT Sysmon MOVEit CVE-2023-34362, network analysis series
+
+## batch 2026-10-17-browser-swarm (271 rows, 152 easy)
+
+- [Wireshark Basics THM](https://medium.com/@nishasorallikar/wireshark-the-basics-tryhackme-walkthrough-72e6b39fea0f) | easy | open pcap statistics capture-comments filter http follow-stream export-objects
+- [Wireshark Trio Roundup](https://medium.com/@ayanbro287/tryhackme-wireshark-walkthrough-the-basics-packet-operations-traffic-analysis-48a60a326230) | easy | basics packet-operations traffic-analysis nmap-scan arp-spoof cleartext https-decrypt
+- [Wireshark Packet Operations TDE](https://medium.com/@tde961/tryhackme-wireshark-packet-operations-walkthrough-455629dae96b) | easy | statistics endpoints conversations dhcp-dns-http2 filters operators functions
+- [Wireshark Packet Operations jcm3](https://medium.com/@jcm3/wireshark-packet-operations-tryhackme-walkthrough-93283297bd27) | easy | resolved-addresses conversations display-filter follow-tcp iot-anomaly triage
+- [Wireshark Basics Isiah](https://medium.com/@isiahjohnstone/wireshark-the-basics-thm-578224c29280) | easy | capture-comments packet-count sha256 dissection packet-38 xml-find
+- [Wireshark Traffic Analysis Complete](https://medium.com/@mohamedfathykamel/wireshark-traffic-analysis-a-complete-tryhackme-walkthrough-11fd4cf82eb5) | easy | syn-scan connect-scan udp-icmp arp-poisoning tunneling filters decrypt
+- [Wireshark Basics jcm3 SOC](https://medium.com/@jcm3/wireshark-the-basics-tryhackme-walkthrough-b7ffec162142) | easy | pcapng load gui-panes protocol-hierarchy packet-dissection soc-path
+- [Wireshark Traffic Analysis Part1](https://medium.com/@jcm3/wireshark-traffic-analysis-part-1-tryhackme-walkthrough-a9bec11d94d9) | easy | anomaly-hunt beaconing exfil dns-tunnel correlation statistics
+- [Wireshark Packet Ops Isiah](https://medium.com/@isiahjohnstone/wireshark-packet-operations-thm-eb6941895c4b) | easy | resolved-addresses ipv4-conversations mac-endpoints bytes-transferred
+- [Wireshark Basics Igor](https://medium.com/@huglertomgaw/thm-wireshark-the-basics-9d5fa3c9a60e) | easy | http-pcap display-filter capture-properties packet-navigation filtering
+- [Forensics Memory Dump Umer](https://medium.com/@Umer_Arshad/tryhackme-forensics-room-walkthrough-analyzing-a-compromised-system-memory-dump-ab6cac91b61e) | easy | imageinfo pslist envars strings ioc-saga pid-hunt
+- [Volatility Complete 0xRahul](https://medium.com/@rahulcyberx/volatility-complete-tryhackme-walkthrough-ac67b04e03c3) | easy | pstree memmap filescan dlllist handles wannacry-mutex
+- [Volatility Task10 Jarvis](https://medium.com/@jamesjarviscyber/volatility-tryhackme-task-10-only-c34c4f157031) | easy | windows-info build-version acquisition-time reader-sl malfind
+- [Volatility Toumo](https://medium.com/@laupeiip/volatility-tryhackme-write-up-e406b1f5eaa4) | easy | vol3 windows-info pslist build-version reader-sl investigation
+- [Volatility Essentials Yacrb](https://medium.com/@400xyacrb/tryhackme-volatility-essentials-walkthrough-f0b485ac8d46) | easy | vol3 layers symbol-tables ssdt malfind yarascan driverscan callbacks
+- [Benign Splunk THM](https://medium.com/@saloni1111997/benign-tryhackme-room-walkthrough-91f9afd07aeb) | easy | splunk eventid-4688 index-search process-execution c2-download timeline
+- [Tempest Sysmon](https://medium.com/@happycamper84/tempest-tryhackme-walkthrough-1fe91057905b) | easy | sysmon powershell wireshark event-ids dns-query process-create
+- [Unattended Windows Forensics](https://medium.com/@secnish/unattended-writeup-tryhackme-medium-level-detailed-walkthrough-30aaf244ea0c) | medium | registry-explorer ntuser-dat kape amcache shimcache timeline
+- [THM Forensics Room](https://tryhackme.com/room/forensics) | easy | strings volatility autopsy exif wireshark pcap-triage
+- [THM Volatility](https://tryhackme.com/room/volatility) | easy | vol2 vol3 pstree malfind filescan cmdline
+- [THM Volatility Essentials](https://tryhackme.com/room/volatilityessentials) | easy | vol3 pslist dlllist malfind yarascan ssdt
+- [THM Wireshark Basics](https://tryhackme.com/room/wiresharkthebasics) | easy | pcap open filter follow-stream statistics export
+- [THM Wireshark Packet Ops](https://tryhackme.com/room/wiresharkpacketoperations) | easy | statistics conversations resolved-addresses filters functions
+- [THM Wireshark Traffic Analysis](https://tryhackme.com/room/wiresharktrafficanalysis) | easy | nmap-scan arp-poison cleartext-ftp http-decrypt beaconing
+- [THM Tempest](https://tryhackme.com/room/tempest) | medium | sysmon evtx powershell wireshark timeline ioc
+- [THM Benign](https://tryhackme.com/room/benign) | medium | splunk win-eventlogs process-tree controlc download-triage
+- [THM Unattended](https://tryhackme.com/room/unattended) | medium | registry kapec registry-explorer ntuser shellbags recentdocs
+- [THM Windows Forensics 1](https://tryhackme.com/room/windowsforensics1) | easy | registry amcache prefetch mft event-logs
+- [THM Windows Forensics 2](https://tryhackme.com/room/windowsforensics2) | easy | usn-journal srum bam-dam sam-hive timeline
+- [THM Linux Forensics](https://tryhackme.com/room/linuxforensics) | easy | auth-log bash-history proc tmp-cron journalctl
+- [THM Disk Forensics](https://tryhackme.com/room/diskforensics) | easy | autopsy foremost binwalk mmls fls_strings
+- [THM DFIR](https://tryhackme.com/room/dfir) | easy | triage collection chain-custody volatility wireshark
+- [THM NetworkMiner](https://tryhackme.com/room/networkminer) | easy | pcap carve files dns-hosts credentials reassemble
+- [THM Brim](https://tryhackme.com/room/brim) | easy | suricata-logs zeek pcap search-filter flow-triage
+- [THM Sysmon](https://tryhackme.com/room/sysmon) | easy | config eventid-1-3-11-22 process-network registry
+- [THM Splunk Basics](https://tryhackme.com/room/splunkbasics) | easy | spl-search index sourcetype stats table-triage
+- [THM Splunk2](https://tryhackme.com/room/botsv2) | medium | splunk apache-logs attack-chain bruteforce exfil
+- [THM Kape](https://tryhackme.com/room/kape) | easy | targets triage mft-evtx registry amcache collection
+- [THM Velociraptor](https://tryhackme.com/room/velociraptor) | medium | vql hunts artifacts process-list netscan
+- [THM Cyber Defense Challenges](https://tryhackme.com/room/cyberdefensechallenges) | easy | pcap evtx malware-triage ioc yara
+- [picoGym WPA-ing Out](https://github.com/speechgenius/picoCTF-writeups/blob/main/picoGym_Exclusive/Forensics/WPA-ing_Out.md) | easy | tshark ssid-extract xxd aircrack rockyou wpa-handshake
+- [picoCTF Log Hunt](https://medium.com/@manojey0404/picoctf-general-skills-log-hunt-1cb5d5facb1b) | easy | grep flagpart linux-skills log-triage cat-less
+- [picoMini Riddle Registry](https://medium.com/@fathijem1510/picomini-2025-ctf-writeup-6adcc0779ddb) | easy | metadata base64-decode png-magic corrupted-bytes restore
+- [THM Linux Logs](https://tryhackme.com/room/linuxlogs) | easy | var-log grep awk auth-fail bruteforce
+- [THM AWS Logs](https://tryhackme.com/room/awslogs) | easy | cloudtrail json jq access-key anomaly
+- [THM Endpoint Comms](https://tryhackme.com/room/endpointcomms) | easy | firewall-proxy dns-logs beacon hunting
+- [THM Threat Intel](https://tryhackme.com/room/threatintel) | easy | ioc otx virustotal abuseipdb enrichment
+- [THM Misp](https://tryhackme.com/room/misp) | easy | ioc-sharing attributes galaxies correlation
+- [THM OpenCTI](https://tryhackme.com/room/opencti) | easy | stiix entities relationships case-triage
+- [Illumination](https://enaljammaz.medium.com/hackthebox-forensics-challenge-illumination-walkthrough-f6b032b01211) | easy | git history token recovery deleted commit
+- [An unusual sighting](https://medium.com/@rahulhoysala07/hack-the-box-forensics-an-unusual-sighting-writeup-ba20a80a09db) | easy | SSH bash log attacker IP timeline
+- [Urgent](https://7rocky.github.io/en/ctf/htb-challenges/forensics/urgent/) | easy | phishing email header URL analysis
+- [Alien Cradle](https://7rocky.github.io/en/ctf/htb-challenges/forensics/alien-cradle/) | easy | PowerShell deobfuscate download cradle
+- [Extraterrestrial Persistence](https://7rocky.github.io/en/ctf/htb-challenges/forensics/extraterrestrial-persistence/) | easy | cron systemd persistence artifact hunt
+- [Wrong Spooky Season](https://7rocky.github.io/en/ctf/htb-challenges/forensics/wrong-spooky-season/) | easy | PCAP reverse shell strings extraction
+- [Halloween Invitation](https://7rocky.github.io/en/ctf/htb-challenges/forensics/halloween-invitation/) | easy | macro VBA olevba payload decode
+- [POOF](https://7rocky.github.io/en/ctf/htb-challenges/forensics/poof/) | easy | log timeline incident reconstruction
+- [Downgrade](https://7rocky.github.io/en/ctf/htb-challenges/forensics/downgrade/) | easy | Windows event log downgrade attack IDs
+- [Fake News](https://7rocky.github.io/en/ctf/htb-challenges/forensics/fake-news/) | easy | web artifact source manipulation trace
+- [Lure](https://7rocky.github.io/en/ctf/htb-challenges/forensics/lure/) | easy | malicious doc oletools macro extraction
+- [Chase](https://0xect0.medium.com/hackthebox-chase-forensics-challenge-writeup-eebf72d6051f) | easy | PCAP Wireshark follow stream flag
+- [Phreaky](https://medium.com/@rahulhoysala07/hack-the-box-forensics-phreaky-writeup-9de5c245f75) | easy | PCAP DTMF audio data decode
+- [Export](https://0xect0.medium.com/hackthebox-export-forensics-challenge-writeup-1cbb6c0be4fd) | easy | memory raw Volatility file carve
+- [Insider](https://7rocky.github.io/en/ctf/htb-challenges/forensics/insider/) | easy | Linux filesystem deleted file recovery
+- [Free Services](https://7rocky.github.io/en/ctf/htb-challenges/forensics/free-services/) | easy | malicious email attachment sandbox triage
+- [Packet Cyclone](https://7rocky.github.io/en/ctf/htb-challenges/forensics/packet-cyclone/) | easy | PCAP Sigma rule match C2
+- [Automation](https://7rocky.github.io/en/ctf/htb-challenges/forensics/automation/) | easy | PowerShell script block logging decode
+- [Keep Tryin](https://7rocky.github.io/en/ctf/htb-challenges/forensics/keep-tryin/) | easy | email MIME header forensic trace
+- [Perseverance](https://www.hackthebox.com/blog/perseverance-biz-ctf-2022-forensics-writeup) | easy | WMI persistence event consumer hunt
+- [Reminiscent](https://www.thedigitalforensics.com/blog/hack-the-box-reminiscent) | easy | memory Volatility process injection dump
+- [MarketDump](https://7rocky.github.io/en/ctf/htb-challenges/forensics/marketdump/) | medium | network dump data leak reconstruction
+- [Relic Maps](https://7rocky.github.io/en/ctf/htb-challenges/forensics/relic-maps/) | medium | HTA macro obfuscation decode
+- [Event Horizon](https://securitynoodle.medium.com/hackthebox-event-horizon-forensics-challenge-writeup-b32839a3307d) | medium | EVTX PowerShell operational timeline
+- [No Place To Hide](https://7rocky.github.io/en/ctf/htb-challenges/forensics/no-place-to-hide/) | medium | traffic analysis covert exfil hunt
+- [Logger](https://7rocky.github.io/en/ctf/htb-challenges/forensics/logger/) | medium | keylogger artifact keystroke recovery
+- [Peel Back The Layers](https://7rocky.github.io/en/ctf/htb-challenges/forensics/peel-back-the-layers/) | medium | Docker layer history secret extract
+- [Deadly Arthropod](https://7rocky.github.io/en/ctf/htb-challenges/forensics/deadly-arthropod/) | medium | C2 traffic beacon decrypt config
+- [Artifact Of Dangerous Sighting](https://7rocky.github.io/en/ctf/htb-challenges/forensics/artifact-of-dangerous-sighting/) | medium | Windows artifacts Shimcache Amcache parse
+- [Valhalloween](https://7rocky.github.io/en/ctf/htb-challenges/forensics/valhalloween/) | hard | complex incident multi-artifact correlation
+- [Interstellar C2](https://7rocky.github.io/en/ctf/htb-challenges/forensics/interstellar-c2/) | hard | C2 decrypt DGA protocol reverse
+- [Scripts and Formulas](https://7rocky.github.io/en/ctf/htb-challenges/forensics/scripts-and-formulas/) | hard | Excel 4.0 macro formula deobfuscate
+- [Red Miners](https://7rocky.github.io/en/ctf/htb-challenges/forensics/red-miners/) | hard | cryptominer disk memory persistence triage
+- [Meerkat](https://0xdf.gitlab.io/2024/04/23/htb-sherlock-meerkat.html) | easy | Suricata PCAP Bonita CVE-2022-25237 credential-stuffing
+- [Brutus](https://0xdf.gitlab.io/2024/04/09/htb-sherlock-brutus.html) | easy | auth.log SSH bruteforce attacker IP count
+- [Noted](https://0xdf.gitlab.io/2024/06/13/htb-sherlock-noted.html) | easy | Notepad++ AppData extortion artifact
+- [Bumblebee](https://0xdf.gitlab.io/2024/05/22/htb-sherlock-bumblebee.html) | easy | phpBB SQLite access log webshell
+- [Knock Knock](https://0xdf.gitlab.io/2023/12/04/htb-sherlock-knock-knock.html) | easy | PCAP FTP port-knocking GonnaCry ransomware
+- [Pikaptcha](https://0xdf.gitlab.io/2024/10/22/htb-sherlock-pikaptcha.html) | easy | Registry NetworkMiner fake CAPTCHA Run
+- [Noxious](https://0xdf.gitlab.io/2024/09/04/htb-sherlock-noxious.html) | medium | LLMNR poisoning rogue device Security log
+- [Reaper](https://0xdf.gitlab.io/2024/08/22/htb-sherlock-reaper.html) | medium | NTLM relay LLMNR Security log trace
+- [Subatomic](https://0xdf.gitlab.io/2024/04/18/htb-sherlock-subatomic.html) | medium | Electron malware Discord hijack reverse
+- [Nubilum-1](https://0xdf.gitlab.io/2024/05/30/htb-sherlock-nubilum-1.html) | medium | AWS CloudTrail EC2 PoshC2 hunt
+- [Crown Jewel-1](https://stumblesec.com/hackthebox-crownjewel-1-sherlock-walkthrough-2efb81522f2c) | medium | NTDS VSS shadow copy AD dump
+- [MisCloud](https://prajshete17.medium.com/writeup-htb-sherlocks-miscloud-medium-93831e2fbf42) | medium | GCP Gitea misconfig cloud breach
+- [Tracer](https://medium.com/@ahmad77.omari77/hackthebox-sherlocks-tracer-4f202b9548dd) | medium | PsExec lateral SOC alert timeline
+- [Logjammer](https://medium.com/@chaoskist/htb-sherlocks-write-up-logjammer-5474d716ce66) | easy | Windows EVTX scheduled task Defender triage
+- [Packet Puzzle](https://medium.com/@devenchhajed24/packet-puzzle-hack-the-box-sherlock-write-up-e94a6d3b9e6) | easy | PCAP Japanese firm intrusion decode
+- [DUCTF24/babys-first](https://github.com/DownUnderCTF/Challenges_2024_Public/tree/main/forensics/babys-first-forensics) | easy | strings grep flag, file header identify carve
+- [DUCTF24/SAM-I-AM](https://github.com/DownUnderCTF/Challenges_2024_Public/tree/main/forensics/samiam) | easy | SAM hive dump, secrets decrypt NTLM crack
+- [DUCTF24/bad-policies](https://github.com/DownUnderCTF/Challenges_2024_Public/tree/main/forensics/badpolicies) | easy | GPO policy abuse, SYSVOL cpassword decrypt
+- [DUCTF24/macro-magic](https://github.com/DownUnderCTF/Challenges_2024_Public/tree/main/forensics/macromagic) | medium | Office macro magic, VBA deobfuscate DDE payload
+- [DUCTF24/emuc2](https://github.com/DownUnderCTF/Challenges_2024_Public/tree/main/forensics/emuc2) | medium | emu C2 memory, Volatility netscan beacon decode
+- [DUCTF24/lost-in-memory](https://github.com/DownUnderCTF/Challenges_2024_Public/tree/main/forensics/lostinmemory) | medium | memory dump lost, Volatility pslist injected process
+- [TJCTF24/conversations](https://github.com/TJCSec/tjctf-2024-challenges/tree/main/forensics/conversations) | easy | chat SQLite carve, deleted rows recover flag
+- [TJCTF24/thatsmyjam](https://github.com/TJCSec/tjctf-2024-challenges/tree/main/forensics/thatsmyjam) | easy | audio spectrogram jam, SSTV decode hidden image
+- [TJCTF24/pals-forensics](https://github.com/TJCSec/tjctf-2024-challenges/tree/main/forensics/pals) | easy | pals PNG APNG frames, steg LSB extract chunks
+- [TJCTF24/purified](https://github.com/TJCSec/tjctf-2024-challenges/tree/main/forensics/purified) | hard | purified water WAF logs, SQL payload reassemble exfil
+- [TJCTF24/minisculest](https://github.com/TJCSec/tjctf-2024-challenges/tree/main/forensics/minisculest) | hard | miniscule filesystem carve, inode slack recover deleted
+- [Patriot24/abnormal-exfil](https://github.com/MasonCompetitiveCyber/PatriotCTF2024/tree/main/forensics/abnormal_exfiltration) | medium | DNS exfil abnormal, tshark query decode base32
+- [Patriot24/dire-situation](https://github.com/MasonCompetitiveCyber/PatriotCTF2024/tree/main/forensics/a_dire_situation) | medium | disk image dire, Autopsy timeline deleted file
+- [Patriot24/badblood](https://github.com/MasonCompetitiveCyber/PatriotCTF2024/tree/main/forensics/badblood) | hard | blood pcap TLS, JA3 keylog decrypt master-secret
+- [Patriot24/secret-note](https://github.com/MasonCompetitiveCyber/PatriotCTF2024/tree/main/forensics/secretNote) | easy | note ADS streams, alternate stream flag hide
+- [Patriot24/slingshot](https://github.com/MasonCompetitiveCyber/PatriotCTF2024/tree/main/forensics/slingshot) | medium | slingshot USB pcap, HID keystroke decode keylog
+- [Patriot23/capybara](https://github.com/MasonCompetitiveCyber/PatriotCTF2023/tree/main/Forensics/Capybara) | easy | capybara image steg, zsteg b1 rgb extract
+- [Patriot23/gotta-ping-em](https://github.com/MasonCompetitiveCyber/PatriotCTF2023/tree/main/Forensics/GottaPingEmAll) | easy | ping ICMP exfil, payload bytes decode flag
+- [Patriot23/unsupported-format](https://github.com/MasonCompetitiveCyber/PatriotCTF2023/tree/main/Forensics/Unsupported%20Format) | medium | unsupported format header, binwalk carve embedded zip
+- [HKCERT24/cook-book](https://github.com/hkcert-ctf/CTF-Challenges/tree/main/CTF-2024/18-cook-book) | medium | cookbook forensic crypto, recipe cipher + disk carve
+- [HKCERT24/one-way-room](https://github.com/hkcert-ctf/CTF-Challenges/tree/main/CTF-2024/32-one-way-room) | medium | one-way ext4 room, journal replay deleted entry
+- [HKCERT24/jane-streak](https://github.com/hkcert-ctf/CTF-Challenges/tree/main/CTF-2024/37-jane-streak-amateurs) | medium | Jane audio streak, Audacity morse decode spectrogram
+- [HKCERT24/APT-attack-1](https://github.com/hkcert-ctf/CTF-Challenges/tree/main/CTF-2024/60a-where-is-the-APT-attack) | medium | APT attack EVTX timeline, lateral movement chain hunt
+- [HKCERT24/mylovelycats](https://github.com/hkcert-ctf/CTF-Challenges/tree/main/CTF-2024/47-mylovelycats) | medium | cats JPEG cats, exif + steg palette decode
+- [HKCERT25/forensics-set](https://github.com/hkcert-ctf/CTF-Challenges/tree/main/CTF-2025) | medium | HKCERT25 pcap + memory set, official writeup timeline correlation
+- [corCTF25/nintendosswitch](https://github.com/Crusaders-of-Rust/corctf-2025-public-challenge-repo/tree/master/forensics/nintendosswitch) | hard | Switch NAND forensics, save decrypt BIS keys extract
+- [scriptCTF25/Forensics-set](https://github.com/scriptCTF/scriptCTF2025-OfficialWriteups/tree/main/Forensics) | easy | scriptCTF pcap USB set, filter follow-stream carve
+- [Sekai25/nokotan-guidance-forensics](https://github.com/project-sekai-ctf/sekaictf-2025/tree/main/ppc/nokotans-guidance) | medium | guidance ppc trace logs, packet timing decode flag
+- [Ph4nt0m 40Days](https://medium.com/@fortydays/picoctf-writeup-ph4nt0m-1ntrud3r-b435506ec84d) | medium | Wireshark PCAP filter exfiltrated hidden data reassembly
+- [Event Viewing](https://medium.com/@gbahenrijoel/picoctf-2025-forensics-event-viewing-34578235166b) | medium | EVTX IDs 11707 4657 1074 base64 flag parts
+- [BitLocker 2 Eric](https://medium.com/@erichdryn/bitlocker-2-picoctf-writeup-81c58061181a) | medium | strings memdump for plaintext instead of Volatility plugin
+- [Enhance](https://robertnyinge.medium.com/pico-ctf-enhance-write-up-3c19c36e222b) | easy | strings image contents reveal hidden flag text
+- [Wolv Passwords](https://medium.com/@biplobrahman488/wolvctf-2025-forensics-writeup-c4ee513da8ee) | medium | KeePass KDBX identify, wordlist crack AES database
+- [Wolv forensics OG13](https://medium.com/@OG13/wolvctf-write-up-for-forensics-challenges-d51a77751766) | easy | file walkthrough triage three of five challenges
+- [Da Vinci disk](https://medium.com/@mustafa-alzaareer/da-vinci-ctf-2025-forensics-writeup-fd6c78bbaea1) | medium | disk analysis, volinux memory, noted artifact review
+- [CyCTF DFIR](https://medium.com/@MAb0EL3TA/cyctf-2025-quals-dfir-write-up-96a208eb7d8f) | hard | Prefetch PECmd fake PDF EXE, WMI BITS log carve
+- [Forensics metadata](https://medium.com/@marwaboualam2/digital-forensics-with-picoctf-metadata-steganography-encodings-fdefcd5bef60) | easy | beginner metadata encodings stego guided series
+- [Pico 2025 Srihari](https://medium.com/@srihari.n.narayan/picoctf-2025-96e5919c0039) | easy | debut general plus forensic challenge walkthrough set
+- [Pico 4mN3s14](https://medium.com/@johnjkar/picoctf-2025-writeups-by-4mn3s14-1216bb9ecb2d) | easy | first-timer learning notes across solved challenges
+- [Ph4nt0m Miles](http://mileshandelman.com/writeups/ph4nt0m-1ntrud3r/) | medium | short Wireshark-focused PCAP solve words
+- [BitLocker chise](https://chisedotdev.github.io/portfolio/picoctf-writeups/forensics/bitlocker-1-to-2/writeup/) | medium | weak password BitLocker decrypt disk workflow
+- [St3g0 Tan](https://tan-junwei.github.io/CTF-Writeups/PicoCTF/Forensics/St3g0) | easy | wget GUI inspect, stego extraction workflow
+- [Wolv Active W01f](https://w1r3w01f.github.io/2025/03/21/wolvctf-2025/index.html) | hard | wolvctf corp domain infiltration forensics series
+- [Wolv CYB3R](https://cyb3r-bo1.github.io/posts/wolvctf_2025_writeup/) | medium | beginner-hard rev forensics OSINT web crypto misc
+- [Found Memory](https://d3rive.medium.com/found-memory-nahamcon-ctf-2025-7a91047b4d38) | medium | fastbin reverse tcache fake size chunk pwn
+
+## batch 2026-10-17-browser-swarm (305 rows, 169 easy)
+
+- [Binary-Digits-pico2026](https://ummit.dev/ctf/writeups/picoctf-2026#binary-digits) | easy | ASCII bitstream divisible 8 JPEG magic OCR threshold flag image
+- [Forensics-Git-0-pico2026](https://ummit.dev/ctf/writeups/picoctf-2026#forensics-git-0) | easy | mmls fls icat reflog commit message disk image git
+- [Forensics-Git-2-pico2026](https://ummit.dev/ctf/writeups/picoctf-2026#forensics-git-2) | easy | Deleted blob loose objects zlib inflate grep chat log
+- [git-2-pico2026-cyb3r](https://cyb3r-bo1.github.io/posts/picoCTF_2026_writeup/#git-2) | easy | Repair refs heads objects enumerate restore branch commit
+- [disko-4-pico2026](https://cyb3r-bo1.github.io/posts/picoCTF_2026_writeup/#disko-4) | easy | FAT32 fls deleted icat gunzip recover dont-delete
+- [timeline-1-pico2026](https://cyb3r-bo1.github.io/posts/picoCTF_2026_writeup/#timeline-1) | medium | fls mactime macb inode istat icat base64 timeline cluster
+- [Rogue-Tower-pico2026](https://cyb3r-bo1.github.io/posts/picoCTF_2026_writeup/#rogue-tower) | medium | PCAP UDP broadcast IMSI POST reassemble XOR Base64 exfil
+- [PicturePerfect-wolv2025](https://cyb3r-bo1.github.io/posts/wolvctf_2025_writeup/#pictureperfect---forensics) | easy | exiftool Title metadata flag JPEG inspection
+- [DigginDir-wolv2025](https://cyb3r-bo1.github.io/posts/wolvctf_2025_writeup/#diggindir---forensics) | easy | Recursive grep wctf 251 folders find flag file
+- [Active-1-MSSQL-wolv2025](https://w1r3w01f.github.io/2025/03/21/wolvctf-2025#mssql-server-credential-brute-forcing) | medium | WinPEAS MSSQL ERRORLOG bruteforce usernames flag fragment decode
+- [Active-1-xpcmdshell-wolv2025](https://w1r3w01f.github.io/2025/03/21/wolvctf-2025#getting-powershell-access) | medium | xp_cmdshell base64 powershell reverse shell flagpt2 decode
+- [Active-1-autologon-wolv2025](https://w1r3w01f.github.io/2025/03/21/wolvctf-2025#getting-autologon-credentials) | easy | WinPEAS Autologon Dan hex loot registry credentials leak
+- [Active-2-ASREProast-wolv2025](https://w1r3w01f.github.io/2025/03/21/wolvctf-2025#escalation-dan-to-emily) | medium | PSReadLine history Rubeus AS-REP roast john crack emily password
+- [Active-2-emily-james-wolv2025](https://w1r3w01f.github.io/2025/03/21/wolvctf-2025#escalation-emily-to-james) | medium | 7z password 777 binwalk car.jpeg byte scrape hidden image
+- [Active-2-james-patrick-wolv2025](https://w1r3w01f.github.io/2025/03/21/wolvctf-2025#escalation-james-to-patrick) | easy | PowerView Set-DomainUserPassword reset emily patrick lateral move
+- [Active-2-patrick-jake-wolv2025](https://w1r3w01f.github.io/2025/03/21/wolvctf-2025#escalation-patrick-to-jake) | easy | Desktop note_from_jake plaintext password reuse backup account
+- [Active-3-ntds-wolv2025](https://w1r3w01f.github.io/2025/03/21/wolvctf-2025#escalation-jake-to-jessica) | hard | diskshadow ntds.dit secretsdump hashcat city wordlist BloodHound hint
+- [Passwords-wolv2025](https://w1r3w01f.github.io/2025/03/21/wolvctf-2025#passwords) | easy | KDBX keepass2john rockyou goblue1 Homebanking flag entry
+- [Passwords-cyb3r-wolv2025](https://cyb3r-bo1.github.io/posts/wolvctf_2025_writeup/#passwords) | easy | KeePassXC john crack open database search flag record
+- [Packed-Light-hh-day4](https://medium.com/@antor.csecu/tryhackme-packed-light-walkthrough-hacker-holidays-2026-day-4-complete-write-up-eec41e9ced25) | medium | PCAP HTTP export updates.py keylogger Cookie XOR Base64 tshark decode
+- [good-luck-gaslight2026](https://cyb3r-bo1.github.io/posts/gaslightCTF_2026_writeup/#good-luck-100) | easy | Audio Audacity spectrogram frequency drawn flag text visual
+- [blackout-gaslight2026](https://cyb3r-bo1.github.io/posts/gaslightCTF_2026_writeup/#blackout-251) | easy | PDF redaction boxes Ctrl-A text layer Ctrl-F flag format search
+- [icon-sketch-gaslight2026](https://cyb3r-bo1.github.io/posts/gaslightCTF_2026_writeup/#icon-sketch-339) | medium | EXIF three fields base64 hex Atbash merge halves flag
+- [layered-pages-gaslight2026](https://cyb3r-bo1.github.io/posts/gaslightCTF_2026_writeup/#layered-pages-384) | medium | binwalk JPEG PNG offsets dd carve nine layers spread flag
+- [Stockpile-Breach-0xlaugh2026](https://cyb3r-bo1.github.io/posts/0xl4ughCTF_v5_2026_writeup/#dfir---stockpile-breach) | medium | Edge History sqlite downloads Sysmon EID1 EID3 timeline Sliver
+- [Stockpile-Persistence-0xlaugh2026](https://cyb3r-bo1.github.io/posts/0xl4ughCTF_v5_2026_writeup/#q7---persistence-registry-key) | medium | Sysmon EID13 Run key NTUSER Temp exe copy time correlate
+- [Management-Day14-hh2026](https://medium.com/@surajprasadrout/tryhackme-hacker-holidays-management-wants-a-word-day-14-f3848407687b) | hard | Registry DPAPI Chrome Local-State AES-GCM VeraCrypt PDF OCR chain
+- [After-Hours-hh-day12](https://medium.com/@devyani89itware/hacker-holidays-day-12-after-hours-fa9278942e62) | hard | WMI OBJECTS.DATA base64 raw-deflate .NET ILSpy hostname check backdoor
+- [Screenshot-naham2025](https://not4a6f7365.medium.com/nahamconctf2025-the-accidental-screenshot-and-the-encrypted-flag-d838cf6cc5d0) | medium | Hex screenshot xxd WinZip AES-256 AE2 HMAC decrypt flag.zip
+- [Found-Memory-naham2025](https://medium.com/tag/nahamcon-ctf#found-memory) | medium | Fastbin reverse tcache fake size heap leak win
+- [deldeldel-iris2025](https://w1r3w01f.github.io/2025/01/07/irisctf2025/#deldeldel) | medium | PCAP USB keylogger HID keystroke decode image exfil timeline
+- [Finders-Keepers-bits2025](https://w1r3w01f.github.io/2025/02/09/BITSCTF-2025/#finders-keepers) | easy | PNG hex JPEG WAV carve byte scrape steghide embedded files
+- [Ancient-Paper-nullcon2025](https://w1r3w01f.github.io/2025/02/02/Nullcon-2025/#ancient-paper) | easy | IBM-29 punch card decode 29 label mapping holes text
+- [23-719-bcactf2024](https://w1r3w01f.github.io/2024/06/12/BCACTF-5-0-2024/#23-719-writeup) | easy | PDF prior version remnants xref uncleaned text extract flag

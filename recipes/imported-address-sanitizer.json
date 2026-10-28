@@ -1,0 +1,41 @@
+{
+ "id": "imported-address-sanitizer",
+ "domain": "pwn",
+ "title": "AddressSanitizer crash triage",
+ "signals": [
+  "SIGSEGV or heap abort",
+  "source available",
+  "fuzz artifact",
+  "need exact faulting access"
+ ],
+ "preconditions": [
+  "target builds with Clang/GCC sanitizers",
+  "symbols available"
+ ],
+ "steps": [
+  "Rebuild `clang -fsanitize=address,undefined -fno-omit-frame-pointer -g -O1`.",
+  "Run the reproducer with `ASAN_OPTIONS=detect_leaks=0:abort_on_error=1:symbolize=1`.",
+  "Read the FIRST error: access type, address, allocation/free stack, and the faulting frame.",
+  "Classify (OOB read/write, UAF, double-free, stack overflow) and keep the minimized input."
+ ],
+ "falsifier": "A clean ASan run means only that this input did not trigger a memory error; it does not prove the code is safe.",
+ "pitfalls": [
+  "leak reports masking the real error",
+  "optimization hiding the fault",
+  "unsymbolized reports",
+  "static libraries built without ASan"
+ ],
+ "sources": [
+  "https://github.com/trailofbits/skills/tree/main/plugins/testing-handbook-skills/skills/address-sanitizer"
+ ],
+ "fixtures": [],
+ "verified_by": "source:Trail of Bits",
+ "last_verified": "2026-10-20",
+ "verified": false,
+ "verification": "source",
+ "license": "CC-BY-SA-4.0",
+ "ctf_domains": [
+  "pwn",
+  "rev"
+ ]
+}

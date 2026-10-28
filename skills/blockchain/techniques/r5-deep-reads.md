@@ -1,0 +1,10 @@
+# R5 deep reads — blockchain (8 complete articles, browser-read 2026-10-17)
+
+## Chain 8. DVD Unstoppable (donate-to-DOS)
+## Chain 9. DVD SideEntrance (deposit-counts-as-repay)
+## Chain 10. DVDv4 full writeup (multicall batching)
+## Chain 11. Paradigm Swap (ABI memory aliasing)
+## Chain 12. samczsun price oracles (spot manipulation)
+## Chain 13. samczsun surprising-code (safe* reentry)
+## Chain 14. TrailOfBits Balancer (rounding direction)
+## Chain 15. TrailOfBits Bybit (endpoint compromise)

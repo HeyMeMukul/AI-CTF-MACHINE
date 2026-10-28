@@ -1,0 +1,194 @@
+# rev Writeups Mined — Manifest r4, browser-swarm batch ( technique-only, no flags )
+
+Mined 2026-10-17 by 8 reader subagents via real browsers (Playwright snapshots; Medium member-only pieces via medium-unlocker.inulute.com -> Freedium mirror; GitHub/team-blog/pro-research sources). Rows filtered (video/bare-profile/placeholder links dropped) and deduped by URL within the batch and against the full corpus. Difficulty as labeled by readers. Format: `- [source/challenge](URL) | difficulty | technique-chain`. No flag values anywhere.
+
+## batch 2026-10-17-browser-swarm (121 rows, 26 easy)
+
+- [picoCTF25/Flag-Hunters](https://github.com/Cajac/picoCTF-Writeups/blob/main/picoCTF_2025/Reverse_Engineering/Flag_Hunters.md) | easy | Python song lyric branch logic, invert conditions for flag
+- [picoCTF25/Binary-Instrumentation-1](https://github.com/snwau/picoCTF-2025-Writeup/blob/main/Reverse-Engineering/Binary-Instrumentation-1.md) | easy | PIN tool trace log, extract flag from instruction counts
+- [picoCTF25/Binary-Instrumentation-2](https://github.com/snwau/picoCTF-2025-Writeup/blob/main/Reverse-Engineering/Binary-Instrumentation-2.md) | medium | PIN granularity filter, reconstruct transformed flag bytes
+- [picoCTF25/Tap-into-Hash](https://github.com/noamgariani11/picoCTF-2025-Writeup/blob/main/Reverse%20Engineering/Tap-into-Hash.md) | medium | reverse block_chain XOR-SHA256 chain, decrypt enc_flag blocks
+- [picoCTF25/Chronohack](https://github.com/EverythingIsCTF/picoCTF2025_writeup/blob/main/reverse_engineering/chronohack-medium/solution.md) | medium | time-based binary logic, patch clock check via Ghidra
+- [picoCTF25/Perplexed](https://github.com/EverythingIsCTF/picoCTF2025_writeup/blob/main/reverse_engineering/perplexed-medium/solution.md) | medium | perplexed VM maze solver, symbolic path search script
+- [picoCTF25/Quantum-Scrambler](https://github.com/EverythingIsCTF/picoCTF2025_writeup/blob/main/reverse_engineering/quantum-medium/playground.py) | medium | quantum scramble XOR rotations, brute-force gate sequence
+- [picoCTF24/packer](https://github.com/Cajac/picoCTF-Writeups/blob/main/picoCTF_2024/Reverse_Engineering/packer.md) | easy | UPX packed ELF, upx -d then strings for flag
+- [picoCTF24/FactCheck](https://github.com/Cajac/picoCTF-Writeups/blob/main/picoCTF_2024/Reverse_Engineering/FactCheck.md) | medium | C++ fact checker, Ghidra decompile invert XOR compare
+- [picoCTF24/WinAntiDbg100](https://github.com/Cajac/picoCTF-Writeups/blob/main/picoCTF_2024/Reverse_Engineering/WinAntiDbg0x100.md) | medium | Windows anti-debug IsDebuggerPresent patch, dump flag
+- [picoCTF24/WinAntiDbg200](https://github.com/Cajac/picoCTF-Writeups/blob/main/picoCTF_2024/Reverse_Engineering/WinAntiDbg0x200.md) | medium | timing PEB check bypass, x64dbg patch TLS callback
+- [picoCTF24/weirdSnake](https://github.com/Cajac/picoCTF-Writeups/blob/main/picoCTF_2024/Reverse_Engineering/weirdSnake.md) | medium | Python snake bytecode, pycdc decompile logic extraction
+- [TJCTF24/guess-what](https://medium.com/@ELJoOker/tjctf-2024-reverse-engineering-challenges-9b4e46ea4978) | easy | guess-what strcmp trace, GDB breakpoint leak expected string
+- [TJCTF24/cagnus-marlsen](https://github.com/TJCSec/tjctf-2024-challenges/tree/main/rev/cagnus-marlsen) | medium | Cagnus encoding puzzle, frequency solver custom alphabet
+- [TJCTF24/slider](https://github.com/TJCSec/tjctf-2024-challenges/tree/main/rev/slider) | medium | slider puzzle binary, BFS solver state search
+- [TJCTF24/clf3](https://github.com/TJCSec/tjctf-2024-challenges/tree/main/rev/clf3) | medium | CLF bytecode VM, disassemble handlers then Z3 solve
+- [TJCTF24/embedder](https://github.com/TJCSec/tjctf-2024-challenges/tree/main/rev/embedder) | hard | embedded firmware dump, Binwalk extract hidden ELF
+- [TJCTF24/stream-complimentary](https://github.com/TJCSec/tjctf-2024-challenges/tree/main/rev/stream-complimentary) | hard | stream cipher compliment, known-plaintext keystream recovery
+- [DownUnder24/rusty-vault](https://github.com/DownUnderCTF/Challenges_2024_Public/tree/main/rev/rusty_vault) | easy | Rust vault strings+XOR, Ghidra decompile key extraction
+- [DownUnder24/jmp-flag](https://github.com/DownUnderCTF/Challenges_2024_Public/tree/main/rev/jmp_flag) | easy | jmp table obfuscation, angr find flag-print block
+- [DownUnder24/pressing-buttons](https://github.com/DownUnderCTF/Challenges_2024_Public/tree/main/rev/pressing_buttons) | medium | button state machine, angr avoid-fail path solve
+- [DownUnder24/dungeon](https://github.com/DownUnderCTF/Challenges_2024_Public/tree/main/rev/dungeon) | medium | dungeon maze ELF, DFS solver map extraction
+- [DownUnder24/avg-asm](https://github.com/DownUnderCTF/Challenges_2024_Public/tree/main/rev/average_assembly_assignment) | medium | assembly assignment quiz, emulate with Unicorn script
+- [Patriot24/ai-prng](https://github.com/MasonCompetitiveCyber/PatriotCTF2024/blob/main/rev/ai_rnd) | medium | AI PRNG seed predict, NumPy MT19937 state clone
+- [Patriot24/full-of-bugs](https://github.com/MasonCompetitiveCyber/PatriotCTF2024/blob/main/rev/fullOfBugs) | easy | bugs binary patch diff, Ghidra compare fixed routine
+- [Patriot24/go-to-sleep](https://github.com/MasonCompetitiveCyber/PatriotCTF2024/blob/main/rev/goToSleep) | easy | Go sleep obfuscation, delve static strings recovery
+- [Patriot24/not-another-vm](https://github.com/MasonCompetitiveCyber/PatriotCTF2024/blob/main/rev/not_another_vm_reversing_problem) | medium | custom VM handlers, Python disassembler + emulator
+- [Patriot24/packed-surprises](https://github.com/MasonCompetitiveCyber/PatriotCTF2024/blob/main/rev/packedFullOfSurprises) | easy | packed UPX plus XOR layer, unpack then CyberChef
+- [Patriot24/password-protector](https://github.com/ramenhost/ctf-writeups/tree/main/patriot-ctf-2024/rev/password-protector) | easy | .NET protector dnSpy decompile, hardcoded check extraction
+- [Patriot24/puzzle-room](https://github.com/ramenhost/ctf-writeups/tree/main/patriot-ctf-2024/rev/puzzle-room) | medium | puzzle room maze logic, IDA Python solver pathfind
+- [Patriot24/revioli](https://github.com/ramenhost/ctf-writeups/tree/main/patriot-ctf-2024/rev/revioli-revioli-give-me-the-formeoli) | easy | pasta cipher ROT+XOR, Ghidra strings quick decode
+- [Patriot24/rust-lock](https://github.com/MasonCompetitiveCyber/PatriotCTF2024/blob/main/rev/rustLock) | medium | Rust lock comparison, Frida hook bypass check
+- [Patriot24/vm-ception](https://github.com/MasonCompetitiveCyber/PatriotCTF2024/blob/main/rev/VM-ception) | hard | nested VM layers, stepwise devirtualize inner opcode
+- [Patriot23/golmol](https://github.com/MasonCompetitiveCyber/PatriotCTF2023/tree/main/rev/golmol) | easy | Go LOL obfuscation, strings + Ghidra main lookup
+- [Patriot23/py-garbage-compiler](https://github.com/djsteffey/ctf-patriotctf-2023/blob/main/rev/pythongarbagecompiler/README.md) | medium | Python garbage VM, dis disassembly to source recovery
+- [Patriot23/patchwork](https://github.com/djsteffey/ctf-patriotctf-2023/blob/main/rev/patchwork/README.md) | easy | patchwork diff patch, binary patch analysis restores flag
+- [Patriot23/rris](https://github.com/MasonCompetitiveCyber/PatriotCTF2023/tree/main/rev/reduced-reduced-instruction-set) | medium | reduced ISA emulator, write assembler solver
+- [Patriot23/rris-2](https://github.com/MasonCompetitiveCyber/PatriotCTF2023/tree/main/rev/reduced-reduced-instruction-set-2) | hard | extended ISA self-modifying code, Unicorn trace solve
+- [Patriot23/suboptimal](https://github.com/djsteffey/ctf-patriotctf-2023/blob/main/rev/suboptimal/README.md) | medium | suboptimal optimizer removes check, Ghidra IR recovery
+- [Patriot23/coffee-shop](https://github.com/djsteffey/ctf-patriotctf-2023/blob/main/rev/cofeeshop/README.md) | easy | Java coffee shop, JD-GUI decompile password logic
+- [Patriot23/python-xor](https://github.com/djsteffey/ctf-patriotctf-2023/blob/main/rev/pythonxor/README.md) | easy | Python XOR loop, brute single-byte key with known header
+- [Patriot25/areyoupilingual](https://github.com/shivang1209-dot/CTF-Writeup/tree/main/patriotCTF'25/Reverse/AreYouPilingual) | easy | Pilingual language VM, translate ops to Python decode
+- [Patriot25/readmynote](https://github.com/shivang1209-dot/CTF-Writeup/tree/main/patriotCTF'25/Reverse/ReadMyNote) | easy | note APK strings, Jadx intent extra flag
+- [Patriot25/spacepirates1](https://github.com/shivang1209-dot/CTF-Writeup/tree/main/patriotCTF'25/Reverse/SpacePirates) | medium | space pirates Ghidra level check, patch jump
+- [Patriot25/spacepirates2](https://github.com/shivang1209-dot/CTF-Writeup/tree/main/patriotCTF'25/Reverse/SpacePirates2) | medium | second stage XOR map, angr find-win solver
+- [Patriot25/spacepirates3](https://github.com/shivang1209-dot/CTF-Writeup/tree/main/patriotCTF'25/Reverse/SpacePirates3) | hard | anti-debug ptrace bypass, Z3 constraint flag recovery
+- [Patriot25/vorpalmasters](https://github.com/shivang1209-dot/CTF-Writeup/tree/main/patriotCTF'25/Reverse/VorpalMasters) | medium | vorpal master checksum, Python reimplement hash reverse
+- [Sekai24/crack-me](https://github.com/project-sekai-ctf/sekaictf-2024/blob/main/reverse/crack-me) | medium | crackme ptrace check, LD_PRELOAD bypass keygen
+- [Sekai24/x64-extension](https://github.com/project-sekai-ctf/sekaictf-2024/blob/main/reverse/x64-extension) | medium | x64 extension custom opcode, Capstone disassembler script
+- [Sekai24/magnum-opus](https://github.com/project-sekai-ctf/sekaictf-2024/blob/main/reverse/magnum-opus) | hard | magnum opus obfuscated control flow, deobfuscate with Triton
+- [Sekai24/secure-computing](https://github.com/project-sekai-ctf/sekaictf-2024/blob/main/reverse/secure-computing) | hard | seccomp VM escape, audit filter reverse to allowed syscalls
+- [Sekai25/sekai-bank-sig](https://github.com/project-sekai-ctf/sekaictf-2025/tree/main/reverse/sekai-bank-signature) | easy | bank signature check, Python ecdsa verify bypass logic
+- [Sekai25/gondola](https://github.com/project-sekai-ctf/sekaictf-2025/tree/main/reverse/gondola) | medium | gondola cable cipher, Ghidra float transform inversion
+- [Sekai25/sekai-craft](https://github.com/project-sekai-ctf/sekaictf-2025/tree/main/reverse/sekai-craft) | medium | Minecraft mod bytecode, MCP mapping deobfuscate flag
+- [Sekai25/miku-music](https://github.com/project-sekai-ctf/sekaictf-2025/tree/main/reverse/miku-music-machine) | hard | music machine DSP, Audacity spectrogram + MIDI decode
+- [UIUCTF24/summarize](https://github.com/rehackxyz/REUN10N/tree/main/CTF-writeups/2024/UiuCTF/rev-Summarize) | medium | summarize LLM prompt reverse, tokenizer logic extraction
+- [V1tCTF25/duck-key](https://github.com/D13David/ctf-writeups/tree/main/v1tctf25/rev/duck_product_key) | easy | duck product key algorithm, Python keygen reimplement
+- [Squ1rrel25/rev](https://github.com/D13David/ctf-writeups/tree/main/squ1rrelctf25) | easy | squ1rrel UPX + base64 layers, recursive decode script
+- [BreakSyntax25/rev](https://github.com/D13David/ctf-writeups/tree/main/breakthesyntax25) | medium | syntax JS obfuscation, deobfuscator.io AST rename
+- [Codefest25/rev](https://github.com/D13David/ctf-writeups/tree/main/codefest25) | medium | codefest dotnet ConfuserEx, de4dot unpack dnSpy
+- [Urmia24/rev](https://github.com/D13David/ctf-writeups/tree/main/urmia24) | easy | Urmia Persian strings, Ghidra cross-reference flag function
+- [Tenable23/rev](https://github.com/D13David/ctf-writeups/tree/main/tenablectf23) | medium | Tenable license check, Frida hook license validator
+- [UIUCTF23/rev](https://github.com/D13David/ctf-writeups/tree/main/uiuctf23) | medium | UIUCTF23 WASM reverse, wasm2c then Z3 solve
+- [GoogleCTF23/rev](https://github.com/D13David/ctf-writeups/tree/main/googlectf23) | hard | Google device-tree puzzle, QEMU trace + scripting
+- [CCCamp23/rev](https://github.com/D13David/ctf-writeups/tree/main/cccampctf23) | medium | CCCamp radio firmware, Ghidra ARM peripheral mapping
+- [LACTF24/java-island](https://github.com/ramenhost/ctf-writeups/tree/main/la-ctf-2024/rev/the-secret-of-java-island) | easy | Java island Jadx decompile, island cipher reverse
+- [angstrom24/tss2](https://github.com/defund/ctf/blob/master/angstromctf-2024/tss2/solve.py) | medium | TPM TSS2 quote verify, Python TPM2 policy solver
+- [UIUCTF24/x-marked](https://github.com/rehackxyz/REUN10N/tree/main/CTF-writeups/2024/UiuCTF/crypto-XMarkedTheSpot) | medium | X marks map transform, Python coordinate decode
+- [REUN10N/Patriot24-rev-collection](https://github.com/rehackxyz/REUN10N/tree/main/CTF-writeups/2024/PatriotCTF/rev) | easy | REUN10N collection puzzle-room protector revioli batch notes
+- [ISITDTU 2020/rev02 NES](https://lkmidas.github.io/posts/20201012-isitdtuctf2020quals-writeups/) | hard | 6502 NES FCEUX trace password z3 overlapping constraints
+- [ISITDTU Finals/Keylogger Game Maze](https://lkmidas.github.io/posts/20201227-isitdtuctf2020final-writeups/) | hard | keylogger maze game RE dynamic hook flag path
+- [ASCIS Finals/RWE](https://lkmidas.github.io/posts/20201201-ascis2020final-writeups/) | medium | RWE binary Ghidra decompile patch check bypass
+- [ASCIS Quals/Findme Crypt](https://lkmidas.github.io/posts/20201106-ascis2020quals-writeups/) | medium | Findme x86 plus crypto combined RE solver
+- [SekaiCTF 2023/Bidding Solana](https://lkmidas.github.io/posts/20230828-sekaictf2023-writeups/) | hard | Solana Anchor IDL account confusion bidding logic REV
+- [DiceCTF 2023/Solana Rev](https://lkmidas.github.io/posts/20230304-dicectf2023-writeups/) | hard | Solana BPF disassembly program derived address check
+- [idekCTF 2022/Solana Rev](https://lkmidas.github.io/posts/20230303-idekctf2022-writeups/) | medium | Solana chall instruction introspection REV solver
+- [N1CTF 2022/Solana Rev](https://lkmidas.github.io/posts/20221128-n1ctf2022-writeups/) | hard | N1 Solana eBPF emulation account validation bypass
+- [picoCTF be-quick-or-be-dead-3](https://faraz.faith/2019-07-14-picoctf-2018-be-quick-or-be-dead-3/) | medium | timing alarm RE Ghidra patch nop sleep bypass
+- [PeaCTF Quals/All Rev](https://faraz.faith/2019-07-28-peactf-all-challenges/) | medium | mixed RE Ghidra strings angr quick wins
+- [RootersCTF Pwn+Rev](https://faraz.faith/2019-10-12-rooters-ctf-pwn-challenges/) | medium | Rooters mixed stack REV plus ROP series
+- [CrewCTF 2025/REV](https://jia.je/ctf-writeups/2025-09-20-crewctf-2025/) | medium | Crew REV crackme z3 angr hybrid solve
+- [K17CTF 2025/REV](https://jia.je/ctf-writeups/2025-09-19-k17-ctf-2025/) | medium | K17 REV dotnet decompile dnSpy patch
+- [SunshineCTF 2025/REV](https://jia.je/ctf-writeups/2025-09-27-sunshine-ctf-2025/) | medium | Sunshine REV Ghidra string constraint solver
+- [HackornCTF 2025/REV](https://jia.je/ctf-writeups/2025-09-25-hackornctf2025/) | medium | Hackorn REV Rust strip restore symbols inline
+- [Nullcon Berlin 2025/REV](https://jia.je/ctf-writeups/2025-09-04-nullcon-berlin-hackim-2025-ctf/) | medium | Nullcon REV ARM firmware Ghidra emulation
+- [ImaginaryCTF 2025/REV](https://jia.je/ctf-writeups/2025-09-05-imaginary-ctf-2025/) | medium | Imaginary REV pyrev pycdc bytecode decompile
+- [BlackHat MEA Quals 2025/REV](https://jia.je/ctf-writeups/2025-09-07-blackhat-mea-ctf-quals-2025/) | hard | BHMEA REV hypervisor trace VMExit analysis
+- [Wanqubei Quals 2025/REV](https://jia.je/ctf-writeups/2025-09-08-wanqubei-quals-2025/) | medium | Chinese REV VM protect SMC unpacking dump
+- [WatCTF F25/REV](https://jia.je/ctf-writeups/2025-09-10-watctf-f25/) | medium | Wat REV WASM reverse wat2wasm string recovery
+- [HolmesCTF 2025/REV](https://jia.je/ctf-writeups/2025-09-22-holmes-ctf-2025/) | medium | Holmes REV literary cipher Ghidra script solve
+- [Qiangwangbei Quals 2025/REV](https://jia.je/ctf-writeups/2025-10-18-qiangwangbei-quals-2025/) | hard | Qiangwang REV kernel driver RE plus pwn chain
+- [Hack The Boo 2025/REV](https://jia.je/ctf-writeups/2025-10-24-hack-the-boo-ctf-2025/) | medium | HTB REV Halloween crackme Unity unpack
+- [Qiangwang Nitai Quals 2025/REV](https://jia.je/ctf-writeups/2025-10-25-qiangwang-nitai-quals-2025/) | hard | Qiangwang Nitai REV mimic execution differential analysis
+- [XCTF Finals 2025/REV](https://jia.je/ctf-writeups/2025-10-26-xctf-final-2025/) | hard | XCTF final REV TEE trustlet extraction emulation
+- [Qiangwangbei Finals 2025/REV](https://jia.je/ctf-writeups/2025-11-22-qiangwangbei-final-2025/) | hard | QWB final REV hardened VM anti-debug patch bypass
+- [Advent Pwn 2025/REV](https://jia.je/ctf-writeups/2025-12-01-advent-of-pwn-2025/) | medium | Advent REV daily crackme Ghidra script series
+- [HKCERT Quals 2025/REV](https://jia.je/ctf-writeups/2025-12-19-hkcert-ctf-2025-quals/) | medium | HKCERT REV firmware binwalk squashfs password
+- [NexHunt 2025/REV](https://jia.je/ctf-writeups/2025-12-12-nexhunt-ctf-2025/) | medium | NexHunt REV Go binary goblin recover symbols
+- [SekaiCTF 2024/Some Trick](https://deut-erium.github.io/ctf-tutorials/) | medium | Sekai trick tutorial angr plus z3 staged solve archive
+- [Tetrasquares N64 REV](https://deut-erium.github.io/) | hard | N64 Tetris patch MIPS RE hardware graphics hack
+- [Neodyme Nonce Loss-of-Funds](https://neodyme.io/en/blog/nonce-upon-a-time) | hard | Solana durable nonce arbitrary write ALLES CTF unsolved
+- [Zellic Formal Plonky2 Gate](https://www.zellic.io/blog/formal-verification-plonky-gate) | hard | Plonky2 gate formal verification constraint soundness proof
+- [Zellic Polocolo ZK Hash](https://www.zellic.io/blog/introducing-polocolo) | hard | PLONK lookup hash algebraic cryptanalysis circuit REV
+- [Zellic TON Primer](https://www.zellic.io/blog/ton-security-primer) | medium | TON TVM FunC audit primer cell slice REV
+- [Rainpwn UD2 REV](https://rainpwn.blog/blog/reverse-ctf-ud2) | medium | ELF strncmp rodata objdump Ghidra SIGILL trap bypass
+- [TryHackMe Compiled Ghidra](https://medium.com/@mohamedahmady404/try-hack-me-compiled-challenge-write-up-c4af2165897d) | easy | scanf strcmp strings GDB Ghidra dso_handle init compare
+- [BITS baby rev](https://radham0wn1ka.github.io/bits-ctf) | easy | param index char compare reorder solver Ghidra dump
+- [DefCamp get-access REV](https://faraz.faith/2019-09-08-defcamp-get-access/) | medium | get-access auth REV patch jump bypass
+- [KONATAbRK Density True Origin](https://github.com/konatabrk/ctf-writeups) | hard | Density ASIS cat blog Density REV crypto crossover
+- [NDX keygenme angr](https://gist.github.com/BinaryResearch/9a06c85b4b333caf635f7a1e26857f1c) | hard | keygenme username file symbolic hook skip_banner find-avoid
+- [Inaz2 easy crackme angr](https://gist.github.com/inaz2/e609a9e00906fb68f9a916b878d5fc75) | easy | easy crackme angr template stdin symbolic solve
+- [Faraz TempleDAO REV](https://faith2dxy.xyz/2022-11-15/templatedao-exploit-remastered/2022-11-15-templatedao-exploit-remastered/) | hard | TempleDAO price manipulation REV flashloan stETH exploit replay
+- [Faraz Nereus Flashloan REV](https://faith2dxy.xyz/2022-11-19/nereus-finance-flashloan-attack-analysis/2022-11-19/nereus-finance-flashloan-attack-analysis/) | medium | Nereus flashloan price oracle REV call trace replay
+- [Faraz SportsDAO REV](https://faith2dxy.xyz/2022-11-22/sportsdao-flashloan-attack-analysis/2022-11-22-sportsdao-flashloan-attack-analysis/) | medium | SportsDAO flashloan logic REV PeckShield trace analysis
+- [Astar Critical REV](https://faith2dxy.xyz/2023-12-05/astar-critical-vuln/) | hard | Astar WASM pallet REV audit zero-day disclosure
+- [Zellic Zcash Poisoned Sync](https://www.zellic.io/blog/zcash-protocol-bug) | hard | Zebra sync state machine REV rejected peer data stall
+- [Zellic Relay Sighash REV](https://www.zellic.io/blog/signing-blind) | hard | Bitcoin sighash relay protocol REV 64-bit truncation miner fee
+- [Neodyme Breakpoint Workshop](https://github.com/neodyme-labs/solana-ctf) | medium | breakpoint workshop pool solfire league lamports Solana REV series
+- [Jia Secret Messages REV](https://jia.je/misc/solution.html) | medium | pyjail misc solution archive REV technique index collection
+- [Jia Redbud Puppeteer REV](https://jia.je/puppeteer/index.html) | hard | Redbud puppeteer browser automation REV sandbox escape series
+- [Jia Redbud Summer REV](https://jia.je/summer2026/index.html) | hard | Redbud summer browser kernel mixed REV training set
+
+## batch 2026-10-17-browser-swarm (168 rows, 38 easy)
+
+- [DUCTF24/rusty-vault](https://github.com/DownUnderCTF/Challenges_2024_Public/tree/main/rev/rusty-vault) | medium | Rust vault crack, string decrypt xor rolling key reverse
+- [DUCTF24/jmp-flag](https://github.com/DownUnderCTF/Challenges_2024_Public/tree/main/rev/jmp-flag) | easy | jmp table obfuscation, trace jumps recover flag compare
+- [DUCTF24/pressing-buttons](https://github.com/DownUnderCTF/Challenges_2024_Public/tree/main/rev/pressing-buttons) | medium | button state machine, BFS search correct sequence path
+- [DUCTF24/ternary-brained](https://github.com/DownUnderCTF/Challenges_2024_Public/tree/main/rev/ternary-brained) | medium | ternary VM reverse, custom opcode handler emulation script
+- [DUCTF24/average-assembly](https://github.com/DownUnderCTF/Challenges_2024_Public/tree/main/rev/average-assembly-assignment) | medium | asm assignment logic reverse, z3 solve arithmetic checks
+- [DUCTF24/adorable-encrypted-animal](https://github.com/DownUnderCTF/Challenges_2024_Public/tree/main/rev/adorable-encrypted-animal) | hard | whitebox AES animal, DCA key extract tables
+- [DUCTF23/masked-squares](https://github.com/DownUnderCTF/Challenges_2023_Public/tree/main/rev/masked-squares-flag-checker) | easy | masked squares checker, bitmask unmask brute flag
+- [DUCTF23/number-theoretic-checker](https://github.com/DownUnderCTF/Challenges_2023_Public/tree/main/rev/number-theoretic-flag-checker) | medium | number theory NTRU check, discrete log invert function
+- [DUCTF23/sideways](https://github.com/DownUnderCTF/Challenges_2023_Public/tree/main/rev/sideways) | medium | sideways control flow flatten, deobfuscate side jumps
+- [DUCTF23/spacegame](https://github.com/DownUnderCTF/Challenges_2023_Public/tree/main/rev/spacegame) | medium | Unity spacegame logic, asset dump find check routine
+- [DUCTF23/advanced-vector-expositions](https://github.com/DownUnderCTF/Challenges_2023_Public/tree/main/rev/advanced-vector-expositions) | hard | AVX vectorized check, SIMD lane reverse with emulation
+- [Sekai24/crack-me](https://github.com/project-sekai-ctf/sekaictf-2024/tree/main/reverse/crack-me) | easy | crackme keygen reverse, patch jump accept any key
+- [Sekai24/x64-extension](https://github.com/project-sekai-ctf/sekaictf-2024/tree/main/reverse/x64-extension) | medium | custom x64 extension ISA, emulator write handler mapping
+- [Sekai24/magnum-opus](https://github.com/project-sekai-ctf/sekaictf-2024/tree/main/reverse/magnum-opus) | hard | opus audio stego VM, decode opus frames extract check
+- [Sekai24/secure-computing](https://github.com/project-sekai-ctf/sekaictf-2024/tree/main/reverse/secure-computing) | hard | seccomp + anti-debug crackme, ptrace bypass emulation
+- [Sekai25/alchemy-master](https://github.com/project-sekai-ctf/sekaictf-2025/tree/main/reverse/alchemy-master) | hard | alchemy synthesis VM, symbolic solve transmutation graph
+- [Sekai25/what-in-ternation](https://github.com/project-sekai-ctf/sekaictf-2025/tree/main/reverse/what-in-ternation) | hard | ternary logic obfuscation, trit emulator recover comparators
+- [TJCTF24/guess-what](https://github.com/TJCSec/tjctf-2024-challenges/tree/main/rev/guess-what) | easy | guessing game reverse, RNG seed recover brute
+- [TJCTF24/garfield-mondays](https://github.com/TJCSec/tjctf-2024-challenges/tree/main/rev/garfield-mondays) | easy | lasagna check string compare, patch monday condition
+- [TJCTF24/pseudo-brainrot](https://github.com/TJCSec/tjctf-2024-challenges/tree/main/rev/pseudo-brainrot) | medium | pseudo brainfuck VM, translate ops then invert tape
+- [Patriot24/ai-rnd](https://github.com/MasonCompetitiveCyber/PatriotCTF2024/tree/main/rev/ai_rnd) | medium | AI PRNG predict, model weights reverse temper function
+- [Patriot24/goToSleep](https://github.com/MasonCompetitiveCyber/PatriotCTF2024/tree/main/rev/goToSleep) | medium | Go sleep obfuscated binary, goroutine dump strings
+- [Patriot24/not-another-vm](https://github.com/MasonCompetitiveCyber/PatriotCTF2024/tree/main/rev/not_another_vm_reversing_problem) | medium | stack VM dispatch reverse, handler lifting to python
+- [Patriot24/packed-surprises](https://github.com/MasonCompetitiveCyber/PatriotCTF2024/tree/main/rev/packedFullOfSurprises) | medium | UPX packed surprises, unpack then IAT rebuild
+- [Patriot24/rustLock](https://github.com/MasonCompetitiveCyber/PatriotCTF2024/tree/main/rev/rustLock) | hard | Rust lock crate obfuscation, trait object vtable recovery
+- [Patriot24/VM-ception](https://github.com/MasonCompetitiveCyber/PatriotCTF2024/tree/main/rev/VM-ception) | hard | nested VM layers, recursive handler emulation unwrap
+- [Patriot23/patchwork](https://github.com/MasonCompetitiveCyber/PatriotCTF2023/tree/main/Rev/patchwork) | medium | patchwork diff reverse, binary patch reconstruct original
+- [Patriot23/reduced-RIS](https://github.com/MasonCompetitiveCyber/PatriotCTF2023/tree/main/Rev/reduced_reduced_instruction_set) | hard | custom RISC ISA emulator, disassembler then solve
+- [HKCERT24/void](https://github.com/hkcert-ctf/CTF-Challenges/tree/main/CTF-2024/09-void) | easy | void stripped check, angr solve simple comparators
+- [HKCERT24/cypress](https://github.com/hkcert-ctf/CTF-Challenges/tree/main/CTF-2024/12-cypress) | medium | cypress hill cipher VM, symbolic key recovery
+- [HKCERT24/flag-checker](https://github.com/hkcert-ctf/CTF-Challenges/tree/main/CTF-2024/15-flag-checker) | medium | flag checker hash compare, SMT invert rounds
+- [HKCERT24/bashed](https://github.com/hkcert-ctf/CTF-Challenges/tree/main/CTF-2024/22-bashed) | hard | bash VM obfuscation, deobfuscate eval traps
+- [HKCERT24/black-magic](https://github.com/hkcert-ctf/CTF-Challenges/tree/main/CTF-2024/26-black-magic) | hard | black magic anti-VM packer, dump unpacked payload
+- [HKCERT24/yet-another-crackme](https://github.com/hkcert-ctf/CTF-Challenges/tree/main/CTF-2024/39-yet-another-crackme) | easy | crackme serial algorithm, keygen replicate math
+- [HKCERT24/ISA-101](https://github.com/hkcert-ctf/CTF-Challenges/tree/main/CTF-2024/40-isa-101) | medium | teaching ISA emulator, write assembler solver
+- [HKCERT24/baby-cracker](https://github.com/hkcert-ctf/CTF-Challenges/tree/main/CTF-2024/63-baby-cracker) | easy | baby cracker xor loop, single-byte key brute
+- [corCTF25/tua-cugina](https://github.com/Crusaders-of-Rust/corctf-2025-public-challenge-repo/tree/master/pwn/tua-cugina) | hard | cousin crypto-vm pwn-rev hybrid, ROP on custom VM
+- [scriptCTF25/Rev-Vault](https://github.com/scriptCTF/scriptCTF2025-OfficialWriteups/tree/main/Rev) | medium | vault rev series, layered checks brute with z3
+- [Perplexed](https://medium.com/@mhdg./perplexed-writeup-picoctf-2025-f9c3a3c44a2c) | medium | objdump check bit-by-bit 27-byte password reconstruct
+- [Pico 2024 ELJooker](https://medium.com/@ELJoOker/picoctf-2024-competition-reverse-engineering-challenges-write-up-0e877c781248) | medium | all seven 2024 reversing solutions set
+- [Packer Siyam](https://medium.com/@siyam.exe/day-31-picoctf-keygenme-9e31a66a1e08) | easy | UPX packed binary unpack keygen logic
+- [droids3 Alief](https://muhammad-alief.medium.com/picoctf-2019-writeup-droids3-android-reverse-engineering-8d150ab905c7) | easy | APK decompile Android flag logic walkthrough
+- [Flag leak](https://medium.com/@zeyadsalah686/flag-leak-picoctf-writeup-e7b53f3273e2) | easy | printf format string stack offset xxd rev
+- [Beginner rev](https://infosecwriteups.com/a-beginners-guide-to-picoctf-s-reverse-engineering-simple-writeups-stackzero-b2aaeaf2d9bd) | easy | simple stackzero starter reversing guide
+- [Reverse Knight](https://knight-scott.github.io/picoCTF-2025/reverse/) | medium | 2025 reversing section overview plus solutions
+- [Pico rev HackMD](https://hackmd.io/@tahaafarooq/picoctf-2024-reverse-engineering) | medium | seven straightforward 2024 reversing solves
+- [Learning OOP](https://naup.mygo.tw/2025/08/18/2025-sekai-ctf-writeup/) | hard | C++ OOP pwn analysis exploit
+
+## batch 2026-10-17-browser-swarm (182 rows, 43 easy)
+
+- [Hidden-Cipher-1-pico2026](https://ummit.dev/ctf/writeups/picoctf-2026#hidden-cipher-1) | easy | UPX unpack objdump hardcoded S3Cr3t repeating XOR decrypt service
+- [Secure-Password-DB-pico2026](https://ummit.dev/ctf/writeups/picoctf-2026#secure-password-database) | medium | Heartbleed heap over-read length trust djb2 hash width match leak
+- [Secure-Password-DB-cyb3r](https://cyb3r-bo1.github.io/posts/picoCTF_2026_writeup/#secure-password-database) | medium | Reverse hash h33+c XOR AA secret static decode hash submit
+- [bypass-me-pico2026](https://cyb3r-bo1.github.io/posts/picoCTF_2026_writeup/#bypass-me) | easy | ELF symbols XOR AA decode SuperSecure sanitization bypass compare
+- [binary-instrumentation-3-pico2026](https://cyb3r-bo1.github.io/posts/picoCTF_2026_writeup/#binary-instrumentation-3) | medium | PE ATOM LZMA unpack constructors Base64 fragments concat decode
+- [binary-instrumentation-4-pico2026](https://cyb3r-bo1.github.io/posts/picoCTF_2026_writeup/#binary-instrumentation-4) | medium | Loader ATOM lstrcmpA key check static initializer Base64 reconstruct
+- [REverse-wolv2025](https://cyb3r-bo1.github.io/posts/wolvctf_2025_writeup/#reverse) | easy | Ghidra decompile mix subtract 3 unmix reverse output flag
+- [REdata-wolv2025](https://cyb3r-bo1.github.io/posts/wolvctf_2025_writeup/#redata---rev) | easy | strings grep wctf binary rodata flag plaintext search
+- [Reverse-APK-wolv2025](https://medium.com/@m4lb3nder/wolvctf-2025-reverse-challenges-3f334b9b5518#reverse) | medium | x64dbg anti-debug ScyllaHide process injection VirtualAlloc patch IDA
+- [Password-derive-wolv2025](https://medium.com/@m4lb3nder/wolvctf-2025-reverse-challenges-3f334b9b5518#password) | medium | Hardcoded bytes XOR stack qsort side-effect brute 18-char derive
+- [E4sy-P3asy-knight2026](https://cyb3r-bo1.github.io/posts/knightctf-2026_writeup/#e4sy-p3asy) | easy | MD5 salt index char brute real vs decoy salt hashes recover
+- [Diabolical-script2026](https://cyb3r-bo1.github.io/posts/scriptCTF_2026_writeup/#diabolical) | hard | Go garble pclntab fix mem dump AES-GCM shstrtab base64 flag carve
+- [Classic-Checkers-bluehens2023](https://medium.com/@0xMr_Robot/bluehens-ctf-2023-reverse-engineering-challenge-644caf6300bf) | medium | LISP constraints ASCII LCM complex reverse manual solve flag
+- [tangled-zichmp2026](https://medium.com/@amrkhaledv2171516/zichmp-ctf-2026-cyber-champions-2026-abbfe3f13fc6#tangled) | hard | Lua C layers nibble swap ROL SIMD reverse order undo transforms

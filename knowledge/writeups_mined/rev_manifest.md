@@ -1,0 +1,587 @@
+# rev writeups mined — manifest (technique-only, no flags)
+
+Method: (A) ctftime.org writeup index pages 1-560 swept politely (1 worker, ~1s delay) after one 503 backoff; 1408 rev-candidates via tag+task-name match; all 1408 task pages fetched for real points + task tags; rev-tag/name filter + pwn/web-only exclusion + max-2-per-task dedupe; writeup-ID era calibration kept 2022-2026 (plus <=30 pre-2022 pts>=400 classics); all 468 writeup pages fetched and technique-chains extracted from body text (tag/task-name inference fallback where body is a link-stub). (B) crackmes.one lasts/1-25 (1250 crackmes) filtered to difficulty>=4.0 (315), pages fetched, 71 with posted solutions kept. (C) 38 search-surfaced hard anchors liveness-checked with GET (37x200, 1x404 dropped, 4 already in A).
+
+Difficulty scale: A = real ctftime task points (hard >=300, medium 150-299, medium-easy 100-149); B = real crackmes.one community difficulty (hard >=4.5/6, medium 4.0-4.4); C = event/author reputation (Flare-On/officialauthor/corCTF-final = hard). Sections A-hard-first, then medium, medium-easy.
+
+Caveats (unverified): chains in A are keyword-extracted from writeup bodies (spot-checked, ~8 samples) or inferred from task identity where bodies are link-stubs; original-writeup URLs are quoted as published (only section C liveness-checked); per-task points reflect the ctftime task page at fetch time; event years for no-year names use writeup-ID era calibration (approximate). No flag values recorded anywhere.
+
+Counts: A=468 (hard=277) | B=71 (hard=30) | C=33 | TOTAL=572
+
+## A — ctftime rev writeups (2022-2026 + classics)
+- [D^3CTF 2026 / D3LLVM](https://ctftime.org/writeup/41053) | hard (1000pts) | LLVM/CFF-obfuscated: dispatcher triage → handler lift → deflat/deobf → re-impl solve
+- [THEM?!CTF 2026 / Eyes Chico](https://ctftime.org/writeup/40856) | hard (1000pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [THEM?!CTF 2026 / Entropy Core](https://ctftime.org/writeup/40855) | hard (1000pts) | Python bundle: decompile (uncompyle/marshal) → logic re-impl
+- [THEM?!CTF 2026 / Ancient Signals](https://ctftime.org/writeup/40854) | hard (1000pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [THEM?!CTF 2026 / Old Cassette](https://ctftime.org/writeup/40853) | hard (1000pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [JerseyCTF III / after-all-this-time](https://ctftime.org/writeup/36806) | hard (1000pts) | crypto re-impl/keygen
+- [SEETF 2022 / susware](https://ctftime.org/writeup/34319) | hard (1000pts) | packer/OEP unpack → crypto re-impl/keygen
+- [Cyber Santa is Coming to Town / Upgraded](https://ctftime.org/writeup/31733) | hard (1000pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [PoseidonCTF 1st Edition / VM Reloaded](https://ctftime.org/writeup/22919) | hard (1000pts) | z3/SMT solve → crypto re-impl/keygen
+- [PoseidonCTF 1st Edition / VM](https://ctftime.org/writeup/22918) | hard (1000pts) | crypto re-impl/keygen
+- [BSides Delhi CTF 2020 / A Log of Work](https://ctftime.org/writeup/24109) | hard (998pts) | .NET dnSpy/ILSpy → crypto re-impl/keygen
+- [UTCTF 2021 / File.tetr](https://ctftime.org/writeup/26662) | hard (996pts) | GDB/gdb+trace dynamic
+- [BSidesSF 2025 CTF / bug-me](https://ctftime.org/writeup/40205) | hard (995pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [JerseyCTF III / decryption-server](https://ctftime.org/writeup/36797) | hard (994pts) | crypto re-impl/keygen → GDB/gdb+trace dynamic
+- [UTCTF 2021 / Algorithm](https://ctftime.org/writeup/27398) | hard (994pts) | Rust demangle+panic → crypto re-impl/keygen → GDB/gdb+trace dynamic
+- [COMPFEST CTF 2020 / CreeptiCity](https://ctftime.org/writeup/23336) | hard (993pts) | crypto re-impl/keygen
+- [RaziCTF 2020 / Crypto PHP](https://ctftime.org/writeup/24517) | hard (990pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [Securinets CTF Quals 2021 / YAY](https://ctftime.org/writeup/26745) | hard (988pts) | VM reversing → anti-debug bypass → crypto re-impl/keygen
+- [TetCTF 2022 / crackme pls](https://ctftime.org/writeup/31993) | hard (964pts) | crypto re-impl/keygen
+- [Zh3r0 CTF V2 / Sabloom Text 6](https://ctftime.org/writeup/28769) | hard (949pts) | crypto re-impl/keygen
+- [CyberSecurityRumble CTF / elkcip](https://ctftime.org/writeup/38088) | hard (938pts) | VM reversing → z3/SMT solve → crypto re-impl/keygen
+- [Securinets CTF Quals 2021 / RUN!](https://ctftime.org/writeup/26746) | hard (930pts) | crypto re-impl/keygen
+- [Securinets CTF Quals 2021 / RUN!](https://ctftime.org/writeup/26735) | hard (930pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [UTCTF 2022 / UTCTF Adventure ROM 4](https://ctftime.org/writeup/32531) | hard (925pts) | VM/ISA reversing: handler-table recovery → bytecode disasm → re-impl/invert
+- [Security Fest 2022 / Beaver Feaver](https://ctftime.org/writeup/34300) | hard (909pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [RaziCTF 2020 / Chasing a lock](https://ctftime.org/writeup/24617) | hard (858pts) | Frida hook/dump → APK/jadx/smali → crypto re-impl/keygen
+- [RaziCTF 2020 / Chasing a lock](https://ctftime.org/writeup/24526) | hard (858pts) | Frida hook/dump → APK/jadx/smali
+- [hxp CTF 2020 / restless](https://ctftime.org/writeup/36221) | hard (833pts) | VM reversing → anti-debug bypass → Unicorn/Qiling emulation
+- [hxp CTF 2020 / restless](https://ctftime.org/writeup/25485) | hard (833pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [InCTF 2021 / Miz](https://ctftime.org/writeup/29825) | hard (723pts) | GDB/gdb+trace dynamic
+- [CrewCTF 2022 / ezbolt](https://ctftime.org/writeup/33291) | hard (720pts) | z3/SMT solve → crypto re-impl/keygen → GDB/gdb+trace dynamic
+- [hxp CTF 2021 / hxp3drm](https://ctftime.org/writeup/33694) | hard (714pts) | packed/DRM: stub triage → dynamic dump (OEP/memcarve) → re-analyze → transform invert
+- [UMDCTF 2021 / FeistyCrypt (Sponsor Challenge)](https://ctftime.org/writeup/27608) | hard (678pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [JerseyCTF III / supply-stash](https://ctftime.org/writeup/36827) | hard (670pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [hxp CTF 2020 / nobranch7e4](https://ctftime.org/writeup/25484) | hard (667pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [CyberSecurityRumble Quals / Exposed](https://ctftime.org/writeup/37442) | hard (656pts) | VM reversing → GDB/gdb+trace dynamic
+- [Digital Overdose 2021 Autumn CTF / C1 - I think this should be C4](https://ctftime.org/writeup/30822) | hard (600pts) | crypto re-impl/keygen → GDB/gdb+trace dynamic
+- [Midnight Sun CTF 2022 Quals / REVVER](https://ctftime.org/writeup/33058) | hard (588pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [0CTF/TCTF 2020 Quals / J](https://ctftime.org/writeup/36239) | hard (578pts) | VM reversing → packer/OEP unpack → crypto re-impl/keygen
+- [Equinor CTF 2023 / EPT1911](https://ctftime.org/writeup/38181) | hard (559pts) | .NET dnSpy/ILSpy → GDB/gdb+trace dynamic
+- [Kali Team - CTF 26 / Whispering Feather](https://ctftime.org/writeup/41094) | hard (500pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [OmniCTF 2026 Quals / Pusher](https://ctftime.org/writeup/41029) | hard (500pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [OmniCTF 2026 Quals / Kant](https://ctftime.org/writeup/41028) | hard (500pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [OmniCTF 2026 Quals / Gatekeep](https://ctftime.org/writeup/41027) | hard (500pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [OmniCTF 2026 Quals / CredVault](https://ctftime.org/writeup/41026) | hard (500pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [BroncoCTF 2026 / Mirror Mirror](https://ctftime.org/writeup/41005) | hard (500pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [BroncoCTF 2026 / Dog Simulator](https://ctftime.org/writeup/41004) | hard (500pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [BroncoCTF 2026 / C++ Unplugged](https://ctftime.org/writeup/41003) | hard (500pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [BroncoCTF 2026 / Cat Simulator](https://ctftime.org/writeup/41002) | hard (500pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [LYKNCTF / Control Freak 2](https://ctftime.org/writeup/40984) | hard (500pts) | crypto re-impl/keygen
+- [LYKNCTF / Control Freak 1](https://ctftime.org/writeup/40983) | hard (500pts) | crypto re-impl/keygen
+- [LYKNCTF / I HATE THIS APP REVENGE](https://ctftime.org/writeup/40982) | hard (500pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [LYKNCTF / I HATE THIS APP](https://ctftime.org/writeup/40981) | hard (500pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [LYKNCTF / Waguri2](https://ctftime.org/writeup/40980) | hard (500pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [LYKNCTF / Inferir Student](https://ctftime.org/writeup/40979) | hard (500pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [LYKNCTF / Serial](https://ctftime.org/writeup/40978) | hard (500pts) | crypto re-impl/keygen
+- [LYKNCTF / Activator](https://ctftime.org/writeup/40977) | hard (500pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [LYKNCTF / KeygenMe](https://ctftime.org/writeup/40976) | hard (500pts) | crypto re-impl/keygen
+- [SekaiCTF 2026 / Untitled Encore](https://ctftime.org/writeup/40956) | hard (500pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [boroCTF 2026 / AlphaCode](https://ctftime.org/writeup/40888) | hard (500pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [boroCTF 2026 / Financial Report](https://ctftime.org/writeup/40887) | hard (500pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [boroCTF 2026 / Labyrinth](https://ctftime.org/writeup/40886) | hard (500pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [boroCTF 2026 / Big Brother](https://ctftime.org/writeup/40885) | hard (500pts) | crypto re-impl/keygen
+- [boroCTF 2026 / Password Protected](https://ctftime.org/writeup/40884) | hard (500pts) | crypto re-impl/keygen
+- [Anti-Slop CTF 2026 / Parallax Cartridge](https://ctftime.org/writeup/40872) | hard (500pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [Anti-Slop CTF 2026 / Audit Spiral](https://ctftime.org/writeup/40871) | hard (500pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [VolgaCTF 2026 Qualifier / Vision](https://ctftime.org/writeup/40686) | hard (500pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [ToH CTF 2025 / PPC64LEL](https://ctftime.org/writeup/40347) | hard (500pts) | anti-debug bypass → Unicorn/Qiling emulation → .NET dnSpy/ILSpy
+- [VolgaCTF 2024 Qualifier / cuCRACKME](https://ctftime.org/writeup/39400) | hard (500pts) | crypto re-impl/keygen
+- [UMassCTF 2024 / Primitive Reversing 2](https://ctftime.org/writeup/39081) | hard (500pts) | VM reversing → crypto re-impl/keygen
+- [VolgaCTF 2024 Qualifier / Tridea](https://ctftime.org/writeup/39059) | hard (500pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [AmateursCTF 2023 / flagchecker](https://ctftime.org/writeup/37724) | hard (500pts) | anti-debug bypass → crypto re-impl/keygen
+- [VolgaCTF 2023 Qualifier / Accelerated](https://ctftime.org/writeup/37046) | hard (500pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [UMass CTF 2023 / java_jitters_v2](https://ctftime.org/writeup/36737) | hard (500pts) | VM reversing → crypto re-impl/keygen
+- [FooBar CTF 2023 / Formless](https://ctftime.org/writeup/36457) | hard (500pts) | angr symbolic
+- [pbctf 2023 / Revenge of LLLattice](https://ctftime.org/writeup/36236) | hard (500pts) | crypto re-impl/keygen
+- [BSides Mumbai CTF 2022 / Reverse/Warmup](https://ctftime.org/writeup/36038) | hard (500pts) | OLLVM/Tigress deobf → crypto re-impl/keygen
+- [TeamItaly CTF 2022 / Speaking with hands](https://ctftime.org/writeup/35422) | hard (500pts) | packer/OEP unpack → crypto re-impl/keygen
+- [TeamItaly CTF 2022 / Spaghetti VM](https://ctftime.org/writeup/35421) | hard (500pts) | crypto re-impl/keygen
+- [TeamItaly CTF 2022 / Alice&#39;s Adventures in Goland](https://ctftime.org/writeup/35420) | hard (500pts) | anti-debug bypass → Go pclntab recovery → crypto re-impl/keygen
+- [TeamItaly CTF 2022 / Ik1VM - CrackmeEVA](https://ctftime.org/writeup/35419) | hard (500pts) | VM reversing → anti-debug bypass → Unicorn/Qiling emulation
+- [UA CWS CTF 2022 / Penguim - (De)Serial Killer](https://ctftime.org/writeup/34048) | hard (500pts) | .NET dnSpy/ILSpy → crypto re-impl/keygen
+- [picoCTF 2022 / Wizardlike](https://ctftime.org/writeup/33204) | hard (500pts) | .NET dnSpy/ILSpy → GDB/gdb+trace dynamic
+- [picoCTF 2022 / Wizardlike](https://ctftime.org/writeup/32801) | hard (500pts) | GDB/gdb+trace dynamic
+- [CTF Internacional MetaRed 2021 - 5th STAGE / Thief](https://ctftime.org/writeup/31844) | hard (500pts) | crypto re-impl/keygen
+- [ph0wn 2021 / Megademo 2](https://ctftime.org/writeup/31795) | hard (500pts) | GDB/gdb+trace dynamic
+- [K3RN3LCTF / Rasm](https://ctftime.org/writeup/31386) | hard (500pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [K3RN3LCTF / Recurso](https://ctftime.org/writeup/31385) | hard (500pts) | VM/ISA reversing: handler-table recovery → bytecode disasm → re-impl/invert
+- [Killer Queen CTF 2021 / web, rev, crypto](https://ctftime.org/writeup/31168) | hard (500pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [DEADFACE CTF / Cereal Killer3](https://ctftime.org/writeup/30957) | hard (500pts) | anti-debug bypass → crypto re-impl/keygen
+- [DEADFACE CTF / Cereal Killer3](https://ctftime.org/writeup/30953) | hard (500pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [UIUCTF 2021 / wasmcloud](https://ctftime.org/writeup/29642) | hard (500pts) | WASM lift → crypto re-impl/keygen
+- [HTB Business CTF 2021 / Ghost](https://ctftime.org/writeup/29391) | hard (500pts) | Unicorn/Qiling emulation → .NET dnSpy/ILSpy → Go pclntab recovery
+- [Pwn2Win CTF 2021 / Highest Power](https://ctftime.org/writeup/28617) | hard (500pts) | VM reversing → crypto re-impl/keygen
+- [RITSEC CTF 2021 / SamuraiInfection](https://ctftime.org/writeup/27356) | hard (500pts) | crypto re-impl/keygen
+- [Aero CTF 2021 / BashD00r](https://ctftime.org/writeup/26190) | hard (500pts) | anti-debug bypass → .NET dnSpy/ILSpy → crypto re-impl/keygen
+- [Affinity CTF Lite (Junior/Beginner) / pseudo-pseudo random](https://ctftime.org/writeup/25026) | hard (500pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [Affinity CTF Lite (Junior/Beginner) / pseudo-pseudo random](https://ctftime.org/writeup/24971) | hard (500pts) | crypto re-impl/keygen → GDB/gdb+trace dynamic
+- [X-MAS CTF 2019 / Kernel Crackme](https://ctftime.org/writeup/24919) | hard (500pts) | crypto re-impl/keygen → GDB/gdb+trace dynamic
+- [Newark Academy CTF 2020 / Gopher](https://ctftime.org/writeup/24880) | hard (500pts) | Go pclntab recovery → crypto re-impl/keygen → GDB/gdb+trace dynamic
+- [Syskron Security CTF 2020 / Firmware update](https://ctftime.org/writeup/24354) | hard (500pts) | OLLVM/Tigress deobf → GDB/gdb+trace dynamic
+- [Hacker&#39;s Playground 2020 / Vault 101](https://ctftime.org/writeup/23252) | hard (500pts) | APK/jadx/smali
+- [FwordCTF 2020 / Znfl](https://ctftime.org/writeup/23225) | hard (500pts) | crypto re-impl/keygen → GDB/gdb+trace dynamic
+- [UMass CTF 2023 / java_jitters](https://ctftime.org/writeup/36736) | hard (499pts) | VM reversing → APK/jadx/smali → crypto re-impl/keygen
+- [Wolverine Security Conference/CTF / symmetry](https://ctftime.org/writeup/32856) | hard (499pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [corCTF 2021 / vmquack](https://ctftime.org/writeup/29980) | hard (499pts) | VM reversing → crypto re-impl/keygen
+- [X-MAS CTF 2020 / Ken Kutaragi&#39;s Secret Code](https://ctftime.org/writeup/25428) | hard (498pts) | packer/OEP unpack → Unicorn/Qiling emulation → crypto re-impl/keygen
+- [UMassCTF 2021 / chains](https://ctftime.org/writeup/26849) | hard (497pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [darkCON CTF / CyberDark_0x02: Installer](https://ctftime.org/writeup/26093) | hard (497pts) | packer/OEP unpack → crypto re-impl/keygen → GDB/gdb+trace dynamic
+- [UMassCTF 2024 / Primitive Reversing](https://ctftime.org/writeup/39080) | hard (496pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [UMassCTF 2024 / Primitive Reversing](https://ctftime.org/writeup/39073) | hard (496pts) | crypto re-impl/keygen
+- [vsCTF 2022 / Functional CPP](https://ctftime.org/writeup/34535) | hard (496pts) | GDB/gdb+trace dynamic
+- [TJCTF 2022 / boxed-python](https://ctftime.org/writeup/34126) | hard (496pts) | packer/OEP unpack → pyc/marshal decompile → Rust demangle+panic
+- [COMPFEST CTF 2021 / Magical Mystery Club](https://ctftime.org/writeup/30215) | hard (496pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [NahamCon CTF 2021 / Banking On It](https://ctftime.org/writeup/26501) | hard (496pts) | anti-debug bypass → Rust demangle+panic → crypto re-impl/keygen
+- [UofTCTF 2024 / Love Debug](https://ctftime.org/writeup/38566) | hard (495pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [BlueHens CTF 2023 / ElectroNES](https://ctftime.org/writeup/38117) | hard (495pts) | Unicorn/Qiling emulation → crypto re-impl/keygen
+- [PatriotCTF 2023 / reduced-reduced-instruction-set-2](https://ctftime.org/writeup/37874) | hard (495pts) | VM reversing → Unicorn/Qiling emulation → z3/SMT solve
+- [GrabCON CTF 2021 / Rusty](https://ctftime.org/writeup/30149) | hard (494pts) | Rust: demangle + panic-string xref → check isolation → solve
+- [UofTCTF 2024 / CEO&#39;s Lost Password](https://ctftime.org/writeup/38514) | hard (490pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [CSAW CTF Qualification Round 2021 / A Different Type of Serial Key](https://ctftime.org/writeup/30240) | hard (489pts) | crypto re-impl/keygen
+- [corCTF 2021 / bank](https://ctftime.org/writeup/29967) | hard (489pts) | Python bundle: decompile (uncompyle/marshal) → logic re-impl
+- [vsCTF 2022 / zzz](https://ctftime.org/writeup/34533) | hard (488pts) | z3/SMT solve
+- [DamCTF 2025 / (Rev) complex-file-service](https://ctftime.org/writeup/40245) | hard (487pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [UofTCTF 2024 / Random Maze](https://ctftime.org/writeup/38568) | hard (487pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [UofTCTF 2024 / Random Maze](https://ctftime.org/writeup/38454) | hard (487pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [PatriotCTF 2023 / reduced-reduced-instruction-set-1](https://ctftime.org/writeup/37873) | hard (487pts) | VM reversing → Unicorn/Qiling emulation → z3/SMT solve
+- [CyberSecurityRumble CTF / CSRunner](https://ctftime.org/writeup/31581) | hard (486pts) | Frida hook/dump → APK/jadx/smali
+- [CyberSecurityRumble CTF / CSRunner](https://ctftime.org/writeup/31566) | hard (486pts) | .NET dnSpy/ILSpy → APK/jadx/smali → GDB/gdb+trace dynamic
+- [KITCTFCTF 2022 / protector](https://ctftime.org/writeup/36031) | hard (484pts) | crypto re-impl/keygen
+- [UIUCTF 2024 / Lost Canary](https://ctftime.org/writeup/39305) | hard (482pts) | crypto re-impl/keygen → GDB/gdb+trace dynamic
+- [MapleCTF 2022 / vm-v2](https://ctftime.org/writeup/35022) | hard (482pts) | VM reversing → Unicorn/Qiling emulation → crypto re-impl/keygen
+- [corCTF 2021 / zoom_zoom_vision](https://ctftime.org/writeup/29937) | hard (482pts) | crypto re-impl/keygen → GDB/gdb+trace dynamic
+- [UMDCTF 2023 / JNIdorino](https://ctftime.org/writeup/37170) | hard (481pts) | Unicorn/Qiling emulation → APK/jadx/smali → crypto re-impl/keygen
+- [vsCTF 2022 / Binary Flood](https://ctftime.org/writeup/34536) | hard (481pts) | crypto re-impl/keygen
+- [DiceCTF 2022 / vm-calc](https://ctftime.org/writeup/32509) | hard (481pts) | crypto re-impl/keygen
+- [TMUCTF 2021 / Crack House](https://ctftime.org/writeup/30135) | hard (481pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [redpwnCTF 2021 / javaisez3](https://ctftime.org/writeup/29151) | hard (481pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [redpwnCTF 2021 / javaisez3](https://ctftime.org/writeup/29140) | hard (481pts) | VM reversing → .NET dnSpy/ILSpy → APK/jadx/smali
+- [HackDay 2025 - Qualifications / Rusty_rev](https://ctftime.org/writeup/39837) | hard (477pts) | packer/OEP unpack → anti-debug bypass → pyc/marshal decompile
+- [LA CTF 2024 / meow meow](https://ctftime.org/writeup/38699) | hard (477pts) | GDB/gdb+trace dynamic
+- [DamCTF 2025 / (Rev) It&#39;s data, not data.](https://ctftime.org/writeup/40241) | hard (474pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [CyberSecurityRumble CTF / THREE LITTLE KEYS](https://ctftime.org/writeup/35872) | hard (474pts) | Unicorn/Qiling emulation → APK/jadx/smali → crypto re-impl/keygen
+- [Tenable CTF 2023 / Brick Breaker](https://ctftime.org/writeup/37744) | hard (473pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [DamCTF 2021 / danceparty-1](https://ctftime.org/writeup/31239) | hard (467pts) | .NET dnSpy/ILSpy → crypto re-impl/keygen → GDB/gdb+trace dynamic
+- [NahamCon CTF 2022 / Click Me!](https://ctftime.org/writeup/33698) | hard (466pts) | APK/jadx/smali
+- [SCTF 2021 / godness dance](https://ctftime.org/writeup/31971) | hard (465pts) | GDB/gdb+trace dynamic
+- [HSCTF 8 / scrambler](https://ctftime.org/writeup/29011) | hard (461pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [0CTF/TCTF 2021 Quals / fea](https://ctftime.org/writeup/29116) | hard (458pts) | packer/OEP unpack → anti-debug bypass → OLLVM/Tigress deobf
+- [DaVinciCTF 2022 / obfuscated](https://ctftime.org/writeup/32581) | hard (457pts) | Unicorn/Qiling emulation → crypto re-impl/keygen → GDB/gdb+trace dynamic
+- [TMUCTF 2021 / Flag Printer](https://ctftime.org/writeup/30284) | hard (457pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [scriptCTF 2026 / F**K](https://ctftime.org/writeup/41121) | hard (454pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [SamaraCTF 2026 / DOOMed](https://ctftime.org/writeup/40796) | hard (454pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [UofTCTF 2024 / All Worbled Up](https://ctftime.org/writeup/38521) | hard (454pts) | crypto re-impl/keygen
+- [UofTCTF 2024 / All Worbled Up](https://ctftime.org/writeup/38453) | hard (454pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [n00bzCTF 2023 / zzz](https://ctftime.org/writeup/37316) | hard (451pts) | angr symbolic → z3/SMT solve → GDB/gdb+trace dynamic
+- [PlaidCTF 2021 / minipokemon](https://ctftime.org/writeup/36036) | hard (450pts) | Unicorn/Qiling emulation → .NET dnSpy/ILSpy → crypto re-impl/keygen
+- [FooBar CTF 2022 / Entropy Solver](https://ctftime.org/writeup/32376) | hard (444pts) | z3/SMT solve
+- [corCTF 2025 / bubble](https://ctftime.org/writeup/40391) | hard (443pts) | VM reversing
+- [BYUCTF 2022 / Chicken](https://ctftime.org/writeup/34041) | hard (439pts) | VM reversing
+- [BSides Noida CTF / Sanity](https://ctftime.org/writeup/29674) | hard (437pts) | crypto re-impl/keygen → GDB/gdb+trace dynamic
+- [COMPFEST CTF 2021 / Pave The Way](https://ctftime.org/writeup/30210) | hard (436pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [ImaginaryCTF 2023 / Sheepish](https://ctftime.org/writeup/37669) | hard (433pts) | crypto re-impl/keygen
+- [Wolverine Security Conference/CTF / n33dle](https://ctftime.org/writeup/32860) | hard (428pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [FooBar CTF 2022 / Let&#39;s gooo](https://ctftime.org/writeup/32375) | hard (428pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [UMDCTF 2023 / Pokeball Escape](https://ctftime.org/writeup/37169) | hard (425pts) | Unicorn/Qiling emulation → APK/jadx/smali
+- [DamCTF 2025 / (Rev) Is it data or data?](https://ctftime.org/writeup/40240) | hard (422pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [Damncon 2021 / Lets_see_yours_skills](https://ctftime.org/writeup/31459) | hard (422pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [TAMUctf 2022 / REdo 3](https://ctftime.org/writeup/33411) | hard (421pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [hxp CTF 2022 / secure_flag_dispenser](https://ctftime.org/writeup/36306) | hard (417pts) | VM reversing → .NET dnSpy/ILSpy → crypto re-impl/keygen
+- [UIUCTF 2021 / gatekeeping](https://ctftime.org/writeup/29734) | hard (417pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [DownUnderCTF 2021 (Online) / connect the dots](https://ctftime.org/writeup/30740) | hard (416pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [FooBar CTF 2022 / Matrix Master](https://ctftime.org/writeup/32414) | hard (410pts) | angr symbolic → crypto re-impl/keygen
+- [N0PSctf / Invaders](https://ctftime.org/writeup/40269) | hard (408pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [nullcon HackIM CTF Goa 2023 / Magic Cars](https://ctftime.org/writeup/37767) | hard (408pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [0CTF/TCTF 2020 Quals / Happy Tree](https://ctftime.org/writeup/36231) | hard (407pts) | Unicorn/Qiling emulation → crypto re-impl/keygen
+- [HSCTF 8 / sneks](https://ctftime.org/writeup/29033) | hard (403pts) | VM reversing → pyc/marshal decompile → crypto re-impl/keygen
+- [NahamCon CTF 2022 / OTP Vault](https://ctftime.org/writeup/33699) | hard (402pts) | Unicorn/Qiling emulation → APK/jadx/smali
+- [NahamCon CTF 2022 / OTP Vault](https://ctftime.org/writeup/33627) | hard (402pts) | APK/jadx/smali
+- [Urmia CTF 2024 / REVNG](https://ctftime.org/writeup/39456) | hard (400pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [Urmia CTF 2024 / REVNG](https://ctftime.org/writeup/39448) | hard (400pts) | anti-debug bypass
+- [SekaiCTF 2023 / Teyvat Travel Guide](https://ctftime.org/writeup/37834) | hard (400pts) | anti-debug bypass → Go pclntab recovery → crypto re-impl/keygen
+- [picoCTF 2022 / Keygenme](https://ctftime.org/writeup/32879) | hard (400pts) | crypto re-impl/keygen
+- [picoCTF 2022 / Keygenme](https://ctftime.org/writeup/32853) | hard (400pts) | anti-debug bypass → crypto re-impl/keygen → GDB/gdb+trace dynamic
+- [Newark Academy CTF / Elsewhere](https://ctftime.org/writeup/32172) | hard (400pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [DEADFACE CTF / Decrypting Lytton Labs Cryptoware 2](https://ctftime.org/writeup/30959) | hard (400pts) | crypto re-impl/keygen
+- [DEADFACE CTF / Decrypting Lytton Labs Cryptoware 1](https://ctftime.org/writeup/30951) | hard (400pts) | crypto re-impl/keygen
+- [Tamil CTF 2021 / Guesser](https://ctftime.org/writeup/30735) | hard (400pts) | z3/SMT solve → .NET dnSpy/ILSpy → crypto re-impl/keygen
+- [Tamil CTF 2021 / GoldDigger](https://ctftime.org/writeup/30733) | hard (400pts) | crypto re-impl/keygen
+- [Tamil CTF 2021 / Fool Me](https://ctftime.org/writeup/30732) | hard (400pts) | z3/SMT solve → crypto re-impl/keygen
+- [SunshineCTF 2021 / Useless VM](https://ctftime.org/writeup/30421) | hard (400pts) | Rust demangle+panic
+- [LA CTF 2023 / ctfd-plus](https://ctftime.org/writeup/36176) | hard (397pts) | GDB/gdb+trace dynamic
+- [LA CTF 2023 / ctfd-plus](https://ctftime.org/writeup/36165) | hard (397pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [DaVinciCTF 2022 / Mine Game](https://ctftime.org/writeup/32580) | hard (393pts) | OLLVM/Tigress deobf → GDB/gdb+trace dynamic
+- [NahamCon CTF 2022 / babyrev](https://ctftime.org/writeup/33670) | hard (392pts) | GDB/gdb+trace dynamic
+- [NahamCon CTF 2022 / babyrev](https://ctftime.org/writeup/33573) | hard (392pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [SamaraCTF 2026 / Confusion](https://ctftime.org/writeup/40795) | hard (385pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [Space Heroes 2022 / Shai-Hulud](https://ctftime.org/writeup/33008) | hard (384pts) | crypto re-impl/keygen
+- [Nullcon Goa HackIM 2025 CTF / oscilloscope](https://ctftime.org/writeup/39855) | hard (379pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [DiceCTF 2022 / cable management](https://ctftime.org/writeup/32279) | hard (378pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [BuckeyeCTF 2021 / headless_horseman](https://ctftime.org/writeup/31088) | hard (378pts) | crypto re-impl/keygen
+- [LA CTF 2025 / McFlagChecker](https://ctftime.org/writeup/40024) | hard (377pts) | crypto re-impl/keygen
+- [nullcon HackIM CTF Goa 2023 / Sebastian&#39;s Secret Sharing](https://ctftime.org/writeup/37772) | hard (375pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [HTB Business CTF 2022: Dirty Money / Mr Abilgate](https://ctftime.org/writeup/34878) | hard (375pts) | Frida hook/dump → crypto re-impl/keygen → GDB/gdb+trace dynamic
+- [HTB Business CTF 2021 / Sketchy Page](https://ctftime.org/writeup/29447) | hard (375pts) | crypto re-impl/keygen → GDB/gdb+trace dynamic
+- [n00bzCTF 2023 / EZrev](https://ctftime.org/writeup/37212) | hard (372pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [corCTF 2021 / babyrev](https://ctftime.org/writeup/29966) | hard (372pts) | GDB/gdb+trace dynamic
+- [corCTF 2021 / babyrev](https://ctftime.org/writeup/29949) | hard (372pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [HSCTF 8 / warmup-rev](https://ctftime.org/writeup/29045) | hard (371pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [HSCTF 8 / warmup-rev](https://ctftime.org/writeup/29036) | hard (371pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [NahamCon CTF 2022 / Dweeno](https://ctftime.org/writeup/33496) | hard (368pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [corCTF 2024 / corMine2: Revelations](https://ctftime.org/writeup/39394) | hard (362pts) | Rust demangle+panic
+- [UofTCTF 2024 / CSS Password](https://ctftime.org/writeup/38461) | hard (362pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [UofTCTF 2024 / CSS Password](https://ctftime.org/writeup/38458) | hard (362pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [redpwnCTF 2021 / rp2sm-rev](https://ctftime.org/writeup/29265) | hard (362pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [VolgaCTF 2022 Qualifier / Future](https://ctftime.org/writeup/33855) | hard (356pts) | crypto re-impl/keygen
+- [Lexington Informatics Tournament CTF 2022 / rev/You Know The Rules And So Do I](https://ctftime.org/writeup/34657) | hard (355pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [UMDCTF 2023 / Whos That Pokemon](https://ctftime.org/writeup/37168) | hard (352pts) | Unicorn/Qiling emulation → APK/jadx/smali
+- [BCACTF 3.0 / Wasm Notetaker](https://ctftime.org/writeup/34226) | hard (350pts) | VM reversing → OLLVM/Tigress deobf → WASM lift
+- [MetaCTF CyberGames 2021 / Getting Darryl Back](https://ctftime.org/writeup/31746) | hard (350pts) | crypto re-impl/keygen → GDB/gdb+trace dynamic
+- [Really Awesome CTF 2021 / Lego Car Generator](https://ctftime.org/writeup/29905) | hard (350pts) | crypto re-impl/keygen → GDB/gdb+trace dynamic
+- [Really Awesome CTF 2021 / Dodgy Databases](https://ctftime.org/writeup/29872) | hard (350pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [Really Awesome CTF 2021 / Lego Car Generator](https://ctftime.org/writeup/29870) | hard (350pts) | crypto re-impl/keygen
+- [Really Awesome CTF 2021 / Packed](https://ctftime.org/writeup/29869) | hard (350pts) | packer/OEP unpack → anti-debug bypass → crypto re-impl/keygen
+- [SamaraCTF 2026 / Armored &amp; Dangerous](https://ctftime.org/writeup/40794) | hard (349pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [1337UP LIVE CTF / Gandalf&#39;s Interface](https://ctftime.org/writeup/32464) | hard (338pts) | APK/jadx/smali → crypto re-impl/keygen
+- [SPbCTF&#39;s Student CTF 2021 Quals / Paf](https://ctftime.org/writeup/30880) | hard (336pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [SPbCTF&#39;s Student CTF 2021 Quals / Paf](https://ctftime.org/writeup/30828) | hard (336pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [DamCTF 2021 / sneaky-script](https://ctftime.org/writeup/31237) | hard (333pts) | VM reversing → pyc/marshal decompile → crypto re-impl/keygen
+- [Nullcon Goa HackIM 2025 CTF / backtrack](https://ctftime.org/writeup/39853) | hard (328pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [justCTF 2024 teaser / just TV](https://ctftime.org/writeup/39224) | hard (326pts) | crypto re-impl/keygen
+- [Cyber Apocalypse 2023: The Cursed Mission / Alien Saboteaur](https://ctftime.org/writeup/36569) | hard (325pts) | VM reversing → anti-debug bypass → crypto re-impl/keygen
+- [Cyber Apocalypse 2023: The Cursed Mission / Alien Saboteaur](https://ctftime.org/writeup/36491) | hard (325pts) | VM reversing → packer/OEP unpack → crypto re-impl/keygen
+- [Cyber Apocalypse 2023: The Cursed Mission / Interstellar C2](https://ctftime.org/writeup/36466) | hard (325pts) | .NET dnSpy/ILSpy
+- [HTB Business CTF 2022: Dirty Money / MBCoin](https://ctftime.org/writeup/34570) | hard (325pts) | crypto re-impl/keygen
+- [Cyber Apocalypse CTF 2022: Intergalactic Chase / Nuts And Bolts](https://ctftime.org/writeup/33929) | hard (325pts) | Rust demangle+panic → crypto re-impl/keygen
+- [ASIS CTF Finals 2021 / Crina](https://ctftime.org/writeup/31963) | hard (325pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [ASIS CTF Finals 2021 / Crina](https://ctftime.org/writeup/31955) | hard (325pts) | crypto re-impl/keygen → GDB/gdb+trace dynamic
+- [Cyber Santa is Coming to Town / Bamboozled](https://ctftime.org/writeup/31657) | hard (325pts) | Python bundle: decompile (uncompyle/marshal) → logic re-impl
+- [NahamCon CTF 2023 / Marmalade 5](https://ctftime.org/writeup/37303) | hard (322pts) | crypto re-impl/keygen
+- [CyBRICS CTF 2021 / Paired](https://ctftime.org/writeup/29399) | hard (314pts) | VM reversing
+- [LA CTF 2023 / finals-simulator](https://ctftime.org/writeup/36178) | hard (306pts) | z3/SMT solve
+- [D^3CTF 2026 / PacMan](https://ctftime.org/writeup/41054) | hard (300pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [Texas Security Awareness Week 2024 / Psychological Warfare](https://ctftime.org/writeup/38965) | hard (300pts) | crypto re-impl/keygen
+- [Cyber Apocalypse 2024: Hacker Royale / Packed Away](https://ctftime.org/writeup/38822) | hard (300pts) | packer/OEP unpack
+- [Cyber Heroines CTF / Mary Combs](https://ctftime.org/writeup/37898) | hard (300pts) | anti-debug bypass → angr symbolic → GDB/gdb+trace dynamic
+- [Cyber Heroines CTF / Maddie Stone](https://ctftime.org/writeup/37897) | hard (300pts) | APK/jadx/smali → crypto re-impl/keygen
+- [SEETF 2023 / decompile-me](https://ctftime.org/writeup/37187) | hard (300pts) | VM reversing → pyc/marshal decompile → crypto re-impl/keygen
+- [SEETF 2023 / decompile-me](https://ctftime.org/writeup/37179) | hard (300pts) | crypto re-impl/keygen
+- [San Diego CTF 2023 / Galactic Matryoshka](https://ctftime.org/writeup/36980) | hard (300pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [VishwaCTF 2023 / WednesdayThursdayFriday](https://ctftime.org/writeup/36656) | hard (300pts) | z3/SMT solve
+- [Cyber Apocalypse 2023: The Cursed Mission / Cave System](https://ctftime.org/writeup/36469) | hard (300pts) | angr symbolic
+- [Cyber Apocalypse 2023: The Cursed Mission / Secret Code](https://ctftime.org/writeup/36467) | hard (300pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [Cyber Apocalypse CTF 2022: Intergalactic Chase / WIDE](https://medium.com/@W1z4rd_/cyber\u002Dapocalypse\u002Dctf\u002D2022\u002Dwide\u002Dwriteup\u002D704cde8e4169) | hard (300pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [Cyber Apocalypse CTF 2022: Intergalactic Chase / Rebuilding](https://ctftime.org/writeup/33892) | hard (300pts) | GDB/gdb+trace dynamic
+- [Cyber Santa is Coming to Town / Intercept](https://ctftime.org/writeup/33596) | hard (300pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [picoCTF 2022 / unpackme](https://ctftime.org/writeup/33363) | hard (300pts) | packer/OEP unpack
+- [picoCTF 2022 / unpackme](https://ctftime.org/writeup/32886) | hard (300pts) | packer/OEP unpack
+- [picoCTF 2022 / Bbbbloat](https://ctftime.org/writeup/32807) | hard (300pts) | GDB/gdb+trace dynamic
+- [Cyber Apocalypse 2021 / Invitation](https://ctftime.org/writeup/32235) | hard (300pts) | APK/jadx/smali → crypto re-impl/keygen
+- [Cyber Apocalypse 2021 / Alienphish](https://ctftime.org/writeup/32234) | hard (300pts) | APK/jadx/smali → crypto re-impl/keygen
+- [Global CyberPeace Challenge 3.0 CTF-IT / License Key Circumvention Level 4](https://ctftime.org/writeup/32023) | hard (300pts) | crypto re-impl/keygen
+- [MetaCTF CyberGames 2021 / Revvy Chevy](https://ctftime.org/writeup/31769) | hard (300pts) | crypto re-impl/keygen → GDB/gdb+trace dynamic
+- [Cyber Santa is Coming to Town / Gift Wrapping](https://ctftime.org/writeup/31728) | hard (300pts) | packer/OEP unpack → crypto re-impl/keygen → GDB/gdb+trace dynamic
+- [Cyber Santa is Coming to Town / Intercept](https://ctftime.org/writeup/31665) | hard (300pts) | crypto re-impl/keygen
+- [Cyber Santa is Coming to Town / Infiltration](https://ctftime.org/writeup/31651) | hard (300pts) | GDB/gdb+trace dynamic
+- [Cyber Santa is Coming to Town / Giveaway](https://ctftime.org/writeup/31647) | hard (300pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [Cyber Santa is Coming to Town / Gift Wrapping](https://ctftime.org/writeup/31644) | hard (300pts) | GDB/gdb+trace dynamic
+- [Cyber Santa is Coming to Town / Infiltration](https://ctftime.org/writeup/31641) | hard (300pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [Intent CTF 2021 / Scadomware](https://ctftime.org/writeup/31450) | hard (300pts) | crypto re-impl/keygen → GDB/gdb+trace dynamic
+- [Intent CTF 2021 / Scadomware](https://ctftime.org/writeup/31344) | hard (300pts) | crypto re-impl/keygen
+- [DEADFACE CTF / Cereal Killer 2](https://ctftime.org/writeup/31067) | hard (300pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [Really Awesome CTF 2021 / Absolute Dice](https://ctftime.org/writeup/29873) | hard (300pts) | GDB/gdb+trace dynamic
+- [RaRCTF 2021 / Infinite Free Trial](https://ctftime.org/writeup/29755) | hard (300pts) | crypto re-impl/keygen
+- [RaRCTF 2021 / Very TriVial ReVersing](https://ctftime.org/writeup/29723) | hard (300pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [RaRCTF 2021 / Very TriVial ReVersing](https://ctftime.org/writeup/29713) | hard (300pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [RaRCTF 2021 / Infinite Free Trial](https://ctftime.org/writeup/29712) | hard (300pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [HSCTF 10 / mystery-methods](https://ctftime.org/writeup/37198) | medium (297pts) | crypto re-impl/keygen
+- [LA CTF 2024 / the-secret-of-java-island](https://ctftime.org/writeup/38697) | medium (284pts) | APK/jadx/smali → crypto re-impl/keygen
+- [MetaCTF CyberGames 2021 / Far From The Weakest Shell](https://ctftime.org/writeup/31763) | medium (275pts) | anti-debug bypass → Rust demangle+panic → crypto re-impl/keygen
+- [DiceCTF 2022 / taxes](https://ctftime.org/writeup/32284) | medium (272pts) | crypto re-impl/keygen
+- [TJCTF 2025 / rev/garfield-lasagna-monday](https://ctftime.org/writeup/40308) | medium (271pts) | WASM lift
+- [UMassCTF 2024 / Free Delivery](https://ctftime.org/writeup/39128) | medium (269pts) | APK/jadx/smali → crypto re-impl/keygen → GDB/gdb+trace dynamic
+- [Google Capture The Flag 2023 / turtle](https://ctftime.org/writeup/37339) | medium (267pts) | VM reversing
+- [WolvCTF 2023 / Homework Help](https://ctftime.org/writeup/36406) | medium (265pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [WolvCTF 2023 / Homework Help](https://ctftime.org/writeup/36393) | medium (265pts) | crypto re-impl/keygen
+- [RITSEC CTF 2023 / Guess the Password](https://ctftime.org/writeup/36614) | medium (263pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [Cryptoverse CTF 2023 / Reverse/Simple Checkin](https://ctftime.org/writeup/36983) | medium (260pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [Cryptoverse CTF 2023 / Reverse/Simple Checkin](https://ctftime.org/writeup/36977) | medium (260pts) | crypto re-impl/keygen → GDB/gdb+trace dynamic
+- [corCTF 2024 / corMine: The Beginning](https://ctftime.org/writeup/39393) | medium (258pts) | Rust demangle+panic
+- [justCTF 2024 teaser / Baby SoC](https://ctftime.org/writeup/39212) | medium (256pts) | crypto re-impl/keygen → GDB/gdb+trace dynamic
+- [Tamil CTF 2021 / Obscure](https://ctftime.org/writeup/30585) | medium (254pts) | VM reversing → pyc/marshal decompile → crypto re-impl/keygen
+- [BlueHens CTF 2023 / Blue Hens](https://ctftime.org/writeup/38114) | medium (251pts) | VM reversing → crypto re-impl/keygen
+- [BlueHens CTF 2023 / Blue Hens](https://ctftime.org/writeup/38107) | medium (251pts) | Python bundle: decompile (uncompyle/marshal) → logic re-impl
+- [VU CYBERTHON 2023 / Reverse Me (hard)](https://ctftime.org/writeup/36424) | medium (250pts) | GDB/gdb+trace dynamic
+- [KnightCTF 2023 / Take RISC five times](https://ctftime.org/writeup/36088) | medium (250pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [Hacky Holidays - Unlock the City / Protect the supply](https://ctftime.org/writeup/34756) | medium (250pts) | crypto re-impl/keygen → GDB/gdb+trace dynamic
+- [Hacky Holidays - Unlock the City / Protect the supply](https://ctftime.org/writeup/34709) | medium (250pts) | crypto re-impl/keygen
+- [PlaidCTF 2022 / coregasm](https://ctftime.org/writeup/33224) | medium (250pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [Intent CTF 2021 / 1337RFCs](https://ctftime.org/writeup/31391) | medium (250pts) | packer/OEP unpack → Unicorn/Qiling emulation → GDB/gdb+trace dynamic
+- [DeconstruCT.F 2021 / Code Decode](https://ctftime.org/writeup/30674) | medium (250pts) | crypto re-impl/keygen
+- [RaRCTF 2021 / Not That Simple](https://ctftime.org/writeup/29714) | medium (250pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [ImaginaryCTF 2021 / Abnormal](https://ctftime.org/writeup/29672) | medium (250pts) | crypto re-impl/keygen
+- [DamCTF 2021 / seed](https://ctftime.org/writeup/31283) | medium (249pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [DamCTF 2021 / seed](https://ctftime.org/writeup/31236) | medium (249pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [UofTCTF 2025 / Highly Optimized](https://ctftime.org/writeup/39807) | medium (244pts) | VM reversing → crypto re-impl/keygen → GDB/gdb+trace dynamic
+- [GPN CTF 2023 / what-the-flag](https://ctftime.org/writeup/37171) | medium (238pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [DefCamp CTF 21-22 Online / cup-of-tea](https://ctftime.org/writeup/32328) | medium (236pts) | anti-debug bypass → crypto re-impl/keygen → GDB/gdb+trace dynamic
+- [corCTF 2025 / whatever-floats-your-boat](https://ctftime.org/writeup/40405) | medium (233pts) | crypto re-impl/keygen
+- [Space Heroes 2023 / guardians of the galaxy](https://ctftime.org/writeup/36882) | medium (231pts) | crypto re-impl/keygen → GDB/gdb+trace dynamic
+- [redpwnCTF 2021 / 2k](https://ctftime.org/writeup/29268) | medium (229pts) | VM reversing → angr symbolic → z3/SMT solve
+- [redpwnCTF 2021 / 2k](https://ctftime.org/writeup/29256) | medium (229pts) | VM reversing → z3/SMT solve
+- [Midnight Sun CTF 2024 Quals / roprot](https://ctftime.org/writeup/40242) | medium (227pts) | anti-debug bypass → crypto re-impl/keygen
+- [BCACTF 6.0 / nips](https://ctftime.org/writeup/40372) | medium (225pts) | packer/OEP unpack → crypto re-impl/keygen
+- [Hacky Holidays - Unlock the City / Stop The Heist](https://ctftime.org/writeup/34717) | medium (225pts) | rev triage: static decompile → dynamic confirm → targeted solve
+- [Space Heroes 2023 / Galactic Federation](https://ctftime.org/writeup/36881) | medium (221pts) | GDB/gdb+trace dynamic
+- [CyberSecurityRumble Quals / Lightbulb](https://ctftime.org/writeup/37446) | medium (216pts) | APK/jadx/smali → crypto re-impl/keygen
+- [Lexington Informatics Tournament CTF 2023 / rev/iloveregex](https://ctftime.org/writeup/37747) | medium (213pts) | z3/SMT solve
+- [b01lers CTF / padlock](https://ctftime.org/writeup/36557) | medium (211pts) | crypto re-impl/keygen
+- [Lexington Informatics Tournament CTF 2021 / rev/Never Gonna Let You Down](https://ctftime.org/writeup/29313) | medium (209pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [BxMCTF 2023 / MCV5U](https://ctftime.org/writeup/37512) | medium (204pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [Dragon CTF 2021 / Run of the Mill](https://ctftime.org/writeup/31470) | medium (202pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [Shakti CTF 2024 / rev/cyber kingdom](https://ctftime.org/writeup/38805) | medium (200pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [Shakti CTF 2024 / rev/operaion ultra](https://ctftime.org/writeup/38804) | medium (200pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [BCACTF 4.0 / Git Better](https://ctftime.org/writeup/38356) | medium (200pts) | crypto re-impl/keygen
+- [Cyber Heroines CTF / Anita Borg](https://ctftime.org/writeup/37895) | medium (200pts) | anti-debug bypass → GDB/gdb+trace dynamic
+- [PlaidCTF 2023 / CSS](https://ctftime.org/writeup/36843) | medium (200pts) | crypto re-impl/keygen
+- [KnightCTF 2023 / KrackMe 1.0](https://ctftime.org/writeup/36211) | medium (200pts) | Unicorn/Qiling emulation
+- [ångstromCTF 2022 / self](https://ctftime.org/writeup/33655) | medium (200pts) | VM reversing → Frida hook/dump → crypto re-impl/keygen
+- [DCTF 2022 / UseForce](https://ctftime.org/writeup/33368) | medium (200pts) | VM reversing → Unicorn/Qiling emulation → APK/jadx/smali
+- [DCTF 2022 / Eulers License](https://ctftime.org/writeup/33298) | medium (200pts) | crypto re-impl/keygen → GDB/gdb+trace dynamic
+- [DCTF 2022 / Eulers License](https://ctftime.org/writeup/33290) | medium (200pts) | crypto re-impl/keygen
+- [picoCTF 2022 / Fresh Java](https://ctftime.org/writeup/32734) | medium (200pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [Newark Academy CTF / Tracer](https://ctftime.org/writeup/32203) | medium (200pts) | crypto re-impl/keygen → GDB/gdb+trace dynamic
+- [KnightCTF 2022 / Knight Switch Bank](https://ctftime.org/writeup/32084) | medium (200pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [Global CyberPeace Challenge 3.0 CTF-IT / CrackMe Native](https://ctftime.org/writeup/32022) | medium (200pts) | crypto re-impl/keygen
+- [Intent CTF 2021 / Keep Safe](https://ctftime.org/writeup/31367) | medium (200pts) | .NET dnSpy/ILSpy → crypto re-impl/keygen → GDB/gdb+trace dynamic
+- [Tamil CTF 2021 / HeyImAB](https://ctftime.org/writeup/30734) | medium (200pts) | .NET dnSpy/ILSpy → APK/jadx/smali → crypto re-impl/keygen
+- [RaRCTF 2021 / RaRPG](https://ctftime.org/writeup/30343) | medium (200pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [Really Awesome CTF 2021 / Break that Binary!](https://ctftime.org/writeup/29862) | medium (200pts) | crypto re-impl/keygen → GDB/gdb+trace dynamic
+- [RaRCTF 2021 / RaRPG](https://ctftime.org/writeup/29753) | medium (200pts) | anti-debug bypass → crypto re-impl/keygen
+- [LA CTF 2024 / aplet321](https://ctftime.org/writeup/38696) | medium (199pts) | GDB/gdb+trace dynamic
+- [Google Capture The Flag 2022 / segfault labyrinth](https://ctftime.org/writeup/34830) | medium (189pts) | low-level: emulator/debugger trace → semantics recovery → SMT/script invert
+- [Google Capture The Flag 2021 / Weather](https://ctftime.org/writeup/29340) | medium (189pts) | VM reversing → crypto re-impl/keygen
+- [hxp CTF 2022 / required](https://ctftime.org/writeup/36308) | medium (182pts) | crypto re-impl/keygen
+- [Balsn CTF 2022 / Cairo Reverse](https://ctftime.org/writeup/35351) | medium (182pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [redpwnCTF 2021 / pickled-onions](https://ctftime.org/writeup/29278) | medium (177pts) | VM reversing → z3/SMT solve
+- [redpwnCTF 2021 / pickled-onions](https://ctftime.org/writeup/29142) | medium (177pts) | VM reversing → z3/SMT solve → crypto re-impl/keygen
+- [TSG CTF 2021 / optimized](https://ctftime.org/writeup/30661) | medium (176pts) | angr symbolic
+- [Blue Water CTF 2024 / maybe Checker](https://ctftime.org/writeup/39543) | medium (175pts) | z3/SMT solve → crypto re-impl/keygen → GDB/gdb+trace dynamic
+- [Lexington Informatics Tournament CTF 2022 / rev/not assembly](https://ctftime.org/writeup/34675) | medium (170pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [osu!gaming CTF 2024 / wysi-revenge](https://ctftime.org/writeup/38726) | medium (169pts) | z3/SMT solve → WASM lift → crypto re-impl/keygen
+- [Google Capture The Flag 2021 / Hexagon](https://ctftime.org/writeup/29331) | medium (166pts) | z3/SMT solve → crypto re-impl/keygen → GDB/gdb+trace dynamic
+- [DownUnderCTF 2023 / cgi fridays](https://ctftime.org/writeup/37832) | medium (164pts) | .NET dnSpy/ILSpy
+- [SUSCTF 2022 / DigitalCircuits](https://ctftime.org/writeup/32351) | medium (157pts) | z3/SMT solve
+- [pbctf 2021 / Cosmo](https://ctftime.org/writeup/30806) | medium (156pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [Lexington Informatics Tournament CTF 2021 / rev/Trampoline](https://ctftime.org/writeup/29345) | medium (154pts) | crypto re-impl/keygen → GDB/gdb+trace dynamic
+- [TAMUctf 2022 / REdo 2](https://ctftime.org/writeup/33307) | medium (152pts) | anti-debug bypass → GDB/gdb+trace dynamic
+- [KnightCTF 2023 / The Activator](https://ctftime.org/writeup/36085) | medium (150pts) | crypto re-impl/keygen
+- [Hacky Holidays - Unlock the City / Unlock Train Data](https://ctftime.org/writeup/34762) | medium (150pts) | APK/jadx/smali → crypto re-impl/keygen
+- [Hacky Holidays - Unlock the City / Pizza Pazzi](https://ctftime.org/writeup/34736) | medium (150pts) | APK/jadx/smali
+- [Hacky Holidays - Unlock the City / Unlock Train Data](https://ctftime.org/writeup/34719) | medium (150pts) | mobile: jadx/smali (or il2cpp dump) → logic re-impl
+- [Hacky Holidays - Unlock the City / Pizza Pazzi](https://ctftime.org/writeup/34718) | medium (150pts) | APK/jadx/smali → crypto re-impl/keygen
+- [Block CTF 2021 / its just an xor](https://ctftime.org/writeup/31409) | medium (150pts) | anti-debug bypass → crypto re-impl/keygen → GDB/gdb+trace dynamic
+- [DeconstruCT.F 2021 / Scraps](https://ctftime.org/writeup/30669) | medium (150pts) | crypto re-impl/keygen → GDB/gdb+trace dynamic
+- [DeconstruCT.F 2021 / Scraps](https://ctftime.org/writeup/30629) | medium (150pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [GrabCON CTF 2021 / Unknown 2](https://ctftime.org/writeup/30076) | medium (150pts) | packer/OEP unpack
+- [RaRCTF 2021 / Dotty](https://ctftime.org/writeup/29752) | medium (150pts) | crypto re-impl/keygen
+- [ImaginaryCTF 2021 / Normal](https://ctftime.org/writeup/29681) | medium (150pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [ImaginaryCTF 2021 / Normal](https://ctftime.org/writeup/29415) | medium (150pts) | crypto re-impl/keygen
+- [Lexington Informatics Tournament CTF 2022 / rev/addition](https://ctftime.org/writeup/34677) | medium-easy (148pts) | angr symbolic
+- [DEF CON CTF Qualifier 2021 / rick](https://ctftime.org/writeup/39189) | medium-easy (147pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [HackPack CTF 2023 / Speed-Rev: Bots](https://ctftime.org/writeup/36844) | medium-easy (147pts) | crypto re-impl/keygen → GDB/gdb+trace dynamic
+- [Tamil CTF 2021 / Digital play](https://ctftime.org/writeup/30731) | medium-easy (146pts) | crypto re-impl/keygen
+- [Tamil CTF 2021 / Digital play](https://ctftime.org/writeup/30586) | medium-easy (146pts) | crypto re-impl/keygen
+- [redpwnCTF 2021 / dimensionality](https://ctftime.org/writeup/29269) | medium-easy (144pts) | Unicorn/Qiling emulation → crypto re-impl/keygen → GDB/gdb+trace dynamic
+- [redpwnCTF 2021 / dimensionality](https://ctftime.org/writeup/29133) | medium-easy (144pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [Space Heroes 2023 / Acheron](https://ctftime.org/writeup/36878) | medium-easy (139pts) | GDB/gdb+trace dynamic
+- [Hayyim CTF 2022 / ezrev](https://ctftime.org/writeup/32307) | medium-easy (139pts) | crypto re-impl/keygen → GDB/gdb+trace dynamic
+- [Lexington Informatics Tournament CTF 2021 / rev/Loading](https://ctftime.org/writeup/29346) | medium-easy (134pts) | GDB/gdb+trace dynamic
+- [Lexington Informatics Tournament CTF 2022 / rev/math test](https://ctftime.org/writeup/34682) | medium-easy (131pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [Lexington Informatics Tournament CTF 2022 / rev/math test](https://ctftime.org/writeup/34656) | medium-easy (131pts) | GDB/gdb+trace dynamic
+- [Digital Overdose 2021 Autumn CTF / Time](https://ctftime.org/writeup/30884) | medium-easy (125pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [Digital Overdose 2021 Autumn CTF / Time](https://ctftime.org/writeup/30813) | medium-easy (125pts) | crypto re-impl/keygen
+- [DiceCTF 2022 / flagle](https://ctftime.org/writeup/32295) | medium-easy (121pts) | WASM lift
+- [Lexington Informatics Tournament CTF 2021 / rev/Shuffle](https://ctftime.org/writeup/29314) | medium-easy (119pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [TSG CTF 2021 / Beginner&#39;s Rev 2021](https://ctftime.org/writeup/30660) | medium-easy (118pts) | anti-debug bypass → Frida hook/dump → crypto re-impl/keygen
+- [ASIS CTF Quals 2021 / Beans talk](https://ctftime.org/writeup/31082) | medium-easy (117pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [LA CTF 2024 / shattered-memories](https://ctftime.org/writeup/38695) | medium-easy (115pts) | GDB/gdb+trace dynamic
+- [LA CTF 2024 / shattered-memories](https://ctftime.org/writeup/38654) | medium-easy (115pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [Google Capture The Flag 2023 / Symatrix](https://ctftime.org/writeup/37684) | medium-easy (114pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [LA CTF 2023 / string-cheese](https://ctftime.org/writeup/36195) | medium-easy (112pts) | GDB/gdb+trace dynamic
+- [Lexington Informatics Tournament CTF 2021 / rev/Evaluation](https://ctftime.org/writeup/29347) | medium-easy (112pts) | Python bundle: decompile (uncompyle/marshal) → logic re-impl
+- [BlackHat MEA CTF Qualification 2024 / Stealer](https://ctftime.org/writeup/39424) | medium-easy (110pts) | crypto re-impl/keygen
+- [SekaiCTF 2022 / Matrix Lab 2](https://ctftime.org/writeup/35800) | medium-easy (110pts) | VM reversing → pyc/marshal decompile → crypto re-impl/keygen
+- [redpwnCTF 2021 / bread-making](https://ctftime.org/writeup/29277) | medium-easy (108pts) | VM reversing → .NET dnSpy/ILSpy → crypto re-impl/keygen
+- [redpwnCTF 2021 / bread-making](https://ctftime.org/writeup/29241) | medium-easy (108pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [LA CTF 2024 / flag-finder](https://ctftime.org/writeup/38698) | medium-easy (105pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [redpwnCTF 2021 / beginner-generic-pwn-number-0](https://ctftime.org/writeup/29242) | medium-easy (105pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [redpwnCTF 2021 / secure](https://ctftime.org/writeup/29159) | medium-easy (104pts) | crypto re-impl/keygen
+- [redpwnCTF 2021 / wstrings](https://ctftime.org/writeup/29240) | medium-easy (102pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [redpwnCTF 2021 / wstrings](https://ctftime.org/writeup/29172) | medium-easy (102pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [VuwCTF 2026 / dotsbedashing](https://ctftime.org/writeup/41060) | medium-easy (100pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [VuwCTF 2026 / ilikewords](https://ctftime.org/writeup/41059) | medium-easy (100pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [V1T CTF 2026 / Ducks Ping-Pong](https://ctftime.org/writeup/40897) | medium-easy (100pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [V1T CTF 2026 / Sealed Input Verifier](https://ctftime.org/writeup/40896) | medium-easy (100pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [V1T CTF 2026 / Tiny](https://ctftime.org/writeup/40895) | medium-easy (100pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [EnigmaXplore 3.0 / Clockwork](https://ctftime.org/writeup/40462) | medium-easy (100pts) | crypto re-impl/keygen
+- [DownUnderCTF 2025 / Rocky (reverse engineering) level easy](https://ctftime.org/writeup/40346) | medium-easy (100pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [BackdoorCTF 2024 / Cursed Credential](https://ctftime.org/writeup/39721) | medium-easy (100pts) | .NET dnSpy/ILSpy → crypto re-impl/keygen
+- [Shakti CTF 2024 / rev/warup rev](https://ctftime.org/writeup/38803) | medium-easy (100pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [BITSCTF 2024 / baby-rev](https://ctftime.org/writeup/38689) | medium-easy (100pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [BITSCTF 2024 / baby-rev](https://ctftime.org/writeup/38680) | medium-easy (100pts) | GDB/gdb+trace dynamic
+- [UofTCTF 2024 / Baby&#39;s First IoT Flag 2](https://ctftime.org/writeup/38447) | medium-easy (100pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [BlueHens CTF 2023 / Classic Checkers](https://ctftime.org/writeup/38116) | medium-easy (100pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [BlueHens CTF 2023 / Classic Checkers](https://ctftime.org/writeup/38108) | medium-easy (100pts) | crypto re-impl/keygen
+- [Cyber Heroines CTF / Dorothy Vaughan](https://ctftime.org/writeup/37896) | medium-easy (100pts) | crypto re-impl/keygen → GDB/gdb+trace dynamic
+- [CyberSecurityRumble Quals / shellcode-ception](https://ctftime.org/writeup/37441) | medium-easy (100pts) | packer/OEP unpack → crypto re-impl/keygen → GDB/gdb+trace dynamic
+- [n00bzCTF 2023 / Crack &amp; Crack](https://ctftime.org/writeup/37237) | medium-easy (100pts) | rev triage: static decompile → dynamic confirm → targeted solve
+- [n00bzCTF 2023 / Crack &amp; Crack](https://ctftime.org/writeup/37218) | medium-easy (100pts) | crypto re-impl/keygen
+- [HSCTF 10 / th3-w3bsite](https://ctftime.org/writeup/37162) | medium-easy (100pts) | .NET dnSpy/ILSpy → crypto re-impl/keygen
+- [BYUCTF 2023 / RevEng](https://ctftime.org/writeup/37109) | medium-easy (100pts) | crypto re-impl/keygen → GDB/gdb+trace dynamic
+- [BYUCTF 2023 / Ducky 1](https://ctftime.org/writeup/37101) | medium-easy (100pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [BYUCTF 2023 / obfuscJStore](https://ctftime.org/writeup/37100) | medium-easy (100pts) | LLVM/CFF-obfuscated: dispatcher triage → handler lift → deflat/deobf → re-impl solve
+- [BYUCTF 2023 / Ducky 1](https://ctftime.org/writeup/37075) | medium-easy (100pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [BYUCTF 2023 / obfuscJStore](https://ctftime.org/writeup/37074) | medium-easy (100pts) | LLVM/CFF-obfuscated: dispatcher triage → handler lift → deflat/deobf → re-impl solve
+- [HackPack CTF 2023 / Speed-Rev: Humans](https://ctftime.org/writeup/36840) | medium-easy (100pts) | z3/SMT solve → crypto re-impl/keygen
+- [WolvCTF 2023 / child-re](https://ctftime.org/writeup/36392) | medium-easy (100pts) | crypto re-impl/keygen
+- [KnightCTF 2023 / Help Jimmy](https://ctftime.org/writeup/36087) | medium-easy (100pts) | crypto re-impl/keygen
+- [CyberSecurityRumble CTF / REVMEPLX](https://ctftime.org/writeup/35894) | medium-easy (100pts) | GDB/gdb+trace dynamic
+- [SekaiCTF 2022 / Matrix Lab 1](https://ctftime.org/writeup/35811) | medium-easy (100pts) | z3/SMT solve → APK/jadx/smali → crypto re-impl/keygen
+- [SekaiCTF 2022 / Perfect Match X-treme](https://ctftime.org/writeup/35803) | medium-easy (100pts) | .NET dnSpy/ILSpy → APK/jadx/smali → GDB/gdb+trace dynamic
+- [SekaiCTF 2022 / Matrix Lab 1](https://ctftime.org/writeup/35799) | medium-easy (100pts) | APK/jadx/smali → crypto re-impl/keygen
+- [UACTF 2022 / re-platformer](https://ctftime.org/writeup/35593) | medium-easy (100pts) | .NET dnSpy/ILSpy → APK/jadx/smali
+- [Hacky Holidays - Unlock the City / Identify yourself](https://ctftime.org/writeup/34704) | medium-easy (100pts) | packer/OEP unpack → APK/jadx/smali → crypto re-impl/keygen
+- [Hacky Holidays - Unlock the City / Crack the password](https://ctftime.org/writeup/34687) | medium-easy (100pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [SEETF 2022 / Sniffed Traffic](https://ctftime.org/writeup/34285) | medium-easy (100pts) | crypto re-impl/keygen
+- [SEETF 2022 / Angry Zeyu2001](https://ctftime.org/writeup/34284) | medium-easy (100pts) | crypto re-impl/keygen
+- [SEETF 2022 / BestSoftware](https://ctftime.org/writeup/34282) | medium-easy (100pts) | .NET dnSpy/ILSpy → crypto re-impl/keygen
+- [SEETF 2022 / babyree](https://ctftime.org/writeup/34281) | medium-easy (100pts) | crypto re-impl/keygen → GDB/gdb+trace dynamic
+- [riftCTF / Rev 0x0002](https://ctftime.org/writeup/33414) | medium-easy (100pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [DCTF 2022 / Seek](https://ctftime.org/writeup/33302) | medium-easy (100pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [HackPack CTF 2022 / Self-Hosted Crypto](https://ctftime.org/writeup/33215) | medium-easy (100pts) | crypto re-impl/keygen
+- [HackPack CTF 2022 / 3T PHON3 HOM3](https://ctftime.org/writeup/33214) | medium-easy (100pts) | APK/jadx/smali
+- [picoCTF 2022 / unpackme.py](https://ctftime.org/writeup/33120) | medium-easy (100pts) | packed/DRM: stub triage → dynamic dump (OEP/memcarve) → re-analyze → transform invert
+- [picoCTF 2022 / unpackme.py](https://ctftime.org/writeup/32885) | medium-easy (100pts) | packed/DRM: stub triage → dynamic dump (OEP/memcarve) → re-analyze → transform invert
+- [picoCTF 2022 / Safe Opener](https://ctftime.org/writeup/32808) | medium-easy (100pts) | crypto re-impl/keygen
+- [FooBar CTF 2022 / Baby Rev](https://ctftime.org/writeup/32413) | medium-easy (100pts) | angr symbolic → crypto re-impl/keygen
+- [FooBar CTF 2022 / Baby Rev](https://ctftime.org/writeup/32407) | medium-easy (100pts) | Unicorn/Qiling emulation → angr symbolic
+- [VU CYBERTHON 2022 / CRC Reverse](https://ctftime.org/writeup/32332) | medium-easy (100pts) | crypto re-impl/keygen
+- [KnightCTF 2022 / Knight Vault](https://ctftime.org/writeup/32117) | medium-easy (100pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [KnightCTF 2022 / Knight Vault](https://ctftime.org/writeup/32085) | medium-easy (100pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [MetaCTF CyberGames 2021 / There Are No Strings on Me](https://ctftime.org/writeup/31619) | medium-easy (100pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [K3RN3LCTF / K3RN3L DROID](https://ctftime.org/writeup/31372) | medium-easy (100pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [K3RN3LCTF / Twizzty Buzzinezz](https://ctftime.org/writeup/31371) | medium-easy (100pts) | crypto re-impl/keygen
+- [CTF Internacional MetaRed 2021 - 3rd STAGE / Let me tell you an obfuscated secret](https://ctftime.org/writeup/31208) | medium-easy (100pts) | LLVM/CFF-obfuscated: dispatcher triage → handler lift → deflat/deobf → re-impl solve
+- [DownUnderCTF 2021 (Online) / no strings](https://ctftime.org/writeup/30855) | medium-easy (100pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [DownUnderCTF 2021 (Online) / no strings](https://ctftime.org/writeup/30548) | medium-easy (100pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [GrabCON CTF 2021 / Baby Rev](https://ctftime.org/writeup/30107) | medium-easy (100pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [RCTS CERT 2021 Defending the SOC / Changing our locks and dumping old Keys](https://ctftime.org/writeup/29971) | medium-easy (100pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [InCTF 2021 / find_plut0](https://ctftime.org/writeup/29822) | medium-easy (100pts) | z3/SMT solve → crypto re-impl/keygen
+- [RaRCTF 2021 / verybabyrev](https://ctftime.org/writeup/29803) | medium-easy (100pts) | Python bundle: decompile (uncompyle/marshal) → logic re-impl
+- [RCTS CERT 2021 Defending the SOC / You are not allowed](https://ctftime.org/writeup/29801) | medium-easy (100pts) | GDB/gdb+trace dynamic
+- [RCTS CERT 2021 Defending the SOC / Changing our locks and dumping old Keys](https://ctftime.org/writeup/29795) | medium-easy (100pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [RaRCTF 2021 / verybabyrev](https://ctftime.org/writeup/29754) | medium-easy (100pts) | crypto re-impl/keygen
+- [ImaginaryCTF 2021 / Stings](https://ctftime.org/writeup/29745) | medium-easy (100pts) | GDB/gdb+trace dynamic
+- [IJCTF 2021 / sanity](https://ctftime.org/writeup/29509) | medium-easy (100pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [IJCTF 2021 / sanity](https://ctftime.org/writeup/29365) | medium-easy (100pts) | crypto re-impl/keygen → GDB/gdb+trace dynamic
+
+## B — crackmes.one hard keygen solutions
+- [crackmes.one / VoidVault: Quine Lock v7.1](https://crackmes.one/solution/6ace69ccca34abba98f83176) | medium (4.3/6) | VM/self-decrypting bytecode: trace → handler/bytecode recovery → oracle brute/keygen → oracle brute-force (clean-decode oracle) → keygen: algorithm invert → generator script → verify
+- [crackmes.one / Beat The Game](https://crackmes.one/solution/6acb4d36ace07d1c3fbc4ad3) | medium (4.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / Beat The Game](https://crackmes.one/solution/6acbb89a6349e4b2540c7051) | medium (4.0/6) | patch-and-run alternative
+- [crackmes.one / (keygenme) Wait, it was all linear? Always have been.](https://crackmes.one/solution/6ac93b186349e4b2540c6fda) | medium (4.0/6) | keygen: algorithm invert → generator script → verify
+- [crackmes.one / Mini LLM Sentinel](https://crackmes.one/solution/6ac0c09aace07d1c3fbc488b) | medium (4.3/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / Mini LLM Sentinel](https://crackmes.one/solution/6ac78bd7cdee6e086a17369f) | medium (4.3/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / custom protector](https://crackmes.one/solution/6abd76fbace07d1c3fbc4838) | medium (4.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / custom protector](https://crackmes.one/solution/6ac2725bca34abba98f82e9d) | medium (4.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / Matryoshka VM](https://crackmes.one/solution/6abe3ca7ca34abba98f82e4b) | hard (5.7/6) | VM/self-decrypting bytecode: trace → handler/bytecode recovery → oracle brute/keygen
+- [crackmes.one / reaper maze](https://crackmes.one/solution/6ac685e96349e4b2540c6f19) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / reaper maze](https://crackmes.one/solution/6ac68b2e0885f990699dc1c9) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / Fugsv1.1](https://crackmes.one/solution/6abbdcc0cdee6e086a1734f7) | hard (5.7/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / Quintessence](https://crackmes.one/solution/6ab95ce1ace07d1c3fbc47b8) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / Pass CrackMe](https://crackmes.one/solution/6aafaf0a3b246e477b6c0cd0) | medium (4.0/6) | VM/self-decrypting bytecode: trace → handler/bytecode recovery → oracle brute/keygen
+- [crackmes.one / Fugs](https://crackmes.one/solution/6ab4f8655ef425e62ef7fd22) | medium (4.0/6) | unpack: resource carve/LZMA extract → re-analyze → oracle brute-force (clean-decode oracle) → keygen: algorithm invert → generator script → verify
+- [crackmes.one / Froggate II: Croackpocallypse](https://crackmes.one/solution/6aa60816cab6678aefe9dd81) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / obscurio - 3](https://crackmes.one/solution/6a9da4a9cab6678aefe9dcea) | hard (4.7/6) | VM/self-decrypting bytecode: trace → handler/bytecode recovery → oracle brute/keygen
+- [crackmes.one / crackme_l6_hard](https://crackmes.one/solution/6aa1f4993b246e477b6c0bb9) | medium (4.0/6) | patch-and-run alternative → keygen: algorithm invert → generator script → verify
+- [crackmes.one / crackme_l6_hard](https://crackmes.one/solution/6aa87443dbb3353b75396871) | medium (4.0/6) | VM/self-decrypting bytecode: trace → handler/bytecode recovery → oracle brute/keygen → patch-and-run alternative → keygen: algorithm invert → generator script → verify
+- [crackmes.one / crackme_l6_hard](https://crackmes.one/solution/6aaade7948cda5a2aaa3de0c) | medium (4.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / FiggerC](https://crackmes.one/solution/6a9df2353b246e477b6c0b6e) | medium (4.0/6) | VM/self-decrypting bytecode: trace → handler/bytecode recovery → oracle brute/keygen → keygen: algorithm invert → generator script → verify
+- [crackmes.one / obscurio - 2](https://crackmes.one/solution/6a99925548cda5a2aaa3dcd0) | medium (4.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / not obfuscated](https://crackmes.one/solution/6a91520548cda5a2aaa3dba9) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / Obfuscated Crackme](https://crackmes.one/solution/6a8df554dbb3353b753965b7) | hard (5.8/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / Obfuscated Crackme](https://crackmes.one/solution/6a997b33dbb3353b7539674f) | hard (5.8/6) | keygen: algorithm invert → generator script → verify
+- [crackmes.one / Final message](https://crackmes.one/solution/6a93c723cab6678aefe9dbc9) | medium (4.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / obscurio - 1](https://crackmes.one/solution/6a9015b148cda5a2aaa3db6a) | medium (4.2/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / Fsoecity key checker (very hard to reverse)](https://crackmes.one/solution/6a8b8785dbb3353b7539657f) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / Fsoecity key checker (very hard to reverse)](https://crackmes.one/solution/6a8d3a70dbb3353b7539659d) | hard (5.0/6) | VM/self-decrypting bytecode: trace → handler/bytecode recovery → oracle brute/keygen
+- [crackmes.one / arbchal (b-v0.1)](https://crackmes.one/solution/6aaa929cdbb3353b75396899) | medium (4.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / MMC2](https://crackmes.one/solution/6a6eff63df981859694943da) | medium (4.3/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / MMC2](https://crackmes.one/solution/6a71d59291dca16886160bd4) | medium (4.3/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / fourexps hard crackme](https://crackmes.one/solution/6a784d9005a9e80a90724318) | medium (4.0/6) | keygen: algorithm invert → generator script → verify
+- [crackmes.one / hard crack me](https://crackmes.one/solution/6a697e4aa526e0c5c69b88ba) | medium (4.0/6) | keygen: algorithm invert → generator script → verify
+- [crackmes.one / hard crack me](https://crackmes.one/solution/6a6cdbda184836c0dbe7d61c) | medium (4.0/6) | keygen: algorithm invert → generator script → verify
+- [crackmes.one / Password Checker](https://crackmes.one/solution/6a6a750c0521b55ba71e935f) | hard (4.5/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / SlimKeyGen](https://crackmes.one/solution/6a640c3f8f2cc38c5ba90f9e) | medium (4.3/6) | keygen: algorithm invert → generator script → verify
+- [crackmes.one / MMC1](https://crackmes.one/solution/6a6e06ad05a9e80a90724240) | medium (4.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / Hard Flag v2](https://crackmes.one/solution/6a618e4638273f3608988182) | hard (4.7/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / Hard Flag](https://crackmes.one/solution/6a614224a08ffdc1606e932b) | hard (4.7/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / Michael&#39;s Virtual Machine](https://crackmes.one/solution/6a62e22f4b6c495271ddae48) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / Aegis Privacy V2](https://crackmes.one/solution/6a874ec8184836c0dbe7d878) | hard (5.5/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / CrackmesForBeginners (CFB) #7](https://crackmes.one/solution/6a5bedd50691b3daf2a3f2d1) | medium (4.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / Aegis Privacy Protocol](https://crackmes.one/solution/6a6cfcb305a9e80a90724231) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / Level 10](https://crackmes.one/solution/6a567dfc0b25d281a656893f) | medium (4.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / Level 9](https://crackmes.one/solution/6a57cfa3a27dfa335e4c857d) | medium (4.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / Level 8](https://crackmes.one/solution/6a57cf916f511264ea48258e) | medium (4.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / Level 7](https://crackmes.one/solution/6a57cf800b25d281a6568950) | medium (4.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / Level 4](https://crackmes.one/solution/6a57cf45a27dfa335e4c857b) | hard (4.5/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / Froggate](https://crackmes.one/solution/6aa37afd48cda5a2aaa3dd80) | medium (4.3/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / Froginception](https://crackmes.one/solution/6a915200585e8875bcbebd8e) | hard (6.0/6) | keygen: algorithm invert → generator script → verify
+- [crackmes.one / FROGMAN!](https://crackmes.one/solution/6a90b49b3b246e477b6c0a0a) | hard (5.0/6) | VM/self-decrypting bytecode: trace → handler/bytecode recovery → oracle brute/keygen → keygen: algorithm invert → generator script → verify
+- [crackmes.one / New approach keygen](https://crackmes.one/solution/6a79c36408712c1a17cbad30) | hard (4.5/6) | VM/self-decrypting bytecode: trace → handler/bytecode recovery → oracle brute/keygen → keygen: algorithm invert → generator script → verify
+- [crackmes.one / Next generation Keygen](https://crackmes.one/solution/6abb8dafcdee6e086a1734ee) | medium (4.0/6) | keygen: algorithm invert → generator script → verify
+- [crackmes.one / AegisLock](https://crackmes.one/solution/6a382f1e8a86e4c2c5525504) | hard (4.5/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / $1K Reward - AntiVM Challenge](https://crackmes.one/solution/6a35d27f6840520e01b21eeb) | hard (6.0/6) | VM/self-decrypting bytecode: trace → handler/bytecode recovery → oracle brute/keygen
+- [crackmes.one / Dimension X](https://crackmes.one/solution/6a69339b723b7c664992a2d2) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / High cortisol](https://crackmes.one/solution/6a2a6b626840520e01b21e0b) | hard (4.8/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / NiTiNOL CrackMe](https://crackmes.one/solution/6a268f24e13aafcf3f84fa90) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / Jörmungandr](https://crackmes.one/solution/6a2680f0d430083fdc5c948d) | hard (4.5/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / CrackMe Hard 3](https://crackmes.one/solution/6a22f42b266afadcd56fabf5) | medium (4.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / P4r4d0x of the P4l4nt1r](https://crackmes.one/solution/6a2a56f28a86e4c2c55253f8) | hard (5.8/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / karity-crackme-B](https://crackmes.one/solution/6a11a5e417539b5175d12349) | medium (4.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / karity-crackme-B](https://crackmes.one/solution/6a134db58fab7bbca273027a) | medium (4.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / _Arkadox_](https://crackmes.one/solution/6a6781bd8ab4ef0d9d8abc7e) | medium (4.3/6) | VM/self-decrypting bytecode: trace → handler/bytecode recovery → oracle brute/keygen
+- [crackmes.one / PhantomGate](https://crackmes.one/solution/6a0aa52417539b5175d122da) | medium (4.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / ASMe / ASM CrackMe](https://crackmes.one/solution/6a010b533fba64e45dceaa38) | medium (4.0/6) | keygen: algorithm invert → generator script → verify
+- [crackmes.one / ASMe / ASM CrackMe](https://crackmes.one/solution/6a05a9bfd7ff92e1214c00de) | medium (4.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / Find the decryption key / Custom packer,no virtualization](https://crackmes.one/solution/6a07602f2b3df128c1df5bc8) | medium (4.0/6) | unpack: resource carve/LZMA extract → re-analyze → keygen: algorithm invert → generator script → verify
+- [crackmes.one / Spaghetti](https://crackmes.one/solution/6a0692ea17539b5175d1228f) | hard (5.3/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / CrYP70NYM&#39;s CrackMe 3](https://crackmes.one/solution/69f631cc3fba64e45dcea989) | medium (4.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+
+## C — search-surfaced hard anchors (verified 200)
+- [Flare-On 2019 — Timzen (multi: IDA XOR-table, EIP-as-key, UPX-manual, .NET ILspy, known-plaintext)](https://www.tophertimzen.com/blog/flareOn) | hard | PE triage → XOR-table carve → EIP-key recovery → manual-UPX OEP → .NET decompile → known-plaintext decrypt
+- [Flare-On 8 — myrdyr (known-plaintext ror/add, docker-layer recon, AntiochOS CLI)](https://github.com/myrdyr/ctf-writeups/blob/master/flareon8/README.md) | hard | known-plaintext key recovery → layered-artifact recon → custom-CLI reversing → script decrypt
+- [Flare-On 12 ch2 project_chimera — expend20 (zlib+marshal+base85 layers, RC4 gate-is-key)](https://github.com/expend20/flare-on-12-llm-solution/blob/master/02-project_chimera/README.md) | hard | layered-unpack (zlib/marshal/base85, no-exec) → version-pinned dis → gate-is-key RC4 reuse → decrypt
+- [Flare-On 12 ch7 TheBossNeedsHelp — expend20 (Unicorn static-only, CRT-init tables, S-box+shift+XOR cipher)](https://github.com/expend20/flare-on-12-llm-solution/blob/master/07-TheBossNeedsHelp/README.md) | hard | Unicorn function-slice emulation (run CRT inits first) → S-box/shift/XOR algebra recovery → transcript walk decrypt
+- [Flare-On 10 — official author solutions (Mandiant)](https://cloud.google.com/blog/topics/threat-intelligence/flareon10-challenge-solutions) | hard | official author solutions: staged PE/.NET/JS reversing → per-stage unpack → keygen/decrypt
+- [Flare-On 11 — official author solutions (Mandiant)](https://cloud.google.com/blog/topics/threat-intelligence/flareon-11-challenge-solutions?hl=en) | hard | official author solutions: frog-XOR-brute → Go checksum invert → game-logic/VM stages → ransomware decrypt
+- [Flare-On 11 — SuperFashi 5th place (XOR brute, known-plaintext suffix, Go checksum)](https://gmo-cybersecurity.com/blog/flare-on-11-write-up/) | hard | single-byte XOR brute → flag-suffix known-plaintext → Go binary checksum inversion → stage pipeline
+- [Flare-On 6 — HomeSen (ILspy VictoryForm XOR, manual UPX, known-plaintext missile)](https://no-sec.net/posts/write-up-flare-on-6) | hard | .NET ILspy decompile → staged-XOR key assembly → manual-UPX dump → known-plaintext flag decrypt
+- [corCTF 2024 digest-me — MapleBacon (capstone array-op lift, z3 stall diagnosis, bit-order fix)](https://maplebacon.org/2024/07/corctf-digest-me) | hard | capstone machine-code lift → array-op IR → sliced z3 model + bit-order fix → verify on binary
+- [NiteCTF 2025 ghost_in_the_machine — VM Feistel CFB (opcode table, disassembler, half-swap invert)](https://github.com/ZhangZhuoSJTU/ctf-collection/blob/main/ctf-rev/nitectf_2025_ghost_in_the_machine/writeup.md) | hard | VM opcode table → bytecode disassembler → Feistel/CFB round invert + half-swap reverse → decrypt
+- [SharifCTF 7 Rev50 — official angr example (run-to-decrypted-flag, mem dump)](https://github.com/angr/angr-doc/blob/master/examples/sharif7_rev50/solve.py) | medium | angr run-to-stop-addr → memory.load(flag_addr) → solver.eval bytes
+- [CSR Zeh — angr PIE int-check (BVS array, unicorn assist, find puts)](https://ctftime.org/writeup/24782) | medium | PIE base handling → BVS int array + printable constraints → explore(find=puts) → feed back
+- [angr_ctf — official tutorial solutions (symbolic progression series)](https://github.com/jakespringer/angr_ctf/tree/master/solutions) | medium | guided symbolic series: stdin/argv BVS → find/avoid → hook scanf → staged difficulty
+- [Nightmare z3+angr course — GuyInATuxedo (solver-first rev method)](https://guyinatuxedo.github.io/z3_angr.html) | medium | checker→constraints modeling → z3 solve-first, angr when path-heavy
+- [BYUCTF 2026 angr_management — CFG+maze shortest-path (angr CFG + networkx)](https://github.com/BYU-CSA/BYUCTF-2026/blob/main/rev/angr_management/writeup.md) | medium | angr CFG recovery → GOTO-maze graph → Dijkstra shortest path → input derive
+- [AmateursCTF 2025 wasm-checker — JS+wasm bridge (60-constraint z3 over exports.memory)](https://github.com/CysecAES/wasm-checker-challenge-writeup-amateursCTF-2025) | hard | JS-glue analysis → wasm export map → Ghidra-decompiled constraints → z3 over memory bytes
+- [ASIS 2016 Catch Me — ptrace-fed keygen (debugger-dependent key material + env keys)](https://ctftime.org/writeup/3317) | hard | anti-debug triage → ptrace-return key-feed discovery → env-var staging → patched-vs-clean differential
+- [BalCCon2k20 shallweplayagame — layered ptrace+SIGALRM (catch-syscall + signal ignore)](https://ctftime.org/writeup/24049) | hard | ptrace catch-syscall zeroing → SIGALRM ignore → staged numeric checks → dynamic solve
+- [SECCON 2016 Anti-Debugging — classic menagerie entry](https://ctftime.org/writeup/5001) | medium | multi-vector anti-debug survey → per-check bypass → clean-room solve
+- [PoliCTF 2015 John the Packer — decrypt+call+repack loop (NOP-repack, gdb dumpmem)](https://ctftime.org/writeup/1496) | hard | stub loop analysis → NOP-out repack → breakpoint-at-call → dumpmem → 3-part checker solve
+- [Tenable 2021 We Need an Emulator — custom-ISA string decrypt (Python emulator)](https://ctftime.org/writeup/26147) | medium | custom-ISA spec → Python emulator (mov/xor/reverse) → TRX-init decrypt → verify
+- [UUTCTF 2019 Weird Application — Android anti-emulation/root/obfuscation via Frida](https://ctftime.org/writeup/15084) | medium | APK triage → Frida anti-emulation/root bypass → native compare hook → secret dump
+- [InterIUT 2020 Jankenpon — Frida checkWin control + method-reuse decrypt](https://ctftime.org/writeup/25122) | medium | APK method map → Frida checkWin arg control → reuse-decrypt unintended path → flag recover
+- [Frida-labs 0x8 — native strcmp hook (no-decrypt-needed secret intercept)](https://github.com/brnpl/CTF-writeups/blob/master/android/frida-labs/0x8.md) | medium | native lib locate → strcmp hook → comparison-arg intercept → direct secret read
+- [Frida-labs 0x1 — RNG-gated validation via dynamic instrumentation](https://github.com/brnpl/CTF-writeups/blob/master/android/frida-labs/0x1.md) | medium | validation-logic map → RNG source hook → forced/observed output → flag derive
+- [CSAW 2017 realism — MBR XMM-obfuscated check (QEMU+gdb, psadbw semantics, SMT)](https://github.com/TechSecCTF/writeups/blob/master/CSAWQuals2017/realism/README.md) | hard | 512B MBR disasm → XMM/shuffle semantics → QEMU+gdb register observe → SMT invert
+- [raxer Simple Crackme — indexed-mask password (x64dbg stepping, JS keygen)](https://github.com/v0idMrK/CrackMe-challenge-writeup-1) | medium | string-xref locate → loop-bound read (13×) → index-mask derive → JS keygen
+- [LaFarge CrackMe2 — 7-stage XOR serial + jne→jmp patch alternative](https://github.com/JulianOzelRose/LaFarge-CrackMe2-Keygen) | medium | lstrcmp compare locate → 7-transform serial invert → keygen OR jne→jmp patch
+- [LaFarge CrackMe2 natitati — commented C keygen](https://crackmes.one/solution/642e059033c5d439389124c7) | medium | serial algorithm document → C keygen → verify on binary
+- [Fatmike Crackme #3 — unpack + DLL-strip + keygen + hook solve](https://crackmes.one/solution/6717eefc9b533b4c22bd1a5f) | hard | unpack → dependency strip → keygen → hooking-assisted solve
+- [Evasive crackme — LZMA FPACK self-extractor + dead-code flag vs decoy file](https://github.com/alvin-ramsammy/crackme-writeups/tree/main/evasive-crackme-writeup) | medium | import-sparse triage → RCDATA LZMA extract → dead-code XOR decode → decoy discrimination
+- [Try and patch me — patch-first solve path](https://crackmes.one/solution/65b9d424eef082e477ff6444) | medium-easy | branch locate → patch-and-run → verify
+- [1337UP LIVE Obfuscation — lightweight transform chain](https://ctftime.org/writeup/38240) | medium | output-diff oracle → transform chain invert → verify

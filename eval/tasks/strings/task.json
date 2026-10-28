@@ -1,0 +1,13 @@
+{
+ "id": "strings",
+ "title": "Embedded String",
+ "category": "rev",
+ "difficulty": "easy",
+ "points": 200,
+ "description": "A binary blob contains an embedded answer. Extract it without executing the file.",
+ "salt": "ctf-engine-v1",
+ "flag_sha256": "7e2b6bb39f0fe4d8161a748d921ee4ae6ab732632bd18ddb3217a838d49293ca",
+ "timeout_s": 60,
+ "network": "none",
+ "sandbox": "local"
+}

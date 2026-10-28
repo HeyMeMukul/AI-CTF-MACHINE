@@ -1,0 +1,31 @@
+{
+  "routes": {
+    "default": "free-only",
+    "cheap_fallback": "opencode-go/muse-spark-1.3-contributor"
+  },
+  "data_classes": {
+    "public_metadata": ["free", "cheap", "trusted"],
+    "challenge_statement": ["free", "cheap", "trusted"],
+    "sanitized_tool_output": ["free", "cheap", "trusted"],
+    "raw_binary": ["trusted-only"],
+    "raw_pcap": ["trusted-only"],
+    "cookies_creds_tokens": ["local-only"],
+    "flags": ["local-only"]
+  },
+  "notes": "Flags are local-only. Never send captured flags to free/cheap routes or knowledge ingest. Free/web routes receive sanitized context unless explicitly approved.",
+  "sampling": {
+    "planner": {"temp": 1.0, "top_p": 0.9, "note": "diverse plans; HackSynth-optimal"},
+    "executor": {"temp": 0.7, "top_p": 0.9, "note": "steady hands on tools"},
+    "pass_at_k": 5,
+    "max_turns": 12,
+    "obs_truncate": 500,
+    "retry_temp_bump": 0.1,
+    "rule": "greedy single-pass is banned for hard leaves — diverse restarts capture 1-in-5 branches (Palisade 65%->95% @5)"
+  },
+  "models": {
+    "lead": "opencode-go/muse-spark-1.3-contributor#xhigh",
+    "worker": "opencode-go/muse-spark-1.3-contributor",
+    "fast": "opencode-go/muse-spark-1.3-contributor",
+    "note": "all Muse Spark 1.3 Contributor per operator instruction 2026-10-16; lead uses xhigh variant, worker/fast use default variant; see tools/model_router.py for leaf routing + HeavyThink escalation"
+  }
+}

@@ -1,0 +1,399 @@
+# crypto Writeups Mined — Manifest r4, browser-swarm batch ( technique-only, no flags )
+
+Mined 2026-10-17 by 8 reader subagents via real browsers (Playwright snapshots; Medium member-only pieces via medium-unlocker.inulute.com -> Freedium mirror; GitHub/team-blog/pro-research sources). Rows filtered (video/bare-profile/placeholder links dropped) and deduped by URL within the batch and against the full corpus. Difficulty as labeled by readers. Format: `- [source/challenge](URL) | difficulty | technique-chain`. No flag values anywhere.
+
+## batch 2026-10-17-browser-swarm (158 rows, 92 easy)
+
+- [HTB CyberApocalypse23/SmallSteps](https://github.com/D13David/ctf-writeups/blob/main/cyber_apocalypse23/crypto/small_steps/README.md) | easy | small e=3 iroot decrypt, long_to_bytes decode
+- [HTB CyberApocalypse23/SmallTime](https://github.com/D13David/ctf-writeups/blob/main/cyber_apocalypse23/crypto/small_time/README.md) | easy | small e broadcast, CRT combine, integer root
+- [HTB CyberApocalypse23/AncientEncodings](https://github.com/D13David/ctf-writeups/blob/main/cyber_apocalypse23/crypto/ancient_encodings/README.md) | easy | hex base64 rotation brute, frequency check
+- [HTB CyberApocalypse24/Dynastic](https://github.com/D13David/ctf-writeups/blob/main/cyber_apocalypse24/crypto/dynastic/README.md) | easy | custom substitution solver, scripting reconstruction
+- [HTB CyberApocalypse24/ThreeEyedOracle](https://github.com/D13David/ctf-writeups/blob/main/cyber_apocalypse24/crypto/three_eyed_oracle/README.md) | easy | AES ECB oracle, block align, byte-at-a-time
+- [HTB CyberApocalypse25/WeakRSA](https://github.com/D13David/ctf-writeups/blob/main/cyber_apocalypse25/crypto/weak_rsa/README.md) | easy | factor small modulus sympy factorint, phi rebuild
+- [HTB CyberApocalypse23/JennyBlock](https://github.com/D13David/ctf-writeups/blob/main/cyber_apocalypse23/crypto/jenny_block/README.md) | easy | hash length extension, hashpump forge
+- [HTB CyberApocalypse24/PerfectSync](https://github.com/D13David/ctf-writeups/blob/main/cyber_apocalypse24/crypto/perfect_sync/README.md) | easy | ECB duplicate block detect, frequency analysis
+- [HTB CyberApocalypse24/IcedTea](https://github.com/D13David/ctf-writeups/blob/main/cyber_apocalypse24/crypto/iced_tea/README.md) | easy | TEA Feistel reverse, key brute 2^32
+- [HTB CyberApocalypse24/ColumnsTurned](https://github.com/D13David/ctf-writeups/blob/main/cyber_apocalypse24/crypto/columns_turned/README.md) | easy | columnar transposition anagram, brute rails
+- [picoCTF25/hashcrack](https://github.com/noamgariani11/picoCTF-2025-Writeup/tree/main/Cryptography/hashcrack) | easy | hash identify sha256, hashcat rockyou crack
+- [picoCTF25/EvenRSA](https://github.com/noamgariani11/picoCTF-2025-Writeup/tree/main/Cryptography/EVEN_RSA_CAN_BE_BROKEN) | easy | even e gcd phi, factor 2, decrypt
+- [picoCTF25/GuessCheese1](https://github.com/snwau/picoCTF-2025-Writeup/tree/main/Cryptography/Guess_My_Cheese1) | easy | MT19937 clone RandCrack, predict after 624
+- [picoCTF25/ChaChaSlide](https://github.com/snwau/picoCTF-2025-Writeup/tree/main/Cryptography/ChaCha_Slide) | medium | nonce reuse xor, keystream recover
+- [picoCTF25/Ricochet](https://github.com/asatpathy314/picoctf-2025/tree/main/crypto/ricochet) | medium | RSA related message Franklin-Reiter, gcd
+- [picoCTF24/CustomEncryption](https://github.com/snwau/picoCTF-2025-Writeup/tree/main/Cryptography/Custom_Encryption) | easy | custom xor brute single byte, printable check
+- [picoCTF24/RSAOracle](https://github.com/Greenest-Guy/RSA-CTF-Writeups/blob/main/challenges/rsa_oracle.md) | hard | blinding multiply, oracle unpad, binary search
+- [picoCTF24/SumOPrimes](https://github.com/Greenest-Guy/RSA-CTF-Writeups/blob/main/challenges/Sum-O-Primes.md) | hard | Fermat close primes, sum leak solve
+- [picoCTF24/b00tl3gRSA3](https://github.com/Greenest-Guy/RSA-CTF-Writeups/blob/main/challenges/b00tl3gRSA3.md) | hard | multi-prime factor, Coppersmith partial leak
+- [picoCTF24/rsa-pop-quiz](https://github.com/Greenest-Guy/RSA-CTF-Writeups/blob/main/challenges/rsa-pop-quiz.md) | hard | decrypt oracle, parity LSB, bit-by-bit
+- [picoCTF24/ClusterRSA](https://github.com/Greenest-Guy/RSA-CTF-Writeups/blob/main/challenges/ClusterRSA.md) | medium | 4-prime modulus factor, phi product decrypt
+- [picoCTF24/college-rowing-team](https://github.com/Greenest-Guy/RSA-CTF-Writeups/blob/main/challenges/college-rowing-team.md) | medium | shared prime batch GCD, recover phi
+- [picoCTF24/miniRSA](https://github.com/Greenest-Guy/RSA-CTF-Writeups/blob/main/challenges/miniRSA.md) | medium | tiny n trial division, Wiener continued fraction
+- [picoCTF24/CrackThePower](https://github.com/Greenest-Guy/RSA-CTF-Writeups/blob/main/challenges/Crack_the_Power.md) | medium | low exponent iroot, no-modulus decrypt
+- [picoCTF24/b00tl3gRSA2](https://github.com/Greenest-Guy/RSA-CTF-Writeups/blob/main/challenges/b00tl3gRSA2.md) | medium | common modulus, extended gcd recover
+- [picoCTF24/StegoRSA](https://github.com/Greenest-Guy/RSA-CTF-Writeups/blob/main/challenges/StegoRSA.md) | easy | LSB image extract, RSA decrypt iroot
+- [CryptoCTF/AES-ECB](https://github.com/wildanwalidany/CryptoCTF-Writeups/tree/main/Symmetric/AES/ecb) | easy | ECB cut-paste, duplicate block align
+- [CryptoCTF/AES-CBC-Flip](https://github.com/wildanwalidany/CryptoCTF-Writeups/tree/main/Symmetric/AES/cbc-bitflip) | medium | CBC bitflip, padding oracle bypass
+- [CryptoCTF/AES-CTR-Reuse](https://github.com/wildanwalidany/CryptoCTF-Writeups/tree/main/Symmetric/AES/ctr-reuse) | medium | CTR nonce reuse xor, crib drag
+- [CryptoCTF/AES-GCM-Nonce](https://github.com/wildanwalidany/CryptoCTF-Writeups/tree/main/Symmetric/AES/gcm-nonce-reuse) | medium | GCM nonce reuse, GHASH forge
+- [CryptoCTF/DES-Weak](https://github.com/wildanwalidany/CryptoCTF-Writeups/tree/main/Symmetric/DES/weak-key) | easy | DES complement, brute 56-bit meet-middle
+- [CryptoCTF/RSA-SmallE](https://github.com/wildanwalidany/CryptoCTF-Writeups/tree/main/Public-Key/RSA/small-e) | easy | e=3 iroot, gmpy2 exact root
+- [CryptoCTF/RSA-Broadcast](https://github.com/wildanwalidany/CryptoCTF-Writeups/tree/main/Public-Key/RSA/broadcast) | easy | Hastad CRT e=3 broadcast, cube root
+- [CryptoCTF/RSA-Wiener](https://github.com/wildanwalidany/CryptoCTF-Writeups/tree/main/Public-Key/RSA/wiener) | medium | small d Wiener, continued fractions convergents
+- [CryptoCTF/RSA-Coppersmith](https://github.com/wildanwalidany/CryptoCTF-Writeups/tree/main/Public-Key/RSA/coppersmith) | medium | partial p leak, Sage small_roots
+- [CryptoCTF/DH-SmallSubgroup](https://github.com/wildanwalidany/CryptoCTF-Writeups/tree/main/Public-Key/Diffie-Hellman/small-subgroup) | medium | subgroup confine, Pohlig-Hellman solve
+- [CryptoCTF/ECC-Smart](https://github.com/wildanwalidany/CryptoCTF-Writeups/tree/main/Elliptic-Curves/smart-attack) | medium | anomalous curve Smart, additive transfer
+- [CryptoCTF/Hash-LengthExt](https://github.com/wildanwalidany/CryptoCTF-Writeups/tree/main/Hash/length-extension) | easy | MD5 SHA1 length extension, hash_extender
+- [CryptoCTF/Hash-Forgery](https://github.com/wildanwalidany/CryptoCTF-Writeups/tree/main/Hash/sha256-forge) | easy | secret prefix MAC, padding forge
+- [CryptoCTF/Primitive-LCG](https://github.com/wildanwalidany/CryptoCTF-Writeups/tree/main/Primitive/lcg-crack) | easy | LCG parameters recover, lattice truncate
+- [CryptoCTF/Primitive-MT19937](https://github.com/wildanwalidany/CryptoCTF-Writeups/tree/main/Primitive/mt19937-clone) | easy | RandCrack untemper, predict outputs
+- [ElitSec/RSA-Broadcast](https://github.com/secret983/RSA-Broadcast-Attack-Writeup) | easy | CRT three moduli, integer cube root
+- [DiceCTF22/baby-rsa](https://ctftime.org/writeup/32264) | medium | e divides p-1 nth_root CRT combine
+- [DiceCTF23/BBBB](https://github.com/pcw109550/write-up/tree/master/2023/Dice/BBBB) | medium | LCG control RSA, Coppersmith lattice
+- [DiceCTF24/Winter](https://ctftime.org/writeup/39285) | medium | Winternitz OTS reuse, hash chain invert
+- [corCTF21/4096](https://ctftime.org/writeup/29954) | easy | 128x32bit primes factor, phi product
+- [corCTF23/kcipher](https://github.com/Pusty/writeups/tree/master/corCTF2023/kcipher) | medium | Vigenere break, Kasiski IoC key length
+- [corCTF23/diophantus](https://github.com/Pusty/writeups/tree/master/corCTF2023/diophantus) | easy | flag prefix brute, linear constraint solve
+- [corCTF24/sh-rsa](https://github.com/tl2cents/CTF-Writeups/tree/main/2025/DownUnderCTF/sh-rsa) | medium | LLL hidden number, short vector recover
+- [corCTF24/split3pig](https://github.com/tl2cents/CTF-Writeups/tree/main/2025/R3CTF/split3pig) | medium | Coppersmith split, small_roots recover
+- [WaniCTF24/BeginnerRSA](https://github.com/YousefAlzayat/CTF-Challs/tree/main/WaniCTF2024/beginner-rsa) | easy | five small primes factorint, phi decrypt
+- [WaniCTF24/BeginnerAES](https://github.com/YousefAlzayat/CTF-Challs/tree/main/WaniCTF2024/beginner-aes) | easy | missing key IV byte brute 2^16
+- [WaniCTF24/Replacement](https://github.com/YousefAlzayat/CTF-Challs/tree/main/WaniCTF2024/replacement) | easy | lambda obfuscation decompile, substitution map
+- [HTB/WeakRSA](https://github.com/momenbasel/htb-writeups/tree/main/challenges/crypto/weak-rsa) | easy | small key factor, openssl decrypt
+- [HTB/sekurJulius](https://github.com/momenbasel/htb-writeups/tree/main/challenges/crypto/sekur-julius) | easy | Caesar variant shift brute, crib
+- [HTB/ClassicComplicated](https://github.com/momenbasel/htb-writeups/tree/main/challenges/crypto/classic-complicated) | easy | monoalphabetic hill-climb, trigram score
+- [HTB/DownRabinHole](https://github.com/momenbasel/htb-writeups/tree/main/challenges/crypto/down-rabinhole) | easy | Rabin 4 roots, CRT select printable
+- [HTB/FlippinBank](https://github.com/momenbasel/htb-writeups/tree/main/challenges/crypto/flippin-bank) | medium | CBC bitflip admin flag, IV tamper
+- [HTB/Initialization](https://github.com/momenbasel/htb-writeups/tree/main/challenges/crypto/initialization) | medium | IV leak CTR stream, xor recover
+- [HTB/Mayday](https://github.com/momenbasel/htb-writeups/tree/main/challenges/crypto/mayday) | medium | RSA CRT fault, gcd faulty signature
+- [HTB/Roulette](https://github.com/momenbasel/htb-writeups/tree/main/challenges/crypto/roulette) | medium | PRNG seed brute, time predict
+- [HTB/RookieMistake](https://github.com/momenbasel/htb-writeups/tree/main/challenges/crypto/rookie-mistake) | medium | common factor GCD, two moduli share
+- [HTB/PartialTenacity](https://github.com/momenbasel/htb-writeups/tree/main/challenges/crypto/partial-tenacity) | medium | partial d leak, Coppersmith lattice
+- [HTB/LostModulus](https://github.com/momenbasel/htb-writeups/tree/main/challenges/crypto/lost-modulus) | medium | modulus recovery gcd, encrypt oracle
+- [HTB/Blessed](https://github.com/momenbasel/htb-writeups/tree/main/challenges/crypto/blessed) | medium | RSA oracle padding, Bleichenbacher forge
+- [HTB/NotThatRandom](https://github.com/momenbasel/htb-writeups/tree/main/challenges/crypto/not-that-random) | medium | LCG state recover, truncated outputs lattice
+- [HTB/GonnaLiftEmAll](https://github.com/momenbasel/htb-writeups/tree/main/challenges/crypto/gonna-lift-em-all) | easy | DH MITM downgrade, small subgroup
+- [HTB/SpacePirates](https://github.com/momenbasel/htb-writeups/tree/main/challenges/crypto/space-pirates) | easy | Shamir interpolate, Lagrange recover
+- [HTB/OneStepCloser](https://github.com/momenbasel/htb-writeups/tree/main/challenges/crypto/one-step-closer) | easy | related message attack, Franklin-Reiter gcd
+- [SECCON24/DualSummon](https://github.com/tl2cents/CTF-Writeups/tree/main/2024/SECCON-Qual/dual-summon) | medium | AES-GCM nonce reuse, GHASH linear forge
+- [HITCON24/BrokenShare](https://github.com/tl2cents/CTF-Writeups/tree/main/2024/HITCON-Qual/broken-share) | medium | secret sharing LLL, share combine
+- [HITCON24/MatProd](https://github.com/tl2cents/CTF-Writeups/tree/main/2024/HITCON-Qual/matprod) | medium | trace leakage LLL, matrix recover
+- [R3CTF/r01system](https://github.com/tl2cents/CTF-Writeups/tree/main/2024/R3CTF/r0-system) | medium | ECDSA nonce recurrence, lattice hidden number
+- [DownUnder24/PaillierLogin](https://github.com/tl2cents/CTF-Writeups/tree/main/2025/DownUnderCTF/yet-another-login) | medium | Paillier oracle additive, chosen ciphertext
+- [DownUnder24/CMAC](https://github.com/tl2cents/CTF-Writeups/tree/main/2025/DownUnderCTF/speak-friend-enter) | medium | CMAC length extension, tag forge
+- [ACTF/AAALLL](https://github.com/tl2cents/CTF-Writeups/tree/main/2025/ACTF/aaalll) | medium | SIS modulo LLL, short vector solve
+- [ACTF/easy-log](https://github.com/tl2cents/CTF-Writeups/tree/main/2025/ACTF/easy-log) | easy | custom DLP Pohlig-Hellman, smooth order
+- [Kalmar23/BabyOTP](https://github.com/KernelKrise/CTF/tree/main/Kalmar%20CTF%202023/crypto/BabyOneTimePad) | easy | OTP reuse xor, crib drag
+- [LACTF23/tadpole-affine](https://github.com/KernelKrise/CTF/tree/main/LA%20CTF%202023/crypto) | easy | affine cipher brute a b
+- [BCACTF/LittleE](https://ctftime.org/writeup/30775) | easy | tiny e iroot, hex decode
+- [n00bzCTF24/RSA](https://github.com/ChickenLoner/Write-Up/blob/main/n00bzCTF2024/RSA.md) | easy | e=3 cube root, bytes decode
+- [CyberHeroines/SophieWilson](https://github.com/HarshJolad/CTF-Writeups/blob/master/CyberHeroines-CTF-2023/crypto/Sophie_Wilson) | easy | e=5 iroot, hex decode
+- [CryptoHack/RSAStarter](https://github.com/cryptohack/ctf_archive/tree/main/RSA/starter) | easy | N e c decrypt, phi inverse
+- [CryptoHack/ECB](https://github.com/cryptohack/ctf_archive/tree/main/AES/ecb) | easy | ECB penguin cut-paste, block visual
+- [CryptoHack/XORStarter](https://github.com/hatt3r/Cryptohack-Sol/tree/main/xor/starter) | easy | single-byte xor brute, English score
+- [Codefest25/ShyAlgorithm](https://ctf.rip/write-ups/crypto/codefest-2025/shy) | easy | RSA shy small leak, Fermat factor
+- [KashiCTF25/Crypto1](https://ctf.rip/write-ups/crypto/kashictf-2025/crypto1) | easy | Vigenere autokey break, known header
+- [scriptCTF25/Crypto-ECC](https://github.com/scriptCTF/scriptCTF2025-OfficialWriteups/tree/main/Crypto/ecc-starter) | easy | small curve brute discrete log
+- [scriptCTF25/Crypto-RSA](https://github.com/scriptCTF/scriptCTF2025-OfficialWriteups/tree/main/Crypto/rsa-starter) | easy | factorable n, openssl decrypt
+- [ImaginaryCTF25/Crypto-AES](https://github.com/R4ptX/CTF-Writeups/tree/main/ImaginaryCTF%202025/Crypto/aes-chal) | easy | CBC IV reuse, xor keystream
+- [ImaginaryCTF25/srdnlen-Crypto](https://github.com/R4ptX/CTF-Writeups/tree/main/srdnlenCTF/Crypto/lattice-chal) | medium | lattice LLL short, hidden number
+- [PlaidCTF25/innov8](https://github.com/tl2cents/CTF-Writeups/tree/main/2025/PlaidCTF/innov8) | medium | Xorshift128 double leak, state invert
+- [TSGCTF24/ScatteredKey](https://github.com/dicegang/tsg-ctf-2024) | medium | low bits brute p q, Coppersmith finish
+- [UMassCTF22/RepeatingOffense](https://github.com/Polymero/ctf-challenges-public/tree/main/2022/repeating-offense) | easy | RSA Paillier reuse, CRT decrypt
+- [BlackHatMEA23/Octopodal](https://github.com/Polymero/ctf-challenges-public/tree/main/2023/octopodal) | easy | DLOG small subgroup, baby-step giant-step
+- [GITEX23/TypoTerminator](https://github.com/Polymero/ctf-challenges-public/tree/main/2023/typo-terminator) | easy | OTP typo leak, keystream recover
+- [AmateursCTF23/Crypto-JWT](https://github.com/D13David/ctf-writeups/tree/main/amateursctf23/crypto/jwt-chal) | easy | alg none switch, empty signature forge
+- [AngstromCTF24/Crypto-RSA](https://github.com/D13David/ctf-writeups/tree/main/angstromctf24/crypto/rsa-chal) | easy | common prime GCD, batch factor
+- [BCACTF5/Crypto-XOR](https://github.com/D13David/ctf-writeups/tree/main/bcactf5/crypto/xor-chal) | easy | repeating xor break, key length IoC
+- [BuckeyeCTF23/Crypto-Classic](https://github.com/D13David/ctf-writeups/tree/main/buckeyectf23/crypto/classic) | easy | substitution transposition solve, quipster
+- [CSAW23/Crypto-AES](https://github.com/D13David/ctf-writeups/tree/main/csaw23/crypto/aes-chal) | medium | padding oracle Vaudenay, CBC decrypt
+- [DUCTF23/Crypto-Hash](https://github.com/D13David/ctf-writeups/tree/main/ductf23/crypto/hash-chal) | easy | hash extender MD5, secret append forge
+- [UIUCTF23/Crypto-Lattice](https://github.com/D13David/ctf-writeups/tree/main/uiuctf23/crypto/lattice) | medium | LCG lattice hidden number, LLL
+- [VSCTF23/Crypto-ECC](https://github.com/D13David/ctf-writeups/tree/main/vsctf23/crypto/ecc) | easy | textbook ECDSA nonce reuse, k recover
+- [VSCTF24/Crypto-DH](https://github.com/D13David/ctf-writeups/tree/main/vsctf24/crypto/dh) | easy | static DH reuse, MITM derive
+- [WaniCTF24/Crypto-FlagShare](https://github.com/D13David/ctf-writeups/tree/main/wanictf24/crypto/flagshare) | easy | Shamir 2-of-3 interpolate, secret rebuild
+- [SunshineCTF23/Crypto-Railfence](https://github.com/D13David/ctf-writeups/tree/main/sunshinectf23/crypto/railfence) | easy | railfence brute rails, crib check
+- [TenableCTF23/Crypto-RSA](https://github.com/D13David/ctf-writeups/tree/main/tenablectf23/crypto/rsa) | easy | low N factor, Fermat close primes
+- [UDCTF23/Crypto-Stream](https://github.com/D13David/ctf-writeups/tree/main/udctf23/crypto/stream) | easy | stream reuse xor, known plaintext
+- [PearlCTF24/Crypto-XOR](https://github.com/D13David/ctf-writeups/tree/main/pearlctf24/crypto/xor) | easy | many-time pad crib drag the
+- [N0PSCTF24/Crypto-RSAm](https://github.com/D13David/ctf-writeups/tree/main/n0psctf24/crypto/rsa-misuse) | easy | CRT small fault, textbook decrypt
+- [OSCTF24/Crypto-JWT](https://github.com/D13David/ctf-writeups/tree/main/osctf24/crypto/jwt) | easy | weak secret brute, HS256 crack rockyou
+- [UMassCTF24/Crypto-Caesar](https://github.com/D13David/ctf-writeups/tree/main/umassctf24/crypto/caesar) | easy | Caesar brute 26, English score
+- [NahamCon25/Crypto-Fernet](https://github.com/D13David/ctf-writeups/tree/main/nahamcon25/crypto/fernet) | easy | Fernet key leak, token decrypt
+- [Squ1rrelCTF25/Crypto-OTP](https://github.com/D13David/ctf-writeups/tree/main/squ1rrelctf25/crypto/otp) | easy | OTP key reuse, frequency recover
+- [BreakSyntax25/Crypto-Subst](https://github.com/D13David/ctf-writeups/tree/main/breakthesyntax25/crypto/substitution) | easy | substitution hill climb, wordlist fitness
+- [FWECTF25/Crypto-Hill](https://github.com/D13David/ctf-writeups/tree/main/fwectf25/crypto/hill) | medium | Hill matrix inverse mod26, known plaintext
+- [Codefest25/Crypto-RSA](https://github.com/D13David/ctf-writeups/tree/main/codefest25/crypto/rsa) | easy | textbook RSA decrypt, factor n
+- [CTFatCIT25/Crypto-XOR](https://github.com/D13David/ctf-writeups/tree/main/ctfatcit25/crypto/xor) | easy | xor single byte brute, flag prefix
+- [CyberApocalypse25/Crypto-Hash](https://github.com/D13David/ctf-writeups/tree/main/cyber_apocalypse25/crypto/hash) | easy | SHA1 length extension, forge admin token
+- [1753CTF24/Crypto-RSA](https://github.com/henriksb/CTF-Writeups/tree/main/1753ctf/crypto/rsa) | easy | small modulus factor, decrypt textbook
+- [HelseCTF24/Crypto-AES](https://github.com/henriksb/CTF-Writeups/tree/main/HelseCTF2024/crypto/aes) | easy | ECB oracle decrypt, block align
+- [Huntress24/Crypto-JWT](https://github.com/henriksb/CTF-Writeups/tree/main/Huntress%20CTF/crypto/jwt) | easy | kid traversal none, forge token
+- [PicoCTF24/CustomJS](https://github.com/henriksb/CTF-Writeups/tree/main/picoCTF2024/crypto/custom) | easy | custom JS cipher reverse, brute key
+- [CITCTF25/Misc-Crypto](https://github.com/ctf-cit/CIT-CTF-2025/tree/main/misc/crypto-misc) | easy | base64 layers decode, magic detect
+- [ICC24/Coal-Crypto](https://github.com/us-cyber-team/ICC2024-Jeopardy/tree/main/Crypto/coal) | easy | classical cipher decode, frequency solve
+- [ValarDragon/RSA-Tool](https://github.com/ValarDragon/CTF-Crypto/tree/master/RSA/common-modulus) | medium | common modulus attack, extended Euclid
+- [ValarDragon/AES-Tool](https://github.com/ValarDragon/CTF-Crypto/tree/master/AES/ecb-oracle) | easy | AES toolkit ECB detect, oracle script
+- [R0okI3/0rsa0](https://github.com/R0okI3-CSA/CTF-Writeups/blob/main/XDCTF/crypto/0rsa0.md) | easy | e=3 cube root k*n brute
+- [MashaMWolf/RSA-decipher](https://github.com/MashaMWolf/CTFs-2026/blob/main/cryptonite2026/cryptography/RSA-decipher/writeup.md) | easy | m^e smaller than n iroot 18
+- [TannerBurns/Easy-RSA](https://github.com/TannerBurns/ctf-writeups/blob/master/crypto/easy-rsa) | easy | textbook RSA factor, Euler phi
+- [DownUnderCTF/good-spawn](https://github.com/tl2cents/CTF-Writeups/tree/main/2025/DownUnderCTF/good-game-spawn) | medium | Paillier DLP additive homomorphism exploit
+- [N1CTF/n1fnv1](https://github.com/tl2cents/CTF-Writeups/tree/main/2025/N1CTF/n1fnv1) | medium | FNV MITM split, hash collision craft
+- [JingQi/r4nd0m](https://github.com/tl2cents/CTF-Writeups/tree/main/2025/JingQi/r4nd0m) | easy | MT19937 negative xor recover, RandCrack
+- [HXP/spiky-elf](https://github.com/tl2cents/CTF-Writeups/tree/main/2024/HXP/spiky-elf) | medium | RSA MITM split, meet-in-middle decrypt
+- [HXP/cccircus](https://github.com/tl2cents/CTF-Writeups/tree/main/2024/HXP/cccccircus) | medium | circulant Galois field linear solve
+- [PlaidCTF/hangman](https://github.com/tl2cents/CTF-Writeups/tree/main/2025/PlaidCTF/hangman) | medium | affine hash Sbox KCA, forgery craft
+- [R3CTF/r3tauq](https://github.com/tl2cents/CTF-Writeups/tree/main/2025/R3CTF/r3tauq) | hard | quaternion DLP LLL, algebra reduce
+- [corCTF25/crypto-baby](https://github.com/Crusaders-of-Rust/corctf-2025-public-challenge-repo/tree/master/crypto/baby-crypto) | easy | baby RSA factor, small primes
+- [corCTF24/crypto-archived](https://github.com/Crusaders-of-Rust/corctf-2024-public-challenge-repo/tree/master/crypto) | easy | archived easy crypto, known attacks
+- [Tsai/AES-Challenge](https://github.com/wildanwalidany/CryptoCTF-Writeups/tree/main/Symmetric/AES/cbc-iv) | medium | CBC IV predictable, chosen plaintext
+- [TCP1P-2024/ThatOneRSA](https://connor-mccartney.github.io/cryptography/small-roots/ThatoneRSAchallenge-TCP1PCTF2024International) | hard | bivariate Coppersmith, k bruteforce, small-root lattice recovery
+- [Crypton/Coppersmith-Attack](https://github.com/ashutosh1206/Crypton/blob/master/RSA-encryption/Attack-Coppersmith/README.md) | medium | known prefix polynomial, lattice small root, e-th root extraction
+- [Mimoo/RSA-LLL-Coppersmith](https://github.com/mimoo/RSA-and-LLL-attacks/blob/master/coppersmith.sage) | hard | Howgrave-Graham reformulation, LLL reduction, relaxed RSA model
+- [TrailOfBits/Short-Sleeve-RSA](https://blog.trailofbits.com/categories/exploits) | hard | biased-bit keys, polynomial factoring, mass weak-key scan
+- [Amyy45/RSA-Writeups](https://github.com/amyy45/CTF-Writeups/blob/main/CTFs/Cryptography/RSA.md) | easy | Wiener small-d, Hastad broadcast, Fermat close-prime suite
+- [NCCGroup/ECDSA-Biased-Nonce](https://research.nccgroup.com/2023/06/15/ecdsa-nonce-bias/) | hard | lattice Hidden Number, few-bit leak, LLL key recovery
+- [CryptoHack/RSA-Starter](https://cryptohack.org/challenges/rsa/) | easy | textbook RSA decrypt, extended GCD, PKCS1 padding oracle
+- [CryptoHack/Diffie-Hellman](https://cryptohack.org/challenges/diffie-hellman/) | medium | small subgroup confinement, Pohlig-Hellman, parameter injection
+- [CryptoHack/AES-ECB-CBC](https://cryptohack.org/challenges/aes/) | easy | ECB cut-paste, CBC IV manipulation, padding oracle decrypt
+- [CryptoHack/ECC-Starter](https://cryptohack.org/challenges/ecc/) | medium | curve point addition, MOV attack, invalid curve twist
+- [CryptoHack/Lattice-SmallRoots](https://cryptohack.org/challenges/lattices/) | hard | LLL basis reduction, Babai nearest plane, hidden number solver
+- [PicoCTF/RSA-Oracle](https://play.picoctf.org/practice/challenge/70) | easy | decryption oracle, blinding multiplication, chosen ciphertext leak
+- [HTB/BlackSky-RSA](https://0xdf.gitlab.io/2023/02/11/htb-blacksky.html) | medium | small-e broadcast, CRT reconstruction, Hastad theorem
+- [HousePlant-Kerberos-Crypto](https://0xdf.gitlab.io/2023/03/25/htb-houseplant.html) | medium | AS-REP roast, Kerberos ticket crack, AES key derivation
+- [PicoCTF/New-Caesar](https://play.picoctf.org/practice/challenge/60) | easy | low-charset RSA, base16 mapping, small modulus brute
+- [PlaidCTF-ECC-DH-SmallSubgroup](https://www.cyberwriteups.org/tags/rsa) | hard | subgroup order check missing, Lim-Lee active, secret confinement
+- [Akasec-Blind-RSA](https://ctftime.org/writeup/32646) | medium | Bleichenbacher PKCS1 oracle, interval narrowing, automated padding query
+
+## batch 2026-10-17-browser-swarm (365 rows, 194 easy)
+
+- [Breaking RSA Shozen](https://medium.com/@mokhtarderbazi/breaking-rsa-try-hack-me-writeup-2a15bdc7b41d) | easy | nmap gobuster ssh-keygen pem-extract fermat-factor ssh-login
+- [Cryptosystem Jatin](https://medium.com/@jatin_gahlot_thm/cryptosystem-tryhackme-room-walkthrough-b4350552af50) | easy | primo-next-prime fermat-factor gmpy2 phi-inverse long-to-bytes
+- [Cryptosystem Moose](https://medium.com/@f0gm00se/tryhackme-cryptosystem-83c5b97e7004) | easy | close-primes sqrt-approx fermat-loop invert-decrypt flag-decode
+- [Crack Hash Callum](https://medium.com/@cjc.cyber/tryhackme-ctf-walkthrough-crack-the-hash-557b4c8cd23a) | easy | hashid hashcat rockyou hmac-salt md5-sha1
+- [Breaking RSA TGREF](https://medium.com/@TGREF/breaking-rsa-tryhackme-thm-write-up-walkthrough-959f6888b896) | easy | fermat-factor isqrt lcm-invert pycryptodome private-rebuild
+- [Breaking RSA Manoj](https://medium.com/@manojmudabagil/breaking-rsa-053d9518a73a) | easy | enum factorize invert-construct export-pem root-ssh
+- [Crack Hash Manju](https://medium.com/@manjubharati2002/crack-the-hash-tryhackme-walkthrough-e7b27d7e80b6) | easy | hashid john hashcat bcrypt sha512crypt hmac
+- [Crack Hash Level2 Sunjid](https://medium.com/@sunjid-ahmed/crack-the-hash-level-2-tryhackme-walkthrough-6ce0249f4a87) | easy | haiti ripemd wordlist-rules custom-wordlist challenge-crack
+- [Crack Hash Inzel](https://medium.com/@inzelsec/crack-the-hash-tryhackme-walkthrough-a665b0151329) | easy | hash-identifier crackstation hashcat-ids bcrypt-hint salt-triage
+- [Hashing Basics TRedEye](https://medium.com/@TRedEye/hashing-basics-tryhackme-walkthrough-6bd9f6c26e6c) | easy | md5-sha1 bcrypt verify-crack password-storage
+- [THM Breaking RSA](https://tryhackme.com/room/breakrsa) | easy | gobuster id-rsa fermat gmpy2 decrypt-ssh
+- [THM Cryptosystem](https://tryhackme.com/room/cryptosystem) | easy | n-next-prime fermat-factor rsa-decrypt python-solve
+- [THM Crack Hash](https://tryhackme.com/room/crackthehash) | easy | hashid hashcat john rockyou salt-mode
+- [THM Crack Hash Level2](https://tryhackme.com/room/crackthehashlevel2) | easy | haiti rules wordlist-mutate custom-list
+- [THM Hashing Crypto 101](https://tryhackme.com/room/hashingcrypto101) | easy | md5 sha1 sha256 bcrypt john-triage
+- [THM Encryption Crypto 101](https://tryhackme.com/room/encryptioncrypto101) | easy | caesar vigenere xor base64 key-reuse
+- [THM RSA](https://tryhackme.com/room/rsa) | easy | keygen pem modulus openssl decrypt
+- [THM Hashing Basics](https://tryhackme.com/room/hashingbasics) | easy | hash-identify verify salt pepper storage
+- [THM Agent Sudo Crypto](https://tryhackme.com/room/agentsudo) | easy | brute-zip steghide ftp-crack sudo-bypass
+- [picoGym 13](https://play.picoctf.org/practice/challenge/14) | easy | rot13 caesar decode-triage
+- [picoGym Easy Peasy](https://play.picoctf.org/practice/challenge/32) | easy | otp-reuse xor hex-key recover
+- [picoGym Minesweeper](https://play.picoctf.org/practice/challenge/33) | easy | python-source logic-abuse flag-function
+- [picoGym Substitution0](https://play.picoctf.org/practice/challenge/44) | easy | ascii-shift brute flag-charset
+- [picoGym Substitution1](https://play.picoctf.org/practice/challenge/45) | easy | random-sub solve-wordlist frequency
+- [picoGym Substitution2](https://play.picoctf.org/practice/challenge/53) | easy | longer-text hill-climb crib-triage
+- [picoGym Transposition Trial](https://play.picoctf.org/practice/challenge/54) | easy | column-shuffle reorder brute-permute
+- [picoGym Vigenere](https://play.picoctf.org/practice/challenge/55) | easy | key-length kasiski trigram-break
+- [picoGym XtraORdinary](https://play.picoctf.org/practice/challenge/56) | easy | xor-repeating key-length english-score
+- [picoGym caesar-new](https://play.picoctf.org/practice/challenge/58) | easy | caesar brute shift-triage flag-format
+- [picoGym Rail-Fence](https://play.picoctf.org/practice/challenge/63) | easy | zigzag rails brute-decode
+- [picoGym Easy1](https://play.picoctf.org/practice/challenge/64) | easy | vernam otp table-lookup decode
+- [picoGym Play Nice](https://play.picoctf.org/practice/challenge/66) | easy | playfair keyword-square digraph-decode
+- [picoGym Morse](https://play.picoctf.org/practice/challenge/73) | easy | morse dots-dashes audio-visual
+- [picoGym Hashing](https://play.picoctf.org/practice/challenge/74) | easy | md5sum sha1sum john-crack
+- [picoGym RSA-Primer](https://github.com/PS-003R32/picoCTF/tree/main/picoCTF-2021/Cryptography) | easy | n-e-c pow-decrypt small-prime factor
+- [picoGym Mini RSA](https://play.picoctf.org/practice/challenge/86) | easy | small-e broadcast hastad cube-root
+- [picoGym Dancing](https://play.picoctf.org/practice/challenge/87) | easy | chaos-map xor-image iterate-decode
+- [picoGym HideToSee](https://play.picoctf.org/practice/challenge/89) | easy | xor-image atbash encrypt-layer
+- [picoGym Mod26](https://play.picoctf.org/practice/challenge/90) | easy | rot13-block flag-charset modular
+- [picoGym Spelling Quiz](https://play.picoctf.org/practice/challenge/93) | easy | anagram numbers-to-letters decode-chain
+- [picoGym No Padding No Problem](https://play.picoctf.org/practice/challenge/94) | easy | rsa-oracle padding-abuse decrypt-query
+- [picoGym Picker IV](https://play.picoctf.org/practice/challenge/98) | easy | getwin-filter hex-escape open-read bypass
+- [picoGym Pixel Problems](https://play.picoctf.org/practice/challenge/102) | easy | xor-images pixel-diff flag-reconstruct
+- [picoGym Rotation](https://play.picoctf.org/practice/challenge/103) | easy | single-byte-xor brute printable-score
+- [picoGym SRA](https://play.picoctf.org/practice/challenge/104) | easy | oracle-chacha rot-decrypt query-triage
+- [picoGym New Caesar](https://play.picoctf.org/practice/challenge/109) | easy | alphabet-shift base16 decode-chain
+- [picoGym La Cifra de Vigenere](https://play.picoctf.org/practice/challenge/111) | easy | spanish-quote vigenere quipqiup-break
+- [picoGym Custom Encryption](https://play.picoctf.org/practice/challenge/113) | easy | xor-generator dynamic-key reverse-script
+- [picoGym Small Bump](https://play.picoctf.org/practice/challenge/114) | easy | diff-small ecdh-nonce reuse-triage
+- [picoCTF Crypto 2025 Pack](https://github.com/PS-003R32/picoCTF/tree/main/picoCTF-2025/Cryptography) | easy | hash-xor sstv feistel lattice-basics
+- [THM Year Of Yeti](https://tryhackme.com/room/yearoftheyeti) | easy | docker-escape cron-aws cookie-tamper
+- [THM VulnNet Eval](https://tryhackme.com/room/vulnnet1) | easy | redis-eval cron-wildcard subdomain-gobuster
+- [THM W1seGuy Room](https://tryhackme.com/room/w1seguy) | easy | flag-oracle prefix-known brute-suffix
+- [Ancient Encodings](https://7rocky.github.io/en/ctf/htb-challenges/crypto/ancient-encodings/) | easy | base hex classical decode chain
+- [Weak RSA](https://7rocky.github.io/en/ctf/htb-challenges/crypto/weak-rsa/) | easy | small RSA factor decrypt
+- [Android-in-the-middle](https://7rocky.github.io/en/ctf/htb-challenges/crypto/android-in-the-middle/) | easy | Diffie-Hellman MITM parameter tamper
+- [sekur julius](https://7rocky.github.io/en/ctf/htb-challenges/crypto/sekur-julius/) | easy | Caesar variant brute shift
+- [Classic yet complicated](https://7rocky.github.io/en/ctf/htb-challenges/crypto/classic-yet-complicated/) | easy | substitution frequency analysis solve
+- [Jenny From Block](https://7rocky.github.io/en/ctf/htb-challenges/crypto/jenny-from-the-block/) | easy | hash length extension block forge
+- [Down Rabinhole](https://7rocky.github.io/en/ctf/htb-challenges/crypto/down-the-rabinhole/) | easy | Rabin decrypt square roots
+- [How Columns Turned](https://7rocky.github.io/en/ctf/htb-challenges/crypto/how-the-columns-have-turned/) | easy | transposition column reorder brute
+- [Dynastic](https://medium.com/@rahulhoysala07/hack-the-box-crypto-challenge-dynastic-writeup-0e03ba6cd432) | easy | custom cipher scripting reverse
+- [Three-Eyed Oracle](https://7rocky.github.io/en/ctf/htb-challenges/crypto/the-three-eyed-oracle/) | easy | AES ECB oracle block decrypt
+- [Space Pirates](https://7rocky.github.io/en/ctf/htb-challenges/crypto/space-pirates/) | easy | Shamir secret share reconstruct
+- [One Step Closer](https://7rocky.github.io/en/ctf/htb-challenges/crypto/one-step-closer/) | easy | RSA related message Franklin-Reiter
+- [Infinite Descent](https://github.com/tilznit/htb_crypto_Infinite_Descent) | easy | RSA continued fractions Wiener
+- [Brainy Cipher](https://7rocky.github.io/en/ctf/htb-challenges/crypto/brainys-cipher/) | easy | custom cipher reverse scripting
+- [Gonna-Lift-Em-All](https://7rocky.github.io/en/ctf/htb-challenges/crypto/gonna-lift-em-all/) | easy | DH small subgroup key recovery
+- [SPG](https://7rocky.github.io/en/ctf/htb-challenges/crypto/spg/) | easy | weak password generator seed brute
+- [Symbols](https://7rocky.github.io/en/ctf/htb-challenges/crypto/symbols/) | easy | symbol substitution mapping solve
+- [I'm gRoot](https://7rocky.github.io/en/ctf/htb-challenges/crypto/im-groot/) | easy | Merkle tree hash collision proof
+- [Iced Tea](https://7rocky.github.io/en/ctf/htb-challenges/crypto/iced-tea/) | easy | TEA block cipher known-plaintext
+- [Perfect Synchronization](https://7rocky.github.io/en/ctf/htb-challenges/crypto/perfect-synchronization/) | easy | AES ECB frequency cut-paste
+- [Flippin Bank](https://7rocky.github.io/en/ctf/htb-challenges/crypto/flippin-bank/) | medium | AES CBC bit flipping admin forge
+- [Initialization](https://7rocky.github.io/en/ctf/htb-challenges/crypto/initialization/) | medium | IV leak CTR keystream reuse
+- [MSS](https://7rocky.github.io/en/ctf/htb-challenges/crypto/mss/) | medium | secret sharing scheme manipulation
+- [Mayday Mayday](https://7rocky.github.io/en/ctf/htb-challenges/crypto/mayday-mayday/) | medium | RSA CRT fault Bellcore attack
+- [Roulette](https://7rocky.github.io/en/ctf/htb-challenges/crypto/roulette/) | medium | PRNG Mersenne predict output
+- [TurboCipher](https://7rocky.github.io/en/ctf/htb-challenges/crypto/turbocipher/) | medium | custom block differential cryptanalysis
+- [CryptoConundrum](https://7rocky.github.io/en/ctf/htb-challenges/crypto/cryptoconundrum/) | medium | multi-stage decode chain reverse
+- [BFD56](https://7rocky.github.io/en/ctf/htb-challenges/crypto/bfd56/) | medium | Blowfish weak key analysis
+- [RLotto](https://7rocky.github.io/en/ctf/htb-challenges/crypto/rlotto/) | medium | PRNG seed brute lottery predict
+- [Zombie Rolled](https://7rocky.github.io/en/ctf/htb-challenges/crypto/zombie-rolled/) | medium | XOR rolling custom decrypt
+- [Interception](https://7rocky.github.io/en/ctf/htb-challenges/crypto/interception/) | medium | MITM key exchange downgrade
+- [Vitrium Stash](https://7rocky.github.io/en/ctf/htb-challenges/crypto/vitrium-stash/) | medium | custom encryption reverse key recover
+- [Rookie Mistake](https://7rocky.github.io/en/ctf/htb-challenges/crypto/rookie-mistake/) | medium | RSA common factor GCD batch
+- [Partial Tenacity](https://7rocky.github.io/en/ctf/htb-challenges/crypto/partial-tenacity/) | medium | RSA partial key Coppersmith recover
+- [Arranged](https://7rocky.github.io/en/ctf/htb-challenges/crypto/arranged/) | medium | RSA lattice stereotyped attack
+- [Tsayaki](https://7rocky.github.io/en/ctf/htb-challenges/crypto/tsayaki/) | medium | AES CTR nonce reuse XOR
+- [Waiting List](https://7rocky.github.io/en/ctf/htb-challenges/crypto/waiting-list/) | medium | signature forgery parameter tamper
+- [Composition](https://7rocky.github.io/en/ctf/htb-challenges/crypto/composition/) | medium | mathematical composition function invert
+- [Fibopadcci](https://7rocky.github.io/en/ctf/htb-challenges/crypto/fibopadcci/) | medium | padding oracle Fibonacci CBC decrypt
+- [I know Mag1k](https://7rocky.github.io/en/ctf/htb-challenges/crypto/i-know-mag1k/) | medium | magic number structure exploit
+- [Homomurphy Law](https://7rocky.github.io/en/ctf/htb-challenges/crypto/homomurphys-law/) | medium | homomorphic malleability vote forge
+- [signup](https://7rocky.github.io/en/ctf/htb-challenges/crypto/signup/) | medium | signature forgery signup bypass
+- [Oracle Leaks](https://7rocky.github.io/en/ctf/htb-challenges/crypto/oracle-leaks/) | medium | padding oracle CBC decrypt
+- [Lost Modulus](https://7rocky.github.io/en/ctf/htb-challenges/crypto/lost-modulus/) | medium | RSA modulus recovery GCD
+- [Living with Elegance](https://7rocky.github.io/en/ctf/htb-challenges/crypto/living-with-elegance/) | medium | ECC discrete log small subgroup
+- [Blessed](https://7rocky.github.io/en/ctf/htb-challenges/crypto/blessed/) | medium | RSA oracle Bleichenbacher decrypt
+- [Quadratic Points](https://7rocky.github.io/en/ctf/htb-challenges/crypto/quadratic-points/) | medium | ECC quadratic residue point hunt
+- [Not that random](https://7rocky.github.io/en/ctf/htb-challenges/crypto/not-that-random/) | medium | LCG state recovery predict
+- [Bloom Bloom](https://7rocky.github.io/en/ctf/htb-challenges/crypto/bloom-bloom/) | medium | Bloom filter false-positive forge
+- [Protein Cookies 2](https://7rocky.github.io/en/ctf/htb-challenges/crypto/protein-cookies-2/) | medium | cookie crypto secret crack
+- [Secure Signing](https://7rocky.github.io/en/ctf/htb-challenges/crypto/secure-signing/) | medium | ECDSA nonce reuse key recover
+- [Clutch](https://7rocky.github.io/en/ctf/htb-challenges/crypto/clutch/) | medium | lattice Coppersmith small root
+- [baby quick maffs](https://7rocky.github.io/en/ctf/htb-challenges/crypto/baby-quick-maffs/) | medium | modular math equation solve
+- [binary basis](https://7rocky.github.io/en/ctf/htb-challenges/crypto/binary-basis/) | medium | binary field linear algebra
+- [brevi moduli](https://7rocky.github.io/en/ctf/htb-challenges/crypto/brevi-moduli/) | medium | short RSA modulus factor
+- [alphascii clashing](https://7rocky.github.io/en/ctf/htb-challenges/crypto/alphascii-clashing/) | medium | ASCII hash collision craft
+- [sugar free candies](https://7rocky.github.io/en/ctf/htb-challenges/crypto/sugar-free-candies/) | medium | weak stream cipher break
+- [Hash Filesystem](https://7rocky.github.io/en/ctf/htb-challenges/crypto/hash-the-filesystem/) | medium | filesystem hash length extension
+- [Find Marher Secret](https://7rocky.github.io/en/ctf/htb-challenges/crypto/find-marhers-secret/) | medium | math secret Shamir recovery
+- [Copperbox](https://7rocky.github.io/en/ctf/htb-challenges/crypto/copperbox/) | hard | Coppersmith RSA stereotyped attack
+- [Twin Oracles](https://7rocky.github.io/en/ctf/htb-challenges/crypto/twin-oracles/) | hard | dual oracle cross-query decrypt
+- [Verilicious](https://7rocky.github.io/en/ctf/htb-challenges/crypto/verilicious/) | hard | verification logic bypass forge
+- [Mind In Clouds](https://7rocky.github.io/en/ctf/htb-challenges/crypto/mind-in-the-clouds/) | hard | cloud KMS key misuse decrypt
+- [secure source](https://7rocky.github.io/en/ctf/htb-challenges/crypto/secure-source/) | hard | source audit crypto misuse
+- [read before sign](https://7rocky.github.io/en/ctf/htb-challenges/crypto/read-before-you-sign/) | hard | signature oracle blind forge
+- [hybrid unifier](https://7rocky.github.io/en/ctf/htb-challenges/crypto/hybrid-unifier/) | hard | hybrid RSA-AES key unwrap
+- [Signing Factory](https://7rocky.github.io/en/ctf/htb-challenges/crypto/signing-factory/) | hard | signing oracle existential forgery
+- [Converging Visions](https://7rocky.github.io/en/ctf/htb-challenges/crypto/converging-visions/) | hard | ECC convergence pairing attack
+- [Biased Heritage](https://7rocky.github.io/en/ctf/htb-challenges/crypto/biased-heritage/) | hard | biased nonce lattice HNP
+- [Elliptic Labyrinth](https://7rocky.github.io/en/ctf/htb-challenges/crypto/elliptic-labyrinth/) | hard | invalid curve ECC attack
+- [Colliding Heritage](https://7rocky.github.io/en/ctf/htb-challenges/crypto/colliding-heritage/) | hard | hash collision chosen-prefix craft
+- [Inside Matrix](https://7rocky.github.io/en/ctf/htb-challenges/crypto/inside-the-matrix/) | hard | matrix Hill cipher invert
+- [Multipage Recyclings](https://7rocky.github.io/en/ctf/htb-challenges/crypto/multipage-recyclings/) | hard | AES key schedule reuse recover
+- [TwoForOne](https://7rocky.github.io/en/ctf/htb-challenges/crypto/twoforone/) | hard | double signature reuse forge
+- [LunaCrypt](https://7rocky.github.io/en/ctf/htb-challenges/crypto/lunacrypt/) | hard | custom cipher reverse S-box
+- [400curves](https://7rocky.github.io/en/ctf/htb-challenges/crypto/400curves/) | hard | multi-curve ECC weak pick
+- [Optimus Prime](https://7rocky.github.io/en/ctf/htb-challenges/crypto/optimus-prime/) | hard | prime generation flaw factor
+- [AbraCryptabra](https://7rocky.github.io/en/ctf/htb-challenges/crypto/abracryptabra/) | hard | multi-layer decode cascade
+- [quick maffs](https://7rocky.github.io/en/ctf/htb-challenges/crypto/quick-maffs/) | hard | fast modular equation solver
+- [Ebola Virus](https://7rocky.github.io/en/ctf/htb-challenges/crypto/ebola-virus/) | hard | virus-themed cipher reverse
+- [ElElGamal](https://7rocky.github.io/en/ctf/htb-challenges/crypto/elelgamal/) | hard | ElGamal malleability signature forge
+- [Infinite Knapsack](https://7rocky.github.io/en/ctf/htb-challenges/crypto/infinite-knapsack/) | hard | knapsack lattice LLL solve
+- [AESWCM](https://7rocky.github.io/en/ctf/htb-challenges/crypto/aeswcm/) | hard | AES weak counter mode nonce
+- [Bank-er-smith](https://7rocky.github.io/en/ctf/htb-challenges/crypto/bank-er-smith/) | hard | banking crypto rounding exploit
+- [AHS512](https://7rocky.github.io/en/ctf/htb-challenges/crypto/ahs512/) | hard | custom hash collision preimage
+- [Spooky RSA](https://7rocky.github.io/en/ctf/htb-challenges/crypto/spooky-rsa/) | hard | multi-prime RSA factor split
+- [Fast Carmichael](https://7rocky.github.io/en/ctf/htb-challenges/crypto/fast-carmichael/) | hard | Carmichael smooth order exploit
+- [BBGun06](https://7rocky.github.io/en/ctf/htb-challenges/crypto/bbgun06/) | hard | BB84 quantum basis leak
+- [DUCTF24/decrypt-then-eval](https://github.com/DownUnderCTF/Challenges_2024_Public/tree/main/crypto/decrypt-then-eval) | easy | decrypt oracle then eval injection, padding oracle abuse
+- [DUCTF24/my-array-generator](https://github.com/DownUnderCTF/Challenges_2024_Public/tree/main/crypto/my-array-generator) | easy | array PRNG seed recover, Mersenne twist state clone
+- [DUCTF24/V-for-Vieta](https://github.com/DownUnderCTF/Challenges_2024_Public/tree/main/crypto/v-for-vieta) | easy | Vieta jumping Diophantine, root hopping recover key
+- [DUCTF24/three-line-crypto](https://github.com/DownUnderCTF/Challenges_2024_Public/tree/main/crypto/three-line-crypto) | medium | three-line xor stream, crib-drag keystream recover
+- [DUCTF24/super-party-computation](https://github.com/DownUnderCTF/Challenges_2024_Public/tree/main/crypto/super-party-computation) | medium | MPC share leakage, Lagrange interpolate secret
+- [DUCTF24/Poly1305-OTM](https://github.com/DownUnderCTF/Challenges_2024_Public/tree/main/crypto/poly1305-otm) | medium | Poly1305 one-time-mac nonce reuse, polynomial forge tag
+- [DUCTF24/AES-hard](https://github.com/DownUnderCTF/Challenges_2024_Public/tree/main/crypto/aes) | hard | AES custom mode misuse, ECB cut-paste block splice
+- [DUCTF24/kyber-oracle](https://github.com/DownUnderCTF/Challenges_2024_Public/tree/main/crypto/kyber-decryption-oracle) | hard | Kyber decryption oracle, CCA failure-boost key recovery
+- [DUCTF24/shufflebox](https://github.com/DownUnderCTF/Challenges_2024_Public/tree/main/beginner/shufflebox) | easy | shuffle box transposition, frequency solve permutation
+- [DUCTF23/apbq-rsa-i](https://github.com/DownUnderCTF/Challenges_2023_Public/tree/main/crypto/apbq-rsa-i) | easy | textbook RSA small-e broadcast, Hastad cube root
+- [DUCTF23/apbq-rsa-ii](https://github.com/DownUnderCTF/Challenges_2023_Public/tree/main/crypto/apbq-rsa-ii) | medium | RSA common modulus, gcd extended Euclid message recover
+- [DUCTF23/hhhhh](https://github.com/DownUnderCTF/Challenges_2023_Public/tree/main/crypto/hhhhh) | medium | hash HH lattice hidden number, LLL nonce recovery
+- [DUCTF23/fnv](https://github.com/DownUnderCTF/Challenges_2023_Public/tree/main/crypto/fnv) | medium | FNV hash collision forge, birthday search multicollisions
+- [DUCTF23/handshake](https://github.com/DownUnderCTF/Challenges_2023_Public/tree/main/crypto/handshake) | medium | DH handshake MITM downgrade, small subgroup confine
+- [DUCTF23/dilithium](https://github.com/DownUnderCTF/Challenges_2023_Public/tree/main/crypto/dilithium) | hard | Dilithium nonce leak, lattice signature forgery
+- [DUCTF23/lcg-card](https://github.com/DownUnderCTF/Challenges_2023_Public/tree/main/crypto/lcg-card-gimmicks) | hard | LCG card shuffle predict, state recover via outputs
+- [Sekai24/some-trick](https://github.com/project-sekai-ctf/sekaictf-2024/tree/main/crypto/some-trick) | easy | some trick RSA parity oracle, LSB leak binary search
+- [Sekai24/hayabusa](https://github.com/project-sekai-ctf/sekaictf-2024/tree/main/crypto/hayabusa) | hard | Hayabusa stream cipher, Berlekamp-Massey LFSR reconstruct
+- [Sekai24/master-spark](https://github.com/project-sekai-ctf/sekaictf-2024/tree/main/crypto/master-spark) | hard | spark torus cipher, algebraic meet-in-middle key
+- [Sekai24/squares-vs-cubes](https://github.com/project-sekai-ctf/sekaictf-2024/tree/main/crypto/squares-vs-cubes) | hard | Rabin squares cubes CRT, e-th root Coppersmith
+- [Sekai24/sqrt163](https://github.com/project-sekai-ctf/sekaictf-2025/tree/main/crypto/ssss) | hard | class group sqrt163 CM method, isogeny path find
+- [Sekai25/genni](https://github.com/project-sekai-ctf/sekaictf-2025/tree/main/crypto/i-dream-of-genni) | medium | genie LWE dream, small error BDD lattice decode
+- [Sekai25/alter-ego](https://github.com/project-sekai-ctf/sekaictf-2025/tree/main/crypto/alter-ego) | hard | alter ego twin ciphertexts, related-nonce ECDSA recover
+- [Sekai25/APES](https://github.com/project-sekai-ctf/sekaictf-2025/tree/main/crypto/apes) | hard | APES S-box differential trail, SAT solver key search
+- [TJCTF24/weird-crypto](https://github.com/TJCSec/tjctf-2024-challenges/tree/main/crypto/weird-crypto) | easy | weird xor base64 layers, magic detect peel encodings
+- [TJCTF24/accountleak](https://github.com/TJCSec/tjctf-2024-challenges/tree/main/crypto/accountleak) | easy | account token JWT none alg, kid traversal forge
+- [TJCTF24/assume](https://github.com/TJCSec/tjctf-2024-challenges/tree/main/crypto/assume) | medium | assumption DH assumption break, invalid curve attack
+- [TJCTF24/iodomethane](https://github.com/TJCSec/tjctf-2024-challenges/tree/main/crypto/iodomethane) | medium | methane substitution cipher, solver hill-climb mapping
+- [TJCTF24/u-235](https://github.com/TJCSec/tjctf-2024-challenges/tree/main/crypto/u-235) | hard | uranium-235 RSA CRT fault, Bellcore attack factor
+- [TJCTF24/c-8](https://github.com/TJCSec/tjctf-2024-challenges/tree/main/crypto/c-8) | hard | C-8 Feistel 8-round, differential cryptanalysis key extract
+- [Patriot24/bigger-is-better](https://github.com/MasonCompetitiveCyber/PatriotCTF2024/tree/main/crypto/bigger-is-better) | easy | bigint compare overflow, bigger modulus wrap forge
+- [Patriot24/bit-by-bit](https://github.com/MasonCompetitiveCyber/PatriotCTF2024/tree/main/crypto/bit_by_bit) | easy | bit-by-bit oracle, adaptive chosen-cipher leak bits
+- [Patriot24/hard-to-implement](https://github.com/MasonCompetitiveCyber/PatriotCTF2024/tree/main/crypto/hard_to_implement) | medium | timing side-channel implement, constant-time bypass measure
+- [Patriot24/textbook-Schnorr](https://github.com/MasonCompetitiveCyber/PatriotCTF2024/tree/main/crypto/textbook_Schnorr_right) | medium | Schnorr nonce reuse r share, k recovery sign forge
+- [Patriot23/breakfast-club](https://github.com/MasonCompetitiveCyber/PatriotCTF2023/tree/main/Crypto/Breakfast%20Club) | easy | breakfast club Vigenere break, Kasiski length then freq
+- [Patriot23/secret-wall](https://github.com/MasonCompetitiveCyber/PatriotCTF2023/tree/main/Crypto/Secret%20Wall%20Code) | medium | wall code Hill cipher, known-plaintext matrix invert
+- [HKCERT24/RSA-LCG-0](https://github.com/hkcert-ctf/CTF-Challenges/tree/main/CTF-2024/04a-rsalcg-0) | easy | RSA LCG prime predict, recover seed factor n
+- [HKCERT24/RSA-LCG-1](https://github.com/hkcert-ctf/CTF-Challenges/tree/main/CTF-2024/04b-rsalcg-1) | medium | LCG truncated state lattice, hidden number problem solve
+- [HKCERT24/mAEStro-1](https://github.com/hkcert-ctf/CTF-Challenges/tree/main/CTF-2024/06a-maestro-1) | medium | AES maestro sample ECB leak, block align probe
+- [HKCERT24/mAEStro-2-shuffle](https://github.com/hkcert-ctf/CTF-Challenges/tree/main/CTF-2024/06b-maestro-2) | hard | shuffled AES rows, permutation oracle unshuffle decrypt
+- [HKCERT24/almost-DSA](https://github.com/hkcert-ctf/CTF-Challenges/tree/main/CTF-2024/21-almost-dsa) | easy | almost DSA k bias, lattice small-nonce private recover
+- [HKCERT24/pigeon-1](https://github.com/hkcert-ctf/CTF-Challenges/tree/main/CTF-2024/24a-pigeon-1) | easy | pigeon substitution homophonic, frequency map decode
+- [HKCERT24/mask-mask-RSA](https://github.com/hkcert-ctf/CTF-Challenges/tree/main/CTF-2024/34-mask-mask-rsa) | hard | masked RSA blinding fault, unmask CRT leak factor
+- [scriptCTF25/EaaS](https://github.com/scriptCTF/scriptCTF2025-OfficialWriteups/tree/main/Crypto/EaaS) | easy | encryption-as-service ECB oracle, cut-paste profile forge
+- [scriptCTF25/RSA-1](https://github.com/scriptCTF/scriptCTF2025-OfficialWriteups/tree/main/Crypto/RSA-1) | easy | RSA-1 Wiener small-d, continued fractions recover
+- [corCTF25/ssss-share](https://github.com/Crusaders-of-Rust/corctf-2025-public-challenge-repo/tree/master/crypto/ssss) | medium | SSSS finite field interpolation, corrupt share error correct
+- [corCTF25/sudoku-crypto](https://github.com/Crusaders-of-Rust/corctf-2025-public-challenge-repo/tree/master/crypto/sudoku) | hard | sudoku constraint cipher, SAT encode solve key grid
+- [diceCTF26/crypto-classic](https://github.com/hax1ng/dicectf2026-writeups) | medium | dice classic lattice RSA, Coppersmith partial-key steam
+- [MiniRSA](https://medium.com/@routbiswajit70681/picoctf-write-up-minirsa-e51bf43536fd) | easy | small e cube root unpadded RSA recovery
+- [Even RSA Kishor](https://medium.com/@at.kishor.k/picoctf-2025-writeup-even-rsa-can-be-broken-7cedd5d639df) | easy | even N factor 2, phi inverse decrypt
+- [Even RSA Hiba](https://medium.com/@hibabintefaheem/even-rsa-can-be-broken-picoctf-beginners-walkthrough-writeup-581fb48fd0b3) | easy | netcat N e c, p equals 2 walkthrough
+- [Even RSA Patrick](https://medium.com/@patrick.jane/even-rsa-can-be-broken-picoctf-writeup-05ece10b68eb) | easy | suspicious even modulus prime arithmetic decrypt
+- [Mind Ps Qs](https://medium.com/@wafercoklat3108/mind-your-ps-and-qs-writeup-picoctf-cryptography-48a63f80dfa8) | easy | small N bits factor p q decrypt
+- [Mind Ps Qs Rout](https://medium.com/@routbiswajit70681/ctf-write-up-mind-your-ps-and-qs-907d0580e0e3) | easy | 197-bit N factor uneven primes inverse
+- [b00tl3gRSA2](https://medium.com/@sobatistacyber/picoctf-writeup-b00tl3grsa2-2d08ae26ee21) | hard | swapped d e Wiener attack custom script
+- [StegoRSA zuko](https://medium.com/@yangthagg/stegorsa-picoctf-walkthrough-23863201a64d) | easy | JPEG comment hex private key openssl decrypt
+- [RSA image Abel](https://medium.com/@abelnowangye/recovering-an-rsa-private-key-hidden-in-an-image-picoctf-5ba6db1e6faa) | easy | exiftool comment xxd PEM rsautl decrypt
+- [Transformation](https://medium.com/@sameerimr384/picoctf-2025-transformation-challenge-writeup-3e34ad712ba9) | easy | 16-bit pack reverse shift mask bytes
+- [Beginner crypto](https://medium.com/@aminshemsa/beginner-friendly-picoctf-cryptography-walkthroughs-4c74d8c3ac16) | easy | Kali beginner cipher walkthrough collection
+- [RSA-1 N00b](https://medium.com/@kaipakrishna380/writeup-for-rsa-1-cryptography-ctf-challenge-n00bctf-c4fbae5d7b08) | easy | phi inverse pow decrypt hex decode
+- [mini RSA Backdoor](https://sakibulalikhan.medium.com/backdoorctf-2023-mini-rsa-challenge-writeup-937984bd1e58) | medium | e 3 512-bit script output cube analysis
+- [SRA stackotter](https://stackotter.dev/blog/picoctf-2023-sra-writeup) | medium | SRA versus RSA protocol logic reversal satisfy
+- [rsa oracle cbarkr](https://blog.cbarkr.com/ctf/picoCTF/practice/rsa_oracle) | medium | textbook RSA homomorphism chosen plaintext oracle abuse
+- [Mind Qs Tan](https://tan-junwei.github.io/CTF-Writeups/PicoCTF/Cryptography/Mind-your-Ps-and-Qs) | easy | wget values factor phi inverse ASCII
+- [EtTuCaesar](https://mh4ck3r0n3.github.io/posts/2025/03/24/ettucaesar/) | easy | Wolv Caesar crypto detailed solve
+- [Pico 2026 Ummit](https://ummit.dev/ctf/writeups/picoctf-2026/) | medium | MD5 IDOR OTP LFSR DH RSA JPEG git XOR
+
+## batch 2026-10-17-browser-swarm (387 rows, 203 easy)
+
+- [cryptomaze-pico2026](https://ummit.dev/ctf/writeups/picoctf-2026#cryptomaze) | medium | Reproduce LFSR taps state AES key bits decrypt ECB unpad
+- [Shared-Secrets-pico2026](https://ummit.dev/ctf/writeups/picoctf-2026#shared-secrets) | easy | DH leaked b pow shared single-byte XOR brute 256
+- [Secure-Dot-Product-pico2026](https://cyb3r-bo1.github.io/posts/picoCTF_2026_writeup/#secure-dot-product) | hard | SHA512 prefix length extension oracle linear Z3 AES decrypt
+- [SSSS-sekai2025](https://blog.sceleri.cc/posts/sekai-ctf-2025-writeup#ssss) | hard | Shamir secret overlapping coefficient order-29 Lagrange intersection two queries
+- [Genni-sekai2025](https://blog.sceleri.cc/posts/sekai-ctf-2025-writeup#i-dream-of-genni) | hard | Dream-multiply branch prune MITM SHA256 AES ECB decrypt pair search
+- [Literal-Eval-sekai2025](https://blog.sceleri.cc/posts/sekai-ctf-2025-writeup#literal-eval) | hard | literal_eval dict inds reuse WOTS one-time checksum forge flag message
+- [Alter-Ego-sekai2025](https://blog.sceleri.cc/posts/sekai-ctf-2025-writeup#alter-ego) | hard | CSIDH group action sign oracle Weil pairing order leak alter ego
+- [APES-sekai2025](https://blog.sceleri.cc/posts/sekai-ctf-2025-writeup#apes) | hard | 8-bit SPN linear GF256 3-cycle decomposition filter enumerate key
+- [Law-Order-sekai2025](https://blog.sceleri.cc/posts/sekai-ctf-2025-writeup#law-and-order) | hard | FROST py_ecc no curve check low-order invalid point signature forge
+- [OverAndOver-wolv2025](https://cyb3r-bo1.github.io/posts/wolvctf_2025_writeup/#overandover---crypto) | easy | Repeated base64 decode loop 16-32 times flag reveal
+- [EtTuCaesar-wolv2025](https://cyb3r-bo1.github.io/posts/wolvctf_2025_writeup/#ettucaesar---crypto) | easy | Caesar shift 3 square 5x5 diagonal traversal unscramble flag
+- [ShiftHappens-wolv2025](https://medium.com/@zzzmilky/wolvctf-2025-writeups-497b68e8ad2e#shifthappens) | easy | Caesar shift frequency solve low solves beginner crypto
+- [CryptoClock-naham2025](https://medium.com/@nikhilc2209/nahamcon-ctf-25-writeup-e96b7ffff33d#cryptoclock) | easy | Clock arithmetic time leak brute force format flag
+- [Deflation-Gangster-naham2025](https://medium.com/@nikhilc2209/nahamcon-ctf-25-writeup-e96b7ffff33d#deflation-gangster) | medium | zlib deflate decompress repeated inflate hidden payload extract
+- [I-Want-Pie-naham2025](https://medium.com/@nikhilc2209/nahamcon-ctf-25-writeup-e96b7ffff33d#i-want-pie) | easy | Pi digits index decode numeric mapping flag convert
+- [NEWJEANS-gaslight2026](https://cyb3r-bo1.github.io/posts/gaslightCTF_2026_writeup/#newjeans-is-five-100) | hard | AES SubBytes identity affine GF2 Gaussian elimination key recover decrypt
+- [Super-DES-bits2026](https://cyb3r-bo1.github.io/posts/BITSCTF_2026_writeup/#super-des) | hard | DES semi-weak pair identity oracle EDE decrypt flag unpad
+- [CryptoCabana-hh-day9](https://dhanushnehru.medium.com/hacker-holidays-2026-day-9-walkthrough-cryptocabana-a6a1caa9438a) | medium | JS SAS token blob vault service-principal KeyVault version history shards
+- [calc-zichmp2026](https://medium.com/@amrkhaledv2171516/zichmp-ctf-2026-cyber-champions-2026-abbfe3f13fc6#calc) | easy | Baby XOR reversible single-byte key decode flag bytes
+- [broken-zichmp2026](https://medium.com/@amrkhaledv2171516/zichmp-ctf-2026-cyber-champions-2026-abbfe3f13fc6#broken) | easy | 22-byte XOR 0x41 static bytes decode simple reversal
+- [hard-GPU-zichmp2026](https://medium.com/@amrkhaledv2171516/zichmp-ctf-2026-cyber-champions-2026-abbfe3f13fc6#hard) | medium | OpenCL kernel decrypt repeating XOR ZiChmp key GPU exfil
+- [IloveC-zichmp2026](https://medium.com/@amrkhaledv2171516/zichmp-ctf-2026-cyber-champions-2026-abbfe3f13fc6#ilovec) | easy | Guessing game qsort compare side-effect XOR buffer reverse

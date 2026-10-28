@@ -1,0 +1,42 @@
+{
+ "id": "imported-disk-mft-recovery",
+ "domain": "forensics",
+ "title": "Disk image / MFT and deleted-file recovery",
+ "signals": [
+  "`.img`/`.dd`/`.E01`",
+  "NTFS/ext4",
+  "deleted file",
+  "MFT/$UsnJrnl",
+  "slack space"
+ ],
+ "preconditions": [
+  "Sleuth Kit/ewf tools available",
+  "image integrity confirmed"
+ ],
+ "steps": [
+  "`ewfmount image.E01 /mnt/ewf` (if E01) then `mmls`, `fsstat`, and `fls -r -p` on the partition offset.",
+  "Recover inodes with `icat`/`tsk_recover`; parse `$MFT` with `MFTECmd`/`analyzeMFT` and check `$UsnJrnl` for deletions.",
+  "Carve unallocated space with `photorec`/`foremost`; inspect slack with `blkls`/`icat`.",
+  "Build a timeline (`plaso`/`log2timeline`) only if the flag depends on when a file was deleted."
+ ],
+ "falsifier": "The filesystem is encrypted or the image is incomplete; carving cannot recover plaintext.",
+ "pitfalls": [
+  "partition offset",
+  "deleted inode reuse",
+  "timestamps in UTC",
+  "compressed/encrypted volumes",
+  "E01 segment order"
+ ],
+ "sources": [
+  "https://github.com/mukul975/Anthropic-Cybersecurity-Skills/tree/main/skills/analyzing-mft-for-deleted-file-recovery"
+ ],
+ "fixtures": [],
+ "verified_by": "source:Anthropic Cybersecurity Skills",
+ "last_verified": "2026-10-20",
+ "verified": false,
+ "verification": "source",
+ "license": "Apache-2.0",
+ "ctf_domains": [
+  "forensics"
+ ]
+}

@@ -1,0 +1,43 @@
+{
+ "id": "imported-firmware-binwalk",
+ "domain": "hardware",
+ "title": "Firmware extraction (binwalk/entropy)",
+ "signals": [
+  "firmware blob",
+  "squashfs/cramfs",
+  "uImage/TRX",
+  "update package",
+  "UART hint"
+ ],
+ "preconditions": [
+  "binwalk and filesystem tools available",
+  "artifact is a copy, not a live device"
+ ],
+ "steps": [
+  "`file`, `binwalk firmware.bin`, and `binwalk -E` entropy to find compressed/encrypted regions.",
+  "`binwalk -e --run-as=root firmware.bin` (in a sandbox) to carve; inspect offsets with `dd`/`xxd` if extraction fails.",
+  "Mount/extract squashfs/cramfs/jffs2, then grep `/etc/init.d`, `rcS`, web roots, and shadow/passwd for credentials.",
+  "Check update signatures/keys and hardcoded URLs; if a device is in scope, confirm UART/JTAG access rules before touching hardware."
+ ],
+ "falsifier": "Entropy is uniform and no filesystem/update format is recognized; the blob may be encrypted or truncated.",
+ "pitfalls": [
+  "encrypted firmware",
+  "vendor-specific containers",
+  "squashfs version",
+  "running extraction as root on host",
+  "destructive flash writes"
+ ],
+ "sources": [
+  "https://github.com/mukul975/Anthropic-Cybersecurity-Skills/tree/main/skills/performing-firmware-extraction-with-binwalk"
+ ],
+ "fixtures": [],
+ "verified_by": "source:Anthropic Cybersecurity Skills",
+ "last_verified": "2026-10-20",
+ "verified": false,
+ "verification": "source",
+ "license": "Apache-2.0",
+ "ctf_domains": [
+  "hardware",
+  "forensics"
+ ]
+}

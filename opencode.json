@@ -1,0 +1,368 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "model": "opencode-go/muse-spark-1.3-contributor#xhigh",
+  "small_model": "opencode-go/muse-spark-1.3-contributor",
+  "agent": {
+    "build": {
+      "mode": "primary",
+      "model": "opencode-go/muse-spark-1.3-contributor#xhigh",
+      "permission": {
+        "bash": {
+          "*": "deny"
+        },
+        "edit": "allow",
+        "webfetch": "ask",
+        "external_directory": {
+          "*": "deny"
+        }
+      }
+    },
+    "general": {
+      "mode": "subagent",
+      "model": "opencode-go/muse-spark-1.3-contributor",
+      "permission": {
+        "bash": {
+          "*": "allow"
+        },
+        "edit": "allow"
+      }
+    }
+  },
+  "provider": {
+    "omniroute": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "OmniRoute (local)",
+      "options": {
+        "baseURL": "{env:OMNIROUTE_BASE_URL}",
+        "apiKey": "{env:OMNIROUTE_API_KEY}",
+        "headers": {
+          "X-OmniRoute-Mode": "offline",
+          "X-OmniRoute-Budget": "0.000001",
+          "X-OmniRoute-Budget-Fallback": "strict",
+          "X-OmniRoute-Compression": "coding-safe"
+        }
+      },
+      "models": {
+        "auto/reasoning:free": {
+          "name": "Auto Reasoning \u2014 free-only policy",
+          "reasoning": true
+        },
+        "auto/coding:free": {
+          "name": "Auto Coding \u2014 free-only policy",
+          "reasoning": true
+        },
+        "auto/fast": {
+          "name": "Auto Fast (opt-in)",
+          "reasoning": true
+        }
+      }
+    }
+  },
+  "mcp": {
+    "playwright": {
+      "type": "local",
+      "command": [
+        "npx",
+        "@playwright/mcp@latest",
+        "--caps",
+        "core,vision,network,pdf",
+        "--viewport-size",
+        "1280x900",
+        "--user-data-dir",
+        ".browser-profile-mcp",
+        "--save-session"
+      ],
+      "enabled": true,
+      "description": "Full browser control (navigate/snapshot/click/type/vision/network/pdf). Human-paced via browser-ops skill; CAPTCHAs go to operator_ping gate, never auto-solved."
+    },
+    "memory": {
+      "type": "local",
+      "command": [
+        "npx",
+        "-y",
+        "@modelcontextprotocol/server-memory"
+      ],
+      "enabled": true,
+      "description": "Persistent knowledge graph \u2014 challenge profiles, technique priors, FP patterns across sessions"
+    },
+    "sequential-thinking": {
+      "type": "local",
+      "command": [
+        "npx",
+        "-y",
+        "@modelcontextprotocol/server-sequential-thinking"
+      ],
+      "enabled": true,
+      "description": "Multi-step reasoning \u2014 flag-path synthesis, exploit planning"
+    },
+    "cyberchef": {
+      "type": "local",
+      "command": [
+        "npx",
+        "-y",
+        "cyberchef-mcp"
+      ],
+      "enabled": true,
+      "description": "CyberChef recipes (bake/search/describe) \u2014 crypto + forensics encodings. Verified 2026-10-15."
+    },
+    "crypto-tools": {
+      "type": "local",
+      "command": [
+        "npx",
+        "-y",
+        "@rog0x/mcp-crypto-tools@1.0.2"
+      ],
+      "enabled": true,
+      "description": "hash/encode/JWT helpers. Verified 2026-10-15."
+    },
+    "mdb": {
+      "type": "local",
+      "command": [
+        "uvx",
+        "--from",
+        "git+https://github.com/smadi0x86/MDB-MCP",
+        "mdb-mcp"
+      ],
+      "enabled": true,
+      "description": "GDB debugger sessions (status/start/command/interrupt/terminate). Local binaries only. Verified 2026-10-15."
+    },
+    "filesystem": {
+      "type": "local",
+      "command": [
+        "npx",
+        "-y",
+        "@modelcontextprotocol/server-filesystem",
+        "/home/cyb3rfy/BugBounty/bugbounty-ai-framework-improved-v4.2-high-bounty/CTFsolver/CTF/challenges",
+        "/home/cyb3rfy/BugBounty/bugbounty-ai-framework-improved-v4.2-high-bounty/CTFsolver/CTF/results"
+      ],
+      "enabled": true,
+      "description": "Scoped file access (challenges/ + results/ only). Verified 2026-10-15."
+    },
+    "volatility": {
+      "type": "local",
+      "command": [
+        "python3",
+        "tools/_vendor/volatility_mcp_server.py"
+      ],
+      "enabled": true,
+      "description": "Volatility3 memory forensics (vendored Linux-patched server). Verified 2026-10-15."
+    },
+    "ctfd": {
+      "type": "local",
+      "command": [
+        "uvx",
+        "ctfd-mcp"
+      ],
+      "enabled": false,
+      "description": "CTFd platform (list/submit/containers). Enable per CTFd event: export CTFD_URL + CTFD_TOKEN, then flip enabled=true. See start.sh."
+    },
+    "htb-ctf": {
+      "type": "remote",
+      "url": "https://mcp.hackthebox.ai/v1/ctf/mcp/",
+      "enabled": false,
+      "description": "Official HTB CTF MCP. Enable per HTB event: Bearer MCP token from HTB profile -> Authorization header. See start.sh."
+    },
+    "ctf-toolkit": {
+      "type": "local",
+      "command": [
+        "uvx",
+        "--from",
+        "git+https://github.com/Coff0xc/CTF-MCP",
+        "ctf-mcp"
+      ],
+      "enabled": false,
+      "description": "126-tool CTF kit. SANDBOX-ONLY (14 RCE-class tools); enable per-task inside docker, then disable."
+    },
+    "ghidra": {
+      "type": "local",
+      "command": [
+        "bash",
+        "tools/ghidra_mcp.sh"
+      ],
+      "enabled": true,
+      "description": "GhidraMCP headless (28 RE tools). Enabled by default; per rev task set GHIDRA_BINARY=/path/to/target. Anytime CLI: tools/rev_ghidra.py --binary <f> --decompile <fn>."
+    },
+    "burp": {
+      "type": "local",
+      "command": [
+        "python3",
+        "-m",
+        "burp_mcp"
+      ],
+      "environment": {
+        "BURP_API_URL": "{env:BURP_API_URL}",
+        "BURP_API_KEY": "{env:BURP_API_KEY}",
+        "BURP_TIMEOUT": "{env:BURP_TIMEOUT}"
+      },
+      "enabled": false,
+      "description": "Burp Suite Pro MCP (Den-Sec/burp-mcp, 61 tools). DISABLED by default (no Burp Pro here). To enable: cd extension && ./gradlew jar, load extension/build/libs/burp-mcp-extension-2.0.0.jar in Burp Pro, pip install -e server/, export BURP_API_URL (default http://127.0.0.1:8089) + BURP_API_KEY, then flip enabled=true. Web fallback: ffuf/sqlmap CLI."
+    },
+    "brave-search": {
+      "type": "local",
+      "command": [
+        "npx",
+        "-y",
+        "@brave/brave-search-mcp-server"
+      ],
+      "enabled": false,
+      "description": "Web search for OSINT dorking. Enable per OSINT task: export BRAVE_API_KEY first. NEVER send flags to it (local-only policy)."
+    },
+    "github": {
+      "type": "local",
+      "command": [
+        "npx",
+        "-y",
+        "@modelcontextprotocol/server-github"
+      ],
+      "enabled": false,
+      "description": "GitHub code search for OSINT. Enable per OSINT task: export GITHUB_PERSONAL_ACCESS_TOKEN first."
+    }
+  },
+  "command": {
+    "worker": {
+      "agent": "general",
+      "description": "Spawns the Worker subagent to execute a CTF framework task",
+      "template": "Read `master_prompt.md`, `worker_prompt.md`, `challenge_prompt.md`, and `skills/_shared/SKILL_CONTRACT.md`. Execute exactly one bounded task from the operator: $ARGUMENTS. Before acting, identify challenge ID, scope, budget, expected artifact, and stop condition; if any are missing, record them as unknown and ask the Lead/operator rather than guessing. Return a durable evidence-based result artifact; do not submit flags."
+    },
+    "triage": {
+      "agent": "general",
+      "description": "Runs Phase 0 triage/classification on challenge files",
+      "template": "Read `worker_prompt.md`, `skills/_shared/SKILL_CONTRACT.md`, and `skills/triage/SKILL.md`. Triage exactly the challenge specified: $ARGUMENTS. Inspect the provided files and statement; run the bounded offline quick-win sweep where applicable. Use file/content signals over list-page labels. Write the requested surface.json with evidence, confidence, primary/secondary routes, unknowns, and artifact paths. Do not exploit during triage. Ambiguous evidence stays LOW/unknown; never force a category."
+    },
+    "recon": {
+      "agent": "general",
+      "description": "Runs Phase 1 surface expansion for a challenge",
+      "template": "Read `worker_prompt.md`, `skills/_shared/SKILL_CONTRACT.md`, the task, and the referenced category skill. Perform bounded, in-scope reconnaissance for: $ARGUMENTS. Confirm the supplied target and scope first. Record endpoint/field/file/behavior observations with exact evidence and useful negatives. Do not exploit or broaden scope; stop on CAPTCHA, login, 429, or ambiguous authorization. Return a prioritized surface update and next falsifiable hypotheses."
+    },
+    "analyze": {
+      "agent": "general",
+      "description": "Runs Phase 2 deep analysis / profiling (maps to /map)",
+      "template": "Read `worker_prompt.md`, `skills/_shared/SKILL_CONTRACT.md`, the task, and the referenced category skill. Analyze exactly the assigned challenge: $ARGUMENTS. Separate observed facts, inferences, and unknowns. Produce a profile with at most three ranked hypotheses; each must include preconditions, supporting evidence, a predicted observation, a falsifier, cost, and a bounded next test. Do not invent an EXP result or run unrelated probes."
+    },
+    "exploit": {
+      "agent": "general",
+      "description": "Runs Phase 3 single-hypothesis exploitation (maps to /test)",
+      "template": "Read `worker_prompt.md`, `skills/_shared/SKILL_CONTRACT.md`, the task, and the referenced skill. Test exactly one assigned EXP hypothesis: $ARGUMENTS. Write a minimal reproducer at the task's artifact path, use explicit time/request caps, and prefer local reproduction. Run only actions in scope. Record the real command, output path, version, elapsed time, controls, and verdict (CONFIRMED/NEGATIVE/PARTIAL). A flag-shaped string is only a candidate; do not claim accepted/correct without independent validation. Never submit."
+    },
+    "validate": {
+      "agent": "general",
+      "description": "Runs Phase 4 fresh-container flag validation",
+      "template": "Read `worker_prompt.md`, `skills/_shared/SKILL_CONTRACT.md`, and the task. Validate exactly the assigned reproducer: $ARGUMENTS. Use a clean process/container or fresh challenge instance where available; document reset assumptions. Compare output against the challenge-stated answer format or success oracle. Distinguish candidate, reproduced, accepted, and unverified. Do not submit or expose the answer in chat; store sensitive answers only in the designated local file."
+    },
+    "writeup": {
+      "agent": "build",
+      "description": "Runs Phase 5 writeup generation (Lead only)",
+      "template": "Read `skills/report-writeup/SKILL.md` and `skills/_shared/SKILL_CONTRACT.md`. Create a writeup only from validated artifacts for: $ARGUMENTS. Separate observed facts from interpretation, cite source/artifact paths, include failed approaches only when evidenced, redact answer values from the writeup unless event rules explicitly require them in the private per-event writeup, and never ingest secrets into shared knowledge."
+    },
+    "solve": {
+      "agent": "build",
+      "description": "Lead macro: full triage-to-exploit loop for one CHAL-ID",
+      "template": "Act as Lead. Read `master_prompt.md`, `lead_prompt.md`, `challenge_prompt.md`, `state.json`, `skills/index.md`, and `skills/_shared/SKILL_CONTRACT.md`. Solve only the named challenge: $ARGUMENTS. Confirm it is in scope and registered. Do not run tactical shell/network/debug/exploit commands yourself; dispatch bounded Worker tasks using `/triage`, `/recon`, `/analyze`, `/exploit`, `/validate` and review their artifacts. Ensure the worker runs `tools/autosolve.py` before expensive work when applicable. Use evidence-based triage, at most three ranked hypotheses, one hypothesis per exploit task, and at most three bounded attempts total (corrected retry + one alternate). Validate in a clean run against the challenge-defined answer format/oracle; regex syntax alone is not correctness. Do not submit; submission remains an operator hard gate through `/submit` and `tools/submit.py`. On a blocker, record it and continue any independent in-scope work."
+    },
+    "pwn": {
+      "agent": "general",
+      "description": "Pwn specialist worker (checksec \u2192 offset \u2192 leak \u2192 ROP)",
+      "template": "Read `worker_prompt.md`, `skills/_shared/SKILL_CONTRACT.md`, and `skills/pwn/SKILL.md`. Execute the bounded pwn task exactly as assigned: $ARGUMENTS. Establish architecture/protections and input control before payload construction; prove leaks and offsets on the same binary/runtime; validate locally before remote interaction."
+    },
+    "crypto": {
+      "agent": "general",
+      "description": "Crypto specialist worker (classifier \u2192 RsaCtfTool \u2192 oracle \u2192 classical)",
+      "template": "Read `worker_prompt.md`, `skills/_shared/SKILL_CONTRACT.md`, and `skills/crypto/SKILL.md`. Execute the bounded crypto task exactly as assigned: $ARGUMENTS. Identify the primitive/parameters first, select one attack whose preconditions match, use exact integer/modular arithmetic, and verify by re-encryption/signature/oracle consistency. Bound factoring, brute force, and lattice runs."
+    },
+    "rev": {
+      "agent": "general",
+      "description": "Rev specialist worker (Ghidra \u2192 angr \u2192 Frida \u2192 re-implement)",
+      "template": "Read `worker_prompt.md`, `skills/_shared/SKILL_CONTRACT.md`, and `skills/rev/SKILL.md`. Execute the bounded reverse-engineering task exactly as assigned: $ARGUMENTS. Fingerprint architecture/runtime/packing, trace from the success check, use static before dynamic, and verify the recovered input against the original challenge binary."
+    },
+    "web": {
+      "agent": "general",
+      "description": "Web-CTF specialist worker (fuzz matrix \u2192 vuln checklist)",
+      "template": "Read `worker_prompt.md`, `skills/_shared/SKILL_CONTRACT.md`, `skills/web-ctf/SKILL.md`, and event scope. Execute the bounded web-CTF task exactly as assigned: $ARGUMENTS. Start with low-impact recon and a discriminating probe. Use Playwright for rendered behavior when needed. On CAPTCHA/login/2FA/429, stop and hand off to the operator; never evade the gate."
+    },
+    "forensics": {
+      "agent": "general",
+      "description": "Forensics specialist worker (pcap/disk/memory pipeline)",
+      "template": "Read `worker_prompt.md`, `skills/_shared/SKILL_CONTRACT.md`, and `skills/forensics/SKILL.md`. Execute the bounded forensics task exactly as assigned: $ARGUMENTS. Work read-only on copies, hash originals, record tool versions and offsets, and preserve a reproducible extraction chain."
+    },
+    "stego": {
+      "agent": "general",
+      "description": "Stego specialist worker (ordered image/audio/QR pipeline)",
+      "template": "Read `worker_prompt.md`, `skills/_shared/SKILL_CONTRACT.md`, and `skills/stego/SKILL.md`. Execute the bounded stego task exactly as assigned: $ARGUMENTS. Preserve original bytes, identify the carrier format before selecting a tool, and validate extracted data by type, hash, and challenge context."
+    },
+    "misc": {
+      "agent": "general",
+      "description": "Misc specialist worker (pyjail/esolang/encodings/archives)",
+      "template": "Read `worker_prompt.md`, `skills/_shared/SKILL_CONTRACT.md`, and `skills/misc-pyjail/SKILL.md`. Execute the bounded misc/pyjail task exactly as assigned: $ARGUMENTS. Inspect the exact parser, runtime version, filter, and allowed input before choosing a construction; test locally first when code is supplied."
+    },
+    "osint": {
+      "agent": "general",
+      "description": "OSINT specialist worker (handles, domains, archives, metadata)",
+      "template": "Read `worker_prompt.md`, `skills/_shared/SKILL_CONTRACT.md`, `skills/osint/SKILL.md`, and the CTF's explicit OSINT scope. Execute the bounded task exactly as assigned: $ARGUMENTS. Use only provided fictional CTF personas/data and allowed public sources. GitHub/Brave MCPs are optional and may be disabled; never assume they are available. Do not contact people, submit real emails, bypass login/CAPTCHA, or expand scope."
+    },
+    "hardware": {
+      "agent": "general",
+      "description": "Hardware/firmware specialist worker (binwalk, UART, EVM/RTL)",
+      "template": "Read `worker_prompt.md`, `skills/_shared/SKILL_CONTRACT.md`, and `skills/hardware/SKILL.md`. Execute the bounded hardware task exactly as assigned: $ARGUMENTS. Prefer supplied dumps and simulations; never toggle fuses, write firmware, or alter physical devices without explicit authorization. Record board/chip/tool versions and preserve original captures."
+    },
+    "blockchain": {
+      "agent": "general",
+      "description": "Smart-contract specialist worker (foundry exploit loop)",
+      "template": "Read `worker_prompt.md`, `skills/_shared/SKILL_CONTRACT.md`, and `skills/blockchain/SKILL.md`. Execute the bounded blockchain task exactly as assigned: $ARGUMENTS. Use local Anvil/fork state only; inspect challenge win condition and public getters first, pin block/compiler, and do not send transactions to mainnet or unrelated networks."
+    },
+    "mobile": {
+      "agent": "general",
+      "description": "Mobile specialist worker (APK/IPA static + Frida dynamic)",
+      "template": "Read `worker_prompt.md`, `skills/_shared/SKILL_CONTRACT.md`, and `skills/mobile/SKILL.md`. Execute the bounded mobile task exactly as assigned: $ARGUMENTS. Static analysis first; dynamic hooks only on the supplied app/emulator. Do not upload APKs, tokens, or captured answers to third-party services."
+    },
+    "ai-ml": {
+      "agent": "general",
+      "description": "AI/ML-security specialist worker (prompt injection, exfil)",
+      "template": "Read `worker_prompt.md`, `skills/_shared/SKILL_CONTRACT.md`, `skills/ai-ml/SKILL.md`, and the challenge scope. Execute the bounded AI/ML task exactly as assigned: $ARGUMENTS. Use only the challenge's model/tool endpoint. Never send real flags, credentials, cookies, or private data to hosted models or external listeners; use synthetic canaries. Do not test unrelated public AI services."
+    },
+    "browser": {
+      "agent": "general",
+      "description": "Browser extraction worker (CDP-attached operator Chrome \u2192 challenges + files)",
+      "template": "Read `worker_prompt.md`, `skills/_shared/SKILL_CONTRACT.md`, and `skills/browser-ops/SKILL.md`. Execute the bounded browser task exactly as assigned: $ARGUMENTS. Use the correct isolated browser profile; attach to the operator's authenticated Chrome only for platform sessions. Never fill credentials or solve/bypass CAPTCHA. Serialize actions per profile, pace requests, verify downloaded bytes and hashes, and stop on access/rate gates."
+    },
+    "submit": {
+      "agent": "general",
+      "description": "Paced, gated flag submission (clearance pre-flight, ledger, budget)",
+      "template": "This command crosses a hard gate. Read `worker_prompt.md`, `skills/_shared/SKILL_CONTRACT.md`, `docs/LIVE_OPS.md` sections 1-4, and `tools/submit.py --help`. Do not submit unless the operator explicitly authorizes this exact challenge and candidate in the current request. Use `tools/submit.py` only; honor event attempt limits, pacing, expected format, and duplicate ledger. Never guess or auto-submit. Task: $ARGUMENTS"
+    },
+    "instance": {
+      "agent": "general",
+      "description": "Challenge-instance lifecycle (spawn/status/close-dead)",
+      "template": "Read `worker_prompt.md`, `skills/_shared/SKILL_CONTRACT.md`, and `docs/LIVE_OPS.md` section 7. Use `tools/instance.py` only for the named in-scope CTF instance; record expiry/reset behavior and never spawn unrelated targets. Task: $ARGUMENTS"
+    },
+    "think": {
+      "agent": "build",
+      "description": "Sequential multi-step reasoning for flag-path synthesis",
+      "template": "Read `master_prompt.md`, `skills/_shared/SKILL_CONTRACT.md`, and `skills/sequential-thinking/SKILL.md`. Analyze the stated challenge using observed facts, unknowns, at most three falsifiable hypotheses, and the cheapest discriminating test. Do not invent observations. Task: $ARGUMENTS"
+    },
+    "status": {
+      "agent": "build",
+      "description": "Shows current CTF session status from state.json",
+      "template": "Read `state.json` and summarize competition/status, challenge counts by status, validated-answer count (never print answer values), blockers, and one next priority action. If this is the pristine template, say no engagement has been initialized and point to `./start.sh`; do not infer a competition from history."
+    },
+    "resume": {
+      "agent": "build",
+      "description": "Resumes CTF session from last state",
+      "template": "Act as Lead. Read `master_prompt.md`, `lead_prompt.md`, `challenge_prompt.md`, `skills/index.md`, `phases/PHASE_ARCHITECTURE.md`, and `state.json`. The template state is intentionally empty; if not initialized, point to `./start.sh` and do not invent event data. Otherwise inventory remaining in-scope challenges, blockers, last evidence, budgets, and answer validation status. Choose and dispatch the next bounded Worker task using `/triage`, `/recon`, `/analyze`, `/exploit`, or `/validate`; do not stop at merely recommending a task when dispatch is authorized. Do not submit."
+    }
+  },
+  "permission": {
+    "*": "ask",
+    "bash": "allow",
+    "edit": "allow",
+    "webfetch": "ask",
+    "external_directory": {
+      "*": "deny"
+    },
+    "read": {
+      "*": "allow",
+      "*.env": "deny",
+      "*.env.*": "deny",
+      "*.env.example": "allow"
+    }
+  }
+}

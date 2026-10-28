@@ -1,0 +1,43 @@
+{
+ "id": "imported-osint-recon",
+ "domain": "osint",
+ "title": "OSINT external recon",
+ "signals": [
+  "username/handle",
+  "domain",
+  "email",
+  "photo",
+  "organization",
+  "social profile"
+ ],
+ "preconditions": [
+  "challenge defines the allowed public sources",
+  "only fictional CTF personas/data"
+ ],
+ "steps": [
+  "Pivot on the exact identifier: `whois`, DNS (`dig`), `crt.sh`, `subfinder`, and passive DNS/archive sources.",
+  "Search the handle across platforms with `sherlock`/`maigret`; check profile metadata, avatars, and reused usernames.",
+  "Use the Wayback Machine and Google/Bing dorks for deleted pages, documents, and exposed metadata.",
+  "Corroborate every answer with at least two independent sources; do not contact real people or bypass logins."
+ ],
+ "falsifier": "No public record links the identifier to the requested fact, or the only source is an unverified snippet.",
+ "pitfalls": [
+  "common-handle collisions",
+  "dated archives",
+  "AI-generated profiles",
+  "privacy/ToS limits",
+  "single-source answers"
+ ],
+ "sources": [
+  "https://github.com/mukul975/Anthropic-Cybersecurity-Skills/tree/main/skills/conducting-external-reconnaissance-with-osint"
+ ],
+ "fixtures": [],
+ "verified_by": "source:Anthropic Cybersecurity Skills",
+ "last_verified": "2026-10-20",
+ "verified": false,
+ "verification": "source",
+ "license": "Apache-2.0",
+ "ctf_domains": [
+  "osint"
+ ]
+}

@@ -1,0 +1,473 @@
+# Crypto Writeups Mined — Manifest ( technique-only, no flags )
+
+Mined 2026-10-15 from ctftime.org crypto-tagged writeup indexes plus team-blog and GitHub references
+found via web search. Method: harvested ctftime writeup index pages filtered by crypto tags
+(coppersmith, boneh-durfee, franklin-reiter, hastad, broadcast, wiener, fermat, ecdsa, hnp,
+padding-oracle, bleichenbacher, cbc, ecb, ctr, gcm, aes, otp, lcg, mt19937, shamir, paillier,
+knapsack, lwe, dsa, elgamal, diffie-hellman, ecc, rsa, jwt, hash, rc4, chacha, lattice, lll, z3),
+verified event/task names from index rows, excluded non-crypto z3-only rows and trivial
+single-base64/ROT13-style solves. Detail-fetched a cross-family sample (Coppersmith bivariate
+and multivariate, stereotyped-message, ECDSA HNP, Bleichenbacher/Manger, MT full plus truncated,
+padding-oracle) to ground the technique chains and the W-patterns in skills/crypto.
+Format per line: `- [event/challenge](URL) | difficulty | technique-chain (1 line)`.
+Counts: 424 ctftime rows (294 hard, 130 medium) plus 29 blog/GitHub rows (24 hard, 5 medium),
+total 453 rows, hard-majority. No flag or plaintext values anywhere in this file.
+
+## ctftime.org rows
+
+- [L3akCTF 2025/Magical Oracle](https://ctftime.org/writeup/40343) | hard | General lattice route (LLL/BKZ + Babai) encoding small-unknown constraint, verify candidate by re-encrypt/verify
+- [GPN CTF 2025/restricted oracle](https://ctftime.org/writeup/40337) | hard | CBC/PKCS#7 padding oracle byte-at-a-time decrypt with pad==1 re-confirm, then CBC-R forge
+- [Nullcon Goa HackIM 2025 CTF/kleinvieh_2](https://ctftime.org/writeup/39894) | hard | Coppersmith stereotyped/short-pad lattice via Sage small_roots within n^(1/e) bound, then re-encrypt verify
+- [TSG CTF 2024/Cipher Preset Button](https://ctftime.org/writeup/39709) | hard | Custom-cipher z3 BitVec model at exact word width with per-pair constraints, UNSAT means re-read source
+- [CyberSpace CTF 2024/trendy windy trigonity](https://ctftime.org/writeup/39433) | hard | LLL lattice reduction over small-root/HNP/knapsack encoding, verify candidate by re-encrypt/verify
+- [Crypto CTF 2024/Honey](https://ctftime.org/writeup/39180) | hard | LLL lattice reduction over small-root/HNP/knapsack encoding, verify candidate by re-encrypt/verify
+- [DEF CON CTF Qualifier 2024/shiny-shells](https://ctftime.org/writeup/39142) | hard | Homomorphic/Paillier-type algebraic decrypt (factor-assisted), verify by re-encrypt
+- [DEF CON CTF Qualifier 2024/shiny-shells](https://ctftime.org/writeup/39141) | hard | Homomorphic/Paillier-type algebraic decrypt (factor-assisted), verify by re-encrypt
+- [osu!gaming CTF 2024/lucky-roll-gaming](https://ctftime.org/writeup/38725) | hard | General lattice route (LLL/BKZ + Babai) encoding small-unknown constraint, verify candidate by re-encrypt/verify
+- [LA CTF 2024/very-hot](https://ctftime.org/writeup/38657) | hard | RSA classifier route (n bits, e, ct count) via RsaCtfTool auto then targeted wiener/fermat/hastad/comfact
+- [LA CTF 2024/very-hot](https://ctftime.org/writeup/38652) | hard | RSA classifier route (n bits, e, ct count) via RsaCtfTool auto then targeted wiener/fermat/hastad/comfact
+- [BackdoorCTF 2023/Knapsack](https://ctftime.org/writeup/38375) | hard | Low-density knapsack/subset-sum via LLL short-vector recovery, verify subset sum
+- [AmateursCTF 2023/Ice Cream Generator](https://ctftime.org/writeup/38374) | hard | LCG state recovery (direct algebra full-output, lattice/Babai truncated), predict and confirm one output
+- [BackdoorCTF 2023/Knapsack](https://ctftime.org/writeup/38372) | hard | Low-density knapsack/subset-sum via LLL short-vector recovery, verify subset sum
+- [1337UP LIVE CTF/1-10](https://ctftime.org/writeup/38278) | hard | LLL lattice reduction over small-root/HNP/knapsack encoding, verify candidate by re-encrypt/verify
+- [1337UP LIVE CTF/Really Secure Apparently](https://ctftime.org/writeup/38224) | hard | Wiener continued-fraction small-d recovery, escalate to Boneh-Durfee lattice on near-miss
+- [BlueHens CTF 2023/RSA School 8th Grade](https://ctftime.org/writeup/38103) | hard | Fermat close-prime factor via isqrt gap plus Pollard p-1 smooth-part fallback, then standard decrypt
+- [BlueHens CTF 2023/RSA School 7th Grade](https://ctftime.org/writeup/38102) | hard | Fermat close-prime factor via isqrt gap plus Pollard p-1 smooth-part fallback, then standard decrypt
+- [Hack.lu CTF 2023/Spooky Safebox](https://ctftime.org/writeup/37984) | hard | ECDSA nonce analysis: identical-r closed form first, else HNP lattice over many biased samples, verify dG==Pub
+- [FAUST CTF 2023/rsamail](https://ctftime.org/writeup/37974) | hard | Hastad broadcast CRT across >=e coprime moduli plus exact integer e-th root, verify every residue
+- [HITCON CTF 2023 Quals/Careless Padding](https://ctftime.org/writeup/37913) | hard | CBC/PKCS#7 padding oracle byte-at-a-time decrypt with pad==1 re-confirm, then CBC-R forge
+- [Google Capture The Flag 2023/LEAST COMMON GENOMINATOR?](https://ctftime.org/writeup/37352) | hard | LCG state recovery (direct algebra full-output, lattice/Babai truncated), predict and confirm one output
+- [Google Capture The Flag 2023/LEAST COMMON GENOMINATOR?](https://ctftime.org/writeup/37343) | hard | LCG state recovery (direct algebra full-output, lattice/Babai truncated), predict and confirm one output
+- [Google Capture The Flag 2023/LEAST COMMON GENOMINATOR?](https://ctftime.org/writeup/37338) | hard | LCG state recovery (direct algebra full-output, lattice/Babai truncated), predict and confirm one output
+- [Google Capture The Flag 2023/LEAST COMMON GENOMINATOR?](https://ctftime.org/writeup/37334) | hard | LCG state recovery (direct algebra full-output, lattice/Babai truncated), predict and confirm one output
+- [n00bzCTF 2023/RSA](https://ctftime.org/writeup/37302) | hard | Hastad broadcast CRT across >=e coprime moduli plus exact integer e-th root, verify every residue
+- [NahamCon CTF 2023/Signed Jeopardy](https://ctftime.org/writeup/37289) | hard | ECDSA nonce analysis: identical-r closed form first, else HNP lattice over many biased samples, verify dG==Pub
+- [n00bzCTF 2023/RSA](https://ctftime.org/writeup/37202) | hard | Hastad broadcast CRT across >=e coprime moduli plus exact integer e-th root, verify every residue
+- [DanteCTF 2023/Adventurer's Knapsack](https://ctftime.org/writeup/37116) | hard | Low-density knapsack/subset-sum via LLL short-vector recovery, verify subset sum
+- [TJCTF 2023/iheartrsa](https://ctftime.org/writeup/37107) | hard | Hastad broadcast CRT across >=e coprime moduli plus exact integer e-th root, verify every residue
+- [WRECKCTF 2022/token](https://ctftime.org/writeup/36318) | hard | CBC/PKCS#7 padding oracle byte-at-a-time decrypt with pad==1 re-confirm, then CBC-R forge
+- [pbctf 2023/Remake](https://ctftime.org/writeup/36243) | hard | LLL lattice reduction over small-root/HNP/knapsack encoding, verify candidate by re-encrypt/verify
+- [pbctf 2023/Revenge of LLLattice](https://ctftime.org/writeup/36236) | hard | General lattice route (LLL/BKZ + Babai) encoding small-unknown constraint, verify candidate by re-encrypt/verify
+- [DiceCTF 2023/BBBB](https://ctftime.org/writeup/36141) | hard | Coppersmith stereotyped/short-pad lattice via Sage small_roots within n^(1/e) bound, then re-encrypt verify
+- [RCTF 2022/IS_THIS_LCG?](https://ctftime.org/writeup/36034) | hard | LLL lattice reduction over small-root/HNP/knapsack encoding, verify candidate by re-encrypt/verify
+- [ImaginaryCTF 2022/Living Without Expectations](https://ctftime.org/writeup/36016) | hard | General lattice route (LLL/BKZ + Babai) encoding small-unknown constraint, verify candidate by re-encrypt/verify
+- [ImaginaryCTF 2022/Poker](https://ctftime.org/writeup/36014) | hard | MT19937 state clone by untempering 624 consecutive words (RandCrack) or z3 symbolic model if truncated, predict and confirm
+- [SECCON CTF 2022 Quals/janken vs kurenaif](https://ctftime.org/writeup/36013) | hard | MT19937 state clone by untempering 624 consecutive words (RandCrack) or z3 symbolic model if truncated, predict and confirm
+- [SECCON CTF 2022 Quals/witches_symmetric_exam](https://ctftime.org/writeup/36012) | hard | CBC/PKCS#7 padding oracle byte-at-a-time decrypt with pad==1 re-confirm, then CBC-R forge
+- [SECCON CTF 2022 Quals/insufficient](https://ctftime.org/writeup/36011) | hard | General lattice route (LLL/BKZ + Babai) encoding small-unknown constraint, verify candidate by re-encrypt/verify
+- [SECCON CTF 2022 Quals/this_is_not_lsb](https://ctftime.org/writeup/36010) | hard | General lattice route (LLL/BKZ + Babai) encoding small-unknown constraint, verify candidate by re-encrypt/verify
+- [SECCON CTF 2022 Quals/BBB](https://ctftime.org/writeup/36009) | hard | Hastad broadcast CRT across >=e coprime moduli plus exact integer e-th root, verify every residue
+- [Square CTF 2022/Hard Copy](https://ctftime.org/writeup/35996) | hard | RSA classifier route (n bits, e, ct count) via RsaCtfTool auto then targeted wiener/fermat/hastad/comfact
+- [Srdnlen CTF 2022/Fancy_e](https://ctftime.org/writeup/35869) | hard | Wiener continued-fraction small-d recovery, escalate to Boneh-Durfee lattice on near-miss
+- [DownUnderCTF 2022 (Online)/Crypto Casino](https://ctftime.org/writeup/35675) | hard | LCG state recovery (direct algebra full-output, lattice/Babai truncated), predict and confirm one output
+- [DownUnderCTF 2022 (Online)/Crypto Casino](https://ctftime.org/writeup/35663) | hard | LCG state recovery (direct algebra full-output, lattice/Babai truncated), predict and confirm one output
+- [corCTF 2022/corrupted-curves+](https://ctftime.org/writeup/34921) | hard | General lattice route (LLL/BKZ + Babai) encoding small-unknown constraint, verify candidate by re-encrypt/verify
+- [corCTF 2022/corrupted-curves](https://ctftime.org/writeup/34919) | hard | General lattice route (LLL/BKZ + Babai) encoding small-unknown constraint, verify candidate by re-encrypt/verify
+- [corCTF 2022/leapfrog](https://ctftime.org/writeup/34918) | hard | LCG state recovery (direct algebra full-output, lattice/Babai truncated), predict and confirm one output
+- [corCTF 2022/exchanged](https://ctftime.org/writeup/34916) | hard | LCG state recovery (direct algebra full-output, lattice/Babai truncated), predict and confirm one output
+- [corCTF 2022/threetreasures](https://ctftime.org/writeup/34915) | hard | Coppersmith stereotyped/short-pad lattice via Sage small_roots within n^(1/e) bound, then re-encrypt verify
+- [corCTF 2022/luckyguess](https://ctftime.org/writeup/34823) | hard | LCG state recovery (direct algebra full-output, lattice/Babai truncated), predict and confirm one output
+- [Hack-A-Sat 3 Qualifiers/Blazin' Etudes](https://ctftime.org/writeup/34813) | hard | Custom-cipher z3 BitVec model at exact word width with per-pair constraints, UNSAT means re-read source
+- [SEETF 2022/Close Enough](https://ctftime.org/writeup/34204) | hard | Fermat close-prime factor via isqrt gap plus Pollard p-1 smooth-part fallback, then standard decrypt
+- [BCACTF 3.0/a Legit proteCtor of flaGs](https://ctftime.org/writeup/34200) | hard | LCG state recovery (direct algebra full-output, lattice/Babai truncated), predict and confirm one output
+- [Cyber Apocalypse CTF 2022: Intergalactic Chase/One Step Closer](https://ctftime.org/writeup/33963) | hard | Franklin-Reiter related-message poly-gcd over Z_n for known affine m2=a*m1+b, linear factor, verify both residues
+- [Cyber Apocalypse CTF 2022: Intergalactic Chase/Memory Acceleration](https://ctftime.org/writeup/33939) | hard | Hash triage (hashid top-2, bounded hashcat/john, or H(secret||msg) length-extension with keylen sweep)
+- [Cyber Apocalypse CTF 2022: Intergalactic Chase/Mind in the Clouds](https://ctftime.org/writeup/33896) | hard | ECDSA hidden-number-problem lattice from biased-nonce samples (scale by leak bound), LLL/Babai, verify dG==Pub
+- [TJCTF 2022/morph-master](https://ctftime.org/writeup/33833) | hard | Homomorphic/Paillier-type algebraic decrypt (factor-assisted), verify by re-encrypt
+- [CrewCTF 2022/Malleable Metal](https://ctftime.org/writeup/33372) | hard | Coppersmith stereotyped/short-pad lattice via Sage small_roots within n^(1/e) bound, then re-encrypt verify
+- [HackPack CTF 2022/P(ai)^3](https://ctftime.org/writeup/33367) | hard | Homomorphic/Paillier-type algebraic decrypt (factor-assisted), verify by re-encrypt
+- [HackPack CTF 2022/Repeating Offense](https://ctftime.org/writeup/33366) | hard | Homomorphic/Paillier-type algebraic decrypt (factor-assisted), verify by re-encrypt
+- [*CTF 2022/ezRSA](https://ctftime.org/writeup/33343) | hard | Coppersmith stereotyped/short-pad lattice via Sage small_roots within n^(1/e) bound, then re-encrypt verify
+- [picoCTF 2022/Sum-O-Primes](https://ctftime.org/writeup/32802) | hard | RSA classifier route (n bits, e, ct count) via RsaCtfTool auto then targeted wiener/fermat/hastad/comfact
+- [LINE CTF 2022/Baby crypto revisited](https://ctftime.org/writeup/32659) | hard | ECDSA hidden-number-problem lattice from biased-nonce samples (scale by leak bound), LLL/Babai, verify dG==Pub
+- [zer0pts CTF 2022/Anti-Fermat](https://ctftime.org/writeup/32606) | hard | Fermat close-prime factor via isqrt gap plus Pollard p-1 smooth-part fallback, then standard decrypt
+- [zer0pts CTF 2022/Karen](https://ctftime.org/writeup/32586) | hard | LLL lattice reduction over small-root/HNP/knapsack encoding, verify candidate by re-encrypt/verify
+- [DiceCTF 2022/learning-without-errors](https://ctftime.org/writeup/32265) | hard | LWE lattice decoding via Babai nearest-plane on reduced basis, verify recovered secret
+- [Ledger Donjon CTF 2021/Crypto Party](https://ctftime.org/writeup/31945) | hard | ECDSA nonce analysis: identical-r closed form first, else HNP lattice over many biased samples, verify dG==Pub
+- [K3RN3LCTF/Total Encryption](https://ctftime.org/writeup/31931) | hard | Coppersmith stereotyped/short-pad lattice via Sage small_roots within n^(1/e) bound, then re-encrypt verify
+- [K3RN3LCTF/Shrine of the Sweating Buddha](https://ctftime.org/writeup/31929) | hard | Homomorphic/Paillier-type algebraic decrypt (factor-assisted), verify by re-encrypt
+- [K3RN3LCTF/HADIOR](https://ctftime.org/writeup/31927) | hard | DSA/DSS nonce-bias or parameter-tamper analysis (small subgroup, reused k), solve then verify
+- [HTB Uni CTF 2021 - Quals/Space Pirates](https://ctftime.org/writeup/31892) | hard | Shamir share misuse via Lagrange f(0) interpolation (threshold/duplicate-x/x=0 checks), verify on held-out share
+- [SECCON CTF 2021/Sign Wars](https://ctftime.org/writeup/31821) | hard | ECDSA nonce analysis: identical-r closed form first, else HNP lattice over many biased samples, verify dG==Pub
+- [HTB Uni CTF 2021 - Quals/Waiting List](https://ctftime.org/writeup/31588) | hard | ECDSA nonce analysis: identical-r closed form first, else HNP lattice over many biased samples, verify dG==Pub
+- [K3RN3LCTF/Objection!](https://ctftime.org/writeup/31508) | hard | DSA/DSS nonce-bias or parameter-tamper analysis (small subgroup, reused k), solve then verify
+- [N1CTF 2021/n1ogin](https://ctftime.org/writeup/31464) | hard | CBC/PKCS#7 padding oracle byte-at-a-time decrypt with pad==1 re-confirm, then CBC-R forge
+- [HTB Uni CTF 2021 - Quals/Waiting List](https://ctftime.org/writeup/31430) | hard | ECDSA nonce analysis: identical-r closed form first, else HNP lattice over many biased samples, verify dG==Pub
+- [Hack.lu CTF 2021/lwsr](https://ctftime.org/writeup/31200) | hard | LWE lattice decoding via Babai nearest-plane on reduced basis, verify recovered secret
+- [pbctf 2021/LLLattice](https://ctftime.org/writeup/30866) | hard | General lattice route (LLL/BKZ + Babai) encoding small-unknown constraint, verify candidate by re-encrypt/verify
+- [DownUnderCTF 2021 (Online)/yadlp](https://ctftime.org/writeup/30584) | hard | Low-density knapsack/subset-sum via LLL short-vector recovery, verify subset sum
+- [Tamil CTF 2021/Secret Sharing](https://ctftime.org/writeup/30580) | hard | Shamir share misuse via Lagrange f(0) interpolation (threshold/duplicate-x/x=0 checks), verify on held-out share
+- [TMUCTF 2021/Signed Flag](https://ctftime.org/writeup/30226) | hard | DSA/DSS nonce-bias or parameter-tamper analysis (small subgroup, reused k), solve then verify
+- [CSAW CTF Qualification Round 2021/RSA Pop Quiz](https://ctftime.org/writeup/30196) | hard | Wiener continued-fraction small-d recovery, escalate to Boneh-Durfee lattice on near-miss
+- [RaRCTF 2021/randompad](https://ctftime.org/writeup/30145) | hard | Coppersmith stereotyped/short-pad lattice via Sage small_roots within n^(1/e) bound, then re-encrypt verify
+- [corCTF 2021/LCG-k](https://ctftime.org/writeup/30027) | hard | ECDSA nonce analysis: identical-r closed form first, else HNP lattice over many biased samples, verify dG==Pub
+- [corCTF 2021/babypad](https://ctftime.org/writeup/30026) | hard | CBC/PKCS#7 padding oracle byte-at-a-time decrypt with pad==1 re-confirm, then CBC-R forge
+- [RaRCTF 2021/randompad](https://ctftime.org/writeup/29805) | hard | Coppersmith stereotyped/short-pad lattice via Sage small_roots within n^(1/e) bound, then re-encrypt verify
+- [RaRCTF 2021/Snore](https://ctftime.org/writeup/29804) | hard | LLL lattice reduction over small-root/HNP/knapsack encoding, verify candidate by re-encrypt/verify
+- [redpwnCTF 2021/Keeper of the Flag](https://ctftime.org/writeup/29272) | hard | DSA/DSS nonce-bias or parameter-tamper analysis (small subgroup, reused k), solve then verify
+- [TAMUctf 2021/pwgen](https://ctftime.org/writeup/28000) | hard | LCG state recovery (direct algebra full-output, lattice/Babai truncated), predict and confirm one output
+- [b01lers CTF/Reasonable Security Ahead](https://ctftime.org/writeup/26967) | hard | Franklin-Reiter related-message poly-gcd over Z_n for known affine m2=a*m1+b, linear factor, verify both residues
+- [UTCTF 2021/A Bit Weird](https://ctftime.org/writeup/26861) | hard | Coppersmith stereotyped/short-pad lattice via Sage small_roots within n^(1/e) bound, then re-encrypt verify
+- [BlueHens CTF 2021/Entropy](https://ctftime.org/writeup/26743) | hard | LCG state recovery (direct algebra full-output, lattice/Babai truncated), predict and confirm one output
+- [BlueHens CTF 2021/Entropy](https://ctftime.org/writeup/26727) | hard | LCG state recovery (direct algebra full-output, lattice/Babai truncated), predict and confirm one output
+- [UTCTF 2021/A Bit Weird](https://ctftime.org/writeup/26407) | hard | Coppersmith stereotyped/short-pad lattice via Sage small_roots within n^(1/e) bound, then re-encrypt verify
+- [0x41414141 CTF/factorize](https://ctftime.org/writeup/26305) | hard | Fermat close-prime factor via isqrt gap plus Pollard p-1 smooth-part fallback, then standard decrypt
+- [zer0pts CTF 2021/war(sa)mup](https://ctftime.org/writeup/26281) | hard | Franklin-Reiter related-message poly-gcd over Z_n for known affine m2=a*m1+b, linear factor, verify both residues
+- [zer0pts CTF 2021/easy pseudo random](https://ctftime.org/writeup/26273) | hard | General lattice route (LLL/BKZ + Babai) encoding small-unknown constraint, verify candidate by re-encrypt/verify
+- [zer0pts CTF 2021/war(sa)mup](https://ctftime.org/writeup/26265) | hard | Franklin-Reiter related-message poly-gcd over Z_n for known affine m2=a*m1+b, linear factor, verify both residues
+- [HTB University CTF 2020 Quals/Cargo Delivery](https://ctftime.org/writeup/26239) | hard | CBC/PKCS#7 padding oracle byte-at-a-time decrypt with pad==1 re-confirm, then CBC-R forge
+- [Tenable CTF 2021/ECDSA Implementation](https://ctftime.org/writeup/26213) | hard | ECDSA nonce analysis: identical-r closed form first, else HNP lattice over many biased samples, verify dG==Pub
+- [Tenable CTF 2021/ECDSA Implementation](https://ctftime.org/writeup/26185) | hard | ECDSA nonce analysis: identical-r closed form first, else HNP lattice over many biased samples, verify dG==Pub
+- [Tenable CTF 2021/ECDSA Implementation](https://ctftime.org/writeup/26183) | hard | ECDSA nonce analysis: identical-r closed form first, else HNP lattice over many biased samples, verify dG==Pub
+- [0x41414141 CTF/factorize](https://ctftime.org/writeup/25919) | hard | Fermat close-prime factor via isqrt gap plus Pollard p-1 smooth-part fallback, then standard decrypt
+- [0x41414141 CTF/Delegate wallet](https://ctftime.org/writeup/25877) | hard | LCG state recovery (direct algebra full-output, lattice/Babai truncated), predict and confirm one output
+- [0x41414141 CTF/factorize](https://ctftime.org/writeup/25861) | hard | Fermat close-prime factor via isqrt gap plus Pollard p-1 smooth-part fallback, then standard decrypt
+- [0x41414141 CTF/factorize](https://ctftime.org/writeup/25840) | hard | Fermat close-prime factor via isqrt gap plus Pollard p-1 smooth-part fallback, then standard decrypt
+- [0x41414141 CTF/Delegate wallet](https://ctftime.org/writeup/25833) | hard | LCG state recovery (direct algebra full-output, lattice/Babai truncated), predict and confirm one output
+- [0x41414141 CTF/factorize](https://ctftime.org/writeup/25818) | hard | Fermat close-prime factor via isqrt gap plus Pollard p-1 smooth-part fallback, then standard decrypt
+- [Ledger Donjon CTF 2020/Projective Signatures](https://ctftime.org/writeup/25317) | hard | ECDSA nonce analysis: identical-r closed form first, else HNP lattice over many biased samples, verify dG==Pub
+- [pbctf 2020/LeaK](https://ctftime.org/writeup/25218) | hard | ECDSA hidden-number-problem lattice from biased-nonce samples (scale by leak bound), LLL/Babai, verify dG==Pub
+- [Ledger Donjon CTF 2020/Projective Signatures](https://ctftime.org/writeup/25128) | hard | ECDSA nonce analysis: identical-r closed form first, else HNP lattice over many biased samples, verify dG==Pub
+- [HITCON CTF 2020/another secret note](https://ctftime.org/writeup/25119) | hard | CBC/PKCS#7 padding oracle byte-at-a-time decrypt with pad==1 re-confirm, then CBC-R forge
+- [Ledger Donjon CTF 2020/SMPC Signature](https://ctftime.org/writeup/25036) | hard | ECDSA nonce analysis: identical-r closed form first, else HNP lattice over many biased samples, verify dG==Pub
+- [BSides Delhi CTF 2020/Big RSA](https://ctftime.org/writeup/24302) | hard | LLL lattice reduction over small-root/HNP/knapsack encoding, verify candidate by re-encrypt/verify
+- [BSides Delhi CTF 2020/Weird](https://ctftime.org/writeup/24301) | hard | Homomorphic/Paillier-type algebraic decrypt (factor-assisted), verify by re-encrypt
+- [BSides Delhi CTF 2020/maglc RSA](https://ctftime.org/writeup/24300) | hard | LCG state recovery (direct algebra full-output, lattice/Babai truncated), predict and confirm one output
+- [InCTF 2020/bakflip&sons](https://ctftime.org/writeup/23950) | hard | ECDSA nonce analysis: identical-r closed form first, else HNP lattice over many biased samples, verify dG==Pub
+- [0CTF/TCTF 2020 Finals/Oblivious](https://ctftime.org/writeup/23843) | hard | Bleichenbacher PKCS#1 v1.5 interval narrowing via padding oracle (Manger length-variant if byte-length leaks)
+- [DownUnderCTF 2020/LSB//MSB Calculation Game](https://ctftime.org/writeup/23497) | hard | LLL lattice reduction over small-root/HNP/knapsack encoding, verify candidate by re-encrypt/verify
+- [DownUnderCTF 2020/1337crypt](https://ctftime.org/writeup/23495) | hard | Coppersmith stereotyped/short-pad lattice via Sage small_roots within n^(1/e) bound, then re-encrypt verify
+- [DownUnderCTF 2020/impECCable](https://ctftime.org/writeup/23490) | hard | ECDSA nonce analysis: identical-r closed form first, else HNP lattice over many biased samples, verify dG==Pub
+- [FwordCTF 2020/Sign it!](https://ctftime.org/writeup/23342) | hard | ECDSA nonce analysis: identical-r closed form first, else HNP lattice over many biased samples, verify dG==Pub
+- [FwordCTF 2020/Randomness](https://ctftime.org/writeup/23246) | hard | LCG state recovery (direct algebra full-output, lattice/Babai truncated), predict and confirm one output
+- [Google Capture The Flag 2020/Sharky](https://ctftime.org/writeup/23069) | hard | Hash triage (hashid top-2, bounded hashcat/john, or H(secret||msg) length-extension with keylen sweep)
+- [InCTF 2020/bakflip&sons](https://ctftime.org/writeup/23055) | hard | ECDSA nonce analysis: identical-r closed form first, else HNP lattice over many biased samples, verify dG==Pub
+- [Arab Security Cyber Wargames 2020 Qualifications/RSA](https://ctftime.org/writeup/23012) | hard | Fermat close-prime factor via isqrt gap plus Pollard p-1 smooth-part fallback, then standard decrypt
+- [Crypto CTF 2020/GenGol](https://ctftime.org/writeup/22997) | hard | Boneh-Durfee small-d bivariate lattice (mimoo boneh_durfee.sage, tune delta/m), verify by pow round-trip
+- [Crypto CTF 2020/Namura](https://ctftime.org/writeup/22991) | hard | Low-density knapsack/subset-sum via LLL short-vector recovery, verify subset sum
+- [Arab Security Cyber Wargames 2020 Qualifications/RSA](https://ctftime.org/writeup/22968) | hard | Fermat close-prime factor via isqrt gap plus Pollard p-1 smooth-part fallback, then standard decrypt
+- [InCTF 2020/bakflip&sons](https://ctftime.org/writeup/22795) | hard | ECDSA nonce analysis: identical-r closed form first, else HNP lattice over many biased samples, verify dG==Pub
+- [HacktivityCon CTF/Bon Appetit](https://ctftime.org/writeup/22738) | hard | Boneh-Durfee small-d bivariate lattice (mimoo boneh_durfee.sage, tune delta/m), verify by pow round-trip
+- [3kCTF-2020/You shall not get my cookies](https://ctftime.org/writeup/22602) | hard | CBC/PKCS#7 padding oracle byte-at-a-time decrypt with pad==1 re-confirm, then CBC-R forge
+- [csictf 2020/Quick Math](https://ctftime.org/writeup/22479) | hard | Hastad broadcast CRT across >=e coprime moduli plus exact integer e-th root, verify every residue
+- [2020 Defenit CTF/MixMix](https://ctftime.org/writeup/22428) | hard | RC4 keystream-bias/nonce-reuse analysis with crib-drag, verify by decrypt
+- [0CTF/TCTF 2020 Quals/Gene](https://ctftime.org/writeup/21986) | hard | DSA/DSS nonce-bias or parameter-tamper analysis (small subgroup, reused k), solve then verify
+- [redpwnCTF 2020/SMarT-solver](https://ctftime.org/writeup/21941) | hard | Custom-cipher z3 BitVec model at exact word width with per-pair constraints, UNSAT means re-read source
+- [redpwnCTF 2020/SMarT-solver](https://ctftime.org/writeup/21918) | hard | Custom-cipher z3 BitVec model at exact word width with per-pair constraints, UNSAT means re-read source
+- [redpwnCTF 2020/SMarT-solver](https://ctftime.org/writeup/21917) | hard | Custom-cipher z3 BitVec model at exact word width with per-pair constraints, UNSAT means re-read source
+- [redpwnCTF 2020/SMarT-solver](https://ctftime.org/writeup/21906) | hard | Custom-cipher z3 BitVec model at exact word width with per-pair constraints, UNSAT means re-read source
+- [redpwnCTF 2020/speedy-signatures](https://ctftime.org/writeup/21895) | hard | ECDSA nonce analysis: identical-r closed form first, else HNP lattice over many biased samples, verify dG==Pub
+- [redpwnCTF 2020/SMarT-solver](https://ctftime.org/writeup/21825) | hard | Custom-cipher z3 BitVec model at exact word width with per-pair constraints, UNSAT means re-read source
+- [redpwnCTF 2020/SMarT-solver](https://ctftime.org/writeup/21824) | hard | Custom-cipher z3 BitVec model at exact word width with per-pair constraints, UNSAT means re-read source
+- [redpwnCTF 2020/SMarT-solver](https://ctftime.org/writeup/21823) | hard | Custom-cipher z3 BitVec model at exact word width with per-pair constraints, UNSAT means re-read source
+- [redpwnCTF 2020/SMarT-solver](https://ctftime.org/writeup/21820) | hard | Custom-cipher z3 BitVec model at exact word width with per-pair constraints, UNSAT means re-read source
+- [Zh3r0 CTF/Hastad's Message](https://ctftime.org/writeup/21743) | hard | Hastad broadcast CRT across >=e coprime moduli plus exact integer e-th root, verify every residue
+- [Zh3r0 CTF/We are related](https://ctftime.org/writeup/21714) | hard | Franklin-Reiter related-message poly-gcd over Z_n for known affine m2=a*m1+b, linear factor, verify both residues
+- [Zh3r0 CTF/hashtad's message](https://ctftime.org/writeup/21713) | hard | Hastad broadcast CRT across >=e coprime moduli plus exact integer e-th root, verify every residue
+- [2020 Defenit CTF/Double Message](https://ctftime.org/writeup/21154) | hard | Coppersmith stereotyped/short-pad lattice via Sage small_roots within n^(1/e) bound, then re-encrypt verify
+- [HSCTF 7/Randomization 1](https://ctftime.org/writeup/21093) | hard | LCG state recovery (direct algebra full-output, lattice/Babai truncated), predict and confirm one output
+- [Pwn2Win CTF 2020/Omni Crypto](https://ctftime.org/writeup/20858) | hard | Coppersmith stereotyped/short-pad lattice via Sage small_roots within n^(1/e) bound, then re-encrypt verify
+- [Pwn2Win CTF 2020/Omni Crypto](https://ctftime.org/writeup/20849) | hard | Coppersmith stereotyped/short-pad lattice via Sage small_roots within n^(1/e) bound, then re-encrypt verify
+- [DEF CON CTF Qualifier 2020/coooppersmith](https://ctftime.org/writeup/20657) | hard | Coppersmith stereotyped/short-pad lattice via Sage small_roots within n^(1/e) bound, then re-encrypt verify
+- [SharkyCTF/Noisy RSA](https://ctftime.org/writeup/20610) | hard | Franklin-Reiter related-message poly-gcd over Z_n for known affine m2=a*m1+b, linear factor, verify both residues
+- [WPICTF 2020/Illuminati Confirmed](https://ctftime.org/writeup/20146) | hard | Hastad broadcast CRT across >=e coprime moduli plus exact integer e-th root, verify every residue
+- [WPICTF 2020/Illuminati Confirmed](https://ctftime.org/writeup/20084) | hard | Hastad broadcast CRT across >=e coprime moduli plus exact integer e-th root, verify every residue
+- [WPICTF 2020/Illuminati Confirmed](https://ctftime.org/writeup/20061) | hard | Hastad broadcast CRT across >=e coprime moduli plus exact integer e-th root, verify every residue
+- [WPICTF 2020/Illuminati Confirmed](https://ctftime.org/writeup/20039) | hard | Hastad broadcast CRT across >=e coprime moduli plus exact integer e-th root, verify every residue
+- [PlaidCTF 2020/dyrpto](https://ctftime.org/writeup/20024) | hard | Coppersmith stereotyped/short-pad lattice via Sage small_roots within n^(1/e) bound, then re-encrypt verify
+- [Midnight Sun CTF 2020 Quals/Verifier2](https://ctftime.org/writeup/19928) | hard | ECDSA nonce analysis: identical-r closed form first, else HNP lattice over many biased samples, verify dG==Pub
+- [Hexion CTF 2020 Online/SSS](https://ctftime.org/writeup/19862) | hard | Shamir share misuse via Lagrange f(0) interpolation (threshold/duplicate-x/x=0 checks), verify on held-out share
+- [Midnight Sun CTF 2020 Quals/Verifier2](https://ctftime.org/writeup/19432) | hard | ECDSA nonce analysis: identical-r closed form first, else HNP lattice over many biased samples, verify dG==Pub
+- [VirSecCon CTF/Hot Dog](https://ctftime.org/writeup/19418) | hard | Wiener continued-fraction small-d recovery, escalate to Boneh-Durfee lattice on near-miss
+- [VirSecCon CTF/Hot Dog](https://ctftime.org/writeup/19411) | hard | Wiener continued-fraction small-d recovery, escalate to Boneh-Durfee lattice on near-miss
+- [VirSecCon CTF/Hot Dog](https://ctftime.org/writeup/19410) | hard | Wiener continued-fraction small-d recovery, escalate to Boneh-Durfee lattice on near-miss
+- [VirSecCon CTF/Hot Dog](https://ctftime.org/writeup/19397) | hard | Wiener continued-fraction small-d recovery, escalate to Boneh-Durfee lattice on near-miss
+- [Midnight Sun CTF 2020 Quals/Verifier2](https://ctftime.org/writeup/19377) | hard | ECDSA nonce analysis: identical-r closed form first, else HNP lattice over many biased samples, verify dG==Pub
+- [TAMUctf 2020/Splatter Calc](https://ctftime.org/writeup/19267) | hard | LCG state recovery (direct algebra full-output, lattice/Babai truncated), predict and confirm one output
+- [TAMUctf 2020/Splatter Calc](https://ctftime.org/writeup/19244) | hard | LCG state recovery (direct algebra full-output, lattice/Babai truncated), predict and confirm one output
+- [TAMUctf 2020/Splatter Calc](https://ctftime.org/writeup/19221) | hard | LCG state recovery (direct algebra full-output, lattice/Babai truncated), predict and confirm one output
+- [UTCTF 2020/Curveball](https://ctftime.org/writeup/18698) | hard | Shamir share misuse via Lagrange f(0) interpolation (threshold/duplicate-x/x=0 checks), verify on held-out share
+- [zer0pts CTF 2020/dirty laundry](https://ctftime.org/writeup/18639) | hard | Homomorphic/Paillier-type algebraic decrypt (factor-assisted), verify by re-encrypt
+- [zer0pts CTF 2020/dirty laundry](https://ctftime.org/writeup/18638) | hard | Homomorphic/Paillier-type algebraic decrypt (factor-assisted), verify by re-encrypt
+- [zer0pts CTF 2020/dirty laundry](https://ctftime.org/writeup/18602) | hard | Shamir share misuse via Lagrange f(0) interpolation (threshold/duplicate-x/x=0 checks), verify on held-out share
+- [Aero CTF 2020/Magic II](https://ctftime.org/writeup/18549) | hard | LWE lattice decoding via Babai nearest-plane on reduced basis, verify recovered secret
+- [Codegate CTF 2020 Preliminary/Polynomials](https://ctftime.org/writeup/18291) | hard | LLL lattice reduction over small-root/HNP/knapsack encoding, verify candidate by re-encrypt/verify
+- [nullcon HackIM 2020/chocolate-chip](https://ctftime.org/writeup/18251) | hard | LCG state recovery (direct algebra full-output, lattice/Babai truncated), predict and confirm one output
+- [X-MAS CTF 2019/Hashed Presents v2.0](https://ctftime.org/writeup/17608) | hard | General lattice route (LLL/BKZ + Babai) encoding small-unknown constraint, verify candidate by re-encrypt/verify
+- [X-MAS CTF 2019/Hashed Presents](https://ctftime.org/writeup/17607) | hard | General lattice route (LLL/BKZ + Babai) encoding small-unknown constraint, verify candidate by re-encrypt/verify
+- [X-MAS CTF 2019/Eggnog](https://ctftime.org/writeup/17561) | hard | LCG state recovery (direct algebra full-output, lattice/Babai truncated), predict and confirm one output
+- [ASIS CTF Finals 2019/Primordial](https://ctftime.org/writeup/17266) | hard | Coppersmith stereotyped/short-pad lattice via Sage small_roots within n^(1/e) bound, then re-encrypt verify
+- [ASIS CTF Finals 2019/Serifin](https://ctftime.org/writeup/17265) | hard | Coppersmith stereotyped/short-pad lattice via Sage small_roots within n^(1/e) bound, then re-encrypt verify
+- [Pwn2Win CTF 2019/matRoSkA](https://ctftime.org/writeup/17137) | hard | Coppersmith stereotyped/short-pad lattice via Sage small_roots within n^(1/e) bound, then re-encrypt verify
+- [Black Alps CTF 2019/RSA](https://ctftime.org/writeup/17122) | hard | Wiener continued-fraction small-d recovery, escalate to Boneh-Durfee lattice on near-miss
+- [DefCamp CTF Finals 2019/Crypto](https://ctftime.org/writeup/17113) | hard | Custom-cipher z3 BitVec model at exact word width with per-pair constraints, UNSAT means re-read source
+- [Google Capture The Flag 2019 (Finals)/Fractorization](https://ctftime.org/writeup/17095) | hard | Coppersmith stereotyped/short-pad lattice via Sage small_roots within n^(1/e) bound, then re-encrypt verify
+- [Square CTF 2019/Go cipher](https://ctftime.org/writeup/16816) | hard | Custom-cipher z3 BitVec model at exact word width with per-pair constraints, UNSAT means re-read source
+- [HITCON CTF 2019 Quals/Very Simple Haskell](https://ctftime.org/writeup/16768) | hard | Low-density knapsack/subset-sum via LLL short-vector recovery, verify subset sum
+- [InCTF 2019/Encrypt](https://ctftime.org/writeup/16616) | hard | Custom-cipher z3 BitVec model at exact word width with per-pair constraints, UNSAT means re-read source
+- [TokyoWesterns CTF 5th 2019/Happy!](https://ctftime.org/writeup/16366) | hard | Coppersmith stereotyped/short-pad lattice via Sage small_roots within n^(1/e) bound, then re-encrypt verify
+- [TokyoWesterns CTF 5th 2019/Happy!](https://ctftime.org/writeup/16325) | hard | General lattice route (LLL/BKZ + Babai) encoding small-unknown constraint, verify candidate by re-encrypt/verify
+- [Crypto CTF 2019/Midnight Moon](https://ctftime.org/writeup/16113) | hard | Fermat close-prime factor via isqrt gap plus Pollard p-1 smooth-part fallback, then standard decrypt
+- [ISITDTU CTF 2019 Quals/Easy RSA 2](https://ctftime.org/writeup/15913) | hard | Fermat close-prime factor via isqrt gap plus Pollard p-1 smooth-part fallback, then standard decrypt
+- [Google Capture The Flag 2019 (Quals)/reality](https://ctftime.org/writeup/15883) | hard | General lattice route (LLL/BKZ + Babai) encoding small-unknown constraint, verify candidate by re-encrypt/verify
+- [Google Capture The Flag 2019 (Quals)/reality](https://ctftime.org/writeup/15871) | hard | General lattice route (LLL/BKZ + Babai) encoding small-unknown constraint, verify candidate by re-encrypt/verify
+- [Google Capture The Flag 2019 (Quals)/Crypto Caulingo](https://ctftime.org/writeup/15859) | hard | Fermat close-prime factor via isqrt gap plus Pollard p-1 smooth-part fallback, then standard decrypt
+- [DEF CON CTF Qualifier 2019/tania](https://ctftime.org/writeup/15348) | hard | DSA/DSS nonce-bias or parameter-tamper analysis (small subgroup, reused k), solve then verify
+- [ångstromCTF 2019/Runes](https://ctftime.org/writeup/14886) | hard | Homomorphic/Paillier-type algebraic decrypt (factor-assisted), verify by re-encrypt
+- [ångstromCTF 2019/Runes](https://ctftime.org/writeup/14871) | hard | Homomorphic/Paillier-type algebraic decrypt (factor-assisted), verify by re-encrypt
+- [TJCTF 2019/Is this the real life](https://ctftime.org/writeup/14559) | hard | Low-density knapsack/subset-sum via LLL short-vector recovery, verify subset sum
+- [Midnight Sun CTF 2019 Quals/EZDSA](https://ctftime.org/writeup/14440) | hard | DSA/DSS nonce-bias or parameter-tamper analysis (small subgroup, reused k), solve then verify
+- [VolgaCTF 2019 Qualifier/LG](https://ctftime.org/writeup/14287) | hard | LCG state recovery (direct algebra full-output, lattice/Babai truncated), predict and confirm one output
+- [VolgaCTF 2019 Qualifier/LG](https://ctftime.org/writeup/14193) | hard | LCG state recovery (direct algebra full-output, lattice/Babai truncated), predict and confirm one output
+- [TAMUctf 19/Holey Knapsack](https://ctftime.org/writeup/13978) | hard | Low-density knapsack/subset-sum via LLL short-vector recovery, verify subset sum
+- [CONFidence CTF 2019 Teaser/Really Suspicious Acronym](https://ctftime.org/writeup/13941) | hard | Coppersmith stereotyped/short-pad lattice via Sage small_roots within n^(1/e) bound, then re-encrypt verify
+- [CONFidence CTF 2019 Teaser/Really Suspicious Acronym](https://ctftime.org/writeup/13938) | hard | Coppersmith stereotyped/short-pad lattice via Sage small_roots within n^(1/e) bound, then re-encrypt verify
+- [CSAW CTF Final Round 2018/Disastrous Security Apparatus](https://ctftime.org/writeup/12495) | hard | DSA/DSS nonce-bias or parameter-tamper analysis (small subgroup, reused k), solve then verify
+- [BCTF 2018/guess number](https://ctftime.org/writeup/12467) | hard | General lattice route (LLL/BKZ + Babai) encoding small-unknown constraint, verify candidate by re-encrypt/verify
+- [BCTF 2018/guess number](https://ctftime.org/writeup/12466) | hard | General lattice route (LLL/BKZ + Babai) encoding small-unknown constraint, verify candidate by re-encrypt/verify
+- [BCTF 2018/guess number](https://ctftime.org/writeup/12465) | hard | General lattice route (LLL/BKZ + Babai) encoding small-unknown constraint, verify candidate by re-encrypt/verify
+- [CSAW CTF Final Round 2018/Disastrous Security Apparatus](https://ctftime.org/writeup/12134) | hard | DSA/DSS nonce-bias or parameter-tamper analysis (small subgroup, reused k), solve then verify
+- [CSAW CTF Final Round 2018/Disastrous Security Apparatus](https://ctftime.org/writeup/12133) | hard | DSA/DSS nonce-bias or parameter-tamper analysis (small subgroup, reused k), solve then verify
+- [P.W.N. CTF/Converter](https://ctftime.org/writeup/12026) | hard | CBC/PKCS#7 padding oracle byte-at-a-time decrypt with pad==1 re-confirm, then CBC-R forge
+- [P.W.N. CTF/Whistle](https://ctftime.org/writeup/12017) | hard | Coppersmith stereotyped/short-pad lattice via Sage small_roots within n^(1/e) bound, then re-encrypt verify
+- [HITCON CTF 2018/Lost Modulus](https://ctftime.org/writeup/11924) | hard | Homomorphic/Paillier-type algebraic decrypt (factor-assisted), verify by re-encrypt
+- [HITCON CTF 2018/Lost Modulus](https://ctftime.org/writeup/11904) | hard | Homomorphic/Paillier-type algebraic decrypt (factor-assisted), verify by re-encrypt
+- [InCTF 2018/baby-Alice-Bob](https://ctftime.org/writeup/11553) | hard | Coppersmith stereotyped/short-pad lattice via Sage small_roots within n^(1/e) bound, then re-encrypt verify
+- [Hackover CTF 2018/oblivious transfer](https://ctftime.org/writeup/11488) | hard | Homomorphic/Paillier-type algebraic decrypt (factor-assisted), verify by re-encrypt
+- [noxCTF 2018/Trinity](https://ctftime.org/writeup/10936) | hard | Hastad broadcast CRT across >=e coprime moduli plus exact integer e-th root, verify every residue
+- [noxCTF 2018/WTF](https://ctftime.org/writeup/10934) | hard | Wiener continued-fraction small-d recovery, escalate to Boneh-Durfee lattice on near-miss
+- [h4ckc0n 2018/Ron, Adi and Leonard](https://ctftime.org/writeup/10734) | hard | Wiener continued-fraction small-d recovery, escalate to Boneh-Durfee lattice on near-miss
+- [Meepwn CTF Quals 2018/bitbitbit](https://ctftime.org/writeup/10508) | hard | Hastad broadcast CRT across >=e coprime moduli plus exact integer e-th root, verify every residue
+- [Meepwn CTF Quals 2018/bitbitbit](https://ctftime.org/writeup/10470) | hard | Coppersmith stereotyped/short-pad lattice via Sage small_roots within n^(1/e) bound, then re-encrypt verify
+- [Meepwn CTF Quals 2018/Bazik](https://ctftime.org/writeup/10431) | hard | Coppersmith stereotyped/short-pad lattice via Sage small_roots within n^(1/e) bound, then re-encrypt verify
+- [Meepwn CTF Quals 2018/Old School](https://ctftime.org/writeup/10430) | hard | Coppersmith stereotyped/short-pad lattice via Sage small_roots within n^(1/e) bound, then re-encrypt verify
+- [Midnight Sun CTF 2018 Finals/badchair](https://ctftime.org/writeup/10257) | hard | Shamir share misuse via Lagrange f(0) interpolation (threshold/duplicate-x/x=0 checks), verify on held-out share
+- [DEF CON CTF Qualifier 2018/official](https://ctftime.org/writeup/10071) | hard | LLL lattice reduction over small-root/HNP/knapsack encoding, verify candidate by re-encrypt/verify
+- [ASIS CTF Quals 2018/Iran](https://ctftime.org/writeup/9905) | hard | Coppersmith stereotyped/short-pad lattice via Sage small_roots within n^(1/e) bound, then re-encrypt verify
+- [Midnight Sun CTF 2018 Quals/Whistleblower](https://ctftime.org/writeup/9696) | hard | CBC/PKCS#7 padding oracle byte-at-a-time decrypt with pad==1 re-confirm, then CBC-R forge
+- [UIUCTF 2018/Hastad](https://ctftime.org/writeup/9643) | hard | Hastad broadcast CRT across >=e coprime moduli plus exact integer e-th root, verify every residue
+- [UIUCTF 2018/Hastad](https://ctftime.org/writeup/9613) | hard | Hastad broadcast CRT across >=e coprime moduli plus exact integer e-th root, verify every residue
+- [UIUCTF 2018/Hastad](https://ctftime.org/writeup/9601) | hard | Hastad broadcast CRT across >=e coprime moduli plus exact integer e-th root, verify every residue
+- [VolgaCTF 2018 Quals/Nonsense](https://ctftime.org/writeup/9403) | hard | DSA/DSS nonce-bias or parameter-tamper analysis (small subgroup, reused k), solve then verify
+- [InCTF 2017/Multi Layer RSA](https://ctftime.org/writeup/8408) | hard | Wiener continued-fraction small-d recovery, escalate to Boneh-Durfee lattice on near-miss
+- [ASIS CTF Finals 2017/Gracias](https://ctftime.org/writeup/8101) | hard | Wiener continued-fraction small-d recovery, escalate to Boneh-Durfee lattice on near-miss
+- [GreHack CTF 2017/NEW DSA](https://ctftime.org/writeup/8040) | hard | DSA/DSS nonce-bias or parameter-tamper analysis (small subgroup, reused k), solve then verify
+- [GreHack CTF 2017/NEW DSA](https://ctftime.org/writeup/8035) | hard | DSA/DSS nonce-bias or parameter-tamper analysis (small subgroup, reused k), solve then verify
+- [Kaspersky Industrial CTF Quals 2017/Bad computations](https://ctftime.org/writeup/7760) | hard | Homomorphic/Paillier-type algebraic decrypt (factor-assisted), verify by re-encrypt
+- [Tokyo Westerns CTF 3rd 2017/My Simple Cipher](https://ctftime.org/writeup/7392) | hard | Custom-cipher z3 BitVec model at exact word width with per-pair constraints, UNSAT means re-read source
+- [Tokyo Westerns CTF 3rd 2017/BabyPinhole (crypto)](https://ctftime.org/writeup/7377) | hard | Homomorphic/Paillier-type algebraic decrypt (factor-assisted), verify by re-encrypt
+- [Tokyo Westerns CTF 3rd 2017/BabyRSA](https://ctftime.org/writeup/7373) | hard | Coppersmith stereotyped/short-pad lattice via Sage small_roots within n^(1/e) bound, then re-encrypt verify
+- [HackIT CTF 2017/Eva’s chance (Crypto150)](https://ctftime.org/writeup/7272) | hard | Custom-cipher z3 BitVec model at exact word width with per-pair constraints, UNSAT means re-read source
+- [MeePwn CTF 1st 2017/missing_hash](https://ctftime.org/writeup/6993) | hard | Custom-cipher z3 BitVec model at exact word width with per-pair constraints, UNSAT means re-read source
+- [CTFZone 2017/MPRSA](https://ctftime.org/writeup/6982) | hard | Wiener continued-fraction small-d recovery, escalate to Boneh-Durfee lattice on near-miss
+- [UIUCTF 2017/eula](https://ctftime.org/writeup/6600) | hard | Bleichenbacher PKCS#1 v1.5 interval narrowing via padding oracle (Manger length-variant if byte-length leaks)
+- [UIUCTF 2017/paparsa](https://ctftime.org/writeup/6590) | hard | Coppersmith stereotyped/short-pad lattice via Sage small_roots within n^(1/e) bound, then re-encrypt verify
+- [PlaidCTF 2017/Multicast](https://ctftime.org/writeup/6452) | hard | Coppersmith stereotyped/short-pad lattice via Sage small_roots within n^(1/e) bound, then re-encrypt verify
+- [PlaidCTF 2017/Multicast](https://ctftime.org/writeup/6441) | hard | Coppersmith stereotyped/short-pad lattice via Sage small_roots within n^(1/e) bound, then re-encrypt verify
+- [PlaidCTF 2017/Multicast](https://ctftime.org/writeup/6434) | hard | Coppersmith stereotyped/short-pad lattice via Sage small_roots within n^(1/e) bound, then re-encrypt verify
+- [Teaser CONFidence CTF 2017/Public Key Infrastructure](https://ctftime.org/writeup/6163) | hard | DSA/DSS nonce-bias or parameter-tamper analysis (small subgroup, reused k), solve then verify
+- [VolgaCTF 2017 Quals/Curved](https://ctftime.org/writeup/6115) | hard | ECDSA nonce analysis: identical-r closed form first, else HNP lattice over many biased samples, verify dG==Pub
+- [VolgaCTF 2017 Quals/Curved](https://ctftime.org/writeup/6091) | hard | ECDSA nonce analysis: identical-r closed form first, else HNP lattice over many biased samples, verify dG==Pub
+- [EasyCTF 2017/Paillier Service](https://ctftime.org/writeup/6013) | hard | Homomorphic/Paillier-type algebraic decrypt (factor-assisted), verify by re-encrypt
+- [Boston Key Party CTF 2017/RSA-buffet](https://ctftime.org/writeup/5842) | hard | Fermat close-prime factor via isqrt gap plus Pollard p-1 smooth-part fallback, then standard decrypt
+- [Boston Key Party CTF 2017/multi party computation](https://ctftime.org/writeup/5822) | hard | Homomorphic/Paillier-type algebraic decrypt (factor-assisted), verify by re-encrypt
+- [AlexCTF/CR5: Bring weakness](https://ctftime.org/writeup/5493) | hard | LCG state recovery (direct algebra full-output, lattice/Babai truncated), predict and confirm one output
+- [The 318br, DESEC, and SucuriHC Capture The Flag (3DSCTF)/Unbreakable (crypto 200)](https://ctftime.org/writeup/5166) | hard | Wiener continued-fraction small-d recovery, escalate to Boneh-Durfee lattice on near-miss
+- [Hack The Vote 2016/SMTPresident](https://ctftime.org/writeup/4691) | hard | Broadcast CRT across coprime moduli plus exact integer e-th root, verify every residue
+- [Hack The Vote 2016/Baby's hands](https://ctftime.org/writeup/4685) | hard | Wiener continued-fraction small-d recovery, escalate to Boneh-Durfee lattice on near-miss
+- [Hackover CTF 2016/guessr](https://ctftime.org/writeup/4413) | hard | LCG state recovery (direct algebra full-output, lattice/Babai truncated), predict and confirm one output
+- [CSAW CTF Qualification Round 2016/Neo](https://ctftime.org/writeup/4155) | hard | CBC/PKCS#7 padding oracle byte-at-a-time decrypt with pad==1 re-confirm, then CBC-R forge
+- [CSAW CTF Qualification Round 2016/Still broken box](https://ctftime.org/writeup/4142) | hard | Coppersmith stereotyped/short-pad lattice via Sage small_roots within n^(1/e) bound, then re-encrypt verify
+- [CSAW CTF Qualification Round 2016/Neo](https://ctftime.org/writeup/4140) | hard | CBC/PKCS#7 padding oracle byte-at-a-time decrypt with pad==1 re-confirm, then CBC-R forge
+- [ASIS CTF Finals 2016/Dam](https://ctftime.org/writeup/4067) | hard | Homomorphic/Paillier-type algebraic decrypt (factor-assisted), verify by re-encrypt
+- [IceCTF 2016/l33tcrypt](https://ctftime.org/writeup/3733) | hard | CBC/PKCS#7 padding oracle byte-at-a-time decrypt with pad==1 re-confirm, then CBC-R forge
+- [BackdoorCTF 2016/Collision-course (Crypto)](https://ctftime.org/writeup/3501) | hard | Custom-cipher z3 BitVec model at exact word width with per-pair constraints, UNSAT means re-read source
+- [Google Capture The Flag 2016/Woodman](https://ctftime.org/writeup/3283) | hard | LCG state recovery (direct algebra full-output, lattice/Babai truncated), predict and confirm one output
+- [Google Capture The Flag 2016/Spotted Wobbegong](https://ctftime.org/writeup/3267) | hard | Bleichenbacher PKCS#1 v1.5 interval narrowing via padding oracle (Manger length-variant if byte-length leaks)
+- [Google Capture The Flag 2016/Wolf Spider](https://ctftime.org/writeup/3263) | hard | CBC/PKCS#7 padding oracle byte-at-a-time decrypt with pad==1 re-confirm, then CBC-R forge
+- [PlaidCTF 2016/sexec](https://ctftime.org/writeup/3183) | hard | General lattice route (LLL/BKZ + Babai) encoding small-unknown constraint, verify candidate by re-encrypt/verify
+- [VolgaCTF 2016 Quals/lazy](https://ctftime.org/writeup/2940) | hard | DSA/DSS nonce-bias or parameter-tamper analysis (small subgroup, reused k), solve then verify
+- [ASIS CTF Quals  2014/Archaic](https://ctftime.org/writeup/2236) | hard | Low-density knapsack/subset-sum via LLL short-vector recovery, verify subset sum
+- [Hack.lu CTF 2015/GuessTheNumber](https://ctftime.org/writeup/2036) | hard | LCG state recovery (direct algebra full-output, lattice/Babai truncated), predict and confirm one output
+- [Hack.lu CTF 2014/Wiener](https://ctftime.org/writeup/1308) | hard | Wiener continued-fraction small-d recovery, escalate to Boneh-Durfee lattice on near-miss
+- [Insomni'hack 2026/smooth-RSA](https://ctftime.org/writeup/40685) | hard | Smooth-prime factoring route (Pollard p-1/Williams p+1/Fermat gap), then standard decrypt
+- [UIUCTF 2025/too many primes](https://ctftime.org/writeup/40360) | hard | Multi-prime RSA factor plus Boneh-Durfee extension if small-d hint, verify by re-encrypt
+- [Nullcon Goa HackIM 2025 CTF/kleinvieh](https://ctftime.org/writeup/39890) | hard | Coppersmith stereotyped/short-pad lattice via Sage small_roots, bound unknown bits below n^(1/e)
+- [0xL4ugh CTF 2024/RSA-GCD 50](https://ctftime.org/writeup/38934) | hard | Batch-GCD shared-prime sweep across moduli (product-tree at scale), factor and decrypt
+- [BuckeyeCTF 2023/Real smooth](https://ctftime.org/writeup/37975) | hard | Smooth-prime factoring route (Pollard p-1/Williams p+1/Fermat gap), then standard decrypt
+- [GDG Algiers CTF 2022/franklin-last-words](https://ctftime.org/writeup/35891) | hard | Franklin-Reiter related-message poly-gcd over Z_n for known affine relation, verify both residues
+- [GDG Algiers CTF 2022/franklin-last-words](https://ctftime.org/writeup/35883) | hard | Franklin-Reiter related-message poly-gcd over Z_n for known affine relation, verify both residues
+- [Cyber Apocalypse CTF 2022: Intergalactic Chase/The Three-Eyed Oracle](https://ctftime.org/writeup/34014) | hard | Oracle-driven decrypt (padding/LSB/CBC) byte-at-a-time with split confirmed, budget queries per block
+- [Cyber Apocalypse CTF 2022: Intergalactic Chase/The Three-Eyed Oracle](https://ctftime.org/writeup/33975) | hard | Oracle-driven decrypt (padding/LSB/CBC) byte-at-a-time with split confirmed, budget queries per block
+- [Cyber Apocalypse CTF 2022: Intergalactic Chase/The Three-Eyed Oracle](https://ctftime.org/writeup/33889) | hard | Oracle-driven decrypt (padding/LSB/CBC) byte-at-a-time with split confirmed, budget queries per block
+- [CrewCTF 2022/Malleable Metal](https://ctftime.org/writeup/33346) | hard | RSA classifier route (n bits, e, ct count) via RsaCtfTool auto then targeted wiener/fermat/hastad/comfact
+- [picoCTF 2022/Very Smooth](https://ctftime.org/writeup/32914) | hard | Smooth-prime factoring route (Pollard p-1/Williams p+1/Fermat gap), then standard decrypt
+- [picoCTF 2022/Very Smooth](https://ctftime.org/writeup/32894) | hard | Smooth-prime factoring route (Pollard p-1/Williams p+1/Fermat gap), then standard decrypt
+- [FwordCTF 2021/Leaky Blinders](https://ctftime.org/writeup/29995) | hard | Nonce-leak lattice (HNP/Coppersmith) scaled by leak bound with sample-count check, verify key
+- [ångstromCTF 2021/Oracle of Blair](https://ctftime.org/writeup/27084) | hard | Oracle-driven decrypt (padding/LSB/CBC) byte-at-a-time with split confirmed, budget queries per block
+- [Hack-A-Sat Qualifiers/Leaky Crypto](https://ctftime.org/writeup/22149) | hard | Nonce-leak lattice (HNP/Coppersmith) scaled by leak bound with sample-count check, verify key
+- [Hack-A-Sat Qualifiers/Leaky Crypto](https://ctftime.org/writeup/21169) | hard | Nonce-leak lattice (HNP/Coppersmith) scaled by leak bound with sample-count check, verify key
+- [Square CTF 2018/C4: leaky power](https://ctftime.org/writeup/12148) | hard | Nonce-leak lattice (HNP/Coppersmith) scaled by leak bound with sample-count check, verify key
+- [Square CTF 2018/C4: leaky power](https://ctftime.org/writeup/12147) | hard | Nonce-leak lattice (HNP/Coppersmith) scaled by leak bound with sample-count check, verify key
+- [Hackअस्त्र/Web - Swag](https://ctftime.org/writeup/40817) | medium | JWT triage ladder (alg=none, weak-HMAC hashcat -m 16500, kid traversal, jku/x5u), verify signature
+- [Alfa CTF 2026/Покой](https://ctftime.org/writeup/40705) | medium | AES mode-misuse triage (ECB dupes, CBC oracle, CTR/GCM reuse, GCM forgery), confirm single condition then exploit
+- [Nullcon Goa HackIM 2026 CTF/TLS](https://ctftime.org/writeup/40562) | medium | RSA classifier route (n bits, e, ct count) via RsaCtfTool auto then targeted wiener/fermat/hastad/comfact
+- [Nullcon Goa HackIM 2026 CTF/Hashinator](https://ctftime.org/writeup/40553) | medium | Hash triage (hashid top-2, bounded hashcat/john, or H(secret||msg) length-extension with keylen sweep)
+- [BuckeyeCTF 2025/zip2john2zip](https://ctftime.org/writeup/40488) | medium | Hash triage (hashid top-2, bounded hashcat/john, or H(secret||msg) length-extension with keylen sweep)
+- [Alfa Surfing CTF/Бинарный ливень (binrain)](https://ctftime.org/writeup/40435) | medium | AES mode-misuse triage (ECB dupes, CBC oracle, CTR/GCM reuse, GCM forgery), confirm single condition then exploit
+- [UIUCTF 2025/symmetric](https://ctftime.org/writeup/40359) | medium | RSA classifier route (n bits, e, ct count) via RsaCtfTool auto then targeted wiener/fermat/hastad/comfact
+- [UIUCTF 2025/back to roots](https://ctftime.org/writeup/40358) | medium | AES mode-misuse triage (ECB dupes, CBC oracle, CTR/GCM reuse, GCM forgery), confirm single condition then exploit
+- [Insomni'hack 2025/Unchained](https://ctftime.org/writeup/40164) | medium | AES mode-misuse triage (ECB dupes, CBC oracle, CTR/GCM reuse, GCM forgery), confirm single condition then exploit
+- [Insomni'hack 2025/hawkta](https://ctftime.org/writeup/40118) | medium | Hash triage (hashid top-2, bounded hashcat/john, or H(secret||msg) length-extension with keylen sweep)
+- [PwnMe CTF Quals 2025/My BetterZED](https://ctftime.org/writeup/40067) | medium | AES mode-misuse triage (ECB dupes, CBC oracle, CTR/GCM reuse, GCM forgery), confirm single condition then exploit
+- [PwnMe CTF Quals 2025/My Zed](https://ctftime.org/writeup/40066) | medium | AES mode-misuse triage (ECB dupes, CBC oracle, CTR/GCM reuse, GCM forgery), confirm single condition then exploit
+- [PwnMe CTF Quals 2025/Easy Diffy](https://ctftime.org/writeup/40065) | medium | Diffie-Hellman small-subgroup/Pohlig-Hellman plus parameter validation gap, verify shared secret
+- [Kashi CTF 2025/Random-Inator](https://ctftime.org/writeup/40047) | medium | AES mode-misuse triage (ECB dupes, CBC oracle, CTR/GCM reuse, GCM forgery), confirm single condition then exploit
+- [BITSCTF 2025/Baby Web](https://ctftime.org/writeup/39955) | medium | JWT triage ladder (alg=none, weak-HMAC hashcat -m 16500, kid traversal, jku/x5u), verify signature
+- [Codefest CTF 2025/Really Shy Algorithm](https://ctftime.org/writeup/39885) | medium | RSA classifier route (n bits, e, ct count) via RsaCtfTool auto then targeted wiener/fermat/hastad/comfact
+- [TUCTF 2024/Shopping Time](https://ctftime.org/writeup/39832) | medium | Hash triage (hashid top-2, bounded hashcat/john, or H(secret||msg) length-extension with keylen sweep)
+- [KnightCTF 2025/RandomseniorAdleman](https://ctftime.org/writeup/39824) | medium | RSA classifier route (n bits, e, ct count) via RsaCtfTool auto then targeted wiener/fermat/hastad/comfact
+- [BackdoorCTF 2024/I Like McDonalds](https://ctftime.org/writeup/39720) | medium | Hash triage (hashid top-2, bounded hashcat/john, or H(secret||msg) length-extension with keylen sweep)
+- [TSG CTF 2024/CONPASS](https://ctftime.org/writeup/39714) | medium | RSA classifier route (n bits, e, ct count) via RsaCtfTool auto then targeted wiener/fermat/hastad/comfact
+- [TSG CTF 2024/Feistel Barrier](https://ctftime.org/writeup/39713) | medium | RSA classifier route (n bits, e, ct count) via RsaCtfTool auto then targeted wiener/fermat/hastad/comfact
+- [TSG CTF 2024/Mystery of Scattered Key](https://ctftime.org/writeup/39712) | medium | RSA classifier route (n bits, e, ct count) via RsaCtfTool auto then targeted wiener/fermat/hastad/comfact
+- [TSG CTF 2024/I Have Been Pwned](https://ctftime.org/writeup/39710) | medium | Hash triage (hashid top-2, bounded hashcat/john, or H(secret||msg) length-extension with keylen sweep)
+- [TCP1P CTF 2024: Exploring Nusantara's Digital Realm/(Forensics) Skibidi Format](https://ctftime.org/writeup/39572) | medium | GCM nonce-reuse keystream recovery plus GHASH forgery algebra, verify tag
+- [BlackHat MEA CTF Qualification 2024/Trypanophobia](https://ctftime.org/writeup/39431) | medium | RSA classifier route (n bits, e, ct count) via RsaCtfTool auto then targeted wiener/fermat/hastad/comfact
+- [BlackHat MEA CTF Qualification 2024/Cheeky](https://ctftime.org/writeup/39411) | medium | AES mode-misuse triage (ECB dupes, CBC oracle, CTR/GCM reuse, GCM forgery), confirm single condition then exploit
+- [BlackHat MEA CTF Qualification 2024/Trypanophobia](https://ctftime.org/writeup/39410) | medium | RSA classifier route (n bits, e, ct count) via RsaCtfTool auto then targeted wiener/fermat/hastad/comfact
+- [Lexington Informatics Tournament CTF 2024/jwt-1](https://ctftime.org/writeup/39392) | medium | JWT triage ladder (alg=none, weak-HMAC hashcat -m 16500, kid traversal, jku/x5u), verify signature
+- [n00bzCTF 2024/RSA](https://ctftime.org/writeup/39386) | medium | RSA classifier route (n bits, e, ct count) via RsaCtfTool auto then targeted wiener/fermat/hastad/comfact
+- [UIUCTF 2024/Fare Evasion](https://ctftime.org/writeup/39358) | medium | JWT triage ladder (alg=none, weak-HMAC hashcat -m 16500, kid traversal, jku/x5u), verify signature
+- [corCTF 2024/steps](https://ctftime.org/writeup/39357) | medium | Diffie-Hellman small-subgroup/Pohlig-Hellman plus parameter validation gap, verify shared secret
+- [HITCON CTF 2024 Quals/Gleamering Star](https://ctftime.org/writeup/39347) | medium | Many-time-pad crib-drag on keystream reuse with header cribs, slide offsets
+- [DownUnderCTF 2024/Sun Zi's Perfect Math Class](https://ctftime.org/writeup/39331) | medium | RSA classifier route (n bits, e, ct count) via RsaCtfTool auto then targeted wiener/fermat/hastad/comfact
+- [UIUCTF 2024/Fare Evasion](https://ctftime.org/writeup/39296) | medium | JWT triage ladder (alg=none, weak-HMAC hashcat -m 16500, kid traversal, jku/x5u), verify signature
+- [UIUCTF 2024/Fare Evasion](https://ctftime.org/writeup/39284) | medium | JWT triage ladder (alg=none, weak-HMAC hashcat -m 16500, kid traversal, jku/x5u), verify signature
+- [justCTF 2024 teaser/Budget SoC](https://ctftime.org/writeup/39210) | medium | AES mode-misuse triage (ECB dupes, CBC oracle, CTR/GCM reuse, GCM forgery), confirm single condition then exploit
+- [UrchinSec Tanzania National CTF MMXXIV/Fair RSA](https://ctftime.org/writeup/39136) | medium | RSA classifier route (n bits, e, ct count) via RsaCtfTool auto then targeted wiener/fermat/hastad/comfact
+- [UMassCTF 2024/Primitive Reversing 2](https://ctftime.org/writeup/39081) | medium | AES mode-misuse triage (ECB dupes, CBC oracle, CTR/GCM reuse, GCM forgery), confirm single condition then exploit
+- [Space Heroes 2024/ᒣ⍑╎ϟ ╎ϟ リᒷᖋᒣ](https://ctftime.org/writeup/39063) | medium | CBC bitflip/IV-forge algebra or oracle decrypt-then-forge chain, one-shot submit with negative control
+- [SwampCTF 2024/Notoriously Tricky Login Mess (Part 2)](https://ctftime.org/writeup/39038) | medium | Hash triage (hashid top-2, bounded hashcat/john, or H(secret||msg) length-extension with keylen sweep)
+- [LINE CTF 2024/jalyboy-baby](https://ctftime.org/writeup/39019) | medium | JWT triage ladder (alg=none, weak-HMAC hashcat -m 16500, kid traversal, jku/x5u), verify signature
+- [LINE CTF 2024/jalyboy-jalygirl](https://ctftime.org/writeup/39018) | medium | JWT triage ladder (alg=none, weak-HMAC hashcat -m 16500, kid traversal, jku/x5u), verify signature
+- [osu!gaming CTF 2024/ROSSAU](https://ctftime.org/writeup/38973) | medium | RSA classifier route (n bits, e, ct count) via RsaCtfTool auto then targeted wiener/fermat/hastad/comfact
+- [DiceCTF 2024 Quals/winter](https://ctftime.org/writeup/38952) | medium | Hash triage (hashid top-2, bounded hashcat/john, or H(secret||msg) length-extension with keylen sweep)
+- [WolvCTF 2024/TagSeries3](https://ctftime.org/writeup/38949) | medium | Hash triage (hashid top-2, bounded hashcat/john, or H(secret||msg) length-extension with keylen sweep)
+- [WolvCTF 2024/TagSeries1](https://ctftime.org/writeup/38948) | medium | AES mode-misuse triage (ECB dupes, CBC oracle, CTR/GCM reuse, GCM forgery), confirm single condition then exploit
+- [WolvCTF 2024/Blocked2](https://ctftime.org/writeup/38945) | medium | AES mode-misuse triage (ECB dupes, CBC oracle, CTR/GCM reuse, GCM forgery), confirm single condition then exploit
+- [WolvCTF 2024/Blocked1](https://ctftime.org/writeup/38944) | medium | AES mode-misuse triage (ECB dupes, CBC oracle, CTR/GCM reuse, GCM forgery), confirm single condition then exploit
+- [WolvCTF 2024/Crypto: TwoTimePad](https://ctftime.org/writeup/38935) | medium | Many-time-pad crib-drag on keystream reuse with header cribs, slide offsets
+- [JerseyCTF IV/mutant-mayhem](https://ctftime.org/writeup/38929) | medium | ECC curve triage (Sage order, anomalous MOV/Smart, small-subgroup, nonce reuse), verify via re-multiply
+- [JerseyCTF IV/adveRSAry](https://ctftime.org/writeup/38927) | medium | RSA classifier route (n bits, e, ct count) via RsaCtfTool auto then targeted wiener/fermat/hastad/comfact
+- [JerseyCTF IV/aces-aes](https://ctftime.org/writeup/38926) | medium | AES mode-misuse triage (ECB dupes, CBC oracle, CTR/GCM reuse, GCM forgery), confirm single condition then exploit
+- [JerseyCTF IV/mmmmm-rbs](https://ctftime.org/writeup/38898) | medium | JWT triage ladder (alg=none, weak-HMAC hashcat -m 16500, kid traversal, jku/x5u), verify signature
+- [Cyber Apocalypse 2024: Hacker Royale/Locktalk](https://ctftime.org/writeup/38853) | medium | JWT triage ladder (alg=none, weak-HMAC hashcat -m 16500, kid traversal, jku/x5u), verify signature
+- [The Cyber Cooperative CTF/Eve and The Thousand Keys](https://ctftime.org/writeup/38849) | medium | RSA classifier route (n bits, e, ct count) via RsaCtfTool auto then targeted wiener/fermat/hastad/comfact
+- [The Cyber Cooperative CTF/wicked](https://ctftime.org/writeup/38848) | medium | Many-time-pad crib-drag on keystream reuse with header cribs, slide offsets
+- [The Cyber Cooperative CTF/nullnull](https://ctftime.org/writeup/38845) | medium | Many-time-pad crib-drag on keystream reuse with header cribs, slide offsets
+- [WolvCTF 2024/TagSeries2](https://ctftime.org/writeup/38840) | medium | AES mode-misuse triage (ECB dupes, CBC oracle, CTR/GCM reuse, GCM forgery), confirm single condition then exploit
+- [WolvCTF 2024/TagSeries1](https://ctftime.org/writeup/38839) | medium | AES mode-misuse triage (ECB dupes, CBC oracle, CTR/GCM reuse, GCM forgery), confirm single condition then exploit
+- [WolvCTF 2024/Username](https://ctftime.org/writeup/38825) | medium | JWT triage ladder (alg=none, weak-HMAC hashcat -m 16500, kid traversal, jku/x5u), verify signature
+- [Cyber Apocalypse 2024: Hacker Royale/Locktalk](https://ctftime.org/writeup/38756) | medium | JWT triage ladder (alg=none, weak-HMAC hashcat -m 16500, kid traversal, jku/x5u), verify signature
+- [Cyber Apocalypse 2024: Hacker Royale/Locktalk](https://ctftime.org/writeup/38742) | medium | JWT triage ladder (alg=none, weak-HMAC hashcat -m 16500, kid traversal, jku/x5u), verify signature
+- [BraekerCTF/Block construction](https://ctftime.org/writeup/38690) | medium | ECB duplicate-block alignment probe then cut-paste forge at role offset
+- [DiceCTF 2024 Quals/yaonet](https://ctftime.org/writeup/38640) | medium | ECC curve triage (Sage order, anomalous MOV/Smart, small-subgroup, nonce reuse), verify via re-multiply
+- [DiceCTF 2024 Quals/winter](https://ctftime.org/writeup/38637) | medium | Hash triage (hashid top-2, bounded hashcat/john, or H(secret||msg) length-extension with keylen sweep)
+- [DiceCTF 2024 Quals/winter](https://ctftime.org/writeup/38618) | medium | Hash triage (hashid top-2, bounded hashcat/john, or H(secret||msg) length-extension with keylen sweep)
+- [UofTCTF 2024/Pianoman](https://ctftime.org/writeup/38463) | medium | RSA classifier route (n bits, e, ct count) via RsaCtfTool auto then targeted wiener/fermat/hastad/comfact
+- [UofTCTF 2024/Pianoman](https://ctftime.org/writeup/38442) | medium | RSA classifier route (n bits, e, ct count) via RsaCtfTool auto then targeted wiener/fermat/hastad/comfact
+- [UofTCTF 2024/Clever Thinking](https://ctftime.org/writeup/38441) | medium | ECC curve triage (Sage order, anomalous MOV/Smart, small-subgroup, nonce reuse), verify via re-multiply
+- [BackdoorCTF 2023/Secret-of-Kuruma](https://ctftime.org/writeup/38398) | medium | JWT triage ladder (alg=none, weak-HMAC hashcat -m 16500, kid traversal, jku/x5u), verify signature
+- [BackdoorCTF 2023/Curvy Curves](https://ctftime.org/writeup/38373) | medium | ECC curve triage (Sage order, anomalous MOV/Smart, small-subgroup, nonce reuse), verify via re-multiply
+- [pingCTF 2023/easy-rsa](https://ctftime.org/writeup/38369) | medium | RSA classifier route (n bits, e, ct count) via RsaCtfTool auto then targeted wiener/fermat/hastad/comfact
+- [TUCTF 2023/Free Proxy](https://ctftime.org/writeup/38312) | medium | AES mode-misuse triage (ECB dupes, CBC oracle, CTR/GCM reuse, GCM forgery), confirm single condition then exploit
+- [1337UP LIVE CTF/Bug Report Repo](https://ctftime.org/writeup/38237) | medium | JWT triage ladder (alg=none, weak-HMAC hashcat -m 16500, kid traversal, jku/x5u), verify signature
+- [1337UP LIVE CTF/Really Secure Apparently](https://ctftime.org/writeup/38207) | medium | RSA classifier route (n bits, e, ct count) via RsaCtfTool auto then targeted wiener/fermat/hastad/comfact
+- [TSG CTF 2023/Unique Flag](https://ctftime.org/writeup/38133) | medium | RSA classifier route (n bits, e, ct count) via RsaCtfTool auto then targeted wiener/fermat/hastad/comfact
+- [BlueHens CTF 2023/RSA School 6th Grade](https://ctftime.org/writeup/38101) | medium | RSA classifier route (n bits, e, ct count) via RsaCtfTool auto then targeted wiener/fermat/hastad/comfact
+- [BlueHens CTF 2023/RSA School 5th Grade](https://ctftime.org/writeup/38100) | medium | RSA classifier route (n bits, e, ct count) via RsaCtfTool auto then targeted wiener/fermat/hastad/comfact
+- [BlueHens CTF 2023/RSA School 4th Grade](https://ctftime.org/writeup/38099) | medium | RSA classifier route (n bits, e, ct count) via RsaCtfTool auto then targeted wiener/fermat/hastad/comfact
+- [BlueHens CTF 2023/RSA School 3rd Grade](https://ctftime.org/writeup/38098) | medium | RSA classifier route (n bits, e, ct count) via RsaCtfTool auto then targeted wiener/fermat/hastad/comfact
+- [BlueHens CTF 2023/RSA School 2nd Grade](https://ctftime.org/writeup/38097) | medium | RSA classifier route (n bits, e, ct count) via RsaCtfTool auto then targeted wiener/fermat/hastad/comfact
+- [BlueHens CTF 2023/RSA School 1st Grade](https://ctftime.org/writeup/38096) | medium | RSA classifier route (n bits, e, ct count) via RsaCtfTool auto then targeted wiener/fermat/hastad/comfact
+- [BlueHens CTF 2023/Greatest Hits 2 of 4](https://ctftime.org/writeup/38093) | medium | RSA classifier route (n bits, e, ct count) via RsaCtfTool auto then targeted wiener/fermat/hastad/comfact
+- [Cyber Heroines CTF/Sophie Wilson](https://ctftime.org/writeup/37887) | medium | RSA classifier route (n bits, e, ct count) via RsaCtfTool auto then targeted wiener/fermat/hastad/comfact
+- [Cyber Heroines CTF/Elizebeth Friedman](https://ctftime.org/writeup/37884) | medium | AES mode-misuse triage (ECB dupes, CBC oracle, CTR/GCM reuse, GCM forgery), confirm single condition then exploit
+- [SekaiCTF 2023/Chunky](https://ctftime.org/writeup/37872) | medium | JWT triage ladder (alg=none, weak-HMAC hashcat -m 16500, kid traversal, jku/x5u), verify signature
+- [nullcon HackIM CTF Goa 2023/Counting](https://ctftime.org/writeup/37773) | medium | RSA classifier route (n bits, e, ct count) via RsaCtfTool auto then targeted wiener/fermat/hastad/comfact
+- [nullcon HackIM CTF Goa 2023/Euclidean RSA](https://ctftime.org/writeup/37771) | medium | RSA classifier route (n bits, e, ct count) via RsaCtfTool auto then targeted wiener/fermat/hastad/comfact
+- [CCCamp 2023/Baby RSA](https://ctftime.org/writeup/37750) | medium | RSA classifier route (n bits, e, ct count) via RsaCtfTool auto then targeted wiener/fermat/hastad/comfact
+- [CCCamp 2023/SeeBeeSee](https://ctftime.org/writeup/37748) | medium | CBC bitflip/IV-forge algebra or oracle decrypt-then-forge chain, one-shot submit with negative control
+- [Texas Security Awareness Week 2023/A Prime Problem](https://ctftime.org/writeup/37725) | medium | RSA classifier route (n bits, e, ct count) via RsaCtfTool auto then targeted wiener/fermat/hastad/comfact
+- [zer0pts CTF 2023/decompile me](https://ctftime.org/writeup/37457) | medium | RC4 keystream-bias/nonce-reuse analysis with crib-drag, verify by decrypt
+- [CyberSecurityRumble Quals/Lightbulb](https://ctftime.org/writeup/37446) | medium | RC4 keystream-bias/nonce-reuse analysis with crib-drag, verify by decrypt
+- [Crypto CTF 2023/Insights](https://ctftime.org/writeup/37439) | medium | RSA classifier route (n bits, e, ct count) via RsaCtfTool auto then targeted wiener/fermat/hastad/comfact
+- [UIUCTF 2023/Morphing Time](https://ctftime.org/writeup/37362) | medium | ElGamal/DH small-subgroup confinement plus Pohlig-Hellman discrete log, verify shared secret
+- [NahamCon CTF 2023/Marmalade 5](https://ctftime.org/writeup/37303) | medium | JWT triage ladder (alg=none, weak-HMAC hashcat -m 16500, kid traversal, jku/x5u), verify signature
+- [NahamCon CTF 2023/Marmalade 5](https://ctftime.org/writeup/37296) | medium | JWT triage ladder (alg=none, weak-HMAC hashcat -m 16500, kid traversal, jku/x5u), verify signature
+- [n00bzCTF 2023/Aes-1](https://ctftime.org/writeup/37204) | medium | AES mode-misuse triage (ECB dupes, CBC oracle, CTR/GCM reuse, GCM forgery), confirm single condition then exploit
+- [SEETF 2023/BabyRC4](https://ctftime.org/writeup/37180) | medium | RC4 keystream-bias/nonce-reuse analysis with crib-drag, verify by decrypt
+- [TJCTF 2023/squishy](https://ctftime.org/writeup/37105) | medium | RSA classifier route (n bits, e, ct count) via RsaCtfTool auto then targeted wiener/fermat/hastad/comfact
+- [Grey Cat The Flag 2023 Qualifiers/OT](https://ctftime.org/writeup/37050) | medium | RSA classifier route (n bits, e, ct count) via RsaCtfTool auto then targeted wiener/fermat/hastad/comfact
+- [VolgaCTF 2023 Qualifier/Find the flag2](https://ctftime.org/writeup/37023) | medium | AES mode-misuse triage (ECB dupes, CBC oracle, CTR/GCM reuse, GCM forgery), confirm single condition then exploit
+- [HeroCTF v5/Drink from my Flask#1](https://ctftime.org/writeup/37022) | medium | JWT triage ladder (alg=none, weak-HMAC hashcat -m 16500, kid traversal, jku/x5u), verify signature
+- [Cryptoverse CTF 2023/Crypto/Baby AES](https://ctftime.org/writeup/36985) | medium | AES mode-misuse triage (ECB dupes, CBC oracle, CTR/GCM reuse, GCM forgery), confirm single condition then exploit
+- [Cryptoverse CTF 2023/Crypto/Baby AES](https://ctftime.org/writeup/36981) | medium | AES mode-misuse triage (ECB dupes, CBC oracle, CTR/GCM reuse, GCM forgery), confirm single condition then exploit
+- [Cryptoverse CTF 2023/Crypto/Baby AES](https://ctftime.org/writeup/36971) | medium | AES mode-misuse triage (ECB dupes, CBC oracle, CTR/GCM reuse, GCM forgery), confirm single condition then exploit
+- [Space Heroes 2023/Rick Sanchez Algorithm](https://ctftime.org/writeup/36873) | medium | RSA classifier route (n bits, e, ct count) via RsaCtfTool auto then targeted wiener/fermat/hastad/comfact
+- [Cyber Apocalypse 2023: The Cursed Mission/Didactic Octo Paddles](https://ctftime.org/writeup/36581) | medium | JWT triage ladder (alg=none, weak-HMAC hashcat -m 16500, kid traversal, jku/x5u), verify signature
+- [Insomni'hack 2023/Rater](https://ctftime.org/writeup/36517) | medium | JWT triage ladder (alg=none, weak-HMAC hashcat -m 16500, kid traversal, jku/x5u), verify signature
+- [WRECKCTF 2022/rsa](https://ctftime.org/writeup/36320) | medium | RSA classifier route (n bits, e, ct count) via RsaCtfTool auto then targeted wiener/fermat/hastad/comfact
+- [WRECKCTF 2022/baby_rsa](https://ctftime.org/writeup/36319) | medium | RSA classifier route (n bits, e, ct count) via RsaCtfTool auto then targeted wiener/fermat/hastad/comfact
+- [hxp CTF 2022/secure_flag_dispenser](https://ctftime.org/writeup/36306) | medium | AES mode-misuse triage (ECB dupes, CBC oracle, CTR/GCM reuse, GCM forgery), confirm single condition then exploit
+- [HackTM CTF Quals 2023/d-phi-enc](https://ctftime.org/writeup/36235) | medium | RSA classifier route (n bits, e, ct count) via RsaCtfTool auto then targeted wiener/fermat/hastad/comfact
+- [Ledger Donjon CTF 2021/Fine, fine](https://ctftime.org/writeup/36063) | medium | ECC curve triage (Sage order, anomalous MOV/Smart, small-subgroup, nonce reuse), verify via re-multiply
+- [Ledger Donjon CTF 2021/Masked boot](https://ctftime.org/writeup/36062) | medium | AES mode-misuse triage (ECB dupes, CBC oracle, CTR/GCM reuse, GCM forgery), confirm single condition then exploit
+- [KITCTFCTF 2022/Crooked Roulette](https://ctftime.org/writeup/36028) | medium | RSA classifier route (n bits, e, ct count) via RsaCtfTool auto then targeted wiener/fermat/hastad/comfact
+- [SECCON CTF 2022 Quals/pqpq](https://ctftime.org/writeup/36008) | medium | RSA classifier route (n bits, e, ct count) via RsaCtfTool auto then targeted wiener/fermat/hastad/comfact
+- [Square CTF 2022/Hard Copy](https://ctftime.org/writeup/35995) | medium | RSA classifier route (n bits, e, ct count) via RsaCtfTool auto then targeted wiener/fermat/hastad/comfact
+- [SekaiCTF 2022/Issues](https://ctftime.org/writeup/35801) | medium | JWT triage ladder (alg=none, weak-HMAC hashcat -m 16500, kid traversal, jku/x5u), verify signature
+- [CTFZone 2022/Delicious and Point](https://ctftime.org/writeup/35006) | medium | JWT triage ladder (alg=none, weak-HMAC hashcat -m 16500, kid traversal, jku/x5u), verify signature
+- [ImaginaryCTF 2022/smoll](https://ctftime.org/writeup/34938) | medium | RSA classifier route (n bits, e, ct count) via RsaCtfTool auto then targeted wiener/fermat/hastad/comfact
+- [corCTF 2022/hidE](https://ctftime.org/writeup/34841) | medium | RSA classifier route (n bits, e, ct count) via RsaCtfTool auto then targeted wiener/fermat/hastad/comfact
+- [corCTF 2022/hidE](https://ctftime.org/writeup/34819) | medium | RSA classifier route (n bits, e, ct count) via RsaCtfTool auto then targeted wiener/fermat/hastad/comfact
+- [UIUCTF 2022/asr](https://ctftime.org/writeup/34777) | medium | RSA classifier route (n bits, e, ct count) via RsaCtfTool auto then targeted wiener/fermat/hastad/comfact
+- [UIUCTF 2022/mom can we have AES](https://ctftime.org/writeup/34776) | medium | AES mode-misuse triage (ECB dupes, CBC oracle, CTR/GCM reuse, GCM forgery), confirm single condition then exploit
+- [Hacky Holidays - Unlock the City/Recover Pet Data](https://ctftime.org/writeup/34758) | medium | JWT triage ladder (alg=none, weak-HMAC hashcat -m 16500, kid traversal, jku/x5u), verify signature
+- [Hacky Holidays - Unlock the City/Recover Pet Data](https://ctftime.org/writeup/34716) | medium | JWT triage ladder (alg=none, weak-HMAC hashcat -m 16500, kid traversal, jku/x5u), verify signature
+- [Crypto CTF 2022/starter_ecc](https://ctftime.org/writeup/34567) | medium | ECC curve triage (Sage order, anomalous MOV/Smart, small-subgroup, nonce reuse), verify via re-multiply
+- [Google Capture The Flag 2022/Cycling](https://ctftime.org/writeup/34530) | medium | RSA classifier route (n bits, e, ct count) via RsaCtfTool auto then targeted wiener/fermat/hastad/comfact
+- [Access Denied CTF 2022/reused key](https://ctftime.org/writeup/34459) | medium | Many-time-pad crib-drag on keystream reuse with header cribs, slide offsets
+
+## team-blog and GitHub reference rows (all URLs observed via search/fetch this session)
+
+- [TCP1P 2024/That one RSA challenge (Zukane)](https://zukane.github.io/that-one-rsa-challenge/) | hard | Multivariate Coppersmith with dinv MSB plus p+q MSB hints via kiona heuristic, recover d by inverse mod n
+- [CSCTF 2024/Connorsmith (Zukane)](https://zukane.github.io/connorsmith/) | hard | Bivariate Coppersmith on ed+k(N-p-q+1)=0 mod e with p+q MSB leak, lbc small_roots resultants m=6 d=6
+- [squ1rrel CTF 2024/Partial Rsa (Nightxade)](https://nightxade.github.io/ctf-writeups/writeups/2024/squ1rrel-CTF-2024/crypto/partial-rsa.html) | hard | Stereotyped-message Coppersmith with known flag prefix plus unknown-suffix-length brute-force sweep
+- [GPN CTF/Easy DSA (CTFBase)](https://ctfbase.com/writeup/20240531_gpnctf_easy_dsa) | hard | ECDSA biased-nonce HNP lattice (256-bit k on P-521), fpylll LLL+CVP from 2 signatures, verify dG==Q
+- [bi0s CTF 2024/ECDSA nonce-reuse plus curve recovery](https://berliangabriel.github.io/post/bi0s-ctf-2024/) | hard | Curve-parameter recovery from two points as linear system, then ECDSA same-nunce closed-form d recovery
+- [MAPNA CTF 2024/What next II (Nolliv22)](https://nolliv22.com/writeups/mapna%20ctf%202024/what-next-2) | hard | MT19937 clone from 79x256-bit outputs split into 32-bit words via RandCrack, predict key stream
+- [IERAE CTF 2024/Weak PRNG](https://qiita.com/quantum_for_ctf/items/cf15628a596b1641cc53) | hard | MT19937 untemper plus backward-twist previous-state recovery, predict past output
+- [SDCTF 2024/raccoon-run](https://cseciitb.github.io/posts/SDCTF2024raccoon-run/) | medium | MT19937 clone from nibble-packed getrandbits(32) increments, 624 samples then predict races
+- [smileyCTF 2025/NeverEnough](https://medium.com/@random1106/smileyctf2025-neverenough-writeup-109840e1dc2a) | hard | Symbolic MT solver (z3 Untwister with twist modeling) for 20-of-32-bit truncated outputs over 982 samples
+- [HTB Uni quals 2021/Oracle Leaks (Platypwn)](https://platypwnies.de/writeups/2021/htb-uni-quals/crypto/oracle-leaks/) | hard | Manger PKCS#1 length-oracle attack to single value in about 1100 queries, strip padding after
+- [id0-rsa/PKCS#1 v1.5 oracle lab](https://id0-rsa.pub/problem/14/) | hard | Bleichenbacher padding-oracle lab on 384-bit key, single-interval fast path without step-2b
+- [CryptoBook/Boneh-Durfee reference](https://github.com/cryptohack/CryptoBook/blob/master/untitled/low-private-component-attacks/boneh-durfee-attack.md) | hard | Boneh-Durfee theory reference (bivariate k(A+s)=1 mod e construction, delta below 0.292)
+- [RSA-and-LLL-attacks/boneh_durfee.sage (mimoo)](https://github.com/mimoo/RSA-and-LLL-attacks/blob/master/boneh_durfee.sage) | hard | Reference Sage implementation (m,t lattice params with Herrmann-May t, delta tuning procedure)
+- [RSA-Padding-Oracle/Bleichenbacher tool (Vozec)](https://github.com/Vozec/RSA-Padding-Oracle) | hard | Bleichenbacher automation reference implementation for PKCS#1 v1.5 oracles
+- [practical-ctf/PRNG reference](https://github.com/JorianWoltjer/practical-ctf/blob/main/cryptography/pseudo-random-number-generators-prng.md) | hard | MT untwist/untwister plus truncated-Java-RNG LLL reference with offset-backward patch
+- [NullShade/RSA padding-oracle challenge](https://nullshade.es/en/ctf/2024-10-15-crypto-challenge/) | hard | Bleichenbacher blinding plus interval-narrowing reference flow against validity oracle
+- [HaiND/RSA padding lesson 6.5](https://haind03.github.io/posts/crypto-6-5-rsa-padding-pkcs1-bleichenbacher-oaep/) | hard | Bleichenbacher 2B/3B interval attack walkthrough with oracle simulation plus OAEP contrast
+- [Dowad/Bleichenbacher CRYPTO98 explainer](https://alexdowad.github.io/understanding-bleichenbackers-crypto98-rsa-attack/) | hard | Unified step-2c-only search plus fraction-trimmer optimization for hardware-scale oracles
+- [Focardi/Practical padding-oracle attacks](https://www.dsi.unive.it/~focardi/RSA-padding-oracle/) | hard | Parity-oracle plus PKCS#1 oracle theory with blinding and PKCS#11 device notes
+- [R3CTF 2024/r0-1-2system poly-nonce ECDSA](https://tang.cat/2024/06/10/R3CTF-2024-Crypto-Writeup.html) | hard | Polynomial-nonce recurrence ECDSA attack via Algorithm-2 elimination to single high-degree equation in x
+- [Sinapsi/DSA nonce-bias lattice guide](https://sinapsi.wiki/w/ctf-crypto/p/signatures/dsa-nonce-bias-lattice/) | hard | HNP lattice construction with K-scaling plus n_bits-per-leaked-bit sample-count rule and Babai fallback
+- [Sinapsi/PRNG prediction guide](https://sinapsi.wiki/w/ctf-crypto/p/stream/prng-prediction/) | medium | LCG/MT triage (narrow-seed brute-force first, untwist vs lattice by generator family)
+- [CTF Pal/Biased-nonce HNP tool](https://ctfpal.com/tools/biased-nonce-lattice-attack) | hard | Biased-nonce HNP LLL reference with leak-bits vs sample-count guidance
+- [crypto-lab/Nonce Lattice Lab](https://systemslibrarian.github.io/crypto-lab-nonce-lattice/) | medium | Interactive HNP/LLL demo on secp256k1 and P-256 with leak-size vs signature-count boundary
+- [stackered/Python PRNG seed recovery](https://stackered.com/blog/python-random-prediction/) | hard | CPython seed recovery from few outputs via init_by_array inversion without brute force
+- [pwn.college/Randomness lab](https://pwn.college/cse539-s2025/randomness/) | medium | MT state-prediction lab exercises (full-state clone plus single-word rewind)
+- [n00bz CTF 2024/RSA (kleinebu)](https://blog.kleinebu.de/rsa.html) | medium | Small-e Coppersmith and integer-root triage example on textbook RSA
+- [foreverctf/Broadcast attack reference](https://github.com/utisss/foreverctf-writeups/blob/master/crypto-broadcast-attack.md) | medium | Hastad CRT plus integer-root reference flow for same-message small-e sets
+- [Zukane/Crypto writeup index 2024-2025 batch](https://zukane.github.io/) | hard | Multi-challenge lattice/RSA/ECDSA batch (Univariate, Bivariate, Copperbox, Curveware patterns)

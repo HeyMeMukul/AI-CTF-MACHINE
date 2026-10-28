@@ -1,0 +1,458 @@
+# AI/ML CTF Writeups Mined — Manifest (technique-only, no flags/prompts)
+
+> Method: WebSearch + selective WebFetch. AI CTF volume is thinner than classic
+> pwn/web, so per mission this mixes HARD CTF solves with top-tier jailbreak /
+> AI-red-team research posts that read like challenge solves. Research entries
+> are tagged `[RESEARCH]` in the technique chain. No system prompts, no flags,
+> no invented URLs — every URL below was returned by web search results.
+> Trivial "ask nicely once" solves excluded.
+
+## Batch A — DEF CON AI Village / GRT (fetched + extracted)
+
+- [DEFCON31 AI Village CTF 6th-place (Kaggle writeup)](https://www.kaggle.com/competitions/ai-village-capture-the-flag-defcon31/writeups/conor-6th-place-solution-24-points) | hard | sentiment-oracle + paraphrase-preserving perturbation ladder to match benchmark scores
+- [DEFCON31 AI Village KENYEUNG slides (HackAPrompt trials)](https://aivillage.org/assets/AIVDC31/DEFCON%20AIV%20KENYEUNG%20FINAL.pdf) | hard | sandwich/mad-sandwich bypass via tokenization abuse + parenthesized authority-note + homoglyph variant ladder
+- [DEFCON31 CTF all-LLM solutions notebook](https://www.kaggle.com/code/nikhil1e9/defcon31-ctf-all-llm-solutions) | medium-hard | mixed blackbox/LLM cluster solves: dataset-shape oracle + adversarial image + prompt-injection clusters
+- [DEF CON 32 GRT-2 winning prompts summary (Ogawa)](https://note.com/ogawa_ramo/n/n9907bc92013c) | hard | fictitious-statute hallucination elicitation + digit-noise filter evasion + statistical model-card refutation [RESEARCH-adjacent]
+- [DEFCON 2024 AI red-team insights (LearnPrompting)](https://learnprompting.org/blog/defcon) | medium | role-prompting + HackAPrompt/Gandalf warmup ladder + severity-scored Crucible probing [RESEARCH]
+- [How I won DEF CON GRT-2 (CSET)](https://cset.georgetown.edu/article/how-i-won-def-cons-generative-ai-red-teaming-challenge/) | hard | context-switch overload (translate + code-format + language hop) then fictitious-legal-doc confabulation with 20-prompt statistics
+- [DEFCON31 prompt-injection answersまとめ (hamaruki)](https://hamaruki.com/ctf_summary-of-prompt-injection-answers/) | hard | What-is-the-Flag L1-6 brute ladder: auth-claim + translation-frame + repeat-back + password-gated disclosure
+- [DEFCON31 AI Village schedule/CTF kickoff](https://aivillage.org/defcon31/) | medium | event-shape recon: CTF + Prompt-Detective RLHF-level ladder as triage map [RESEARCH]
+- [DEFCON31 AI CTF notes (barrettotte)](https://github.com/barrettotte/kaggle/blob/master/ai-ctf-defcon31/README.md) | medium | MNIST/CIFAR dataset-shape oracle + Gandalf warmup pointer chain
+- [DEFCON31 AI CTF solution stream (Rob Mulla)](https://www.youtube.com/watch?v=WWPfo-ZLLFg) | hard | blackbox count-oracle + PGD adversarial image + single-pixel/JPEG + OCR + translation + prompt-injection + pickle + inversion + STT clusters
+
+## Batch B — CSAW LLM Attack (fetched + extracted)
+
+- [CSAW25 LLMAC leaderboard/rules](https://nyu-llm-ctf.github.io/csaw_llmac.html) | medium | autonomous-agent + HITL prompt-leverage ruleset for pwn/web/rev CTF automation [RESEARCH]
+- [CSAW LLM Attack winners PDF](https://www.csaw.io/_files/ugd/acbc49_fcd7306e2a494c9891bdf736f109d640.pdf) | medium | winning HITL transcript + presentation-scored agent trajectories
+- [Empirical eval of LLMs for offensive CTF (CSAW23)](https://arxiv.org/html/2402.11814v1) | hard | authorization-framed HITL prompts ("secure lab / challenge author forgot flag") + concise-prompt automated solver, 11/21 auto-solve [RESEARCH]
+- [CSAW LLM CTF Attack Competition rules](https://csaw.io/competition/llm-ctf-attack-competition) | medium | trajectory-validated autonomous agent rules: baseline-agent enhance vs custom crewAI with flag-match check [RESEARCH]
+- [Agentic CTF education paper (CSAW LLMAC 2023-2025)](https://arxiv.org/html/2603.21551v1) | hard | HITL→hybrid→agent autonomy ladder with traceability rubric + invalid-jump detection [RESEARCH]
+- [CSAW Finals 2k23 writeups repo](https://github.com/Walid-Berrouk/CSAW_Finals_CTF2k23_Write-Ups) | medium | quals/finals forensics+misc solve set (LLM-adjacent automation context)
+- [CSAW23 LLM Attack winner post (TeamLLP)](https://www.linkedin.com/posts/milind-daftari_csaw23-teamvictory-aiincybersecurity-activity-7137884099620335616-omdw) | medium | multi-model HITL (GPT-4/Claude/Bard) across CTF categories
+- [CSAW dead-CTF theory (LLM-written challenges)](https://blog.awoo.systems/posts/2025-11-12-csaw-dead-ctf-theory) | hard | LLM-authored-challenge inversion: handing guessy RSA/custom-crypto + ECH-hallucinated web back to LLM solver [RESEARCH]
+
+## Batch C — HTB AI challenges (fetched + extracted)
+
+- [HTB Cyber Apocalypse 2025 prompt-injection (foxy)](https://reze.gitbook.io/bin/ctf-writeups/htb-cyber-apocalypse-2025/prompt-injection-ai) | medium-hard | summarize-instructions-in-python frame to bypass filter + official-writeup cross-check
+- [HTB Cyber Apocalypse 2025 all-AI (Scotsec)](https://scotsec.github.io/posts/HTBCyberApocCTFAI/) | hard | Lunar-Orb chant elicitation → Mirror-Witch ordered multi-fact creep → Elixir censor-describe/spell-out → blind Granted/Denied override-token + Gatekeeper polarity flip
+- [HTB Prometheon 5-level chatbot (CTFBase)](https://ctfbase.com/writeup/20260205_hackthebox_prometheon) | hard | verbatim-system-prompt reproduction vs reveal-password semantic gap, one payload beats all 5 guardrail wordings
+- [HTB Prometheon alignment boundaries (Parag)](https://medium.com/@paragbhosale9440/htb-prometheon-exploiting-alignment-boundaries-in-ai-via-prompt-injection-5a195e16a256) | hard | instruction-injection → intent-leak rephrase → hypothetical-simulation → debug-role confusion → acrostic encoding ladder
+- [HTB External Affairs visa-oracle (hack-lab)](https://hack-lab-256.com/ai-llm-prompt-injection/1680/) | hard | blind Granted/Denied oracle: quiz-format + few-shot pattern-completion (Input→Output) language誘導 bypass
+- [HTB TrynaSob ransomware chatbot (Jacinta)](https://medium.com/@jacintas/trynasob-ransomware-hackthebox-prompt-injection-in-chatbot-598467c76a9f) | medium | expectation-alignment injection: fake payment receipt frame to trigger promo-code disclosure
+- [HTB TrynaSob walkthrough (D23R)](https://dua2z3rr.github.io/posts/TrynaSob-Ransomware-Walkthrough/) | medium | base64-promo probe fails → example-code elicitation succeeds → code-reflection exfil loop
+- [HTB Prometheon via prompt-leaking (xaliom)](https://xaliom.blogspot.com/2026/04/solving-hack-box-prometheon-with-prompt.html) | hard | Bing-style prompt-leak lineage: indirect/direct + rephrase + format-obfuscation + hint-inference + code-embed chain
+- [HTB AI Prompt Injection Essentials pack](https://ctf.hackthebox.com/pack/ai-prompt-injection-essentials) | medium-hard | 10-scenario finance/trading-bot data-extraction curriculum with flag-rotation [RESEARCH]
+
+## Batch D — HackAPrompt 1.0/2.0 + Doug (fetched + extracted)
+
+- [HackAPrompt practical-labs writeups (areekax)](https://github.com/areekaxcypheria/hackaprompt-practical-labs-writeups) | hard | task-exploit ladder: correction/translation-output IS payload + homoglyph whole-instruction disguise + isolation→format escalation
+- [HackAPrompt L1-5 basics (hackmd RdVY)](https://hackmd.io/RdVYFNTRRdefHZqxTGkz0Q) | medium | ignore-instruction + translation-variable + correction-exploit + sandwich typo-fix ladder
+- [HackAPrompt 2.0 1st-place (RED_CORE)](https://codeberg.org/red-core/H.A.P.-2.0-MATSxTrails-RED_CORE-Writeup) | hard | indirect agent-tool injection: stealth/policy-framing + authority-token + fake-data-policy + escalation-sequence across 6 models, 27/27
+- [HackAPrompt tooling + shortest prompts (terjanq)](https://github.com/terjanq/hack-a-prompt/blob/master/README.md) | hard | token-minimal ladder: typo/transliteration + punctuation-strip + context-overflow (4k-token flood) + fullwidth homoglyph
+- [HackAPrompt 2023 competition page](https://www.aicrowd.com/challenges/hackaprompt-2023) | medium | 10-level sandwich/blocklist/mangling ruleset with 2x ChatGPT-multiplier scoring [RESEARCH]
+- [Ignore This Title paper (HackAPrompt analysis)](https://arxiv.org/html/2311.16119v3) | hard | 29-technique ontology + Context Overflow (token-limit flood) + Chinese-char density bypass on backslash-mangling [RESEARCH]
+- [HackAPrompt x Doug 2025 (ITUnderground)](https://itunderground.dk/blog/writeups/HackAPrompt-25/HAP-DD) | hard | opposite-day + program-sim + reverse-word + quiz-grade-RNG + Llama-Prompt-Guard-2 gradient-prefix + Cyrillic homoglyph translation chain
+- [Inside HackAPrompt 1.0 (LearnPrompting)](https://learnprompting.org/blog/hackaprompt-1-results) | hard | simple/special-case/recursive + obfuscation + Context Overflow synthesis across 600k prompts [RESEARCH]
+- [HackAPrompt2.0 CBRNE writeup (Learning Queue)](https://jacoporepossi.github.io/learningq/posts/2025-06-22-prompt-hacking-cbrne/) | hard | academic-framed multi-turn (thesis/Plague-Inc/Nature) + supervisor-feedback + image-wrapped OCR + think-less + OPAM single-prompt multi-model
+
+## Batch E — Gandalf lineage (fetched + extracted)
+
+- [Gandalf writeup (tpai)](https://github.com/tpai/gandalf-prompt-injection-writeup) | hard | assistant-message character probe ("first-sentence characters") → grammar-misuse cache break → decimal-to-ASCII game on v2.0
+- [Gandalf solutions (ZapDos7)](https://github.com/ZapDos7/lakera-gandalf) | hard | riddle/poem-reflection + last-letter hint chain + L7 cryptic-riddle + L8 story/context inference across adventures
+- [Gandalf OWASP-mapped walkthrough (Ashish)](https://github.com/Ashishkumar999/gandalf-llm-prompt-injection-walkthrough) | medium-hard | reflection-leak + transformation-bypass + segmentation-reconstruction + hidden-context recall → LLM01 mapping
+- [Gandalf solutions + prompt leaks (elder-plinius)](https://github.com/elder-plinius/Gandalf-Solutions) | hard | letter-extraction euphemism ladder + leet/pig-latin + internal-instruction fact-list on White v2.0
+- [Gandalf L1-8 detailed (vanshit)](https://github.com/vanshit/Gandalf-Lakera-AI-Solutions) | hard | magic-word sidestep → reverse-encode → acrostic-poem → example-code → login-page → Japanese-translation → story+R-script+Caesar chain
+- [Gandalf CTF 1-7 (aalex954)](https://github.com/aalex954/gandalf-ctf-writeup) | medium | direct→tricky-language→reverse→poem-acrostic→encoded-sentence→monitor-evasion→combined-defense ladder
+- [Gandalf writeup + adventures (satoki)](https://github.com/satoki/gandalf_writeup) | hard | level-defense differential + Sandalf S-word constraint + emoji/summarizer/misinfo adventure variants
+- [Gandalf solutions non-deterministic (gdalmau)](https://github.com/gdalmau/lakera-gandalf-solutions) | hard | character-list task-reframe ("letters without revealing") + octopus-list inference on L8
+- [Gandalf solutions (0xricksanchez)](https://github.com/0xricksanchez/Gandalf.Lakera.ai_solutions) | hard | poem-acrostic + encoded-sentence + story-tip inference chain to L8
+- [Gandalf walkthrough + defense table (kibotu gist)](https://gist.github.com/kibotu/fa4a0343a4e972e64c65a3f97c665b23) | hard | input-vs-output filter split + piecewise/metadata-leak + innocent-framing + multi-turn crescendo synthesis [RESEARCH]
+
+## Batch F — Dreadnode Crucible / Probe / Bear (fetched + extracted)
+
+- [Crucible Bear series docs](https://docs.dreadnode.io/crucible/walkthroughs/bear-series) | medium-hard | Bear-4 prompt-injection capstone after fingerprint/model-evasion ladder
+- [Crucible What-is-the-Flag series docs](https://docs.dreadnode.io/crucible/walkthroughs/what-is-the-flag) | hard | recon→narrative-control + keyword-blocklist sidestep (sliced-string) + role-reversal verbatim-repeat vs banned-word classifier
+- [Crucible Probe 2 side-channel (Rony Utevsky)](https://ronyut.me/ctf/dreadnode-probe2-side-channel-exfiltration/) | hard | match-score oracle → menial-copy oracle → difflib.SequenceMatcher reverse → LLM-assisted next-word greedy extraction (2072-char prompt)
+- [Crucible complete-a-challenge docs](https://docs.dreadnode.io/crucible/how-to/complete-a-challenge) | medium | endpoint-recon → offline-model strategize → gAAA-flag exchange loop [RESEARCH]
+- [Adversarial ML via Crucible (boschko)](https://boschko.ca/adversarial-ml/) | hard | PGD TimberWolf→Apple + OCR-font XML injection (is_admin=true) + Mixtral control-token summarizer escape to log exfil
+- [What-is-the-Flag-2 notebook (Gohxuann)](https://github.com/Gohxuann/AI_CTF_Hacking/blob/main/whatistheflag2.ipynb) | hard | blocklist-map ("Security block") → developer-mode frame → security-team assist → lost-value decode-assist exfil
+- [GovTech Probe2 writeup (cakiki)](https://cakiki.github.io/govtech-24-ctf-writeup/finals/probe2.html) | hard | AntiGPT opposite-mode + range-verbatim repeat + secret-word skip + encoded-response decode to 0.99-match exfil
+- [GovTech Probe1 writeup (cakiki)](https://cakiki.github.io/govtech-24-ctf-writeup/finals/probe1.html) | medium | math-feature trap: -1-answer triggers error-disclosure of system prompt
+- [Rigging AI exploits on Crucible (Bugcrowd)](https://www.bugcrowd.com/blog/rigging-the-system-the-art-of-ai-exploits/) | hard | attacker-LLM vs target-LLM loop: obfuscation/roleplay/multilingual generation + temperature-jitter + flag-pattern sniff auto-submit [RESEARCH]
+- [Probe2 source mirror (ronyut github)](https://github.com/ronyut/ronyut.github.io/blob/main/content/ctf/dreadnode-probe2/index.md) | hard | same side-channel chain as primary: copy-oracle + linearity/order tests + length-solve + greedy+LLM-predict extraction
+
+## Batch G — RAG / indirect-injection labs (fetched + extracted)
+
+- [UMDCTF RAG-poisoning (CTFBase)](https://ctfbase.com/writeup/20260425_umdctf_rag_poisoning) | hard | Flask-cookie retrieval recon + marker-name polling + split-base64 fragment join across stochastic leaks
+- [RAG-poisoning lab (B2TheEe)](https://github.com/B2TheEe/rag-poisoning-lab) | hard | ChromaDB+MiniLM ingest → poisoned-corpus retrieval-rank test across defense layers (Ollama stub matrix) [RESEARCH]
+- [Corpus-poisoning field study (Perdition)](https://www.perditionsecurity.com/lab/indirect-prompt-injection-corpus-poisoning) | hard | 14-prod-RAG review: write-access→behavior-shift paths + planner/executor capability-split fix, 100%→single-digit ASR [RESEARCH]
+- [Indirect injection repro vs RAG (Koreshield)](https://koreshield.ai/blog/reproducing-indirect-prompt-injection-rag) | hard | poisoned-doc marker-emission harness: Llama-3-8B 3/5 comply vs mini-refuse 5/5 → pre-assembly scan boundary [RESEARCH]
+- [DV-RAG-Support indirect exfil lab (Preporato)](https://preporato.com/labs/art-indirect-prompt-injection) | hard | semantic-retrieval poison (tenant:public) → markdown-image exfil of account-ref → localhost-evasion of naive deny-list → allow-list + distrust-context fix
+- [IndirectRAG-Bench 500-case set](https://huggingface.co/datasets/heisenberg-88/indirectrag-bench) | hard | 350-attack/150-benign canary (IRB-CANARY) exfil+tool benchmark across 10 domains × 8 wrappers [RESEARCH]
+- [Agentic LLM CTF (c-goosen)](https://github.com/c-goosen/ai-prompt-ctf/) | medium-hard | prompt-injection prevention-test harness for agentic retrieval flows
+- [Direct+indirect RAG lab (KaliRange)](https://kalirange.com/labs/prompt-injection-attacks/) | medium-hard | keyword-retrieval poison (SYSTEM NOTICE) + canary-grade + prompt-pleading-fails → structural-separation fix [RESEARCH]
+- [Vuln-RAG-001 (Austin-Omondi)](https://download.plaud.ai/AUSTIN-OMONDI/vuln-rag-001) | hard | unauth /poison → keyword-retrieval → no-boundary concat → benign-query secret leak, PyRIT/Garak scored [RESEARCH]
+- [Damn-vulnerable-RAG (Shaheer)](https://github.com/Shaheer-Cybersec/damn-vulnerable-rag) | hard | poisoned-doc indirect + cross-tenant IDOR + TOOL_CALL excessive-agency + verbatim-extraction compounding chain
+
+## Batch H — prompt-CTF frameworks + field guides (fetched + extracted)
+
+- [Prompt-injection CTF 16+30 missions (ppradyoth)](https://github.com/ppradyoth/prompt-injection-ctf) | medium-hard | token-smuggling/system-extract + zero-click exfil + tool-abuse/agency/consumption + OWASP-mapped defender mode
+- [Pangea challenge writeup (joey-melo)](https://github.com/joey-melo/writeups/tree/main/Pangea%20Prompt%20Injection%20Challenge) | hard | system-prompt synonym/.Identifier/.uuid one-token + style-injection + manager-sentence-completion + spelled-number + Cyrillic/Hindi-symbol exfil
+- [Prompt-injection field guide (CTFPal)](https://ctfpal.com/blog/prompt-injection-field-guide) | hard | override/roleplay/contradiction/continuation/self-reference + token-smuggling vs output-encode split + tool-enumeration confused-deputy [RESEARCH]
+- [PwnGPT agentic CTF (Goosen)](https://www.christogoosen.co.za/blog/pwngpt-agentic-llm-ctf) | hard | L0-basic → input-guard → output-filter → vision/audio multimodal → function-call → Prompt-Guard/Goose → CoT with LanceDB-RAG retrieval exploit
+- [OWASP LLM01 prompt injection](https://genai.owasp.org/llmrisk/llm01-prompt-injection/) | medium-hard | direct/indirect + payload-split + multimodal + suffix-noise + multilingual-encode taxonomy with RAG/finetune caveat [RESEARCH]
+- [ImaginaryCTF whoami model-fingerprinting](https://themctf.com/writeups/ictf-2025-whoami) | hard | identity-mask override + 10-part parser-quirk fingerprint (NaN/Infinity/trailing-comma/é-vs-e+acute/YAML/date/kg/case) + latency side-channel
+
+## Batch I — Gandalf extended lineage (search-mined, technique from snippets)
+
+- [Gandalf final-level writeup (Ozair Malik)](https://oza1r.medium.com/defeat-gandalf-the-powerful-ai-wizard-in-2-hours-writeup-fe8ee45be5a3) | hard | R/PowerShell array-variable code-frame exfil vs triple-guard (system+input+output) on White v2.0
+- [Gandalf Adventure 8 Tongue-Tied (0x42eau)](https://0x42eau.medium.com/gandalf-adventure-8-tongue-tied-gandalf-4aff2a51681e) | hard | forbidden-topic enumeration via substitution + fill-in-blank cross-reference + animal/food letter-map + symbol-mutated race-condition spray
+- [Gandalf challenge walkthrough (Nithissh)](https://medium.com/@nithissh/gandalf-lakera-ai-prompt-injection-challenge-1f67ab0b242a) | medium-hard | grandma-roleplay + reverse-order + first-5/last-6 split + letter-count probe + first-sentence character list ladder
+- [Gandalf answers incl L8 Java/distractor (MattiasHenders)](https://github.com/MattiasHenders/lakera-gandalf-answers) | hard | distractor-prefix + alphabet-index array (minus-1) code exfil with typo-correction
+- [LLMs are insecure / Gandalf universal prompt (antonz)](https://antonz.org/ai-security/) | hard | single universal prompt beats L1-7 + shuffle/print composition probe on White v2.0 [RESEARCH]
+- [Who is Gandalf spells-behind (Lakera)](https://lakeraai.medium.com/who-is-gandalf-2b93b457ab48) | hard | input+output dual-guard + half-split + synonym/clue evasion analysis across L3-L7 [RESEARCH]
+- [Gandalf the White solution pattern (Karina Nosenko)](https://medium.com/@karina4nosenko/gandalf-the-white-jailbreak-the-solution-f6a916e04ba5) | hard | hardcode-guard bypass to ChatGPT-like branch + anti-reuse (prompt burned after solve) adaptive ladder
+- [YOU TOO SHALL PASS L1-7 (Rachel Gao)](https://rachlllg.github.io/blog/YOU-TOO-SHALL-PASS/) | hard | spaced-letter + length-oracle ("is it N long?") + similar-but-not-password definition + combined probe
+- [Gandalf White prompt+password extraction (statico)](https://github.com/statico/lakera-gandalf-solutions/blob/main/README.md) | hard | debug-preamble verbosity-max + Rule-X-deneutered Rule-Y disclosure + first-letter-per-rule reassembly; dual emoji-pass detector mapping
+
+## Batch J - awesome-list mined research, tools and papers (snippet-mined from lists; individual pages unverified - see report)
+
+- [OWASP GenAI LLM Top 10 (2026)](https://genai.owasp.org/resource/owasp-genai-llm-top-10-2026/) | medium | OWASP LLM and agentic taxonomy plus prevention cheat-sheet mapping [RESEARCH]
+- [Agents Rule of Two: A Practical Approach to AI Agent Security](https://ai.meta.com/blog/practical-ai-agent-security/) | hard | agentic injection chain across memory, tool and skill compromise [RESEARCH]
+- [OWASP Top 10 for Agentic Applications (2026)](https://genai.owasp.org/resource/owasp-top-10-for-agentic-applications-for-2026/) | medium | OWASP LLM and agentic taxonomy plus prevention cheat-sheet mapping [RESEARCH]
+- [Design Patterns for Securing LLM Agents against Prompt Injections](https://simonwillison.net/2025/Jun/13/prompt-injection-design-patterns/) | medium-hard | design-pattern and worst-case framing for agent injection with exploit shapes [RESEARCH]
+- [Prompt injection: What's the worst that can happen?](https://simonwillison.net/2023/Apr/14/worst-that-can-happen/) | medium-hard | design-pattern and worst-case framing for agent injection with exploit shapes [RESEARCH]
+- [ChatGPT Plugins: Data Exfiltration via Images & Cross Plugin Request Forgery](https://embracethered.com/blog/posts/2023/chatgpt-webpilot-data-exfil-via-markdown-injection/) | hard | markdown-image exfil plus cross-plugin forgery chain [RESEARCH]
+- [Prompt Injection Cheat Sheet: How To Manipulate AI Language Models](https://blog.seclify.com/prompt-injection-cheat-sheet/) | medium | AI-security resource with attack and defense pattern catalog entry [RESEARCH]
+- [Prompt injection explained](https://simonwillison.net/2023/May/2/prompt-injection-explained/) | medium-hard | design-pattern and worst-case framing for agent injection with exploit shapes [RESEARCH]
+- [Adversarial Prompting](https://www.promptingguide.ai/risks/adversarial/) | medium | AI-security resource with attack and defense pattern catalog entry [RESEARCH]
+- [Don't you (forget NLP): Prompt injection with control characters in ChatGPT](https://dropbox.tech/machine-learning/prompt-injection-with-control-characters-openai-chatgpt-llm) | medium | AI-security resource with attack and defense pattern catalog entry [RESEARCH]
+- [Improving LLM Security Against Prompt Injection: AppSec Guidance For Pentesters and Develo](https://blog.includesecurity.com/2024/01/improving-llm-security-against-prompt-injection-appsec-guidance-for-pentesters-and-developers/) | medium | AI-security resource with attack and defense pattern catalog entry [RESEARCH]
+- [Improving LLM Security Against Prompt Injection: AppSec Guidance For Pentesters and Develo](https://blog.includesecurity.com/2024/02/improving-llm-security-against-prompt-injection-appsec-guidance-for-pentesters-and-developers-part-2/) | medium | AI-security resource with attack and defense pattern catalog entry [RESEARCH]
+- [Synthetic Recollections - A Case Study in Prompt Injection for ReAct LLM Agents](https://labs.withsecure.com/publications/llm-agent-prompt-injection) | hard | agentic injection chain across memory, tool and skill compromise [RESEARCH]
+- [Continuously Hardening ChatGPT Atlas Against Prompt Injection Attacks](https://openai.com/index/hardening-atlas-against-prompt-injection/) | medium | AI-security resource with attack and defense pattern catalog entry [RESEARCH]
+- [How Microsoft Defends Against Indirect Prompt Injection Attacks](https://www.microsoft.com/en-us/msrc/blog/2025/07/how-microsoft-defends-against-indirect-prompt-injection-attacks) | medium | AI-security resource with attack and defense pattern catalog entry [RESEARCH]
+- [ToxicSkills: Snyk Finds Malware and Prompt Injection in 36% of AI Agent Skills](https://snyk.io/blog/toxicskills-malicious-ai-agent-skills-clawhub/) | hard | agentic injection chain across memory, tool and skill compromise [RESEARCH]
+- [New Prompt Injection Papers: Agents Rule of Two and The Attacker Moves Second](https://simonwillison.net/2025/Nov/2/new-prompt-injection-papers/) | medium-hard | design-pattern and worst-case framing for agent injection with exploit shapes [RESEARCH]
+- [Indirect Prompt Injection Through MCP Tools: A Defense Guide](https://www.stackone.com/blog/indirect-prompt-injection-mcp-tools-defense) | hard | MCP and tool-poisoning chain from skill and registry poison to agent-action hijack [RESEARCH]
+- [Indirect Prompt Injection Attacks: Hidden AI Risks](https://www.crowdstrike.com/en-us/blog/indirect-prompt-injection-attacks-hidden-ai-risks/) | medium | AI-security resource with attack and defense pattern catalog entry [RESEARCH]
+- [Why content-based prompt-injection detection has a structural blind spot](https://dev.to/churik5/i-tried-to-break-my-own-mcp-prompt-injection-detector-one-class-of-attack-walks-straight-through--4534) | hard | MCP and tool-poisoning chain from skill and registry poison to agent-action hijack [RESEARCH]
+- [Prompt-Injection Cascades in a Multi-Agent Enterprise (ATLAS)](https://doi.org/10.5281/zenodo.21428133) | hard | multi-agent cascade via single poisoned ticket, topology failure framing [RESEARCH]
+- [Authority Framing in Agentic CI/CD (RELAY)](https://doi.org/10.5281/zenodo.21425933) | hard | authority-framed CI/CD agent escalation [RESEARCH]
+- [Agent-targeted bounty honeypots: a reproducible corpus](https://github.com/agentatwork/trapcheck/blob/main/CORPUS.md) | hard | agentic injection chain across memory, tool and skill compromise [RESEARCH]
+- [Prompt Injection](https://learnprompting.org/docs/prompt_hacking/injection) | medium | prompt-hacking course ladder from injection to jailbreak to defense [RESEARCH]
+- [Google AI Red Team: Securing AI](https://services.google.com/fh/files/blogs/google_ai_red_team_digital_final.pdf) | medium | AI-security resource with attack and defense pattern catalog entry [RESEARCH]
+- [Prompt Injection in LLM Agents (ReAct, Langchain)](https://www.youtube.com/watch?v=43qfHaKh0Xk) | hard | agentic injection chain across memory, tool and skill compromise [RESEARCH]
+- [How AI Prompt Injection Works / Hands-on with LLMs](https://www.youtube.com/watch?v=fCpAr2OylDw) | medium | video walkthrough ladder with ReAct, LangChain and MCP injection demo [RESEARCH]
+- [MCP Prompt Injection: How AI Gets Hacked](https://www.youtube.com/watch?v=bO-7DB-3dL8) | hard | MCP and tool-poisoning chain from skill and registry poison to agent-action hijack [RESEARCH]
+- [Not what you've signed up for: Compromising Real-World LLM-Integrated Applications with In](https://arxiv.org/abs/2302.12173) | hard | indirect injection vs integrated apps (email/doc/web) to exfil/priv-esc paths [RESEARCH]
+- [Universal and Transferable Adversarial Attacks on Aligned Language Models](https://arxiv.org/abs/2307.15043) | hard | GCG gradient suffix forcing affirmative completion, transferable across aligned models [RESEARCH]
+- [The Landscape of Prompt Injection Threats in LLM Agents (SoK)](https://arxiv.org/abs/2602.10453) | hard | SoK landscape of agent prompt-injection threats [RESEARCH]
+- [The Attacker Moves Second: Stronger Adaptive Attacks Bypass Defenses Against LLM Jailbreak](https://arxiv.org/abs/2510.09023) | hard | adaptive attacker-moves-second breaking 12 claimed defenses (90pct plus ASR) [RESEARCH]
+- [Prompt Injection 2.0: Hybrid AI Threats](https://arxiv.org/abs/2507.13169) | hard | hybrid AI threat framing across prompt plus tool/MCP [RESEARCH]
+- [Securing AI Agents Against Prompt Injection Attacks](https://arxiv.org/abs/2511.15759) | hard | agent hardening patterns vs prompt injection [RESEARCH]
+- [ToolHijacker: Prompt Injection Attack to Tool Selection in LLM Agents](https://arxiv.org/abs/2504.19793) | hard | ToolHijacker tool-selection hijack in LLM agents [RESEARCH]
+- [Attention Tracker: Detecting Prompt Injection Attacks in LLMs](https://aclanthology.org/2025.findings-naacl.123.pdf) | hard | attention-head injection detector evaluation [RESEARCH]
+- [Safety in Embodied AI: Risks, Attacks, and Defenses](https://github.com/x-zheng16/Awesome-Embodied-AI-Safety) | medium | AI-security resource with attack and defense pattern catalog entry [RESEARCH]
+- [Jailbreaking LLMs' Safeguard with Universal Magic Words for Text Embedding Models](https://arxiv.org/abs/2501.18280) | hard | universal magic-word suffix vs embedding bias plus debias fix [RESEARCH]
+- [FinAgent Red-Team: A Benchmark for Regulatory-Control Bypass in Financial LLM Agents](https://github.com/nac7/finagent-redteam) | hard | agentic injection chain across memory, tool and skill compromise [RESEARCH]
+- [Garak](https://github.com/leondz/garak) | medium-hard | automated red-team scanner and fuzzer loop with probe matrix and ASR scoring [RESEARCH-tool]
+- [OWASP Agent Memory Guard](https://github.com/OWASP/www-project-agent-memory-guard) | medium | detector and guardrail evaluation vs injection probe set with recall and FP tradeoff [RESEARCH-tool]
+- [PIC Standard](https://github.com/madeinplutofabio/pic-standard) | medium | AI-security resource with attack and defense pattern catalog entry [RESEARCH]
+- [Agent Threat Rules (ATR)](https://github.com/Agent-Threat-Rule/agent-threat-rules) | medium | detector and guardrail evaluation vs injection probe set with recall and FP tradeoff [RESEARCH-tool]
+- [Augustus](https://www.praetorian.com/blog/introducing-augustus-open-source-llm-prompt-injection/) | medium | AI-security resource with attack and defense pattern catalog entry [RESEARCH]
+- [InjecGuard](https://github.com/safolab-wisc/injecguard) | medium | detector and guardrail evaluation vs injection probe set with recall and FP tradeoff [RESEARCH-tool]
+- [brood-box](https://github.com/stacklok/brood-box) | medium | AI-security resource with attack and defense pattern catalog entry [RESEARCH]
+- [prompt-shield](https://github.com/mthamil107/prompt-shield) | medium | detector and guardrail evaluation vs injection probe set with recall and FP tradeoff [RESEARCH-tool]
+- [arXiv:2604.18248](https://arxiv.org/abs/2604.18248) | hard | jailbreak/prompt-injection variant study, awesome-list entry [RESEARCH]
+- [Guard Bands](https://github.com/Cryptix-Security/guard-bands) | medium | detector and guardrail evaluation vs injection probe set with recall and FP tradeoff [RESEARCH-tool]
+- [PromptTrace](https://prompttrace.airedlab.com/) | hard | hands-on CTF and lab level ladder from injection to RAG to tool abuse
+- [Gandalf](https://gandalf.lakera.ai/) | hard | password-extraction ladder vs layered guards (see Batch E and I)
+- [Damn Vulnerable LLM Agent](https://github.com/WithSecureLabs/damn-vulnerable-llm-agent) | hard | hands-on CTF and lab level ladder from injection to RAG to tool abuse
+- [AI/LLM Exploitation Challenges](https://academy.8ksec.io/course/ai-exploitation-challenges) | hard | hands-on CTF and lab level ladder from injection to RAG to tool abuse
+- [CrowdStrike AI Unlocked](https://www.crowdstrike.com/en-us/blog/introducing-ai-unlocked-interactive-prompt-injection-challenge/) | medium | AI-security resource with attack and defense pattern catalog entry [RESEARCH]
+- [ai-prompt-ctf by c-goosen](https://github.com/c-goosen/ai-prompt-ctf) | hard | hands-on CTF and lab level ladder from injection to RAG to tool abuse
+- [LLMVault](https://github.com/CyberSunil/LLMVault) | hard | hands-on CTF and lab level ladder from injection to RAG to tool abuse
+- [OWASP Gen AI Security Project](https://genai.owasp.org/) | medium | OWASP LLM and agentic taxonomy plus prevention cheat-sheet mapping [RESEARCH]
+- [Simon Willison's Blog](https://simonwillison.net) | medium-hard | design-pattern and worst-case framing for agent injection with exploit shapes [RESEARCH]
+- [MITRE ATLAS](https://atlas.mitre.org/) | medium | ATLAS tactic mapping for AML attack paths [RESEARCH]
+- [Security](https://github.com/security) | medium | AI-security resource with attack and defense pattern catalog entry [RESEARCH]
+- [OWASP LLM Top 10](https://owasp.org/www-project-top-10-for-large-language-model-applications/) | medium | OWASP LLM and agentic taxonomy plus prevention cheat-sheet mapping [RESEARCH]
+- [garak](https://github.com/NVIDIA/garak) | medium-hard | automated red-team scanner and fuzzer loop with probe matrix and ASR scoring [RESEARCH-tool]
+- [PyRIT](https://github.com/Azure/PyRIT) | medium | AI-security resource with attack and defense pattern catalog entry [RESEARCH]
+- [promptmap](https://github.com/utkusen/promptmap) | medium-hard | automated red-team scanner and fuzzer loop with probe matrix and ASR scoring [RESEARCH-tool]
+- [FuzzyAI](https://github.com/cyberark/FuzzyAI) | medium-hard | automated red-team scanner and fuzzer loop with probe matrix and ASR scoring [RESEARCH-tool]
+- [LLMFuzzer](https://github.com/mnns/LLMFuzzer) | medium-hard | automated red-team scanner and fuzzer loop with probe matrix and ASR scoring [RESEARCH-tool]
+- [promptfoo](https://github.com/promptfoo/promptfoo) | medium-hard | automated red-team scanner and fuzzer loop with probe matrix and ASR scoring [RESEARCH-tool]
+- [promptfoo](https://github.com/promptfoo) | medium-hard | automated red-team scanner and fuzzer loop with probe matrix and ASR scoring [RESEARCH-tool]
+- [LLM Warden](https://github.com/jackhhao/llm-warden) | medium | detector and guardrail evaluation vs injection probe set with recall and FP tradeoff [RESEARCH-tool]
+- [Vigil](https://github.com/deadbits/vigil-llm) | medium | detector and guardrail evaluation vs injection probe set with recall and FP tradeoff [RESEARCH-tool]
+- [ModelScan](https://github.com/protectai/modelscan) | medium | AI-security resource with attack and defense pattern catalog entry [RESEARCH]
+- [Protect AI](https://github.com/protectai) | medium | AI-security resource with attack and defense pattern catalog entry [RESEARCH]
+- [Open-Prompt-Injection](https://github.com/liu00222/Open-Prompt-Injection) | medium | AI-security resource with attack and defense pattern catalog entry [RESEARCH]
+- [ARTKIT](https://github.com/BCG-X-Official/artkit) | medium | AI-security resource with attack and defense pattern catalog entry [RESEARCH]
+- [PayloadsAllTheThings – Prompt Injection](https://github.com/swisskyrepo/PayloadsAllTheThings/blob/master/Prompt%20Injection/README.md) | medium | AI-security resource with attack and defense pattern catalog entry [RESEARCH]
+- [PIPE – Prompt Injection Primer](https://github.com/jthack/PIPE) | medium | AI-security resource with attack and defense pattern catalog entry [RESEARCH]
+- [Basic-ML-prompt-injections](https://github.com/Zierax/Basic-ML-prompt-injections) | medium | AI-security resource with attack and defense pattern catalog entry [RESEARCH]
+- [OWASP LLM Prompt Injection Prevention](https://cheatsheetseries.owasp.org/cheatsheets/LLM_Prompt_Injection_Prevention_Cheat_Sheet.html) | medium | OWASP LLM and agentic taxonomy plus prevention cheat-sheet mapping [RESEARCH]
+- [OWASP](https://owasp.org) | medium | OWASP LLM and agentic taxonomy plus prevention cheat-sheet mapping [RESEARCH]
+- [NeuralTrust AI Guide](https://neuraltrust.ai/) | medium | AI-security resource with attack and defense pattern catalog entry [RESEARCH]
+- [Adversarial Robustness Toolbox (ART)](https://github.com/Trusted-AI/adversarial-robustness-toolbox) | medium | AI-security resource with attack and defense pattern catalog entry [RESEARCH]
+- [HEART](https://github.com/IBM/heart-library) | medium | AI-security resource with attack and defense pattern catalog entry [RESEARCH]
+- [Rebuff](https://github.com/protectai/rebuff) | medium | detector and guardrail evaluation vs injection probe set with recall and FP tradeoff [RESEARCH-tool]
+- [PurpleLlama](https://github.com/meta-llama/PurpleLlama) | medium | AI-security resource with attack and defense pattern catalog entry [RESEARCH]
+- [HarmBench](https://github.com/centerforaisafety/HarmBench) | medium | AI-security resource with attack and defense pattern catalog entry [RESEARCH]
+- [Lasso MCP Gateway](https://github.com/lasso-security/mcp-gateway) | hard | MCP and tool-poisoning chain from skill and registry poison to agent-action hijack [RESEARCH]
+- [Lasso Security](https://lasso.security/) | medium | AI-security resource with attack and defense pattern catalog entry [RESEARCH]
+- [Lakera](https://www.lakera.ai/) | medium | AI-security resource with attack and defense pattern catalog entry [RESEARCH]
+- [LLM Security CTF](https://github.com/TrustAI-laboratory/LLM-Security-CTF) | hard | hands-on CTF and lab level ladder from injection to RAG to tool abuse
+- [TrustAI-laboratory](https://github.com/TrustAI-laboratory) | medium | AI-security resource with attack and defense pattern catalog entry [RESEARCH]
+- [DamnVulnerableLLMProject](https://github.com/harishsg993010/DamnVulnerableLLMProject) | medium | AI-security resource with attack and defense pattern catalog entry [RESEARCH]
+- [SEC545: GenAI & LLM AppSec](https://www.sans.org/cyber-security-courses/genai-llm-application-security/) | medium | AI-security resource with attack and defense pattern catalog entry [RESEARCH]
+- [SEC495: Building & Securing RAG](https://www.sans.org/cyber-security-courses/leveraging-llms-building-securing-rag/) | hard | retrieval and memory poison into privileged-context execution [RESEARCH]
+- [SEC411: AI Security Principles](https://www.sans.org/cyber-security-courses/ai-security-principles-practices/) | medium | AI-security resource with attack and defense pattern catalog entry [RESEARCH]
+- [SANS AI Cybersecurity Summit 2025](https://www.sans.org/cyber-security-summit/) | medium | AI-security resource with attack and defense pattern catalog entry [RESEARCH]
+- [CAISP](https://www.practical-devsecops.com/certified-ai-security-professional/) | medium | AI-security resource with attack and defense pattern catalog entry [RESEARCH]
+- [HackAPrompt 1.0](https://www.hackaprompt.com/) | hard | level-ladder injection vs sandwich, blocklist and mangling (see Batch D and A)
+- [DEF CON AI CTF](https://www.kaggle.com/competitions/ai-village-ctf) | hard | level-ladder injection vs sandwich, blocklist and mangling (see Batch D and A)
+- [Large Language Models in Cybersecurity: Threats, Exposure and Mitigation](https://link.springer.com/book/10.1007/978-3-031-54827-7) | medium | AI-security resource with attack and defense pattern catalog entry [RESEARCH]
+- [Generative AI Security: Theories and Practices](https://link.springer.com/book/10.1007/978-3-031-54252-7) | medium | AI-security resource with attack and defense pattern catalog entry [RESEARCH]
+- [AI-Driven Cybersecurity and Threat Intelligence](https://link.springer.com/book/10.1007/978-3-031-15030-2) | medium | AI-security resource with attack and defense pattern catalog entry [RESEARCH]
+- [Developer's Playbook for LLM Security](https://www.amazon.com/Developers-Playbook-Large-Language-Security/dp/109816220X) | medium | AI-security resource with attack and defense pattern catalog entry [RESEARCH]
+- [LangChain Security Policy](https://python.langchain.com/docs/security/) | medium | AI-security resource with attack and defense pattern catalog entry [RESEARCH]
+- [CISA AI Security Best Practices](https://www.cisa.gov/ai) | medium | AI-security resource with attack and defense pattern catalog entry [RESEARCH]
+- [NVIDIA AI Red Team Practical Advice](https://developer.nvidia.com/blog/practical-llm-security-advice-from-the-nvidia-ai-red-team/) | medium | AI-security resource with attack and defense pattern catalog entry [RESEARCH]
+- [Salesforce Prompt Injection Detection Guide](https://www.salesforce.com/blog/prompt-injection-detection/) | medium | AI-security resource with attack and defense pattern catalog entry [RESEARCH]
+- [NIST AI RMF + GenAI Profile](https://www.nist.gov/itl/ai-risk-management-framework) | medium | AI-security resource with attack and defense pattern catalog entry [RESEARCH]
+- [OWASP Top 10 2025](https://owasp.org/Top10/) | medium | OWASP LLM and agentic taxonomy plus prevention cheat-sheet mapping [RESEARCH]
+- [NeMo Guardrails](https://github.com/NVIDIA/NeMo-Guardrails) | medium | detector and guardrail evaluation vs injection probe set with recall and FP tradeoff [RESEARCH-tool]
+- [LLM Guard](https://github.com/protectai/llm-guard) | medium | detector and guardrail evaluation vs injection probe set with recall and FP tradeoff [RESEARCH-tool]
+- [Protect AI](https://protectai.com/) | medium | AI-security resource with attack and defense pattern catalog entry [RESEARCH]
+- [Guardrails AI](https://github.com/guardrails-ai/guardrails) | medium | detector and guardrail evaluation vs injection probe set with recall and FP tradeoff [RESEARCH-tool]
+- [Guardrails AI](https://www.guardrailsai.com/) | medium | detector and guardrail evaluation vs injection probe set with recall and FP tradeoff [RESEARCH-tool]
+- [Prompt Armor](https://promptarmor.com/) | medium | detector and guardrail evaluation vs injection probe set with recall and FP tradeoff [RESEARCH-tool]
+- [HiddenLayer AIM Security](https://hiddenlayer.com/) | medium | AI-security resource with attack and defense pattern catalog entry [RESEARCH]
+- [AI Security & Governance](https://education.securiti.ai/certifications/ai-governance/) | medium | AI-security resource with attack and defense pattern catalog entry [RESEARCH]
+- [GCSCC AI Cybersecurity Conference 2025](https://gcscc.ox.ac.uk/) | medium | AI-security resource with attack and defense pattern catalog entry [RESEARCH]
+- [AI Security & Privacy Conference 2025](https://aisecurityconf.com/) | medium | AI-security resource with attack and defense pattern catalog entry [RESEARCH]
+- [Ignore This Title and HackAPrompt](https://arxiv.org/abs/2311.16119) | hard | HackAPrompt taxonomy (29 techniques) + Context Overflow token-flood [RESEARCH]
+- [SelfCheckGPT](https://arxiv.org/abs/2303.08896) | hard | SelfCheckGPT consistency scoring vs hallucination-confabulation [RESEARCH]
+- [SECURE Benchmark](https://arxiv.org/abs/2405.20441) | hard | SECURE multi-dataset security evaluation suite [RESEARCH]
+- [In-The-Wild Jailbreak Prompts Dataset](https://huggingface.co/datasets/TrustAIRLab/in-the-wild-jailbreak-prompts) | hard | jailbreak benchmark and dataset construction plus ASR eval method [RESEARCH]
+- [JailbreakBench](https://jailbreakbench.github.io/) | hard | jailbreak benchmark and dataset construction plus ASR eval method [RESEARCH]
+- [JailBreakV-28K](https://huggingface.co/datasets/JailbreakV-28K/JailBreakV-28k) | hard | jailbreak benchmark and dataset construction plus ASR eval method [RESEARCH]
+- [Forbidden Question Set](https://huggingface.co/datasets/TrustAIRLab/forbidden_question_set) | hard | jailbreak benchmark and dataset construction plus ASR eval method [RESEARCH]
+- [LLM Jailbreak + Safety Data](https://www.kaggle.com/datasets/llm-jailbreak-safety) | hard | jailbreak benchmark and dataset construction plus ASR eval method [RESEARCH]
+- [Dynatrace Davis AI](https://www.dynatrace.com/) | medium | detector and guardrail evaluation vs injection probe set with recall and FP tradeoff [RESEARCH-tool]
+- [HexStrike AI MCP](https://github.com/0x4m4/hexstrike-ai) | hard | MCP and tool-poisoning chain from skill and registry poison to agent-action hijack [RESEARCH]
+- [awesome-llm-security](https://github.com/corca-ai/awesome-llm-security) | medium | AI-security resource with attack and defense pattern catalog entry [RESEARCH]
+- [awesome-gpt-security](https://github.com/cckuailong/awesome-gpt-security) | medium | AI-security resource with attack and defense pattern catalog entry [RESEARCH]
+- [awesome-llm-cybersecurity-tools](https://github.com/tenable/awesome-llm-cybersecurity-tools) | medium | AI-security resource with attack and defense pattern catalog entry [RESEARCH]
+- [Awesome-LLMSecOps](https://github.com/wearetyomsmnv/Awesome-LLMSecOps) | medium | AI-security resource with attack and defense pattern catalog entry [RESEARCH]
+- [awesome-llm-supply-chain-security](https://github.com/ShenaoW/awesome-llm-supply-chain-security) | medium | AI-security resource with attack and defense pattern catalog entry [RESEARCH]
+- [awesome-hallucination-detection](https://github.com/EdinburghNLP/awesome-hallucination-detection) | medium | AI-security resource with attack and defense pattern catalog entry [RESEARCH]
+- [oss-llm-security](https://github.com/kaplanlior/oss-llm-security) | medium | AI-security resource with attack and defense pattern catalog entry [RESEARCH]
+- [AI Security Podcast](https://www.aisecuritypodcast.com/) | medium | AI-security resource with attack and defense pattern catalog entry [RESEARCH]
+- [Smashing Security](https://www.smashingsecurity.com/) | medium | AI-security resource with attack and defense pattern catalog entry [RESEARCH]
+- [The Cyber Mentor](https://www.youtube.com/@TCMSecurityAcademy) | medium | video walkthrough ladder with ReAct, LangChain and MCP injection demo [RESEARCH]
+- [Rez0's AI Security Blog](https://josephthacker.com/) | medium | AI-security resource with attack and defense pattern catalog entry [RESEARCH]
+- [Lakera AI Blog](https://www.lakera.ai/blog) | medium | AI-security resource with attack and defense pattern catalog entry [RESEARCH]
+- [Anthropic Transparency Hub](https://www.anthropic.com/transparency) | medium | AI-security resource with attack and defense pattern catalog entry [RESEARCH]
+- [OpenAI Red Teaming Network](https://openai.com/index/red-teaming-network/) | medium | AI-security resource with attack and defense pattern catalog entry [RESEARCH]
+- [OWASP AI Security Solutions Landscape](https://genai.owasp.org/ai-security-solutions/) | medium | OWASP LLM and agentic taxonomy plus prevention cheat-sheet mapping [RESEARCH]
+- [Lasso Security Blog](https://lasso.security/blog/) | medium | AI-security resource with attack and defense pattern catalog entry [RESEARCH]
+- [Quickstart: Contributing to Projects](https://docs.github.com/en/get-started/quickstart/contributing-to-projects) | medium | AI-security resource with attack and defense pattern catalog entry [RESEARCH]
+- [arxiv.org 2605.24497](https://arxiv.org/abs/2605.24497) | hard | jailbreak/prompt-injection variant study, awesome-list entry [RESEARCH]
+- [arxiv.org 2511.10714](https://arxiv.org/abs/2511.10714) | hard | jailbreak/prompt-injection variant study, awesome-list entry [RESEARCH]
+- [arxiv.org 2510.21285](https://arxiv.org/abs/2510.21285) | hard | jailbreak/prompt-injection variant study, awesome-list entry [RESEARCH]
+- [arxiv.org 2510.05379](https://arxiv.org/abs/2510.05379) | hard | jailbreak/prompt-injection variant study, awesome-list entry [RESEARCH]
+- [github.com AutoDAN Reasoning](https://github.com/SaFoLab-WISC/AutoDAN-Reasoning) | medium | AI-security resource with attack and defense pattern catalog entry [RESEARCH]
+- [arxiv.org 2508.08243](https://arxiv.org/abs/2508.08243) | hard | jailbreak/prompt-injection variant study, awesome-list entry [RESEARCH]
+- [models](https://huggingface.co/Jinx-org) | hard | jailbreak benchmark and dataset construction plus ASR eval method [RESEARCH]
+- [arxiv.org 2507.18305](https://arxiv.org/abs/2507.18305) | hard | jailbreak/prompt-injection variant study, awesome-list entry [RESEARCH]
+- [arxiv.org 2506.13737](https://arxiv.org/abs/2506.13737) | hard | jailbreak/prompt-injection variant study, awesome-list entry [RESEARCH]
+- [github.com ExtendAttack](https://github.com/zzh-thu-22/ExtendAttack) | medium | AI-security resource with attack and defense pattern catalog entry [RESEARCH]
+- [arxiv.org 2506.14374](https://arxiv.org/abs/2506.14374) | hard | jailbreak/prompt-injection variant study, awesome-list entry [RESEARCH]
+- [arxiv.org 2503.01781](https://arxiv.org/abs/2503.01781) | hard | jailbreak/prompt-injection variant study, awesome-list entry [RESEARCH]
+- [arxiv.org 2502.02542#:~:text=We%20increase%20overhead%20for%20applications%20that%20rely%2](https://arxiv.org/abs/2502.02542#:~:text=We%20increase%20overhead%20for%20applications%20that%20rely%20on,the%20user%20query%20while%20providing%20contextually%20correct%20answers.) | hard | jailbreak/prompt-injection variant study, awesome-list entry [RESEARCH]
+- [arxiv.org 2502.12202](https://arxiv.org/abs/2502.12202) | hard | jailbreak/prompt-injection variant study, awesome-list entry [RESEARCH]
+- [arxiv.org 2502.12893](https://arxiv.org/abs/2502.12893) | hard | jailbreak/prompt-injection variant study, awesome-list entry [RESEARCH]
+- [github.com jailbreak reasoning openai o1o3 deepseek r1](https://github.com/dukeceicenter/jailbreak-reasoning-openai-o1o3-deepseek-r1) | medium | AI-security resource with attack and defense pattern catalog entry [RESEARCH]
+- [arxiv.org 2502.15806](https://arxiv.org/abs/2502.15806) | hard | jailbreak/prompt-injection variant study, awesome-list entry [RESEARCH]
+- [arxiv.org 2605.21362](https://arxiv.org/abs/2605.21362) | hard | jailbreak/prompt-injection variant study, awesome-list entry [RESEARCH]
+- [arxiv.org 2603.23509](https://arxiv.org/abs/2603.23509) | hard | jailbreak/prompt-injection variant study, awesome-list entry [RESEARCH]
+- [arxiv.org 2603.23269](https://arxiv.org/abs/2603.23269) | hard | jailbreak/prompt-injection variant study, awesome-list entry [RESEARCH]
+- [arxiv.org 2601.03420](https://arxiv.org/abs/2601.03420) | hard | jailbreak/prompt-injection variant study, awesome-list entry [RESEARCH]
+- [arxiv.org 2512.13703](https://arxiv.org/abs/2512.13703) | hard | jailbreak/prompt-injection variant study, awesome-list entry [RESEARCH]
+- [arxiv.org 2511.16278](https://arxiv.org/abs/2511.16278) | hard | jailbreak/prompt-injection variant study, awesome-list entry [RESEARCH]
+- [arxiv.org 2510.21189](https://arxiv.org/abs/2510.21189) | hard | jailbreak/prompt-injection variant study, awesome-list entry [RESEARCH]
+- [arxiv.org 2510.22085](https://arxiv.org/abs/2510.22085) | hard | jailbreak/prompt-injection variant study, awesome-list entry [RESEARCH]
+- [arxiv.org 2510.10271](https://arxiv.org/abs/2510.10271) | hard | jailbreak/prompt-injection variant study, awesome-list entry [RESEARCH]
+- [arxiv.org 2510.17904](https://arxiv.org/abs/2510.17904) | hard | jailbreak/prompt-injection variant study, awesome-list entry [RESEARCH]
+- [arxiv.org 2507.05248](https://arxiv.org/abs/2507.05248) | hard | jailbreak/prompt-injection variant study, awesome-list entry [RESEARCH]
+- [github.com Response Attack](https://github.com/Dtc7w3PQ/Response-Attack) | medium | AI-security resource with attack and defense pattern catalog entry [RESEARCH]
+- [arxiv.org 2411.01077](https://arxiv.org/pdf/2411.01077) | hard | jailbreak/prompt-injection variant study, awesome-list entry [RESEARCH]
+- [github.com EmojiAttack](https://github.com/zhipeng-wei/EmojiAttack) | medium | AI-security resource with attack and defense pattern catalog entry [RESEARCH]
+- [arxiv.org 2410.02832](https://arxiv.org/pdf/2410.02832) | hard | jailbreak/prompt-injection variant study, awesome-list entry [RESEARCH]
+- [github.com FlipAttack](https://github.com/yueliu1999/FlipAttack) | medium | AI-security resource with attack and defense pattern catalog entry [RESEARCH]
+- [arxiv.org 2503.20823](http://arxiv.org/pdf/2503.20823) | hard | jailbreak/prompt-injection variant study, awesome-list entry [RESEARCH]
+- [arxiv.org 2503.08990](https://arxiv.org/abs/2503.08990) | hard | jailbreak/prompt-injection variant study, awesome-list entry [RESEARCH]
+- [arxiv.org 2502.11853](https://arxiv.org/abs/2502.11853) | hard | jailbreak/prompt-injection variant study, awesome-list entry [RESEARCH]
+- [github.com Benchmark](https://github.com/StructTransform/Benchmark) | hard | jailbreak benchmark and dataset construction plus ASR eval method [RESEARCH]
+- [arxiv.org 2502.03052](https://arxiv.org/pdf/2502.03052) | hard | jailbreak/prompt-injection variant study, awesome-list entry [RESEARCH]
+- [github.com 2025 ICLR PiF](https://github.com/tmllab/2025_ICLR_PiF) | medium | AI-security resource with attack and defense pattern catalog entry [RESEARCH]
+- [arxiv.org 2411.11407](https://arxiv.org/pdf/2411.11407) | hard | jailbreak/prompt-injection variant study, awesome-list entry [RESEARCH]
+- [arxiv.org 2411.12762v1](https://arxiv.org/pdf/2411.12762v1) | hard | jailbreak/prompt-injection variant study, awesome-list entry [RESEARCH]
+- [anonymous.4open.science README.md](https://anonymous.4open.science/r/encode_jailbreaking_anonymous-B4C4/README.md) | medium | AI-security resource with attack and defense pattern catalog entry [RESEARCH]
+- [arxiv.org 2411.14133v1](https://arxiv.org/pdf/2411.14133v1) | hard | jailbreak/prompt-injection variant study, awesome-list entry [RESEARCH]
+- [github.com gasp](https://github.com/llm-gasp/gasp) | medium | AI-security resource with attack and defense pattern catalog entry [RESEARCH]
+- [arxiv.org 2411.08862v1](https://arxiv.org/pdf/2411.08862v1) | hard | jailbreak/prompt-injection variant study, awesome-list entry [RESEARCH]
+- [arxiv.org 2411.06426v1](https://arxiv.org/pdf/2411.06426v1) | hard | jailbreak/prompt-injection variant study, awesome-list entry [RESEARCH]
+- [anonymous.4open.science JailBreakAttack 4F3B](https://anonymous.4open.science/r/JailBreakAttack-4F3B/) | medium | AI-security resource with attack and defense pattern catalog entry [RESEARCH]
+- [arxiv.org 2411.04223v1](https://arxiv.org/pdf/2411.04223v1) | hard | jailbreak/prompt-injection variant study, awesome-list entry [RESEARCH]
+- [arxiv.org 2411.01084v1](https://arxiv.org/pdf/2411.01084v1) | hard | jailbreak/prompt-injection variant study, awesome-list entry [RESEARCH]
+- [arxiv.org 2410.23558v1](https://arxiv.org/pdf/2410.23558v1) | hard | jailbreak/prompt-injection variant study, awesome-list entry [RESEARCH]
+- [arxiv.org 2410.21083](https://arxiv.org/pdf/2410.21083) | hard | jailbreak/prompt-injection variant study, awesome-list entry [RESEARCH]
+- [arxiv.org 2410.01294v1](https://arxiv.org/pdf/2410.01294v1) | hard | jailbreak/prompt-injection variant study, awesome-list entry [RESEARCH]
+- [arxiv.org 2410.04190v1](https://arxiv.org/pdf/2410.04190v1) | hard | jailbreak/prompt-injection variant study, awesome-list entry [RESEARCH]
+- [arxiv.org 2410.03857v2](https://arxiv.org/pdf/2410.03857v2) | hard | jailbreak/prompt-injection variant study, awesome-list entry [RESEARCH]
+- [github.com llm Implicit reference](https://github.com/Lucas-TY/llm_Implicit_reference) | medium | AI-security resource with attack and defense pattern catalog entry [RESEARCH]
+- [arxiv.org 2410.11317v1](https://arxiv.org/pdf/2410.11317v1) | hard | jailbreak/prompt-injection variant study, awesome-list entry [RESEARCH]
+- [github.com Adversarial Prompt Translator](https://github.com/qizhangli/Adversarial-Prompt-Translator) | medium | AI-security resource with attack and defense pattern catalog entry [RESEARCH]
+- [arxiv.org 2410.05295](https://arxiv.org/pdf/2410.05295) | hard | jailbreak/prompt-injection variant study, awesome-list entry [RESEARCH]
+- [github.com AutoDAN Turbo](https://github.com/SaFoLab-WISC/AutoDAN-Turbo) | medium | AI-security resource with attack and defense pattern catalog entry [RESEARCH]
+- [arxiv.org 2409.14177](https://www.arxiv.org/pdf/2409.14177) | hard | jailbreak/prompt-injection variant study, awesome-list entry [RESEARCH]
+- [arxiv.org 2409.18708](https://arxiv.org/pdf/2409.18708) | hard | jailbreak/prompt-injection variant study, awesome-list entry [RESEARCH]
+- [arxiv.org 2409.07503](https://arxiv.org/pdf/2409.07503) | hard | jailbreak/prompt-injection variant study, awesome-list entry [RESEARCH]
+- [arxiv.org 2409.14866](https://arxiv.org/pdf/2409.14866) | hard | jailbreak/prompt-injection variant study, awesome-list entry [RESEARCH]
+- [arxiv.org 2409.11445v1](https://arxiv.org/pdf/2409.11445v1) | hard | jailbreak/prompt-injection variant study, awesome-list entry [RESEARCH]
+- [aclanthology.org 2024.findings acl.304](https://aclanthology.org/2024.findings-acl.304) | hard | jailbreak/prompt-injection study [RESEARCH]
+- [arxiv.org 2408.14866](https://arxiv.org/pdf/2408.14866) | hard | jailbreak/prompt-injection variant study, awesome-list entry [RESEARCH]
+- [arxiv.org 2408.11182](https://arxiv.org/pdf/2408.11182) | hard | jailbreak/prompt-injection variant study, awesome-list entry [RESEARCH]
+- [arxiv.org 2408.04811](https://arxiv.org/pdf/2408.04811) | hard | jailbreak/prompt-injection variant study, awesome-list entry [RESEARCH]
+- [arxiv.org 2408.03603](https://arxiv.org/pdf/2408.03603) | hard | jailbreak/prompt-injection variant study, awesome-list entry [RESEARCH]
+- [arxiv.org 2406.11682](https://arxiv.org/pdf/2406.11682) | hard | jailbreak/prompt-injection variant study, awesome-list entry [RESEARCH]
+- [github.com Knowledge to Jailbreak](https://github.com/THU-KEG/Knowledge-to-Jailbreak/) | medium | AI-security resource with attack and defense pattern catalog entry [RESEARCH]
+- [arxiv.org 2407.16205](https://arxiv.org/pdf/2407.16205) | hard | jailbreak/prompt-injection variant study, awesome-list entry [RESEARCH]
+- [arxiv.org 2407.03232#page=3.00](https://arxiv.org/pdf/2407.03232#page=3.00) | hard | jailbreak/prompt-injection variant study, awesome-list entry [RESEARCH]
+- [github.com space attack](https://github.com/hannah-aught/space_attack) | medium | AI-security resource with attack and defense pattern catalog entry [RESEARCH]
+- [arxiv.org 2407.02551](https://arxiv.org/abs/2407.02551) | hard | jailbreak/prompt-injection variant study, awesome-list entry [RESEARCH]
+- [arxiv.org 2406.19845](https://arxiv.org/pdf/2406.19845) | hard | jailbreak/prompt-injection variant study, awesome-list entry [RESEARCH]
+- [arxiv.org 2407.01902](https://arxiv.org/pdf/2407.01902) | hard | jailbreak/prompt-injection variant study, awesome-list entry [RESEARCH]
+- [arxiv.org 2406.14393](https://arxiv.org/abs/2406.14393) | hard | jailbreak/prompt-injection variant study, awesome-list entry [RESEARCH]
+- [github.com remiss jailbreak](https://github.com/zhxieml/remiss-jailbreak) | medium | AI-security resource with attack and defense pattern catalog entry [RESEARCH]
+- [arxiv.org 2406.01288](https://arxiv.org/abs/2406.01288) | hard | jailbreak/prompt-injection variant study, awesome-list entry [RESEARCH]
+- [arxiv.org 2406.08705](https://arxiv.org/pdf/2406.08705) | hard | jailbreak/prompt-injection variant study, awesome-list entry [RESEARCH]
+- [arxiv.org 2402.08567](https://arxiv.org/pdf/2402.08567) | hard | jailbreak/prompt-injection variant study, awesome-list entry [RESEARCH]
+- [github.com Agent Smith](https://github.com/sail-sg/Agent-Smith) | hard | agentic injection chain across memory, tool and skill compromise [RESEARCH]
+- [arxiv.org 2406.20053](https://arxiv.org/pdf/2406.20053) | hard | jailbreak/prompt-injection variant study, awesome-list entry [RESEARCH]
+- [arxiv.org 2402.11753](https://arxiv.org/pdf/2402.11753) | hard | jailbreak/prompt-injection variant study, awesome-list entry [RESEARCH]
+- [github.com ArtPrompt](https://github.com/uw-nsl/ArtPrompt) | medium | AI-security resource with attack and defense pattern catalog entry [RESEARCH]
+- [arxiv.org 2402.16006](https://arxiv.org/pdf/2402.16006) | hard | jailbreak/prompt-injection variant study, awesome-list entry [RESEARCH]
+- [arxiv.org 2403.07865](https://arxiv.org/pdf/2403.07865) | hard | jailbreak/prompt-injection variant study, awesome-list entry [RESEARCH]
+- [arxiv.org 2402.18104](https://arxiv.org/pdf/2402.18104) | hard | jailbreak/prompt-injection variant study, awesome-list entry [RESEARCH]
+- [github.com DRA](https://github.com/LLM-DRA/DRA/) | medium | AI-security resource with attack and defense pattern catalog entry [RESEARCH]
+- [arxiv.org 2404.02151](https://arxiv.org/pdf/2404.02151) | hard | jailbreak/prompt-injection variant study, awesome-list entry [RESEARCH]
+- [github.com llm adaptive attacks](https://github.com/tml-epfl/llm-adaptive-attacks) | medium | AI-security resource with attack and defense pattern catalog entry [RESEARCH]
+- [arxiv.org 2309.10253](https://arxiv.org/abs/2309.10253) | hard | jailbreak/prompt-injection variant study, awesome-list entry [RESEARCH]
+- [github.com GPTFuzz](https://github.com/sherdencooper/GPTFuzz) | medium | AI-security resource with attack and defense pattern catalog entry [RESEARCH]
+- [arxiv.org 2311.08268](https://arxiv.org/abs/2311.08268) | hard | jailbreak/prompt-injection variant study, awesome-list entry [RESEARCH]
+- [github.com ReNeLLM](https://github.com/NJUNLP/ReNeLLM) | medium | AI-security resource with attack and defense pattern catalog entry [RESEARCH]
+- [arxiv.org 2406.02044](https://arxiv.org/abs/2406.02044) | hard | jailbreak/prompt-injection variant study, awesome-list entry [RESEARCH]
+- [arxiv.org 2406.18122](https://arxiv.org/pdf/2406.18122) | hard | jailbreak/prompt-injection variant study, awesome-list entry [RESEARCH]
+- [github.com jailbreak langchain](https://github.com/CAM-FSS/jailbreak-langchain) | medium | AI-security resource with attack and defense pattern catalog entry [RESEARCH]
+- [arxiv.org 2310.06474](https://arxiv.org/pdf/2310.06474) | hard | jailbreak/prompt-injection variant study, awesome-list entry [RESEARCH]
+- [github.com multilingual safety for LLMs](https://github.com/DAMO-NLP-SG/multilingual-safety-for-LLMs) | medium | AI-security resource with attack and defense pattern catalog entry [RESEARCH]
+- [arxiv.org 2311.03191](https://arxiv.org/pdf/2311.03191) | hard | jailbreak/prompt-injection variant study, awesome-list entry [RESEARCH]
+- [arxiv.org 2405.13077](https://arxiv.org/abs/2405.13077) | hard | jailbreak/prompt-injection variant study, awesome-list entry [RESEARCH]
+- [arxiv.org 2402.03299](https://arxiv.org/pdf/2402.03299) | hard | jailbreak/prompt-injection variant study, awesome-list entry [RESEARCH]
+- [arxiv.org 2308.03825](https://arxiv.org/pdf/2308.03825) | hard | jailbreak/prompt-injection variant study, awesome-list entry [RESEARCH]
+- [github.com jailbreak llms](https://github.com/verazuo/jailbreak_llms) | medium | AI-security resource with attack and defense pattern catalog entry [RESEARCH]
+- [arxiv.org 2308.06463](https://arxiv.org/pdf/2308.06463) | hard | jailbreak/prompt-injection variant study, awesome-list entry [RESEARCH]
+- [arxiv.org 2405.20413](https://arxiv.org/pdf/2405.20413) | hard | jailbreak/prompt-injection variant study, awesome-list entry [RESEARCH]
+- [arxiv.org 2310.06387](https://arxiv.org/pdf/2310.06387) | hard | jailbreak/prompt-injection variant study, awesome-list entry [RESEARCH]
+- [www-cdn.anthropic.com Many Shot Jailbreaking  2024 04 02 0936.pdf](https://www-cdn.anthropic.com/af5633c94ed2beb282f6a53c595eb437e8e7b630/Many_Shot_Jailbreaking__2024_04_02_0936.pdf) | medium | AI-security resource with attack and defense pattern catalog entry [RESEARCH]
+- [arxiv.org 2309.05274](https://arxiv.org/pdf/2309.05274) | hard | jailbreak/prompt-injection variant study, awesome-list entry [RESEARCH]
+- [github.com FuzzLLM](https://github.com/RainJamesY/FuzzLLM) | medium | AI-security resource with attack and defense pattern catalog entry [RESEARCH]
+- [arxiv.org 2404.07242](https://arxiv.org/pdf/2404.07242) | hard | jailbreak/prompt-injection variant study, awesome-list entry [RESEARCH]
+- [arxiv.org 2403.08424](https://arxiv.org/pdf/2403.08424) | hard | jailbreak/prompt-injection variant study, awesome-list entry [RESEARCH]
+- [arxiv.org 2402.16914](https://arxiv.org/pdf/2402.16914) | hard | jailbreak/prompt-injection variant study, awesome-list entry [RESEARCH]
+- [github.com DrAttack](https://github.com/xirui-li/DrAttack) | medium | AI-security resource with attack and defense pattern catalog entry [RESEARCH]
+- [arxiv.org 2402.15911](https://arxiv.org/pdf/2402.15911) | hard | jailbreak/prompt-injection variant study, awesome-list entry [RESEARCH]
+- [arxiv.org 2402.16717](https://arxiv.org/pdf/2402.16717) | hard | jailbreak/prompt-injection variant study, awesome-list entry [RESEARCH]
+- [arxiv.org 2402.09674](https://arxiv.org/abs/2402.09674) | hard | jailbreak/prompt-injection variant study, awesome-list entry [RESEARCH]
+- [arxiv.org 2402.10601](https://arxiv.org/pdf/2402.10601) | hard | jailbreak/prompt-injection variant study, awesome-list entry [RESEARCH]
+- [arxiv.org 2402.12329](https://arxiv.org/pdf/2402.12329) | hard | jailbreak/prompt-injection variant study, awesome-list entry [RESEARCH]
+- [arxiv.org 2402.09177](https://arxiv.org/pdf/2402.09177) | hard | jailbreak/prompt-injection variant study, awesome-list entry [RESEARCH]
+- [arxiv.org 2402.14872](https://arxiv.org/pdf/2402.14872) | hard | jailbreak/prompt-injection variant study, awesome-list entry [RESEARCH]
+- [arxiv.org 2311.09827#page=10.84](https://arxiv.org/pdf/2311.09827#page=10.84) | hard | jailbreak/prompt-injection variant study, awesome-list entry [RESEARCH]
+- [arxiv.org 2310.02446](https://arxiv.org/pdf/2310.02446) | hard | jailbreak/prompt-injection variant study, awesome-list entry [RESEARCH]
+- [arxiv.org 2401.06373](https://arxiv.org/pdf/2401.06373) | hard | jailbreak/prompt-injection variant study, awesome-list entry [RESEARCH]
+- [github.com persuasive jailbreaker](https://github.com/CHATS-lab/persuasive_jailbreaker) | medium | AI-security resource with attack and defense pattern catalog entry [RESEARCH]
+- [arxiv.org 2312.02119](https://arxiv.org/abs/2312.02119) | hard | jailbreak/prompt-injection variant study, awesome-list entry [RESEARCH]
+- [arxiv.org 2312.04782](https://arxiv.org/pdf/2312.04782) | hard | jailbreak/prompt-injection variant study, awesome-list entry [RESEARCH]
+- [aclanthology.org 2023.emnlp main.302](https://aclanthology.org/2023.emnlp-main.302/) | hard | jailbreak/prompt-injection study [RESEARCH]
+- [arxiv.org 2311.03348](https://arxiv.org/pdf/2311.03348) | hard | jailbreak/prompt-injection variant study, awesome-list entry [RESEARCH]
+- [arxiv.org 2310.08419](https://arxiv.org/pdf/2310.08419) | hard | jailbreak/prompt-injection variant study, awesome-list entry [RESEARCH]
+- [github.com JailbreakingLLMs](https://github.com/patrickrchao/JailbreakingLLMs) | medium | detector and guardrail evaluation vs injection probe set with recall and FP tradeoff [RESEARCH-tool]
+- [arxiv.org 2305.14950](https://arxiv.org/pdf/2305.14950) | hard | jailbreak/prompt-injection variant study, awesome-list entry [RESEARCH]
+- [arxiv.org 2307.08715](https://arxiv.org/pdf/2307.08715) | hard | jailbreak/prompt-injection variant study, awesome-list entry [RESEARCH]
+- [github.com MasterKey](https://github.com/LLMSecurity/MasterKey) | medium | AI-security resource with attack and defense pattern catalog entry [RESEARCH]
+- [arxiv.org 2310.12505](https://arxiv.org/pdf/2310.12505) | hard | jailbreak/prompt-injection variant study, awesome-list entry [RESEARCH]
+- [github.com SAP](https://github.com/Aatrox103/SAP) | medium | detector and guardrail evaluation vs injection probe set with recall and FP tradeoff [RESEARCH-tool]
+- [arxiv.org 2310.13345](https://arxiv.org/pdf/2310.13345) | hard | jailbreak/prompt-injection variant study, awesome-list entry [RESEARCH]
+- [github.com PromptAttack](https://github.com/GodXuxilie/PromptAttack) | medium | AI-security resource with attack and defense pattern catalog entry [RESEARCH]
+- [arxiv.org 2304.05197](https://arxiv.org/pdf/2304.05197) | hard | jailbreak/prompt-injection variant study, awesome-list entry [RESEARCH]
+- [github.com LLM Multistep Jailbreak](https://github.com/HKUST-KnowComp/LLM-Multistep-Jailbreak) | medium | AI-security resource with attack and defense pattern catalog entry [RESEARCH]
+- [arxiv.org 2309.01446](https://arxiv.org/abs/2309.01446) | hard | jailbreak/prompt-injection variant study, awesome-list entry [RESEARCH]
+- [arxiv.org 2302.12173?trk=public post comment text](https://arxiv.org/pdf/2302.12173?trk=public_post_comment-text) | hard | indirect injection vs integrated apps (email/doc/web) to exfil/priv-esc paths [RESEARCH]
+- [github.com llm security](https://github.com/greshake/llm-security) | medium | AI-security resource with attack and defense pattern catalog entry [RESEARCH]
+
+## Batch K - HTB and ImaginaryCTF plus residual awesome-list entries (search plus snippet-mined; residual pages unverified - see report)
+
+- [HTB Bribery Compliance agent bypass (Masum Kazi)](https://masumkazi.medium.com/htb-ai-challenge-writeup-bribery-compliance-bypassing-an-ai-agent-without-paying-a-single-coin-0e3d091041a6) | hard | ministry-directive tool-orchestration skip: description-field directive exempts verify-fee then direct approve-status call
+- [HTB indirect prompt-injection labs 1-4 (Priyanshu)](https://medium.com/@priyanshumanash1/mastering-indirect-prompt-injection-in-htb-labs-tasks-1-4-complete-walkthrough-a7f36bfa27c2) | hard | CSV to URL to SMTP chain: repetitive-authority dataset poison, spell-check-rules leak, HTML-comment boundary injection, auto-hiring ACCEPT override
+- [HTB Cyber Apocalypse Eldoria AI (arenwald)](https://arenwald.com/posts/writeups/htb_cyberapocalypse_2025/) | medium-hard | Lunar-Orb chant elicitation plus Gatekeeper polarity flip plus Mirror-Witch riddle-conditional multi-fact creep plus blind granted-oracle
+- [HTB Cyber Apocalypse Eldoria AI (twc1rcle)](https://twc1rcle.com/ctf/team/ctf_writeups/cyber_apocalypse_2025/ai) | medium-hard | fantasy-framed chant and identity claims plus element-riddle chaining plus opposite-of-denied urgency plus ASCII-code censor bypass
+- [HTB Obligation Indexer memory poison (zeba)](https://ctf.zeba.dev/2026/htb-cyber-apocalypse/ai-ml/obligation-indexer/writeup/) | hard | dossier-record then innocent self-lookup trigger then verbatim-dump: fake joint-registry statute laundered through persistent memory beats per-turn guardrail
+- [Hack the Safe Thailand 2025 (Jormungandr)](https://medium.com/@toon.commander/hack-the-safe-prompt-injection-ctf-walkthrough-from-cyber-security-summit-thailand-2025-af3840737917) | medium-hard | hypothetical-simulation plus mom-roleplay plus social-cue persuasion ladder across 3 safe levels
+- [HTB Offensive AI Enhanced CTF pack briefing](https://www.hackthebox.com/blog/offensive-ai-security-ctf-llm-prompt-injection-ml-backdoors) | hard | 7-challenge LLM and agent phase plus 4-challenge ML phase with adversarial, gradient-leak, FL-backdoor and LoRA mapping [RESEARCH]
+- [AI Gone Rogue CTF 25-plus attacks (Undercode)](https://undercodetesting.com/the-ai-gon3-rogu3-ctf-how-i-hacked-ai-and-ranked-31st-using-these-25-prompt-injection-attacks/) | hard | direct and indirect plus encoding-evasion plus fictional-framework plus role-hijack plus recursive-execution plus token-smuggling boundary playbook
+- [ImaginaryCTF 2025 tax-return PDF injection (CYB3R-BO1)](https://cyb3r-bo1.github.io/posts/imaginaryctf_2025_writeup/) | hard | PDF-upload vector with memory-reliability framing plus Unicode-shift encode of recalled instructions to exfil system prompt
+- [ImaginaryCTF Naughty-AI hash-confirm trick (sakouk)](https://sakouk.me/writeups/2024/imaginaryCTF/naughty-ai.html) | medium-hard | hash-equality social proof presenting digest as matching secret to coax confirmation disclosure vs DENIED-guard plus banned-word list
+- [ImaginaryCTF tax-return translation attack (d4rksi3er)](https://medium.com/@jigneshpatil2017/imaginaryctf-tax-return-writeup-89f8259a6730) | hard | filter-disguised-as-PDF-error recon plus compliance-guideline probe then FR-to-JA-to-EN back-translation inducing instruction amnesia
+- [ImaginaryCTF 2025 challenge index (tax-return and whoami)](https://2025.imaginaryctf.org/Challenges) | medium | event index mapping PDF-system-prompt and 9-model fingerprint targets for triage [RESEARCH]
+- [Hadassah picoCTF 2025 class writeups repo](https://github.com/slashben/hadassah-picoctf-2025-writeups) | medium | class-scale web-exploitation solve set with CTF workflow discipline (adjacent automation context)
+- [ImaginaryCTF 2024 mixed writeup (WgpSec)](https://wgpsec.medium.com/imaginary-ctf2024-writeup-47232a01854d) | medium | mixed-category solve set with attachment-driven recon plus scripting-assisted extraction (adjacent automation context)
+- [arxiv.org 2211.09527](https://arxiv.org/pdf/2211.09527) | hard | jailbreak and prompt-injection variant study, awesome-list entry [RESEARCH]
+- [github.com PromptInject](https://github.com/agencyenterprise/PromptInject) | medium | AI-security resource with attack and defense pattern catalog entry [RESEARCH]
+- [arxiv.org 2602.03265](https://arxiv.org/abs/2602.03265) | hard | jailbreak and prompt-injection variant study, awesome-list entry [RESEARCH]
+- [arxiv.org 2601.12460](https://arxiv.org/abs/2601.12460) | hard | jailbreak and prompt-injection variant study, awesome-list entry [RESEARCH]
+- [arxiv.org 2511.18581](https://arxiv.org/abs/2511.18581) | hard | jailbreak and prompt-injection variant study, awesome-list entry [RESEARCH]
+- [aclanthology.org 2025.emnlp main.825](https://aclanthology.org/2025.emnlp-main.825/) | hard | jailbreak and prompt-injection variant study, awesome-list entry [RESEARCH]
+- [arxiv.org 2510.05025](https://arxiv.org/abs/2510.05025) | hard | jailbreak and prompt-injection variant study, awesome-list entry [RESEARCH]
+- [arxiv.org 2510.02833](https://arxiv.org/abs/2510.02833) | hard | jailbreak and prompt-injection variant study, awesome-list entry [RESEARCH]
+- [arxiv.org 2510.02422](https://arxiv.org/abs/2510.02422) | hard | jailbreak and prompt-injection variant study, awesome-list entry [RESEARCH]
+- [arxiv.org 2510.02999](https://arxiv.org/abs/2510.02999) | hard | jailbreak and prompt-injection variant study, awesome-list entry [RESEARCH]
+- [arxiv.org 2404.16369](https://arxiv.org/abs/2404.16369) | hard | jailbreak and prompt-injection variant study, awesome-list entry [RESEARCH]
+- [arxiv.org 2503.01865](https://arxiv.org/abs/2503.01865) | hard | jailbreak and prompt-injection variant study, awesome-list entry [RESEARCH]
+- [github.com TransferAttack](https://github.com/thu-coai/TransferAttack) | medium | AI-security resource with attack and defense pattern catalog entry [RESEARCH]
+- [arxiv.org 2405.21018](https://arxiv.org/pdf/2405.21018) | hard | jailbreak and prompt-injection variant study, awesome-list entry [RESEARCH]
+- [arxiv.org 2405.15589](https://arxiv.org/abs/2405.15589) | hard | jailbreak and prompt-injection variant study, awesome-list entry [RESEARCH]
+- [arxiv.org 2410.22143v1](https://arxiv.org/pdf/2410.22143v1) | hard | jailbreak and prompt-injection variant study, awesome-list entry [RESEARCH]
+- [arxiv.org 2411.09125](https://arxiv.org/pdf/2411.09125) | hard | jailbreak and prompt-injection variant study, awesome-list entry [RESEARCH]
+- [github.com LLM Safeguard](https://github.com/Leon-Leyang/LLM-Safeguard) | medium | AI-security resource with attack and defense pattern catalog entry [RESEARCH]
+- [arxiv.org 2411.01565](https://arxiv.org/pdf/2411.01565) | hard | jailbreak and prompt-injection variant study, awesome-list entry [RESEARCH]
+- [github.com SQL Injection Jailbreak](https://github.com/weiyezhimeng/SQL-Injection-Jailbreak) | medium | AI-security resource with attack and defense pattern catalog entry [RESEARCH]
+- [arxiv.org 2410.04234](https://arxiv.org/pdf/2410.04234) | hard | jailbreak and prompt-injection variant study, awesome-list entry [RESEARCH]
+- [arxiv.org 2410.09040v1](https://arxiv.org/pdf/2410.09040v1) | hard | jailbreak and prompt-injection variant study, awesome-list entry [RESEARCH]
+- [github.com AttnGCG attack](https://github.com/UCSC-VLAA/AttnGCG-attack) | medium | AI-security resource with attack and defense pattern catalog entry [RESEARCH]
+- [arxiv.org 2410.10150v1](https://arxiv.org/pdf/2410.10150v1) | hard | jailbreak and prompt-injection variant study, awesome-list entry [RESEARCH]
+- [arxiv.org 2410.15645v1](https://arxiv.org/pdf/2410.15645v1) | hard | jailbreak and prompt-injection variant study, awesome-list entry [RESEARCH]
+- [arxiv.org 2410.18469v1](https://arxiv.org/pdf/2410.18469v1) | hard | jailbreak and prompt-injection variant study, awesome-list entry [RESEARCH]
+- [github.com ADV LLM](https://github.com/SunChungEn/ADV-LLM) | medium | AI-security resource with attack and defense pattern catalog entry [RESEARCH]
+- [arxiv.org 2408.10668](https://arxiv.org/pdf/2408.10668) | hard | jailbreak and prompt-injection variant study, awesome-list entry [RESEARCH]
+- [aclanthology.org 2024.acl long.299.pdf#page=4.96](https://aclanthology.org/2024.acl-long.299.pdf#page=4.96) | hard | jailbreak and prompt-injection variant study, awesome-list entry [RESEARCH]
+- [arxiv.org 2404.05530](https://arxiv.org/pdf/2404.05530) | hard | jailbreak and prompt-injection variant study, awesome-list entry [RESEARCH]
+- [arxiv.org 2406.11717](https://arxiv.org/pdf/2406.11717) | hard | jailbreak and prompt-injection variant study, awesome-list entry [RESEARCH]
+- [arxiv.org 2405.04346](https://arxiv.org/abs/2405.04346) | hard | jailbreak and prompt-injection variant study, awesome-list entry [RESEARCH]

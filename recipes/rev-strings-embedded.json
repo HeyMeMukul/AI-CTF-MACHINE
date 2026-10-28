@@ -1,0 +1,20 @@
+{
+  "id": "rev-strings-embedded",
+  "domain": "rev",
+  "title": "Embedded strings / static extraction",
+  "signals": ["binary blob", "no need to execute", "readable ASCII run", "flag-shaped marker"],
+  "preconditions": ["the answer or a clue is stored as plaintext in the artifact"],
+  "steps": [
+    "file the artifact",
+    "strings -n 6 (try -e l for UTF-16)",
+    "grep for known markers and surrounding context",
+    "if packed, unpack first, then repeat"
+  ],
+  "falsifier": "no readable marker survives; the string is encoded or compressed",
+  "pitfalls": ["packed binaries hide strings", "UTF-16 needs -e l", "do not execute an untrusted binary just to read strings"],
+  "sources": ["https://man7.org/linux/man-pages/man1/strings.1.html"],
+  "fixtures": ["strings"],
+  "verified_by": "engine:selftest",
+  "last_verified": "2026-10-20",
+  "verified": true
+}

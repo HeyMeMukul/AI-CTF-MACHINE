@@ -1,0 +1,42 @@
+{
+ "id": "imported-android-apktool",
+ "domain": "mobile",
+ "title": "APK static + Frida triage",
+ "signals": [
+  "APK",
+  "exported activity/service",
+  "hardcoded URL/key",
+  "native lib",
+  "root/emulator check"
+ ],
+ "preconditions": [
+  "apktool/jadx/Frida available",
+  "authorized challenge app"
+ ],
+ "steps": [
+  "`apktool d app.apk -o out` and `jadx -d out-jadx app.apk`; read `AndroidManifest.xml` for exported components and permissions.",
+  "Grep for URLs, API keys, `firebase`, `flag`, and native library names; inspect `lib/*/` with `strings`.",
+  "Open exported components with `adb shell am start`; check `adb logcat` for leaked data.",
+  "Hook checks with `frida -U -f <pkg> -l hook.js` or `objection`; bypass root/emulator/pinning only in the challenge app."
+ ],
+ "falsifier": "No exported component/secret and runtime checks pass with a legitimate flow; the flag may require a server interaction.",
+ "pitfalls": [
+  "split APKs",
+  "native packing",
+  "SSL pinning",
+  "emulator detection",
+  "obfuscation"
+ ],
+ "sources": [
+  "https://github.com/mukul975/Anthropic-Cybersecurity-Skills/tree/main/skills/analyzing-android-malware-with-apktool"
+ ],
+ "fixtures": [],
+ "verified_by": "source:Anthropic Cybersecurity Skills",
+ "last_verified": "2026-10-20",
+ "verified": false,
+ "verification": "source",
+ "license": "Apache-2.0",
+ "ctf_domains": [
+  "mobile"
+ ]
+}

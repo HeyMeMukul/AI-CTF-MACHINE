@@ -1,0 +1,13 @@
+{
+ "id": "base64",
+ "title": "One Layer of Base64",
+ "category": "misc",
+ "difficulty": "easy",
+ "points": 100,
+ "description": "A single text file contains a base64-encoded message. Decode it to recover the exact answer.",
+ "salt": "ctf-engine-v1",
+ "flag_sha256": "fd69a0d2bef08c9cb65f183c930347fe2025999c2b95a68e344c212debba16dd",
+ "timeout_s": 60,
+ "network": "none",
+ "sandbox": "local"
+}

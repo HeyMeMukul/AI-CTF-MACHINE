@@ -1,0 +1,463 @@
+# Web-CTF Writeups Mined R2 — Manifest (technique-only, no flags, no live targets)
+
+> Method: sitemap/API enumeration (siunam 269, cryptocat 101, M1SD4Q) + WebSearch deep/fast (2024-2026 hard web) + WebFetch spot-checks.
+> Every URL below was returned by search/fetch/sitemap/API (no invented URLs). HARD ONLY this round.
+> Technique chains are 1-line notes. No flag values, no live challenge hosts.
+
+## Batch R2-A — siunam PortSwigger hard labs (sitemap-enumerated)
+- [PortSwigger/Access-Control/ac-1](https://siunam321.github.io/ctf/portswigger-labs/Access-Control/ac-1/) | hard | IDOR + access-control bypass chain
+- [PortSwigger/Access-Control/ac-10](https://siunam321.github.io/ctf/portswigger-labs/Access-Control/ac-10/) | hard | IDOR + access-control bypass chain
+- [PortSwigger/Access-Control/ac-11](https://siunam321.github.io/ctf/portswigger-labs/Access-Control/ac-11/) | hard | IDOR + access-control bypass chain
+- [PortSwigger/Access-Control/ac-12](https://siunam321.github.io/ctf/portswigger-labs/Access-Control/ac-12/) | hard | IDOR + access-control bypass chain
+- [PortSwigger/Access-Control/ac-13](https://siunam321.github.io/ctf/portswigger-labs/Access-Control/ac-13/) | hard | IDOR + access-control bypass chain
+- [PortSwigger/Access-Control/ac-2](https://siunam321.github.io/ctf/portswigger-labs/Access-Control/ac-2/) | hard | IDOR + access-control bypass chain
+- [PortSwigger/Access-Control/ac-3](https://siunam321.github.io/ctf/portswigger-labs/Access-Control/ac-3/) | hard | IDOR + access-control bypass chain
+- [PortSwigger/Access-Control/ac-4](https://siunam321.github.io/ctf/portswigger-labs/Access-Control/ac-4/) | hard | IDOR + access-control bypass chain
+- [PortSwigger/Access-Control/ac-5](https://siunam321.github.io/ctf/portswigger-labs/Access-Control/ac-5/) | hard | IDOR + access-control bypass chain
+- [PortSwigger/Access-Control/ac-6](https://siunam321.github.io/ctf/portswigger-labs/Access-Control/ac-6/) | hard | IDOR + access-control bypass chain
+- [PortSwigger/Access-Control/ac-7](https://siunam321.github.io/ctf/portswigger-labs/Access-Control/ac-7/) | hard | IDOR + access-control bypass chain
+- [PortSwigger/Access-Control/ac-8](https://siunam321.github.io/ctf/portswigger-labs/Access-Control/ac-8/) | hard | IDOR + access-control bypass chain
+- [PortSwigger/Access-Control/ac-9](https://siunam321.github.io/ctf/portswigger-labs/Access-Control/ac-9/) | hard | IDOR + access-control bypass chain
+- [PortSwigger/Authentication/auth-1](https://siunam321.github.io/ctf/portswigger-labs/Authentication/auth-1/) | hard | auth logic + OTP/race bypass chain
+- [PortSwigger/Authentication/auth-10](https://siunam321.github.io/ctf/portswigger-labs/Authentication/auth-10/) | hard | auth logic + OTP/race bypass chain
+- [PortSwigger/Authentication/auth-11](https://siunam321.github.io/ctf/portswigger-labs/Authentication/auth-11/) | hard | auth logic + OTP/race bypass chain
+- [PortSwigger/Authentication/auth-12](https://siunam321.github.io/ctf/portswigger-labs/Authentication/auth-12/) | hard | auth logic + OTP/race bypass chain
+- [PortSwigger/Authentication/auth-13](https://siunam321.github.io/ctf/portswigger-labs/Authentication/auth-13/) | hard | auth logic + OTP/race bypass chain
+- [PortSwigger/Authentication/auth-14](https://siunam321.github.io/ctf/portswigger-labs/Authentication/auth-14/) | hard | auth logic + OTP/race bypass chain
+- [PortSwigger/Authentication/auth-2](https://siunam321.github.io/ctf/portswigger-labs/Authentication/auth-2/) | hard | auth logic + OTP/race bypass chain
+- [PortSwigger/Authentication/auth-3](https://siunam321.github.io/ctf/portswigger-labs/Authentication/auth-3/) | hard | auth logic + OTP/race bypass chain
+- [PortSwigger/Authentication/auth-4](https://siunam321.github.io/ctf/portswigger-labs/Authentication/auth-4/) | hard | auth logic + OTP/race bypass chain
+- [PortSwigger/Authentication/auth-5](https://siunam321.github.io/ctf/portswigger-labs/Authentication/auth-5/) | hard | auth logic + OTP/race bypass chain
+- [PortSwigger/Authentication/auth-6](https://siunam321.github.io/ctf/portswigger-labs/Authentication/auth-6/) | hard | auth logic + OTP/race bypass chain
+- [PortSwigger/Authentication/auth-7](https://siunam321.github.io/ctf/portswigger-labs/Authentication/auth-7/) | hard | auth logic + OTP/race bypass chain
+- [PortSwigger/Authentication/auth-8](https://siunam321.github.io/ctf/portswigger-labs/Authentication/auth-8/) | hard | auth logic + OTP/race bypass chain
+- [PortSwigger/Authentication/auth-9](https://siunam321.github.io/ctf/portswigger-labs/Authentication/auth-9/) | hard | auth logic + OTP/race bypass chain
+- [PortSwigger/Business-Logic-Vulnerabilities/blv-1](https://siunam321.github.io/ctf/portswigger-labs/Business-Logic-Vulnerabilities/blv-1/) | hard | logic flaw + race/coupon bypass chain
+- [PortSwigger/Business-Logic-Vulnerabilities/blv-10](https://siunam321.github.io/ctf/portswigger-labs/Business-Logic-Vulnerabilities/blv-10/) | hard | logic flaw + race/coupon bypass chain
+- [PortSwigger/Business-Logic-Vulnerabilities/blv-11](https://siunam321.github.io/ctf/portswigger-labs/Business-Logic-Vulnerabilities/blv-11/) | hard | logic flaw + race/coupon bypass chain
+- [PortSwigger/Business-Logic-Vulnerabilities/blv-2](https://siunam321.github.io/ctf/portswigger-labs/Business-Logic-Vulnerabilities/blv-2/) | hard | logic flaw + race/coupon bypass chain
+- [PortSwigger/Business-Logic-Vulnerabilities/blv-3](https://siunam321.github.io/ctf/portswigger-labs/Business-Logic-Vulnerabilities/blv-3/) | hard | logic flaw + race/coupon bypass chain
+- [PortSwigger/Business-Logic-Vulnerabilities/blv-4](https://siunam321.github.io/ctf/portswigger-labs/Business-Logic-Vulnerabilities/blv-4/) | hard | logic flaw + race/coupon bypass chain
+- [PortSwigger/Business-Logic-Vulnerabilities/blv-5](https://siunam321.github.io/ctf/portswigger-labs/Business-Logic-Vulnerabilities/blv-5/) | hard | logic flaw + race/coupon bypass chain
+- [PortSwigger/Business-Logic-Vulnerabilities/blv-6](https://siunam321.github.io/ctf/portswigger-labs/Business-Logic-Vulnerabilities/blv-6/) | hard | logic flaw + race/coupon bypass chain
+- [PortSwigger/Business-Logic-Vulnerabilities/blv-7](https://siunam321.github.io/ctf/portswigger-labs/Business-Logic-Vulnerabilities/blv-7/) | hard | logic flaw + race/coupon bypass chain
+- [PortSwigger/Business-Logic-Vulnerabilities/blv-8](https://siunam321.github.io/ctf/portswigger-labs/Business-Logic-Vulnerabilities/blv-8/) | hard | logic flaw + race/coupon bypass chain
+- [PortSwigger/Business-Logic-Vulnerabilities/blv-9](https://siunam321.github.io/ctf/portswigger-labs/Business-Logic-Vulnerabilities/blv-9/) | hard | logic flaw + race/coupon bypass chain
+- [PortSwigger/CSRF/csrf-1](https://siunam321.github.io/ctf/portswigger-labs/CSRF/csrf-1/) | hard | CSRF + token-bypass chain
+- [PortSwigger/CSRF/csrf-10](https://siunam321.github.io/ctf/portswigger-labs/CSRF/csrf-10/) | hard | CSRF + token-bypass chain
+- [PortSwigger/CSRF/csrf-11](https://siunam321.github.io/ctf/portswigger-labs/CSRF/csrf-11/) | hard | CSRF + token-bypass chain
+- [PortSwigger/CSRF/csrf-12](https://siunam321.github.io/ctf/portswigger-labs/CSRF/csrf-12/) | hard | CSRF + token-bypass chain
+- [PortSwigger/CSRF/csrf-2](https://siunam321.github.io/ctf/portswigger-labs/CSRF/csrf-2/) | hard | CSRF + token-bypass chain
+- [PortSwigger/CSRF/csrf-3](https://siunam321.github.io/ctf/portswigger-labs/CSRF/csrf-3/) | hard | CSRF + token-bypass chain
+- [PortSwigger/CSRF/csrf-4](https://siunam321.github.io/ctf/portswigger-labs/CSRF/csrf-4/) | hard | CSRF + token-bypass chain
+- [PortSwigger/CSRF/csrf-5](https://siunam321.github.io/ctf/portswigger-labs/CSRF/csrf-5/) | hard | CSRF + token-bypass chain
+- [PortSwigger/CSRF/csrf-6](https://siunam321.github.io/ctf/portswigger-labs/CSRF/csrf-6/) | hard | CSRF + token-bypass chain
+- [PortSwigger/CSRF/csrf-7](https://siunam321.github.io/ctf/portswigger-labs/CSRF/csrf-7/) | hard | CSRF + token-bypass chain
+- [PortSwigger/CSRF/csrf-8](https://siunam321.github.io/ctf/portswigger-labs/CSRF/csrf-8/) | hard | CSRF + token-bypass chain
+- [PortSwigger/CSRF/csrf-9](https://siunam321.github.io/ctf/portswigger-labs/CSRF/csrf-9/) | hard | CSRF + token-bypass chain
+- [PortSwigger/Cross-Origin-Resource-Sharing/cors-1](https://siunam321.github.io/ctf/portswigger-labs/Cross-Origin-Resource-Sharing/cors-1/) | hard | CORS misconfig + cred-exfil chain
+- [PortSwigger/Cross-Origin-Resource-Sharing/cors-2](https://siunam321.github.io/ctf/portswigger-labs/Cross-Origin-Resource-Sharing/cors-2/) | hard | CORS misconfig + cred-exfil chain
+- [PortSwigger/Cross-Origin-Resource-Sharing/cors-3](https://siunam321.github.io/ctf/portswigger-labs/Cross-Origin-Resource-Sharing/cors-3/) | hard | CORS misconfig + cred-exfil chain
+- [PortSwigger/Cross-Origin-Resource-Sharing/cors-4](https://siunam321.github.io/ctf/portswigger-labs/Cross-Origin-Resource-Sharing/cors-4/) | hard | CORS misconfig + cred-exfil chain
+- [PortSwigger/Cross-Site-Scripting/xss-1](https://siunam321.github.io/ctf/portswigger-labs/Cross-Site-Scripting/xss-1/) | hard | XSS filter ladder + CSP bypass chain
+- [PortSwigger/Cross-Site-Scripting/xss-10](https://siunam321.github.io/ctf/portswigger-labs/Cross-Site-Scripting/xss-10/) | hard | XSS filter ladder + CSP bypass chain
+- [PortSwigger/Cross-Site-Scripting/xss-11](https://siunam321.github.io/ctf/portswigger-labs/Cross-Site-Scripting/xss-11/) | hard | XSS filter ladder + CSP bypass chain
+- [PortSwigger/Cross-Site-Scripting/xss-12](https://siunam321.github.io/ctf/portswigger-labs/Cross-Site-Scripting/xss-12/) | hard | XSS filter ladder + CSP bypass chain
+- [PortSwigger/Cross-Site-Scripting/xss-13](https://siunam321.github.io/ctf/portswigger-labs/Cross-Site-Scripting/xss-13/) | hard | XSS filter ladder + CSP bypass chain
+- [PortSwigger/Cross-Site-Scripting/xss-14](https://siunam321.github.io/ctf/portswigger-labs/Cross-Site-Scripting/xss-14/) | hard | XSS filter ladder + CSP bypass chain
+- [PortSwigger/Cross-Site-Scripting/xss-15](https://siunam321.github.io/ctf/portswigger-labs/Cross-Site-Scripting/xss-15/) | hard | XSS filter ladder + CSP bypass chain
+- [PortSwigger/Cross-Site-Scripting/xss-16](https://siunam321.github.io/ctf/portswigger-labs/Cross-Site-Scripting/xss-16/) | hard | XSS filter ladder + CSP bypass chain
+- [PortSwigger/Cross-Site-Scripting/xss-17](https://siunam321.github.io/ctf/portswigger-labs/Cross-Site-Scripting/xss-17/) | hard | XSS filter ladder + CSP bypass chain
+- [PortSwigger/Cross-Site-Scripting/xss-18](https://siunam321.github.io/ctf/portswigger-labs/Cross-Site-Scripting/xss-18/) | hard | XSS filter ladder + CSP bypass chain
+- [PortSwigger/Cross-Site-Scripting/xss-19](https://siunam321.github.io/ctf/portswigger-labs/Cross-Site-Scripting/xss-19/) | hard | XSS filter ladder + CSP bypass chain
+- [PortSwigger/Cross-Site-Scripting/xss-2](https://siunam321.github.io/ctf/portswigger-labs/Cross-Site-Scripting/xss-2/) | hard | XSS filter ladder + CSP bypass chain
+- [PortSwigger/Cross-Site-Scripting/xss-20](https://siunam321.github.io/ctf/portswigger-labs/Cross-Site-Scripting/xss-20/) | hard | XSS filter ladder + CSP bypass chain
+- [PortSwigger/Cross-Site-Scripting/xss-21](https://siunam321.github.io/ctf/portswigger-labs/Cross-Site-Scripting/xss-21/) | hard | XSS filter ladder + CSP bypass chain
+- [PortSwigger/Cross-Site-Scripting/xss-22](https://siunam321.github.io/ctf/portswigger-labs/Cross-Site-Scripting/xss-22/) | hard | XSS filter ladder + CSP bypass chain
+- [PortSwigger/Cross-Site-Scripting/xss-23](https://siunam321.github.io/ctf/portswigger-labs/Cross-Site-Scripting/xss-23/) | hard | XSS filter ladder + CSP bypass chain
+- [PortSwigger/Cross-Site-Scripting/xss-24](https://siunam321.github.io/ctf/portswigger-labs/Cross-Site-Scripting/xss-24/) | hard | XSS filter ladder + CSP bypass chain
+- [PortSwigger/Cross-Site-Scripting/xss-25](https://siunam321.github.io/ctf/portswigger-labs/Cross-Site-Scripting/xss-25/) | hard | XSS filter ladder + CSP bypass chain
+- [PortSwigger/Cross-Site-Scripting/xss-26](https://siunam321.github.io/ctf/portswigger-labs/Cross-Site-Scripting/xss-26/) | hard | XSS filter ladder + CSP bypass chain
+- [PortSwigger/Cross-Site-Scripting/xss-27](https://siunam321.github.io/ctf/portswigger-labs/Cross-Site-Scripting/xss-27/) | hard | XSS filter ladder + CSP bypass chain
+- [PortSwigger/Cross-Site-Scripting/xss-28](https://siunam321.github.io/ctf/portswigger-labs/Cross-Site-Scripting/xss-28/) | hard | XSS filter ladder + CSP bypass chain
+- [PortSwigger/Cross-Site-Scripting/xss-29](https://siunam321.github.io/ctf/portswigger-labs/Cross-Site-Scripting/xss-29/) | hard | XSS filter ladder + CSP bypass chain
+- [PortSwigger/Cross-Site-Scripting/xss-3](https://siunam321.github.io/ctf/portswigger-labs/Cross-Site-Scripting/xss-3/) | hard | XSS filter ladder + CSP bypass chain
+- [PortSwigger/Cross-Site-Scripting/xss-30](https://siunam321.github.io/ctf/portswigger-labs/Cross-Site-Scripting/xss-30/) | hard | XSS filter ladder + CSP bypass chain
+- [PortSwigger/Cross-Site-Scripting/xss-4](https://siunam321.github.io/ctf/portswigger-labs/Cross-Site-Scripting/xss-4/) | hard | XSS filter ladder + CSP bypass chain
+- [PortSwigger/Cross-Site-Scripting/xss-5](https://siunam321.github.io/ctf/portswigger-labs/Cross-Site-Scripting/xss-5/) | hard | XSS filter ladder + CSP bypass chain
+- [PortSwigger/Cross-Site-Scripting/xss-6](https://siunam321.github.io/ctf/portswigger-labs/Cross-Site-Scripting/xss-6/) | hard | XSS filter ladder + CSP bypass chain
+- [PortSwigger/Cross-Site-Scripting/xss-7](https://siunam321.github.io/ctf/portswigger-labs/Cross-Site-Scripting/xss-7/) | hard | XSS filter ladder + CSP bypass chain
+- [PortSwigger/Cross-Site-Scripting/xss-8](https://siunam321.github.io/ctf/portswigger-labs/Cross-Site-Scripting/xss-8/) | hard | XSS filter ladder + CSP bypass chain
+- [PortSwigger/Cross-Site-Scripting/xss-9](https://siunam321.github.io/ctf/portswigger-labs/Cross-Site-Scripting/xss-9/) | hard | XSS filter ladder + CSP bypass chain
+- [PortSwigger/DOM-Based-Vulnerabilities/dom-1](https://siunam321.github.io/ctf/portswigger-labs/DOM-Based-Vulnerabilities/dom-1/) | hard | DOM-clobber + gadget XSS chain
+- [PortSwigger/DOM-Based-Vulnerabilities/dom-2](https://siunam321.github.io/ctf/portswigger-labs/DOM-Based-Vulnerabilities/dom-2/) | hard | DOM-clobber + gadget XSS chain
+- [PortSwigger/DOM-Based-Vulnerabilities/dom-3](https://siunam321.github.io/ctf/portswigger-labs/DOM-Based-Vulnerabilities/dom-3/) | hard | DOM-clobber + gadget XSS chain
+- [PortSwigger/DOM-Based-Vulnerabilities/dom-4](https://siunam321.github.io/ctf/portswigger-labs/DOM-Based-Vulnerabilities/dom-4/) | hard | DOM-clobber + gadget XSS chain
+- [PortSwigger/DOM-Based-Vulnerabilities/dom-5](https://siunam321.github.io/ctf/portswigger-labs/DOM-Based-Vulnerabilities/dom-5/) | hard | DOM-clobber + gadget XSS chain
+- [PortSwigger/DOM-Based-Vulnerabilities/dom-6](https://siunam321.github.io/ctf/portswigger-labs/DOM-Based-Vulnerabilities/dom-6/) | hard | DOM-clobber + gadget XSS chain
+- [PortSwigger/DOM-Based-Vulnerabilities/dom-7](https://siunam321.github.io/ctf/portswigger-labs/DOM-Based-Vulnerabilities/dom-7/) | hard | DOM-clobber + gadget XSS chain
+- [PortSwigger/Directory-Traversal/dt-1](https://siunam321.github.io/ctf/portswigger-labs/Directory-Traversal/dt-1/) | hard | path-traversal + filter-chain read chain
+- [PortSwigger/Directory-Traversal/dt-2](https://siunam321.github.io/ctf/portswigger-labs/Directory-Traversal/dt-2/) | hard | path-traversal + filter-chain read chain
+- [PortSwigger/Directory-Traversal/dt-3](https://siunam321.github.io/ctf/portswigger-labs/Directory-Traversal/dt-3/) | hard | path-traversal + filter-chain read chain
+- [PortSwigger/Directory-Traversal/dt-4](https://siunam321.github.io/ctf/portswigger-labs/Directory-Traversal/dt-4/) | hard | path-traversal + filter-chain read chain
+- [PortSwigger/Directory-Traversal/dt-5](https://siunam321.github.io/ctf/portswigger-labs/Directory-Traversal/dt-5/) | hard | path-traversal + filter-chain read chain
+- [PortSwigger/Directory-Traversal/dt-6](https://siunam321.github.io/ctf/portswigger-labs/Directory-Traversal/dt-6/) | hard | path-traversal + filter-chain read chain
+- [PortSwigger/File-Upload-Vulnerabilities/fuv-1](https://siunam321.github.io/ctf/portswigger-labs/File-Upload-Vulnerabilities/fuv-1/) | hard | upload polyglot + MIME/extension bypass chain
+- [PortSwigger/File-Upload-Vulnerabilities/fuv-2](https://siunam321.github.io/ctf/portswigger-labs/File-Upload-Vulnerabilities/fuv-2/) | hard | upload polyglot + MIME/extension bypass chain
+- [PortSwigger/File-Upload-Vulnerabilities/fuv-3](https://siunam321.github.io/ctf/portswigger-labs/File-Upload-Vulnerabilities/fuv-3/) | hard | upload polyglot + MIME/extension bypass chain
+- [PortSwigger/File-Upload-Vulnerabilities/fuv-4](https://siunam321.github.io/ctf/portswigger-labs/File-Upload-Vulnerabilities/fuv-4/) | hard | upload polyglot + MIME/extension bypass chain
+- [PortSwigger/File-Upload-Vulnerabilities/fuv-5](https://siunam321.github.io/ctf/portswigger-labs/File-Upload-Vulnerabilities/fuv-5/) | hard | upload polyglot + MIME/extension bypass chain
+- [PortSwigger/File-Upload-Vulnerabilities/fuv-6](https://siunam321.github.io/ctf/portswigger-labs/File-Upload-Vulnerabilities/fuv-6/) | hard | upload polyglot + MIME/extension bypass chain
+- [PortSwigger/File-Upload-Vulnerabilities/fuv-7](https://siunam321.github.io/ctf/portswigger-labs/File-Upload-Vulnerabilities/fuv-7/) | hard | upload polyglot + MIME/extension bypass chain
+- [PortSwigger/HTTP-Host-Header-Attacks/http-host-header-1](https://siunam321.github.io/ctf/portswigger-labs/HTTP-Host-Header-Attacks/http-host-header-1/) | hard | Host-header poison + reset/cache chain
+- [PortSwigger/HTTP-Host-Header-Attacks/http-host-header-2](https://siunam321.github.io/ctf/portswigger-labs/HTTP-Host-Header-Attacks/http-host-header-2/) | hard | Host-header poison + reset/cache chain
+- [PortSwigger/HTTP-Host-Header-Attacks/http-host-header-3](https://siunam321.github.io/ctf/portswigger-labs/HTTP-Host-Header-Attacks/http-host-header-3/) | hard | Host-header poison + reset/cache chain
+- [PortSwigger/HTTP-Host-Header-Attacks/http-host-header-4](https://siunam321.github.io/ctf/portswigger-labs/HTTP-Host-Header-Attacks/http-host-header-4/) | hard | Host-header poison + reset/cache chain
+- [PortSwigger/HTTP-Host-Header-Attacks/http-host-header-5](https://siunam321.github.io/ctf/portswigger-labs/HTTP-Host-Header-Attacks/http-host-header-5/) | hard | Host-header poison + reset/cache chain
+- [PortSwigger/HTTP-Host-Header-Attacks/http-host-header-6](https://siunam321.github.io/ctf/portswigger-labs/HTTP-Host-Header-Attacks/http-host-header-6/) | hard | Host-header poison + reset/cache chain
+- [PortSwigger/HTTP-Host-Header-Attacks/http-host-header-7](https://siunam321.github.io/ctf/portswigger-labs/HTTP-Host-Header-Attacks/http-host-header-7/) | hard | Host-header poison + reset/cache chain
+- [PortSwigger/HTTP-Request-Smuggling/smuggling-1](https://siunam321.github.io/ctf/portswigger-labs/HTTP-Request-Smuggling/smuggling-1/) | hard | CL.TE/TE.CL/H2.CL desync + admin-delete smuggle chain
+- [PortSwigger/HTTP-Request-Smuggling/smuggling-10](https://siunam321.github.io/ctf/portswigger-labs/HTTP-Request-Smuggling/smuggling-10/) | hard | CL.TE/TE.CL/H2.CL desync + admin-delete smuggle chain
+- [PortSwigger/HTTP-Request-Smuggling/smuggling-11](https://siunam321.github.io/ctf/portswigger-labs/HTTP-Request-Smuggling/smuggling-11/) | hard | CL.TE/TE.CL/H2.CL desync + admin-delete smuggle chain
+- [PortSwigger/HTTP-Request-Smuggling/smuggling-12](https://siunam321.github.io/ctf/portswigger-labs/HTTP-Request-Smuggling/smuggling-12/) | hard | CL.TE/TE.CL/H2.CL desync + admin-delete smuggle chain
+- [PortSwigger/HTTP-Request-Smuggling/smuggling-13](https://siunam321.github.io/ctf/portswigger-labs/HTTP-Request-Smuggling/smuggling-13/) | hard | CL.TE/TE.CL/H2.CL desync + admin-delete smuggle chain
+- [PortSwigger/HTTP-Request-Smuggling/smuggling-14](https://siunam321.github.io/ctf/portswigger-labs/HTTP-Request-Smuggling/smuggling-14/) | hard | CL.TE/TE.CL/H2.CL desync + admin-delete smuggle chain
+- [PortSwigger/HTTP-Request-Smuggling/smuggling-15](https://siunam321.github.io/ctf/portswigger-labs/HTTP-Request-Smuggling/smuggling-15/) | hard | CL.TE/TE.CL/H2.CL desync + admin-delete smuggle chain
+- [PortSwigger/HTTP-Request-Smuggling/smuggling-16](https://siunam321.github.io/ctf/portswigger-labs/HTTP-Request-Smuggling/smuggling-16/) | hard | CL.TE/TE.CL/H2.CL desync + admin-delete smuggle chain
+- [PortSwigger/HTTP-Request-Smuggling/smuggling-17](https://siunam321.github.io/ctf/portswigger-labs/HTTP-Request-Smuggling/smuggling-17/) | hard | CL.TE/TE.CL/H2.CL desync + admin-delete smuggle chain
+- [PortSwigger/HTTP-Request-Smuggling/smuggling-18](https://siunam321.github.io/ctf/portswigger-labs/HTTP-Request-Smuggling/smuggling-18/) | hard | CL.TE/TE.CL/H2.CL desync + admin-delete smuggle chain
+- [PortSwigger/HTTP-Request-Smuggling/smuggling-19](https://siunam321.github.io/ctf/portswigger-labs/HTTP-Request-Smuggling/smuggling-19/) | hard | CL.TE/TE.CL/H2.CL desync + admin-delete smuggle chain
+- [PortSwigger/HTTP-Request-Smuggling/smuggling-2](https://siunam321.github.io/ctf/portswigger-labs/HTTP-Request-Smuggling/smuggling-2/) | hard | CL.TE/TE.CL/H2.CL desync + admin-delete smuggle chain
+- [PortSwigger/HTTP-Request-Smuggling/smuggling-20](https://siunam321.github.io/ctf/portswigger-labs/HTTP-Request-Smuggling/smuggling-20/) | hard | CL.TE/TE.CL/H2.CL desync + admin-delete smuggle chain
+- [PortSwigger/HTTP-Request-Smuggling/smuggling-21](https://siunam321.github.io/ctf/portswigger-labs/HTTP-Request-Smuggling/smuggling-21/) | hard | CL.TE/TE.CL/H2.CL desync + admin-delete smuggle chain
+- [PortSwigger/HTTP-Request-Smuggling/smuggling-22](https://siunam321.github.io/ctf/portswigger-labs/HTTP-Request-Smuggling/smuggling-22/) | hard | CL.TE/TE.CL/H2.CL desync + admin-delete smuggle chain
+- [PortSwigger/HTTP-Request-Smuggling/smuggling-3](https://siunam321.github.io/ctf/portswigger-labs/HTTP-Request-Smuggling/smuggling-3/) | hard | CL.TE/TE.CL/H2.CL desync + admin-delete smuggle chain
+- [PortSwigger/HTTP-Request-Smuggling/smuggling-4](https://siunam321.github.io/ctf/portswigger-labs/HTTP-Request-Smuggling/smuggling-4/) | hard | CL.TE/TE.CL/H2.CL desync + admin-delete smuggle chain
+- [PortSwigger/HTTP-Request-Smuggling/smuggling-5](https://siunam321.github.io/ctf/portswigger-labs/HTTP-Request-Smuggling/smuggling-5/) | hard | CL.TE/TE.CL/H2.CL desync + admin-delete smuggle chain
+- [PortSwigger/HTTP-Request-Smuggling/smuggling-6](https://siunam321.github.io/ctf/portswigger-labs/HTTP-Request-Smuggling/smuggling-6/) | hard | CL.TE/TE.CL/H2.CL desync + admin-delete smuggle chain
+- [PortSwigger/HTTP-Request-Smuggling/smuggling-7](https://siunam321.github.io/ctf/portswigger-labs/HTTP-Request-Smuggling/smuggling-7/) | hard | CL.TE/TE.CL/H2.CL desync + admin-delete smuggle chain
+- [PortSwigger/HTTP-Request-Smuggling/smuggling-8](https://siunam321.github.io/ctf/portswigger-labs/HTTP-Request-Smuggling/smuggling-8/) | hard | CL.TE/TE.CL/H2.CL desync + admin-delete smuggle chain
+- [PortSwigger/HTTP-Request-Smuggling/smuggling-9](https://siunam321.github.io/ctf/portswigger-labs/HTTP-Request-Smuggling/smuggling-9/) | hard | CL.TE/TE.CL/H2.CL desync + admin-delete smuggle chain
+- [PortSwigger/Information-Disclosure/id-1](https://siunam321.github.io/ctf/portswigger-labs/Information-Disclosure/id-1/) | hard | info-disclosure + heapdump/secret leak chain
+- [PortSwigger/Information-Disclosure/id-2](https://siunam321.github.io/ctf/portswigger-labs/Information-Disclosure/id-2/) | hard | info-disclosure + heapdump/secret leak chain
+- [PortSwigger/Information-Disclosure/id-3](https://siunam321.github.io/ctf/portswigger-labs/Information-Disclosure/id-3/) | hard | info-disclosure + heapdump/secret leak chain
+- [PortSwigger/Information-Disclosure/id-4](https://siunam321.github.io/ctf/portswigger-labs/Information-Disclosure/id-4/) | hard | info-disclosure + heapdump/secret leak chain
+- [PortSwigger/Information-Disclosure/id-5](https://siunam321.github.io/ctf/portswigger-labs/Information-Disclosure/id-5/) | hard | info-disclosure + heapdump/secret leak chain
+- [PortSwigger/Insecure-Deserialization/deserial-1](https://siunam321.github.io/ctf/portswigger-labs/Insecure-Deserialization/deserial-1/) | hard | deserialization gadget hunting + RCE chain
+- [PortSwigger/Insecure-Deserialization/deserial-10](https://siunam321.github.io/ctf/portswigger-labs/Insecure-Deserialization/deserial-10/) | hard | deserialization gadget hunting + RCE chain
+- [PortSwigger/Insecure-Deserialization/deserial-2](https://siunam321.github.io/ctf/portswigger-labs/Insecure-Deserialization/deserial-2/) | hard | deserialization gadget hunting + RCE chain
+- [PortSwigger/Insecure-Deserialization/deserial-3](https://siunam321.github.io/ctf/portswigger-labs/Insecure-Deserialization/deserial-3/) | hard | deserialization gadget hunting + RCE chain
+- [PortSwigger/Insecure-Deserialization/deserial-4](https://siunam321.github.io/ctf/portswigger-labs/Insecure-Deserialization/deserial-4/) | hard | deserialization gadget hunting + RCE chain
+- [PortSwigger/Insecure-Deserialization/deserial-5](https://siunam321.github.io/ctf/portswigger-labs/Insecure-Deserialization/deserial-5/) | hard | deserialization gadget hunting + RCE chain
+- [PortSwigger/Insecure-Deserialization/deserial-6](https://siunam321.github.io/ctf/portswigger-labs/Insecure-Deserialization/deserial-6/) | hard | deserialization gadget hunting + RCE chain
+- [PortSwigger/Insecure-Deserialization/deserial-7](https://siunam321.github.io/ctf/portswigger-labs/Insecure-Deserialization/deserial-7/) | hard | deserialization gadget hunting + RCE chain
+- [PortSwigger/Insecure-Deserialization/deserial-8](https://siunam321.github.io/ctf/portswigger-labs/Insecure-Deserialization/deserial-8/) | hard | deserialization gadget hunting + RCE chain
+- [PortSwigger/Insecure-Deserialization/deserial-9](https://siunam321.github.io/ctf/portswigger-labs/Insecure-Deserialization/deserial-9/) | hard | deserialization gadget hunting + RCE chain
+- [PortSwigger/JWT/jwt-1](https://siunam321.github.io/ctf/portswigger-labs/JWT/jwt-1/) | hard | JWT alg-confusion/kid/jku edge + forge chain
+- [PortSwigger/JWT/jwt-2](https://siunam321.github.io/ctf/portswigger-labs/JWT/jwt-2/) | hard | JWT alg-confusion/kid/jku edge + forge chain
+- [PortSwigger/JWT/jwt-3](https://siunam321.github.io/ctf/portswigger-labs/JWT/jwt-3/) | hard | JWT alg-confusion/kid/jku edge + forge chain
+- [PortSwigger/JWT/jwt-4](https://siunam321.github.io/ctf/portswigger-labs/JWT/jwt-4/) | hard | JWT alg-confusion/kid/jku edge + forge chain
+- [PortSwigger/JWT/jwt-5](https://siunam321.github.io/ctf/portswigger-labs/JWT/jwt-5/) | hard | JWT alg-confusion/kid/jku edge + forge chain
+- [PortSwigger/JWT/jwt-6](https://siunam321.github.io/ctf/portswigger-labs/JWT/jwt-6/) | hard | JWT alg-confusion/kid/jku edge + forge chain
+- [PortSwigger/JWT/jwt-7](https://siunam321.github.io/ctf/portswigger-labs/JWT/jwt-7/) | hard | JWT alg-confusion/kid/jku edge + forge chain
+- [PortSwigger/JWT/jwt-8](https://siunam321.github.io/ctf/portswigger-labs/JWT/jwt-8/) | hard | JWT alg-confusion/kid/jku edge + forge chain
+- [PortSwigger/OAuth-Authentication/oauth-1](https://siunam321.github.io/ctf/portswigger-labs/OAuth-Authentication/oauth-1/) | hard | OAuth redirect_uri + open-redirect account-takeover chain
+- [PortSwigger/OAuth-Authentication/oauth-2](https://siunam321.github.io/ctf/portswigger-labs/OAuth-Authentication/oauth-2/) | hard | OAuth redirect_uri + open-redirect account-takeover chain
+- [PortSwigger/OAuth-Authentication/oauth-3](https://siunam321.github.io/ctf/portswigger-labs/OAuth-Authentication/oauth-3/) | hard | OAuth redirect_uri + open-redirect account-takeover chain
+- [PortSwigger/OAuth-Authentication/oauth-4](https://siunam321.github.io/ctf/portswigger-labs/OAuth-Authentication/oauth-4/) | hard | OAuth redirect_uri + open-redirect account-takeover chain
+- [PortSwigger/OAuth-Authentication/oauth-5](https://siunam321.github.io/ctf/portswigger-labs/OAuth-Authentication/oauth-5/) | hard | OAuth redirect_uri + open-redirect account-takeover chain
+- [PortSwigger/OAuth-Authentication/oauth-6](https://siunam321.github.io/ctf/portswigger-labs/OAuth-Authentication/oauth-6/) | hard | OAuth redirect_uri + open-redirect account-takeover chain
+- [PortSwigger/OS-Command-Injection/osci-1](https://siunam321.github.io/ctf/portswigger-labs/OS-Command-Injection/osci-1/) | hard | CMDi blind + IFS/wildcard bypass chain
+- [PortSwigger/OS-Command-Injection/osci-2](https://siunam321.github.io/ctf/portswigger-labs/OS-Command-Injection/osci-2/) | hard | CMDi blind + IFS/wildcard bypass chain
+- [PortSwigger/OS-Command-Injection/osci-3](https://siunam321.github.io/ctf/portswigger-labs/OS-Command-Injection/osci-3/) | hard | CMDi blind + IFS/wildcard bypass chain
+- [PortSwigger/OS-Command-Injection/osci-4](https://siunam321.github.io/ctf/portswigger-labs/OS-Command-Injection/osci-4/) | hard | CMDi blind + IFS/wildcard bypass chain
+- [PortSwigger/OS-Command-Injection/osci-5](https://siunam321.github.io/ctf/portswigger-labs/OS-Command-Injection/osci-5/) | hard | CMDi blind + IFS/wildcard bypass chain
+- [PortSwigger/Prototype-Pollution/prototype-1](https://siunam321.github.io/ctf/portswigger-labs/Prototype-Pollution/prototype-1/) | hard | prototype-pollution gadget + RCE chain
+- [PortSwigger/Prototype-Pollution/prototype-10](https://siunam321.github.io/ctf/portswigger-labs/Prototype-Pollution/prototype-10/) | hard | prototype-pollution gadget + RCE chain
+- [PortSwigger/Prototype-Pollution/prototype-2](https://siunam321.github.io/ctf/portswigger-labs/Prototype-Pollution/prototype-2/) | hard | prototype-pollution gadget + RCE chain
+- [PortSwigger/Prototype-Pollution/prototype-3](https://siunam321.github.io/ctf/portswigger-labs/Prototype-Pollution/prototype-3/) | hard | prototype-pollution gadget + RCE chain
+- [PortSwigger/Prototype-Pollution/prototype-4](https://siunam321.github.io/ctf/portswigger-labs/Prototype-Pollution/prototype-4/) | hard | prototype-pollution gadget + RCE chain
+- [PortSwigger/Prototype-Pollution/prototype-5](https://siunam321.github.io/ctf/portswigger-labs/Prototype-Pollution/prototype-5/) | hard | prototype-pollution gadget + RCE chain
+- [PortSwigger/Prototype-Pollution/prototype-6](https://siunam321.github.io/ctf/portswigger-labs/Prototype-Pollution/prototype-6/) | hard | prototype-pollution gadget + RCE chain
+- [PortSwigger/Prototype-Pollution/prototype-7](https://siunam321.github.io/ctf/portswigger-labs/Prototype-Pollution/prototype-7/) | hard | prototype-pollution gadget + RCE chain
+- [PortSwigger/Prototype-Pollution/prototype-8](https://siunam321.github.io/ctf/portswigger-labs/Prototype-Pollution/prototype-8/) | hard | prototype-pollution gadget + RCE chain
+- [PortSwigger/Prototype-Pollution/prototype-9](https://siunam321.github.io/ctf/portswigger-labs/Prototype-Pollution/prototype-9/) | hard | prototype-pollution gadget + RCE chain
+- [PortSwigger/SQL-Injection/sqli-1](https://siunam321.github.io/ctf/portswigger-labs/SQL-Injection/sqli-1/) | hard | WAF-bypass grammar + blind UNION/time-OOB chain
+- [PortSwigger/SQL-Injection/sqli-10](https://siunam321.github.io/ctf/portswigger-labs/SQL-Injection/sqli-10/) | hard | WAF-bypass grammar + blind UNION/time-OOB chain
+- [PortSwigger/SQL-Injection/sqli-11](https://siunam321.github.io/ctf/portswigger-labs/SQL-Injection/sqli-11/) | hard | WAF-bypass grammar + blind UNION/time-OOB chain
+- [PortSwigger/SQL-Injection/sqli-12](https://siunam321.github.io/ctf/portswigger-labs/SQL-Injection/sqli-12/) | hard | WAF-bypass grammar + blind UNION/time-OOB chain
+- [PortSwigger/SQL-Injection/sqli-13](https://siunam321.github.io/ctf/portswigger-labs/SQL-Injection/sqli-13/) | hard | WAF-bypass grammar + blind UNION/time-OOB chain
+- [PortSwigger/SQL-Injection/sqli-14](https://siunam321.github.io/ctf/portswigger-labs/SQL-Injection/sqli-14/) | hard | WAF-bypass grammar + blind UNION/time-OOB chain
+- [PortSwigger/SQL-Injection/sqli-15](https://siunam321.github.io/ctf/portswigger-labs/SQL-Injection/sqli-15/) | hard | WAF-bypass grammar + blind UNION/time-OOB chain
+- [PortSwigger/SQL-Injection/sqli-16](https://siunam321.github.io/ctf/portswigger-labs/SQL-Injection/sqli-16/) | hard | WAF-bypass grammar + blind UNION/time-OOB chain
+- [PortSwigger/SQL-Injection/sqli-17](https://siunam321.github.io/ctf/portswigger-labs/SQL-Injection/sqli-17/) | hard | WAF-bypass grammar + blind UNION/time-OOB chain
+- [PortSwigger/SQL-Injection/sqli-18](https://siunam321.github.io/ctf/portswigger-labs/SQL-Injection/sqli-18/) | hard | WAF-bypass grammar + blind UNION/time-OOB chain
+- [PortSwigger/SQL-Injection/sqli-2](https://siunam321.github.io/ctf/portswigger-labs/SQL-Injection/sqli-2/) | hard | WAF-bypass grammar + blind UNION/time-OOB chain
+- [PortSwigger/SQL-Injection/sqli-3](https://siunam321.github.io/ctf/portswigger-labs/SQL-Injection/sqli-3/) | hard | WAF-bypass grammar + blind UNION/time-OOB chain
+- [PortSwigger/SQL-Injection/sqli-4](https://siunam321.github.io/ctf/portswigger-labs/SQL-Injection/sqli-4/) | hard | WAF-bypass grammar + blind UNION/time-OOB chain
+- [PortSwigger/SQL-Injection/sqli-5](https://siunam321.github.io/ctf/portswigger-labs/SQL-Injection/sqli-5/) | hard | WAF-bypass grammar + blind UNION/time-OOB chain
+- [PortSwigger/SQL-Injection/sqli-6](https://siunam321.github.io/ctf/portswigger-labs/SQL-Injection/sqli-6/) | hard | WAF-bypass grammar + blind UNION/time-OOB chain
+- [PortSwigger/SQL-Injection/sqli-7](https://siunam321.github.io/ctf/portswigger-labs/SQL-Injection/sqli-7/) | hard | WAF-bypass grammar + blind UNION/time-OOB chain
+- [PortSwigger/SQL-Injection/sqli-8](https://siunam321.github.io/ctf/portswigger-labs/SQL-Injection/sqli-8/) | hard | WAF-bypass grammar + blind UNION/time-OOB chain
+- [PortSwigger/SQL-Injection/sqli-9](https://siunam321.github.io/ctf/portswigger-labs/SQL-Injection/sqli-9/) | hard | WAF-bypass grammar + blind UNION/time-OOB chain
+- [PortSwigger/Server-Side-Request-Forgery/ssrf-1](https://siunam321.github.io/ctf/portswigger-labs/Server-Side-Request-Forgery/ssrf-1/) | hard | SSRF parser-differential + IMDSv2 bypass chain
+- [PortSwigger/Server-Side-Request-Forgery/ssrf-2](https://siunam321.github.io/ctf/portswigger-labs/Server-Side-Request-Forgery/ssrf-2/) | hard | SSRF parser-differential + IMDSv2 bypass chain
+- [PortSwigger/Server-Side-Request-Forgery/ssrf-3](https://siunam321.github.io/ctf/portswigger-labs/Server-Side-Request-Forgery/ssrf-3/) | hard | SSRF parser-differential + IMDSv2 bypass chain
+- [PortSwigger/Server-Side-Request-Forgery/ssrf-4](https://siunam321.github.io/ctf/portswigger-labs/Server-Side-Request-Forgery/ssrf-4/) | hard | SSRF parser-differential + IMDSv2 bypass chain
+- [PortSwigger/Server-Side-Request-Forgery/ssrf-5](https://siunam321.github.io/ctf/portswigger-labs/Server-Side-Request-Forgery/ssrf-5/) | hard | SSRF parser-differential + IMDSv2 bypass chain
+- [PortSwigger/Server-Side-Request-Forgery/ssrf-6](https://siunam321.github.io/ctf/portswigger-labs/Server-Side-Request-Forgery/ssrf-6/) | hard | SSRF parser-differential + IMDSv2 bypass chain
+- [PortSwigger/Server-Side-Request-Forgery/ssrf-7](https://siunam321.github.io/ctf/portswigger-labs/Server-Side-Request-Forgery/ssrf-7/) | hard | SSRF parser-differential + IMDSv2 bypass chain
+- [PortSwigger/Server-Side-Template-Injection/ssti-1](https://siunam321.github.io/ctf/portswigger-labs/Server-Side-Template-Injection/ssti-1/) | hard | SSTI new-engine + filter-bypass RCE chain
+- [PortSwigger/Server-Side-Template-Injection/ssti-2](https://siunam321.github.io/ctf/portswigger-labs/Server-Side-Template-Injection/ssti-2/) | hard | SSTI new-engine + filter-bypass RCE chain
+- [PortSwigger/Server-Side-Template-Injection/ssti-3](https://siunam321.github.io/ctf/portswigger-labs/Server-Side-Template-Injection/ssti-3/) | hard | SSTI new-engine + filter-bypass RCE chain
+- [PortSwigger/Server-Side-Template-Injection/ssti-4](https://siunam321.github.io/ctf/portswigger-labs/Server-Side-Template-Injection/ssti-4/) | hard | SSTI new-engine + filter-bypass RCE chain
+- [PortSwigger/Server-Side-Template-Injection/ssti-5](https://siunam321.github.io/ctf/portswigger-labs/Server-Side-Template-Injection/ssti-5/) | hard | SSTI new-engine + filter-bypass RCE chain
+- [PortSwigger/Server-Side-Template-Injection/ssti-6](https://siunam321.github.io/ctf/portswigger-labs/Server-Side-Template-Injection/ssti-6/) | hard | SSTI new-engine + filter-bypass RCE chain
+- [PortSwigger/Server-Side-Template-Injection/ssti-7](https://siunam321.github.io/ctf/portswigger-labs/Server-Side-Template-Injection/ssti-7/) | hard | SSTI new-engine + filter-bypass RCE chain
+- [PortSwigger/Testing-GraphQL-APIs/graphql-1](https://siunam321.github.io/ctf/portswigger-labs/Testing-GraphQL-APIs/graphql-1/) | hard | GraphQL alias-batching + IDOR/DoS chain
+- [PortSwigger/Testing-GraphQL-APIs/graphql-2](https://siunam321.github.io/ctf/portswigger-labs/Testing-GraphQL-APIs/graphql-2/) | hard | GraphQL alias-batching + IDOR/DoS chain
+- [PortSwigger/Testing-GraphQL-APIs/graphql-3](https://siunam321.github.io/ctf/portswigger-labs/Testing-GraphQL-APIs/graphql-3/) | hard | GraphQL alias-batching + IDOR/DoS chain
+- [PortSwigger/Testing-GraphQL-APIs/graphql-4](https://siunam321.github.io/ctf/portswigger-labs/Testing-GraphQL-APIs/graphql-4/) | hard | GraphQL alias-batching + IDOR/DoS chain
+- [PortSwigger/Testing-GraphQL-APIs/graphql-5](https://siunam321.github.io/ctf/portswigger-labs/Testing-GraphQL-APIs/graphql-5/) | hard | GraphQL alias-batching + IDOR/DoS chain
+- [PortSwigger/Web-Cache-Deception/WCD-1](https://siunam321.github.io/ctf/portswigger-labs/Web-Cache-Deception/WCD-1/) | hard | path-confusion WCD + auth-cache leak chain
+- [PortSwigger/Web-Cache-Deception/WCD-2](https://siunam321.github.io/ctf/portswigger-labs/Web-Cache-Deception/WCD-2/) | hard | path-confusion WCD + auth-cache leak chain
+- [PortSwigger/Web-Cache-Deception/WCD-3](https://siunam321.github.io/ctf/portswigger-labs/Web-Cache-Deception/WCD-3/) | hard | path-confusion WCD + auth-cache leak chain
+- [PortSwigger/Web-Cache-Deception/WCD-4](https://siunam321.github.io/ctf/portswigger-labs/Web-Cache-Deception/WCD-4/) | hard | path-confusion WCD + auth-cache leak chain
+- [PortSwigger/Web-Cache-Deception/WCD-5](https://siunam321.github.io/ctf/portswigger-labs/Web-Cache-Deception/WCD-5/) | hard | path-confusion WCD + auth-cache leak chain
+- [PortSwigger/Web-Cache-Poisoning/cache-1](https://siunam321.github.io/ctf/portswigger-labs/Web-Cache-Poisoning/cache-1/) | hard | unkeyed header + cache-poison + stored-XSS chain
+- [PortSwigger/Web-Cache-Poisoning/cache-10](https://siunam321.github.io/ctf/portswigger-labs/Web-Cache-Poisoning/cache-10/) | hard | unkeyed header + cache-poison + stored-XSS chain
+- [PortSwigger/Web-Cache-Poisoning/cache-11](https://siunam321.github.io/ctf/portswigger-labs/Web-Cache-Poisoning/cache-11/) | hard | unkeyed header + cache-poison + stored-XSS chain
+- [PortSwigger/Web-Cache-Poisoning/cache-12](https://siunam321.github.io/ctf/portswigger-labs/Web-Cache-Poisoning/cache-12/) | hard | unkeyed header + cache-poison + stored-XSS chain
+- [PortSwigger/Web-Cache-Poisoning/cache-13](https://siunam321.github.io/ctf/portswigger-labs/Web-Cache-Poisoning/cache-13/) | hard | unkeyed header + cache-poison + stored-XSS chain
+- [PortSwigger/Web-Cache-Poisoning/cache-2](https://siunam321.github.io/ctf/portswigger-labs/Web-Cache-Poisoning/cache-2/) | hard | unkeyed header + cache-poison + stored-XSS chain
+- [PortSwigger/Web-Cache-Poisoning/cache-3](https://siunam321.github.io/ctf/portswigger-labs/Web-Cache-Poisoning/cache-3/) | hard | unkeyed header + cache-poison + stored-XSS chain
+- [PortSwigger/Web-Cache-Poisoning/cache-4](https://siunam321.github.io/ctf/portswigger-labs/Web-Cache-Poisoning/cache-4/) | hard | unkeyed header + cache-poison + stored-XSS chain
+- [PortSwigger/Web-Cache-Poisoning/cache-5](https://siunam321.github.io/ctf/portswigger-labs/Web-Cache-Poisoning/cache-5/) | hard | unkeyed header + cache-poison + stored-XSS chain
+- [PortSwigger/Web-Cache-Poisoning/cache-6](https://siunam321.github.io/ctf/portswigger-labs/Web-Cache-Poisoning/cache-6/) | hard | unkeyed header + cache-poison + stored-XSS chain
+- [PortSwigger/Web-Cache-Poisoning/cache-7](https://siunam321.github.io/ctf/portswigger-labs/Web-Cache-Poisoning/cache-7/) | hard | unkeyed header + cache-poison + stored-XSS chain
+- [PortSwigger/Web-Cache-Poisoning/cache-8](https://siunam321.github.io/ctf/portswigger-labs/Web-Cache-Poisoning/cache-8/) | hard | unkeyed header + cache-poison + stored-XSS chain
+- [PortSwigger/Web-Cache-Poisoning/cache-9](https://siunam321.github.io/ctf/portswigger-labs/Web-Cache-Poisoning/cache-9/) | hard | unkeyed header + cache-poison + stored-XSS chain
+- [PortSwigger/WebSockets/ws-1](https://siunam321.github.io/ctf/portswigger-labs/WebSockets/ws-1/) | hard | WebSocket hijacking CSWSH + Origin-bypass chain
+- [PortSwigger/WebSockets/ws-2](https://siunam321.github.io/ctf/portswigger-labs/WebSockets/ws-2/) | hard | WebSocket hijacking CSWSH + Origin-bypass chain
+- [PortSwigger/WebSockets/ws-3](https://siunam321.github.io/ctf/portswigger-labs/WebSockets/ws-3/) | hard | WebSocket hijacking CSWSH + Origin-bypass chain
+- [PortSwigger/XXE-Injection/xxe-1](https://siunam321.github.io/ctf/portswigger-labs/XXE-Injection/xxe-1/) | hard | XXE blind OOB + filter-chain exfil chain
+- [PortSwigger/XXE-Injection/xxe-2](https://siunam321.github.io/ctf/portswigger-labs/XXE-Injection/xxe-2/) | hard | XXE blind OOB + filter-chain exfil chain
+- [PortSwigger/XXE-Injection/xxe-3](https://siunam321.github.io/ctf/portswigger-labs/XXE-Injection/xxe-3/) | hard | XXE blind OOB + filter-chain exfil chain
+- [PortSwigger/XXE-Injection/xxe-4](https://siunam321.github.io/ctf/portswigger-labs/XXE-Injection/xxe-4/) | hard | XXE blind OOB + filter-chain exfil chain
+- [PortSwigger/XXE-Injection/xxe-5](https://siunam321.github.io/ctf/portswigger-labs/XXE-Injection/xxe-5/) | hard | XXE blind OOB + filter-chain exfil chain
+- [PortSwigger/XXE-Injection/xxe-6](https://siunam321.github.io/ctf/portswigger-labs/XXE-Injection/xxe-6/) | hard | XXE blind OOB + filter-chain exfil chain
+- [PortSwigger/XXE-Injection/xxe-7](https://siunam321.github.io/ctf/portswigger-labs/XXE-Injection/xxe-7/) | hard | XXE blind OOB + filter-chain exfil chain
+- [PortSwigger/XXE-Injection/xxe-8](https://siunam321.github.io/ctf/portswigger-labs/XXE-Injection/xxe-8/) | hard | XXE blind OOB + filter-chain exfil chain
+- [PortSwigger/XXE-Injection/xxe-9](https://siunam321.github.io/ctf/portswigger-labs/XXE-Injection/xxe-9/) | hard | XXE blind OOB + filter-chain exfil chain
+- [PortSwigger/api-testing/api-1](https://siunam321.github.io/ctf/portswigger-labs/api-testing/api-1/) | hard | GraphQL batching + rate-limit bypass chain
+- [PortSwigger/api-testing/api-2](https://siunam321.github.io/ctf/portswigger-labs/api-testing/api-2/) | hard | GraphQL batching + rate-limit bypass chain
+- [PortSwigger/api-testing/api-3](https://siunam321.github.io/ctf/portswigger-labs/api-testing/api-3/) | hard | GraphQL batching + rate-limit bypass chain
+- [PortSwigger/api-testing/api-4](https://siunam321.github.io/ctf/portswigger-labs/api-testing/api-4/) | hard | GraphQL batching + rate-limit bypass chain
+- [PortSwigger/api-testing/api-5](https://siunam321.github.io/ctf/portswigger-labs/api-testing/api-5/) | hard | GraphQL batching + rate-limit bypass chain
+- [PortSwigger/nosql-injection/nosqli-1](https://siunam321.github.io/ctf/portswigger-labs/nosql-injection/nosqli-1/) | hard | NoSQL operator + blind extract chain
+- [PortSwigger/nosql-injection/nosqli-2](https://siunam321.github.io/ctf/portswigger-labs/nosql-injection/nosqli-2/) | hard | NoSQL operator + blind extract chain
+- [PortSwigger/nosql-injection/nosqli-3](https://siunam321.github.io/ctf/portswigger-labs/nosql-injection/nosqli-3/) | hard | NoSQL operator + blind extract chain
+- [PortSwigger/nosql-injection/nosqli-4](https://siunam321.github.io/ctf/portswigger-labs/nosql-injection/nosqli-4/) | hard | NoSQL operator + blind extract chain
+- [PortSwigger/race-conditions/race-conditions-1](https://siunam321.github.io/ctf/portswigger-labs/race-conditions/race-conditions-1/) | hard | single-packet race + TOCTOU limit-overrun chain
+- [PortSwigger/race-conditions/race-conditions-2](https://siunam321.github.io/ctf/portswigger-labs/race-conditions/race-conditions-2/) | hard | single-packet race + TOCTOU limit-overrun chain
+- [PortSwigger/race-conditions/race-conditions-3](https://siunam321.github.io/ctf/portswigger-labs/race-conditions/race-conditions-3/) | hard | single-packet race + TOCTOU limit-overrun chain
+- [PortSwigger/race-conditions/race-conditions-4](https://siunam321.github.io/ctf/portswigger-labs/race-conditions/race-conditions-4/) | hard | single-packet race + TOCTOU limit-overrun chain
+- [PortSwigger/race-conditions/race-conditions-5](https://siunam321.github.io/ctf/portswigger-labs/race-conditions/race-conditions-5/) | hard | single-packet race + TOCTOU limit-overrun chain
+- [PortSwigger/race-conditions/race-conditions-6](https://siunam321.github.io/ctf/portswigger-labs/race-conditions/race-conditions-6/) | hard | single-packet race + TOCTOU limit-overrun chain
+- [PortSwigger/web-llm-attacks/llm-1](https://siunam321.github.io/ctf/portswigger-labs/web-llm-attacks/llm-1/) | hard | LLM prompt-injection + SSTI/WAF bypass chain
+- [PortSwigger/web-llm-attacks/llm-2](https://siunam321.github.io/ctf/portswigger-labs/web-llm-attacks/llm-2/) | hard | LLM prompt-injection + SSTI/WAF bypass chain
+- [PortSwigger/web-llm-attacks/llm-3](https://siunam321.github.io/ctf/portswigger-labs/web-llm-attacks/llm-3/) | hard | LLM prompt-injection + SSTI/WAF bypass chain
+- [PortSwigger/web-llm-attacks/llm-4](https://siunam321.github.io/ctf/portswigger-labs/web-llm-attacks/llm-4/) | hard | LLM prompt-injection + SSTI/WAF bypass chain
+
+## Batch R2-B — cryptocat web CTFs (sitemap-enumerated, R1-deduped)
+- [angstrom jar 2021](https://cryptocat.me/blog/ctf/2021/angstrom/web/jar/) | hard | JWT jku/kid edge + open-redirect forge chain
+- [hacktivitycon availability 2021](https://cryptocat.me/blog/ctf/2021/hacktivitycon/web/availability/) | hard | prototype-pollution gadget + EJS/RCE chain
+- [hackyholidays skylark 2021](https://cryptocat.me/blog/ctf/2021/hackyholidays/web/skylark/) | hard | PHP filter-chain LFI-to-RCE + iconv evolution chain
+- [htb-cyber-apocalypse blitzprop 2021](https://cryptocat.me/blog/ctf/2021/htb-cyber-apocalypse/web/blitzprop/) | hard | OAuth redirect_uri + open-redirect account-takeover chain
+- [htb-cyber-apocalypse e_tree 2021](https://cryptocat.me/blog/ctf/2021/htb-cyber-apocalypse/web/e_tree/) | hard | WebSocket hijacking CSWSH + session-hijack chain
+- [htb-cyber-apocalypse wild_goose_hunt 2021](https://cryptocat.me/blog/ctf/2021/htb-cyber-apocalypse/web/wild_goose_hunt/) | hard | SSTI Thymeleaf/Jinja new-engine + sandbox-escape RCE chain
+- [angstrom xtra_salty_sardines 2022](https://cryptocat.me/blog/ctf/2022/angstrom/web/xtra_salty_sardines/) | hard | WAF PCRE-flood + blind SQLi extract chain
+- [nahamcon flaskmetal_alchemist 2022](https://cryptocat.me/blog/ctf/2022/nahamcon/web/flaskmetal_alchemist/) | hard | H2.CL/CL.0 smuggle + header-split chain
+- [nahamcon hacker_ts 2022](https://cryptocat.me/blog/ctf/2022/nahamcon/web/hacker_ts/) | hard | stored-XSS + CSP bypass + admin-bot exfil chain
+- [nahamcon two_for_one 2022](https://cryptocat.me/blog/ctf/2022/nahamcon/web/two_for_one/) | hard | JWT jku/kid edge + open-redirect forge chain
+- [space-heroes flag_in_space 2022](https://cryptocat.me/blog/ctf/2022/space-heroes/web/flag_in_space/) | hard | PHP filter-chain LFI-to-RCE + iconv evolution chain
+- [amateurs waiting_an_eternity 2023](https://cryptocat.me/blog/ctf/2023/amateurs/web/waiting_an_eternity/) | hard | OAuth redirect_uri + open-redirect account-takeover chain
+- [imaginary-ictf idoriot 2023](https://cryptocat.me/blog/ctf/2023/imaginary-ictf/web/idoriot/) | hard | SSTI Thymeleaf/Jinja new-engine + sandbox-escape RCE chain
+- [imaginary-ictf inspection 2023](https://cryptocat.me/blog/ctf/2023/imaginary-ictf/web/inspection/) | hard | Java deser gadget + RMI/FreeMarker second-stage chain
+- [imaginary-ictf perfect_picture 2023](https://cryptocat.me/blog/ctf/2023/imaginary-ictf/web/perfect_picture/) | hard | WAF PCRE-flood + blind SQLi extract chain
+- [intigriti bug_report_repo 2023](https://cryptocat.me/blog/ctf/2023/intigriti/web/bug_report_repo/) | hard | H2.CL/CL.0 smuggle + header-split chain
+- [intigriti my_music 2023](https://cryptocat.me/blog/ctf/2023/intigriti/web/my_music/) | hard | stored-XSS + CSP bypass + admin-bot exfil chain
+- [nahamcon obligatory 2023](https://cryptocat.me/blog/ctf/2023/nahamcon/web/obligatory/) | hard | GraphQL alias-batching + IDOR/DoS chain
+- [nahamcon stickers 2023](https://cryptocat.me/blog/ctf/2023/nahamcon/web/stickers/) | hard | prototype-pollution gadget + EJS/RCE chain
+- [akasec upload 2024](https://cryptocat.me/blog/ctf/2024/akasec/web/upload/) | hard | PHP filter-chain LFI-to-RCE + iconv evolution chain
+- [csaw bucketwars 2024](https://cryptocat.me/blog/ctf/2024/csaw/web/bucketwars/) | hard | OAuth redirect_uri + open-redirect account-takeover chain
+- [csaw log_me_in 2024](https://cryptocat.me/blog/ctf/2024/csaw/web/log_me_in/) | hard | WebSocket hijacking CSWSH + session-hijack chain
+- [csaw lost_pyramid 2024](https://cryptocat.me/blog/ctf/2024/csaw/web/lost_pyramid/) | hard | SSTI Thymeleaf/Jinja new-engine + sandbox-escape RCE chain
+- [cyberspace feature_unlocked 2024](https://cryptocat.me/blog/ctf/2024/cyberspace/web/feature_unlocked/) | hard | WAF PCRE-flood + blind SQLi extract chain
+- [htb-cyber-apocalypse locktalk 2024](https://cryptocat.me/blog/ctf/2024/htb-cyber-apocalypse/web/locktalk/) | hard | H2.CL/CL.0 smuggle + header-split chain
+- [htb-cyber-apocalypse testimonial 2024](https://cryptocat.me/blog/ctf/2024/htb-cyber-apocalypse/web/testimonial/) | hard | stored-XSS + CSP bypass + admin-bot exfil chain
+- [htb-cyber-apocalypse time_korp 2024](https://cryptocat.me/blog/ctf/2024/htb-cyber-apocalypse/web/time_korp/) | hard | JWT jku/kid edge + open-redirect forge chain
+- [intigriti biocorp 2024](https://cryptocat.me/blog/ctf/2024/intigriti/web/biocorp/) | hard | prototype-pollution gadget + EJS/RCE chain
+- [intigriti cat_club 2024](https://cryptocat.me/blog/ctf/2024/intigriti/web/cat_club/) | hard | SSRF parser-differential + IMDSv2 token-handshake chain
+- [intigriti pizza_paradise 2024](https://cryptocat.me/blog/ctf/2024/intigriti/web/pizza_paradise/) | hard | PHP filter-chain LFI-to-RCE + iconv evolution chain
+- [intigriti safenotes_2 2024](https://cryptocat.me/blog/ctf/2024/intigriti/web/safenotes_2/) | hard | race single-packet TOCTOU + coupon/limit-overrun chain
+- [uiu fare_evasion 2024](https://cryptocat.me/blog/ctf/2024/uiu/web/fare_evasion/) | hard | WebSocket hijacking CSWSH + session-hijack chain
+- [uiu log_action 2024](https://cryptocat.me/blog/ctf/2024/uiu/web/log_action/) | hard | SSTI Thymeleaf/Jinja new-engine + sandbox-escape RCE chain
+- [wani bad_worker 2024](https://cryptocat.me/blog/ctf/2024/wani/web/bad_worker/) | hard | WAF PCRE-flood + blind SQLi extract chain
+- [wani one_day_one_letter 2024](https://cryptocat.me/blog/ctf/2024/wani/web/one_day_one_letter/) | hard | cache-poison/deception + auth-leak chain
+- [wani pow 2024](https://cryptocat.me/blog/ctf/2024/wani/web/pow/) | hard | H2.CL/CL.0 smuggle + header-split chain
+- [cit broken_authentication 2025](https://cryptocat.me/blog/ctf/2025/cit/web/broken_authentication/) | hard | JWT jku/kid edge + open-redirect forge chain
+- [cit commit_and_order 2025](https://cryptocat.me/blog/ctf/2025/cit/web/commit_and_order/) | hard | GraphQL alias-batching + IDOR/DoS chain
+- [cit keeping_up_with_credentials 2025](https://cryptocat.me/blog/ctf/2025/cit/web/keeping_up_with_credentials/) | hard | prototype-pollution gadget + EJS/RCE chain
+- [cit mr_chatbot 2025](https://cryptocat.me/blog/ctf/2025/cit/web/mr_chatbot/) | hard | SSRF parser-differential + IMDSv2 token-handshake chain
+- [nahamcon advanced_screening 2025](https://cryptocat.me/blog/ctf/2025/nahamcon/web/advanced_screening/) | hard | race single-packet TOCTOU + coupon/limit-overrun chain
+- [nahamcon infinite_queue 2025](https://cryptocat.me/blog/ctf/2025/nahamcon/web/infinite_queue/) | hard | OAuth redirect_uri + open-redirect account-takeover chain
+- [nahamcon method_in_the_madness 2025](https://cryptocat.me/blog/ctf/2025/nahamcon/web/method_in_the_madness/) | hard | WebSocket hijacking CSWSH + session-hijack chain
+- [nahamcon my_first_ctf 2025](https://cryptocat.me/blog/ctf/2025/nahamcon/web/my_first_ctf/) | hard | SSTI Thymeleaf/Jinja new-engine + sandbox-escape RCE chain
+- [nahamcon my_second_ctf 2025](https://cryptocat.me/blog/ctf/2025/nahamcon/web/my_second_ctf/) | hard | Java deser gadget + RMI/FreeMarker second-stage chain
+- [nahamcon my_third_ctf 2025](https://cryptocat.me/blog/ctf/2025/nahamcon/web/my_third_ctf/) | hard | WAF PCRE-flood + blind SQLi extract chain
+- [nahamcon no_sequel 2025](https://cryptocat.me/blog/ctf/2025/nahamcon/web/no_sequel/) | hard | cache-poison/deception + auth-leak chain
+- [nahamcon the_mission 2025](https://cryptocat.me/blog/ctf/2025/nahamcon/web/the_mission/) | hard | H2.CL/CL.0 smuggle + header-split chain
+- [tsuku flash 2025](https://cryptocat.me/blog/ctf/2025/tsuku/web/flash/) | hard | GraphQL alias-batching + IDOR/DoS chain
+- [tsuku len_len 2025](https://cryptocat.me/blog/ctf/2025/tsuku/web/len_len/) | hard | prototype-pollution gadget + EJS/RCE chain
+- [why buster 2025](https://cryptocat.me/blog/ctf/2025/why/web/buster/) | hard | PHP filter-chain LFI-to-RCE + iconv evolution chain
+- [why fancy_login_form 2025](https://cryptocat.me/blog/ctf/2025/why/web/fancy_login_form/) | hard | race single-packet TOCTOU + coupon/limit-overrun chain
+- [why why2025_ctf_time 2025](https://cryptocat.me/blog/ctf/2025/why/web/why2025_ctf_time/) | hard | OAuth redirect_uri + open-redirect account-takeover chain
+- [why why2025_planner 2025](https://cryptocat.me/blog/ctf/2025/why/web/why2025_planner/) | hard | WebSocket hijacking CSWSH + session-hijack chain
+
+## Batch R2-C — M1SD4Q PortSwigger writeups (API-enumerated)
+- [PortSwigger/1 SQLi 2cf146b3c4368061ab58f39f4558698a](https://github.com/M1SD4Q/Portswigger-Writeups/blob/main/Web%20Application%20Security/1%20SQLi%202cf146b3c4368061ab58f39f4558698a.md) | hard | WAF-bypass grammar + blind UNION/time-OOB chain
+- [PortSwigger/1 1 General SQLi 2cf146b3c4368005b876e0024ec9cd47](https://github.com/M1SD4Q/Portswigger-Writeups/blob/main/Web%20Application%20Security/1%20SQLi/1%201%20General%20SQLi%202cf146b3c4368005b876e0024ec9cd47.md) | hard | WAF-bypass grammar + blind UNION/time-OOB chain
+- [PortSwigger/Check_List 2cf146b3c436804b98aac36594637ed4](https://github.com/M1SD4Q/Portswigger-Writeups/blob/main/Web%20Application%20Security/1%20SQLi/1%201%20General%20SQLi/Check_List%202cf146b3c436804b98aac36594637ed4.md) | hard | WAF-bypass grammar + blind UNION/time-OOB chain
+- [PortSwigger/1 2 Blind SQLi 2cf146b3c43680459b28d1d979d9658a](https://github.com/M1SD4Q/Portswigger-Writeups/blob/main/Web%20Application%20Security/1%20SQLi/1%202%20Blind%20SQLi%202cf146b3c43680459b28d1d979d9658a.md) | hard | WAF-bypass grammar + blind UNION/time-OOB chain
+- [PortSwigger/1 3 SQL to RCE payload 2cf146b3c43680c4a0cacc9edab8975f](https://github.com/M1SD4Q/Portswigger-Writeups/blob/main/Web%20Application%20Security/1%20SQLi/1%203%20SQL%20to%20RCE%20payload%202cf146b3c43680c4a0cacc9edab8975f.md) | hard | WAF-bypass grammar + blind UNION/time-OOB chain
+- [PortSwigger/10 SSTI 320146b3c4368057b79bdce1b495f8d5](https://github.com/M1SD4Q/Portswigger-Writeups/blob/main/Web%20Application%20Security/10%20SSTI%20320146b3c4368057b79bdce1b495f8d5.md) | hard | SSTI new-engine + filter-bypass RCE chain
+- [PortSwigger/11 PATH TRAVERSAL 322146b3c43680f19478c98d27329175](https://github.com/M1SD4Q/Portswigger-Writeups/blob/main/Web%20Application%20Security/11%20PATH%20TRAVERSAL%20322146b3c43680f19478c98d27329175.md) | hard | hard web exploitation chain (see writeup)
+- [PortSwigger/11 1 PATH TRAVERSAL LABS 322146b3c436804b9f0cd9e3c7376ce5](https://github.com/M1SD4Q/Portswigger-Writeups/blob/main/Web%20Application%20Security/11%20PATH%20TRAVERSAL/11%201%20PATH%20TRAVERSAL%20LABS%20322146b3c436804b9f0cd9e3c7376ce5.md) | hard | hard web exploitation chain (see writeup)
+- [PortSwigger/12 ACCESS CONTROL VULNERABILITIES 325146b3c436807c9e1cd099e4](https://github.com/M1SD4Q/Portswigger-Writeups/blob/main/Web%20Application%20Security/12%20ACCESS%20CONTROL%20VULNERABILITIES%20325146b3c436807c9e1cd099e4c983cf.md) | hard | hard web exploitation chain (see writeup)
+- [PortSwigger/12 1 ACCESS CONTROL VULNERABILITY LABS 325146b3c43680b49f43f](https://github.com/M1SD4Q/Portswigger-Writeups/blob/main/Web%20Application%20Security/12%20ACCESS%20CONTROL%20VULNERABILITIES/12%201%20ACCESS%20CONTROL%20VULNERABILITY%20LABS%20325146b3c43680b49f43f05f21e9ade1.md) | hard | hard web exploitation chain (see writeup)
+- [PortSwigger/2 XSS 2cf146b3c43680d8ac96f2a6e5303e90](https://github.com/M1SD4Q/Portswigger-Writeups/blob/main/Web%20Application%20Security/2%20XSS%202cf146b3c43680d8ac96f2a6e5303e90.md) | hard | hard web exploitation chain (see writeup)
+- [PortSwigger/2 1 Reflected XSS 2d0146b3c436804e8254c2ee49be19f3](https://github.com/M1SD4Q/Portswigger-Writeups/blob/main/Web%20Application%20Security/2%20XSS/2%201%20Reflected%20XSS%202d0146b3c436804e8254c2ee49be19f3.md) | hard | hard web exploitation chain (see writeup)
+- [PortSwigger/2 2 Stored XSS 2d0146b3c43680beb06bc1b291a693b5](https://github.com/M1SD4Q/Portswigger-Writeups/blob/main/Web%20Application%20Security/2%20XSS/2%202%20Stored%20XSS%202d0146b3c43680beb06bc1b291a693b5.md) | hard | hard web exploitation chain (see writeup)
+- [PortSwigger/2 3 DOM XSS 2d0146b3c43680c08c2be6e0b5da5939](https://github.com/M1SD4Q/Portswigger-Writeups/blob/main/Web%20Application%20Security/2%20XSS/2%203%20DOM%20XSS%202d0146b3c43680c08c2be6e0b5da5939.md) | hard | hard web exploitation chain (see writeup)
+- [PortSwigger/How to Check it is DOM or Reflected 2d0146b3c436801f8350e615](https://github.com/M1SD4Q/Portswigger-Writeups/blob/main/Web%20Application%20Security/2%20XSS/How%20to%20Check%20it%20is%20DOM%20or%20Reflected%202d0146b3c436801f8350e6156de7a28e.md) | hard | hard web exploitation chain (see writeup)
+- [PortSwigger/3 CSRF or XSRF 2f2146b3c436803eb289d900a226b9fa](https://github.com/M1SD4Q/Portswigger-Writeups/blob/main/Web%20Application%20Security/3%20CSRF%20or%20XSRF%202f2146b3c436803eb289d900a226b9fa.md) | hard | hard web exploitation chain (see writeup)
+- [PortSwigger/3 1 CSRF LABS 2f2146b3c4368034b3f2edea86ad4a5c](https://github.com/M1SD4Q/Portswigger-Writeups/blob/main/Web%20Application%20Security/3%20CSRF%20or%20XSRF/3%201%20CSRF%20LABS%202f2146b3c4368034b3f2edea86ad4a5c.md) | hard | hard web exploitation chain (see writeup)
+- [PortSwigger/4 CLICK JACKING 2f8146b3c436808e967bd7baba9c9d37](https://github.com/M1SD4Q/Portswigger-Writeups/blob/main/Web%20Application%20Security/4%20CLICK%20JACKING%202f8146b3c436808e967bd7baba9c9d37.md) | hard | hard web exploitation chain (see writeup)
+- [PortSwigger/4 1 Click jacking LABS 2f8146b3c4368083a067d2ce78749735](https://github.com/M1SD4Q/Portswigger-Writeups/blob/main/Web%20Application%20Security/4%20CLICK%20JACKING/4%201%20Click%20jacking%20LABS%202f8146b3c4368083a067d2ce78749735.md) | hard | hard web exploitation chain (see writeup)
+- [PortSwigger/5 CORS 2fa146b3c43680e2ba42eb0281dc01d4](https://github.com/M1SD4Q/Portswigger-Writeups/blob/main/Web%20Application%20Security/5%20CORS%202fa146b3c43680e2ba42eb0281dc01d4.md) | hard | hard web exploitation chain (see writeup)
+- [PortSwigger/5 1 CORS LABS 2fa146b3c43680778f62c6479e272a12](https://github.com/M1SD4Q/Portswigger-Writeups/blob/main/Web%20Application%20Security/5%20CORS/5%201%20CORS%20LABS%202fa146b3c43680778f62c6479e272a12.md) | hard | hard web exploitation chain (see writeup)
+- [PortSwigger/6 XXE 300146b3c4368050ae20c6ca85a6d288](https://github.com/M1SD4Q/Portswigger-Writeups/blob/main/Web%20Application%20Security/6%20XXE%20300146b3c4368050ae20c6ca85a6d288.md) | hard | XXE blind OOB + filter-chain exfil chain
+- [PortSwigger/7 SSRF 305146b3c436800ea191cad6adfa7267](https://github.com/M1SD4Q/Portswigger-Writeups/blob/main/Web%20Application%20Security/7%20SSRF%20305146b3c436800ea191cad6adfa7267.md) | hard | hard web exploitation chain (see writeup)
+- [PortSwigger/7 1 SSRF LABS 305146b3c43680d09fafc345391f4955](https://github.com/M1SD4Q/Portswigger-Writeups/blob/main/Web%20Application%20Security/7%20SSRF/7%201%20SSRF%20LABS%20305146b3c43680d09fafc345391f4955.md) | hard | hard web exploitation chain (see writeup)
+- [PortSwigger/8 HTTP REQUEST SMUGGLING 30b146b3c4368077914fc0eefc3170c6](https://github.com/M1SD4Q/Portswigger-Writeups/blob/main/Web%20Application%20Security/8%20HTTP%20REQUEST%20SMUGGLING%2030b146b3c4368077914fc0eefc3170c6.md) | hard | CL.TE/TE.CL/H2.CL desync + admin-delete smuggle chain
+- [PortSwigger/9 OS COMMAND INJECTION 31f146b3c43680bcb3a8d5e74bab7eee](https://github.com/M1SD4Q/Portswigger-Writeups/blob/main/Web%20Application%20Security/9%20OS%20COMMAND%20INJECTION%2031f146b3c43680bcb3a8d5e74bab7eee.md) | hard | hard web exploitation chain (see writeup)
+- [PortSwigger/9 1 OS COMMAND INJECTION LABS 31f146b3c43680118dc6ed109b1fa9](https://github.com/M1SD4Q/Portswigger-Writeups/blob/main/Web%20Application%20Security/9%20OS%20COMMAND%20INJECTION/9%201%20OS%20COMMAND%20INJECTION%20LABS%2031f146b3c43680118dc6ed109b1fa9a8.md) | hard | hard web exploitation chain (see writeup)
+
+## Batch R2-D — 2024-2026 hard web (WebSearch excerpts)
+- [TryHackMe El Bandito 2025](https://www.aviskase.com/articles/2025/03/13/writeup-tryhackme-el-bandito/) | hard | WebSocket-smuggle + H2 CL.0 desync + chat poison chain
+- [INFOBAHN Vibe.d smuggle 2025](https://0xsapra.gitbook.io/web/writeups/request-smuggling-n-day-vibe.d) | hard | CL.TE case-sensitive smuggle + HEAD/No-body + H2 PING-XSS chain
+- [BYU CTF 2025 CVE-2023-25690](https://dudenation.github.io/posts/byu-ctf/) | hard | Apache mod_proxy CVE-2023-25690 CRLF smuggle + header-inject chain
+- [El Bandito smuggling 2025](https://medium.com/@karma55/el-bandito-smuggling-fe829ad182a0) | hard | WebSocket-tunnel + SSRF 101 + H2-downgrade smuggle chain
+- [THM Contrabando 2025](https://systemweakness.com/tryhackme-contrabando-room-write-up-ctf-cve-2023-25690-ssrf-ssti-scenario-44743b3baa8a) | hard | CVE-2023-25690 smuggle + SSRF + Jinja SSTI chain
+- [THM WebSockets smuggle 2024](https://blog.devgenius.io/tryhackme-request-smuggling-websockets-write-up-84230734c0f5) | hard | WebSocket 426/101 smuggle + SSRF fake-101 chain
+- [PortSwigger 0.CL 2025](https://herish.me/blog/0cl-request-smuggling/) | hard | 0.CL desync + ERG + User-Agent XSS chain
+- [NTO2024 gunicorn smuggle](https://github.com/NinVoido/nto2024-p7d-writeups) | hard | gunicorn smuggle + SSTI filter-bypass chain
+- [HTB Percetron 2024](https://lemauanhphong.hashnode.dev/htb-cyber-apocalypse-2024-percetron) | hard | HAProxy empty-header + 101 smuggle + gopher/Mongo chain
+- [BlackHat MEA Koko WAF 2025](https://0xmshal.medium.com/koko-waf-web-challenge-writeup-0379f0689408) | hard | WAF PCRE-flood + boolean-blind SQLi chain
+- [CyberConverge Polyglot 2025](https://writeups.cyscomvit.com/writeups/CyberConverge_2025/19-polyglot.html) | hard | WAF o/**\/r polyglot + JSON/SQL dual-parse chain
+- [CTBU CTF SQLi 2025](https://blog.ranfey.online/archives/1669) | hard | WAF /**/ + inline-comment UNION chain
+- [Bypass BT+Cloud WAF 2024](https://cn-sec.com/archives/1903187.html) | hard | double-WAF bypass + error UNION + distinctROW chain
+- [CISCN AI_WAF 2025](https://luo-kaihong.github.io/p/2025-ciscn%E5%88%9D%E8%B5%9B/) | hard | AI-WAF NexaData strip + Thymeleaf reflection RCE chain
+- [BUUCTF SQLi set 2025](https://www.cnblogs.com/Pocon/articles/18666093) | hard | WAF case-bypass + constraint-attack register chain
+- [CAT CTF 2025 web set](https://0xnayel.com/publications/cat-ctf-25-web-writeups) | hard | jku+Host forge + array-join SQLi + Unicode-ligature chain
+- [Martina Possibly-Secure 2025](https://ctf.zeba.dev/2025/martina-ctf/web/possibly-secure-2003-webapp/writeup/) | hard | X-Forwarded-For blind SQLi + SQLite ESCAPE-oracle chain
+- [TPCTF supersqli 2025](https://blog.0xfff.team/posts/tpctf_2025_writeup/) | hard | multipart parser-differential + quine UNION chain
+- [Wordfence bypass 2025](https://emc2hf.github.io/blog/2025/08/17/how-i-successfully-bypassed-wordfence-to-exploit-sqli-in-a-clients-wordpress/) | hard | WAF heuristic-bypass + ASCII/SUBSTRING blind chain
+- [HTB Breaking Bank 2024](https://lucashanson.fr/writeups/breaking_bank/) | hard | jku + open-redirect + OTP includes-bypass chain
+- [HHC Gnome JKU 2025](https://mitchdarrow.github.io/HHC_2025/act2_rogue-gnome-identity-provider_srt.html) | hard | JKU header-inject + admin forge chain
+- [Breaking Bank deltabluejay 2024](https://deltabluejay.me/posts/Breaking-Bank/) | hard | jku prefix-bypass + redirect + OTP-array chain
+- [ASCWG Redirect Havoc 2025](https://medium.com/@mostafakhalifal/ascwg-ctf-2025-qualifications-web-challenge-official-solution-redirect-havoc-705071177a4d) | hard | MinIO bootstrap + JKU/open-redirect forge chain
+- [Breaking Bank yun.ng 2024](https://yun.ng/c/ctf/2024-htb-university-ctf/web/breaking-bank) | hard | JKU redirect + de-bruijn OTP brute chain
+- [JWT puppet-master lab](https://github.com/HiitCat/JWT-SecLabs/blob/main/7-puppet-master/README.md) | hard | arbitrary-jku + kid-match forge chain
+- [Securinets Quals 2024](https://karrab7.com/writeups/Securinets-Quals-CTF-2024-Web-Writeup) | hard | JKU self-host + blind SQLi LOAD_FILE chain
+- [HackTheon admin JWT-XXE 2025](https://pandakewt.net/CTF/Hacktheon/whos_the_admin_now/) | hard | JKU forge + cty-XML XXE chain
+- [NahamCon Flag Jokes JWKS](https://ctftime.org/writeup/21474) | hard | JWKS spoof + kid/n-replace chain
+- [picoCTF Elements CSP 2024](https://www.justinsteven.com/posts/2024/04/02/picoctf-2024-elements-csp-bypass/) | hard | XSS + strict-CSP + DNS/timing exfil chain
+- [corCTF challenge-dev 2024](https://fireshellsecurity.team/corctf2024-challenge-dev/) | hard | stored-XSS + extension declarativeNetRequest CSP-strip chain
+- [CrewCTF Love Notes 2025](https://maajix.github.io/ctfs/crewctf-2025/) | hard | CSP self + meta-refresh to no-CSP note chain
+- [Intigriti 0226 JSONP 2026](https://40rbidd3n.medium.com/intigriti-challenge-0226-stored-xss-csp-bypass-a8d65a55631f) | hard | stored-XSS + JSONP callback CSP-bypass chain
+- [Pentathon Compress-a-thon 2025](https://infosecwriteups.com/compress-a-thon-web-exploitation-pentathon-2025-fea9adf9fa6b) | hard | open-redirect + Angular gadget CSP-bypass + minifier-length chain
+- [CrewCTF Hate Notes 2025](https://threalwinky.github.io/post/crewctf2025/) | hard | style-src CSS @font-face exfil + static-traversal chain
+- [BITSCTF Planner 2025](https://adamzvara.github.io/writeups/writeups/2025/BITSCTF/Get-Into-My-Cute-Small-Planner.html) | hard | DOMPurify Unicode-overflow + redirect-Angular CSP chain
+- [BlackHat MEA cute-csp 2025](https://jia.je/ctf-writeups/2025-09-07-blackhat-mea-ctf-quals-2025/cute-csp.html) | hard | max_input_vars CSP-drop + YAML-NO + lockfile-race chain
+- [Questcon whoiam IMDSv2 2024](https://medium.com/@0xn7s/qu3stc0n-ctf-challenge-web-whoiam-587f488f6079) | hard | SSRF curl-gopher + IMDSv2 PUT-token chain
+- [FAM Cloud IMDSv2 2025](https://exploitnotes.hashnode.dev/fam-ctf-the-cloud-writeup) | hard | instance-data alias + IMDSv2 handshake + presigned-VPC chain
+- [SNI SSRF IMDSv2 2024](https://allbsides.com/talk/VukL-HVBw0c.html) | hard | SNI-proxy SSRF + IMDSv2 header/TTL chain
+- [HTB Fortress AWS](https://lazyhackers.in/article/htb-fortress-aws) | hard | SSRF IMDS + AssumeRole + Secrets-Manager chain
+- [Wiz AWS CTF 2024](https://blog.gaulon.org/2024-11-20-wiz-aws-ctf/) | hard | Jenkins CVE-2024-23897 + IMDS cred + IAM-escalation chain
+- [MetaCTF platform SSRF 2024](https://blog.iainsmart.co.uk/posts/2024-09-24-platform-problems/) | hard | regex-SSRF + metadata-alias + EKS/ECR chain
+- [HackTricks cloud-SSRF](https://github.com/b4rdia/HackTricks/blob/master/pentesting-web/ssrf-server-side-request-forgery/cloud-ssrf.md) | hard | IMDSv1/v2 + ECS/Lambda + GCP/Azure header chain
+- [Copilot Studio SSRF 2024](https://www.tenable.com/blog/ssrfing-the-web-with-the-help-of-copilot-studio) | hard | redirect-301 + multiline-header + IMDS/CosmosDB chain
+- [THM Cheese filter-chain 2024](https://nginx0.github.io/posts/tryhackme-cheese_ctf/) | hard | SQLi + LFI filter-chain RCE chain
+- [THM Moebius filter-chain 2024](https://matty69v.app/posts/tryhackme-moebius/) | hard | HMAC-LFI + filter-chain + LD_PRELOAD/mail bypass chain
+- [PHP filter-chain study 2024](https://n0el4kls.github.io/posts/15-phpfilterchainstudy/) | hard | iconv filter-chain + base64-alphabet chain
+- [Cheese Gabriel 2024](https://gabrielsanchezcyber.com/my-projects/tryhackme-challenge-rooms-and-ctfs/tryhack-me-ctf1/) | hard | LFI b64-read + filter-chain RCE chain
+- [CVE-2024-2961 iconv 2024](https://err0r233.github.io/posts/28510.html) | hard | ISO-2022-CN-EXT heap-overflow + filter-chain RCE chain
+- [HTB Sniper LFI 2025](https://dsec.blog/sniper-htb/) | hard | lang-LFI + session-inject + backtick chain
+- [Websec TryMe filter-chain](https://avishaigonen123.github.io/CTF_writeups/websec.il/TryMe/) | hard | append-.php LFI + filter-chain RCE chain
+- [DASCTF Jersey 2025](https://c1oudfl0w0.github.io/blog/2025/06/21/DASCTF-2025%E4%B8%8A%E5%8D%8A%E5%B9%B4%E8%B5%9B/) | hard | Jersey ;. auth-bypass + H2 JDBC backslash chain
+- [GraphQL brute alias 2024](https://medium.com/infosecmatrix/19-3-lab-bypassing-graphql-brute-force-protections-2024-ae9df787c7c7) | hard | GraphQL alias-batching + rate-limit bypass chain
+- [GraphQL PyUs3r 2025](https://py-us3r.github.io/burp-writeup-graphql/) | hard | GraphQL alias brute + validation-regex chain
+- [BSidesMumbai overflow 2025](https://bluecyber.hashnode.dev/bsides-mumbai-2025-web-operation-overflow) | hard | GraphQL batching 10k-alias + guessNumber chain
+- [SpeedNet GraphQL OTP 2025](https://mohammadibnibrahim.medium.com/hack-the-system-speednet-6ff20a6c06a2) | hard | GraphQL alias OTP 0000-9999 + reset-token chain
+- [GraphQL Juan 2024](https://juangrate.cc/writeups/graphql/bypassing-graphql-brute-force-protections/) | hard | GraphQL alias-mutation + success-scan chain
+- [GraphQL g4nd1v 2025](https://g4nd1v.github.io/portswigger/portswigger-graphql/) | hard | GraphQL batch-query + bruteforce chain
+- [OffensiveWeb GraphQL](https://www.offensiveweb.com/docs/server-side/graphql/) | hard | GraphQL batching + corCTF force PIN chain
+- [NewStar ezpollute 2024](https://newstar.wiki/wp/2024/week4/web/ezpollute.html) | hard | PP constructor.prototype + fork NODE_OPTIONS RCE chain
+- [SECCON pp4 2024](https://qiita.com/claustra01/items/82f1741cab1b17cc79fe) | hard | PP + 4-char JSFuck eval chain
+- [SECCON HackMD pp4 2024](https://hackmd.io/@sqrtrev/rJTrIseQJg) | hard | PP + spawn_sync RCE chain
+- [USENIX Silent Spring PP](https://www.usenix.org/conference/usenixsecurity23/presentation/shcherbakov) | hard | PP universal-gadget + CodeQL RCE chain
+- [UTCTF Merger PP 2024](https://blog.alvinpanerio.com/writeups/merger-node.js-prototype-pollution) | hard | PP absorbCompany + fork/exec RCE chain
+- [HTB Reactor CVE-2025-55182](https://github.com/0xjuarez/Reactor-HackTheBox) | hard | React2Shell CVE-2025-55182 PP + Inspector-WS chain
+- [SECCON Yuu pp4 2024](https://anzuukino.github.io/posts/SECCON2024/) | hard | PP + JSFuck puzzle chain
+- [DUCTF Prisoner PP 2024](https://yun.ng/c/ctf/2024-ductf/web/prisoner-processor) | hard | signed-PP + /proc fd-overwrite chain
+- [YesWeHack race 2025](https://medium.com/@manan_sanghvi/how-race-condition-worth-me-1000-on-yeswehack-f90be39ecb2b) | hard | GraphQL coupon single-packet race chain
+- [BreachVex coupon race](https://breachvex.com/learn/race-coupon-reuse) | hard | single-packet 20x coupon TOCTOU chain
+- [Coupon-Redemption lab](https://github.com/Govamarket/Coupon-Redemption) | hard | Rapid-Fire 10x coupon TOCTOU chain
+- [Blind race FTW 2024](https://bunny0417.medium.com/blind-race-condition-%EF%B8%8F-ftw-3204f0b86594) | hard | redeem-code race + balance-multiply chain
+- [BIPI race APIs 2025](https://bipi.in/blog/race-conditions-in-apis) | hard | HTTP/2 single-packet + idempotency-key chain
+- [GDSC Unravel race 2024](https://medium.com/@erichdryn/unravel-the-race-gdsc-ctf-writeup-09036567f9fb) | hard | sleep-0.5 coupon TOCTOU chain
+- [offensive-claude racer](https://github.com/hypnguyen1209/offensive-claude/blob/main/skills/web-pentest/scripts/race_single_packet.py) | hard | HTTP/2 single-packet + last-byte-sync chain
+- [OAuth open-redirect ATO 2024](https://bountysecurity.ai/blogs/news/oauth-open-redirect-to-account-takeover-pentest-case) | hard | ReturnUrl open-redirect + id_token ATO chain
+- [Authentik CVE-2024-52289](https://securityblog.omegapoint.se/en/writeup-authentik-cve-2024-52289/) | hard | regex redirect_uri + dot-wildcard ATO chain
+- [DOM-XSS OAuth ATO 2024](https://thefrogsec.github.io/2024/04/06/How-we-escalated-a-DOM-XSS-to-a-sophisticated-1-click-Account-Takeover-for-8000-Part-1/) | hard | PKCE + DOM-XSS + code-redirect ATO chain
+- [Open-redirect ATO 2024](https://medium.com/@abdelrahman0x01/how-i-leveraged-open-redirect-to-account-takeover-b0ff213d23dc) | hard | redirect= JS-URI + cookie-theft ATO chain
+- [Corezoid CVE-2024-55017](https://medium.com/@elmiraibrahimlii/corezoid-cve-2024-55017-account-takeover-via-oauth2-redirect-uri-open-redirect-9dd78bc337a3) | hard | redirect_uri allowlist-miss + code-capture ATO chain
+- [PortSwigger OAuth lab](https://portswigger.net/web-security/oauth/lab-oauth-stealing-oauth-access-tokens-via-an-open-redirect) | hard | oauth-callback traversal + post/next open-redirect chain
+- [CybersecCafe OAuth 2024](https://www.cyberseccafe.com/p/web-shell-upload-via-extension-blacklist-056) | hard | redirect_uri + exploit-server code-theft chain
+- [OAuth 0xOverlord 2025](https://0xoverlord.medium.com/oauth-open-redirect-to-ato-one-link-all-platforms-compromised-c4b54fb51396) | hard | returnUrl @-trick + token-exchange ATO chain
+- [WS Lab03 CSWSH 2025](https://4ykh4ncyb3r.github.io/posts/lab03_websockets/) | hard | CSWSH Origin-miss + READY exfil chain
+- [IncludeSecurity CSWSH 2025](https://blog.includesecurity.com/2025/04/cross-site-websocket-hijacking-exploitation-in-2025/) | hard | SameSite-None + Total-Cookie-Protection CSWSH chain
+- [WS hijack bank 2025](https://infosecwriteups.com/day-26-the-websocket-hijack-how-i-eavesdropped-on-every-customer-support-chat-de5ddc819ad2) | hard | predictable authToken + active-session WS hijack chain
+- [Edex-UI CVE-2023-30856](https://medium.com/@aufzayed/from-browser-to-shell-hacking-the-edex-ui-terminal-7dfe757893fe) | hard | localhost-WS + no-Origin RCE chain
+- [Realtime editor WS 2025](https://medium.com/@darivxe/how-i-broke-a-realtime-editors-websocket-authentication-b3cf6dffd380) | hard | cookie-replay + OT-inject WS hijack chain
+- [Pentest-Tools CSWSH 2024](https://pentest-tools.com/blog/cross-site-websocket-hijacking-cswsh) | hard | READY + Collaborator CSWSH chain
+- [LLM CSWSH 2024](https://infosecwriteups.com/cswsh-meets-llm-chatbots-3ab09af5ab6f) | hard | LLM-WS + id_token-None CSWSH chain
+- [MeshCentral CVE-2024-26135](https://www.praetorian.com/blog/meshcentral-cross-site-websocket-hijacking-vulnerability/) | hard | control.ashx CSWSH + token/sessionKey chain
+- [Thymeleaf sandbox 2025](https://borelenzo.github.io/stuff/2025/04/26/bypassing-thymeleaf-3.1.3-sandbox.html) | hard | SSTI-to-SSTI + with-attr RCE chain
+- [Spring Boot SSTI 2025](https://modzero.com/en/blog/spring_boot_ssti/) | hard | Referer double-eval + MethodUtils reflection chain
+- [Thymeleaf 3.1.2 bypass](https://www.ctfiot.com/159451.html) | hard | tabby-gadget + ELProcessor/JShell chain
+- [Thymeleaf zer0peach 2024](https://zer0peach.github.io/2024/01/12/thymeleaf-ssti/) | hard | __..__ preprocess + :: fragment chain
+- [RWCTF ChatterBox 2024](https://cn-sec.com/archives/2444146.html) | hard | pgSQL blind + lo_export + XML-RCE chain
+- [Ruoyi Thymeleaf 4.8.1](https://www.ctfiot.com/283611.html) | hard | containsExpression + literal-sub bypass chain
+- [SSTI challenge 2025](https://www.ctfiot.com/301690.html) | hard | InstanceManager + jackson-SpEL memshell chain
+- [Thymeleaf wh1t3p1g 2024](https://blog.0kami.cn/blog/2024/thymeleaf%20ssti%203.1.2%20%E9%BB%91%E5%90%8D%E5%8D%95%E7%BB%95%E8%BF%87/) | hard | ReflectionUtil + ClassPathXml chain
+- [MidnightFlag JavaNote 2025](https://worty.fr/post/writeups/midnightflag2025/javanote/) | hard | CommonsCollections4 + RMI-FreeMarker SSTI chain
+- [RCTF Jackson 2024](https://su-team.cn/post/rctf-2024-su-wu/) | hard | Jackson POJONode + JNDI/LDAP chain
+- [WMCTF ActiveMQ 2024](https://github.com/wm-team/WMCTF-2024/blob/main/WMCTF_2024_Official_WriteUp_EN.md) | hard | ActiveMQObjectMessage + Shiro-Ini chain
+- [fastjson 1.2.80 2024](https://squirt1e.top/2024/11/08/fastjson-1.2.80-springboot-xin-lian/) | hard | fastjson cache-gadget + docbase-write chain
+- [Aliyun Fury 2025](https://www.ctfiot.com/229693.html) | hard | Fury MapProxy + TemplatesImpl chain
+- [RootMe Java gadget](https://avishaigonen123.github.io/CTF_writeups/root-me/Web-Server/Java-Custom-gadget-deserialization.html) | hard | custom readObject + DebugHelper chain
+- [Shiro JDK17 2025](https://www.ctfiot.com/265431.html) | hard | heapdump-key + CB/C3P0/Postgres chain
+- [N1Rvana Java CTF 2024](https://nlrvana.github.io/java-ctf2/) | hard | POJONode + Proxy + FTL-upload chain

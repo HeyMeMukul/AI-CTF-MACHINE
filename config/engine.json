@@ -1,0 +1,55 @@
+{
+  "event_slug": "demo",
+  "provider": {
+    "kind": "openai",
+    "base_url": "${LLM_BASE_URL}",
+    "api_key_env": "LLM_API_KEY",
+    "model": "${LLM_MODEL}",
+    "temperature": 0.2,
+    "max_tokens": 4096,
+    "timeout_s": 180
+  },
+  "solver": {
+    "max_steps": 40,
+    "max_seconds": 900,
+    "max_tokens": 200000,
+    "max_submits": 5,
+    "max_llm_retries": 2,
+    "compact_after_messages": 80,
+    "attempts": 1
+  },
+  "sandbox": {
+    "kind": "docker",
+    "image": "ctf-kali:latest",
+    "network": "none",
+    "live_network": "bridge",
+    "cpus": 2,
+    "memory": "2g",
+    "pids_limit": 256,
+    "timeout_s": 120
+  },
+  "scheduler": {
+    "workers": 8,
+    "poll_seconds": 30,
+    "max_hours": 12,
+    "max_attempts": 3,
+    "lease_seconds": 1800
+  },
+  "platform": {
+    "kind": "ctfd",
+    "url": "${CTFD_URL}",
+    "token_env": "CTFD_TOKEN",
+    "pace_seconds": 2,
+    "timeout_s": 30
+  },
+  "knowledge": {
+    "include_unverified": false,
+    "include_source_verified": true,
+    "top_k": 2
+  },
+  "paths": {
+    "events": "events",
+    "runs": "runs",
+    "recipes": "recipes"
+  }
+}

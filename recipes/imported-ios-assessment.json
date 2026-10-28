@@ -1,0 +1,43 @@
+{
+ "id": "imported-ios-assessment",
+ "domain": "mobile",
+ "title": "iOS app static + Frida assessment",
+ "signals": [
+  "IPA/app bundle",
+  "Mach-O",
+  "entitlements",
+  "keychain",
+  "jailbreak/pinning check"
+ ],
+ "preconditions": [
+  "jailbroken device or corellium/emulator",
+  "Frida/objection, otool, plutil, class-dump"
+ ],
+ "steps": [
+  "Unzip the IPA; `plutil -p Info.plist`, `codesign -d --entitlements`, `otool -l` for linked libs and encryption (`cryptid`).",
+  "Dump classes with `class-dump`/`jtool2`; search strings for URLs, keys, `flag`, and `NSUserDefaults`/keychain usage.",
+  "Run `frida-ps -U` and `objection -g <bundle> explore`; hook `NSUserDefaults`, keychain, and the success check.",
+  "Bypass jailbreak/pinning only in the challenge app with Frida scripts; confirm the hook fires before trusting the result."
+ ],
+ "falsifier": "The binary is FairPlay-encrypted, no runtime access is available, and static strings show no local secret.",
+ "pitfalls": [
+  "App Store encryption",
+  "arm64e",
+  "Swift name mangling",
+  "jailbreak detection",
+  "pinning",
+  "keychain access groups"
+ ],
+ "sources": [
+  "https://github.com/mukul975/Anthropic-Cybersecurity-Skills/tree/main/skills/performing-ios-app-security-assessment"
+ ],
+ "fixtures": [],
+ "verified_by": "source:Anthropic Cybersecurity Skills",
+ "last_verified": "2026-10-20",
+ "verified": false,
+ "verification": "source",
+ "license": "Apache-2.0",
+ "ctf_domains": [
+  "mobile"
+ ]
+}

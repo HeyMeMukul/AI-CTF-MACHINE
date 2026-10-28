@@ -1,0 +1,13 @@
+{
+ "id": "caesar",
+ "title": "Classic Shift",
+ "category": "crypto",
+ "difficulty": "easy",
+ "points": 150,
+ "description": "A Caesar-shifted message. Recover the plaintext answer (the shift is unknown).",
+ "salt": "ctf-engine-v1",
+ "flag_sha256": "6eb161c5a936e90c4daa0435902e5b7c250685fcfb40cdf461a74d9663409b31",
+ "timeout_s": 60,
+ "network": "none",
+ "sandbox": "local"
+}

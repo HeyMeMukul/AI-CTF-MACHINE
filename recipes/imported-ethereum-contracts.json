@@ -1,0 +1,43 @@
+{
+ "id": "imported-ethereum-contracts",
+ "domain": "blockchain",
+ "title": "EVM smart-contract vulnerability classes",
+ "signals": [
+  "Solidity",
+  "EVM",
+  "win condition",
+  "proxy",
+  "external call",
+  "signature"
+ ],
+ "preconditions": [
+  "contract source or bytecode",
+  "Foundry/anvil or a fork RPC"
+ ],
+ "steps": [
+  "Identify the Solidity version, constructor/initializer, owner/role checks, and the exact win condition.",
+  "Trace every external call and value transfer; check reentrancy and `delegatecall`/proxy storage collisions.",
+  "Check integer rounding/decimals, oracle/price assumptions, signature replay/nonce, and uninitialized implementation.",
+  "Reproduce with a Foundry test or `cast` against anvil; minimize to one transaction path."
+ ],
+ "falsifier": "No external call/value path, correct access control, and the win condition is unreachable from the attacker role.",
+ "pitfalls": [
+  "proxy storage layout",
+  "token decimals",
+  "fork block drift",
+  "gas limits",
+  "test-only backdoors"
+ ],
+ "sources": [
+  "https://github.com/mukul975/Anthropic-Cybersecurity-Skills/tree/main/skills/analyzing-ethereum-smart-contract-vulnerabilities"
+ ],
+ "fixtures": [],
+ "verified_by": "source:Anthropic Cybersecurity Skills",
+ "last_verified": "2026-10-20",
+ "verified": false,
+ "verification": "source",
+ "license": "Apache-2.0",
+ "ctf_domains": [
+  "blockchain"
+ ]
+}

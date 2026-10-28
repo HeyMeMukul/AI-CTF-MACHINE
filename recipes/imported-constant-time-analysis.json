@@ -1,0 +1,40 @@
+{
+ "id": "imported-constant-time-analysis",
+ "domain": "crypto",
+ "title": "Constant-time / timing side-channel review",
+ "signals": [
+  "`memcmp`/`strcmp` on a secret",
+  "division/modulo by secret",
+  "secret-indexed table",
+  "timing oracle in a service"
+ ],
+ "preconditions": [
+  "crypto code or binary available",
+  "a timing oracle can be measured or inferred"
+ ],
+ "steps": [
+  "Compile/disassemble at the target optimization level; look for `div`/`idiv`, secret-dependent jumps, and early-exit compares.",
+  "Identify which flagged operations actually touch key/nonce/plaintext material; ignore public-only arithmetic.",
+  "Replace with constant-time primitives (branchless select, fixed-time compare, precomputed tables) and re-check at more than one opt level/arch.",
+  "If measuring, use dudect/ctgrind with many samples; treat small deltas as noise until statistically stable."
+ ],
+ "falsifier": "All secret-dependent operations are branchless/fixed-time and timing variance stays within noise across runs.",
+ "pitfalls": [
+  "compiler strength-reduces a constant divisor",
+  "cache/JIT effects invisible in asm",
+  "measuring on a noisy host",
+  "optimizing only one architecture"
+ ],
+ "sources": [
+  "https://github.com/trailofbits/skills/tree/main/plugins/constant-time-analysis/skills/constant-time-analysis"
+ ],
+ "fixtures": [],
+ "verified_by": "source:Trail of Bits",
+ "last_verified": "2026-10-20",
+ "verified": false,
+ "verification": "source",
+ "license": "CC-BY-SA-4.0",
+ "ctf_domains": [
+  "crypto"
+ ]
+}

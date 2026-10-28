@@ -1,0 +1,13 @@
+{
+ "id": "xor",
+ "title": "Single-Byte XOR",
+ "category": "crypto",
+ "difficulty": "easy",
+ "points": 200,
+ "description": "A binary file was XORed with a single-byte key. Recover the exact answer.",
+ "salt": "ctf-engine-v1",
+ "flag_sha256": "09e3776563c2b8d742ba506bd5165e722f8bffbb2716e2f85e65e56902bf449e",
+ "timeout_s": 60,
+ "network": "none",
+ "sandbox": "local"
+}

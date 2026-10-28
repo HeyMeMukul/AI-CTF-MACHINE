@@ -1,0 +1,41 @@
+{
+ "id": "imported-differential-review",
+ "domain": "rev",
+ "title": "Differential review / patch diffing",
+ "signals": [
+  "two versions",
+  "patch file",
+  "commit range",
+  "binary diff"
+ ],
+ "preconditions": [
+  "base and patched artifacts",
+  "enough symbols/strings to align"
+ ],
+ "steps": [
+  "For source: `git diff base..head --stat` then read only hunks touching parsing, auth, crypto, allocation, or IPC.",
+  "Trace new/changed dataflow to a sink; check whether a check was added or removed.",
+  "For binaries: `radiff2 -C a b`, `diaphora`/`bindiff`, or Ghidra version tracking; focus on changed functions.",
+  "Write the vulnerability hypothesis as: input \u2192 changed path \u2192 missing check \u2192 impact."
+ ],
+ "falsifier": "The diff is cosmetic/refactor only and no changed path reaches a security-relevant sink.",
+ "pitfalls": [
+  "generated/vendored code",
+  "patch obfuscation",
+  "different build flags",
+  "renamed symbols"
+ ],
+ "sources": [
+  "https://github.com/trailofbits/skills/tree/main/plugins/differential-review/skills/differential-review"
+ ],
+ "fixtures": [],
+ "verified_by": "source:Trail of Bits",
+ "last_verified": "2026-10-20",
+ "verified": false,
+ "verification": "source",
+ "license": "CC-BY-SA-4.0",
+ "ctf_domains": [
+  "rev",
+  "web-ctf"
+ ]
+}

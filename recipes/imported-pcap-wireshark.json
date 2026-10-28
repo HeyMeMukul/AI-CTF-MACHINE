@@ -1,0 +1,41 @@
+{
+ "id": "imported-pcap-wireshark",
+ "domain": "forensics",
+ "title": "PCAP triage with tshark/Wireshark",
+ "signals": [
+  "pcap",
+  "HTTP/TLS/DNS",
+  "file transfer",
+  "credentials",
+  "covert channel"
+ ],
+ "preconditions": [
+  "tshark/Wireshark available"
+ ],
+ "steps": [
+  "`capinfos capture.pcap` and `tshark -r capture.pcap -q -z io,phs` for protocols and volume.",
+  "`tshark -r capture.pcap -Y http -T fields -e http.host -e http.request.uri`; export objects with `--export-objects http,out`.",
+  "Find the relevant conversation with `-z conv,tcp`; follow it with `-z follow,tcp,ascii,<stream>`.",
+  "Check DNS/TLS metadata, credentials in FTP/POP/SMTP, and unusual ports; carve files from streams if needed."
+ ],
+ "falsifier": "The capture is fully encrypted and no keys/metadata are present; protocol analysis alone will not recover plaintext.",
+ "pitfalls": [
+  "TCP reassembly",
+  "truncated captures",
+  "VLAN/encapsulation",
+  "TLS 1.3",
+  "export-object name collisions"
+ ],
+ "sources": [
+  "https://github.com/mukul975/Anthropic-Cybersecurity-Skills/tree/main/skills/analyzing-network-traffic-with-wireshark"
+ ],
+ "fixtures": [],
+ "verified_by": "source:Anthropic Cybersecurity Skills",
+ "last_verified": "2026-10-20",
+ "verified": false,
+ "verification": "source",
+ "license": "Apache-2.0",
+ "ctf_domains": [
+  "forensics"
+ ]
+}

@@ -1,0 +1,43 @@
+{
+ "id": "imported-stego-detection",
+ "domain": "stego",
+ "title": "Steganography detection pipeline",
+ "signals": [
+  "PNG/JPEG/BMP",
+  "WAV/MP3/FLAC",
+  "QR",
+  "suspicious metadata",
+  "file size mismatch"
+ ],
+ "preconditions": [
+  "original bytes preserved",
+  "carrier format identified"
+ ],
+ "steps": [
+  "`file`, `exiftool`, `pngcheck`, `binwalk`, and `strings` first; record dimensions, palette, and appended bytes.",
+  "Try `zsteg -a image.png`, `steghide info/extract`, `stegseek`, and LSB bit-plane views; preserve the original.",
+  "For audio, render a spectrogram (`sox ... spectrogram`), inspect Morse/DTMF, and check metadata/cover art.",
+  "For QR/barcodes, `zbarimg`/`qrtool`; for archives, try the challenge password or a small wordlist."
+ ],
+ "falsifier": "No appended data, no LSB signal, no metadata anomaly, and no audio/QR payload; the carrier may be a decoy.",
+ "pitfalls": [
+  "re-saving destroys LSB",
+  "JPEG recompression",
+  "palette vs truecolor",
+  "password-protected embeds",
+  "audio channel order"
+ ],
+ "sources": [
+  "https://github.com/mukul975/Anthropic-Cybersecurity-Skills/tree/main/skills/performing-steganography-detection"
+ ],
+ "fixtures": [],
+ "verified_by": "source:Anthropic Cybersecurity Skills",
+ "last_verified": "2026-10-20",
+ "verified": false,
+ "verification": "source",
+ "license": "Apache-2.0",
+ "ctf_domains": [
+  "stego",
+  "forensics"
+ ]
+}

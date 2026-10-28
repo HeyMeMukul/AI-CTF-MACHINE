@@ -1,0 +1,42 @@
+{
+ "id": "imported-llm-prompt-injection",
+ "domain": "ai-ml",
+ "title": "LLM prompt-injection testing",
+ "signals": [
+  "chat endpoint",
+  "RAG/document ingestion",
+  "tool-using agent",
+  "system prompt",
+  "guardrail"
+ ],
+ "preconditions": [
+  "challenge model endpoint is the only target",
+  "use synthetic canaries, never real secrets"
+ ],
+ "steps": [
+  "Map what the model can see and do: system prompt, retrieved documents, tools, memory, and output channel.",
+  "Test direct override, role-play, delimiter confusion, and system-prompt leakage with benign probes.",
+  "For RAG/indirect injection, place the payload in a document the model retrieves; use a unique canary string to prove exfil.",
+  "Confirm impact with the smallest reproducible request; do not test unrelated public AI services."
+ ],
+ "falsifier": "The model ignores injected instructions and no canary reaches an output/tool channel.",
+ "pitfalls": [
+  "guardrail false confidence",
+  "prompt leakage vs instruction override",
+  "tool egress",
+  "non-determinism",
+  "scope creep"
+ ],
+ "sources": [
+  "https://github.com/mukul975/Anthropic-Cybersecurity-Skills/tree/main/skills/detecting-indirect-prompt-injection"
+ ],
+ "fixtures": [],
+ "verified_by": "source:Anthropic Cybersecurity Skills",
+ "last_verified": "2026-10-20",
+ "verified": false,
+ "verification": "source",
+ "license": "Apache-2.0",
+ "ctf_domains": [
+  "ai-ml"
+ ]
+}

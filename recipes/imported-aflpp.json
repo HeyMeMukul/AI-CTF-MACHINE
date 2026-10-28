@@ -1,0 +1,41 @@
+{
+ "id": "imported-aflpp",
+ "domain": "pwn",
+ "title": "AFL++ multi-core fuzzing",
+ "signals": [
+  "C/C++ target",
+  "AFL++ installable",
+  "multi-core run",
+  "persistent-mode opportunity"
+ ],
+ "preconditions": [
+  "target builds with afl-clang-fast",
+  "a `@@` file or stdin input contract"
+ ],
+ "steps": [
+  "Build `AFL_USE_ASAN=1 afl-clang-fast -g -O1 harness.c -o harness` (or instrument the target with `afl-clang-lto`).",
+  "Create `in/` seeds; run `afl-fuzz -i in -o out -m none -- ./harness @@` with ASan memory limits disabled.",
+  "Add persistent mode with `__AFL_LOOP(1000)` around the parse call for a large speedup.",
+  "After discovery, run `afl-cmin -i out/default/queue -o cmin -- ./harness @@` and `afl-tmin` on the crash."
+ ],
+ "falsifier": "No paths after 10 minutes or `afl-fuzz` reports the target is not instrumented.",
+ "pitfalls": [
+  "ASan plus a small `-m` limit",
+  "core_pattern unreadable",
+  "CPU governor warnings",
+  "harness re-execs per input instead of forkserver"
+ ],
+ "sources": [
+  "https://github.com/trailofbits/skills/tree/main/plugins/testing-handbook-skills/skills/aflpp"
+ ],
+ "fixtures": [],
+ "verified_by": "source:Trail of Bits",
+ "last_verified": "2026-10-20",
+ "verified": false,
+ "verification": "source",
+ "license": "CC-BY-SA-4.0",
+ "ctf_domains": [
+  "pwn",
+  "rev"
+ ]
+}

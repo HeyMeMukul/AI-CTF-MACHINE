@@ -1,0 +1,41 @@
+{
+ "id": "imported-yara-authoring",
+ "domain": "forensics",
+ "title": "YARA rule authoring for artifacts",
+ "signals": [
+  "memory/disk image",
+  "multiple samples",
+  "need to locate a pattern",
+  "known family marker"
+ ],
+ "preconditions": [
+  "at least one positive sample",
+  "a benign corpus for false-positive testing"
+ ],
+ "steps": [
+  "Extract unique strings and byte sequences with `strings`, `xxd`, and a hex editor; prefer long, specific patterns.",
+  "Write `rule name { meta: ... strings: $a = \"...\" condition: uint16(0) == 0x5a4d and all of them }`.",
+  "Test `yara -r rule.yar samples/` and a benign corpus; tighten until only positives match.",
+  "Scan the memory/disk image with `yara -r -s rule.yar image.raw` and record offsets."
+ ],
+ "falsifier": "The rule matches benign samples or misses the known positive; it is not specific enough.",
+ "pitfalls": [
+  "common strings",
+  "packed/encoded samples",
+  "case sensitivity",
+  "hex wildcards too broad"
+ ],
+ "sources": [
+  "https://github.com/trailofbits/skills/tree/main/plugins/yara-authoring/skills/yara-rule-authoring"
+ ],
+ "fixtures": [],
+ "verified_by": "source:Trail of Bits",
+ "last_verified": "2026-10-20",
+ "verified": false,
+ "verification": "source",
+ "license": "CC-BY-SA-4.0",
+ "ctf_domains": [
+  "forensics",
+  "rev"
+ ]
+}

@@ -1,0 +1,42 @@
+{
+ "id": "imported-api-fuzzing-restler",
+ "domain": "web-ctf",
+ "title": "OpenAPI-driven API fuzzing (RESTler)",
+ "signals": [
+  "OpenAPI/Swagger",
+  "JSON API",
+  "auth token",
+  "many endpoints",
+  "stateful workflow"
+ ],
+ "preconditions": [
+  "spec or endpoint inventory",
+  "authorized challenge target"
+ ],
+ "steps": [
+  "Fetch `/openapi.json`, `/swagger.json`, or `/api-docs`; save the spec and note auth headers.",
+  "`restler compile --api-spec spec.json --output out`; inspect the generated grammar for stateful sequences.",
+  "Run `restler fuzz --grammar out/Compile/grammar.py --host <target> --token <token>` with a small time box.",
+  "Triage 500s/schema violations/auth bypasses; replay the minimal sequence and confirm the flag path."
+ ],
+ "falsifier": "The API is stateless or the spec is incomplete; RESTler finds only expected validation errors.",
+ "pitfalls": [
+  "destructive methods",
+  "rate limits",
+  "stateful prerequisites",
+  "auth refresh",
+  "spec drift"
+ ],
+ "sources": [
+  "https://github.com/mukul975/Anthropic-Cybersecurity-Skills/tree/main/skills/performing-api-fuzzing-with-restler"
+ ],
+ "fixtures": [],
+ "verified_by": "source:Anthropic Cybersecurity Skills",
+ "last_verified": "2026-10-20",
+ "verified": false,
+ "verification": "source",
+ "license": "Apache-2.0",
+ "ctf_domains": [
+  "web-ctf"
+ ]
+}

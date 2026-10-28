@@ -1,0 +1,6 @@
+{
+  "provider": {"kind": "mock"},
+  "sandbox": {"kind": "local"},
+  "platform": {"kind": "local"},
+  "solver": {"attempts": 1}
+}

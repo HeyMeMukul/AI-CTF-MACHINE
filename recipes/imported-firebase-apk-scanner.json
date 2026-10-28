@@ -1,0 +1,43 @@
+{
+ "id": "imported-firebase-apk-scanner",
+ "domain": "mobile",
+ "title": "Android APK / Firebase misconfiguration",
+ "signals": [
+  "APK",
+  "google-services.json",
+  "firebaseio.com/firebaseapp.com",
+  "exported component",
+  "hardcoded API key"
+ ],
+ "preconditions": [
+  "APK available",
+  "authorized CTF target"
+ ],
+ "steps": [
+  "`apktool d app.apk -o out` and `jadx -d out-jadx app.apk`; read `AndroidManifest.xml` for exported components and permissions.",
+  "Grep for `google-services.json`, `firebaseio.com`, `firebaseapp.com`, `storage.googleapis.com`, `AIza`, and custom URLs.",
+  "Check Firebase database/storage rules with a read-only request; do not write unless the challenge explicitly allows it.",
+  "Trace the auth/flag path in jadx; hook runtime checks with Frida/objection only if static analysis is insufficient."
+ ],
+ "falsifier": "No Firebase config, no exported component, and the backend rejects unauthenticated reads.",
+ "pitfalls": [
+  "API key restrictions",
+  "split APKs",
+  "native libs",
+  "SSL pinning",
+  "staging projects"
+ ],
+ "sources": [
+  "https://github.com/trailofbits/skills/tree/main/plugins/firebase-apk-scanner/skills/firebase-apk-scanner"
+ ],
+ "fixtures": [],
+ "verified_by": "source:Trail of Bits",
+ "last_verified": "2026-10-20",
+ "verified": false,
+ "verification": "source",
+ "license": "CC-BY-SA-4.0",
+ "ctf_domains": [
+  "mobile",
+  "web-ctf"
+ ]
+}

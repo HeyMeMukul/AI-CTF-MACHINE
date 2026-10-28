@@ -1,0 +1,44 @@
+{
+ "id": "imported-solana-audit",
+ "domain": "blockchain",
+ "title": "Solana program audit",
+ "signals": [
+  "Anchor/Solana program",
+  "PDA seeds",
+  "CPI",
+  "#[account]",
+  "win condition"
+ ],
+ "preconditions": [
+  "Rust/Anchor toolchain",
+  "local validator or program source"
+ ],
+ "steps": [
+  "`anchor build` / `cargo build-sbf`, then `anchor test`; read every `#[account(...)]` constraint and the win condition.",
+  "Check signer/owner checks: is `authority` a `Signer`? Is the program-owned account validated? Can an attacker pass a fake account?",
+  "Check PDA seeds/bump canonicalization and collisions; pre-create an account to make a victim `init` fail.",
+  "Check CPI: target program id, account metas, signer seeds, and whether arbitrary CPI can be induced.",
+  "Check reinit/close/rent and integer/lamport math; reproduce with a local validator test."
+ ],
+ "falsifier": "All accounts are signer/owner/seed-validated and the win condition is unreachable from the attacker role.",
+ "pitfalls": [
+  "account confusion",
+  "missing signer",
+  "PDA collision",
+  "arbitrary CPI",
+  "reinit",
+  "rent/lamports"
+ ],
+ "sources": [
+  "https://github.com/trailofbits/skills/tree/main/plugins/building-secure-contracts/skills/solana-vulnerability-scanner"
+ ],
+ "fixtures": [],
+ "verified_by": "source:Trail of Bits",
+ "last_verified": "2026-10-20",
+ "verified": false,
+ "verification": "source",
+ "license": "CC-BY-SA-4.0",
+ "ctf_domains": [
+  "blockchain"
+ ]
+}

@@ -1,0 +1,41 @@
+{
+ "id": "imported-harness-writing",
+ "domain": "pwn",
+ "title": "Fuzzing harness design",
+ "signals": [
+  "target API identified",
+  "raw bytes must become structured input",
+  "fuzzer finds nothing"
+ ],
+ "preconditions": [
+  "the target entry point is callable in-process",
+  "state can be reset per input"
+ ],
+ "steps": [
+  "Identify the deepest stable entry point after initialization; call it, not `main`, when possible.",
+  "Map bytes to arguments deterministically; initialize all structs and reset globals per input.",
+  "Cap input size, avoid file/network I/O, and return 0 for invalid inputs instead of aborting.",
+  "Compile with a sanitizer and verify one valid seed reaches the target with a temporary print or breakpoint."
+ ],
+ "falsifier": "The harness crashes on a known-valid seed, returns before the target, or produces non-deterministic behavior.",
+ "pitfalls": [
+  "consuming stdin",
+  "global state across iterations",
+  "abort on parse errors",
+  "unbounded loops",
+  "not resetting the allocator"
+ ],
+ "sources": [
+  "https://github.com/trailofbits/skills/tree/main/plugins/testing-handbook-skills/skills/harness-writing"
+ ],
+ "fixtures": [],
+ "verified_by": "source:Trail of Bits",
+ "last_verified": "2026-10-20",
+ "verified": false,
+ "verification": "source",
+ "license": "CC-BY-SA-4.0",
+ "ctf_domains": [
+  "pwn",
+  "rev"
+ ]
+}

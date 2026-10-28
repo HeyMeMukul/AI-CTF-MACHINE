@@ -1,0 +1,21 @@
+{
+  "id": "misc-base64-chain",
+  "domain": "misc",
+  "title": "Base64 / base32 / hex decode chain",
+  "signals": ["printable base64 alphabet", "= padding", "length multiple of 4", "base32 A-Z2-7", "long hex string"],
+  "preconditions": ["the artifact is text, not a binary format with its own parser"],
+  "steps": [
+    "file the artifact to confirm it is text",
+    "base64 -d (add '=' padding if the decoder rejects it)",
+    "try the URL-safe alphabet (- and _) if standard base64 fails",
+    "xxd -r -p for hex; base32 -d for base32",
+    "repeat while the output is printable and not yet the answer"
+  ],
+  "falsifier": "decoded bytes are non-printable and no answer or next layer appears",
+  "pitfalls": ["URL-safe base64", "missing padding", "multi-layer chains", "double-encoded data"],
+  "sources": ["https://www.rfc-editor.org/rfc/rfc4648"],
+  "fixtures": ["base64"],
+  "verified_by": "engine:selftest",
+  "last_verified": "2026-10-20",
+  "verified": true
+}

@@ -1,0 +1,5 @@
+{
+ "strict_verified": true,
+ "verified_manifests": [],
+ "note": "Mined manifests are unverified (see docs/FRAMEWORK_REVIEW.md F5). Set strict_verified=false or pass --include-unverified to read them."
+}

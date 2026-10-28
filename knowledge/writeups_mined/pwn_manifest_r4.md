@@ -1,0 +1,236 @@
+# pwn Writeups Mined — Manifest r4, browser-swarm batch ( technique-only, no flags )
+
+Mined 2026-10-17 by 8 reader subagents via real browsers (Playwright snapshots; Medium member-only pieces via medium-unlocker.inulute.com -> Freedium mirror; GitHub/team-blog/pro-research sources). Rows filtered (video/bare-profile/placeholder links dropped) and deduped by URL within the batch and against the full corpus. Difficulty as labeled by readers. Format: `- [source/challenge](URL) | difficulty | technique-chain`. No flag values anywhere.
+
+## batch 2026-10-17-browser-swarm (175 rows, 42 easy)
+
+- [picoCTF25/PIE-TIME](https://github.com/Cajac/picoCTF-Writeups/blob/main/picoCTF_2025/Binary_Exploitation/PIE_TIME.md) | easy | leak main via printf, subtract offset, call win directly
+- [picoCTF25/PIE-TIME-2](https://github.com/Cajac/picoCTF-Writeups/blob/main/picoCTF_2025/Binary_Exploitation/PIE_TIME_2.md) | medium | leak main, compute win offset, bypass ASLR ret2win loop
+- [picoCTF25/Echo-Valley](https://github.com/EverythingIsCTF/picoCTF2025_writeup/blob/main/binary_exploiration/Echo_valley-medium/solution.md) | medium | echo stack leak canary+PIE, overflow to ret2win pwntools
+- [picoCTF25/Handoff](https://github.com/EverythingIsCTF/picoCTF2025_writeup/blob/main/binary_exploiration/Handoff-hard/solution.md) | hard | tcache double-free, leak libc, ROP system shell
+- [picoCTF25/hash-only-1](https://github.com/snwau/picoCTF-2025-Writeup/blob/main/Binary-Exploitation/hash-only-1.md) | easy | brute-force leaked hash prefix with python hashlib loop
+- [picoCTF25/hash-only-2](https://github.com/snwau/picoCTF-2025-Writeup/blob/main/Binary-Exploitation/hash-only-2.md) | medium | Python format-string hash oracle, reconstruct flag via collisions
+- [picoCTF24/format-string-0](https://github.com/Cajac/picoCTF-Writeups/blob/main/picoCTF_2024/Binary_Exploitation/format_string_0.md) | easy | printf(buf) leak stack, read flag with %x dump
+- [picoCTF24/format-string-1](https://github.com/Cajac/picoCTF-Writeups/blob/main/picoCTF_2024/Binary_Exploitation/format_string_1.md) | easy | positional %7$s leak secret from stack address
+- [picoCTF24/format-string-2](https://github.com/Cajac/picoCTF-Writeups/blob/main/picoCTF_2024/Binary_Exploitation/format_string_2.md) | medium | fmtstr write GOT via %n, redirect to win
+- [picoCTF24/format-string-3](https://github.com/Cajac/picoCTF-Writeups/blob/main/picoCTF_2024/Binary_Exploitation/format_string_3.md) | medium | multi-write fmtstr payload with pwntools fmtstr_payload
+- [picoCTF24/heap-0](https://github.com/Cajac/picoCTF-Writeups/blob/main/picoCTF_2024/Binary_Exploitation/heap_0.md) | easy | heap overflow strcpy, overwrite win pointer, ret2win
+- [picoCTF24/heap-1](https://github.com/Cajac/picoCTF-Writeups/blob/main/picoCTF_2024/Binary_Exploitation/heap_1.md) | easy | UAF tcache reuse, hijack function pointer
+- [picoCTF24/heap-2](https://github.com/Cajac/picoCTF-Writeups/blob/main/picoCTF_2024/Binary_Exploitation/heap_2.md) | medium | unsafe-unlink via forged chunks, write win address
+- [picoCTF24/buffer-overflow-0](https://github.com/Cajac/picoCTF-Writeups/blob/main/picoCTF_2023/Binary_Exploitation/buffer_overflow_0.md) | easy | stack strcpy overflow, cyclic offset to ret2win
+- [picoCTF24/buffer-overflow-1](https://github.com/Cajac/picoCTF-Writeups/blob/main/picoCTF_2023/Binary_Exploitation/buffer_overflow_1.md) | easy | gets overflow, ROP pop-rdi win arg setup
+- [picoCTF24/ret2win](https://github.com/Cajac/picoCTF-Writeups/blob/main/picoCTF_2023/Binary_Exploitation/ret2win.md) | easy | overflow return to win symbol, pwntools ELF.symbols
+- [picoCTF24/ropfu](https://github.com/Cajac/picoCTF-Writeups/blob/main/picoCTF_2023/Binary_Exploitation/ropfu.md) | medium | ROP chain pop-rdi-ret, ret2libc system binsh
+- [picoCTF23/babygame](https://github.com/D13David/ctf-writeups/tree/main/ductf23/pwn/babygame) | easy | out-of-bounds move writes flag pointer, arbitrary read
+- [TJCTF24/cowsay](https://github.com/TJCSec/tjctf-2024-challenges/tree/main/pwn/cowsay) | easy | command injection via unsanitized cowsay argument
+- [TJCTF24/ring-opening-polymerization](https://github.com/TJCSec/tjctf-2024-challenges/tree/main/pwn/ring-opening-polymerization) | medium | heap UAF ring buffer, tcache poisoning to hook
+- [TJCTF24/baby-heap](https://github.com/TJCSec/tjctf-2024-challenges/tree/main/pwn/baby-heap) | medium | malloc UAF, fastbin dup to malloc_hook system
+- [TJCTF24/sled](https://github.com/TJCSec/tjctf-2024-challenges/tree/main/pwn/sled) | medium | stack overflow sled to shellcode, NX bypass via mprotect
+- [TJCTF24/fullerene](https://github.com/TJCSec/tjctf-2024-challenges/tree/main/pwn/fullerene) | hard | heap fullerene UAF, unsorted-bin leak libc ROP
+- [DownUnder24/vector-overflow](https://github.com/DownUnderCTF/Challenges_2024_Public/tree/main/pwn/vector_overflow) | easy | vector OOB writes DUCTF marker, control vtable pointer
+- [DownUnder24/yawa](https://github.com/DownUnderCTF/Challenges_2024_Public/tree/main/pwn/yawa) | easy | leak canary+libc ret, ROP pop-rdi system binsh
+- [DownUnder24/pac-shell](https://github.com/DownUnderCTF/Challenges_2024_Public/tree/main/pwn/pac_shell) | medium | ARM PAC bypass, controlled write to allowed function list
+- [DownUnder24/sign-in](https://github.com/DownUnderCTF/Challenges_2024_Public/tree/main/pwn/sign_in) | easy | integer overflow sign check, ret2win auth bypass
+- [DownUnder24/sheep-farm](https://github.com/DownUnderCTF/Challenges_2024_Public/tree/main/pwn/sheep_farm_simulator) | medium | heap sheep UAF, tcache poison console hook
+- [DownUnder24/faulty-kernel](https://github.com/DownUnderCTF/Challenges_2024_Public/tree/main/pwn/faulty_kernel) | hard | kernel UAF, ROP commit_creds prepare_kernel_cred escape
+- [DownUnder24/espec-secure-boot](https://github.com/DownUnderCTF/Challenges_2024_Public/tree/main/pwn/espec_secure_boot) | medium | ESP32 secure-boot glitch, dump flash verify bypass
+- [DownUnder24/mirage](https://github.com/DownUnderCTF/Challenges_2024_Public/tree/main/pwn/mirage) | hard | QEMU mirage escape, heap spray virtq overflow
+- [Patriot24/babyxss](https://github.com/MasonCompetitiveCyber/PatriotCTF2024/blob/main/pwn/babyxss) | easy | XSS to steal admin cookie, trigger flag endpoint
+- [Patriot24/dirty-fetch](https://github.com/MasonCompetitiveCyber/PatriotCTF2024/blob/main/pwn/dirty_fetch) | medium | race dirty-pipe style, overwrite flag file mapping
+- [Patriot24/flight-script](https://github.com/MasonCompetitiveCyber/PatriotCTF2024/blob/main/pwn/flight-script) | medium | Python sandbox escape via flight planner eval injection
+- [Patriot24/navigator](https://github.com/ramenhost/ctf-writeups/tree/main/patriot-ctf-2024/pwn/navigator) | easy | stack overflow navigator input, ret2win offset brute
+- [Patriot24/shrimple](https://github.com/ramenhost/ctf-writeups/tree/main/patriot-ctf-2024/pwn/not-so-shrimple-is-it) | easy | shrimp parser overflow, overwrite return to shell
+- [Patriot24/sanitizer](https://github.com/MasonCompetitiveCyber/PatriotCTF2024/blob/main/pwn/sanitize) | medium | sanitizer bypass double-free, leak ASAN base ROP
+- [Patriot24/shellcrunch](https://github.com/MasonCompetitiveCyber/PatriotCTF2024/blob/main/pwn/shellcrunch) | medium | shellcode crunch encoder, seccomp-allowed open-read-write stub
+- [Patriot24/strings-only](https://github.com/MasonCompetitiveCyber/PatriotCTF2024/blob/main/pwn/strings_only) | easy | strings leak hidden win, stack pivot to it
+- [Patriot23/bookshelf](https://github.com/djsteffey/ctf-patriotctf-2023/blob/main/pwn/bookshelf/README.md) | easy | heap bookshelf UAF, edit freed title to win
+- [Patriot23/bookshelf-v2](https://github.com/MasonCompetitiveCyber/PatriotCTF2023/tree/main/pwn/bookshelf-v2) | medium | tcache dup double-free, poison fd to hook
+- [Patriot23/guessing-game](https://github.com/djsteffey/ctf-patriotctf-2023/blob/main/pwn/guessinggame/README.md) | easy | guessing PRNG seed leak, overflow after win count
+- [Patriot23/note-taker](https://github.com/MasonCompetitiveCyber/PatriotCTF2023/tree/main/pwn/note-taker) | medium | note heap overflow, unsorted-bin leak libc system
+- [Patriot23/printshop](https://github.com/djsteffey/ctf-patriotctf-2023/blob/main/pwn/printshop/README.md) | easy | format-string in receipt, GOT overwrite exit to win
+- [Patriot23/softshell](https://github.com/MasonCompetitiveCyber/PatriotCTF2023/tree/main/pwn/softshell) | medium | restricted shell soft filter bypass with $IFS glob
+- [Sekai24/nolibc](https://github.com/project-sekai-ctf/sekaictf-2024/blob/main/pwn/nolibc) | medium | custom malloc free heap overflow, file-write primitive ROP
+- [Sekai24/speedpwn](https://github.com/project-sekai-ctf/sekaictf-2024/blob/main/pwn/speedpwn) | medium | fast stack overflow partial overwrite, libc leak ret2system
+- [Sekai24/life-sim2](https://github.com/project-sekai-ctf/sekaictf-2024/blob/main/pwn/life-simulator-2) | hard | life simulator heap OOB, tcache to RIP control
+- [Sekai25/speedpwn-2](https://github.com/project-sekai-ctf/sekaictf-2025/tree/main/pwn/speedpwn-2) | easy | speed race overflow, canary brute ret2win
+- [Sekai25/learning-OOP](https://github.com/project-sekai-ctf/sekaictf-2025/tree/main/pwn/learning-oop) | medium | C++ vtable hijack via UAF OOP object
+- [Sekai25/outdated](https://github.com/project-sekai-ctf/sekaictf-2025/tree/main/pwn/outdated) | medium | outdated libc ROP, one-gadget after leak
+- [UIUCTF24/syscalls](https://github.com/i-m-down-QQ/writeups/blob/main/2024/UIUCTF%202024.md) | easy | seccomp shellcode openat+mmap+writev dup2 exfiltration
+- [UIUCTF24/syscalls-2](https://blog.beacox.space/posts/uiuctf-2024-wp/) | medium | seccomp-v2 shellcode with openat2 pwritev bypass filter
+- [angstrom24/exam](https://pwn.college/ctf-archive/angstromctf2024/) | easy | negative detrust integer underflow, strcmp trust bypass
+- [angstrom24/og](https://github.com/defund/ctf/tree/master/angstromctf-2024/og) | easy | Go slice OOB, overwrite return via stack scan
+- [angstrom24/heapify](https://hackmd.io/EOzu2qbNRli510fng6nidw) | medium | heapify UAF heapsort swap, tcache poison hook
+- [DUCTF23/babygame](https://github.com/D13David/ctf-writeups/tree/main/ductf23) | easy | game grid overflow, overwrite flag location pointer
+- [NAHAMCON23/pwn](https://github.com/D13David/ctf-writeups/tree/main/nahamcon23) | easy | classic gets overflow, win address overwrite
+- [CSAW23/pwn](https://github.com/D13David/ctf-writeups/tree/main/csaw23) | medium | CSAW double-free tcache, safe-linking bypass leak
+- [Buckeye23/pwn](https://github.com/D13David/ctf-writeups/tree/main/buckeyectf23) | medium | buckeye heap menu UAF, unsorted-bin libc leak
+- [Amateurs23/pwn](https://github.com/D13David/ctf-writeups/tree/main/amateursctf23) | easy | amateurs SROP via sigreturn syscall gadget chain
+- [Sunshine23/pwn](https://github.com/D13David/ctf-writeups/tree/main/sunshinectf23) | easy | sunshine ret2plt puts leak then ret2system
+- [VSCtf23/pwn](https://github.com/D13David/ctf-writeups/tree/main/vsctf23) | medium | VSCTF seccomp shellcode orw with open-read-write
+- [VSCtf24/pwn](https://github.com/D13David/ctf-writeups/tree/main/vsctf24) | medium | VSCTF24 stack pivot ROP, mprotect shellcode exec
+- [LACTF24/sus](https://github.com/ramenhost/ctf-writeups/tree/main/la-ctf-2024/pwn/sus) | easy | sus menu integer overflow, ret2win call
+- [LACTF24/pizza](https://github.com/ramenhost/ctf-writeups/tree/main/la-ctf-2024/pwn/pizza) | easy | pizza topping overflow, slice count to RIP
+- [LACTF24/52-card-monty](https://github.com/ramenhost/ctf-writeups/tree/main/la-ctf-2024/pwn/52-card-monty) | medium | card PRNG predict, heap leak to ROP
+- [LACTF24/aplet123](https://github.com/ramenhost/ctf-writeups/tree/main/la-ctf-2024/pwn/aplet123) | medium | applet sandbox escape via path traversal exec
+- [UMass24/pwn](https://github.com/D13David/ctf-writeups/tree/main/umassctf24) | easy | UMass canary leak via echo, overflow ret2win
+- [Pearl24/pwn](https://github.com/D13David/ctf-writeups/tree/main/pearlctf24) | easy | pearl format-string infoleak then buffer overflow
+- [Wani24/pwn](https://github.com/D13David/ctf-writeups/tree/main/wanictf24) | medium | Wani heap grooming, largebin leak to one-gadget
+- [N0ps24/pwn](https://github.com/D13David/ctf-writeups/tree/main/n0psctf24) | easy | N0ps ret2win with leaked PIE base arithmetic
+- [OSCTF24/pwn](https://github.com/D13David/ctf-writeups/tree/main/osctf24) | easy | OSCTF stack canary brute forked server byte leak
+- [CyberApoc24/pwn](https://github.com/D13David/ctf-writeups/tree/main/cyber_apocalypse24) | medium | HTB initial heap play, tcache to system shell
+- [CyberApoc25/pwn](https://github.com/D13David/ctf-writeups/tree/main/cyber_apocalypse25) | medium | HTB dragon heap UAF, unsorted-bin ROP chain
+- [HackTheBoo23/pwn](https://github.com/D13David/ctf-writeups/tree/main/hacktheboo23) | easy | Boo haunted overflow, ret2win pumpkin function
+- [TryHackMe/pwn101](https://github.com/D13David/ctf-writeups/tree/main/tryhackme/pwn101) | easy | pwn101 classic gets, pattern offset then system
+- [Kalmar24/pwn](https://github.com/kalmarctf/2024-challenges) | medium | Kalmar heap note UAF, libc leak ret2system
+- [Sekai25/vkfs](https://github.com/project-sekai-ctf/sekaictf-2025/tree/main/pwn/vkfs) | hard | vkfs kernel UAF, namespace escape ROP
+- [Sekai25/umiyuri](https://github.com/project-sekai-ctf/sekaictf-2025/tree/main/pwn/umiyuri-kaikeitan) | hard | image payload exploit, display flag.png via renderer
+- [picoCTF23/tic-tac](https://github.com/Cajac/picoCTF-Writeups/tree/main/picoCTF_2023) | easy | tic-tac-toe OOB board write to win flag
+- [picoCTF22/ropfu-v2](https://github.com/Cajac/picoCTF-Writeups/tree/main/picoCTF_2022) | medium | ROP pop-pop-ret, leaked libc ret2system chain
+- [DUCTF24/pwn-college-archive](https://pwn.college/ctf-archive/downunderctf2024/) | medium | college archive rev+pwn, shellcode via mmap RWX
+- [TJCTF24/official-chals](https://github.com/whiteov3rflow/TJCTF2024) | easy | TJCTF community heap-fengshui primer to win call
+- [UIUCTF24/summarize-rev-pwn](https://github.com/rehackxyz/REUN10N/tree/main/CTF-writeups/2024/UiuCTF) | medium | summarize mixed rev+pwn, Python pickle RCE chain
+- [pbctf 2020/Pwnception](https://faraz.faith/2020-12-08-pbctf-pwnception/) | hard | UAF plus seccomp bypass via open-read-write ROP staged shellcode
+- [DragonCTF 2020/BitmapManager](https://faraz.faith/2020-11-23-dragonctf-bitmapmanager/) | hard | heap bitmap UAF tcache poisoning arbitrary write to __free_hook
+- [SECCON 2020/lazynote](https://faraz.faith/2020-10-13-FSOP-lazynote/) | hard | FSOP stdout leak plus _IO_wfile_overflow hijack no hooks
+- [*CTF 2019/oob-v8](https://faraz.faith/2019-12-13-starctf-oob-v8-indepth/) | hard | V8 OOB type confusion WASM RWX shellcode via ArrayBuffer
+- [BackdoorCTF 2019/miscpwn](https://faraz.faith/2019-10-27-backdoorctf-miscpwn/) | hard | mmap chunk near libc realloc_hook overwrite plus one_gadget constraints
+- [BackdoorCTF 2019/babyheap](https://faraz.faith/2019-10-27-backdoorctf-babyheap/) | medium | UAF double free tcache poisoning fastbin dup to malloc_hook
+- [BackdoorCTF 2019/babytcache](https://faraz.faith/2019-10-27-backdoorctf-babytcache/) | medium | tcache dup safe-linking bypass key leak then arbitrary alloc
+- [HITCON 2019/Trick or Treat](https://faraz.faith/2019-10-14-hitconctf-2019-trick-or-treat/) | hard | huge mmap overlap relative OOB write to malloc_hook
+- [HITCON 2019/Lazyhouse](https://faraz.faith/2019-10-24-hitconctf-lazyhouse-balsn-exploit-analysis/) | hard | ROP on heap glibc-2.29 tcache house-of-spirit style
+- [SECCON 2019/sum](https://faraz.faith/2019-10-20-secconctf-2019-sum/) | medium | off-by-one ref_total arbitrary write ROP via sum primitive
+- [SECCON 2019/one](https://faraz.faith/2019-10-20-secconctf-2019-one/) | hard | heap overflow glibc-2.27 unsorted leak tcache to __free_hook
+- [picoCTF 2019/Heap Challs](https://faraz.faith/2019-10-12-picoctf-2019-heap-challs/) | medium | glibc-2.23 fastbin dup unsorted leak consolidated into ROP
+- [BSides Delhi 2019/message_saver](https://faraz.faith/2019-09-30-bsides-delhi-message-saver/) | medium | glibc-2.23 UAF fastbin attack GOT overwrite via show
+- [CSAW 2019/small_boi](https://faraz.faith/2019-09-16-csaw-quals-small-boi/) | medium | stack BOF ret2libc printf leak system binsh SROP alignment
+- [CSAW 2019/baby_boi](https://faraz.faith/2019-09-16-csaw-quals-baby-boi/) | easy | ret2libc printf leak double system call for stack alignment
+- [DefCamp 2019/secret](https://faraz.faith/2019-09-08-defcamp-secret/) | medium | format-string stack leak canary bypass ROP to shell
+- [HackCon 2019/Not So Easy Bof](https://faraz.faith/2019-08-23-hackcon-not-so-easy-b0f/) | medium | fmt canary leak BOF full RELRO PIE one_gadget
+- [HackCon 2019/babypwn](https://faraz.faith/2019-08-26-hackcon-babypwn/) | easy | simple BOF ret2win plus basic ROP chain
+- [HSCTF 2019/Pwn](https://faraz.faith/2019-06-23-hsctf-binary-exploitation-challenges/) | medium | storytime ROP write-what-where printf leak system
+- [ROP Emporium/All](https://faraz.faith/2019-07-19-rop-emporium-challenges/) | medium | ret2win callme write4 badchars fluff pivot chain series
+- [CVE-2025-38352 Part3 Chronomaly](https://faith2dxy.xyz/2026-01-03/cve_2025_38352_analysis_part_3/) | hard | Android kernel race UAF exploit stability via heap grooming
+- [CVE-2025-38352 Part2 Race Window](https://faith2dxy.xyz/2025-12-24/cve_2025_38352_analysis_part_2/) | hard | extending race window userland spray without kernel patch
+- [CVE-2025-38352 Part1 PoC](https://faith2dxy.xyz/2025-12-22/cve_2025_38352_analysis/) | hard | in-the-wild kernel vuln triage KASLR bypass infoleak PoC
+- [/dev/shm Race Extension](https://faith2dxy.xyz/2025-11-28/extending_race_window_fallocate/) | hard | fallocate userfaultfd alternative deterministic race window expansion
+- [VirtualBox Research](https://faith2dxy.xyz/2025-10-07/virtualbox-hacking-experience/) | hard | hypervisor MMIO UAF VRDP infoleak escape to host
+- [kCTF TLS 1-day](https://faith2dxy.xyz/2025-10-02/kCTF-TLS-nday-analysis/) | hard | Linux TLS socket UAF slab grooming modprobe_path trigger
+- [Cronos Gravity Bridge](https://faith2dxy.xyz/2023-12-12/cronos-gravity-bridge-bugs/) | hard | bridge logic auth bypass validator set drain
+- [TISC 2024/Level 12](https://samuzora.com/posts/tisc-2024) | hard | kernel pwn cpython escape mixed heap plus web chain
+- [TISC 2023/Level 8](https://samuzora.com/posts/tisc-2023) | hard | cloud SSRF IAM privesc pipeline RCE multi-stage
+- [GreyCTF 26/grey-dictionary](https://samuzora.com/posts/grey-finals-2026) | hard | CPython dict UAF type confusion arbitrary code exec
+- [NCO 2026/Authored Pwn](https://samuzora.com/posts/nco-2026) | medium | authored heap menu UAF tcache author solution notes
+- [b01lers 2026/Pwn](https://samuzora.com/posts/b01lers-2026) | hard | heap web cross-category UAF plus SSTI RCE
+- [LakeCTF 2024/fsophammer](https://samuzora.com/posts/lakectf-24-fsophammer) | hard | rowhammer bitflip to FSOP _IO_FILE_plus hijack
+- [Sieberrsec 2023/Pwn](https://samuzora.com/posts/sieberrsec-2023) | medium | heap note UAF tcache leak ROP
+- [Cyberthon 2023/Pwn](https://samuzora.com/posts/cyberthon-2023) | medium | fmt BOF canary leak ret2libc
+- [LagNCrash 2024/Pwn](https://samuzora.com/posts/lnc-2024) | medium | stack pivot SROP seccomp orw shellcode
+- [ACSC 2024/Pwn](https://samuzora.com/posts/acsc-2024) | hard | glibc-2.36 safe-linking tcache house-of-mind variant
+- [GreyCTF 2024 Finals/Pwn](https://samuzora.com/posts/grey-finals-2024) | hard | kernel module UAF seq_operations ROP
+- [SekaiCTF 2024/Pwn](https://samuzora.com/posts/sekai-2024) | hard | V8 JIT type confusion WASM rwx Maglev escape
+- [Kernel ROP hxpCTF 2020](https://lkmidas.github.io/posts/20210205-linux-kernel-pwn-part-3/) | hard | FGKASLR ksymtab leak commit_creds KPTI trampoline
+- [Kernel SMEP SMAP KPTI](https://lkmidas.github.io/posts/20210128-linux-kernel-pwn-part-2/) | hard | CR4 overwrite ROP stack pivot signal trampoline ret2user
+- [modprobe_path Technique](https://lkmidas.github.io/posts/20210223-linux-kernel-pwn-modprobe/) | hard | writable modprobe_path trigger userspace script root
+- [TetCTF 2021/cache_v1](https://lkmidas.github.io/posts/20210103-tetctf2021-writeups/) | hard | C++ unordered_map hash collision OOB tcache poison seccomp ROP
+- [Heap Seccomp ROP glibc-2.31](https://lkmidas.github.io/posts/20210103-heap-seccomp-rop/) | hard | tcache poisoning __free_hook ROP open-read-write under seccomp
+- [justCTF 2020/debug_me](https://lkmidas.github.io/posts/20210201-justctf2020-writeups/) | hard | ptrace anti-debug bypass heap UAF ROP
+- [GoogleCTF 2022/eldar](https://lkmidas.github.io/posts/20220704-ggctf2022-writeups/) | hard | sandbox escape eldAR IPC type confusion
+- [GoogleCTF 2021/weather](https://lkmidas.github.io/posts/20210719-ggctf2021-writeups/) | hard | WASM memory corruption fuzzer escape
+- [OMHCTF 2021/Flag Saver GRUB](https://lkmidas.github.io/posts/20210517-omhctf2021-writeups/) | medium | bootloader heap overflow GRUB script bypass
+- [AeroCTF 2021/Dummyper](https://lkmidas.github.io/posts/20210228-aeroctf2021-writeups/) | medium | heap dummy free leak tcache ROP
+- [TetCTF 2020/All Pwn](https://blog.efiens.com/post/midas/tetctf2020-all-pwn-writeups) | medium | OANHBOT BOF plus heap series ret2libc
+- [HITCON 2025/Pwn](https://jia.je/ctf-writeups/2025-08-22-hitconctf2025/) | hard | heap UAF kernel mixed modern glibc exploit chain
+- [SekaiCTF 2025/Pwn](https://jia.je/ctf-writeups/2025-08-16-sekaictf2025/) | hard | browser JIT heap sandbox escape chain
+- [corCTF 2025/Pwn](https://jia.je/ctf-writeups/2025-08-30-corctf2025/) | hard | heap grooming largebin attack IO_list_all hijack
+- [ASIS 2025 Quals/Pwn](https://jia.je/ctf-writeups/2025-09-06-asis-ctf-quals-2025/) | hard | UAF tcache stock kernel ROP modprobe
+- [Hack.lu 2025/Pwn](https://jia.je/ctf-writeups/2025-10-18-hacklu-ctf-2025/) | hard | LOKALTAL Windows kernel pool overflow token steal
+- [SECCON 2025 Quals/Pwn](https://jia.je/ctf-writeups/2025-12-13-seccon-ctf-2025-quals/) | hard | lazynote FSOP revival glibc-2.39 IO attack
+- [TSGCTF 2025/Pwn](https://jia.je/ctf-writeups/2025-12-20-tsg-ctf-2025/) | hard | heap off-by-null largebin unlink libc leak
+- [Codegate 2026 Prelim/Pwn](https://jia.je/ctf-writeups/2026-03-28-codegate-2026-preliminary/) | hard | hypervisor escape VM escape virtio overflow
+- [Codegate 2026 Finals/Pwn](https://jia.je/ctf-writeups/2026-07-23-codegate-2026-finals/) | hard | final hypervisor plus kernel chain full compromise
+- [jailCTF 2026/Pwn](https://jia.je/ctf-writeups/2026-07-25-jailctf-2026/) | medium | pyjail escape audit hook bypass opcode abuse
+- [scriptCTF 2026/Pwn](https://jia.je/ctf-writeups/2026-08-08-scriptctf-2026/) | medium | BOF heap quick win ROP srop series
+- [HITCON 2022/Pwn](https://jia.je/ctf-writeups/2022-11-25-hitconctf2022/) | hard | wtfcat heap tcache kernel mixed chain
+- [GlacierCTF 2022/Pwn](https://jia.je/ctf-writeups/2022-11-26-glacierctf2022/) | medium | heap note UAF fmt leak
+- [picoCTF HFT Intended mmap](https://eth007.me/blog/posts/high-frequency-troubles/) | hard | mmap tcache_perthread_struct TLS partial overwrite leak
+- [Smallkirby kernel-rop](https://blog.smallkirby.com/posts/kernel-rop/) | hard | hxp kernel-rop FGKASLR ROP KPTI bypass root
+- [Smallkirby nutty SLOB](https://blog.smallkirby.com/posts/nutty/) | hard | SLOB race no-userfaultfd BPF cred overwrite
+- [Smallkirby SharedHouse ASIS](https://blog.smallkirby.com/posts/sharedhouse/) | hard | shared memory UAF kernel cred rewrite
+- [Zellic V8CTF CVE-2025-2135](https://www.zellic.io/blog/pwning-v8ctf) | hard | TurboFan type confusion OOB WASM RCE fuzzer found
+- [Zellic sBPF JIT SVM](https://www.zellic.io/blog/solana-sbpf) | hard | sBPF JIT memory leak verifier bypass Solana root
+- [Neodyme Printer RCE Pwn2Own](https://neodyme.io/en/blog/pwn2own-2022_printer_rce) | hard | Netgear RAX30 router pivot HP printer LCD RCE chain
+- [Neodyme Lenovo DCC Trusted IPC](https://neodyme.io/en/blog/lenovo-dcc-part-2) | hard | trusted IPC firmware update signature bypass persistence
+- [Neodyme Widevine L3 DFA](https://neodyme.io/en/blog/widevine_l3) | hard | white-box AES DFA T-table Qiling emulation keybox extract
+- [K3RN3LCTF Easy Kernel](https://ctftime.org/writeup/31392) | medium | vuln.ko stack overflow KASLR leak ret2usr modprobe
+- [UIUCTF 2025/Baby Kernel](https://github.com/LunaMarginis/CTF-Kernel-Exploit-Dojo/blob/main/2025/UIUCTF_2025/Pwn_Baby_Kernel/writeup/writeup02.c) | medium | kmalloc-32 UAF seq_operations hijack tty ioctl modprobe
+- [TsukuCTF 2025/easy_kernel](https://github.com/Aureum01/kernel-exploit-dojo/blob/main/2025/TsukuCTF_2025/Pwn_easy_kernel/exploit/README.md) | medium | misc device UAF kmalloc-32 seq_operations start hijack
+- [corCTF 2025/zenerational-aura](https://github.com/sirilcodes/kernel-exploit-dojo/tree/main/2025/corCTF_2025/Pwn_zenerational-aura/exploit) | hard | arbitrary kernel call primitive corctf_crash ROP to commit_creds
+- [Hack.lu 2025/LOKALTAL](https://popax21.dev/blog/2025/11/02/hacklu-lokaltal-writeup.html) | hard | Windows kernel pool UAF token privilege escalation
+- [UofTCTF 2026/uprobe](https://github.com/mito753/Kernel-Exploit-Dojo/tree/main/2026/UofTCTF_2026/Pwn_uprobe/writeup) | hard | uprobe tracer UAF ring buffer overwrite creds
+- [R3CTF 2026/pewpew](https://github.com/hax1ng/r3ctf-2026-writeups/blob/master/pwn/pewpew.md) | hard | heap race UAF IO hijack modern glibc
+- [hxpCTF 2025/Pwn](https://github.com/hax1ng/hxpctf2025) | hard | Quals heap kernel browser mixed elite chain
+- [ASIS Final license angr](https://docs.angr.io/en/v9.2.111/examples.html) | medium | crackme license filesystem symbolic summary find-avoid
+- [Smallkirby pwn collection](https://github.com/smallkirby/pwn-writeups) | hard | userland plus kernelland clone-work ROP modprobe series
+- [david942j MultiHeap SecureKarte](https://github.com/david942j/ctf-writeups) | hard | MultiHeap UAF TWCTF RNote V8 mixed heap ROP
+- [VishwaCTF 2024/CRACK ME patch](https://ctftime.org/writeup/39512) | medium | patch vault temp24 error Ghidra interest Hidden_p compare
+- [TJCTF 2024/guess-what Ghidra](https://ctftime.org/writeup/39147) | easy | Ghidra strcmp fgets scanf equation bypass flag read
+- [angr crackme ELF keygen](https://github.com/reversinghub/crackme-angr-elf) | medium | symbolic stdin find-avoid claripy printable constraints keygen
+- [NDX angr crackme template](https://github.com/NDXDeveloper/reverse-engineering-gcc-gpp-training/blob/main/18-symbolic-execution/03-solving-crackme-angr.md) | medium | six-step load-symbolize-constrain explore extract verify template
+- [algoatson angr solver](https://algoatson.github.io/p/angr-symbolic-crackme) | medium | arithmetic rounds find-avoid posix dumps key recovery
+- [Jorian angr Cave](https://book.jorianwoltjer.com/reverse-engineering/angr-solver) | medium | if-chain goal after-checks automatic input discovery bypass
+- [Smallkirby checklist technique](https://github.com/smallkirby/kernelpwn) | hard | checklist start-kernel-pwning config structs reference QEMU setup
+
+## batch 2026-10-17-browser-swarm (210 rows, 52 easy)
+
+- [DUCTF24/sign-in](https://github.com/DownUnderCTF/Challenges_2024_Public/tree/main/pwn/sign-in) | easy | format-string leak stack then overwrite uid check return to win shell
+- [DUCTF24/pac-shell](https://github.com/DownUnderCTF/Challenges_2024_Public/tree/main/pwn/pac-shell) | easy | bypass PAC pointer auth via signing gadget then system shell
+- [DUCTF24/sheep-farm-simulator](https://github.com/DownUnderCTF/Challenges_2024_Public/tree/main/pwn/sheep-farm-simulator) | medium | heap UAF on sheep struct, tcache poison, libc leak to system
+- [DUCTF24/faulty-kernel](https://github.com/DownUnderCTF/Challenges_2024_Public/tree/main/pwn/faulty-kernel) | hard | kernel race on fault handler, ret2usr, commit_creds modprobe escape
+- [DUCTF24/especially-secure-boot](https://github.com/DownUnderCTF/Challenges_2024_Public/tree/main/pwn/especially-secure-boot) | medium | ESP32 secure-boot glitch, UART dump, sign custom bootloader
+- [DUCTF24/vector-overflow](https://github.com/DownUnderCTF/Challenges_2024_Public/tree/main/beginner/vector-overflow) | easy | stack buffer overflow in vector code, ret2win with ROP
+- [DUCTF24/yawa](https://github.com/DownUnderCTF/Challenges_2024_Public/tree/main/beginner/yawa) | easy | yet-another-writeup-aux ret2libc via GOT leak puts system
+- [DUCTF23/safe-calculator](https://github.com/DownUnderCTF/Challenges_2023_Public/tree/main/pwn/safe-calculator) | easy | integer wrap bypass check, stack overflow calculator to shell
+- [DUCTF23/the-great-escape](https://github.com/DownUnderCTF/Challenges_2023_Public/tree/main/pwn/the-great-escape) | easy | seccomp sandbox escape via open-read-write allowed syscalls only
+- [DUCTF23/roppenheimer](https://github.com/DownUnderCTF/Challenges_2023_Public/tree/main/pwn/roppenheimer) | medium | ROP chain with ret2csu, leak libc, one-gadget constraints
+- [DUCTF23/binary-mail](https://github.com/DownUnderCTF/Challenges_2023_Public/tree/main/pwn/binary-mail) | medium | heap mail UAF double-free, fastbin attack malloc_hook
+- [DUCTF23/shifty-mem](https://github.com/DownUnderCTF/Challenges_2023_Public/tree/main/pwn/shifty-mem) | medium | memmove overlap bug, arbitrary read-write, GOT overwrite
+- [DUCTF23/vroom-vroom](https://github.com/DownUnderCTF/Challenges_2023_Public/tree/main/pwn/vroom-vroom) | hard | race in vroom driver, kernel UAF, slab spray modprobe
+- [DUCTF23/baby-crm](https://github.com/DownUnderCTF/Challenges_2023_Public/tree/main/pwn/baby-crm) | hard | type confusion CRM, vtable hijack, fake object ROP
+- [DUCTF23/return-to-monke](https://github.com/DownUnderCTF/Challenges_2023_Public/tree/main/pwn/return-to-monke) | hard | SROP sigreturn frame forgery, mprotect shellcode exec
+- [Sekai24/nolibc](https://github.com/project-sekai-ctf/sekaictf-2024/tree/main/pwn/nolibc) | medium | no-libc static ROP, syscall gadgets, read-write-execve chain
+- [Sekai24/speedpwn](https://github.com/project-sekai-ctf/sekaictf-2024/tree/main/pwn/speedpwn) | medium | fast heap pwn, tcache stash unlink under time limit
+- [Sekai24/life-simulator-2](https://github.com/project-sekai-ctf/sekaictf-2024/tree/main/pwn/life-simulator-2) | hard | game-of-life OOB life grid, heap overflow life structs
+- [Sekai24/process-flipper](https://github.com/project-sekai-ctf/sekaictf-2024/tree/main/pwn/process-flipper) | hard | ptrace process flip, register injection, seccomp bypass fork
+- [Sekai24/context-reducer](https://github.com/project-sekai-ctf/sekaictf-2024/tree/main/pwn/context-reducer) | hard | kernel context reduce bug, KASLR leak, cred overwrite
+- [Patriot24/babyxss](https://github.com/MasonCompetitiveCyber/PatriotCTF2024/tree/main/pwn/babyxss) | easy | XSS-to-pwn flag reader, CSP bypass basic script
+- [Patriot24/dirty-fetch](https://github.com/MasonCompetitiveCyber/PatriotCTF2024/tree/main/pwn/dirty_fetch) | medium | race fetch dirty-pipe splice, overwrite flag file
+- [Patriot24/flight-script](https://github.com/MasonCompetitiveCyber/PatriotCTF2024/tree/main/pwn/flight-script) | medium | script engine stack pivot, ROP to execve
+- [Patriot24/navigator](https://github.com/MasonCompetitiveCyber/PatriotCTF2024/tree/main/pwn/navigator) | medium | OOB navigator index, heap leak then TC flag
+- [Patriot24/shellcrunch](https://github.com/MasonCompetitiveCyber/PatriotCTF2024/tree/main/pwn/shellcrunch) | hard | shellcode cruncher encoder, badchar avoid exec shell
+- [Patriot24/strings-only](https://github.com/MasonCompetitiveCyber/PatriotCTF2024/tree/main/pwn/strings_only) | medium | strings-only leak, ret2plt puts leak system binsh
+- [Patriot23/bookshelf](https://github.com/MasonCompetitiveCyber/PatriotCTF2023/tree/main/pwn/bookshelf) | easy | bookshelf UAF index, leak then free-hook win
+- [Patriot23/note-taker](https://github.com/MasonCompetitiveCyber/PatriotCTF2023/tree/main/pwn/note_taker) | medium | note heap overflow size, unsorted-bin libc leak
+- [HKCERT24/shellcode-runner-3](https://github.com/hkcert-ctf/CTF-Challenges/tree/main/CTF-2024/49-shellcode-runner-3) | medium | seccomp shellcode runner, allowed-gadget open-read-write chain
+- [HKCERT24/flag-hasher](https://github.com/hkcert-ctf/CTF-Challenges/tree/main/CTF-2024/55-flag-hasher) | easy | hash compare overflow, length-extension bypass flag check
+- [HKCERT24/ISH-1](https://github.com/hkcert-ctf/CTF-Challenges/tree/main/CTF-2024/58a-ish-1) | medium | integer-signed heap mishandle, negative index arbitrary write
+- [HKCERT24/ISH-2](https://github.com/hkcert-ctf/CTF-Challenges/tree/main/CTF-2024/58b-ish-2) | hard | heap grooming ISH v2, safe-link bypass tcache poison
+- [justCTF25/shellcode-printer](https://github.com/justcatthefish/justctf-2025/tree/main/challenges) | easy | printer shellcode exec, filter bypass alphanumeric shellcode
+- [corCTF25/corphone](https://github.com/Crusaders-of-Rust/corctf-2025-public-challenge-repo/tree/master/pwn/corphone) | medium | phone heap emulation bug, baseband overflow RCE
+- [corCTF25/frogcompute](https://github.com/Crusaders-of-Rust/corctf-2025-public-challenge-repo/tree/master/pwn/frogcompute) | medium | compute shader OOB, GPU memory corrupt host escape
+
+## batch 2026-10-17-browser-swarm (224 rows, 60 easy)
+
+- [p0wn3d-wolv2025](https://cyb3r-bo1.github.io/posts/wolvctf_2025_writeup/#p0wn3d---pwn) | easy | Stack buffer 32 overflow 0x42424242 ret overwrite win call
+- [p0wn3d-2-wolv2025](https://cyb3r-bo1.github.io/posts/wolvctf_2025_writeup/#p0wn3d_2---pwn) | easy | Stack layout two args deadbeef badc0de overflow control flow
+- [p0wn3d-3-wolv2025](https://cyb3r-bo1.github.io/posts/wolvctf_2025_writeup/#p0wn3d_3---pwn) | easy | ret2win no canary PIE get_flag 40 offset p64 jump
+- [heap-havoc-pico2026](https://cyb3r-bo1.github.io/posts/picoCTF_2026_writeup/#heap-havoc) | medium | Heap 8-byte strcpy overflow struct callback bss winner pointer preserve
+- [offset-cycle-pico2026](https://cyb3r-bo1.github.io/posts/picoCTF_2026_writeup/#offset-cycle) | easy | gets non-PIE timed generator 67 offset win ret overwrite
+- [offset-cycleV2-pico2026](https://cyb3r-bo1.github.io/posts/picoCTF_2026_writeup/#offset-cyclev2) | easy | Predictable canary pico flag prefix padding win return payload
+- [hash-only-1-pico2025](https://0xbenzo.dev/writeups/picoctf/hash-only-1/) | easy | SUID flaghasher bare md5sum PATH hijack dot prepend cat root
+- [hash-only-1-snwa](https://github.com/snwau/picoCTF-2025-Writeup/blob/main/Binary%20Exploitation/hash-only-1/hash-only-1.md) | easy | Replace usr-bin md5sum cat writable binary flag dump
+- [hash-only-2-pico2025](http://avengerinator.blogspot.com/2025/03/picoctf-hash-only-2-write-up.html) | medium | rbash readonly PATH env bypass symlink cat md5sum hijack
+- [hash-only-2-snwa](https://github.com/snwau/picoCTF-2025-Writeup/blob/main/Binary%20Exploitation/hash-only-2/hash-only-2.md) | medium | usr-local-bin writable symlink which precedence flaghasher dump
+- [handoff-pico2025](https://dvvyn.medium.com/picoctf-2025-writeup-384d7c0f4ea5#handoff) | medium | NX disabled ret2shellcode feedback buffer call rax nop sled
+- [Temporal-bluehens2026](https://medium.com/@Veen0o21/temporal-bluehens-ctf-2026-ed45fac32687) | medium | Intra-struct overflow func_ptr system leak libc dispatch note command
+- [Mind-The-Gap-bits2026](https://cyb3r-bo1.github.io/posts/BITSCTF_2026_writeup/#mind-the-gap) | hard | Stack pivot BSS partial GOT syscall SROP execve SigreturnFrame chain
+- [Knight-Academy-knight2026](https://cyb3r-bo1.github.io/posts/knightctf-2026_writeup/#knight-squad-academy) | easy | 240-into-112 overflow ret align RDI magic win ROP jump

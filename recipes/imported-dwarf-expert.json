@@ -1,0 +1,39 @@
+{
+ "id": "imported-dwarf-expert",
+ "domain": "rev",
+ "title": "DWARF debug-info reconstruction",
+ "signals": [
+  ".debug_info present",
+  "stripped but split debug file",
+  "unknown struct layout",
+  "need line/address mapping"
+ ],
+ "preconditions": [
+  "ELF/Mach-O with DWARF or a matching debug file"
+ ],
+ "steps": [
+  "`readelf --debug-dump=info` and `readelf --debug-dump=decodedline` (or `dwarfdump`) to map addresses to source lines.",
+  "Reconstruct structs/enums from `DW_TAG_structure_type`/`DW_TAG_member` and `DW_AT_data_member_location`.",
+  "Use `gdb` `ptype`, `info line *ADDR`, and `pahole` to confirm layouts and padding.",
+  "Feed the recovered types back into Ghidra/rizin before writing an exploit or parser."
+ ],
+ "falsifier": "No `.debug_*` sections and no matching debug file; DWARF cannot help.",
+ "pitfalls": [
+  "optimized-out variables",
+  "DWARF version mismatch",
+  "split debug links",
+  "compiler-generated types"
+ ],
+ "sources": [
+  "https://github.com/trailofbits/skills/tree/main/plugins/dwarf-expert/skills/dwarf-expert"
+ ],
+ "fixtures": [],
+ "verified_by": "source:Trail of Bits",
+ "last_verified": "2026-10-20",
+ "verified": false,
+ "verification": "source",
+ "license": "CC-BY-SA-4.0",
+ "ctf_domains": [
+  "rev"
+ ]
+}

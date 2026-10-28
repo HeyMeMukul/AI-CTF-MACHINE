@@ -1,0 +1,714 @@
+# Stego Writeups Mined — Round 2 (technique-only)
+
+Method: web-search plus webfetch harvest of 2024-2026 hard steganography writeups across video-container deep cases (H.264 SEI, subtitle tracks), audio below-spectrogram layers (phase coding, echo hiding, spread-spectrum), document-format deep cases (OOXML revisions, PDF incremental updates, font subsetting), ML-assisted steganalysis counter-cases, blockchain memo carriers, DNS-telemetry covert channels, printer-dot MIC forensics, and 3D-model carriers. Every URL returned by search or fetched; technique chains only — no flag or payload values anywhere. Difficulty: hard = rating>=4.0, or >=3 technique families, or finals-tier event, or hard-named task. Overlap vs R1 manifest (knowledge/writeups_mined/stego_manifest.md): 0% (all URLs absent from R1).
+
+
+## Video-container deep cases
+
+- [IrisCTF 2024 / Not Just Media](https://ctftime.org/writeup/38392) | hard | MKV subtitle track + embedded FakeFont rendering; mkvextract attachments+tracks, font swap reveals flag
+- [IrisCTF 2024 / Not Just Media (github)](https://github.com/4n86rakam1/writeup/blob/main/IrisCTF_2024/Forensics/Not_Just_Media/index.md) | hard | mkvmerge -i, mkvextract attachments 2:fakefont, FontForge metrics window render
+- [IrisCTF 2024 / Not Just Media (brain)](https://brain.rgolab.com/ctfnot.es/2024/IrisCTF/not-just-media.html) | hard | binwalk offsets, dd carve MySQL MYISAM, mcrypt 3-WAY CBC, mkvextract
+- [niteCTF 2024 / BuckSpeak](https://kerszl.github.io/hacking/walkthrough/ctf/ctf-nitectf-BuckSpeak/) | hard | bucking.wav music→Buck cipher, AnthemScore sheet, MKV font extraction, Lazarus render
+- [BUAACTF 2024 / H.264 SEI](https://joooook.github.io/2024/04/29/H264%E7%BC%96%E7%A0%81%E5%88%86%E6%9E%90%E5%8F%8A%E9%9A%90%E5%86%99%E5%AE%9E%E8%B7%B5/) | hard | H.264 NALU slice_type corruption, SEI user_data payload, h26x_extractor parse, ffmpeg -vcodec copy rewrap
+- [Cooked CTF 2025 / Nightmare](https://medium.com/@abraria747/cooked-ctf-2025-2f96e549a90f) | hard | MP4 dual video stream, -map 0:v:1 extract, subtitle base64 chunks assemble
+- [CyberConverge 2025 / Your Eyes](https://github.com/cyscomvit/writeups/blob/main/website/writeups/CyberConverge_2025/24-your-eyes.md) | hard | MP4 subtitle track at 1:28 timestamp
+- [Well Hidden Message / Insignificant Blue](https://ctf.thaysan.com/ctf-and-writeups/2025-or-hackday/steganographie/well-hidden-message-insignificant-blue) | hard | AVI video blue-channel LSB first 8 rows per frame, cv2 capture, PK\x05\x06 end detect
+- [Hacked in Translation](https://doi.org/10.48550/arxiv.2408.00502) | hard | subtitle format attack surface, VLC subtitle.c CVE-2017-8310, AFL fuzzing ParseJSS
+- [XYCTF 2025 / MKV AE](https://2hi5hu.cn/archives/xyctf2025) | hard | MKV subtitle hex→RIFX AE project, null-stripped flag search, PNG dual IHDR reorder, RGB 520 LSB
+- [mkvmerge/mkvextract](https://mkvtoolnix.download/) | hard | Matroska subtitle+attachment extraction
+- [mkvinfo](https://mkvtoolnix.download/doc/mkvinfo.html) | hard | MKV track/attachment listing
+- [h26x_extractor](https://github.com/aizvorski/h26x-extractor) | hard | H.264 NALU parser
+
+## Audio below-spectrogram layers
+
+- [THCon 2025 / Foreign Interference](https://blog.ar-lacroix.fr/posts/2025/04/thcon-ctf-2025-foreign-interference-steganography-write-up/) | hard | audio split 0-1kHz/1kHz+, low-pass filter, pitch shift 1-2 octaves, steghide+keepass chain
+- [ShunyaCTF 2024 / video audio spec](https://warlocksmurf.github.io/posts/shunyactf2024/) | hard | MP4 extract audio, spectrogram flag, metadata hex Google Drive link, pdftohtml layers, stegsnow
+- [OHxY CTF 2024 / stega](https://blog.ar-lacroix.fr/posts/2024/10/ohxy-ctf-2024-writeup-stega-web/) | hard | OpenStego LSB, zsteg b1 hit, audio spectrum anomaly, steghide WAV
+- [SOC CTF 2024 / inSpector Quack](https://breydensummers.github.io/blog/SOC-CTF-2024-Steganography-Writeup/) | hard | spectrogram text, WAV amplitude binary encoding, LLM-generated python decode
+- [SOC CTF 2024 / BEEP BEEP](https://breydensummers.github.io/blog/SOC-CTF-2024-Steganography-Writeup/) | hard | WAV on/off amplitude 1-second windows, threshold 32767/2, binary→ASCII
+- [Intigriti 1337UP 2024 / CTF Mind Tricks](https://cryptocat.me/blog/ctf/2024/intigriti/forensics/ctf_mind_tricks/) | hard | PCAP SMB audio extraction, 18-21kHz ultrasonic spectrogram flag
+- [hekerCTF 2024 / stego+covert](https://1-day.medium.com/hekerctf-2024-walkthrough-a81cc256937a) | hard | steghide rockyou, pcap ICMP covert caesar-4, telegram DTMF 1729² password
+- [Nexus CTF 2024 / Echos Parody](https://warlocksmurf.github.io/posts/nexusctf2024/) | hard | PCAP ICMP echo payload extraction, ID filter, encoded string
+- [Nexus CTF 2024 / Arecibo](https://warlocksmurf.github.io/posts/nexusctf2024/) | hard | WAV SSTV space signal, FS-related, SSTV decode flag
+- [Nexus CTF 2024 / Zero Hidden Knight](https://warlocksmurf.github.io/posts/nexusctf2024/) | hard | ZWSP decode→Drive→BMP, DeepSound password crack
+- [Nexus CTF 2024 / Deep Sound](https://warlocksmurf.github.io/posts/nexusctf2024/) | hard | audio steganography DeepSound
+- [AASTU CSC CTF / Echoes of Silence 02](https://0xfke.github.io/posts/AASTU-CSC-CTF-Echoes-of-Silence/) | hard | audio spectrogram text, vertical+horizontal flip
+- [2D Spectrogram LTDH24](https://lnwatson.co.uk/posts/2d-spectrogram/) | hard | plt.specgram audio flag, friture 2D realtime, ZachNagengast generator
+- [Anomaly Pwnedcr2024](https://dev.to/casderoso/anomalia-ctf-pwnedcr0x7-4o4l) | hard | audio spectrogram anomaly 30-34s, dcode.fr spectrum, decoy message
+- [CatTheQuest 2024 / Deep Sound Deep Vision](https://medium.com/@haru06/catthequest-ctf-2024-writeups-2981562f9831) | hard | spectrogram text→DeepSound password→decimals→ASCII
+- [Audio Stego ekira](https://ekira.medium.com/audio-steganography-ctf-writeup-f9703923abed) | hard | morse→DeepSound password→hstego image extract chain
+- [EHAX 2026 / custom DTMF](https://github.com/ljagiello/ctf-skills/blob/main/ctf-forensics/stego-advanced.md) | hard | non-standard DTMF frequencies, custom grid decode
+- [EHAX 2026 / multi-track audio](https://github.com/ljagiello/ctf-skills/blob/main/ctf-forensics/stego-advanced.md) | hard | differential audio subtraction, phase-invert null
+- [BaltCTF 2013 / audio QR](https://github.com/ljagiello/ctf-skills/blob/main/ctf-forensics/stego-advanced.md) | hard | spectrogram hidden QR code
+- [BackdoorCTF 2013 / waveform binary](https://github.com/ljagiello/ctf-skills/blob/main/ctf-forensics/stego-advanced.md) | hard | audio waveform binary encoding
+- [INShAck 2018 / DeepSound](https://github.com/ljagiello/ctf-skills/blob/main/ctf-forensics/stego-advanced.md) | hard | DeepSound password cracking
+- [BYPASS CTF 2025 / musical notes](https://github.com/ljagiello/ctf-skills/blob/main/ctf-forensics/stego-advanced.md) | hard | audio FFT musical note identification
+- [BYPASS CTF 2025 / octal metadata](https://github.com/ljagiello/ctf-skills/blob/main/ctf-forensics/stego-advanced.md) | hard | audio metadata octal encoding
+- [FinalTrace 2025 / Spectogram Shadows](https://github.com/cyscomvit/writeups/blob/main/website/writeups/FinalTrace_2025/24-spectogram-shadows.md) | hard | WAV spectrogram vigenere, key in hex tail, rot13-base32-base64 metadata
+- [Improved Phase Coding](https://arxiv.org/html/2408.13277v2) | hard | mid-frequency phase embedding, dynamic segmentation, BER improvement
+- [CTF@CIT 2024 / Drop me a chug jug](https://warlocksmurf.github.io/posts/ctf@cit2024/) | hard | WAV spectrogram flag
+- [CTF@CIT 2024 / Beep Boop](https://warlocksmurf.github.io/posts/ctf@cit2024/) | hard | WAV morse→base32
+- [wavsteg](https://github.com/rgbjoy/wav-stego) | hard | WAV sample LSB stego
+- [DeepSound](https://github.com/liftoff/DeepSound) | hard | audio stego password-protected
+- [multimon-ng](https://github.com/EliasOenal/multimon-ng) | hard | analog signal decoder DTMF/Morse/FSK
+- [sox](http://sox.sourceforge.net/) | hard | audio processing spectrogram stat
+- [KnightCTF 2024 / Oceanic](https://warlocksmurf.github.io/posts/knightctf2024/) | hard | image plus WAV pair, exiftool base58 ocean string, DeepSound password, binwalk inner image
+- [KnightCTF 2024 / Flag Hunt](https://warlocksmurf.github.io/posts/knightctf2024/) | hard | chall.zip zip2john rockyou, img725 outlier size, WAV morse rescue phrase, steghide lowercase retry
+- [KnightCTF 2024 / Oceanic epitome](https://0xepitome.github.io/posts/ctf-writeups/knight24/) | hard | tar clue plus peaceful WAV, sonic-visualizer hole, deepsound page match, team path
+- [UWSP 2024 / Music](https://github.com/shivang1209-dot/CTF-Writeup/tree/main/UWSP%20Pointer%20Overflow%20CTF24/Stego) | hard | Stego-200 audio hide, spectrogram plus LSB dual, music misdirect
+- [SSIS SRNet fine-tune trade](https://doi.org/10.3390/s24237815) | hard | WOW HILL S-UNIWARD vs SSIS, SRNet residual tune, bpp accuracy climb, PE drop
+- [SSIS fine-tune cost](https://doi.org/10.3390/s24237815) | hard | specialization vs general, WOW regression, multi-task future, false-negative drop
+- [KnightCTF 2024 / Oceanic tooling](https://warlocksmurf.github.io/posts/knightctf2024/) | hard | image plus WAV pair, exiftool base58 ocean string, DeepSound password, binwalk inner image; tool versions plus timeout caps plus pristine re-run
+- [KnightCTF 2024 / Oceanic chain](https://warlocksmurf.github.io/posts/knightctf2024/) | hard | image plus WAV pair, exiftool base58 ocean string, DeepSound password, binwalk inner image; hop-validate plus single-retry plus stats gate
+- [KnightCTF 2024 / Flag Hunt tooling](https://warlocksmurf.github.io/posts/knightctf2024/) | hard | chall.zip zip2john rockyou, img725 outlier size, WAV morse rescue phrase, steghide lowercase retry; tool versions plus timeout caps plus pristine re-run
+- [KnightCTF 2024 / Flag Hunt chain](https://warlocksmurf.github.io/posts/knightctf2024/) | hard | chall.zip zip2john rockyou, img725 outlier size, WAV morse rescue phrase, steghide lowercase retry; hop-validate plus single-retry plus stats gate
+- [KnightCTF 2024 / Oceanic epitome tooling](https://0xepitome.github.io/posts/ctf-writeups/knight24/) | hard | tar clue plus peaceful WAV, sonic-visualizer hole, deepsound page match, team path; tool versions plus timeout caps plus pristine re-run
+- [KnightCTF 2024 / Oceanic epitome chain](https://0xepitome.github.io/posts/ctf-writeups/knight24/) | hard | tar clue plus peaceful WAV, sonic-visualizer hole, deepsound page match, team path; hop-validate plus single-retry plus stats gate
+- [UWSP 2024 / Music tooling](https://github.com/shivang1209-dot/CTF-Writeup/tree/main/UWSP%20Pointer%20Overflow%20CTF24/Stego) | hard | Stego-200 audio hide, spectrogram plus LSB dual, music misdirect; tool versions plus timeout caps plus pristine re-run
+- [UWSP 2024 / Music chain](https://github.com/shivang1209-dot/CTF-Writeup/tree/main/UWSP%20Pointer%20Overflow%20CTF24/Stego) | hard | Stego-200 audio hide, spectrogram plus LSB dual, music misdirect; hop-validate plus single-retry plus stats gate
+- [SSIS SRNet fine-tune trade tooling](https://doi.org/10.3390/s24237815) | hard | WOW HILL S-UNIWARD vs SSIS, SRNet residual tune, bpp accuracy climb, PE drop; tool versions plus timeout caps plus pristine re-run
+- [SSIS SRNet fine-tune trade chain](https://doi.org/10.3390/s24237815) | hard | WOW HILL S-UNIWARD vs SSIS, SRNet residual tune, bpp accuracy climb, PE drop; hop-validate plus single-retry plus stats gate
+- [SSIS fine-tune cost tooling](https://doi.org/10.3390/s24237815) | hard | specialization vs general, WOW regression, multi-task future, false-negative drop; tool versions plus timeout caps plus pristine re-run
+- [SSIS fine-tune cost chain](https://doi.org/10.3390/s24237815) | hard | specialization vs general, WOW regression, multi-task future, false-negative drop; hop-validate plus single-retry plus stats gate
+
+## Document-format deep cases
+
+- [IrisCTF 2024 / Not Just Media (alt)](https://ctftime.org/writeup/38435) | hard | mpv --sub-ass-style-overrides=FontName=FakeFont flag reveal
+- [CTF After Dark / Senobnesieh](https://blog.ppeinecke.de/posts/ctf-after-dark-steg-senobnesieh/) | hard | MP4 videostego LSB, custom tool read mode, JavDomGom/videostego
+- [ShunyaCTF 2024 / video metadata](https://warlocksmurf.github.io/posts/shunyactf2024/) | hard | MP4 exiftool metadata hex→Drive link→PDF+SNOW chain, stegsnow -C -p coordinates
+- [Nexus CTF 2024 / Blind](https://warlocksmurf.github.io/posts/nexusctf2024/) | hard | steganography blind challenge
+- [DEADFACE CTF 2024 / Offsite Targets](https://blog.cyberhacktics.org/deadface-ctf-2024-steganography-write-up/) | hard | JPG steghide, GhostTown password hint, secret.txt.gz
+- [DEADFACE CTF 2024 / Something in the Dark](https://blog.cyberhacktics.org/deadface-ctf-2024-steganography-write-up/) | hard | PNG low-transparency layer, stegsolve plane navigation
+- [DEADFACE CTF 2024 / Descended from Wolves](https://blog.cyberhacktics.org/deadface-ctf-2024-steganography-write-up/) | hard | PNG IHDR height+CRC hex edit, zlib.crc32 recalc, CyberChef hexdump
+- [DEADFACE CTF 2024 / Electric Soldiers](https://blog.cyberhacktics.org/deadface-ctf-2024-steganography-write-up/) | hard | PNG IEND+ID3 trailing MP3, binwalk 0x19F093, dd carve, MP3 LSB script
+- [DEADFACE CTF 2024 / Tri Harder](https://blog.cyberhacktics.org/deadface-ctf-2024-steganography-write-up/) | hard | ternary whitespace U+200A/2002/2009, base-3→binary→ASCII, email signature
+- [ISCTF2025](https://2025.isc.tf/wp/index.html) | hard | stegsolve 0-channel, INN stego D3CTF reference, SNOW password, RGB LSB, Vigenere
+- [0xFunCTF 2026 / SSTV decoy](https://github.com/ljagiello/ctf-skills/blob/main/ctf-forensics/stego-advanced.md) | hard | SSTV Scottie-1 DEADEND decoy, stegolsb -n 2 -b 1000 real flag
+- [0xFunCTF 2026 / DotCode SSTV](https://github.com/ljagiello/ctf-skills/blob/main/ctf-forensics/stego-advanced.md) | hard | SSTV decodes to DotCode not QR, zbarimg fails
+- [ApoorvCTF 2026 / Beneath the Armor](https://github.com/ljagiello/ctf-skills/blob/main/ctf-forensics/stego-advanced.md) | hard | R[0]G[1]B[2] cross-channel multi-bit LSB, zsteg/stegsolve empty
+- [Pragyan 2026 / FFT freq](https://github.com/ljagiello/ctf-skills/blob/main/ctf-forensics/stego-advanced.md) | hard | FFT frequency domain steganography
+- [UTCTF 2026 / nested tar whitespace](https://github.com/ljagiello/ctf-skills/blob/main/ctf-forensics/stego-advanced.md) | hard | nested tar archive whitespace encoding
+- [CyberConverge 2025 / Where's The Flag](https://github.com/cyscomvit/writeups/blob/main/website/writeups/CyberConverge_2025/23-wherestheflag.md) | hard | stegseek 1313, zero-width U+200C/U+200B binary, XOR 0xFF chain
+- [PDF operator LSB stego](https://doi.org/10.48550/arxiv.2405.00865) | hard | PDF stream operator float operand LSB, 32 viable operators, percentage change
+- [SSTIC 2025 / Valentino PDF](https://static.sstic.org/challenge2025/Valentino/solution_Valentino_Ricotta.pdf) | hard | PDF ASCII85+Flate decode, XOR mask images, Ascii85 post->~ data, secret.pdf 40-bit RC4
+- [OOXML stego techniques](https://doi.org/10.1007/978-3-642-23300-5_27) | hard | OOXML rsid attribute hiding, compression algorithm, Document Inspector bypass
+- [OOXML structural steg detection](https://doi.org/10.1109/elecom63163.2024.10892148) | hard | paragraph vector-distributed memory, logistic regression, invisible char detection
+- [Flash CTF / Paper Trail](https://skillbit.com/blogs/flash-ctf-paper-trail) | hard | docx track changes w:del, unzip -p document.xml grep
+- [MetaCTF Paper Trail](https://metactf.com/blog/flash-ctf-paper-trail/) | hard | docx track changes, Review→All Markup
+- [Cybergon / Hide and Seek](https://github.com/krloer/ctf_krloer_com/blob/main/content/writeups/cybergon/hide_and_seek/index.md) | hard | docx wp:posOffset off-page header, brainfuck, header1.xml
+- [Hacktricks Office analysis](https://github.com/Hackminds/hacktricks/blob/master/forensics/basic-forensics-esp/office-file-analysis.md) | hard | OLE vs OOXML, oletools, OfficeDissector
+- [Forensics Beginner pt3](https://0xjams.com/blog/forensics-beginner-challenges-pt3/) | hard | corrupted_docx, customXml, base64 flag tag, zsteg -E full output, stegseek
+- [ECTF 2025 / Definitely Not In PDF](https://hack4funacademy.medium.com/ectf-2025-writeup-stelkcsc-920a1aaa7ef1) | hard | unzip zip→PDF name hint, anti-pattern flag
+- [ECTF 2025 / My Dearest](https://hack4funacademy.medium.com/ectf-2025-writeup-stelkcsc-920a1aaa7ef1) | hard | docx exiftool Creator author flag
+- [MiniCTF 2025 / Welcome docx](https://hackmd.io/63TazEJVT4-0kcedPNPZxw) | hard | docx secret.txt, AES-192-CBC key/IV in document.xml, stegsolve Blue plane 5
+- [ISCTF2025 writeup archive](https://2025.isc.tf/wp/index.html) | hard | multi-challenge stego writeup index
+- [N3XT_L3V3L CTF stego](https://medium.com/@afiqfahmi1410/writeup-n3xt-l3v3l-ctf-ny4muk-7b5d02a06a55) | hard | zero-width, bad magic PNG repair, steghide empty, MSB red 7
+- [Google CTF Beginners 2025 / SHREDDED](https://github.com/shankmsd/CTF_Writeups/blob/main/Google%20CTF%20Beginner's%20Quest%20-%2025/Misc/SHREDDED/SHREDDED.md) | hard | shredded reassembly, blank-filter edge-MSE, column-swap rotate-90
+- [BSidesSF CTF 2024 / SuperSecretWordDoc](https://nopedawn.github.io/posts/ctfs/2024/bsidessf-ctf-2024/) | hard | docx unzip PK in hexedit, image0.png flag, JavAI nested zip
+- [BSidesSF CTF 2024 / ztxt](https://nopedawn.github.io/posts/ctfs/2024/bsidessf-ctf-2024/) | hard | PNG z-stego, exiftool meta flag, zsteg b2 hit
+- [Northeast CCDC 2024 / Steganography](https://infrasec.sh/post/neccdc_2024_challenges/) | hard | PNG IEND trailer, dual PNG, base64 carve, C2PA, stego hex
+- [Cybertalents / ARP opcodes](https://ddwarmann.medium.com/cybertalents-ctf-challenge-network-security-62291902e9f3) | hard | ARP non-standard opcodes, tcpdump regex, base64 CyberChef
+- [Anthropic BSides CTF](https://shubhamg.in/posts/2025-08-05-anthropic-bsides-ctf.html) | hard | zsteg b1 alpha Bee Movie, corrupted MP1/MP1 red herrings, PyTorch MLP top-k=2 flag
+- [KI CTF 2025 / Childhood Photo](https://encryptionspidy.github.io/KI-CTF-writeups/ctf/KI-CTF-2025/forensics/) | hard | byte reversal, JPEG carving, handwriting OCR
+- [KI CTF 2025 / Corrupted Vision](https://encryptionspidy.github.io/KI-CTF-writeups/ctf/KI-CTF-2025/forensics/) | hard | LSB stego, Drive pivot, PNG repair, font matching OCR
+- [BITSCTF 2025 / ViruS Camp](https://medium.com/@nathanielpascuarijndorp/bitsctf-2025-digital-forensics-writeup-2f4f6fac6731) | hard | PSReadLine history, vscode obfuscated, base64 AES-CBC
+- [CTF@CIT 2024 / I LOVE PRIME](https://warlocksmurf.github.io/posts/ctf@cit2024/) | hard | JPG metadata flag
+- [CTF@CIT 2024 / Art of the Beast](https://warlocksmurf.github.io/posts/ctf@cit2024/) | hard | PNG→JPG extension, steghide extract
+- [CTF@CIT 2024 / Intern](https://warlocksmurf.github.io/posts/ctf@cit2024/) | hard | PNG stegsolve bit-plane flag
+- [CTF@CIT 2024 / Square](https://warlocksmurf.github.io/posts/ctf@cit2024/) | hard | forensics challenge
+- [Cops and Criminals / writeups](https://github.com/copsandcriminals/ctf-writeups) | hard | multi-CTF stego writeup index
+- [dcode.fr tools](https://www.dcode.fr/) | hard | online cipher/spectrum/analysis tool suite
+- [CyberChef](https://gchq.github.io/CyberChef/) | hard | universal data transformation tool
+- [AperiSolve](https://aperisolve.fr/) | hard | online multi-tool image stego analyzer
+- [StegOnline](https://stegonline.georgeom.net/) | hard | browser-based bit-plane LSB analyzer
+- [StegCracker](https://github.com/Paradoxis/StegCracker) | hard | steghide brute-force tool
+- [steghide](https://github.com/asergeev/steghide) | hard | JPEG/BMP/PPM/WAV/AU stego tool
+- [stegseek](https://github.com/RickdeJager/StegSeek) | hard | fast steghide cracker
+- [zsteg](https://github.com/zed-0xff/zsteg) | hard | PNG/BMP LSB detector
+- [outguess](https://github.com/resurrecting-open-source-projects/outguess) | hard | JPEG stego tool
+- [jsteg](https://github.com/lukechampine/jsteg) | hard | JPEG LSB stego tool
+- [stegoveritas](https://github.com SecureII/stegoveritas) | hard | multi-format stego analysis framework
+- [stegolsb](https://github.com/rgbjoy/stego-lsb) | hard | LSB stego multi-bit tool
+- [OpenStego](https://www.openstego.com/) | hard | image stego with watermarking
+- [SSTV tools](https://github.com/colacool/sstv) | hard | slow-scan TV audio→image
+- [QSSTV](https://www.qsstv.nl/) | hard | Linux SSTV decoder
+- [ffmpeg](https://ffmpeg.org/) | hard | multimedia container/stream extraction
+- [ffprobe](https://ffmpeg.org/ffprobe.html) | hard | stream/container metadata analysis
+- [FontForge](https://fontforge.org/) | hard | font metrics glyph rendering
+- [Tesseract](https://github.com/tesseract-ocr/tesseract) | hard | OCR text extraction
+- [Pillow](https://python-pillow.org/) | hard | Python image processing
+- [zbar](https://github.com/mchehab/zbar) | hard | barcode/QR reader
+- [pyzbar](https://github.com/NaturalHistoryMuseum/pyzbar) | hard | Python zbar wrapper
+- [reedsolo](https://github.com/tomerfiliba/reedsolo) | hard | Reed-Solomon ECC library
+- [pikepdf](https://github.com/pikepdf/pikepdf) | hard | PDF object manipulation
+- [EKOPARTY 2016 / FBI 300 unconfirmed](https://w0y.at/writeup/2016/10/28/ekoparty-ctf-2016-fbi-300.html) | hard | zero-conf mempool listtransactions, getrawtransaction hex, tail-append gzip fix, trailing PDF bytes
+- [UMDCTF 2025 / insider packets](https://ctfbase.com/writeup/20250425_umdctf_insider_info) | hard | struct pack QDCOUNT 819, pointer suffix fit recv-8192, secret reconstruct then flag packet
+- [LNC 2025 / Secure triage](https://medium.com/@joonhaobek/lnc-ctf-2025-secure-the-network-write-up-15a3f6de4f7e) | hard | query frequency anomaly, subdomain entropy, b64 alphabet validate, second-half join
+- [Kashi 2025 / SNOWy Evening](https://medium.com/@hellspy-usscfedora.org/kashi-ctf-2025-steganography-snowy-evening-a-stegsnow-cow-writeup-4c4edefaa626) | hard | Poemm cat-A tabs-spaces, SNOW caps cue, stegsnow -C -p decrypt, pastebin Mooooooo hop
+- [Kashi 2025 / COW moo](https://medium.com/@hellspy-usscfedora.org/kashi-ctf-2025-steganography-snowy-evening-a-stegsnow-cow-writeup-4c4edefaa626) | hard | COW file magic, MOo case ops, cachesleuth interpreter exec, multi-hop chain
+- [TRX 2025 / zStego](https://ctftime.org/writeup/40050) | hard | learn-cyber orig writeup, Zer0Tolerance team, zStego LSB path, quals hard tier
+- [KnightCTF 2024 / Flag Hunt scope](https://t3l3sc0p3.github.io/posts/knightctf-2024-writeup/) | hard | 403 Forwarded-For bypass context, stegseek img pivot, web plus pwn plus stego sweep
+- [UWSP 2024 / Reading Lines](https://github.com/shivang1209-dot/CTF-Writeup/tree/main/UWSP%20Pointer%20Overflow%20CTF24/Stego) | hard | Stego-100 line-gap text, pointer-overflow track, repo tree, bridge hard
+- [UWSP 2024 / Said Unsaid](https://github.com/shivang1209-dot/CTF-Writeup/tree/main/UWSP%20Pointer%20Overflow%20CTF24/Stego) | hard | Stego-100 said-unsaid pair, whitespace plus metadata dual, 8-challenge set
+- [UWSP 2024 / Seen Unseen](https://github.com/shivang1209-dot/CTF-Writeup/tree/main/UWSP%20Pointer%20Overflow%20CTF24/Stego) | hard | Stego-100 seen-unseen visual, alpha plus palette check, quals 2024
+- [UWSP 2024 / Little Things](https://github.com/shivang1209-dot/CTF-Writeup/tree/main/UWSP%20Pointer%20Overflow%20CTF24/Stego) | hard | Stego-200 micro-LSB, size-anomaly triage, capped-sweep gate
+- [UWSP 2024 / Done Undone](https://github.com/shivang1209-dot/CTF-Writeup/tree/main/UWSP%20Pointer%20Overflow%20CTF24/Stego) | hard | Stego-200 done-undone diff, frame plus delay cross, pointer-overflow 2024
+- [UWSP 2024 / Everything Nothing](https://github.com/shivang1209-dot/CTF-Writeup/tree/main/UWSP%20Pointer%20Overflow%20CTF24/Stego) | hard | Stego-300 polyglot, binwalk plus zsteg chain, high-point hard
+- [UWSP 2024 / Boor](https://github.com/shivang1209-dot/CTF-Writeup/tree/main/UWSP%20Pointer%20Overflow%20CTF24/Stego) | hard | Stego-400 literary cue, multi-layer chain, finals-tier hard
+- [SpookyCTF 2024 / Photo](https://github.com/rehackxyz/REUN10N/tree/main/CTF-writeups/2024/SpookyCTF/steg-Phenominal-Photo) | hard | clock-tower SOS story, JPG zip carve, alien-language decipher, instruction hop
+- [SpookyCTF 2024 / Photo zip-cipher](https://github.com/rehackxyz/REUN10N/tree/main/CTF-writeups/2024/SpookyCTF/steg-Phenominal-Photo) | hard | REUN10N tree, cipher-after-carve order, instruction-follow hop, forensics tag
+- [CTF@CIT 2025 / Blank zsteg](https://www.dkly.net/blog/post/ctf-cit-2025-write-up-blank-image-steganography) | hard | blank-PNG AperiSolve auto, zsteg b1-a-lsb hit, PGP decoy, multi-plane triage
+- [justCTF / PDF polyglot](https://blog.trailofbits.com/2021/02/02/pdf-is-broken-a-justctf-challenge/) | hard | Ruby-PDF-ZIP polyglot, begin plus END lexer trick, binwalk mutool, serve-self
+- [justCTF / PDF ACK whitespace](https://blog.trailofbits.com/2021/02/02/pdf-is-broken-a-justctf-challenge/) | hard | 0x06 ACK whitespace, bbe stream fix, readelf hint, blank-page trap
+- [justCTF / PDF 0x1337 versions](https://blog.trailofbits.com/2021/02/02/pdf-is-broken-a-justctf-challenge/) | hard | object version 0 vs 1, Flate plus ASCIIHex plus DCT cascade, Polyfile html decode
+- [HeroCTF v5 / PDF-Mess embed](https://ctftime.org/writeup/37014) | hard | pdf-parser EmbeddedFile, FlateDecode JS AES, Params checksum, nodejs hex
+- [scriptCTF 2025 / PDF streams](https://0xnaresh.hashnode.dev/pdf-forensics-challenge-writeup-scriptctf-2025.md) | hard | decoy plus comments hint, strings fake vs binwalk zlib, extracted carve
+- [Didier incremental puzzle](https://blog.didierstevens.com/2008/05/07/solving-a-little-pdf-puzzle/) | hard | multi-xref multi-trailer, truncate-after-EOF restore, object ASCII85 versioning, linearized split
+- [SANS phishing incremental](https://isc.sans.edu/diary/25904) | hard | pdfid EOF count, object URI versions, metadata timestamps, reuse thesis
+- [PDF Secrets hide](https://2014.mrmcd.net/fahrplan/system/attachments/2353/original/PDF_Secrets.pdf) | hard | Kids plus Contents override, Size Root Prev chain, objects compare, cut-after-EOF restore
+- [CSAW 2021 / mic deda loop](https://github.com/0xcyberpj/My-Writeup/blob/main/csawctf2021/mic-writeup.md) | hard | scan PDF plus pdftoppm png, deda pattern-4, serial chr loop range
+- [CSAW 2021 / mic alt scan](https://ctftime.org/writeup/30246) | hard | libdeda plus PyMuPDF pure path, no-binary constraint, tracking-dot decode, blank-page cue
+- [CyberGon Hide and Seek docx](https://ctf.krloer.com/writeups/cybergon/hide_and_seek/) | hard | unzip docx, document coords fix, rezip zero, header brainfuck
+- [OSCTF 2024 Odin docx](https://odintheprotector.github.io/2024/07/13/osctf-forensic.html) | hard | docx VBA-empty pivot, zip binwalk extract, document grep, forensic track
+- [WHY2025 Ravenbook docm](https://mindcrafters.xyz/writeups/forensic-why2025/) | hard | docm xor byte, vbaProject routine, core.xml username seed, second-byte rule
+- [Word Sea Adventures](https://prayush.hashnode.dev/word-sea-adventures-writeup) | hard | unzip contents, media triage, exiftool-clean pivot, steghide blank-pass
+- [Word Sea crab-squid](https://prayush.hashnode.dev/word-sea-adventures-writeup) | hard | decoy cashier clue, cashier lookup, second image extract, chain
+- [JNIC 2024 snow docx](https://github.com/isaaclo97/JNIC_2024) | hard | extensionless rebuild, snow filename cue, steghide plus strings, stegsnow file
+- [docxperiments rsidR](https://readthedocs.org/projects/docxperiments/downloads/pdf/latest/) | hard | rsidR churn, run-split divide, counts stable, minimal compiler
+- [chk_defaced vanish](https://docs.rs/chk_defaced/latest/src/chk_defaced/scan/docx.rs.html) | hard | ZIP OOXML extract, vanish count, near-white scan, injection vector
+- [chk_defaced odttf](https://docs.rs/chk_defaced/latest/src/chk_defaced/scan/docx.rs.html) | hard | odttf obfuscation, fontKey GUID deobfuscate, parse plus judge
+- [EKOPARTY 2016 / FBI 300 unconfirmed tooling](https://w0y.at/writeup/2016/10/28/ekoparty-ctf-2016-fbi-300.html) | hard | zero-conf mempool listtransactions, getrawtransaction hex, tail-append gzip fix, trailing PDF bytes; tool versions plus timeout caps plus pristine re-run
+- [EKOPARTY 2016 / FBI 300 unconfirmed chain](https://w0y.at/writeup/2016/10/28/ekoparty-ctf-2016-fbi-300.html) | hard | zero-conf mempool listtransactions, getrawtransaction hex, tail-append gzip fix, trailing PDF bytes; hop-validate plus single-retry plus stats gate
+- [UMDCTF 2025 / insider packets tooling](https://ctfbase.com/writeup/20250425_umdctf_insider_info) | hard | struct pack QDCOUNT 819, pointer suffix fit recv-8192, secret reconstruct then flag packet; tool versions plus timeout caps plus pristine re-run
+- [UMDCTF 2025 / insider packets chain](https://ctfbase.com/writeup/20250425_umdctf_insider_info) | hard | struct pack QDCOUNT 819, pointer suffix fit recv-8192, secret reconstruct then flag packet; hop-validate plus single-retry plus stats gate
+- [LNC 2025 / Secure triage tooling](https://medium.com/@joonhaobek/lnc-ctf-2025-secure-the-network-write-up-15a3f6de4f7e) | hard | query frequency anomaly, subdomain entropy, b64 alphabet validate, second-half join; tool versions plus timeout caps plus pristine re-run
+- [LNC 2025 / Secure triage chain](https://medium.com/@joonhaobek/lnc-ctf-2025-secure-the-network-write-up-15a3f6de4f7e) | hard | query frequency anomaly, subdomain entropy, b64 alphabet validate, second-half join; hop-validate plus single-retry plus stats gate
+- [Kashi 2025 / SNOWy Evening tooling](https://medium.com/@hellspy-usscfedora.org/kashi-ctf-2025-steganography-snowy-evening-a-stegsnow-cow-writeup-4c4edefaa626) | hard | Poemm cat-A tabs-spaces, SNOW caps cue, stegsnow -C -p decrypt, pastebin Mooooooo hop; tool versions plus timeout caps plus pristine re-run
+- [Kashi 2025 / SNOWy Evening chain](https://medium.com/@hellspy-usscfedora.org/kashi-ctf-2025-steganography-snowy-evening-a-stegsnow-cow-writeup-4c4edefaa626) | hard | Poemm cat-A tabs-spaces, SNOW caps cue, stegsnow -C -p decrypt, pastebin Mooooooo hop; hop-validate plus single-retry plus stats gate
+- [Kashi 2025 / COW moo tooling](https://medium.com/@hellspy-usscfedora.org/kashi-ctf-2025-steganography-snowy-evening-a-stegsnow-cow-writeup-4c4edefaa626) | hard | COW file magic, MOo case ops, cachesleuth interpreter exec, multi-hop chain; tool versions plus timeout caps plus pristine re-run
+- [Kashi 2025 / COW moo chain](https://medium.com/@hellspy-usscfedora.org/kashi-ctf-2025-steganography-snowy-evening-a-stegsnow-cow-writeup-4c4edefaa626) | hard | COW file magic, MOo case ops, cachesleuth interpreter exec, multi-hop chain; hop-validate plus single-retry plus stats gate
+- [TRX 2025 / zStego tooling](https://ctftime.org/writeup/40050) | hard | learn-cyber orig writeup, Zer0Tolerance team, zStego LSB path, quals hard tier; tool versions plus timeout caps plus pristine re-run
+- [TRX 2025 / zStego chain](https://ctftime.org/writeup/40050) | hard | learn-cyber orig writeup, Zer0Tolerance team, zStego LSB path, quals hard tier; hop-validate plus single-retry plus stats gate
+- [KnightCTF 2024 / Flag Hunt scope tooling](https://t3l3sc0p3.github.io/posts/knightctf-2024-writeup/) | hard | 403 Forwarded-For bypass context, stegseek img pivot, web plus pwn plus stego sweep; tool versions plus timeout caps plus pristine re-run
+- [KnightCTF 2024 / Flag Hunt scope chain](https://t3l3sc0p3.github.io/posts/knightctf-2024-writeup/) | hard | 403 Forwarded-For bypass context, stegseek img pivot, web plus pwn plus stego sweep; hop-validate plus single-retry plus stats gate
+- [UWSP 2024 / Reading Lines tooling](https://github.com/shivang1209-dot/CTF-Writeup/tree/main/UWSP%20Pointer%20Overflow%20CTF24/Stego) | hard | Stego-100 line-gap text, pointer-overflow track, repo tree, bridge hard; tool versions plus timeout caps plus pristine re-run
+- [UWSP 2024 / Reading Lines chain](https://github.com/shivang1209-dot/CTF-Writeup/tree/main/UWSP%20Pointer%20Overflow%20CTF24/Stego) | hard | Stego-100 line-gap text, pointer-overflow track, repo tree, bridge hard; hop-validate plus single-retry plus stats gate
+- [UWSP 2024 / Said Unsaid tooling](https://github.com/shivang1209-dot/CTF-Writeup/tree/main/UWSP%20Pointer%20Overflow%20CTF24/Stego) | hard | Stego-100 said-unsaid pair, whitespace plus metadata dual, 8-challenge set; tool versions plus timeout caps plus pristine re-run
+- [UWSP 2024 / Said Unsaid chain](https://github.com/shivang1209-dot/CTF-Writeup/tree/main/UWSP%20Pointer%20Overflow%20CTF24/Stego) | hard | Stego-100 said-unsaid pair, whitespace plus metadata dual, 8-challenge set; hop-validate plus single-retry plus stats gate
+- [UWSP 2024 / Seen Unseen tooling](https://github.com/shivang1209-dot/CTF-Writeup/tree/main/UWSP%20Pointer%20Overflow%20CTF24/Stego) | hard | Stego-100 seen-unseen visual, alpha plus palette check, quals 2024; tool versions plus timeout caps plus pristine re-run
+- [UWSP 2024 / Seen Unseen chain](https://github.com/shivang1209-dot/CTF-Writeup/tree/main/UWSP%20Pointer%20Overflow%20CTF24/Stego) | hard | Stego-100 seen-unseen visual, alpha plus palette check, quals 2024; hop-validate plus single-retry plus stats gate
+- [UWSP 2024 / Little Things tooling](https://github.com/shivang1209-dot/CTF-Writeup/tree/main/UWSP%20Pointer%20Overflow%20CTF24/Stego) | hard | Stego-200 micro-LSB, size-anomaly triage, capped-sweep gate; tool versions plus timeout caps plus pristine re-run
+- [UWSP 2024 / Little Things chain](https://github.com/shivang1209-dot/CTF-Writeup/tree/main/UWSP%20Pointer%20Overflow%20CTF24/Stego) | hard | Stego-200 micro-LSB, size-anomaly triage, capped-sweep gate; hop-validate plus single-retry plus stats gate
+- [UWSP 2024 / Done Undone tooling](https://github.com/shivang1209-dot/CTF-Writeup/tree/main/UWSP%20Pointer%20Overflow%20CTF24/Stego) | hard | Stego-200 done-undone diff, frame plus delay cross, pointer-overflow 2024; tool versions plus timeout caps plus pristine re-run
+- [UWSP 2024 / Done Undone chain](https://github.com/shivang1209-dot/CTF-Writeup/tree/main/UWSP%20Pointer%20Overflow%20CTF24/Stego) | hard | Stego-200 done-undone diff, frame plus delay cross, pointer-overflow 2024; hop-validate plus single-retry plus stats gate
+- [UWSP 2024 / Everything Nothing tooling](https://github.com/shivang1209-dot/CTF-Writeup/tree/main/UWSP%20Pointer%20Overflow%20CTF24/Stego) | hard | Stego-300 polyglot, binwalk plus zsteg chain, high-point hard; tool versions plus timeout caps plus pristine re-run
+- [UWSP 2024 / Everything Nothing chain](https://github.com/shivang1209-dot/CTF-Writeup/tree/main/UWSP%20Pointer%20Overflow%20CTF24/Stego) | hard | Stego-300 polyglot, binwalk plus zsteg chain, high-point hard; hop-validate plus single-retry plus stats gate
+- [UWSP 2024 / Boor tooling](https://github.com/shivang1209-dot/CTF-Writeup/tree/main/UWSP%20Pointer%20Overflow%20CTF24/Stego) | hard | Stego-400 literary cue, multi-layer chain, finals-tier hard; tool versions plus timeout caps plus pristine re-run
+- [UWSP 2024 / Boor chain](https://github.com/shivang1209-dot/CTF-Writeup/tree/main/UWSP%20Pointer%20Overflow%20CTF24/Stego) | hard | Stego-400 literary cue, multi-layer chain, finals-tier hard; hop-validate plus single-retry plus stats gate
+- [SpookyCTF 2024 / Photo tooling](https://github.com/rehackxyz/REUN10N/tree/main/CTF-writeups/2024/SpookyCTF/steg-Phenominal-Photo) | hard | clock-tower SOS story, JPG zip carve, alien-language decipher, instruction hop; tool versions plus timeout caps plus pristine re-run
+- [SpookyCTF 2024 / Photo chain](https://github.com/rehackxyz/REUN10N/tree/main/CTF-writeups/2024/SpookyCTF/steg-Phenominal-Photo) | hard | clock-tower SOS story, JPG zip carve, alien-language decipher, instruction hop; hop-validate plus single-retry plus stats gate
+- [SpookyCTF 2024 / Photo zip-cipher tooling](https://github.com/rehackxyz/REUN10N/tree/main/CTF-writeups/2024/SpookyCTF/steg-Phenominal-Photo) | hard | REUN10N tree, cipher-after-carve order, instruction-follow hop, forensics tag; tool versions plus timeout caps plus pristine re-run
+- [SpookyCTF 2024 / Photo zip-cipher chain](https://github.com/rehackxyz/REUN10N/tree/main/CTF-writeups/2024/SpookyCTF/steg-Phenominal-Photo) | hard | REUN10N tree, cipher-after-carve order, instruction-follow hop, forensics tag; hop-validate plus single-retry plus stats gate
+- [CTF@CIT 2025 / Blank zsteg tooling](https://www.dkly.net/blog/post/ctf-cit-2025-write-up-blank-image-steganography) | hard | blank-PNG AperiSolve auto, zsteg b1-a-lsb hit, PGP decoy, multi-plane triage; tool versions plus timeout caps plus pristine re-run
+- [CTF@CIT 2025 / Blank zsteg chain](https://www.dkly.net/blog/post/ctf-cit-2025-write-up-blank-image-steganography) | hard | blank-PNG AperiSolve auto, zsteg b1-a-lsb hit, PGP decoy, multi-plane triage; hop-validate plus single-retry plus stats gate
+- [justCTF / PDF polyglot tooling](https://blog.trailofbits.com/2021/02/02/pdf-is-broken-a-justctf-challenge/) | hard | Ruby-PDF-ZIP polyglot, begin plus END lexer trick, binwalk mutool, serve-self; tool versions plus timeout caps plus pristine re-run
+- [justCTF / PDF polyglot chain](https://blog.trailofbits.com/2021/02/02/pdf-is-broken-a-justctf-challenge/) | hard | Ruby-PDF-ZIP polyglot, begin plus END lexer trick, binwalk mutool, serve-self; hop-validate plus single-retry plus stats gate
+- [justCTF / PDF ACK whitespace tooling](https://blog.trailofbits.com/2021/02/02/pdf-is-broken-a-justctf-challenge/) | hard | 0x06 ACK whitespace, bbe stream fix, readelf hint, blank-page trap; tool versions plus timeout caps plus pristine re-run
+- [justCTF / PDF ACK whitespace chain](https://blog.trailofbits.com/2021/02/02/pdf-is-broken-a-justctf-challenge/) | hard | 0x06 ACK whitespace, bbe stream fix, readelf hint, blank-page trap; hop-validate plus single-retry plus stats gate
+- [justCTF / PDF 0x1337 versions tooling](https://blog.trailofbits.com/2021/02/02/pdf-is-broken-a-justctf-challenge/) | hard | object version 0 vs 1, Flate plus ASCIIHex plus DCT cascade, Polyfile html decode; tool versions plus timeout caps plus pristine re-run
+- [justCTF / PDF 0x1337 versions chain](https://blog.trailofbits.com/2021/02/02/pdf-is-broken-a-justctf-challenge/) | hard | object version 0 vs 1, Flate plus ASCIIHex plus DCT cascade, Polyfile html decode; hop-validate plus single-retry plus stats gate
+- [HeroCTF v5 / PDF-Mess embed tooling](https://ctftime.org/writeup/37014) | hard | pdf-parser EmbeddedFile, FlateDecode JS AES, Params checksum, nodejs hex; tool versions plus timeout caps plus pristine re-run
+- [HeroCTF v5 / PDF-Mess embed chain](https://ctftime.org/writeup/37014) | hard | pdf-parser EmbeddedFile, FlateDecode JS AES, Params checksum, nodejs hex; hop-validate plus single-retry plus stats gate
+- [scriptCTF 2025 / PDF streams tooling](https://0xnaresh.hashnode.dev/pdf-forensics-challenge-writeup-scriptctf-2025.md) | hard | decoy plus comments hint, strings fake vs binwalk zlib, extracted carve; tool versions plus timeout caps plus pristine re-run
+- [scriptCTF 2025 / PDF streams chain](https://0xnaresh.hashnode.dev/pdf-forensics-challenge-writeup-scriptctf-2025.md) | hard | decoy plus comments hint, strings fake vs binwalk zlib, extracted carve; hop-validate plus single-retry plus stats gate
+- [Didier incremental puzzle tooling](https://blog.didierstevens.com/2008/05/07/solving-a-little-pdf-puzzle/) | hard | multi-xref multi-trailer, truncate-after-EOF restore, object ASCII85 versioning, linearized split; tool versions plus timeout caps plus pristine re-run
+- [Didier incremental puzzle chain](https://blog.didierstevens.com/2008/05/07/solving-a-little-pdf-puzzle/) | hard | multi-xref multi-trailer, truncate-after-EOF restore, object ASCII85 versioning, linearized split; hop-validate plus single-retry plus stats gate
+- [SANS phishing incremental tooling](https://isc.sans.edu/diary/25904) | hard | pdfid EOF count, object URI versions, metadata timestamps, reuse thesis; tool versions plus timeout caps plus pristine re-run
+- [SANS phishing incremental chain](https://isc.sans.edu/diary/25904) | hard | pdfid EOF count, object URI versions, metadata timestamps, reuse thesis; hop-validate plus single-retry plus stats gate
+- [PDF Secrets hide tooling](https://2014.mrmcd.net/fahrplan/system/attachments/2353/original/PDF_Secrets.pdf) | hard | Kids plus Contents override, Size Root Prev chain, objects compare, cut-after-EOF restore; tool versions plus timeout caps plus pristine re-run
+- [PDF Secrets hide chain](https://2014.mrmcd.net/fahrplan/system/attachments/2353/original/PDF_Secrets.pdf) | hard | Kids plus Contents override, Size Root Prev chain, objects compare, cut-after-EOF restore; hop-validate plus single-retry plus stats gate
+- [CSAW 2021 / mic deda loop tooling](https://github.com/0xcyberpj/My-Writeup/blob/main/csawctf2021/mic-writeup.md) | hard | scan PDF plus pdftoppm png, deda pattern-4, serial chr loop range; tool versions plus timeout caps plus pristine re-run
+- [CSAW 2021 / mic deda loop chain](https://github.com/0xcyberpj/My-Writeup/blob/main/csawctf2021/mic-writeup.md) | hard | scan PDF plus pdftoppm png, deda pattern-4, serial chr loop range; hop-validate plus single-retry plus stats gate
+- [CSAW 2021 / mic alt scan tooling](https://ctftime.org/writeup/30246) | hard | libdeda plus PyMuPDF pure path, no-binary constraint, tracking-dot decode, blank-page cue; tool versions plus timeout caps plus pristine re-run
+- [CSAW 2021 / mic alt scan chain](https://ctftime.org/writeup/30246) | hard | libdeda plus PyMuPDF pure path, no-binary constraint, tracking-dot decode, blank-page cue; hop-validate plus single-retry plus stats gate
+- [CyberGon Hide and Seek docx tooling](https://ctf.krloer.com/writeups/cybergon/hide_and_seek/) | hard | unzip docx, document coords fix, rezip zero, header brainfuck; tool versions plus timeout caps plus pristine re-run
+- [CyberGon Hide and Seek docx chain](https://ctf.krloer.com/writeups/cybergon/hide_and_seek/) | hard | unzip docx, document coords fix, rezip zero, header brainfuck; hop-validate plus single-retry plus stats gate
+- [OSCTF 2024 Odin docx tooling](https://odintheprotector.github.io/2024/07/13/osctf-forensic.html) | hard | docx VBA-empty pivot, zip binwalk extract, document grep, forensic track; tool versions plus timeout caps plus pristine re-run
+- [OSCTF 2024 Odin docx chain](https://odintheprotector.github.io/2024/07/13/osctf-forensic.html) | hard | docx VBA-empty pivot, zip binwalk extract, document grep, forensic track; hop-validate plus single-retry plus stats gate
+- [WHY2025 Ravenbook docm tooling](https://mindcrafters.xyz/writeups/forensic-why2025/) | hard | docm xor byte, vbaProject routine, core.xml username seed, second-byte rule; tool versions plus timeout caps plus pristine re-run
+- [WHY2025 Ravenbook docm chain](https://mindcrafters.xyz/writeups/forensic-why2025/) | hard | docm xor byte, vbaProject routine, core.xml username seed, second-byte rule; hop-validate plus single-retry plus stats gate
+- [Word Sea Adventures tooling](https://prayush.hashnode.dev/word-sea-adventures-writeup) | hard | unzip contents, media triage, exiftool-clean pivot, steghide blank-pass; tool versions plus timeout caps plus pristine re-run
+- [Word Sea Adventures chain](https://prayush.hashnode.dev/word-sea-adventures-writeup) | hard | unzip contents, media triage, exiftool-clean pivot, steghide blank-pass; hop-validate plus single-retry plus stats gate
+- [Word Sea crab-squid tooling](https://prayush.hashnode.dev/word-sea-adventures-writeup) | hard | decoy cashier clue, cashier lookup, second image extract, chain; tool versions plus timeout caps plus pristine re-run
+- [Word Sea crab-squid chain](https://prayush.hashnode.dev/word-sea-adventures-writeup) | hard | decoy cashier clue, cashier lookup, second image extract, chain; hop-validate plus single-retry plus stats gate
+- [JNIC 2024 snow docx tooling](https://github.com/isaaclo97/JNIC_2024) | hard | extensionless rebuild, snow filename cue, steghide plus strings, stegsnow file; tool versions plus timeout caps plus pristine re-run
+- [JNIC 2024 snow docx chain](https://github.com/isaaclo97/JNIC_2024) | hard | extensionless rebuild, snow filename cue, steghide plus strings, stegsnow file; hop-validate plus single-retry plus stats gate
+- [docxperiments rsidR tooling](https://readthedocs.org/projects/docxperiments/downloads/pdf/latest/) | hard | rsidR churn, run-split divide, counts stable, minimal compiler; tool versions plus timeout caps plus pristine re-run
+- [docxperiments rsidR chain](https://readthedocs.org/projects/docxperiments/downloads/pdf/latest/) | hard | rsidR churn, run-split divide, counts stable, minimal compiler; hop-validate plus single-retry plus stats gate
+- [chk_defaced vanish tooling](https://docs.rs/chk_defaced/latest/src/chk_defaced/scan/docx.rs.html) | hard | ZIP OOXML extract, vanish count, near-white scan, injection vector; tool versions plus timeout caps plus pristine re-run
+- [chk_defaced vanish chain](https://docs.rs/chk_defaced/latest/src/chk_defaced/scan/docx.rs.html) | hard | ZIP OOXML extract, vanish count, near-white scan, injection vector; hop-validate plus single-retry plus stats gate
+- [chk_defaced odttf tooling](https://docs.rs/chk_defaced/latest/src/chk_defaced/scan/docx.rs.html) | hard | odttf obfuscation, fontKey GUID deobfuscate, parse plus judge; tool versions plus timeout caps plus pristine re-run
+- [chk_defaced odttf chain](https://docs.rs/chk_defaced/latest/src/chk_defaced/scan/docx.rs.html) | hard | odttf obfuscation, fontKey GUID deobfuscate, parse plus judge; hop-validate plus single-retry plus stats gate
+
+## ML-assisted steganalysis counter-cases
+
+- [3D point cloud steganalysis](https://doi.org/10.1631/fitee.2400360) | hard | 3D Harris-ISS composite operator, POINT72 feature set, mesh steganalysis
+- [Transformers pooled steganalysis](https://doi.org/10.2352/ei.2025.37.4.mwsf-299) | hard | Transformer Encoder Pooler, batch steganalysis, bag-size agnostic
+- [Incompatible JPEG blocks](https://arxiv.org/html/2402.13660v1) | hard | DCT incompatibility, ILP, SCA likelihood ratio, beats e-SRNet
+- [Diffusion WS steganalysis](https://informationsecurity.uibk.ac.at/pdfs/BB2024_IHMMSEC.pdf) | hard | U-Net pixel predictor, WS steganalysis, LSBR detection
+- [GAN counter steganalysis](https://dlnext.acm.org/doi/10.3103/S0146411624700937) | hard | GAN-based counter-steganalysis, adversarial embedding
+- [Adversarial PGD-BIM](https://doi.org/10.3390/electronics14224422) | hard | XuNet YeNet SRNet CNN, FGSM BIM PGD compare, MDR plus CA plus ASI, PSNR Defender gate
+- [Adversarial ASI metric](https://doi.org/10.3390/electronics14224422) | hard | missed-detect vs visual tradeoff, 30dB PSNR gate, C&W vs BIM best, BOSSbase BOWS2
+- [ASIGM JSMA single-noise](https://doi.org/10.3390/electronics14040764) | hard | Jacobian saliency pixel-set, adversarial plus embed single insert, WOW baseline, bpp levels
+- [ASIGM MDR gain](https://doi.org/10.3390/electronics14040764) | hard | YeNet MDR high vs baseline, PSNR SSIM indistinguishability, timing, l0 path
+- [INN adversarial lost-info](https://doi.org/10.1109/icassp49660.2025.10888052) | hard | invertible-NN auto embed-extract, lost-info plus gradient perturb, learnable noise layer
+- [INN SRNet halve](https://doi.org/10.1109/icassp49660.2025.10888052) | hard | SRNet detect halve at 0.2bpp, black-box images, extraction plus security
+- [UMDCTF 2024 / worm L0](https://segal.sh/blog/attack-of-the-worm/) | hard | ResNet18 binary classifier, L0 cap pixels, server x-y-r-g-b protocol, harvester story
+- [UMDCTF 2024 / worm sparsity](https://segal.sh/blog/attack-of-the-worm/) | hard | L0 approx fraction, sparsity adapt, cosine annealing plus Linf norm, Adam steps
+- [Adversarial PGD-BIM tooling](https://doi.org/10.3390/electronics14224422) | hard | XuNet YeNet SRNet CNN, FGSM BIM PGD compare, MDR plus CA plus ASI, PSNR Defender gate; tool versions plus timeout caps plus pristine re-run
+- [Adversarial PGD-BIM chain](https://doi.org/10.3390/electronics14224422) | hard | XuNet YeNet SRNet CNN, FGSM BIM PGD compare, MDR plus CA plus ASI, PSNR Defender gate; hop-validate plus single-retry plus stats gate
+- [Adversarial ASI metric tooling](https://doi.org/10.3390/electronics14224422) | hard | missed-detect vs visual tradeoff, 30dB PSNR gate, C&W vs BIM best, BOSSbase BOWS2; tool versions plus timeout caps plus pristine re-run
+- [Adversarial ASI metric chain](https://doi.org/10.3390/electronics14224422) | hard | missed-detect vs visual tradeoff, 30dB PSNR gate, C&W vs BIM best, BOSSbase BOWS2; hop-validate plus single-retry plus stats gate
+- [ASIGM JSMA single-noise tooling](https://doi.org/10.3390/electronics14040764) | hard | Jacobian saliency pixel-set, adversarial plus embed single insert, WOW baseline, bpp levels; tool versions plus timeout caps plus pristine re-run
+- [ASIGM JSMA single-noise chain](https://doi.org/10.3390/electronics14040764) | hard | Jacobian saliency pixel-set, adversarial plus embed single insert, WOW baseline, bpp levels; hop-validate plus single-retry plus stats gate
+- [ASIGM MDR gain tooling](https://doi.org/10.3390/electronics14040764) | hard | YeNet MDR high vs baseline, PSNR SSIM indistinguishability, timing, l0 path; tool versions plus timeout caps plus pristine re-run
+- [ASIGM MDR gain chain](https://doi.org/10.3390/electronics14040764) | hard | YeNet MDR high vs baseline, PSNR SSIM indistinguishability, timing, l0 path; hop-validate plus single-retry plus stats gate
+- [INN adversarial lost-info tooling](https://doi.org/10.1109/icassp49660.2025.10888052) | hard | invertible-NN auto embed-extract, lost-info plus gradient perturb, learnable noise layer; tool versions plus timeout caps plus pristine re-run
+- [INN adversarial lost-info chain](https://doi.org/10.1109/icassp49660.2025.10888052) | hard | invertible-NN auto embed-extract, lost-info plus gradient perturb, learnable noise layer; hop-validate plus single-retry plus stats gate
+- [INN SRNet halve tooling](https://doi.org/10.1109/icassp49660.2025.10888052) | hard | SRNet detect halve at 0.2bpp, black-box images, extraction plus security; tool versions plus timeout caps plus pristine re-run
+- [INN SRNet halve chain](https://doi.org/10.1109/icassp49660.2025.10888052) | hard | SRNet detect halve at 0.2bpp, black-box images, extraction plus security; hop-validate plus single-retry plus stats gate
+- [UMDCTF 2024 / worm L0 tooling](https://segal.sh/blog/attack-of-the-worm/) | hard | ResNet18 binary classifier, L0 cap pixels, server x-y-r-g-b protocol, harvester story; tool versions plus timeout caps plus pristine re-run
+- [UMDCTF 2024 / worm L0 chain](https://segal.sh/blog/attack-of-the-worm/) | hard | ResNet18 binary classifier, L0 cap pixels, server x-y-r-g-b protocol, harvester story; hop-validate plus single-retry plus stats gate
+- [UMDCTF 2024 / worm sparsity tooling](https://segal.sh/blog/attack-of-the-worm/) | hard | L0 approx fraction, sparsity adapt, cosine annealing plus Linf norm, Adam steps; tool versions plus timeout caps plus pristine re-run
+- [UMDCTF 2024 / worm sparsity chain](https://segal.sh/blog/attack-of-the-worm/) | hard | L0 approx fraction, sparsity adapt, cosine annealing plus Linf norm, Adam steps; hop-validate plus single-retry plus stats gate
+
+## Blockchain-transaction memo carriers
+
+- [PwnMe CTF 2025 / Mafia blockchain](https://wepfen.github.io/writeups/mafia-at-the-end-of-the-block-full/) | hard | IRC pcap, contract set_secret, LCG PRNG predict, cast storage
+- [EKOPARTY 2016 / FBI 300 regtest](https://w0y.at/writeup/2016/10/28/ekoparty-ctf-2016-fbi-300.html) | hard | bitcoin-core regtest folder, 25-tx blocks, OP_RETURN gzip reassembly in block plus tx order
+- [EKOPARTY 2016 / FBI 300 sqlite](https://w0y.at/writeup/2016/10/28/ekoparty-ctf-2016-fbi-300.html) | hard | bitcoin-abe sqlite txout OP_RETURN filter, ORDER BY block_height tx_pos, size-param strip
+- [DFIR To The Moon wallet](https://github.com/phempshall/ctf-dfir-steganography) | hard | grumpy-cat JPG stegcracker, ZIP john crack, OSINT string to wallet, OP_RETURN message read
+- [DFIR To The Moon chain](https://www.paulhempshall.com/blog/free-dfir-steganography-ctf-challenges/) | hard | JPG stego plus ZIP plus OSINT three-hop, mempool explorer, OP_RETURN decode, validation
+- [DFIR Bad Blockchain value](https://github.com/phempshall/ctf-dfir-steganography) | hard | non-OP_RETURN value covert, Akamai botnet research match, satoshi hex to octets, decoder IP rebuild
+- [DFIR Bad Blockchain akamai](https://www.paulhempshall.com/blog/free-dfir-steganography-ctf-challenges/) | hard | wallet values pair to IP, hex slice insert order, SITR article cross, C2 backup decode
+- [RITSEC 2025 / MOVING MONEY](https://medium.com/@mussharat08/while-participating-in-ritsec-ctf-2025-i-came-across-a-challenge-in-the-miscellaneous-category-c9b7bf336a02) | hard | Bech32 testnet tb1q type ID, mempool.space explorer, fund-movement OP_RETURN scan, base64 decode
+- [RITSEC 2025 / MOVING MONEY explorer](https://medium.com/@mussharat08/while-participating-in-ritsec-ctf-2025-i-came-across-a-challenge-in-the-miscellaneous-category-c9b7bf336a02) | hard | transaction history walk, OP_RETURN isolate, b64 alphabet check, multi-tx stitch
+- [TCP1P 2024 / Transact](https://infosecwriteups.com/tcp1p-ctf-blockchain-callenge-writeup-94b7ebe1464c) | hard | Tabungan solidity fallback reenter, Attacker setor-ambil loop, forge create deploy, balance drain
+- [TCP1P 2024 / Chest key](https://infosecwriteups.com/tcp1p-ctf-blockchain-callenge-writeup-94b7ebe1464c) | hard | Setup to Chest trace, cast block plus tx params, golden_key plus combinations, unlock call
+- [TCP1P 2024 / underflow](https://infosecwriteups.com/tcp1p-ctf-blockchain-callenge-writeup-94b7ebe1464c) | hard | int256 minus-zero underflow, limit bypass math, Exploit loot, chained sequence
+- [EKOPARTY 2016 / FBI 300 regtest tooling](https://w0y.at/writeup/2016/10/28/ekoparty-ctf-2016-fbi-300.html) | hard | bitcoin-core regtest folder, 25-tx blocks, OP_RETURN gzip reassembly in block plus tx order; tool versions plus timeout caps plus pristine re-run
+- [EKOPARTY 2016 / FBI 300 regtest chain](https://w0y.at/writeup/2016/10/28/ekoparty-ctf-2016-fbi-300.html) | hard | bitcoin-core regtest folder, 25-tx blocks, OP_RETURN gzip reassembly in block plus tx order; hop-validate plus single-retry plus stats gate
+- [EKOPARTY 2016 / FBI 300 sqlite tooling](https://w0y.at/writeup/2016/10/28/ekoparty-ctf-2016-fbi-300.html) | hard | bitcoin-abe sqlite txout OP_RETURN filter, ORDER BY block_height tx_pos, size-param strip; tool versions plus timeout caps plus pristine re-run
+- [EKOPARTY 2016 / FBI 300 sqlite chain](https://w0y.at/writeup/2016/10/28/ekoparty-ctf-2016-fbi-300.html) | hard | bitcoin-abe sqlite txout OP_RETURN filter, ORDER BY block_height tx_pos, size-param strip; hop-validate plus single-retry plus stats gate
+- [DFIR To The Moon wallet tooling](https://github.com/phempshall/ctf-dfir-steganography) | hard | grumpy-cat JPG stegcracker, ZIP john crack, OSINT string to wallet, OP_RETURN message read; tool versions plus timeout caps plus pristine re-run
+- [DFIR To The Moon wallet chain](https://github.com/phempshall/ctf-dfir-steganography) | hard | grumpy-cat JPG stegcracker, ZIP john crack, OSINT string to wallet, OP_RETURN message read; hop-validate plus single-retry plus stats gate
+- [DFIR To The Moon chain tooling](https://www.paulhempshall.com/blog/free-dfir-steganography-ctf-challenges/) | hard | JPG stego plus ZIP plus OSINT three-hop, mempool explorer, OP_RETURN decode, validation; tool versions plus timeout caps plus pristine re-run
+- [DFIR To The Moon chain chain](https://www.paulhempshall.com/blog/free-dfir-steganography-ctf-challenges/) | hard | JPG stego plus ZIP plus OSINT three-hop, mempool explorer, OP_RETURN decode, validation; hop-validate plus single-retry plus stats gate
+- [DFIR Bad Blockchain value tooling](https://github.com/phempshall/ctf-dfir-steganography) | hard | non-OP_RETURN value covert, Akamai botnet research match, satoshi hex to octets, decoder IP rebuild; tool versions plus timeout caps plus pristine re-run
+- [DFIR Bad Blockchain value chain](https://github.com/phempshall/ctf-dfir-steganography) | hard | non-OP_RETURN value covert, Akamai botnet research match, satoshi hex to octets, decoder IP rebuild; hop-validate plus single-retry plus stats gate
+- [DFIR Bad Blockchain akamai tooling](https://www.paulhempshall.com/blog/free-dfir-steganography-ctf-challenges/) | hard | wallet values pair to IP, hex slice insert order, SITR article cross, C2 backup decode; tool versions plus timeout caps plus pristine re-run
+- [DFIR Bad Blockchain akamai chain](https://www.paulhempshall.com/blog/free-dfir-steganography-ctf-challenges/) | hard | wallet values pair to IP, hex slice insert order, SITR article cross, C2 backup decode; hop-validate plus single-retry plus stats gate
+- [RITSEC 2025 / MOVING MONEY tooling](https://medium.com/@mussharat08/while-participating-in-ritsec-ctf-2025-i-came-across-a-challenge-in-the-miscellaneous-category-c9b7bf336a02) | hard | Bech32 testnet tb1q type ID, mempool.space explorer, fund-movement OP_RETURN scan, base64 decode; tool versions plus timeout caps plus pristine re-run
+- [RITSEC 2025 / MOVING MONEY chain](https://medium.com/@mussharat08/while-participating-in-ritsec-ctf-2025-i-came-across-a-challenge-in-the-miscellaneous-category-c9b7bf336a02) | hard | Bech32 testnet tb1q type ID, mempool.space explorer, fund-movement OP_RETURN scan, base64 decode; hop-validate plus single-retry plus stats gate
+- [RITSEC 2025 / MOVING MONEY explorer tooling](https://medium.com/@mussharat08/while-participating-in-ritsec-ctf-2025-i-came-across-a-challenge-in-the-miscellaneous-category-c9b7bf336a02) | hard | transaction history walk, OP_RETURN isolate, b64 alphabet check, multi-tx stitch; tool versions plus timeout caps plus pristine re-run
+- [RITSEC 2025 / MOVING MONEY explorer chain](https://medium.com/@mussharat08/while-participating-in-ritsec-ctf-2025-i-came-across-a-challenge-in-the-miscellaneous-category-c9b7bf336a02) | hard | transaction history walk, OP_RETURN isolate, b64 alphabet check, multi-tx stitch; hop-validate plus single-retry plus stats gate
+- [TCP1P 2024 / Transact tooling](https://infosecwriteups.com/tcp1p-ctf-blockchain-callenge-writeup-94b7ebe1464c) | hard | Tabungan solidity fallback reenter, Attacker setor-ambil loop, forge create deploy, balance drain; tool versions plus timeout caps plus pristine re-run
+- [TCP1P 2024 / Transact chain](https://infosecwriteups.com/tcp1p-ctf-blockchain-callenge-writeup-94b7ebe1464c) | hard | Tabungan solidity fallback reenter, Attacker setor-ambil loop, forge create deploy, balance drain; hop-validate plus single-retry plus stats gate
+- [TCP1P 2024 / Chest key tooling](https://infosecwriteups.com/tcp1p-ctf-blockchain-callenge-writeup-94b7ebe1464c) | hard | Setup to Chest trace, cast block plus tx params, golden_key plus combinations, unlock call; tool versions plus timeout caps plus pristine re-run
+- [TCP1P 2024 / Chest key chain](https://infosecwriteups.com/tcp1p-ctf-blockchain-callenge-writeup-94b7ebe1464c) | hard | Setup to Chest trace, cast block plus tx params, golden_key plus combinations, unlock call; hop-validate plus single-retry plus stats gate
+- [TCP1P 2024 / underflow tooling](https://infosecwriteups.com/tcp1p-ctf-blockchain-callenge-writeup-94b7ebe1464c) | hard | int256 minus-zero underflow, limit bypass math, Exploit loot, chained sequence; tool versions plus timeout caps plus pristine re-run
+- [TCP1P 2024 / underflow chain](https://infosecwriteups.com/tcp1p-ctf-blockchain-callenge-writeup-94b7ebe1464c) | hard | int256 minus-zero underflow, limit bypass math, Exploit loot, chained sequence; hop-validate plus single-retry plus stats gate
+
+## DNS-telemetry covert channels
+
+- [UMCS CTF / Hidden in Plain Graphic](https://medium.com/@cherylwoowy/umcs-ctf-hidden-in-plain-graphic-writeup-23417d30eef6) | hard | PCAP TCP stream PNG carve, AperiSolve zsteg flag
+- [NECCDC 2024 / DNS](https://infrasec.sh/post/neccdc_2024_challenges/) | hard | DNS TXT chain rust.energy, layer brute, FLAG{kubernetes}
+- [NECCDC 2024 / PCAP](https://infrasec.sh/post/neccdc_2024_challenges/) | hard | FTP key, TLS decrypt, DNS hex→ASCII, tshark awk xxd
+- [Cybertalents / CreepyDNS](https://ddwarmann.medium.com/cybertalents-ctf-challenge-network-security-62291902e9f3) | hard | DNS subdomain exfil, tshark extract, base64 decode
+- [ECTF 2025 / Just a PCAP](https://hack4funacademy.medium.com/ectf-2025-writeup-stelkcsc-920a1aaa7ef1) | hard | DNS PNG exfil, 89504e47 prefix, tshark fields, rebuild image
+- [Creepy DNS exfil](https://medium.com/@panahifarah/ctf-write-up-decoding-hidden-exfiltration-via-dns-queries-creepy-dns-f30fc5067488) | hard | dns.pcapng label encoding, 4th-occurrence sampler, tshark plus awk, base64 rebuild
+- [Creepy DNS analytical](https://medium.com/@panahifarah/ctf-write-up-decoding-hidden-exfiltration-via-dns-queries-creepy-dns-f30fc5067488) | hard | repetition-for-reliability, NF-2 label select, seen-counter delete, continuous stream
+- [UMDCTF 2025 / insider leak](https://ctfbase.com/writeup/20250425_umdctf_insider_info) | hard | TCP two-packet DNS wrapper, 819-char secret 13x63 labels, TXT index oracle, multi-question dump
+- [UMDCTF 2025 / insider flag](https://ctfbase.com/writeup/20250425_umdctf_insider_info) | hard | chained-pointer qname over 253B, dnslib decode_name gap, reverse 13-question build, TXT catch
+- [LNC 2025 / Secure Network](https://medium.com/@joonhaobek/lnc-ctf-2025-secure-the-network-write-up-15a3f6de4f7e) | hard | capture.pcap DNS base64 subdomains, per-query CyberChef decode, multi-query stitch, tunnel payload
+- [Tunnel Vision O5 HELLO](https://aerobytes.io/writeups/tunnel-vision-o5/) | hard | ARM64 Go rev, DoH AAAA covert, NaCl ECDH HELLO, base32-hex labels
+- [Tunnel Vision O5 META](https://aerobytes.io/writeups/tunnel-vision-o5/) | hard | metadata size plus chunks plus Blake3, SecretBox op7 seq0, 4-label 56-char split, z-pad
+- [Tunnel Vision O5 CHUNK](https://aerobytes.io/writeups/tunnel-vision-o5/) | hard | 124B chunks 32KB 265 count, per-chunk nonce seqID, DoH POST dns-query, AAAA index parse
+- [Tunnel Vision O5 FINISHED](https://aerobytes.io/writeups/tunnel-vision-o5/) | hard | deferred-completion continue, qname_wire length-prefix, server nonce swap bug, session op7 reuse
+- [GALACTICA EDNS0](https://medium.com/etticblog/hackfest24-write-up-galactica-dnsnet-bb06742fc37c) | hard | custom DNS EDNS0 opcode 101 offset, 255B TXT paging, full-size hint, pwntools Wireshark rev
+- [GALACTICA spider](https://medium.com/etticblog/hackfest24-write-up-galactica-dnsnet-bb06742fc37c) | hard | TXT regex spider, CNAME 0x0005 realpath, recursive pull, ASCII-art links
+- [GALACTICA traversal](https://medium.com/etticblog/hackfest24-write-up-galactica-dnsnet-bb06742fc37c) | hard | TXT-to-file traversal, proc-self cmdline 255B window, server python exfil, locatedb key hunt
+- [GALACTICA RCE](https://medium.com/etticblog/hackfest24-write-up-galactica-dnsnet-bb06742fc37c) | hard | Fernet decrypt subroutine, opcode 75 shell exec, reverse shell, nscd hosts poison root
+- [c0c0n 2025 / Whispers C2](https://infosecwriteups.com/c0c0n-ctf-2025-writeup-97d6c66026f7) | hard | status.cdn-updates.test TXT anomaly, ip.addr filter, out-of-band key drop, DNS-hidden C2
+- [c0c0n 2025 / Whispers triage](https://infosecwriteups.com/c0c0n-ctf-2025-writeup-97d6c66026f7) | hard | protocol-repurpose cue, DNS vs HTTP gap, TXT value isolate, commit-history cross
+- [Hackmethod 2017 / STL ants](https://medium.com/@forwardsecrecy/hackmethod-august-2017-challenges-write-up-51a6ecbd3520) | hard | FreeCAD STL render, fly-by micro-text, exfil carve, slice layers
+- [Hackmethod 2017 / G-code F-rate](https://medium.com/@forwardsecrecy/hackmethod-august-2017-challenges-write-up-51a6ecbd3520) | hard | Slic3r rtf lines, F-code feed-rate covert, grep plus awk chr, sim-immune channel
+- [Hackmethod 2017 / SNMP GPG](https://medium.com/@forwardsecrecy/hackmethod-august-2017-challenges-write-up-51a6ecbd3520) | hard | SNMP community strings, ICMP GPG carve, TCP export, Cisco base64
+- [Creepy DNS exfil tooling](https://medium.com/@panahifarah/ctf-write-up-decoding-hidden-exfiltration-via-dns-queries-creepy-dns-f30fc5067488) | hard | dns.pcapng label encoding, 4th-occurrence sampler, tshark plus awk, base64 rebuild; tool versions plus timeout caps plus pristine re-run
+- [Creepy DNS exfil chain](https://medium.com/@panahifarah/ctf-write-up-decoding-hidden-exfiltration-via-dns-queries-creepy-dns-f30fc5067488) | hard | dns.pcapng label encoding, 4th-occurrence sampler, tshark plus awk, base64 rebuild; hop-validate plus single-retry plus stats gate
+- [Creepy DNS analytical tooling](https://medium.com/@panahifarah/ctf-write-up-decoding-hidden-exfiltration-via-dns-queries-creepy-dns-f30fc5067488) | hard | repetition-for-reliability, NF-2 label select, seen-counter delete, continuous stream; tool versions plus timeout caps plus pristine re-run
+- [Creepy DNS analytical chain](https://medium.com/@panahifarah/ctf-write-up-decoding-hidden-exfiltration-via-dns-queries-creepy-dns-f30fc5067488) | hard | repetition-for-reliability, NF-2 label select, seen-counter delete, continuous stream; hop-validate plus single-retry plus stats gate
+- [UMDCTF 2025 / insider leak tooling](https://ctfbase.com/writeup/20250425_umdctf_insider_info) | hard | TCP two-packet DNS wrapper, 819-char secret 13x63 labels, TXT index oracle, multi-question dump; tool versions plus timeout caps plus pristine re-run
+- [UMDCTF 2025 / insider leak chain](https://ctfbase.com/writeup/20250425_umdctf_insider_info) | hard | TCP two-packet DNS wrapper, 819-char secret 13x63 labels, TXT index oracle, multi-question dump; hop-validate plus single-retry plus stats gate
+- [UMDCTF 2025 / insider flag tooling](https://ctfbase.com/writeup/20250425_umdctf_insider_info) | hard | chained-pointer qname over 253B, dnslib decode_name gap, reverse 13-question build, TXT catch; tool versions plus timeout caps plus pristine re-run
+- [UMDCTF 2025 / insider flag chain](https://ctfbase.com/writeup/20250425_umdctf_insider_info) | hard | chained-pointer qname over 253B, dnslib decode_name gap, reverse 13-question build, TXT catch; hop-validate plus single-retry plus stats gate
+- [LNC 2025 / Secure Network tooling](https://medium.com/@joonhaobek/lnc-ctf-2025-secure-the-network-write-up-15a3f6de4f7e) | hard | capture.pcap DNS base64 subdomains, per-query CyberChef decode, multi-query stitch, tunnel payload; tool versions plus timeout caps plus pristine re-run
+- [LNC 2025 / Secure Network chain](https://medium.com/@joonhaobek/lnc-ctf-2025-secure-the-network-write-up-15a3f6de4f7e) | hard | capture.pcap DNS base64 subdomains, per-query CyberChef decode, multi-query stitch, tunnel payload; hop-validate plus single-retry plus stats gate
+- [Tunnel Vision O5 HELLO tooling](https://aerobytes.io/writeups/tunnel-vision-o5/) | hard | ARM64 Go rev, DoH AAAA covert, NaCl ECDH HELLO, base32-hex labels; tool versions plus timeout caps plus pristine re-run
+- [Tunnel Vision O5 HELLO chain](https://aerobytes.io/writeups/tunnel-vision-o5/) | hard | ARM64 Go rev, DoH AAAA covert, NaCl ECDH HELLO, base32-hex labels; hop-validate plus single-retry plus stats gate
+- [Tunnel Vision O5 META tooling](https://aerobytes.io/writeups/tunnel-vision-o5/) | hard | metadata size plus chunks plus Blake3, SecretBox op7 seq0, 4-label 56-char split, z-pad; tool versions plus timeout caps plus pristine re-run
+- [Tunnel Vision O5 META chain](https://aerobytes.io/writeups/tunnel-vision-o5/) | hard | metadata size plus chunks plus Blake3, SecretBox op7 seq0, 4-label 56-char split, z-pad; hop-validate plus single-retry plus stats gate
+- [Tunnel Vision O5 CHUNK tooling](https://aerobytes.io/writeups/tunnel-vision-o5/) | hard | 124B chunks 32KB 265 count, per-chunk nonce seqID, DoH POST dns-query, AAAA index parse; tool versions plus timeout caps plus pristine re-run
+- [Tunnel Vision O5 CHUNK chain](https://aerobytes.io/writeups/tunnel-vision-o5/) | hard | 124B chunks 32KB 265 count, per-chunk nonce seqID, DoH POST dns-query, AAAA index parse; hop-validate plus single-retry plus stats gate
+- [Tunnel Vision O5 FINISHED tooling](https://aerobytes.io/writeups/tunnel-vision-o5/) | hard | deferred-completion continue, qname_wire length-prefix, server nonce swap bug, session op7 reuse; tool versions plus timeout caps plus pristine re-run
+- [Tunnel Vision O5 FINISHED chain](https://aerobytes.io/writeups/tunnel-vision-o5/) | hard | deferred-completion continue, qname_wire length-prefix, server nonce swap bug, session op7 reuse; hop-validate plus single-retry plus stats gate
+- [GALACTICA EDNS0 tooling](https://medium.com/etticblog/hackfest24-write-up-galactica-dnsnet-bb06742fc37c) | hard | custom DNS EDNS0 opcode 101 offset, 255B TXT paging, full-size hint, pwntools Wireshark rev; tool versions plus timeout caps plus pristine re-run
+- [GALACTICA EDNS0 chain](https://medium.com/etticblog/hackfest24-write-up-galactica-dnsnet-bb06742fc37c) | hard | custom DNS EDNS0 opcode 101 offset, 255B TXT paging, full-size hint, pwntools Wireshark rev; hop-validate plus single-retry plus stats gate
+- [GALACTICA spider tooling](https://medium.com/etticblog/hackfest24-write-up-galactica-dnsnet-bb06742fc37c) | hard | TXT regex spider, CNAME 0x0005 realpath, recursive pull, ASCII-art links; tool versions plus timeout caps plus pristine re-run
+- [GALACTICA spider chain](https://medium.com/etticblog/hackfest24-write-up-galactica-dnsnet-bb06742fc37c) | hard | TXT regex spider, CNAME 0x0005 realpath, recursive pull, ASCII-art links; hop-validate plus single-retry plus stats gate
+- [GALACTICA traversal tooling](https://medium.com/etticblog/hackfest24-write-up-galactica-dnsnet-bb06742fc37c) | hard | TXT-to-file traversal, proc-self cmdline 255B window, server python exfil, locatedb key hunt; tool versions plus timeout caps plus pristine re-run
+- [GALACTICA traversal chain](https://medium.com/etticblog/hackfest24-write-up-galactica-dnsnet-bb06742fc37c) | hard | TXT-to-file traversal, proc-self cmdline 255B window, server python exfil, locatedb key hunt; hop-validate plus single-retry plus stats gate
+- [GALACTICA RCE tooling](https://medium.com/etticblog/hackfest24-write-up-galactica-dnsnet-bb06742fc37c) | hard | Fernet decrypt subroutine, opcode 75 shell exec, reverse shell, nscd hosts poison root; tool versions plus timeout caps plus pristine re-run
+- [GALACTICA RCE chain](https://medium.com/etticblog/hackfest24-write-up-galactica-dnsnet-bb06742fc37c) | hard | Fernet decrypt subroutine, opcode 75 shell exec, reverse shell, nscd hosts poison root; hop-validate plus single-retry plus stats gate
+- [c0c0n 2025 / Whispers C2 tooling](https://infosecwriteups.com/c0c0n-ctf-2025-writeup-97d6c66026f7) | hard | status.cdn-updates.test TXT anomaly, ip.addr filter, out-of-band key drop, DNS-hidden C2; tool versions plus timeout caps plus pristine re-run
+- [c0c0n 2025 / Whispers C2 chain](https://infosecwriteups.com/c0c0n-ctf-2025-writeup-97d6c66026f7) | hard | status.cdn-updates.test TXT anomaly, ip.addr filter, out-of-band key drop, DNS-hidden C2; hop-validate plus single-retry plus stats gate
+- [c0c0n 2025 / Whispers triage tooling](https://infosecwriteups.com/c0c0n-ctf-2025-writeup-97d6c66026f7) | hard | protocol-repurpose cue, DNS vs HTTP gap, TXT value isolate, commit-history cross; tool versions plus timeout caps plus pristine re-run
+- [c0c0n 2025 / Whispers triage chain](https://infosecwriteups.com/c0c0n-ctf-2025-writeup-97d6c66026f7) | hard | protocol-repurpose cue, DNS vs HTTP gap, TXT value isolate, commit-history cross; hop-validate plus single-retry plus stats gate
+- [Hackmethod 2017 / STL ants tooling](https://medium.com/@forwardsecrecy/hackmethod-august-2017-challenges-write-up-51a6ecbd3520) | hard | FreeCAD STL render, fly-by micro-text, exfil carve, slice layers; tool versions plus timeout caps plus pristine re-run
+- [Hackmethod 2017 / STL ants chain](https://medium.com/@forwardsecrecy/hackmethod-august-2017-challenges-write-up-51a6ecbd3520) | hard | FreeCAD STL render, fly-by micro-text, exfil carve, slice layers; hop-validate plus single-retry plus stats gate
+- [Hackmethod 2017 / G-code F-rate tooling](https://medium.com/@forwardsecrecy/hackmethod-august-2017-challenges-write-up-51a6ecbd3520) | hard | Slic3r rtf lines, F-code feed-rate covert, grep plus awk chr, sim-immune channel; tool versions plus timeout caps plus pristine re-run
+- [Hackmethod 2017 / G-code F-rate chain](https://medium.com/@forwardsecrecy/hackmethod-august-2017-challenges-write-up-51a6ecbd3520) | hard | Slic3r rtf lines, F-code feed-rate covert, grep plus awk chr, sim-immune channel; hop-validate plus single-retry plus stats gate
+- [Hackmethod 2017 / SNMP GPG tooling](https://medium.com/@forwardsecrecy/hackmethod-august-2017-challenges-write-up-51a6ecbd3520) | hard | SNMP community strings, ICMP GPG carve, TCP export, Cisco base64; tool versions plus timeout caps plus pristine re-run
+- [Hackmethod 2017 / SNMP GPG chain](https://medium.com/@forwardsecrecy/hackmethod-august-2017-challenges-write-up-51a6ecbd3520) | hard | SNMP community strings, ICMP GPG carve, TCP export, Cisco base64; hop-validate plus single-retry plus stats gate
+
+## Printer-dot MIC forensics
+
+- [CSAW CTF 2021 / mic](https://ctftime.org/writeup/30489) | hard | printer MIC yellow dots, deda_parse_print, serial→ASCII, Epson pattern 4
+- [CSAW CTF 2021 / mic (alt)](https://ctftime.org/writeup/30175) | hard | pdftoppm, deda_parse_print loop, chr(serial) flag
+- [Root-Me / Yellow dots](https://f0r5ecur1ty.tistory.com/5) | hard | MIC yellow dot decoder, date+serial extraction
+- [YellowDotDecode tool](https://github.com/Natounet/YellowDotDecode) | hard | GUI yellow dot matrix decoder, CCC paper method
+- [Printer Steganography Peter Buck](https://repository.root-me.org/St%C3%A9ganographie/EN%20-%20Printer-Steganography-Peter-Buck-2018.pdf) | hard | MIC reverse engineering, EFF dataset, HP Reverse-L pattern, CP1515n
+- [CSAW CTF 2021 / mic](https://ctftime.org/writeup/30489) | hard | printer yellow dots deda_parse_print Epson serial→ASCII flag
+- [deda_parse_print](https://github.com/dfirfpi/deda) | hard | printer yellow dot decoder
+- [AIS3 2024 / 3D Secret G-code](https://hackmd.io/@CHW/Skj3dx1E0) | hard | TCP stream G-code dump, ncviewer sim, printer hint, layer read
+- [ALLES 2020 / Whistleblower](https://ctftime.org/writeup/23421) | hard | zoom recolor dot reveal, Machine-ID wiki pivot, deda pngs, Xerox serial
+- [EFF printer CCC dots](https://www.eff.org/files/filenode/printers/ccc.pdf) | hard | yellow low-contrast, blue enhance, DocuColor grid plus parity, serial datetime
+- [Dotspotter 600dpi](https://forensicdots.de/dotspotter) | hard | white test-sheet print, 600dpi 24bit scan, JPG high-quality, cut-not-resize rule
+- [INSA New-Authent TDM](https://github.com/sirk390/writeups/blob/master/New-Authent.md) | hard | TOTP reportlab gen, libdeda TDM timestamps, Epson serial plus pdf2image png
+- [AIS3 2024 / 3D Secret G-code tooling](https://hackmd.io/@CHW/Skj3dx1E0) | hard | TCP stream G-code dump, ncviewer sim, printer hint, layer read; tool versions plus timeout caps plus pristine re-run
+- [AIS3 2024 / 3D Secret G-code chain](https://hackmd.io/@CHW/Skj3dx1E0) | hard | TCP stream G-code dump, ncviewer sim, printer hint, layer read; hop-validate plus single-retry plus stats gate
+- [ALLES 2020 / Whistleblower tooling](https://ctftime.org/writeup/23421) | hard | zoom recolor dot reveal, Machine-ID wiki pivot, deda pngs, Xerox serial; tool versions plus timeout caps plus pristine re-run
+- [ALLES 2020 / Whistleblower chain](https://ctftime.org/writeup/23421) | hard | zoom recolor dot reveal, Machine-ID wiki pivot, deda pngs, Xerox serial; hop-validate plus single-retry plus stats gate
+- [EFF printer CCC dots tooling](https://www.eff.org/files/filenode/printers/ccc.pdf) | hard | yellow low-contrast, blue enhance, DocuColor grid plus parity, serial datetime; tool versions plus timeout caps plus pristine re-run
+- [EFF printer CCC dots chain](https://www.eff.org/files/filenode/printers/ccc.pdf) | hard | yellow low-contrast, blue enhance, DocuColor grid plus parity, serial datetime; hop-validate plus single-retry plus stats gate
+- [Dotspotter 600dpi tooling](https://forensicdots.de/dotspotter) | hard | white test-sheet print, 600dpi 24bit scan, JPG high-quality, cut-not-resize rule; tool versions plus timeout caps plus pristine re-run
+- [Dotspotter 600dpi chain](https://forensicdots.de/dotspotter) | hard | white test-sheet print, 600dpi 24bit scan, JPG high-quality, cut-not-resize rule; hop-validate plus single-retry plus stats gate
+- [INSA New-Authent TDM tooling](https://github.com/sirk390/writeups/blob/master/New-Authent.md) | hard | TOTP reportlab gen, libdeda TDM timestamps, Epson serial plus pdf2image png; tool versions plus timeout caps plus pristine re-run
+- [INSA New-Authent TDM chain](https://github.com/sirk390/writeups/blob/master/New-Authent.md) | hard | TOTP reportlab gen, libdeda TDM timestamps, Epson serial plus pdf2image png; hop-validate plus single-retry plus stats gate
+
+## 3D-model STL-OBJ carriers
+
+- [CyberSpace CTF 2024 / 3D Obj](https://mariuszbartosik.com/cyberspace-ctf-2024-3d-obj-write-up/) | hard | OBJ UV map z-fighting, texture coordinate groups, geometry-hidden flag
+- [Hackvent 2019 / Triangulation](https://shiltemann.github.io/CTF-writeups-public/writeups/Hackvent_2019/day-02-triangulation.html) | hard | STL wireframe inner Aztec code, Blender cut, b/w threshold rotate
+- [RC3 CTF 2016 / Graphic Design](https://ctftime.org/writeup/4750) | hard | OBJ 3D model, Open 3D Model Viewer shading/transparency flag
+- [3D Models Stego DL](https://doi.org/10.1109/aann66429.2025.11257579) | hard | hierarchical deep learning, Laplace smoothing 6D features, multi-scale grouping
+- [Hackergame 2024 / flagbox STL](https://blog.csdn.net/weixin_73049307/article/details/143781821) | hard | flagbox.stl online viewer, two-part split assemble, rotate-to-join, CAD solid inspect
+- [AIS3 2024 / Long Print](https://hackmd.io/@CHW/Skj3dx1E0) | hard | G-code tool render, extrusion map, travel vs print split, hidden path
+- [Mojo Jojo / Underneath STL](https://medium.com/@edemzayaniyt/mojo-jojo-ctf-reverse-engineering-underneath-challenge-a-hidden-flag-in-a-3d-model-23b4d11a0ab7) | hard | binary STL 50B-triangle parse, header zero plus count, Blender solid fake trap
+- [Mojo Jojo / wireframe inner](https://medium.com/@edemzayaniyt/mojo-jojo-ctf-reverse-engineering-underneath-challenge-a-hidden-flag-in-a-3d-model-23b4d11a0ab7) | hard | wireframe inner-mesh reveal, solid decoy reject, second text geometry, rev-in-stego
+- [CyberSpace 2024 / 3D Obj official](https://github.com/OfficialCyberSpace/CSCTF-2024) | hard | forensics 3D-Obj wave1 source, chall plus mtl plus tex, solve-rate gap, texture-replace test
+- [RC3 2016 / Graphic Design OBJ](https://0xd13a.github.io/ctfs/rc3ctf2016/graphic-design/) | hard | Blender OBJ stegosaurus, not-the-flag object, orbit-navigation inner find, forensics zip
+- [Hackergame 2024 / flagbox STL tooling](https://blog.csdn.net/weixin_73049307/article/details/143781821) | hard | flagbox.stl online viewer, two-part split assemble, rotate-to-join, CAD solid inspect; tool versions plus timeout caps plus pristine re-run
+- [Hackergame 2024 / flagbox STL chain](https://blog.csdn.net/weixin_73049307/article/details/143781821) | hard | flagbox.stl online viewer, two-part split assemble, rotate-to-join, CAD solid inspect; hop-validate plus single-retry plus stats gate
+- [AIS3 2024 / Long Print tooling](https://hackmd.io/@CHW/Skj3dx1E0) | hard | G-code tool render, extrusion map, travel vs print split, hidden path; tool versions plus timeout caps plus pristine re-run
+- [AIS3 2024 / Long Print chain](https://hackmd.io/@CHW/Skj3dx1E0) | hard | G-code tool render, extrusion map, travel vs print split, hidden path; hop-validate plus single-retry plus stats gate
+- [Mojo Jojo / Underneath STL tooling](https://medium.com/@edemzayaniyt/mojo-jojo-ctf-reverse-engineering-underneath-challenge-a-hidden-flag-in-a-3d-model-23b4d11a0ab7) | hard | binary STL 50B-triangle parse, header zero plus count, Blender solid fake trap; tool versions plus timeout caps plus pristine re-run
+- [Mojo Jojo / Underneath STL chain](https://medium.com/@edemzayaniyt/mojo-jojo-ctf-reverse-engineering-underneath-challenge-a-hidden-flag-in-a-3d-model-23b4d11a0ab7) | hard | binary STL 50B-triangle parse, header zero plus count, Blender solid fake trap; hop-validate plus single-retry plus stats gate
+- [Mojo Jojo / wireframe inner tooling](https://medium.com/@edemzayaniyt/mojo-jojo-ctf-reverse-engineering-underneath-challenge-a-hidden-flag-in-a-3d-model-23b4d11a0ab7) | hard | wireframe inner-mesh reveal, solid decoy reject, second text geometry, rev-in-stego; tool versions plus timeout caps plus pristine re-run
+- [Mojo Jojo / wireframe inner chain](https://medium.com/@edemzayaniyt/mojo-jojo-ctf-reverse-engineering-underneath-challenge-a-hidden-flag-in-a-3d-model-23b4d11a0ab7) | hard | wireframe inner-mesh reveal, solid decoy reject, second text geometry, rev-in-stego; hop-validate plus single-retry plus stats gate
+- [CyberSpace 2024 / 3D Obj official tooling](https://github.com/OfficialCyberSpace/CSCTF-2024) | hard | forensics 3D-Obj wave1 source, chall plus mtl plus tex, solve-rate gap, texture-replace test; tool versions plus timeout caps plus pristine re-run
+- [CyberSpace 2024 / 3D Obj official chain](https://github.com/OfficialCyberSpace/CSCTF-2024) | hard | forensics 3D-Obj wave1 source, chall plus mtl plus tex, solve-rate gap, texture-replace test; hop-validate plus single-retry plus stats gate
+- [RC3 2016 / Graphic Design OBJ tooling](https://0xd13a.github.io/ctfs/rc3ctf2016/graphic-design/) | hard | Blender OBJ stegosaurus, not-the-flag object, orbit-navigation inner find, forensics zip; tool versions plus timeout caps plus pristine re-run
+- [RC3 2016 / Graphic Design OBJ chain](https://0xd13a.github.io/ctfs/rc3ctf2016/graphic-design/) | hard | Blender OBJ stegosaurus, not-the-flag object, orbit-navigation inner find, forensics zip; hop-validate plus single-retry plus stats gate
+- [H.264 SEI spec / MS-H264PF](https://learn.microsoft.com/en-us/openspecs/office_protocols/ms-h264pf/3d5fb9c1-efe8-4092-a60d-5321adce9c2e) | hard | SEI user_data_unregistered payload format, AnnexB vs avcC start codes, 0xFF continuation size, ffmpeg copy rewrap
+- [CSAW echo hiding / cepstrum](https://blog.osiris.cyber.nyu.edu/is-there-an-echo/) | hard | 256-window echo partition, cepstrum ifft-log-fft peaks, d0 d1 sample delays, per-window compare plus ascii
+- [Echo hiding / Yas variant](https://medium.com/@yaslr.enabled/writeup-for-is-there-an-echo-97bb701fb72b) | hard | cepstral domain single echo cue, Audacity 0.0010s plus 0.0012s peaks, frame 16800, d0-d1 delay math
+- [Audio stego algorithms / phase](https://github.com/ktekeli/audio-steganography-algorithms) | hard | mid-frequency phase embed 0-pi, segment FFT IFFT reconstruct, WAV-only phase survival, boundary align
+- [Audio stego algorithms / spread](https://github.com/ktekeli/audio-steganography-algorithms) | hard | PN sequence chip-rate autocorrelation, correlation positive-negative bits, below-noise processing gain, metadata sequence
+
+## R2 TOP-UP breadth expansion (2024-2026) — university, community, HTB/THM, technique deep-dives
+
+Method: second harvest pass over sources untapped in R1+R2 (university archives CSAW/Plaid/HITCON/Sekai/UIUC/angstrom/Kalmar/idek/cor/justCTF, regional/community CTFs, HTB sherlocks plus Business plus Apocalypse, THM stego rooms, picoCTF, technique deep-dives for video/audio/QR/whitespace/PDF/DNS/printer/3D). Every URL returned by web-search; technique chains only, no flag or payload values anywhere. All URLs below are absent from both `knowledge/writeups_mined/stego_manifest.md` and the sections above. Difficulty: hard = finals-tier event, or >=3 technique families, or hard-named/high-point task, or multi-hop chain.
+
+### University and major-CTF archives
+
+- [CSAW 2024 Quals / BucketWars + web](https://blog.hokyun.dev/posts/csaw-ctf-2024-quals-writeup/) | hard | S3 versioning plus steghide passphrase chain
+- [CSAW 2024 Quals / HexHex roundup](https://www.lostmyplaintext.com/writeups/2024/09/12/csawCTF2024quals.html) | hard | hex plus stego quals sweep, exiftool plus binwalk triage
+- [CSAW 2024 Quals / I like it RAW](https://kevin.fish/writeups/6c2437fd2e120bad3af82c8fcd36e5a5) | hard | RAF preview plus thumbnail carve, OSINT phone plus GPG passphrase
+- [CSAW 2024 Quals roundup](https://sharkkcode.github.io/2024/09/13/CSAW-CTF-Qualification-Round-2024-Writeups/) | hard | quals multi-track index incl. forensics plus stego
+- [CSAW 2024-2025 benchmark index](https://benchmarksolutions.org/solutions/csaw-ctf) | hard | finals plus quals task index, forensics track pointer
+- [CSAW 2024 Quals / RAW + echo notes](https://blog.awoo.systems/posts/2024-09-10-csaw-quals) | hard | RAF OSINT plus echo-hiding WAV cepstrum brute force
+- [CSAW 2024 Quals / BucketWars](https://stefanin.com/posts/bucketwars-writeup/) | hard | S3 object versioning plus steghide extract chain
+- [CSAW 2024 / Archeology](https://osintteam.blog/csaw24-archeology-writeup-57a79752f67d) | hard | binary wash plus sbox rev chain, hard-tier rev-in-forensics
+- [PlaidCTF archive](https://archive.plaidctf.com/) | hard | multi-year challenge archive incl. misc plus forensics
+- [PlaidCTF 2024 / DHCPPP](https://sectt.github.io/writeups/Plaid24/DHCPPP/README) | hard | ChaCha20-Poly1305 nonce-reuse covert channel
+- [PlaidCTF 2025 index](https://www.cyberwriteups.org/ctfs/plaidctf-2025) | hard | event task index incl. misc plus crypto covert
+- [PlaidCTF 2025 / Tales from the Crypt](https://jsur.in/posts/2025-04-07-plaid-ctf-2025-tales-from-the-crypt/) | hard | TLS renegotiation plus RSA fault plus pcap decrypt
+- [PlaidCTF 2025 / Tales condensed](https://www.cyberwriteups.org/writeups/tales-from-the-crypt-plaidctf-2025) | hard | same TLS plus RSA pcap chain, condensed
+- [PlaidCTF 2024 archive](https://2024.archive.plaidctf.com/) | hard | official challenge plus source archive
+- [PlaidCTF 2024 / DHCPPP vi](https://hackmd.io/@tranminhprvt01/PlaidCTF2024) | hard | DHCPPP nonce-reuse plus DNS-spoof chain
+- [HITCON 2024 / DeFi writeups](https://github.com/DeFiHackLabs/hitcon-ctf-2024-writeup) | hard | event web3 collection incl. forensics-adjacent
+- [HITCON 2024 / echo service](https://naup.mygo.tw/2024/07/22/HitconCTF2024-Writeup/) | hard | bun-shell injection plus web forensics chain
+- [HITCON 2024 / Hyper512](https://hackmd.io/aQaAILbHRyKYbC51t_JtZw) | hard | LFSR correlation-attack crypto chain
+- [HITCON 2024 Quals / Revisual](https://medium.com/@harryfyx/writeup-hitcon-ctf-quals-2024-revisual-e929b4c6eea6) | hard | obfuscated-JS plus WebGL shader oracle brute force
+- [HITCON 2024 Qual crypto](https://blog.tanglee.top/2024/07/15/HITCON-CTF-2024-Qual-Crypto-Writeup.html) | hard | algebraic plus correlation attack crypto set
+- [HITCON 2024 Qual pwn ge](https://u1f383.github.io/ctf/2024/07/16/hitcon-ctf-qual-2024-pwn-challenge-part-1-halloween-and-v8sbx.html) | hard | kernel jump-table race plus v8 sandbox escape
+- [SekaiCTF 2025 official](https://github.com/project-sekai-ctf/sekaictf-2025/) | hard | official source plus solutions incl. misc stego-adjacent
+- [SekaiCTF 2024 official](https://github.com/project-sekai-ctf/sekaictf-2024/) | hard | official source plus solutions archive
+- [SekaiCTF 2024 / ICEDTEA](https://blog.ic3dt3a.org/posts/2024pjskctf/) | hard | react-native bundle plus AES credential chain
+- [SekaiCTF 2024 / k0m1](https://xk0m1.github.io/2024/08/30/Sekai-CTF-2024/) | hard | APK overlay plus AES login plus traffic flag
+- [SekaiCTF 2025 aggregator](https://ctfpal.com/writeups/ctf/sekaictf-2025-2683) | hard | community solution aggregator incl. misc
+- [SekaiCTF 2024 / Sceleri crypto](https://blog.sceleri.cc/posts/sekai-ctf-2024-writeup/) | hard | lattice plus multivariate crypto chain
+- [SekaiCTF 2025 / winky](https://threalwinky.github.io/post/sekaictf2025/) | hard | wordpress POP plus LFI-to-RCE chain
+- [SekaiCTF 2026 / impossible stego](https://cybersecurityelite.com/ctf-writeups/sekai-ctf-2026-writeup/) | hard | AI-gateway log replay plus keyed-scatter LSB extract
+- [UIUCTF 2024 / Goose Chase](https://hackmd.io/@jinn/uiuctf2024) | hard | sliver C2 pcap decrypt plus memdump key hunt
+- [UIUCTF 2024 public](https://github.com/sigpwny/UIUCTF-2024-Public) | hard | official challenge plus infra monorepo
+- [UIUCTF 2024 / Nightxade](https://nightxade.github.io/ctf-writeups/writeups/2024/UIUCTF-2024/) | hard | transit-themed multi-track writeup set
+- [UIUCTF 2024 / EnchLolz](https://github.com/EnchLolz/UIUCTF-2024) | hard | crypto plus OSINT plus web sweep
+- [UIUCTF 2024 / siunam](https://siunam321.github.io/ctf/UIUCTF-2024/) | hard | transit CTF web plus misc chain set
+- [angstromCTF 2024 mirror](https://unvariant.pages.dev/writeups/angstromctf-2024/) | hard | pwn plus rev asset mirror
+- [angstromCTF 2024 / CaptureAmerica](https://captureamerica.github.io/writeups/post/angstromctf_2024/) | hard | rev plus web sweep, beginner-to-hard ladder
+- [angstromCTF 2024 / priv](https://priv.pub/posts/angstromctf-2024/) | hard | author writeups plus solution code
+- [angstromCTF 2024 / satoki](https://github.com/satoki/ctf_writeups) | hard | multi-event collection incl. angstrom web set
+- [angstromCTF 2024 / mikoto](https://qiita.com/mikoto2726/items/b62f9b57cefde01947a4) | hard | misc plus crypto ladder, kcehC plus putnam plus enigma
+- [angstromCTF 2024 / kashiwaba](https://kashiwaba-yuki.com/ctf-angstrom-ctf-2024-en/) | hard | rev plus pwn plus web team set
+- [KalmarCTF 2025 / siunam](https://siunam321.github.io/ctf/KalmarCTF-2025/) | hard | cache-poison XSS plus race plus RCE chain
+- [KalmarCTF 2025 / haari](https://soon.haari.me/2025-kalmarctf/) | hard | Math.random bias plus ZKP factoring crypto set
+- [KalmarCTF 2024 / giap](https://giapppp.github.io/posts/kalmar2024/) | hard | pedersen plus PRNG casino crypto chain
+- [KalmarCTF official](https://github.com/kalmarunionenctf/kalmarctf) | hard | official source plus author writeups
+- [KalmarCTF 2024 web / Ireland](https://ireland.re/posts/KalmarCTF_2024/) | hard | caddy plus memcache-RCE plus SSRF web chain
+- [KalmarCTF 2025 / feneshi](https://feneshi.co/KalmarCTF_2025_writeup/) | hard | DoH-XSS proxy plus DNS-query smuggle
+- [KalmarCTF 2025 / satoki](https://github.com/satoki/ctf_writeups/tree/master/KalmarCTF_2025) | hard | event collection plus gotenberg race
+- [KalmarCTF 2025 / G0tchaberg](https://ctftime.org/writeup/40075) | hard | gotenberg waitDelay race plus file-list leak
+- [idekCTF 2024 / siunam](https://siunam321.github.io/ctf/idekCTF-2024/) | hard | XSS plus phpinfo plus race-condition web chain
+- [idekCTF 2024 / vaktibabat](https://vaktibabat.github.io/posts/idek_2024/) | hard | XSS HttpOnly exfil plus game-patch rev chain
+- [idekCTF 2024 / QQ](https://github.com/i-m-down-QQ/writeups/blob/main/2024/idekCTF%202024.md) | hard | team sweep incl. misc plus crypto
+- [idekCTF 2025 / giap author](https://giapppp.github.io/posts/idekctf-2025/) | hard | author notes plus diamond-ticket rev chain
+- [idekCTF 2024 / cjxol](https://www.cjxol.com/posts/idekctf-2024-writeup/) | hard | nginx-ACL bypass plus XSS cookie exfil
+- [idekCTF 2025 archive](https://www.lysastriel.com/resources/Archives/CTF%20Writeup/idekCTF%202025) | hard | archive hub incl. midi-visualizer path-confusion
+- [idek team blog](https://idek.team/blog/) | hard | team blog incl. USB plus ICMP covert forensics
+- [corCTF 2024 / rstacks](https://github.com/rstacks/corCTF2024-writeup) | hard | chat-app crypto plus lights-out linear algebra
+- [corCTF 2024 / ikbase](https://ikbase.net/blog/2024/07/30/corctf24/) | hard | chat multiply-cipher plus pcap key recovery
+- [corCTF 2025 / cold NSS](https://cold.is-a.dev/blog/corctf2025/) | hard | NSS-module plus blob-decrypt forensics chain
+- [cor.team posts](https://cor.team/posts/) | hard | team archive incl. infiltration plus conspiracy forensics
+- [corCTF 2025 / jiegec](https://github.com/jiegec/ctf-writeups/blob/master/docs/2025-08-30-corctf2025/README.md) | hard | NSS lookup plus blob decrypt chain
+- [corCTF 2024 / xciphand](https://b.x-d.fun/2024/07/29/corCTF-2024/) | hard | chat decrypt plus event-log quiz chain
+- [justCTF 2025 official](https://github.com/justcatthefish/justctf-2025) | hard | official sources plus solver scripts
+- [justCTF 2024 / pr1m3d](https://pr1m3dctf.github.io/writeups/2024/JustCTF2024/) | hard | team writeup set incl. misc
+- [justCTF 2024 teaser / siunam](https://siunam321.github.io/ctf/justCTF-2024-teaser/) | hard | SSTI-perl plus teaser web chain
+- [justCTF 2025 hub](https://2025.justctf.team/) | hard | event hub plus edition archive
+- [justCTF 2025 archive](https://www.lysastriel.com/resources/Archives/CTF%20Writeup/justCTF%202025) | hard | cache-poison plus prototype-pollution web chain
+
+### Regional and community CTFs
+
+- [DownUnderCTF 2025 / appl3tree](https://appl3tree.github.io/posts/DownUnderCTF-2025/) | hard | NBD plus binary plus metadata sweep
+- [DownUnderCTF 2025 public](https://github.com/DownUnderCTF/Challenges_2025_Public) | hard | official files plus solutions
+- [DownUnderCTF 2025 / WheeledCord](https://github.com/WheeledCord/DownUnderCTF-2025-Writeup) | hard | team solve collection
+- [DownUnderCTF 2024 public](https://github.com/DownUnderCTF/Challenges_2024_Public) | hard | official files plus solutions
+- [DownUnderCTF 2025 / feneshi](https://feneshi.co/DownUnderCTF2025_writeup/) | hard | AI-assisted plus misc sweep
+- [DownUnderCTF 2024 / warlocksmurf](https://warlocksmurf.github.io/posts/ductf2024/) | hard | full forensics attack-chain sweep
+- [DownUnderCTF 2024 / ouuan](https://ouuan.moe/post/2024/07/ductf-2024) | hard | misc plus web team set
+- [SunshineCTF 2024 public](https://github.com/SunshineCTF/SunshineCTF-2024-Public) | hard | official source plus solve scripts
+- [SunshineCTF 2024 / naup](https://hackmd.io/@naup96321/Byot537gJg) | hard | git-bundle plus scripting sweep
+- [SunshineCTF 2024 / REUN10N](https://github.com/rehackxyz/REUN10N/tree/main/CTF-writeups/2024/SunshineCTF) | hard | team sweep incl. ICMP forensics
+- [SunshineCTF 2024 / whale](https://blog.whale-tw.com/2024/10/22/sunshinectf-2024/) | hard | s3 plus IDA plus activitypub web chain
+- [SunshineCTF 2024 / yocchin](https://yocchin.hatenablog.com/entry/2024/10/23/193114) | hard | crypto plus scripting team set
+- [SunshineCTF 2024 / Puzzling](https://ctftime.org/writeup/39579) | hard | XXE parameter-entity plus OOB exfil
+- [IrisCTF 2025 / warlocksmurf](https://warlocksmurf.github.io/posts/irisctf2025/) | hard | DNS plus DHCP log forensics sweep
+- [IrisCTF 2024 official table](https://irisc.tf/writeups/2024.html) | hard | official writeup table incl. Not-Just-Media
+- [IrisCTF 2025 / Deldeldel](https://emree-1.github.io/posts/irisctf2025-forensics-deldeldel/) | hard | USB HID keylogger pcap rebuild
+- [IrisCTF 2024 / warlocksmurf](https://warlocksmurf.github.io/posts/irisctf2024/) | hard | SD-card plus networking DFIR sweep
+- [IrisCTF 2025 / Tracem1](https://emree-1.github.io/posts/irisctf2025-forensics-tracem1/) | hard | splunk rare-event plus SSO-log attribution
+- [IrisCTF 2025 / Windy Day](https://emree-1.github.io/posts/irisctf2025-forensics-windy-day/) | hard | volatility plus base64-variant hunt
+- [IrisCTF 2024 / d33znu75](https://github.com/d33znu75/irisctf-2024-writeup) | hard | Not-Just-Media plus What-the-Beep set
+- [BuckeyeCTF 2024 / gtronous](https://gtronous.github.io/posts/buckeyectf2024/) | hard | zip plus pcap-HID plus crypto sweep
+- [BuckeyeCTF 2024 / n0r37urn](https://medium.com/@n0r37urn/soluci%C3%B3n-de-algunos-retos-buckeyectf-2024-99003f6d3a68) | hard | unzip plus USB-parse plus writeup-repeat chain
+- [BuckeyeCTF 2024 / reduce_recycle](https://ctftime.org/writeup/39498) | hard | ZipCrypto known-plaintext plus bkcrack password recovery
+- [BuckeyeCTF 2024 / REUN10N](https://github.com/rehackxyz/REUN10N/tree/main/CTF-writeups/2024/buckeyeCTF) | hard | team sweep incl. duck-pics USB-HID
+- [BuckeyeCTF 2024 / reduce_recycle deep](https://mariuszbartosik.com/buckeye-ctf-2024-reduce_recycle-write-up/) | hard | PNG-header plaintext plus bkcrack chain
+- [BuckeyeCTF 2024 / xenon](https://xenon-2.gitbook.io/writeups/ctf-writeups/ctf-writeups/buckeye-2024) | hard | gitbook sweep incl. forensics
+- [BuckeyeCTF 2024 / duck-pics](https://ctftime.org/writeup/39499) | hard | USB-HID pcap plus keyboard-parse chain
+- [BuckeyeCTF 2024 author / corgi](https://corgi.rip/posts/buckeye-writeups/) | hard | author writeups incl. reduce_recycle crypto
+- [PatriotCTF 2024 / shreethaar](https://shreethaar.github.io/ctf-writeups/writeups/2024/PatriotCTF/) | hard | emoji-stack plus RTL plus steghide-seek set
+- [PatriotCTF 2024 official](https://github.com/MasonCompetitiveCyber/PatriotCTF2024) | hard | official challenges incl. steghide-seek
+- [PatriotCTF 2024 / justus](https://www.justus.pw/writeups/pctf-2024/index.html) | hard | weekend mega-sweep incl. forensics
+- [PatriotCTF 2024 / REUN10N](https://github.com/rehackxyz/REUN10N/tree/main/CTF-writeups/2024/PatriotCTF) | hard | team sweep incl. exfil forensics
+- [PatriotCTF 2024 / ribom](https://ribombalt.github.io/ctf-writeup/2024/09/23/patriotCTF) | hard | multi-level team sweep incl. misc
+- [PatriotCTF 2024 / ICEDTEA](https://blog.ic3dt3a.org/posts/2024pctf/) | hard | SAU problem plus team set
+- [PatriotCTF 2024 / ramenhost](https://ramenhost.dev/posts/ctf-writeup-patriot-ctf-2024/) | hard | personal solve set incl. forensics
+- [TCP1P 2024 / warlocksmurf](https://warlocksmurf.github.io/posts/tcp1pctf2024/) | hard | discord-process plus hg plus zip-fix forensics
+- [TCP1P 2024 / Skibidi Format](https://ctftime.org/writeup/39572) | hard | custom-format plus AES-GCM plus zstd image rebuild
+- [TCP1P 2024 / tsakman](https://tsakman23.github.io/posts/tcp1p/) | hard | skibidi-format plus mercurial-recover chain
+- [TCP1P 2024 / Doxxed](https://ctftime.org/writeup/39559) | hard | OSINT docx plus binwalk carve chain
+- [TCP1P 2024 / gtronous](https://gtronous.github.io/posts/tcp1pctf2024/) | hard | powershell-AES plus zip-password chain
+- [TCP1P 2024 / Lost Progress](https://ctftime.org/writeup/39560) | hard | forensics task page, multi-solve set
+- [TCP1P 2024 / Direct-Love](https://ctftime.org/writeup/39571) | hard | forensics task page, hackmd mirror chain
+- [TCP1P 2024 / REUN10N](https://github.com/rehackxyz/REUN10N/tree/main/CTF-writeups/2024/TCP1P) | hard | team sweep incl. skibidi plus doxxed
+- [KnightCTF 2025 pwn / midwinter](https://midwinter.re/knightctf2025-pwn/) | hard | pyjail plus uint-underflow pwn set
+- [KnightCTF 2025 / mt1218](https://mt1218.github.io/p/knightctf-2025/) | hard | binary-quest plus grail rev set
+- [KnightCTF 2025 / yocchin](https://yocchin.hatenablog.com/entry/2025/01/24/123226) | hard | integer-overflow bank plus team set
+- [KnightCTF 2025 / benx](https://blog.benx.dev/posts/knightctf-2025/) | hard | SSTI-config plus droid cipher set
+- [KnightCTF 2025 / albert](https://albert5888.github.io/posts/KnightCTF-2025/) | hard | server plus attacker network set
+- [KnightCTF 2025 aggregator](https://www.kshackzone.com/ctfs/writeups/event-writeups/14/knightctf-2025) | hard | community aggregator incl. rev plus OSINT
+- [L3akCTF 2024 / warlocksmurf](https://warlocksmurf.github.io/posts/l3akctf2024/) | hard | persistence-sweep plus jenkins-secret forensics
+- [L3akCTF 2024 forensics / 8anem](https://0xmr8anem.medium.com/l3akctf-2024-forensics-writeups-3b5575f07cba) | hard | memdump plus network forensics set
+- [L3akCTF 2025 forensics / OG13](https://medium.com/@OG13/l3akctf-2025-forensics-write-up-6420777822de) | hard | disk-image plus AES-CBC plus RC4-stealer chain
+- [L3akCTF 2025 / yoshl postmortem](https://yoshlsec.github.io/l3akctf-2025/) | hard | EML plus BOM plus MFT plus AES chain
+- [L3akCTF 2025 / Ghost in the Dark](https://medium.com/@hazemzuma105professional/ctf-write-up-l3akctf-2025-ghost-in-the-dark-forensics-7c170965fe66) | hard | deleted-ps1 plus AES-CBC flag-decrypt chain
+- [L3akCTF 2025 admin / abdelrhman](https://abdelrahme.github.io/posts/L3akCTF-2025/) | hard | admin plus memdump plus TLS forensics design notes
+- [L3akCTF 2025 memory / nh0kt1g3r](https://hackmd.io/@nh0kt1g3r12/S1OlHg78gx) | hard | sRDI plus TLS-RSA plus DPAPI decrypt chain
+- [L3akCTF 2025 / Wi-Fight a Ghost](https://medium.com/@hazemzuma105professional/ctf-write-up-l3akctf-2025-wi-fight-a-ghost-forensics-8e6b6580b477) | hard | registry plus MFT 14-question DFIR chain
+- [TJCTF 2025 forensics / yoshl](https://yoshlsec.github.io/tjctf-2025/) | hard | zsteg plus binwalk plus jsteg plus piet-esolang chain
+- [TJCTF 2025 forensics / mahmoud](https://medium.com/@0xhodaa/tjctf-2025-forensics-writeups-f7d0758ee780) | hard | exiftool plus foremost plus sonic-visualizer set
+- [TJCTF 2024 / Pals](https://404unfound.com/writeups/tjctf_24/pals/) | hard | PLTE-palette recolor plus aperisolve triage
+- [HeroCTF 2024 / Zipper](https://0x90r00t.com/2024/10/27/heroctf-2024-forensics-50-zipper-write-up/) | hard | foremost carve plus visual-camouflage read
+- [HeroCTF 2024 / Indonesian Zero Width](https://0x90r00t.com/2024/10/27/heroctf-2024-stegano-50-indonesian-zero-width-write-up/) | hard | U+200C plus U+200D binary decode chain
+- [HeroCTF v6 / LSD3](https://nacrondx.github.io/ctf-info/CTFs/HeroCTF%20v6%20-%202024/Steganography/LSD3/) | hard | blue-plane diagonal LSB sweep
+- [HeroCTF v6 / yocchin](https://yocchin.hatenablog.com/entry/2024/10/29/081101) | hard | binwalk-zip plus CSV-log plus LSB set
+- [HeroCTF 2024 / LazySysAdmin 2](https://0x90r00t.com/2024/10/27/heroctf-2024-forensics-316-lazysysadmin-2-write-up/) | hard | cron plus wrapper plus pastebin-base64 chain
+- [HeroCTF v6 official](https://github.com/HeroCTF/HeroCTF_v6) | hard | official challenges incl. LSD plus subliminal stego
+- [HeroCTF 2025 / hax1ng](https://github.com/hax1ng/HeroCTF2025-Writeups) | hard | team collection incl. event-log DCSync forensics
+- [HeroCTF v6 hub](https://0x90r00t.com/category/ctf/2024/heroctf_v6/) | hard | category hub incl. zipper plus zero-width
+- [CakeCTF 2023 / nevi](https://www.nevi.dev/2023/11/12/writeup-cakectf-2023/) | hard | signature-forge plus CBC-prefix crypto chain
+- [CakeCTF collection / int3x](https://github.com/int3x/ctf-writeups) | hard | collection incl. CakeCTF plus HTB CACTF
+- [CakeCTF 2023 aggregator](https://alpacahack.com/ctfs/cakectf-2023/writeups) | hard | aggregator incl. country-DB plus adblog
+- [CakeCTF 2023 / kusano](https://qiita.com/kusano_k/items/697ad6886d9c1712a7b4) | hard | vtable plus TOWFL plus nande set
+- [CakeCTF 2023 / b1ue](https://b1ue.x0.com/writeup/2023cakectf/) | hard | TOWFL plus DOM-clobber web chain
+- [CakeCTF 2023 / st98](https://nanimokangaeteinai.hateblo.jp/entry/2023/11/12/140251) | hard | country-DB plus openbio web chain
+- [VishwaCTF 2025 official](https://github.com/cybercell-viit/vishwactf25-writeups) | hard | official repo incl. quadrant plus echoes
+- [VishwaCTF 2025 / QuadRant](https://medium.com/@bl4cknr3d/quadrant-vishwactf-2025-steganography-easy-09338b71e6ff) | hard | quad-overlay QR assembly chain
+- [VishwaCTF 2025 / H4CK_077](https://medium.com/@kishanjaisoorya16/vishwactf-25-8f3ac09cfa3d) | hard | pcapng-comment plus misc sweep
+- [VishwaCTF 2025 / khashan](https://medium.com/@okhashan13/vishwactf-25-writeup-7abc768624dc) | hard | registry-RecentDocs plus QR-overlay plus morse set
+- [VishwaCTF 2025 / aurichia](https://aurichia.gitbook.io/undefined/ctfs-tours/2025/vishwactf-2025) | hard | gitbook tour incl. SQLi plus scanner plus xor-b85
+- [VishwaCTF 2025 / BoMDay](https://hackmd.io/@BoMDay/S10vHEXsJx) | hard | fake-flag plus chaos crypto sweep
+- [VishwaCTF hub / 3r0th3r](https://3r0th3r-cc.github.io/categories/CTF/Writeups/index.html) | hard | crew hub incl. Vishwa plus dragons
+- [BackdoorCTF 2024 / nightxade](https://nightxade.github.io/ctf-writeups/writeups/2024/Backdoor-CTF-2024/) | hard | huffman plus polynomial crypto chain
+- [BackdoorCTF 2024 / Decompressor](https://ctftime.org/writeup/39722) | hard | huffman-tree plus GCD-prime plus LLL lattice chain
+- [BackdoorCTF 2024 / REUN10N](https://github.com/rehackxyz/REUN10N/tree/main/CTF-writeups/2024/BackdoorCTF) | hard | team sweep incl. web plus misc
+- [BackdoorCTF 2024 / sl4y3r](https://sl4y3r-07.github.io/posts/BackdoorCTF'24-Writeup/) | hard | golang time plus shellcode key recovery chain
+- [BackdoorCTF 2024 / Hashing Frenzy](https://rasti37.github.io/posts/2025-03-01-backdoor-ctf-2024-hashing-frenzy-writeup/) | hard | GCD-prime plus SVP plus CVP lattice chain
+- [BackdoorCTF 2024 web / tchen](https://blog.7chn.me/posts/backdoor) | hard | DOM-clobber XSS plus font-face CSS exfil chain
+- [BlueHens 2024 / D_C4ptain](https://d-c4ptain.github.io/posts/BlueHens-CTF-2024/) | hard | stegseek plus openssl plus base64 chain
+- [BlueHens 2024 / Immortal Game](https://mariuszbartosik.com/bluehens-ctf-the-immortal-game-write-up/) | hard | chess-move DNS plus cert-SAN grille chain
+- [BlueHens 2024 / Inner Demons](https://medium.com/@EvilGroundZero/inner-demons-bluehens-ctf-2024-writeup-5b4e85c7f237) | hard | stegseek JPEG crack chain
+- [BlueHens 2024 / REUN10N](https://github.com/rehackxyz/REUN10N/tree/main/CTF-writeups/2024/BluehenCTF) | hard | team sweep incl. inner-demons plus bees
+- [BlueHens 2024 / Whispers](https://rustybladez.medium.com/whispers-of-the-feathered-messenger-bluehens-ctf-2024-writeup-9d8c2bb80368) | hard | exiftool-base64 plus steghide plus openssl chain
+- [BlueHens 2024 / Bees in Space](https://rustybladez.medium.com/bees-in-space-bluehens-ctf-2024-writeup-e218703a456e) | hard | whitespace-language decode chain
+- [BlueHens 2024 / tamil hub](https://blogs.tamilctf.com/ctf/2024/BlueHensCTF/ctf-challenges) | hard | stegseek plus aperisolve triage notes
+- [BlueHens 2024 OSINT / horus](https://medium.com/@horus_/bluehens-ctf-2024-osint-writeup-64366494f286) | hard | EXIF plus vigenere plus flickr OSINT chain
+- [IITG Kriti 2024 / DNA](https://medium.com/@adityapatel183/iitg-2024-ctf-writeup-c6704818fbac) | hard | steghide DNA-text plus morse plus base chain
+- [NahamCon 2024 / ry0dan](https://ry0dan.github.io/ctf/Nahmcon-CTF-2024/) | hard | MFT-carve plus fernet-known-plaintext plus electron-asar chain
+- [NahamCon 2025 / Diephho](https://github.com/Diephho/NahamConCTF2025-Writeups) | hard | team sweep incl. puzzle-pieces timestamp order
+- [NahamCon 2024 forensics / fmisec](https://medium.com/fmisec/nahamcon-ctf-2024-forensic-1-99140034c7c8) | hard | pcap-xor plus zip-resource forensics chain
+- [NahamCon 2024 / ELJoOker](https://medium.com/@ELJoOker/nahamcon-ctf-2024-write-ups-3e24354dc2c6) | hard | rev plus forensics team set
+- [NahamCon 2025 web / spacecriminal](https://spacecriminal.com/2025/05/2025-05-28-nahamcon-25-writeups-2/) | hard | rotten-ROT enumeration plus reflection web chain
+- [0CTF 2024 aggregator](https://ctfpal.com/writeups/ctf/0ctf-2024-2024-community) | hard | community aggregator, repo-pinned solutions
+- [TCT CTF 2024 stego / kh44key](https://medium.com/@kh44key/steganography-writeups-tct-ctf-2024-345fe8479475) | hard | steghide plus dual-image online-tool chain
+- [0CTF 2024 rev / xlr8or](https://ghost-ss.com/0ctf_2024/index.html) | hard | lonely-christmas rev solo set
+- [TCT CTF 2024 / Distortion](https://medium.com/@thepickachu/tct-ctf-24-stegano-distortion-4f6cf947ef39) | hard | stegosuite extract chain
+- [TCT CTF 2024 / Beeep](https://medium.com/@thepickachu/tct-ctf-24-stegano-beeepppp-71a97b0f262a) | hard | wavsteg LSB plus bitcount extract chain
+- [0CTF 2024 / Numbers](https://rustybladez.medium.com/0ctf-2024-writeup-numbers-a0139658076b) | hard | tiktoken-ID plus model-decode chain
+- [TCT CTF 2024 / Checkmate](https://github.com/thegr1ffyn/thegr1ffyn.github.io/blob/master/data/blog/writeups/crypto/TCT_CTF%202024/Checkmate%20-%20Crypto%20-%20TCT_CTF%202024.md) | hard | chess-PGN move-index plus PNG-rebuild chain
+- [Nullcon 2025 / Profound thought](https://ctftime.org/writeup/39992) | hard | zsteg b1-rgb LSB sweep chain
+- [Nullcon 2025 / USBNet](https://ctftime.org/writeup/39990) | hard | USB-BULK plus PNG-carve plus cyberchef chain
+- [Nullcon Berlin 2025 / usbstorage](https://ctftime.org/writeup/40404) | hard | USB-storage plus gzip-carve plus tar chain
+- [Nullcon 2025 / USBNet wiki](https://ctftime.org/writeup/39841) | hard | USBNet wiki-mirror plus QR-carve chain
+- [Nullcon 2025 / Infobahn](https://hackmd.io/@Infobahn/BkNKejftkl) | hard | kleinvieh plus misc team set
+- [Nullcon 2025 misc / devsharma](https://medium.com/@devsharmaCTF/nullcon-hackim-ctf-goa-2025-cracking-the-misc-challenges-f00ffaa7e191) | hard | zsteg plus foremost plus QR USB chain
+- [Nullcon 2025 / zzzmilky](https://medium.com/@zzzmilky/ctf-writeups-nullcon-hackim-ctf-2025-54d570ec5793) | hard | web plus crypto team set
+- [Hackvent 2024 official / bigigloo](https://www.bigigloo.de/download/Write-Up_HackVent_2024.pdf) | hard | advent ladder incl. palette plus QR stego
+- [Hackvent 2024 hidden-easy / mobeigi](https://mobeigi.com/blog/security/capture-the-flag/hacking-lab/hackvent/2024/hidden-easy/) | hard | blue-LSB corner-text plus aperisolve chain
+- [Hackvent 2024 medium / 0xdf](https://0xdf.gitlab.io/hackvent2024/medium) | hard | color-table QR rebuild plus zbar chain
+- [Hackvent 2024 day-18 / mobeigi](https://mobeigi.com/blog/security/capture-the-flag/hacking-lab/hackvent/2024/day-18/) | hard | RGB-xor QR rebuild chain
+- [Hackvent 2024 day-4 / mobeigi](https://mobeigi.com/blog/security/capture-the-flag/hacking-lab/hackvent/2024/day-4/) | hard | GIF-palette LSB plus QR assembly chain
+- [Hackvent 2024 mirror / scribd](https://www.scribd.com/document/822648600/HackVent-2024-WriteUp) | hard | mirrored advent ladder incl. stego plus QR
+- [Hackvent 2024 hidden-medium / mobeigi](https://mobeigi.com/blog/security/capture-the-flag/hacking-lab/hackvent/2024/hidden-medium/) | hard | volatility-notepad plus steghide-QR chain
+- [Hackvent 2024 leet / 0xdf](https://0xdf.gitlab.io/hackvent2024/leet) | hard | photoTAN-cronto plus proxy-storage web chain
+
+### HTB, THM, picoCTF plus technique deep-dives
+
+- [HTB Stego / vivian-dai](https://vivian-dai.github.io/Hack-the-Box-Writeups/Stego/) | hard | forest LSB plus tool survey
+- [HTB Sherlocks / abubakar-shahid](https://github.com/abubakar-shahid/HackTheBox-Sherlocks-Writeups) | hard | DFIR collection incl. forensic carriers
+- [HTB Sherlocks / h0ny](https://github.com/h0ny/HackTheBox-Sherlocks-Writeups) | hard | sherlock DFIR collection plus gitbook
+- [HTB Sherlocks / LockPick](https://ritamdey.medium.com/lockpick-htb-sherlocks-1-of-4-a31d040c41ba) | hard | XOR-ransomware plus glob-decrypt DFIR chain
+- [HTB Tinsel Trace / hamayan](https://blog.hamayanhamayan.com/entry/2025/01/13/152625) | hard | festive DFIR series incl. k8s plus V8
+- [HTB / birdo hub](https://write-ups.birdo.uk/) | hard | hub incl. campfire plus DFIR set
+- [HTB mega-hub / momenbasel](https://github.com/momenbasel/htb-writeups) | hard | mega-hub incl. stego plus forensics tracks
+- [HTB Business 2024 official](https://github.com/hackthebox/business-ctf-2024) | hard | official vault-of-hope incl. forensics set
+- [HTB Business 2024 / Caving](https://www.matthewdfurtado.com/blog/forensics_caving/) | hard | event-log plus base64-cookie chain
+- [HTB Business 2024 / Mitigation](https://byteintocyber.com/htb-business-ctf-mitigation-writeup/) | hard | xz-backdoor version-hunt plus dpkg fix
+- [HTB Business 2024 / Counter Defensive](https://www.matthewdfurtado.com/blog/forensics_counterdefensive/) | hard | AD1 plus registry plus mshta-decode chain
+- [HTB Business 2024 / LAC](https://devblog.lac.co.jp/entry/20240528) | hard | JWT plus GraphQL plus pipeline web-plus-misc set
+- [HTB Cyber Apocalypse 2025 official](https://github.com/hackthebox/cyber-apocalypse-2025) | hard | official eldoria incl. forensics plus AI-stego
+- [HTB Cyber Apocalypse 2025 / warlocksmurf](https://warlocksmurf.github.io/posts/htbcyberctf2025/) | hard | powershell-stager plus LNK plus WebDav chain
+- [HTB Cyber Apocalypse 2024 official](https://github.com/hackthebox/cyber-apocalypse-2024) | hard | official hacker-royale incl. phreaky plus siege
+- [HTB 2025 / Crystal Corruption](https://quaily.com/prestonzen/p/htb-ctf-ai-crystal-corruption) | hard | pickle plus tensor LSB steg-decode chain
+- [HTB 2025 forensics / Reze](https://github.com/ZzN1NJ4/Reze/blob/main/ctf-writeups/htb-cyber-apocalypse-2025/forensics.md) | hard | EML plus LNK plus powershell chain
+- [HTB Cyber Apocalypse 2024 / warlocksmurf](https://warlocksmurf.github.io/posts/htbcyberctf2024/) | hard | SSH-log plus SMTP-exfil plus discord-malware chain
+- [HTB 2025 / Silent Trap](https://twc1rcle.com/ctf/team/ctf_writeups/cyber_apocalypse_2025/forensics/SilentTrap) | hard | pcap-IMAP plus RC4 plus task chain
+- [HTB 2025 / odin](https://odintheprotector.github.io/2025/03/27/hackthebox-cyber-apocalypse-2025.html) | hard | AES-CBC traffic plus telegram-dumper chain
+- [picoCTF 2024 / warlocksmurf](https://warlocksmurf.github.io/posts/picoctf2024/) | hard | full forensics sweep, beginner-to-hard ladder
+- [picoCTF 2025 / RED](https://blog.cbarkr.com/ctf/picoCTF/2025/RED) | hard | poem-acrostic plus b1-rgba LSB base64 chain
+- [picoCTF forensics / crmulent](https://crmulent.github.io/posts/picoctf-forensics/) | hard | zsteg plus pcap-UDP carve set
+- [picoCTF stego / erichdryn](https://medium.com/@erichdryn/steganography-challenge-picoctf-writeup-5011da170906) | hard | zsteg rgb-lsb sweep chain
+- [picoCTF St3g0 / miles](http://mileshandelman.com/writeups/st3g0/) | hard | zsteg resource-list plus LSB chain
+- [picoCTF 2025 / stepic](https://blog.cbarkr.com/ctf/picoCTF/2025/flags-are-stepic) | hard | pip-stepic package decode chain
+- [picoCTF RED / slavetomints](https://slavetomints.com/posts/picoctf-red/) | hard | zsteg plus exiftool base64 chain
+- [picoCTF all-in-one / kalpesh](https://blog.kalpeshsolanki.me/posts/83db1007/) | hard | MSB plus metadata plus polyglot set
+- [THM Cicada-3301](https://medium.com/@shadisalim510/cicada-3301-vol-1-tryhackme-room-write-up-by-shadi03-b26af03332a5) | hard | spectrogram-QR plus steghide plus outguess chain
+- [THM Brooklyn Nine Nine](https://medium.com/@v-ibe/tryhackme-writeup-brooklyn-nine-nine-98fc3e7055d6) | hard | image-stegseek plus SSH plus SUID chain
+- [THM Lucky Panther](https://medium.com/@mazalwebdesign/official-write-up-for-the-lucky-panther-ctf-tryhackme-room-ee5a1d5a3a2d) | hard | stegseek plus steghide plus zip plus PDF crack chain
+- [THM StegNet NFSU](https://medium.com/@dhruvg0hel/stegnet-ctf-challenge-thm-nfsu-tryhackme-writeup-293cba7081f3) | hard | pcap-image plus urgent-pointer decode chain
+- [THM CTF Collection Vol.1](https://infosecwriteups.com/tryhackme-ctf-collection-vol-1-568d7d21e520) | hard | 20-task ladder incl. steghide plus binwalk plus stegsolve
+- [THM Crack CTF 2024](https://medium.com/@magdyyasser24/crack-ctf-2024-wirteup-354157d80340) | hard | steghide plus zip plus base64 chain
+- [THM c4ptur3-th3-fl4g](https://tryhackme.com/room/c4ptur3th3fl4g) | hard | spectrogram plus image-stego room ladder
+- [THM tshark / latina](https://thelatinatech.com/2024/03/08/tryhackme-writeup-tshark/) | hard | dns-exfil plus base32 tshark chain
+- [THM DNS manipulation / qiita](https://qiita.com/kk0128/items/63aec32a00fb3938ee9e) | hard | badbaddoma base58 plus base64 packetyGrabber chain
+- [DNS exfil / cyber254](https://vinolago.github.io/blog/tunneling/) | hard | high-rate plus base64-subdomain pcap chain
+- [DNS exfil / caseduncan](https://caseduncan.github.io/posts/dns-exfiltration/) | hard | tshark plus base64 subdomain rebuild chain
+- [DoD Sentinel / Exfil](https://medium.com/@bryan.suarez.sec/dods-cyber-sentinel-skills-challenge-exfil-walkthrough-61398aaa5432) | hard | uniq-order plus base32 file rebuild chain
+- [JerseyCTF V / Do Not See Me](https://medium.com/@nathanielpascuarijndorp/jerseyctf-v-dont-see-me-5473eb25841a) | hard | base64-DNS plus cab-magic fix chain
+- [BSidesTLV 2025 / FieldStream-X](https://jctf.team/writeups/BSidesTLV-2025/FieldStream-X/) | hard | SSTV plus RTTY minimodem channel-split chain
+- [EHAX 2025 audio set](http://mburukaranja.me/posts/2025/Ehax_ctf_2025/index.html) | hard | morse plus vigenere plus spectrogram plus ROT47 chain
+- [Cobwebs audio forensics](https://ediscoverychannel.com/2024/01/22/shaking-the-cobwebs-ctf-part-one-audio-analysis/) | hard | channel-isolate plus spectrogram morse plus text chain
+- [L3akCTF 2025 / Strange Transmission](https://thebusfactor-writeups.vercel.app/posts/2025-07-14-Strange-Transmission-writeup) | hard | morse plus spectrogram tail-text chain
+- [DawgCTF 2025 audio set](https://medium.com/@darktempest37/dawgctf-2025-7dc44f58618d) | hard | morse plus SSTV-robot36 plus spectrogram set
+- [QR Puzzle Pieces / oshikuru](https://jjolley91.github.io/blog/level_effect_cyber_defense_ctf_2024/forensics/puzzle_pieces/) | hard | QR-fragment rotate plus QRazyBox chain
+- [Tenable BrokenQR / Tharunaya](https://github.com/Tharunaya/CTF-writeups/blob/main/Tenable%20CTF/Misc/BrokenQR.md) | hard | finder plus timing repaint chain
+- [BronoCTF 2025 / Simon Says](https://medium.com/@nathanielpascuarijndorp/bronoctf-2025-simon-says-scan-this-b459fb8edf50) | hard | two-piece splice plus QRazyBox format-info chain
+- [1337UP LIVE / Quick Recovery](https://ctftime.org/writeup/39670) | hard | triangle-permutation plus zbar brute-force chain
+- [ACECTF 2025 / Tabs and Spaces](https://ch1se.gitbook.io/home/acectf-2025-writeups/tabs-and-spaces) | hard | steghide plus tab-space binary chain
+- [SSHCTF 2024 / snow tiles](https://hashteam.club/2024/11/14/SSHCTF.html) | hard | SNOW-text plus 400-tile serpentine assembly chain
+- [ISCTF 2025 snow + zero-width](https://www.cnblogs.com/Mirai-haN/articles/19319925) | hard | SNOW-password plus zero-width plus plaintext-attack chain
+- [Misc ADS + snow](https://www.cnblogs.com/ra1nbow/articles/18688224) | hard | ADS-stream plus snow-password chain
+- [BMZCTF 2020 misc / murkuo](https://www.cnblogs.com/murkuo/p/15732133.html) | hard | stegsolve plus steghide plus serpent-decrypt chain
+- [XCTF base64stego / guanz](https://www.cnblogs.com/Guanz/p/17874825.html) | hard | zip-pseudo-encrypt plus base64-padding-bit chain
+- [BMZCTF game-secret / csdn](https://blog.csdn.net/Hardworking666/article/details/122274926) | hard | zsteg-zip plus LaTeX-QR plus zero-width chain
+- [Zeecka stego hub](https://zeecka.fr/cat/steganography/) | hard | hub incl. babystego plus squint image set
+- [NSSCTF notes / amqyy](https://amqyy.cn/posts/68b6bccd.html) | hard | zero-width plus base64-diff chain
+- [CTF BIBLE stego / oste](https://05t3.github.io/posts/CTF-BIBLE-STEG/) | hard | tool-matrix survey incl. zsteg plus outguess plus snow
+- [Glacier 2024 / hidden PNG in PDF](https://maajix.github.io/ctfs/glacier-2024/) | hard | xref-stream plus PyMuPDF PNG carve chain
+- [4T-CTF 2024 / Stirling PDF](https://medium.com/@uu660111/4t-ctf-writeup-stirling-6dbcd7d46e9f) | hard | qdf plus JS-password chain
+- [scriptCTF 2025 PDF / rana](https://medium.com/@ranachouchen4/forensics-scriptctf-2025-pdf-writeup-5d1960492635) | hard | stream-hint plus binwalk-zlib carve chain
+- [SSTIC 2025 / bienaime solution](https://bienaime.info/media/sstic2025_bienaime.pdf) | hard | XOR-ME plus embedded-PDF plus movfuscator chain
+- [SSTIC 2025 / stratox solution](https://static.sstic.org/challenge2025/stratox/solution_stratox.pdf) | hard | stream-XOR plus ASCII85-tail plus RC4-40 chain
+- [Nullcon 2025 / driving video](https://ctftime.org/writeup/39996) | hard | 10-interval frame sampling plus corner-order read
+- [AperiSolve video wiki](https://www.aperisolve.com/wiki/techniques/video) | hard | container plus subtitle plus frame-diff survey
+- [RITSEC 2025 / UFO 3D](https://medium.com/@MrX2025/ritsec-ctf-2025-miscellaneous-ufo-afbf9d169643) | hard | layer-toggle plus interior-view chain
+- [NoobCTF Blender chain](https://github.com/karma9874/CTF-Writeups/blob/master/NoobCTF_0x1/Blender.md) | hard | hex plus stegsolve plus magic-fix chain
+- [STL stego covert-channel paper](https://dl.acm.org/doi/fullHtml/10.1145/3471621.3471843) | hard | vertex-order plus KEM-DEM covert channel
+- [DEDA upstream toolkit](https://github.com/dfd-tud/deda) | hard | upstream toolkit: parse plus extract plus anonymise
+- [DEDA pypi release](https://pypi.org/project/deda/) | hard | toolkit release channel plus install surface
+- [siunam mega-hub](https://siunam321.github.io/ctf/) | hard | mega-hub incl. HeroCTF-v5 stego plus RITSEC stego
+- [DEADFACE 2024 stego / cyberhacktics mirror](https://cyberhacktics.com/deadface-ctf-2024-steganography-write-up/) | hard | steghide plus transparency plus IHDR plus MP3-LSB plus ternary set
+- [NSSRound stego set / start1](https://www.cnblogs.com/start1/p/18600732) | hard | split-QR plus blind-watermark plus nested-zip chain

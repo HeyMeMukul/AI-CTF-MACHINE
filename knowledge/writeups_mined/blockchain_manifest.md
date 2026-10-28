@@ -1,0 +1,440 @@
+# Blockchain Writeups Mined — Manifest
+
+> Technique-only index. No private keys, no flag values. Each line: event/challenge link | difficulty | 1-line technique chain.
+> Count: 422 lines. Mined 2026-10-15 via WebSearch plus WebFetch of Paradigm CTF, Damn Vulnerable DeFi, Ethernaut, Speedrun Ethereum, audit-contest findings, team post-mortems.
+
+## Method
+
+- Searched Paradigm CTF 2022-2023 writeups, DVD v3/v4 solutions, Ethernaut foundry solutions, Speedrun Ethereum builds, Code4rena findings, Zellic/CertiK/Zokyo/EigenPhi post-mortems.
+- Fetched full pages for DVD v4 solution index, Euler exploit analysis, Climber deep-dive; extracted technique chains below.
+- Hard challenges primary, some medium. Single-call trivials excluded.
+
+## Writeups
+
+- [DVDv4/Unstoppable](https://www.damnvulnerabledefi.xyz/challenges/unstoppable/) | hard | ERC4626 convertToShares-totalAssets invariant break via direct donation, flashLoan reverts, monitor pauses
+- [DVDv4/Naive-Receiver](https://www.damnvulnerabledefi.xyz/challenges/naive-receiver/) | hard | multicall-batched zero-amount flash loans drain fixed-fee receiver + forwarder last-20-bytes _msgSender spoof withdraw
+- [DVDv4/Truster](https://www.damnvulnerabledefi.xyz/challenges/truster/) | medium | flashLoan arbitrary target.functionCall abused to approve attacker then transferFrom pool in one tx
+- [DVDv4/Side-Entrance](https://www.damnvulnerabledefi.xyz/challenges/side-entrance/) | medium | flashLoan balance-check bypass by depositing loaned ETH back as repayment credit then withdraw
+- [DVDv4/The-Rewarder](https://www.damnvulnerabledefi.xyz/challenges/the-rewarder/) | hard | intra-tx snapshot replay: flash-mint deposit inflates same-round accounting before distribution snapshot
+- [DVDv4/Selfie](https://www.damnvulnerabledefi.xyz/challenges/selfie/) | hard | flash-loan governance: delegate votes to self, queue emergencyExit via timelock, warp 2 days, execute
+- [DVDv4/Compromised](https://www.damnvulnerabledefi.xyz/challenges/compromised/) | hard | 2-of-3 median oracle key leak from challenge text, postPrice 0 to buy then restore to sell NFT
+- [DVDv4/Puppet](https://www.damnvulnerabledefi.xyz/challenges/puppet/) | hard | UniswapV1 spot _computeOraclePrice skew with low-liquidity pool then under-collateralized borrow
+- [DVDv4/Puppet-V2](https://www.damnvulnerabledefi.xyz/challenges/puppet-v2/) | hard | UniswapV2 TWAP-less spot manipulation, WETH-collateral borrow at crashed price
+- [DVDv4/Free-Rider](https://www.damnvulnerabledefi.xyz/challenges/free-rider/) | hard | marketplace buyMany + ERC777 tokensReceived reentry before bounty accounting + NFT removal ordering
+- [DVDv4/Backdoor](https://www.damnvulnerabledefi.xyz/challenges/backdoor/) | hard | Gnosis Safe proxy CREATE2 counterfactual + malicious initializer delegatecall planting attacker fallback
+- [DVDv4/Climber](https://www.damnvulnerabledefi.xyz/challenges/climber/) | hard | timelock execute-before-schedule-check + self-admin grantRole + delay-zero then UUPS re-impl sweepFunds
+- [DVDv4/Wallet-Mining](https://www.damnvulnerabledefi.xyz/challenges/wallet-mining/) | hard | CREATE2 counterfactual wallets + uninitialized UUPS authorizer impl init + upgradeToAndCall delegatecall
+- [DVDv4/Puppet-V3](https://www.damnvulnerabledefi.xyz/challenges/puppet-v3/) | hard | 10-min TWAP manipulation with warp, router exactInputSingle skew then borrow against lagging oracle
+- [DVDv4/ABI-Smuggling](https://www.damnvulnerabledefi.xyz/challenges/abi-smuggling/) | hard | fixed-offset selector read vs dynamic actionData mismatch, allowed withdraw selector masks sweepFunds payload
+- [DVDv4/Shards](https://www.damnvulnerabledefi.xyz/challenges/shards/) | hard | MerkleDistributor fractional-NFT fill/exit ordering, shard accounting vs underlying redeem sequencing
+- [DVDv4/Curvy-Puppet](https://www.damnvulnerabledefi.xyz/challenges/curvy-puppet/) | hard | Curve get_virtual_price LP oracle skew via imbalanced add/remove + flash capital then borrow
+- [DVDv4/Withdrawal](https://www.damnvulnerabledefi.xyz/challenges/withdrawal/) | hard | ERC20-vs-ETH accounting split, over-approve plus transferFrom ordering around recipient migration
+- [DVDv4/Unstoppable-via-SunWeb3Sec](https://github.com/SunWeb3Sec/damn-vulnerable-defi-v4-solutions) | hard | donation breaks ERC4626 share math, InvalidBalance reverts every flashLoan, beta monitor halts vault
+- [DVDv4/Naive-Receiver-via-SunWeb3Sec](https://github.com/SunWeb3Sec/damn-vulnerable-defi-v4-solutions) | hard | 10x fee-drain batched in one multicall under nonce cap, spoofed withdraw recuperates pool WETH
+- [DVDv4/Truster-via-SunWeb3Sec](https://github.com/SunWeb3Sec/damn-vulnerable-defi-v4-solutions) | medium | zero-amount loan carries approve calldata, constructor-atomic exploit evades second-tx front-run
+- [DVDv4/Side-Entrance-via-SunWeb3Sec](https://github.com/SunWeb3Sec/damn-vulnerable-defi-v4-solutions) | medium | execute() callback deposits loan as credit, balanceBefore check passes, withdraw exits with funds
+- [DVDv4/The-Rewarder-via-SunWeb3Sec](https://github.com/SunWeb3Sec/damn-vulnerable-defi-v4-solutions) | hard | flash-deposit inside reward round, claim before snapshot finalizes, repay and keep distribution
+- [DVDv4/Selfie-via-SunWeb3Sec](https://github.com/SunWeb3Sec/damn-vulnerable-defi-v4-solutions) | hard | onFlashLoan delegates then queues action, governance delay warped, emergencyExit routes to recovery
+- [DVDv4/Compromised-via-HackMD](https://hackmd.io/@SunWeb3Sec/rkwkCGt6R) | hard | oracle median of 3 with 2 leaked keys, price slammed to zero for buy then restored for sell
+- [DVDv4/Puppet-via-HackMD](https://hackmd.io/@SunWeb3Sec/rkwkCGt6R) | hard | tokenToEthSwapInput dumps DVT to crash spot, collateral requirement collapses, pool drained
+- [DVDv4/Puppet-V2-via-HackMD](https://hackmd.io/@SunWeb3Sec/rkwkCGt6R) | hard | V2 pair skew plus flash buffer, borrow max at manipulated quote, restore and repay
+- [DVDv4/Free-Rider-via-HackMD](https://hackmd.io/@SunWeb3Sec/rkwkCGt6R) | hard | single-tx buyMany of listed NFTs, 777 reentry mints bounty twice, marketplace payout ordering flaw
+- [DVDv4/Backdoor-via-HackMD](https://hackmd.io/@SunWeb3Sec/rkwkCGt6R) | hard | CREATE2-predicted Safe wallets, rogue module approved in setup, delegatecall drains on creation
+- [DVDv4/Climber-via-HackMD](https://hackmd.io/@SunWeb3Sec/rkwkCGt6R) | hard | execute() runs 4 ops pre-check, delay zeroed, ownership seized, malicious impl upgrade sweeps
+- [DVDv4/Wallet-Mining-via-DeFiHackLabs](https://defihacklabs.substack.com/p/damn-vulnerable-defi-v4-writeup) | hard | replay across chains plus impl takeover, placeholder wallets filled, authorizer upgraded to allow
+- [DVDv4/Puppet-V3-via-DeFiHackLabs](https://defihacklabs.substack.com/p/damn-vulnerable-defi-v4-writeup) | hard | short-window TWAP poisoned with large swap, warp past period, borrow at stale quote
+- [DVDv4/ABI-Smuggling-via-DeFiHackLabs](https://defihacklabs.substack.com/p/damn-vulnerable-defi-v4-writeup) | hard | hand-packed calldata: 0x80 offset plus padded withdraw selector at byte 100, sweepFunds smuggled
+- [DVDv4/Shards-via-DeFiHackLabs](https://defihacklabs.substack.com/p/damn-vulnerable-defi-v4-writeup) | hard | shard fill then exit ordering, merkle claim double-counts fractional share of NFT vault
+- [DVDv4/Curvy-Puppet-via-DeFiHackLabs](https://defihacklabs.substack.com/p/damn-vulnerable-defi-v4-writeup) | hard | Curve pool imbalance shifts virtual price, flash-scaled borrow against lagging lender oracle
+- [DVDv4/Withdrawal-via-DeFiHackLabs](https://defihacklabs.substack.com/p/damn-vulnerable-defi-v4-writeup) | hard | dual-accounting withdraw, approval race plus migration hook drains both legs
+- [DVDv4/Unstoppable-via-nzmpi](https://github.com/nzmpi/damn-vulnerable-defi-solutions) | hard | foundry test per challenge, direct transfer breaks vault share-balance equality check
+- [DVDv4/Truster-via-nzmpi](https://github.com/nzmpi/damn-vulnerable-defi-solutions) | medium | flashLoan inner call primes token approval, transferFrom completes in same test
+- [DVDv4/Selfie-via-nzmpi](https://github.com/nzmpi/damn-vulnerable-defi-solutions) | hard | flash governance with delegate-before-queue, warp-gated executeAction
+- [DVDv4/Climber-via-nzmpi](https://github.com/nzmpi/damn-vulnerable-defi-solutions) | hard | timelock check-after-execution plus UUPS upgrade to attacker sweep impl
+- [DVDv4/Unstoppable-via-RealJohnnyTime](https://github.com/RealJohnnyTime/damn-vulnerable-defi-v4-solutions) | hard | 1-token donation desyncs totalSupply math, monitor emits FlashLoanStatus false
+- [DVDv4/Naive-Receiver-via-RealJohnnyTime](https://github.com/RealJohnnyTime/damn-vulnerable-defi-v4-solutions) | hard | zero-amount loan loop burns receiver fee balance, forwarder-spoofed withdraw
+- [DVDv4/Truster-via-RealJohnnyTime](https://github.com/RealJohnnyTime/damn-vulnerable-defi-v4-solutions) | medium | approve-via-loan constructor exploit, full pool balance to recovery
+- [DVDv4/Side-Entrance-via-RealJohnnyTime](https://github.com/RealJohnnyTime/damn-vulnerable-defi-v4-solutions) | medium | deposit-in-callback satisfies balance check, withdraw-then-forward to recovery
+- [DVDv4/Naive-Receiver-via-CanonicalJP](https://github.com/CanonicalJP/damn-vulnerable-defi-v4-walkthrough) | hard | multicall packs 10 fee loans plus spoofed withdraw under single forwarder signature
+- [DVDv4/Selfie-via-CanonicalJP](https://github.com/CanonicalJP/damn-vulnerable-defi-v4-walkthrough) | hard | delegate voting power inside onFlashLoan then queue emergencyExit
+- [DVDv4/Puppet-via-CanonicalJP](https://github.com/CanonicalJP/damn-vulnerable-defi-v4-walkthrough) | hard | low-liquidity V1 swap crashes oracle, borrow drains lending pool
+- [DVDv4/Puppet-V3-via-CanonicalJP](https://github.com/CanonicalJP/damn-vulnerable-defi-v4-walkthrough) | hard | TWAP poison plus warp 114s, borrow at lagging quote
+- [DVDv4/Rewarder-via-0x71pp17](https://github.com/0x71pp17/damn-vulnerable-defi_solutions_and_code_analysis) | hard | flash deposit inside distribution round, snapshot-accounting mismatch
+- [DVDv4/Compromised-via-0x71pp17](https://github.com/0x71pp17/damn-vulnerable-defi_solutions_and_code_analysis) | hard | private-key recovery from prompt, median price slammed then restored
+- [DVDv4/Backdoor-via-0x71pp17](https://github.com/0x71pp17/damn-vulnerable-defi_solutions_and_code_analysis) | hard | CREATE2 Safe deployment front-run with malicious fallback module
+- [DVDv4/Wallet-Mining-via-0x71pp17](https://github.com/0x71pp17/damn-vulnerable-defi_solutions_and_code_analysis) | hard | cross-chain replay plus UUPS impl init takeover
+- [DVDv4/Backdoor-via-siddharth9903](https://github.com/siddharth9903/damn-vulnerable-defi-v4-solutions) | hard | counterfactual wallet prediction plus setup-call injection
+- [DVDv4/Climber-via-siddharth9903](https://github.com/siddharth9903/damn-vulnerable-defi-v4-solutions) | hard | forge test per challenge, execute-schedule inversion plus upgrade
+- [DVDv4/Puppet-V3-via-siddharth9903](https://github.com/siddharth9903/damn-vulnerable-defi-v4-solutions) | hard | mainnet-fork TWAP skew with warp, borrow at stale price
+- [DVDv4/ABI-Smuggling-via-siddharth9903](https://github.com/siddharth9903/damn-vulnerable-defi-v4-solutions) | hard | offset-0x80 calldata smuggle, permission check reads decoy selector
+- [DVDv4/Puppet-via-shamadrian](https://github.com/shamadrian/Damn-Vulnerable-Defi-Solutions) | hard | V1 reserve-ratio oracle crash then borrow full pool
+- [DVDv4/Backdoor-via-shamadrian](https://github.com/shamadrian/Damn-Vulnerable-Defi-Solutions) | hard | Safe initializer delegatecall plants drain module pre-creation
+- [DVDv4/Puppet-V3-via-shamadrian](https://github.com/shamadrian/Damn-Vulnerable-Defi-Solutions) | hard | TWAP window poison then borrow against lagging quote
+- [DVDv4/ABI-Smuggling-via-shamadrian](https://github.com/shamadrian/Damn-Vulnerable-Defi-Solutions) | hard | execute() selector-offset confusion, sweepFunds executed as withdraw
+- [DVDv3-vs-v4/Puppet-permit-via-mikle97pir](https://mikle97pir.github.io/damn-vulnerable-defi-solutions/) | hard | ERC2612 permit compresses approve plus skew into one tx vs v3 two-tx path
+- [DVDv3/Backdoor-via-mikle97pir](https://mikle97pir.github.io/damn-vulnerable-defi-solutions/) | hard | player-contracts attacker plus CREATE2 wallet prediction notes
+- [DVDv3/Climber-via-mikle97pir](https://mikle97pir.github.io/damn-vulnerable-defi-solutions/) | hard | ClimberAttacker.sol schedule-then-execute inversion walkthrough
+- [DVDv3/Wallet-Mining-via-mikle97pir](https://mikle97pir.github.io/damn-vulnerable-defi-solutions/) | hard | Optimism-style replay retrospective plus WalletMiningAttacker.sol
+- [DVDv3/Backdoor-via-bzpassersby](https://github.com/bzpassersby/damn-vulnerable-defi-v3-solutions) | hard | Safe proxy init plus rogue module, mastercopy interaction notes
+- [DVDv3/Climber-via-bzpassersby](https://github.com/bzpassersby/damn-vulnerable-defi-v3-solutions) | hard | delay-zero plus grantRole plus ownership-transfer op bundle
+- [DVDv3/Wallet-Mining-via-bzpassersby](https://github.com/bzpassersby/damn-vulnerable-defi-v3-solutions) | hard | CREATE2 plus UUPS authorizer logic-contract takeover sketch
+- [DVDv3/ABI-Smuggling-via-bzpassersby](https://github.com/bzpassersby/damn-vulnerable-defi-v3-solutions) | hard | selector-at-fixed-offset vs executed-actionData divergence
+- [DVDv3/Backdoor-via-juancito](https://github.com/0xjuancito/damn-vulnerable-defi-solutions/) | hard | proxy-init validation gaps plus token sweep via planted module
+- [DVDv3/Climber-via-juancito](https://github.com/0xjuancito/damn-vulnerable-defi-solutions/) | hard | schedule-check ordering bug plus sweepFunds re-impl upgrade
+- [DVDv3/Selfie-via-juancito](https://github.com/0xjuancito/damn-vulnerable-defi-solutions/) | hard | flash-delegate plus queue plus timelock-wait governance chain
+- [DVDv3/Puppet-V3-via-juancito](https://github.com/0xjuancito/damn-vulnerable-defi-solutions/) | hard | TWAP manipulation with RPC fork plus warp
+- [DVDv4/Climber-via-dacian](https://dacian.me/damn-vulnerable-defi-climber-solution) | hard | execute-then-check deep read, self-admin grantRole, corruptSchedule callback, UUPS sweep re-impl
+- [DVDv4/Climber-via-stermi](https://stermi.xyz/blog/damn-vulnerable-defi-challenge-12-solution-climber) | hard | middleman schedule-callback pattern, transferOwnership via timelock-as-owner, proxy upgrade to drain
+- [DVDv4/Climber-WalletMining-via-pkqs90](https://pkqs90.github.io/ctf/damn-vulnerable-defi-v3-solutions-part-3/) | hard | ClimberAttacker 4-target bundle plus Wallet-Mining replay plus UUPS impl-takeover notes
+- [DVDv4/Free-Rider-via-pkqs90](https://pkqs90.github.io/ctf/damn-vulnerable-defi-v3-solutions-part-3/) | hard | buyMany plus 777-hook reentry bounty double-claim in one tx
+- [DVDv4/Backdoor-via-pkqs90](https://pkqs90.github.io/ctf/damn-vulnerable-defi-v3-solutions-part-3/) | hard | Safe creation-code prediction plus setup delegatecall module plant
+- [DVDv4/Puppet-V3-via-pkqs90](https://pkqs90.github.io/ctf/damn-vulnerable-defi-v3-solutions-part-3/) | hard | TWAP period warp plus router skew then borrow
+- [DVDv4/ABI-Smuggling-via-pkqs90](https://pkqs90.github.io/ctf/damn-vulnerable-defi-v3-solutions-part-3/) | hard | mattaereal walkthrough pointer, offset confusion in execute()
+- [DVDv4/Compromised-via-hackmd-0xnick](https://hackmd.io/@0xnick/H1uwjFiLJx) | hard | key-to-address derivation, 2-key median control, buy-zero sell-full loop
+- [DVDv4/Unstoppable-via-goodhacker](https://goodhacker.hashnode.dev/damn-vulnerable-defi-v4-01-unstoppable) | hard | convertToShares(totalSupply) vs balanceOf inequality, InvalidBalance on every loan
+- [DVDv4/Naive-Receiver-via-0xjesstech](https://medium.com/@0xjesstech/its-so-damn-vulnerable-defi-v4-a-guide-to-solve-challenge-2-40591b3271a9) | hard | _msgSender last-20-bytes spoof plus 10-loan multicall fee burn
+- [DVDv4/Puppet-via-coinsbench](https://coinsbench.com/damn-vulnerable-defi-v4-solutions-8-puppet-a970890f7b03) | hard | _computeOraclePrice single-source math, tokenToEthSwapInput crash then borrow
+- [DVDv4/Climber-via-ret2basic](https://ret2basic.gitbook.io/ctfwriteup/web3-ctf/damn-vulnerable-defi-v4/climber) | hard | UUPS vault plus timelock-owner structure, execute-anyone plus schedule-gate notes
+- [DVDv4/Puppet-via-ret2basic](https://ret2basic.gitbook.io/ctfwriteup/web3-ctf) | hard | V1 oracle crash-borrow chain with foundry test shape
+- [DVDv4/Free-Rider-via-ret2basic](https://ret2basic.gitbook.io/ctfwriteup/web3-ctf) | hard | marketplace plus 777 reentry outline
+- [DVDv4/Backdoor-via-ret2basic](https://ret2basic.gitbook.io/ctfwriteup/web3-ctf) | hard | Safe wallet creation plus module plant outline
+- [DVDv4/Climber-outline-via-ret2basic](https://ret2basic.gitbook.io/ctfwriteup/web3-ctf) | hard | timelock plus UUPS upgrade outline
+- [Paradigm2023/Dodont-via-fuzzland](https://github.com/fuzzland/writeup/blob/master/paradigm.md) | hard | DVM init callable by anyone plus flashLoan callback re-init with attacker quote tokens
+- [Paradigm2023/Token-Locker-via-fuzzland](https://github.com/fuzzland/writeup/blob/master/paradigm.md) | hard | ERC20 vs ERC721 selector clash, UniswapV3 position NFT treated as fungible in lock flow
+- [Paradigm2023/Suspicious-Charity-via-fuzzland](https://github.com/fuzzland/writeup/blob/master/paradigm.md) | hard | off-chain cache keyed by string(uint8) name collides past 79, stale-price pair reuse
+- [Paradigm2023/DAIpp-via-fuzzland](https://github.com/fuzzland/writeup/blob/master/paradigm.md) | hard | DVM-style pool plus donation-skewed mint accounting then exit at inflated share
+- [Paradigm2023/Dragon-Tyrant-via-fuzzland](https://github.com/fuzzland/writeup/blob/master/paradigm.md) | hard | NFT-gated tyrant logic plus upgrade-or-mint sequencing around ownership checks
+- [Paradigm2023/Oven-via-fuzzland](https://github.com/fuzzland/writeup/blob/master/paradigm.md) | hard | bake-withdraw timing plus share-price staleness across heat rounds
+- [Paradigm2023/Black-Sheep-via-fuzzland](https://github.com/fuzzland/writeup/blob/master/paradigm.md) | hard | Huff CHECKVALUE plus ecrecover-callback revert steering withdraw double-pay
+- [Paradigm2023/Skill-Based-Game-via-fuzzland](https://github.com/fuzzland/writeup/blob/master/paradigm.md) | hard | commit-timing plus score-oracle race, loser-funded payout ordering
+- [Paradigm2023/Enterprise-Blockchain-via-fuzzland](https://github.com/fuzzland/writeup/blob/master/paradigm.md) | hard | relayer arbitrary sendRemoteMessage forged L2-to-L1 transfer call to token
+- [Paradigm2023/Hopping-Into-Place-via-fuzzland](https://github.com/fuzzland/writeup/blob/master/paradigm.md) | hard | governance setChallengePeriod zero plus single-leaf merkle root forge plus withdraw
+- [Paradigm2023/Grains-Of-Sand-via-fuzzland](https://github.com/fuzzland/writeup/blob/master/paradigm.md) | hard | fee-on-transfer 1-wei withdraw loop, 1000x iteration fee harvest then full exit
+- [Paradigm2023/Dropper-via-fuzzland](https://github.com/fuzzland/writeup/blob/master/paradigm.md) | hard | AIRDROP macro plus claim bitmap replay across drop rounds
+- [Paradigm2023/Free-Real-Estate-via-fuzzland](https://github.com/fuzzland/writeup/blob/master/paradigm.md) | hard | property-mint plus rent-accounting underflow across eviction windows
+- [Paradigm2023/Cosmic-Radiation-via-fuzzland](https://github.com/fuzzland/writeup/blob/master/paradigm.md) | hard | randomness-plus-stake decay, warp-aligned claim at emission edge
+- [Paradigm2023/Grains-Of-Sand-via-zellic](https://www.zellic.io/blog/paradigmctf-challenges-writeup) | hard | TOKENSTORE trade fill plus 1-wei withdrawToken loop paying fees to attacker
+- [Paradigm2023/Hopping-Into-Place-via-zellic](https://www.zellic.io/blog/paradigmctf-challenges-writeup) | hard | chain-1337 messenger plus bonder plus period-zero plus confirmTransferRoot spoof
+- [Paradigm2023/Grains-Of-Sand-via-faith](https://faith2dxy.xyz/2023-10-30-paradigmctf-challenges-writeup/2023-10-30-paradigmctf-challenges-writeup/) | hard | sell-order fulfillment plus dust-withdraw fee abuse to 11120 XGR threshold
+- [Paradigm2023/Hopping-Into-Place-via-faith](https://faith2dxy.xyz/2023-10-30-paradigmctf-challenges-writeup/2023-10-30-paradigmctf-challenges-writeup/) | hard | chainBalance top-up via bondTransferRoot then single-leaf withdraw of full bridge
+- [Paradigm2023/Black-Sheep-via-ashiq](https://ashiq.co.za/posts/Paradigm-CTF-Writeups/) | hard | Huff stepping via EVM playground, fallback revert steering iszero-iszero gate
+- [Paradigm2023/Hopping-Into-Place-via-ashiq](https://ashiq.co.za/posts/Paradigm-CTF-Writeups/) | hard | _additionalDebit loop zeroed by period-zero, single-node tree passes verify
+- [Paradigm2023/Enterprise-via-ashiq](https://ashiq.co.za/posts/Paradigm-CTF-Writeups/) | medium | cross-chain message payload encoding plus balance-diff verification loop
+- [Paradigm2023/Solutions-via-kiln2023](https://www.kiln.fi/post/kilns-solutions-to-paradigm-ctf-2023) | hard | rank-24 team multi-challenge EVM solution set with forge scripts
+- [Paradigm2023/Team-set-via-kiln2023b](https://www.kiln.fi/post/kilns-solutions-to-paradigm-ctf-2023) | medium | per-challenge solve contracts plus trace-driven pivots
+- [Paradigm2023/Salus-13solve-via-foresight](https://dev.foresightnews.pro/article/detail/52407) | hard | 9th-place 13-challenge technique survey including bridge plus DVM plus Huff
+- [Paradigm2023/Bridge-solver-via-foresight](https://dev.foresightnews.pro/article/detail/52407) | hard | HopBonder kick plus bond-then-withdraw single-leaf flow
+- [Paradigm2023/Bank-solver-via-foresight](https://dev.foresightnews.pro/article/detail/52407) | hard | WITHDRAW call-op fund routing to Solver contract
+- [Paradigm2023/Salus-report-via-aicoin](https://www.aicoin.com/en/article/390217) | hard | guest-author solution report, 13 solves with Solver contract patterns
+- [Paradigm2023/TokenLocker-exploit-via-aicoin](https://www.aicoin.com/en/article/390217) | hard | TokenLockerExploit NFT position plus liquidity manipulation via lock
+- [Paradigm2023/Hopping-solve-via-aicoin](https://www.aicoin.com/en/article/390217) | hard | challenge-period-zero plus root forge plus withdraw chain recap
+- [Paradigm2023/Black-Sheep-via-bentobox](https://github.com/bentobox19/paradigm-ctf/) | hard | per-test forge solution for Huff withdraw gate
+- [Paradigm2023/Dai-Plus-Plus-via-bentobox](https://github.com/bentobox19/paradigm-ctf/) | hard | per-test forge solution for DVM-mint accounting
+- [Paradigm2023/Dodont-via-bentobox](https://github.com/bentobox19/paradigm-ctf/) | hard | per-test forge solution for open DVM init
+- [Paradigm2023/Dragon-Tyrant-via-bentobox](https://github.com/bentobox19/paradigm-ctf/) | hard | per-test forge solution for NFT tyrant flow
+- [Paradigm2023/Oven-BlackSheep-via-voidcenter](https://github.com/voidcenter/paradigm-ctf-2023) | hard | team solution set covering Huff plus bake-share challenges
+- [Paradigm2023/Dropper-FRE-via-voidcenter](https://github.com/voidcenter/paradigm-ctf-2023) | hard | airdrop plus real-estate solution scripts
+- [Paradigm2023/Harness-via-voidcenter](https://github.com/voidcenter/paradigm-ctf-2023) | medium | challenge-instance runner plus solve harness
+- [Paradigm2023/Black-Sheep-official](https://github.com/paradigmxyz/paradigm-ctf-2023/tree/main/black-sheep/challenge/project) | hard | official Huff challenge project, CHECKSIG ecrecover precompile plus CHECKVALUE gate
+- [Paradigm2023/Dai-Plus-Plus-official](https://github.com/paradigmxyz/paradigm-ctf-2023/tree/main/dai-plus-plus/challenge/project) | hard | official DVM challenge project, open init plus quote-token skew surface
+- [Paradigm2023/Dodont-official](https://github.com/paradigmxyz/paradigm-ctf-2023/tree/main/dodont/challenge/project) | hard | official DVM challenge project, flashLoan callback re-init surface
+- [Paradigm2023/Dragon-Tyrant-official](https://github.com/paradigmxyz/paradigm-ctf-2023/tree/main/dragon-tyrant/challenge/project) | hard | official NFT-tyrant challenge project, ownership-gated mint surface
+- [Paradigm2022/official-repo](https://github.com/paradigmxyz/paradigm-ctf-2022/) | hard | official 2022 puzzle set with mpwn runners, EVM plus Cairo plus Solana tracks
+- [ParadigmCTF/infra](https://github.com/paradigmxyz/paradigm-ctf-infrastructure) | medium | kCTF plus forge-ctf deploy-solve harness, CTFDeployment versus CTFSolver pattern
+- [Paradigm2022/MerkleDrop-via-Kaiziron](https://github.com/Kaiziron/paradigm-ctf-2022-writeup) | hard | merkle claim plus leaf-encoding confusion, proof reuse across rounds
+- [Paradigm2022/Rescue-via-Kaiziron](https://github.com/Kaiziron/paradigm-ctf-2022-writeup) | hard | MasterChef _addLiquidity whole-balance sweep via paired-token swap routing
+- [Paradigm2022/OxMonaco-via-Kaiziron](https://github.com/Kaiziron/paradigm-ctf-2022-writeup) | hard | 1478 ELO engine exploit, turn-order plus resource-accounting race
+- [Paradigm2022/OtterWorld-via-Kaiziron](https://github.com/Kaiziron/paradigm-ctf-2022-writeup) | hard | Solana track plus EVM crossover notes
+- [Paradigm2022/Riddle-Of-The-Sphinx-via-Kaiziron](https://github.com/Kaiziron/paradigm-ctf-2022-writeup) | hard | Cairo track riddle plus hash-preimage routing
+- [Paradigm2022/Random-via-Kaiziron](https://github.com/Kaiziron/paradigm-ctf-2022-writeup) | medium | weak randomness prediction plus same-block replication
+- [Paradigm2022/LockBox2-via-meppent](https://github.com/meppent/paradigm-ctf-2022-writeup) | hard | lockbox key-release ordering plus callback-timing bypass
+- [Paradigm2022/MerkleDrop-via-meppent](https://github.com/meppent/paradigm-ctf-2022-writeup) | hard | single-leaf root forge plus bond-then-claim sequence
+- [Paradigm2022/SourceCode-via-meppent](https://github.com/meppent/paradigm-ctf-2022-writeup) | hard | quine constraint plus runtime-code introspection
+- [Paradigm2022/Rescue-via-meppent](https://github.com/meppent/paradigm-ctf-2022-writeup) | hard | pool-id routing to sweep WETH via _addLiquidity imbalance
+- [Paradigm2022/Random-via-meppent](https://github.com/meppent/paradigm-ctf-2022-writeup) | medium | blockhash prediction in attacker contract same block
+- [Paradigm2022/Riddle-via-meppent](https://github.com/meppent/paradigm-ctf-2022-writeup) | hard | Cairo sphinx solution plus post-contest alternates
+- [Paradigm2022/Cairo-Proxy-via-chainway](https://github.com/chainwayxyz/Paradigm-CTF-2022) | hard | Cairo proxy upgrade plus admin-key sequencing
+- [Paradigm2022/MerkleDrop-via-chainway](https://github.com/chainwayxyz/Paradigm-CTF-2022) | hard | README plus soln per challenge, leaf-vs-root bypass
+- [Paradigm2022/Random-via-chainway](https://github.com/chainwayxyz/Paradigm-CTF-2022) | medium | predictable seed replication in soln script
+- [Paradigm2022/Rescue-via-chainway](https://github.com/chainwayxyz/Paradigm-CTF-2022) | hard | swap-half plus addLiquidity whole-balance drain
+- [Paradigm2022/Riddle-via-chainway](https://github.com/chainwayxyz/Paradigm-CTF-2022) | hard | riddle-of-the-sphinx Cairo solution path
+- [Paradigm2022/SourceCode-via-chainway](https://github.com/chainwayxyz/Paradigm-CTF-2022) | hard | sourcecode quine plus deploy-verify loop
+- [Paradigm2022/Trapdoor-via-chainway](https://github.com/chainwayxyz/Paradigm-CTF-2022) | hard | trapdoor hidden-branch plus fallback trigger
+- [Paradigm2022/LockBox2-via-minaminao](https://github.com/minaminao/ctf-blockchain/blob/main/src/ParadigmCTF2022/README.md) | hard | EVM puzzle index plus infra runner notes
+- [Paradigm2022/MerkleDrop-via-minaminao](https://github.com/minaminao/ctf-blockchain/blob/main/src/ParadigmCTF2022/README.md) | hard | topic-indexed merkle branch plus solution pointers
+- [Paradigm2022/Rescue-via-minaminao](https://github.com/minaminao/ctf-blockchain/blob/main/src/ParadigmCTF2022/README.md) | hard | rescue routing notes in topic index
+- [Paradigm2022/Trapdoor-via-minaminao](https://github.com/minaminao/ctf-blockchain/blob/main/src/ParadigmCTF2022/README.md) | hard | trapdoor plus trapdooor variant notes
+- [Paradigm2022/Vanity-via-minaminao](https://github.com/minaminao/ctf-blockchain/blob/main/src/ParadigmCTF2022/README.md) | hard | vanity key-grind plus CREATE2 precompute notes
+- [Paradigm2022/Hint-Finance-via-philogy](https://philogy.github.io/posts/paradigm-ctf-2022-write-up-collection/) | hard | hint-finance deep writeup plus full solve script
+- [Paradigm2022/Just-In-Time-via-philogy](https://philogy.github.io/posts/paradigm-ctf-2022-write-up-collection/) | hard | JIT liquidity plus fee-rounding capture
+- [Paradigm2022/Kiln-EVM-set](https://www.kiln.fi/post/kilns-solutions-to-paradigm-ctf) | hard | 33rd-place multi-challenge EVM plus Starknet writeup set
+- [Paradigm2022/Kiln-Starknet-set](https://www.kiln.fi/post/kilns-solutions-to-paradigm-ctf) | hard | Cairo challenge solutions plus bridge notes
+- [Paradigm2022/Rescue-via-d4r3](https://d4r3-d3v1l.github.io/blog/2023/07/25/Task01-Paradigm.html) | hard | DAI-WETH-USDC routing to drain MasterChef WETH
+- [Paradigm2022/Vanity-via-d4r3](https://d4r3-d3v1l.github.io/blog/2023/07/25/Task01-Paradigm.html) | hard | vanity solve plus key-search notes
+- [Paradigm2022/Solhana1-via-d4r3](https://d4r3-d3v1l.github.io/blog/2023/07/25/Task01-Paradigm.html) | hard | Solana track solution sketch
+- [Paradigm2022/Solhana2-via-d4r3](https://d4r3-d3v1l.github.io/blog/2023/07/25/Task01-Paradigm.html) | hard | Solana follow-up solution sketch
+- [Paradigm2022/Random-via-trillion](https://github.com/trillion-fi/ctf) | medium | forge-scripted randomness prediction
+- [Paradigm2022/MerkleDrop-via-trillion](https://github.com/trillion-fi/ctf) | hard | single-leaf plus sibling-empty bypass
+- [Paradigm2022/Rescue-via-trillion](https://github.com/trillion-fi/ctf) | hard | pool-1 DAI routing drain
+- [Paradigm2022/SourceCode-via-trillion](https://github.com/trillion-fi/ctf) | hard | quine plus verification notes
+- [Paradigm2022/Vanity-via-trillion](https://github.com/trillion-fi/ctf) | hard | vanity grind plus deploy notes
+- [Paradigm2022/HintFinance-via-trillion](https://github.com/trillion-fi/ctf) | hard | hint finance solution sketch
+- [Paradigm2022/MerkleDrop-via-SilasZhr](https://github.com/SilasZhr/paradigm-ctf-2022-solution) | hard | checked-solution merkle bypass
+- [Paradigm2022/Random-via-SilasZhr](https://github.com/SilasZhr/paradigm-ctf-2022-solution) | medium | checked-solution randomness predict
+- [Paradigm2022/Rescue-via-SilasZhr](https://github.com/SilasZhr/paradigm-ctf-2022-solution) | hard | checked-solution rescue routing
+- [Paradigm2022/SourceCode-via-SilasZhr](https://github.com/SilasZhr/paradigm-ctf-2022-solution) | hard | checked-solution quine
+- [Paradigm2022/Team-set-via-numencyber](https://github.com/numencyber/paradigm-ctf-2022) | hard | team solution collection across EVM tracks
+- [Paradigm2022/Extra-tracks-via-numencyber](https://github.com/numencyber/paradigm-ctf-2022) | medium | runner plus instance notes
+- [Ethernaut/08-Vault-via-Pedrojok01](https://github.com/Pedrojok01/Ethernaut-Solutions/blob/main/solutions/08_Vault.md) | medium | private-password storage slot read via cast storage then unlock
+- [Ethernaut/09-King-via-Pedrojok01](https://github.com/Pedrojok01/Ethernaut-Solutions/blob/main/solutions/09_King.md) | medium | no-receive attacker crowns then blocks transfers, DoS kingship
+- [Ethernaut/10-Reentrancy-via-Pedrojok01](https://github.com/Pedrojok01/Ethernaut-Solutions/blob/main/solutions/10_Reentrancy.md) | medium | donate plus recursive withdraw before balance subtraction
+- [Ethernaut/11-Elevator-via-Pedrojok01](https://github.com/Pedrojok01/Ethernaut-Solutions/blob/main/solutions/11_Elevator.md) | medium | state-flipping isLastFloor across two calls in one tx
+- [Ethernaut/12-Privacy-via-Pedrojok01](https://github.com/Pedrojok01/Ethernaut-Solutions/blob/main/solutions/12_Privacy.md) | hard | packed-slot parsing plus locked assembly cast to bytes32 key
+- [Ethernaut/13-GateKeeperOne-via-Pedrojok01](https://github.com/Pedrojok01/Ethernaut-Solutions/blob/main/solutions/13_GateKeeperOne.md) | hard | caller-proxy plus gas-mod-8191 brute force plus bitmask gateKey
+- [Ethernaut/14-GateKeeperTwo-via-Pedrojok01](https://github.com/Pedrojok01/Ethernaut-Solutions/blob/main/solutions/14_GateKeeperTwo.md) | hard | constructor-time extcodesize-zero plus xor-derived gateKey
+- [Ethernaut/20-Denial-via-Pedrojok01](https://github.com/Pedrojok01/Ethernaut-Solutions/blob/main/solutions/20_Denial.md) | hard | gas-griefing fallback infinite loop against call-forward-all-gas withdraw
+- [Ethernaut/Fallback-via-Pedrojok01](https://github.com/Pedrojok01/Ethernaut-Solutions) | medium | contribute threshold then receive flip to owner plus withdraw
+- [Ethernaut/CoinFlip-via-Pedrojok01](https://github.com/Pedrojok01/Ethernaut-Solutions) | medium | blockhash-divided-by-factor prediction, play only winning flips
+- [Ethernaut/Telephone-via-Pedrojok01](https://github.com/Pedrojok01/Ethernaut-Solutions) | medium | tx.origin vs msg.sender proxy changeOwner chain
+- [Ethernaut/Token-via-Pedrojok01](https://github.com/Pedrojok01/Ethernaut-Solutions) | medium | pre-0.8 underflow transfer balance-plus-one wrap
+- [Ethernaut/Delegation-via-Pedrojok01](https://github.com/Pedrojok01/Ethernaut-Solutions) | medium | fallback delegatecall pwn() context takeover
+- [Ethernaut/Force-via-Pedrojok01](https://github.com/Pedrojok01/Ethernaut-Solutions) | medium | selfdestruct force-send to zero-balance no-receive contract
+- [Ethernaut/Shop-via-erhant](https://github.com/erhant/ethernaut-evm-challenges) | hard | view-price callback flip between isSold false and true reads
+- [Ethernaut/Dex-via-erhant](https://github.com/erhant/ethernaut-evm-challenges) | hard | integer-division price skew drains one side via repeated swaps
+- [Ethernaut/DexTwo-via-erhant](https://github.com/erhant/ethernaut-evm-challenges) | hard | attacker-token price injection via custom ERC20 swap path
+- [Ethernaut/PuzzleWallet-via-erhant](https://github.com/erhant/ethernaut-evm-challenges) | hard | proxy-admin slot clash plus multicall-deposit double-count plus execute drain
+- [Ethernaut/Motorbike-via-erhant](https://github.com/erhant/ethernaut-evm-challenges) | hard | uninitialized UUPS impl init plus selfdestruct bricking engine
+- [Ethernaut/DoubleEntryPoint-via-erhant](https://github.com/erhant/ethernaut-evm-challenges) | hard | double-entry sweep detection bot
+- [Ethernaut/GoodSamaritan-via-erhant](https://github.com/erhant/ethernaut-evm-challenges) | hard | reverting notify keeps 10-wei remainder drainable via request loop
+- [Ethernaut/GatekeeperThree-via-erhant](https://github.com/erhant/ethernaut-evm-challenges) | hard | construct0r typo plus trick-plus-timestamp plus forced-ETH entry
+- [Ethernaut/King-via-cypherpunk](https://github.com/cypherpunk-symposium/ethernaut-foundry-framework-solutions-sol) | medium | transfer-based kingship denial via no-payable attacker
+- [Ethernaut/Reentrancy-via-cypherpunk](https://github.com/cypherpunk-symposium/ethernaut-foundry-framework-solutions-sol) | medium | foundry test plus solidity exploit plus submission script triplet
+- [Ethernaut/Elevator-via-cypherpunk](https://github.com/cypherpunk-symposium/ethernaut-foundry-framework-solutions-sol) | medium | interface-spoofed floor flip
+- [Ethernaut/GatekeeperOne-via-cypherpunk](https://github.com/cypherpunk-symposium/ethernaut-foundry-framework-solutions-sol) | hard | gas-gated proxy entry walkthrough
+- [Ethernaut/Denial-via-cypherpunk](https://github.com/cypherpunk-symposium/ethernaut-foundry-framework-solutions-sol) | hard | partner-share pull plus gas-exhaust fallback
+- [Ethernaut/AlienCodex-via-cypherpunk](https://github.com/cypherpunk-symposium/ethernaut-foundry-framework-solutions-sol) | hard | array-underflow slot-zero owner overwrite via CREATE bytecode
+- [Ethernaut/Fallback-via-ciaran](https://github.com/ciaranmcveigh5/ethernaut-x-foundry) | medium | foundry-local instance plus factory solve per level
+- [Ethernaut/Preservation-via-ciaran](https://github.com/ciaranmcveigh5/ethernaut-x-foundry) | hard | delegatecall library slot-alias setTime takeover
+- [Ethernaut/Recovery-via-ciaran](https://github.com/ciaranmcveigh5/ethernaut-x-foundry) | hard | nonce-derived address recovery plus lost-ETH destroy
+- [Ethernaut/MagicNumber-via-ciaran](https://github.com/ciaranmcveigh5/ethernaut-x-foundry) | hard | 10-opcode runtime returning 42 via raw bytecode
+- [Ethernaut/Dex-via-ciaran](https://github.com/ciaranmcveigh5/ethernaut-x-foundry) | hard | swap-ratio drain with approval sequencing
+- [Ethernaut/Motorbike-via-ciaran](https://github.com/ciaranmcveigh5/ethernaut-x-foundry) | hard | EIP-1967 impl slot read plus uninitialized engine init
+- [Ethernaut/Fallback-via-az0mb13](https://github.com/az0mb13/ethernaut-foundry/) | medium | solidity plus script dual solutions per level
+- [Ethernaut/NaughtCoin-via-az0mb13](https://github.com/az0mb13/ethernaut-foundry/) | hard | transfer-lock bypass via ERC20 approve plus transferFrom
+- [Ethernaut/Preservation-via-az0mb13](https://github.com/az0mb13/ethernaut-foundry/) | hard | timezone-library delegatecall slot collision
+- [Ethernaut/AlienCodex-via-az0mb13](https://github.com/az0mb13/ethernaut-foundry/) | hard | retract underflow plus codex slot computation
+- [Ethernaut/Denial-via-az0mb13](https://github.com/az0mb13/ethernaut-foundry/) | hard | assert-gas partner plus malicious withdraw partner
+- [Ethernaut/Switch-via-az0mb13](https://github.com/az0mb13/ethernaut-foundry/) | hard | turnSwitch flip via calldata-blob flipOnThenOff
+- [Ethernaut/Reentrancy-via-jarix](https://www.0xjarix.com/ethernaut-reetrance/) | medium | CEI-pattern violation plus foundry roadmap notes
+- [Ethernaut/King-via-JohnnyTime](https://medium.com/@JohnnyTime/ethernaut-9-king-foundry-solution-2023-walkthrough-tutorial-2a0274774046) | medium | TheLastKing no-payable constructor crowns then reverts refunds
+- [Ethernaut/Denial-via-pkqs90](https://pkqs90.github.io/ctf/ethernaut-solutions-part-3/) | hard | call-vs-transfer gas semantics plus infinite-loop fallback
+- [Ethernaut/GatekeeperThree-via-pkqs90](https://pkqs90.github.io/ctf/ethernaut-solutions-part-3/) | hard | misspelled-constructor plus block.timestamp allowance plus forced ETH
+- [Ethernaut/HigherOrder-via-pkqs90](https://pkqs90.github.io/ctf/ethernaut-solutions-part-3/) | hard | calldata-array length confusion plus registry overwrite
+- [Ethernaut/Reentrancy-via-chandukona](https://chandukona.github.io/2022/11/15/10-18-Ethernaut-CTF/) | medium | donate-then-recursive-withdraw with balance-topup guard
+- [Ethernaut/Elevator-via-chandukona](https://chandukona.github.io/2022/11/15/10-18-Ethernaut-CTF/) | medium | dual-return Building contract flipping top flag
+- [Ethernaut/GatekeeperOne-via-chandukona](https://chandukona.github.io/2022/11/15/10-18-Ethernaut-CTF/) | hard | 8191-gas brute-force loop plus crafted gateKey bits
+- [Ethernaut/GatekeeperTwo-via-chandukona](https://chandukona.github.io/2022/11/15/10-18-Ethernaut-CTF/) | hard | constructor-only extcodesize-zero plus keccak-xor gateKey
+- [Ethernaut/Reentrancy-via-dalty](https://daltyboy11.github.io/every-ethernaut-challenge-explained/) | medium | line-by-line withdraw reentry trace with 0.001 ETH seed
+- [Ethernaut/GatekeeperOne-via-dalty](https://daltyboy11.github.io/every-ethernaut-challenge-explained/) | hard | three-gate bitmask plus gas remainder analysis
+- [Ethernaut/GatekeeperTwo-via-dalty](https://daltyboy11.github.io/every-ethernaut-challenge-explained/) | hard | caller-construction plus max-xor key derivation
+- [Ethernaut/Telephone-via-dalty](https://daltyboy11.github.io/every-ethernaut-challenge-explained/) | medium | origin-vs-sender proxy ownership chain
+- [Speedrun/Dice-Game-official](https://speedrunethereum.com/challenge/dice-game) | medium | blockhash-plus-nonce-plus-address hash replication, riggedRoll only on winning roll
+- [Speedrun/Dice-Game-branch](https://github.com/scaffold-eth/se-2-challenges/tree/challenge-dice-game) | medium | RiggedRoll plus withdraw plus console.log nonce tracking
+- [Speedrun/DEX-official](https://speedrunethereum.com/challenge/dex) | hard | x-times-y-k 997-fee price(), reserve-before-input swaps, liquidity deposit-withdraw ratios
+- [Speedrun/Staking-official](https://speedrunethereum.com/challenge/decentralized-staking) | medium | threshold-deadline state machine plus execute versus openForWithdraw branch
+- [Speedrun/Staking-via-leogau](https://leogau.hashnode.dev/how-i-implemented-speed-run-ethereum-challenge-1-decentralized-staking-app) | medium | stake balances plus timeLeft plus receive-to-stake, CEI withdraw ordering
+- [Speedrun/Staking-via-wolfcito](https://github.com/wolfcito/speedrun-staking-dapp) | medium | group-funding rules plus Stake event frontend listing
+- [Speedrun/Challenges-index](https://github.com/scaffold-eth/scaffold-eth-challenges/) | medium | staking plus dice plus DEX plus multisig challenge matrix
+- [Speedrun/DEX-via-edakturk](https://github.com/edakturk14/speed-run-ethereum/) | hard | reserves plus approve-pattern plus fee-curve learnings, init-ratio discipline
+- [Speedrun/Multisig-via-edakturk](https://github.com/edakturk14/speed-run-ethereum/) | hard | ECDSA multisig plus calldata-vs-memory plus execution funding notes
+- [Speedrun/DEX-via-leobrqz](https://github.com/leobrqz/mycontracts-speedrunethereum/) | hard | quick-contract DEX reserves plus LP token flow
+- [Speedrun/Dice-via-leobrqz](https://github.com/leobrqz/mycontracts-speedrunethereum/) | medium | RiggedRoll replication plus withdraw guard
+- [Speedrun/Staking-via-vanities](https://github.com/vanities/speedrun-ethereum) | medium | staking-app plus NFT plus vendor plus multisig monorepo
+- [Speedrun/DEX-via-vanities](https://github.com/vanities/speedrun-ethereum) | hard | exchange plus liquidity plus multisig wallet set
+- [Speedrun/Series-via-devto](https://dev.to/kevinjoshi46b/series/21792) | medium | challenge-1-through-6 article series with DEX plus multisig builds
+- [Speedrun/Multisig-official-notes](https://github.com/scaffold-eth/scaffold-eth-challenges/) | hard | owners plus confirmations plus execute quorum array-of-structs wallet
+- [Speedrun/State-Channels-notes](https://github.com/leobrqz/mycontracts-speedrunethereum/) | hard | streamer plus challenge-5 state-channelExpiry pattern
+- [Speedrun/Token-Vendor-notes](https://github.com/vanities/speedrun-ethereum) | medium | vendor plus YourToken approve-buy-sell loop
+- [Speedrun/Dice-advanced](https://github.com/scaffold-eth/se-2-challenges/tree/challenge-dice-game) | hard | prevHash-plus-nonce tuple hash plus modulo-16 win gate, revert-on-loss saves gas
+- [Exploit/Euler-via-zellic](https://www.zellic.io/blog/euler-finance-exploit-analysis) | hard | Balancer flash deposit plus 15x mint plus donateToReserves no-check then self-liquidation discount
+- [Exploit/Euler-PoC-via-zellic](https://github.com/Zellic/poc-hacks/blob/main/EulerFinance/euler.sol) | hard | receiveFlashLoan PoC: deposit plus mint plus donate plus liquidate plus repay in one callback
+- [Exploit/EraLend-via-certik](https://www.certik.com/blog/eralend-incident-analysis) | hard | SyncSwap burn-callback before _updateReserves, oracle reads stale reserves, flash-scaled borrow
+- [Exploit/Lending-Retrospective-via-certik](https://www.certik.com/blog/lending-contract-exploits-a-retrospective) | hard | Euler donate plus Rodeo TWAP-window plus ParaSpace elastic-collateral stacking survey
+- [Exploit/Penpie-via-zokyo](https://zokyo.io/blog/penpie-postmortem/) | hard | permissionless SY market plus batchHarvest balance-delta plus depositMarket cross-function reentry
+- [Exploit/Sturdy-via-eigenphi](https://eigenphi.substack.com/p/sturdy-finance-exploit-forensic-analysis) | hard | 110k-ETH flash plus Balancer exitPool fallback window, B-wstETH 1-to-3x price, 5-iteration drain
+- [Exploit/Sturdy-via-kismp](https://github.com/kismp123/DeFi-Security-Incident/blob/main/2023/2023-06-12_SturdyFinance_ReadOnlyReentrancy_ETH.md) | hard | receive()-window setUserUseReserveAsCollateral with inflated getAssetPrice, self-liquidation exit
+- [Exploit/Conic-via-blockaudit](https://blockauditreport.medium.com/conic-finance-a-post-mortem-of-3-2-million-de-fi-attack-blockaudit-bb014dec88f9) | hard | CurveLPOracleV2 read-only plus 20k-stETH flash rETH-LP mint skew repeated to 1727 ETH
+- [Exploit/Cygnus-via-OAK](https://onchainattack.org/document/examples/2024-03-cygnus-finance-read-only-reentrancy/) | hard | LP-token collateral view read mid-execution, flash-manipulated callback inflates borrow power
+- [Exploit/ForkBugs-Compound-via-yAudit](https://github.com/yAudit/defi-fork-bugs) | hard | Coinbase-oracle DAI price manipulation plus empty-market plus rounding survey entry
+- [Exploit/ForkBugs-CREAM-via-yAudit](https://github.com/yAudit/defi-fork-bugs) | hard | ERC777-like flashloan reentry without CEI plus price-manipulation PoC pair
+- [Exploit/ForkBugs-Lendfme-via-yAudit](https://github.com/yAudit/defi-fork-bugs) | hard | flashloan plus reentry without CEI postmortem plus PoC
+- [Exploit/ForkBugs-Sentiment-via-yAudit](https://github.com/yAudit/defi-fork-bugs) | hard | Balancer read-only reentrancy postmortem plus forum plus PoC triple
+- [Exploit/ForkBugs-Curve-via-yAudit](https://github.com/yAudit/defi-fork-bugs) | hard | Curve read-only reentrancy postmortem entry
+- [Exploit/ForkBugs-Balancer-via-yAudit](https://github.com/yAudit/defi-fork-bugs) | hard | deflationary-token pool drain plus double-entrypoint DoS forum pair
+- [Exploit/ForkBugs-Hundred-via-yAudit](https://github.com/yAudit/defi-fork-bugs) | hard | gnosis native-callback flashloan reentry postmortem
+- [Exploit/ForkBugs-Ola-Rari-via-yAudit](https://github.com/yAudit/defi-fork-bugs) | hard | Ola plus Rari flashloan-reentry PoC pair without CEI
+- [Exploit/ForkBugs-Agave-Hope-via-yAudit](https://github.com/yAudit/defi-fork-bugs) | hard | gnosis-callback plus empty-market-plus-rounding writeup pair
+- [Exploit/Phi-H01-via-code4rena](https://code4rena.com/reports/2024-08-phi) | hard | signatureClaim direct-call bypasses chainid substitution, cross-chain art claim replay
+- [Exploit/Phi-H02-via-code4rena](https://code4rena.com/reports/2024-08-phi) | hard | createArt unsigned CreateConfig, mempool frontrun swaps artist plus royalty receiver
+- [Exploit/PoolTogether-H01-via-code4rena](https://code4rena.com/reports/2023-07-pooltogether) | hard | _currentExchangeRate capped at _assetUnit, under-collateralized vault unrecoverable
+- [Exploit/PoolTogether-H02-via-code4rena](https://code4rena.com/reports/2023-07-pooltogether) | hard | withdraw share-burn mismatch lets malicious user steal deposits
+- [Exploit/PoolTogether-H04-via-code4rena](https://code4rena.com/reports/2023-07-pooltogether) | hard | mintYieldFee open to anyone with arbitrary recipient, yield-fee theft
+- [Exploit/Karak-H03-via-code4rena](https://code4rena.com/reports/2024-07-karak) | hard | ERC4626 rounding pushes convertToAssets above totalRestakedETH, snapshot DoS
+- [Exploit/Karak-M02-via-code4rena](https://code4rena.com/reports/2024-07-karak) | hard | slashing-event plus snapshot burn-amount mismatch, permanent snapshot DoS
+- [Exploit/Amphora-H03-via-code4rena](https://code4rena.com/reports/2023-07-amphora) | hard | WUSDA floor-rounding to zero, flash-inflated supply front-run steals deposits
+- [Exploit/Amphora-M02-via-code4rena](https://code4rena.com/reports/2023-07-amphora) | hard | CREATE2 Vault reorg deployment plus deposit theft, salt must bind sender
+- [Exploit/Fractional-H01-via-code4rena](https://code4rena.com/reports/2022-07-fractional) | hard | uninitialized Vault impl init plus execute-delegatecall selfdestruct bricks all proxies
+- [Exploit/Fractional-H04-via-code4rena](https://code4rena.com/reports/2022-07-fractional) | hard | division floor rounds fraction-price to zero, buyout payout theft
+- [Exploit/Dopex-settle-via-code4rena](https://code4rena.com/reports/2023-08-dopex) | hard | arbitrary WETH transfer desyncs _totalCollateral, subtractLoss always reverts
+- [Exploit/Dopex-strike-via-code4rena](https://code4rena.com/reports/2023-08-dopex) | hard | roundUp 1e6 floor breaks 25pct-OTM strike, ITM premium overcharge
+- [Exploit/Dopex-deposit-redeem-via-code4rena](https://code4rena.com/reports/2023-08-dopex) | hard | immediate deposit-redeem profit via premium-plus-collateral mismatch
+- [Exploit/PoolTogether-Reorg-via-C4issue](https://github.com/code-423n4/2023-07-pooltogether-findings/issues/191) | hard | CREATE-only deployVault nonce reorg, salt must include sender plus asset
+- [Exploit/Katana-CREATE2-via-C4issue](https://github.com/code-423n4/2024-10-ronin-findings/issues/42) | hard | predictable salt pool address, malicious pre-deploy plus selfdestruct allowance plant
+- [Exploit/Panoptic-CREATE2-via-C4issue](https://github.com/code-423n4/2024-04-panoptic-findings/issues/482) | hard | user-salt cloneDeterministic collision, same-tx deploy-plus-destroy allowance persistence
+- [Exploit/Zellic-depositor-reentry](https://reports-old.zellic.io/findings) | hard | fixed depositor reentrancy takes all ETH finding class
+- [Exploit/Zellic-withdrawal-reentry](https://reports-old.zellic.io/findings) | hard | withdrawal reentrancy double-spend finding class
+- [Exploit/Zellic-multiasset-reentry](https://reports-old.zellic.io/findings) | hard | multi-asset-action reentrancy finding class
+- [QuillCTF/Set-via-Omsify](https://github.com/Omsify/QuillCTF-Solutions) | hard | foundry-PoC solution set, explanations per retired challenge
+- [QuillCTF/MetaToken-via-Omsify](https://github.com/Omsify/QuillCTF-Solutions) | hard | meta-transaction plus allowance arithmetic chain
+- [QuillCTF/KeyCraft-via-Omsify](https://github.com/Omsify/QuillCTF-Solutions) | hard | key-derivation plus access-control sequencing
+- [QuillCTF/VotingMachine-via-Omsify](https://github.com/Omsify/QuillCTF-Solutions) | hard | vote-plus-execute ordering plus quorum edge
+- [QuillCTF/WETH10-via-lmanini](https://github.com/lmanini/QuillCTF-solutions) | hard | withdrawAll send-before-burn plus token-transfer-out reentry skips _burnAll
+- [QuillCTF/MetaToken-via-ret2basic](https://ret2basic.gitbook.io/ctfwriteup/web3-ctf) | medium | metatoken plus temporary-variable plus lottery index
+- [QuillCTF/Predict-via-ret2basic](https://ret2basic.gitbook.io/ctfwriteup/web3-ctf) | medium | predict plus private-club plus voting-machine index
+- [CTE/Lotteries-via-ret2basic](https://ret2basic.gitbook.io/ctfwriteup/web3-ctf) | medium | guess-number plus secret-number plus new-number blockhash chain
+- [CTE/Math-via-ret2basic](https://ret2basic.gitbook.io/ctfwriteup/web3-ctf) | medium | token overflow plus predict-the-future plus predict-blockhash
+- [CTE/Misc-via-ret2basic](https://ret2basic.gitbook.io/ctfwriteup/web3-ctf) | medium | call-me plus nickname plus mapping-plus-fallback catalog
+- [Topics/Proxy-key-misalign-via-minaminao](https://github.com/minaminao/ctf-blockchain) | hard | Paradigm Market eternal-storage key-misalignment field-confusion pattern
+- [Topics/Multisig-mn-change-via-minaminao](https://github.com/minaminao/ctf-blockchain) | hard | WalletLibrary m-of-n plus Parity-style init takeover pattern
+- [Topics/JIT-0xMonaco-via-minaminao](https://github.com/minaminao/ctf-blockchain) | hard | JIT plus 0xmonaco plus rescue topic rows with keyword index
+- [Topics/Balsn-CREATE2-via-minaminao](https://github.com/minaminao/ctf-blockchain) | hard | Balsn NFT-marketplace init plus _safeTransferFrom plus CREATE2 row
+- [Topics/Numen-LenderPool-via-minaminao](https://github.com/minaminao/ctf-blockchain) | hard | flash-loan plus GOATFinance checksum-address plus ASSLOT staticcall rows
+- [Topics/corCTF-babywallet-via-minaminao](https://github.com/minaminao/ctf-blockchain) | hard | missing from-not-equal-to check plus Pigeon vault diamond-proxy rows
+- [Paradigm2021/BabySandbox-via-minaminao](https://github.com/minaminao/ctf-blockchain) | hard | staticcall plus call plus delegatecall plus extcodesize-zero gate chain
+- [Paradigm2021/Lockbox-via-minaminao](https://github.com/minaminao/ctf-blockchain) | hard | ecrecover plus encodePacked plus msg.data.length gate chain
+- [Paradigm2021/Bouncer-via-minaminao](https://github.com/minaminao/ctf-blockchain) | hard | single-vs-batch processing equivalence bypass
+- [Paradigm2021/Market-via-minaminao](https://github.com/minaminao/ctf-blockchain) | hard | eternal-storage key misalignment, one field read as another
+- [Paradigm2021/Hello-via-minaminao](https://github.com/minaminao/ctf-blockchain) | medium | contract-call warmup plus ABI basics
+- [Paradigm2022/SourceCode-quine-via-minaminao](https://github.com/minaminao/ctf-blockchain) | hard | quine plus LOCKBOX2 plus Black-Sheep Huff topic rows
+- [Paradigm2022/HintFinance-JIT-via-minaminao](https://github.com/minaminao/ctf-blockchain) | hard | hint-finance plus just-in-time topic rows
+- [Paradigm2022/OtterWorld-Swap-via-minaminao](https://github.com/minaminao/ctf-blockchain) | hard | Solana otter tracks plus 0xmonaco row
+- [CTF/EthernautDAO-gascost-via-minaminao](https://github.com/minaminao/ctf-blockchain) | hard | no-name block.number gas-price-war plus wallet-library rows
+- [CTF/Curta-Huff-via-minaminao](https://github.com/minaminao/ctf-blockchain) | hard | Curta Lana LLVM plus Huff-challenge plus EVM-puzzle rows
+- [CTF/SEETF-Pigeon-via-minaminao](https://github.com/minaminao/ctf-blockchain) | hard | PigeonBank plus Pigeon-Vault EIP-2535 diamond rows
+- [CTF/Smiley360-multisig-via-minaminao](https://github.com/minaminao/ctf-blockchain) | hard | multisig plus secp256k1 ability rows
+- [CTF/DownUnder-EVM-via-minaminao](https://github.com/minaminao/ctf-blockchain) | hard | EVM vault mechanism plus Solve-Me rows
+- [CTF/Ekparty-Byte-SmartRev-via-minaminao](https://github.com/minaminao/ctf-blockchain) | hard | stack-tracing plus memory-tracing rev rows
+- [CTF/Numen-HexP-via-minaminao](https://github.com/minaminao/ctf-blockchain) | hard | prev-blockhash equals gasprice-mod-2pow24 condition
+- [CTF/BlazCTF-Maze-Ghost-via-minaminao](https://github.com/minaminao/ctf-blockchain) | hard | maze plus jambo plus ghost EVM rows
+- [CTF/SECCON-Beginners-ERC721-via-minaminao](https://github.com/minaminao/ctf-blockchain) | hard | ERC721 _safeMint plus allowance rows
+- [CTF/FullWeak-Kappa-via-minaminao](https://github.com/minaminao/ctf-blockchain) | hard | Save-the-Kappa plus COMPFEST synthetic-manipulation rows
+- [CTF/Cipher-Minon-via-minaminao](https://github.com/minaminao/ctf-blockchain) | hard | origin-plus-extcodesize-plus-timestamp gate row
+- [CTF/Quill-Safe-via-minaminao](https://github.com/minaminao/ctf-blockchain) | hard | Safe plus lottery plus DeFi-plus-fee rows
+- [DVDv4/ABISmuggling-PoC-via-SunWeb3Sec-test](https://github.com/SunWeb3Sec/damn-vulnerable-defi-v4-solutions/blob/main/test/abi-smuggling/ABISmuggling.t.sol) | hard | in-repo foundry PoC: packed execute payload plus sweepFunds actionData plus checkSolved
+- [DVDv4/Solutions-index-via-siddharth](https://github.com/siddharth9903/damn-vulnerable-defi-v4-solutions) | medium | per-challenge forge test commands 11-through-15 index
+- [DVDv4/Full-18-via-shamadrian](https://github.com/shamadrian/Damn-Vulnerable-Defi-Solutions) | hard | 18-challenge catalog 1-to-18 with offset-table ABI notes
+- [Paradigm2023/Salus-extra-Oven-Dropper](https://dev.foresightnews.pro/article/detail/52407) | hard | salus set continued: oven share-staleness plus dropper bitmap replay
+- [Paradigm2023/Salus-extra-FRE-Cosmic](https://dev.foresightnews.pro/article/detail/52407) | hard | salus set continued: real-estate eviction accounting plus radiation emission edge
+- [Paradigm2023/Salus-extra-Dodont-TokenLocker](https://www.aicoin.com/en/article/390217) | hard | salus set continued: DVM re-init plus selector-clash locker
+- [DVDv3/PuppetV3-attacker-via-mikle](https://mikle97pir.github.io/damn-vulnerable-defi-solutions/) | hard | PuppetV3Attacker.sol plus mainnet-RPC fork plus warp pattern
+- [DVDv3/ABISmuggling-js-via-mikle](https://mikle97pir.github.io/damn-vulnerable-defi-solutions/) | hard | abi-smuggling challenge.js plus mattaereal walkthrough pointer
+- [DVDv4/The-Rewarder-via-nzmpi](https://github.com/nzmpi/damn-vulnerable-defi-solutions) | hard | reward-round flash deposit plus claim-before-snapshot distribution theft
+- [DVDv4/Compromised-via-nzmpi](https://github.com/nzmpi/damn-vulnerable-defi-solutions) | hard | median-oracle 2-key control plus buy-low sell-full NFT loop
+- [DVDv4/Puppet-via-nzmpi](https://github.com/nzmpi/damn-vulnerable-defi-solutions) | hard | V1 spot crash plus collateral-factor borrow drain
+- [DVDv4/Free-Rider-via-nzmpi](https://github.com/nzmpi/damn-vulnerable-defi-solutions) | hard | buyMany plus 777-hook bounty reentry plus payout ordering
+- [DVDv4/Backdoor-via-nzmpi](https://github.com/nzmpi/damn-vulnerable-defi-solutions) | hard | CREATE2 Safe prediction plus setup delegatecall plant
+- [DVDv4/Wallet-Mining-via-nzmpi](https://github.com/nzmpi/damn-vulnerable-defi-solutions) | hard | counterfactual wallets plus UUPS authorizer takeover
+- [DVDv4/Truster-via-CanonicalJP](https://github.com/CanonicalJP/damn-vulnerable-defi-v4-walkthrough) | medium | zero-loan approve calldata plus constructor-atomic transferFrom
+- [DVDv4/Side-Entrance-via-CanonicalJP](https://github.com/CanonicalJP/damn-vulnerable-defi-v4-walkthrough) | medium | callback deposit satisfies balanceBefore then withdraw exit
+- [DVDv4/The-Rewarder-via-CanonicalJP](https://github.com/CanonicalJP/damn-vulnerable-defi-v4-walkthrough) | hard | same-round flash deposit plus reward claim before snapshot
+- [DVDv4/Compromised-via-CanonicalJP](https://github.com/CanonicalJP/damn-vulnerable-defi-v4-walkthrough) | hard | leaked-key median control plus price slam-restore cycle
+- [DVDv4/Free-Rider-via-CanonicalJP](https://github.com/CanonicalJP/damn-vulnerable-defi-v4-walkthrough) | hard | marketplace buyMany plus ERC777 reentry bounty loop
+- [DVDv4/Backdoor-via-CanonicalJP](https://github.com/CanonicalJP/damn-vulnerable-defi-v4-walkthrough) | hard | Safe creation prediction plus malicious setup module
+- [DVDv4/Unstoppable-via-0x71pp17](https://github.com/0x71pp17/damn-vulnerable-defi_solutions_and_code_analysis) | hard | donation desync plus InvalidBalance halt walkthrough
+- [DVDv4/Naive-Receiver-via-0x71pp17](https://github.com/0x71pp17/damn-vulnerable-defi_solutions_and_code_analysis) | hard | fee-loan batch plus forwarder spoof walkthrough
+- [DVDv4/Truster-via-0x71pp17](https://github.com/0x71pp17/damn-vulnerable-defi_solutions_and_code_analysis) | medium | approve-via-loan plus pool sweep walkthrough
+- [DVDv4/Side-Entrance-via-0x71pp17](https://github.com/0x71pp17/damn-vulnerable-defi_solutions_and_code_analysis) | medium | deposit-callback plus withdraw walkthrough
+- [DVDv4/Selfie-via-0x71pp17](https://github.com/0x71pp17/damn-vulnerable-defi_solutions_and_code_analysis) | hard | flash-delegate plus queue plus warp execute walkthrough
+- [DVDv4/Free-Rider-via-RealJohnnyTime](https://github.com/RealJohnnyTime/damn-vulnerable-defi-v4-solutions) | hard | NFT marketplace plus 777 reentry plus bounty ordering
+- [Paradigm2023/Token-Locker-via-bentobox](https://github.com/bentobox19/paradigm-ctf/) | hard | forge per-test locker solution, NFT-as-ERC20 confusion
+- [Paradigm2023/Suspicious-Charity-via-bentobox](https://github.com/bentobox19/paradigm-ctf/) | hard | forge per-test charity solution, cache-collision pricing
+- [Paradigm2023/Oven-via-bentobox](https://github.com/bentobox19/paradigm-ctf/) | hard | forge per-test oven solution, heat-round share staleness
+- [Paradigm2023/Skill-Game-via-bentobox](https://github.com/bentobox19/paradigm-ctf/) | hard | forge per-test skill-game solution, score-race payout
+- [Paradigm2023/Enterprise-via-bentobox](https://github.com/bentobox19/paradigm-ctf/) | hard | forge per-test enterprise solution, remote-message forge
+- [Paradigm2023/Hopping-via-bentobox](https://github.com/bentobox19/paradigm-ctf/) | hard | forge per-test hopping solution, period-zero plus root forge
+- [Paradigm2023/Grains-via-bentobox](https://github.com/bentobox19/paradigm-ctf/) | hard | forge per-test grains solution, dust-fee harvest
+- [Paradigm2023/Dropper-via-bentobox](https://github.com/bentobox19/paradigm-ctf/) | hard | forge per-test dropper solution, claim-bitmap replay
+- [Paradigm2023/Free-Real-Estate-via-bentobox](https://github.com/bentobox19/paradigm-ctf/) | hard | forge per-test FRE solution, eviction-accounting edge
+- [Paradigm2023/Cosmic-via-bentobox](https://github.com/bentobox19/paradigm-ctf/) | hard | forge per-test cosmic solution, emission-edge claim
+- [Topics/CTE-Guess-via-minaminao](https://github.com/minaminao/ctf-blockchain) | medium | guess-number plus secret-number keccak plus new-number timestamp rows
+- [Topics/CTE-Blockhash-via-minaminao](https://github.com/minaminao/ctf-blockchain) | medium | predict-block-hash plus predict-the-future rows
+- [Topics/Ethernaut-Fallback-via-minaminao](https://github.com/minaminao/ctf-blockchain) | medium | fallback receive plus fallout constructor-typo rows
+- [Topics/Ethernaut-Gates-via-minaminao](https://github.com/minaminao/ctf-blockchain) | hard | gatekeeper-one gas-mod plus gatekeeper-two extcodesize rows
+- [Topics/Paradigm21-Babyrev-via-minaminao](https://github.com/minaminao/ctf-blockchain) | hard | babyrev plus 0x41414141 crackme plus crypto-casino rows
+- [Topics/Smart-Rev-via-minaminao](https://github.com/minaminao/ctf-blockchain) | hard | byte stack-trace plus smartrev memory-trace plus Numen HEXP rows
+- [Topics/BlazCTF-EVM-via-minaminao](https://github.com/minaminao/ctf-blockchain) | hard | maze plus jambo plus ghost plus SEETF pigeon rows
+- [Topics/DownUnder-Maple-via-minaminao](https://github.com/minaminao/ctf-blockchain) | hard | solve-me plus EVM-vault plus MapleCTF rows
+- [Topics/Sekai-corCTF-via-minaminao](https://github.com/minaminao/ctf-blockchain) | hard | baby-wallet from-to check plus diamond-proxy plus Sekai rows
+- [Topics/justCTF-HITCON-via-minaminao](https://github.com/minaminao/ctf-blockchain) | hard | 2024-2025 EVM event index rows with keyword pointers
+- [Topics/DiceCTF-LACTF-via-minaminao](https://github.com/minaminao/ctf-blockchain) | hard | remis-world plus quals EVM rows
+- [Topics/HTB-Cyber-via-minaminao](https://github.com/minaminao/ctf-blockchain) | hard | apocalypse plus university CTF blockchain rows
+- [Topics/SECCON-SCAN-via-minaminao](https://github.com/minaminao/ctf-blockchain) | hard | quals plus beginners plus SCAN EVM rows
+- [Topics/BlazCTF24-Wintermute-via-minaminao](https://github.com/minaminao/ctf-blockchain) | hard | BlazCTF plus Wintermute-alpha plus corCTF2024 rows
+- [Topics/Smiley-HITCON25-via-minaminao](https://github.com/minaminao/ctf-blockchain) | hard | smiley plus HITCON-2025 plus SekaiCTF-2025 rows
+- [Topics/Imaginary-cor25-via-minaminao](https://github.com/minaminao/ctf-blockchain) | hard | ImaginaryCTF plus corCTF-2025 plus Full-Weak-Engineer rows
+- [Topics/COMPFEST-Synthetic-via-minaminao](https://github.com/minaminao/ctf-blockchain) | hard | synthetic-manipulation plus COMPFEST-2025 rows
+- [Topics/0x41414141-Sanity-via-minaminao](https://github.com/minaminao/ctf-blockchain) | medium | sanity-check plus darkctf plus alles-CTF rows
+- [Topics/TJCTF-SolveMe-via-minaminao](https://github.com/minaminao/ctf-blockchain) | medium | TJCTF plus Paradigm-2022 RANDOM contract-call rows
+- [Topics/LA-remi-via-minaminao](https://github.com/minaminao/ctf-blockchain) | medium | LA-CTF remi-world plus DownUnder solve-me rows
+- [Ethernaut/Fallout-via-erhant](https://github.com/erhant/ethernaut-evm-challenges) | medium | misspelled-constructor Fal1out claim plus v0.8 port notes
+- [Ethernaut/CoinFlip-via-erhant](https://github.com/erhant/ethernaut-evm-challenges) | medium | factor-division prediction plus 10-streak script
+- [Ethernaut/Telephone-via-erhant](https://github.com/erhant/ethernaut-evm-challenges) | medium | origin-check proxy takeover
+- [Ethernaut/Token-via-erhant](https://github.com/erhant/ethernaut-evm-challenges) | medium | v0.8-port underflow study plus wrap test
+- [Ethernaut/Delegation-via-erhant](https://github.com/erhant/ethernaut-evm-challenges) | medium | delegatecall pwn selector forward
+- [Ethernaut/Force-via-erhant](https://github.com/erhant/ethernaut-evm-challenges) | medium | selfdestruct force-send pattern
+- [Ethernaut/King-via-erhant](https://github.com/erhant/ethernaut-evm-challenges) | medium | transfer-king denial pattern
+- [Ethernaut/Privacy-via-erhant](https://github.com/erhant/ethernaut-evm-challenges) | hard | packed storage plus casting unlock
+- [Ethernaut/NaughtCoin-via-erhant](https://github.com/erhant/ethernaut-evm-challenges) | hard | lock-bypass via transferFrom delegation
+- [Ethernaut/Preservation-via-erhant](https://github.com/erhant/ethernaut-evm-challenges) | hard | library slot-alias takeover
+- [Ethernaut/Recovery-via-ciaran](https://github.com/ciaranmcveigh5/ethernaut-x-foundry) | hard | lost-contract nonce math plus destroy withdraw
+- [Ethernaut/Shop-via-ciaran](https://github.com/ciaranmcveigh5/ethernaut-x-foundry) | hard | buyer-view price flip buy flow
+- [Ethernaut/DexTwo-via-ciaran](https://github.com/ciaranmcveigh5/ethernaut-x-foundry) | hard | custom-token swap injection flow
+- [Ethernaut/PuzzleWallet-via-ciaran](https://github.com/ciaranmcveigh5/ethernaut-x-foundry) | hard | admin-slot plus multicall deposit multicall-execute drain
+- [Ethernaut/AlienCodex-via-ciaran](https://github.com/ciaranmcveigh5/ethernaut-x-foundry) | hard | codex underflow plus owner-slot write
+- [Ethernaut/NaughtCoin-via-az0mb13](https://github.com/az0mb13/ethernaut-foundry/) | hard | approve plus transferFrom lock bypass script
+- [Ethernaut/Shop-via-az0mb13](https://github.com/az0mb13/ethernaut-foundry/) | hard | Buyer price-view flip buy script
+- [Ethernaut/Dex-via-az0mb13](https://github.com/az0mb13/ethernaut-foundry/) | hard | approve plus swap-ratio drain script
+- [Ethernaut/PuzzleWallet-via-az0mb13](https://github.com/az0mb13/ethernaut-foundry/) | hard | propose-admin plus deposit-multicall plus execute script
+- [Ethernaut/Motorbike-via-az0mb13](https://github.com/az0mb13/ethernaut-foundry/) | hard | engine impl init plus upgrader destroy script
+- [Speedrun/Vendor-via-scaffold](https://github.com/scaffold-eth/scaffold-eth-challenges/) | medium | YourToken plus Vendor buy-sell plus approve loop
+- [Speedrun/Multisig-via-scaffold](https://github.com/scaffold-eth/scaffold-eth-challenges/) | hard | multi-sig quorum plus execute plus owner-set management
+- [Speedrun/Streamer-via-leobrqz](https://github.com/leobrqz/mycontracts-speedrunethereum/) | hard | challenge-5 streamer plus DEX challenge-4 notes
+- [Speedrun/NFT-via-leobrqz](https://github.com/leobrqz/mycontracts-speedrunethereum/) | medium | challenge-0 collectible plus staking challenge-1 notes
+- [Speedrun/Staking-states-via-vanities](https://github.com/vanities/speedrun-ethereum) | medium | staker state-machine plus withdraw-open branch
+- [Speedrun/DEX-fee-via-edakturk](https://github.com/edakturk14/speed-run-ethereum/) | hard | 0.3pct fee curve plus liquidity-provision math notes
+- [Exploit/AaveV2-Compound-via-yAudit](https://github.com/yAudit/defi-fork-bugs) | hard | price-manipulation bad-debt plus governance-mitigation writeup
+- [Exploit/Blizz-LUNA-via-yAudit](https://github.com/yAudit/defi-fork-bugs) | hard | Chainlink LUNA oracle failure plus drain writeup
+- [Exploit/Compound-DoubleEntry-via-yAudit](https://github.com/yAudit/defi-fork-bugs) | hard | double-entrypoint token retrospective plus PoC
+- [Exploit/Lodestar-via-yAudit](https://github.com/yAudit/defi-fork-bugs) | hard | fork-bug lodestar entry plus plf survey
+- [Paradigm2022/HintFinance-via-trillion](https://github.com/trillion-fi/ctf) | hard | hintfinance forge notes plus pool math
+- [Paradigm2022/0xMonaco-via-Kaiziron](https://github.com/Kaiziron/paradigm-ctf-2022-writeup) | hard | monaco engine plus ELO race notes
+- [Paradigm2022/ElectricSheep-via-SilasZhr](https://github.com/SilasZhr/paradigm-ctf-2022-solution) | medium | checklist-tracked sheep plus reversing cross-refs
+- [Paradigm2022/JIT-via-philogy](https://philogy.github.io/posts/paradigm-ctf-2022-write-up-collection/) | hard | JIT deep-dive plus Hint-Finance pairing
+- [Paradigm2022/Cairo-Auction-via-chainway](https://github.com/chainwayxyz/Paradigm-CTF-2022) | hard | cairo-auction plus cairo-proxy solution pair
+- [Paradigm2022/Underhanded-via-SilasZhr](https://github.com/SilasZhr/paradigm-ctf-2022-solution) | medium | underhanded-solidity checklist tracking
+- [Paradigm2022/StealingSats-via-minaminao](https://github.com/minaminao/ctf-blockchain) | hard | stealing-sats plus electric-sheep plus fun-reversing rows
+- [Paradigm2022/OtterSwap-via-minaminao](https://github.com/minaminao/ctf-blockchain) | hard | otterswap plus otter-world Solana rows
+- [QuillCTF/Temporary-Variable-via-Omsify](https://github.com/Omsify/QuillCTF-Solutions) | hard | transient-slot plus function-scope confusion PoC
+- [QuillCTF/Lottery-via-Omsify](https://github.com/Omsify/QuillCTF-Solutions) | hard | randomness-plus-ticket ordering PoC
+- [QuillCTF/PrivateClub-via-Omsify](https://github.com/Omsify/QuillCTF-Solutions) | hard | membership-gate plus invite-replay PoC
+- [QuillCTF/Predict-via-Omsify](https://github.com/Omsify/QuillCTF-Solutions) | hard | prediction-market plus resolution-timing PoC
+- [QuillCTF/Safe-via-Omsify](https://github.com/Omsify/QuillCTF-Solutions) | hard | safe-vault plus guard-bypass PoC
+- [QuillCTF/Lottery-via-lmanini](https://github.com/lmanini/QuillCTF-solutions) | hard | lottery randomness plus payout-ordering notes
+- [EVM/Milotruck-via-ret2basic](https://ret2basic.gitbook.io/ctfwriteup/web3-ctf) | hard | milotruck EVM challenges index
+- [EVM/CaptureEther-math-via-ret2basic](https://ret2basic.gitbook.io/ctfwriteup/web3-ctf) | medium | math plus misc plus lotteries capture-the-ether set
+- [EVM/Quill-MetaToken-via-ret2basic](https://ret2basic.gitbook.io/ctfwriteup/web3-ctf) | medium | metatoken plus keycraft plus lottery QuillCTF set
+
+## Coverage key
+
+- hard = multi-hop chain, cross-contract state, oracle math, proxy internals, or audit-grade root cause.
+- medium = two-step bypass with exact gate math (gas, bitmask, CEI ordering) but single-protocol scope.

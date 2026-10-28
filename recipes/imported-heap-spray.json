@@ -1,0 +1,42 @@
+{
+ "id": "imported-heap-spray",
+ "domain": "pwn",
+ "title": "Heap grooming / spray for CTF pwn",
+ "signals": [
+  "alloc/free/edit/show menu",
+  "UAF",
+  "tcache/fastbin",
+  "no leak",
+  "heap overflow"
+ ],
+ "preconditions": [
+  "glibc version known or discoverable",
+  "a debugger with heap inspection (pwndbg/GEF)"
+ ],
+ "steps": [
+  "Map every menu op to alloc/free/show/edit and record sizes; confirm `request2size` rounding in gdb.",
+  "Spray same-size chunks to fill tcache/bin state; use guard chunks so consolidation does not swallow the victim.",
+  "Groom LIFO order (free victim last) and verify the tcache head in `bins`/`vis_heap_chunks` before poisoning.",
+  "On glibc >= 2.32, encode the safe-linked fd with the true `next` field address; on >= 2.34 avoid dead hooks."
+ ],
+ "falsifier": "No UAF/overflow or safe-linking plus a missing heap leak makes raw pointer poisoning crash.",
+ "pitfalls": [
+  "wrong glibc",
+  "raw safe-link pointer",
+  "tcache key/double-free checks",
+  "alignment",
+  "ASLR heap base"
+ ],
+ "sources": [
+  "https://github.com/mukul975/Anthropic-Cybersecurity-Skills/tree/main/skills/analyzing-heap-spray-exploitation"
+ ],
+ "fixtures": [],
+ "verified_by": "source:Anthropic Cybersecurity Skills",
+ "last_verified": "2026-10-20",
+ "verified": false,
+ "verification": "source",
+ "license": "Apache-2.0",
+ "ctf_domains": [
+  "pwn"
+ ]
+}

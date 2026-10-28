@@ -1,0 +1,41 @@
+{
+ "id": "imported-memory-volatility",
+ "domain": "forensics",
+ "title": "Volatility 3 memory forensics",
+ "signals": [
+  "memory dump",
+  "windows/linux",
+  "process injection",
+  "credentials",
+  "hidden process"
+ ],
+ "preconditions": [
+  "Volatility 3 installed",
+  "symbols available for the OS build"
+ ],
+ "steps": [
+  "`vol -f mem.raw windows.info` (or `linux.pslist`) to identify the OS/profile; download matching symbols if needed.",
+  "`windows.pslist`, `pstree`, `psscan`, `cmdline`, `netscan`, `malfind`, `dlllist`, `handles`; compare pslist vs psscan for hidden processes.",
+  "Dump suspicious processes/files with `--dump`/`dumpfiles`; extract strings and scan with YARA.",
+  "For Linux use `linux.pslist`, `linux.bash`, `linux.malfind`, `linux.lsmod`, and `linux.netfilter`."
+ ],
+ "falsifier": "Wrong profile/symbols produce empty plugin output; confirm the OS build before concluding the dump is clean.",
+ "pitfalls": [
+  "symbol mismatch",
+  "huge dumps",
+  "encrypted/compressed memory",
+  "plugin version drift"
+ ],
+ "sources": [
+  "https://github.com/mukul975/Anthropic-Cybersecurity-Skills/tree/main/skills/analyzing-memory-dumps-with-volatility"
+ ],
+ "fixtures": [],
+ "verified_by": "source:Anthropic Cybersecurity Skills",
+ "last_verified": "2026-10-20",
+ "verified": false,
+ "verification": "source",
+ "license": "Apache-2.0",
+ "ctf_domains": [
+  "forensics"
+ ]
+}

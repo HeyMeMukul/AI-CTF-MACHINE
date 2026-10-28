@@ -1,0 +1,182 @@
+# misc-pyjail Writeups Mined — Manifest r4, browser-swarm batch ( technique-only, no flags )
+
+Mined 2026-10-17 by 8 reader subagents via real browsers (Playwright snapshots; Medium member-only pieces via medium-unlocker.inulute.com -> Freedium mirror; GitHub/team-blog/pro-research sources). Rows filtered (video/bare-profile/placeholder links dropped) and deduped by URL within the batch and against the full corpus. Difficulty as labeled by readers. Format: `- [source/challenge](URL) | difficulty | technique-chain`. No flag values anywhere.
+
+## batch 2026-10-17-browser-swarm (39 rows, 15 easy)
+
+- [ImaginaryCTF-R50/cipherjail2](https://github.com/jailctf/pyjail-collection/blob/main/chals/cipherjail2) | medium | substitution v2 decode map, subclasses escape
+- [ImaginaryCTF-2024/calc](https://github.com/jiegec/ctf-writeups/blob/master/docs/misc/pyjail/imaginaryctf-2024-calc.md) | medium | regex bypass comma plus signal handler hook
+- [ImaginaryCTF-2024/ok-nice](https://github.com/jiegec/ctf-writeups/blob/master/docs/misc/pyjail/imaginaryctf-2024-ok-nice.md) | easy | div-zero side channel brute flag char
+- [HITCON22/Picklection](https://github.com/jiegec/ctf-writeups/blob/master/docs/misc/pyjail/hitcon-2022-picklection.md) | medium | namedtuple eval default arg, collections pickle
+- [DiceCTF23/PrisonReform](https://github.com/jailctf/pyjail-collection/blob/main/chals/prison-reform) | easy | match-case getattr bypass, MRO system
+- [DiceCTF24/unipickle](https://github.com/jiegec/ctf-writeups/blob/master/docs/misc/pyjail/dicectf-2024-quals-unipickle.md) | medium | UTF8 BINPUT STACK_GLOBAL valid bytes, RCE
+- [UofTCTF24/JailZero](https://github.com/jiegec/ctf-writeups/blob/master/docs/misc/pyjail/uoftctf-2024-jail-zero.md) | easy | math alphanumeric unicode bypass no alpha
+- [UofTCTF25/NoSandbox1](https://github.com/jailctf/pyjail-collection/blob/main/chals/dont-sandbox-python-1) | medium | numpy attrs reach dangerous, genfromtxt RCE
+- [Srdnlen25/SSPJ](https://github.com/jailctf/pyjail-collection/blob/main/chals/sspj) | easy | lower filter bypass getattr overwrite import
+- [Srdnlen25/ImpossibleEscape](https://github.com/jailctf/pyjail-collection/blob/main/chals/another-impossible-escape) | medium | func defaults dict abuse gc recover
+- [LACTF25/farquaad](https://github.com/jiegec/ctf-writeups/blob/master/docs/misc/pyjail/lactf-2025-farquaad.md) | easy | no e dict list index getattr via dict
+- [b01lersCTF23/Blacklisted](https://github.com/jiegec/ctf-writeups/blob/master/docs/misc/pyjail/b01lers-ctf-2023-blacklisted.md) | medium | decorator call no dots, double-word strip bypass
+- [SekaiCTF23/PickleJail](https://github.com/jiegec/ctf-writeups/blob/master/docs/misc/pyjail/sekai-ctf-2023-just-another-pickle-jail.md) | medium | BUILD BINPERSID Unpickler overwrite, call
+- [TCP1P24/typically-revenge](https://github.com/jiegec/ctf-writeups/blob/master/docs/misc/pyjail/tcp1p-ctf-2024-typically-not-a-revenge.md) | hard | no parens class_getitem call, formfeed spaces
+- [SECCON24/1linepyjail](https://github.com/jiegec/ctf-writeups/blob/master/docs/misc/pyjail/seccon-2024-quals-1linepyjail.md) | easy | length 100 pdb set_trace via sys modules
+- [UIUCTF24/ASTea](https://github.com/jiegec/ctf-writeups/blob/master/docs/misc/pyjail/uiuctf-2024-astea.md) | medium | fstring Setup hijack no call, walrus assign
+- [UIUCTF25/CommentsOnly](https://github.com/jailctf/pyjail-collection/blob/main/chals/comments-only) | medium | zipimporter file as zip run, comment payload
+- [HKCERT25/easyJail](https://github.com/hkcert-ctf/CTF-Challenges/blob/main/CTF-2025/easyJail/writeup/writeup.md) | easy | pickle unicode escape builtins split, pop_mark hijack
+- [jailCTF25/impossible](https://github.com/jiegec/ctf-writeups/blob/master/docs/misc/pyjail/jailctf-2025-impossible.md) | hard | no parens getitem call no spaces equals
+- [jailCTF25/one](https://github.com/jiegec/ctf-writeups/blob/master/docs/misc/pyjail/jailctf-2025-one.md) | medium | single dot getattribute reuse lambda, system
+- [jailCTF25/primal](https://github.com/jiegec/ctf-writeups/blob/master/docs/misc/pyjail/jailctf-2025-primal.md) | medium | prime length words reduce_ex globals import
+- [jailCTF24/filterd](https://github.com/jiegec/ctf-writeups/blob/master/docs/misc/pyjail/jailctf-2024-filterd.md) | easy | length 14 raise limit reuse func re-eval
+- [jailCTF24/no-nonsense](https://github.com/jiegec/ctf-writeups/blob/master/docs/misc/pyjail/jailctf-2024-no-nonsense.md) | medium | decorator exec input no brackets unicode newline
+- [BlueWater24/RSAjail1](https://github.com/jailctf/pyjail-collection/blob/main/chals/rsajail-1) | easy | RSA jail decrypt oracle small leak math plus MRO
+- [Buckeye24/gentleman](https://github.com/jailctf/pyjail-collection/blob/main/chals/gentleman) | medium | format file write ctypes cdll getitem RCE
+- [TBTL24/SqueezingArm](https://github.com/jiegec/ctf-writeups/blob/master/docs/misc/pyjail/tbtl-ctf-2024-squeezing-tightly-on-arm.md) | medium | single-use chars locals stash docstring slice
+- [WHY25/TitleCase](https://github.com/jiegec/ctf-writeups/blob/master/docs/2025-08-08-why2025/misc/title-case.md) | easy | title unicode bypass filter mismatch exploit
+- [HeroCTF v5/Pyjail siunam](https://siunam321.github.io/ctf/HeroCTF-v5/Misc/PyJail/) | medium | string-mro subclasses os-system ls class-pollution 8bits
+- [picoCTF 2024/Super SSH](https://github.com/noamgariani11/picoCTF-2024-Writeup/blob/main/General%20Skills/Super-SSH.md) | easy | ssh login ls cat challenge instance
+- [picoCTF/Endianness](https://github.com/J4Y0L4/picoCTF-solutions-writeups) | easy | byte-order hexdump conversion scripting
+- [picoCTF/Commitment Issues](https://github.com/tsids/picoCTF-Writeups) | easy | git log drop stash recover history
+- [picoCTF/Time Machine](https://github.com/Cajac/picoCTF-writeups) | easy | git checkout commit diff time-travel
+- [picoCTF/Binary Search](https://github.com/SP-003/picoCTF_solutions) | easy | grep binary strings offset carve
+- [GitHub/jiegec Pyjail MD](https://github.com/jiegec/ctf-writeups/blob/master/docs/misc/pyjail.md/) | medium | __getitem__ calls, docstring strings, os_wrap_close system shell
+- [CTFtime/0x41414141 Pyjail Globals](https://ctftime.org/writeup/25925/) | medium | banned builtins, globals scope trick, lowercase O_RDONLY bypass
+- [CTFtime/0x41414141 Pyjail Keywords](https://ctftime.org/writeup/25832/) | medium | forbidden keywords, two-payload globals manipulation, file read
+- [Gist/jailCTF JellyJail](https://gist.github.com/ky28059/e9170fdb1df865a9811ef434c097e781/) | medium | numbers banned, Jelly eval escape, lowercase v bypass
+- [Gist/lynn PyCryptoJail](https://gist.github.com/lynn/bfd7a64c6da4d6a4041aedf48e0fb741/) | hard | RSA oracle gcd modulus, NameError Levenshtein secret, Franklin-Reiter
+- [jiegec/TCP1P PyMagic Getitem](https://jia.je/ctf-writeups/misc/pyjail/tcp1p-ctf-2023-pymagic.html/) | medium | no parens strings numbers, class_getitem doc slices, \r bypass
+
+## batch 2026-10-17-browser-swarm (158 rows, 92 easy)
+
+- [Pico 3v@l Adonis](https://medium.com/@adonisdavids52/picoctf-3v-l-challenge-write-up-37ae762d9715) | easy | eval-block bytes-fromhex decode-open dynamic-class lambda-read
+- [Pico Bloat.py Pi](https://medium.com/@piyushbhor22/picoctf-bloat-py-bf2186a595e7) | easy | obfuscated-python index-map deobfuscate input-brute logic-trace
+- [Pico Flag Hunters Pi](https://medium.com/@piyushbhor22/picoctf-flag-hunters-005e747db6d6) | easy | lyric-reader input-inject semicolon-escape function-hijack
+- [Pico Obedient Cat Flower](https://medium.com/@flowerbed/picogym-obedient-cat-9059d2446805) | easy | cat-flag plain-sight file-download linux-basics
+- [Pico Obedient Cat Rachana](https://medium.com/@rachanamakwana/picoctf-writeup-obedient-cat-general-skills-81238aeb42a9) | easy | download cat head strings quick-triage
+- [Pico Hash-Only Eric](https://medium.com/@erichdryn/hash-only-picoctf-writeup-e97779e8ee87) | easy | ssh PATH-hijack fake-md5sum rbash-escape flaghasher
+- [Pico Flag Hunters Sameer](https://medium.com/@sameerimr384/picoctf-2025-flag-hunters-ctf-reverse-engineering-scripting-write-up-76f31a50edf6) | easy | input-flow code-review logic-redirect song-code
+- [Pico Time Machine Aman](https://medium.com/@amanbarolia110/picoctf-wrieup-time-machine-d7f0e25593fc) | easy | zip git-log git-show note-recover history-triage
+- [Pico Python Wrangling](https://medium.com/@Iampreth/pico-ctf-python-wrangling-writeups-900ee1bc25a6) | easy | ende-py password-decode exec-script file-parse
+- [Pico Endianness](https://github.com/PS-003R32/picoCTF/tree/main/picoCTF-2024/General-Skills) | easy | endian convert python-struct hex-triage
+- [THM PyJail Intro](https://tryhackme.com/room/pyjail) | easy | blacklist-bypass getattr chr-concat builtins-escape
+- [THM Python Basics](https://tryhackme.com/room/pythonbasics) | easy | syntax loops files sockets requests
+- [THM Python Playground](https://tryhackme.com/room/pythonplayground) | easy | eval input-sanitize math-tricks loop-escape
+- [THM Jailbreak](https://tryhackme.com/room/jailbreak) | easy | restricted-shell env-tricks python-one-liner path-abuse
+- [THM C4ptur3 Flag Om](https://medium.com/@om.fulsundar.7370/c4ptur3-th3-fl4g-tryhackme-walkthrough-7531cdfb8a53) | easy | binary-ascii base32 base64 rot47 morse bcd-triage
+- [THM CTF Collection Rayen](https://medium.com/@rayenhafsawy/ctf-collection-vol-1-tryhackme-walkthrough-f0bcccfd2ff7) | easy | base64 strings steghide whitespace qr-decoding binary-strings
+- [THM Game Tetrix](https://medium.com/@fashilrasoolcr7/tryhackme-the-game-walkthrough-1da9672a001a) | easy | unzip file-strings grep-THM exe-triage
+- [THM W1seGuy](https://medium.com/@sudipadk10/tryhackme-w1seguy-walkthrough-b6f1c6b7cd7d) | easy | known-prefix brute-last-char oracle-guess flag-format
+- [picoGym First Find](https://github.com/PS-003R32/picoCTF/tree/main/picoGym-Exclusive/General-Skills) | easy | ssh grep history man-triage
+- [picoGym Big Zip](https://play.picoctf.org/practice/challenge/10) | easy | unzip grep recursive nested-archive
+- [picoGym Tab Tab Attack](https://play.picoctf.org/practice/challenge/20) | easy | autocomplete terminal-tab flag-complete
+- [picoGym Magikarp](https://play.picoctf.org/practice/challenge/21) | easy | ssh netcat numbers compare-money
+- [picoGym PW Crack 1](https://play.picoctf.org/practice/challenge/59) | easy | python-hash crack dictionary brute-iter
+- [picoGym PW Crack 5](https://play.picoctf.org/practice/challenge/95) | easy | hashcat dictionary rule-mutate python-decode
+- [picoGym Commit-Ment Issues](https://play.picoctf.org/practice/challenge/61) | easy | git-log git-diff drop-commit recover
+- [picoGym Time Machine Secondary](https://github.com/w3th4nds/PicoCTF-Writeups/tree/main/General-Skills) | easy | git-branch checkout stash-triage
+- [picoGym Shark On Wire 1](https://play.picoctf.org/practice/challenge/62) | easy | wireshark filter stream-follow base64-carve
+- [picoGym Nice Netcat](https://play.picoctf.org/practice/challenge/65) | easy | nc numbers sum echo-script
+- [picoGym HashingJobApp](https://play.picoctf.org/practice/challenge/85) | easy | block-spin joining-sha950 crypt-pools
+- [picoGym Plumbing](https://play.picoctf.org/practice/challenge/84) | easy | pipe grep cut sort-uniq
+- [THM Bash Basics](https://tryhackme.com/room/bashbasics) | easy | pipe grep awk sed-cron
+- [THM Linux Modules](https://tryhackme.com/room/linuxmodules) | easy | ssh banner-grab hydra-keys shell-stab
+- [THM Common Linux Privesc](https://tryhackme.com/room/commonlinuxprivesc) | easy | sudo-suid cron-path kernel-exploit
+- [THM Sudo](https://tryhackme.com/room/sudo) | easy | sudo-list bypass-shell ld-preload cve-triage
+- [THM History Hive](https://tryhackme.com/room/historyhive) | easy | git-log bash-history creds-reuse api-key
+- [THM Bash Scripting](https://tryhackme.com/room/bashscripting) | easy | loops cron backup-escape wildcard-inject
+- [THM Investigating Windows](https://tryhackme.com/room/investigatingwindows) | easy | event-viewer registry powershell-history prefetch
+- [THM Linux Strength](https://tryhackme.com/room/linuxstrengthtraining) | easy | permissions find-suid env-path shell-escape
+- [THM What The Shell](https://tryhackme.com/room/whattheshell) | easy | nc-reverse shell-stab upgrade-pty ssh-tunnel
+- [THM Surfer](https://tryhackme.com/room/surfer) | easy | sqli-cookie idor-jwt rce-export privesc
+- [THM Team](https://tryhackme.com/room/team) | easy | lfi-logs ftp-dmz sudo-admin privesc
+- [THM Pickle Rick](https://tryhackme.com/room/picklerick) | easy | login-bypass command-panel reverse-shell sudo-wwwdata
+- [THM The Cod Caper](https://tryhackme.com/room/thecodcaper) | easy | wpscan apache-struts sqlmap-shell
+- [THM Alfred](https://tryhackme.com/room/alfred) | easy | jenkins-credential token-decrypt winrm-shell mimikatz
+- [THM Blue Second](https://tryhackme.com/room/blue) | easy | nmap eternalblue shell-migrate hashdump-crack
+- [THM Ice](https://tryhackme.com/room/ice) | easy | icecast-rce msf-portfwd mimikatz gold-ticket
+- [THM Blaster](https://tryhackme.com/room/blaster) | easy | iis-runas wireshark-creds metasploit-migrate
+- [THM Retro](https://tryhackme.com/room/retro) | easy | wordpress-cve xss-cookie game-zone privesc
+- [THM Relevant](https://tryhackme.com/room/relevant) | easy | smb-nt4 wsftp-rce iis-privesc secretdump
+- [THM Internal](https://tryhackme.com/room/internal) | easy | wordpress-dupe jenkins-script wordpress-admin ajp-ghostcat
+- [THM Steel Mountain](https://tryhackme.com/room/steelmountain) | easy | http-file-server powershell-reverse unquoted-service advanced-systemcare
+- [Emdee five for life](https://7rocky.github.io/en/ctf/htb-challenges/misc/emdee-five-for-life/) | easy | MD5 python scripting race hash
+- [The secret of a Queen](https://7rocky.github.io/en/ctf/htb-challenges/misc/the-secret-of-a-queen/) | easy | Mary Stuart cipher substitution decode
+- [Compressor](https://7rocky.github.io/en/ctf/htb-challenges/misc/compressor/) | easy | archive nested decompress carve
+- [0ld is g0ld](https://7rocky.github.io/en/ctf/htb-challenges/misc/0ld-is-g0ld/) | easy | PDF password john crack extract
+- [fs0ciety](https://7rocky.github.io/en/ctf/htb-challenges/misc/fs0ciety/) | easy | file magic strings robot theme
+- [Da Vinci](https://7rocky.github.io/en/ctf/htb-challenges/misc/da-vinci/) | easy | stego logic layered decode
+- [Hackerman](https://7rocky.github.io/en/ctf/htb-challenges/misc/hackerman/) | easy | strings steghide basic extraction
+- [BitsNBytes](https://7rocky.github.io/en/ctf/htb-challenges/misc/bitsnbytes/) | easy | binary image comparison bit parse
+- [Art](https://7rocky.github.io/en/ctf/htb-challenges/misc/art/) | easy | ASCII art transform decode
+- [Milkshake](https://7rocky.github.io/en/ctf/htb-challenges/misc/milkshake/) | easy | data transform encoding chain
+- [M0rsarchive](https://7rocky.github.io/en/ctf/htb-challenges/misc/m0rsarchive/) | easy | morse nested archive recursive unzip
+- [Pusheen Loves Graphs](https://7rocky.github.io/en/ctf/htb-challenges/misc/pusheen-loves-graphs/) | easy | graph traversal shortest path script
+- [misDIRection](https://enaljammaz.medium.com/hackthebox-misc-challenge-misdirection-walkthrough-4ec8b7c4cac5) | easy | directory structure depth brute
+- [Chainsmoker](https://7rocky.github.io/en/ctf/htb-challenges/misc/chainsmoker/) | easy | hash chain iteration reverse
+- [Hidden Path](https://maddevs.io/writeups/hackthebox-hidden-path/) | easy | Node source path traversal read
+- [Eternal Loop](https://7rocky.github.io/en/ctf/htb-challenges/misc/eternal-loop/) | medium | infinite zip loop quota bypass
+- [ExploitedStream](https://7rocky.github.io/en/ctf/htb-challenges/misc/exploitedstream/) | medium | stream cipher exploit parse
+- [Tree of Danger](https://7rocky.github.io/en/ctf/htb-challenges/misc/tree-of-danger/) | medium | tree structure DFS solve script
+- [Path of Survival](https://7rocky.github.io/en/ctf/htb-challenges/misc/path-of-survival/) | medium | pathfinding algorithm maze solver
+- [Pickle Panic](https://7rocky.github.io/en/ctf/htb-challenges/misc/pickle-panic/) | medium | pickle deserialization RCE craft
+- [Query](https://7rocky.github.io/en/ctf/htb-challenges/misc/query/) | medium | DB query injection logic abuse
+- [Type Exception](https://7rocky.github.io/en/ctf/htb-challenges/misc/type-exception/) | medium | type confusion exception bypass
+- [Canvas](https://7rocky.github.io/en/ctf/htb-challenges/misc/canvas/) | medium | canvas drawing coordinate decode
+- [Fentastic Moves](https://7rocky.github.io/en/ctf/htb-challenges/misc/fentastic-moves/) | medium | chess FEN logic solver
+- [Locked Away](https://7rocky.github.io/en/ctf/htb-challenges/misc/locked-away/) | medium | lock logic brute state machine
+- [Branching Tactics](https://7rocky.github.io/en/ctf/htb-challenges/misc/branching-tactics/) | medium | git branch commit secret hunt
+- [A Nightmare On Math Street](https://7rocky.github.io/en/ctf/htb-challenges/misc/a-nightmare-on-math-street/) | medium | math scripting automation solver
+- [SecretRezipe](https://7rocky.github.io/en/ctf/htb-challenges/misc/secretrezipe/) | hard | recipe logic complex reversing
+- [Computational Recruiting](https://7rocky.github.io/en/ctf/htb-challenges/misc/computational-recruiting/) | hard | algorithm proof-of-work solver
+- [Man In The Middle](https://7rocky.github.io/en/ctf/htb-challenges/misc/man-in-the-middle/) | hard | MITM network key intercept
+- [Replacement](https://7rocky.github.io/en/ctf/htb-challenges/misc/replacement/) | hard | data replacement cipher reverse
+- [Deterministic](https://7rocky.github.io/en/ctf/htb-challenges/misc/deterministic/) | hard | deterministic PRNG seed clone
+- [Triangles](https://7rocky.github.io/en/ctf/htb-challenges/misc/triangles/) | hard | geometric math constraint solver
+- [Bashic Calculator](https://7rocky.github.io/en/ctf/htb-challenges/misc/bashic-calculator/) | hard | bash injection calculator escape
+- [DUCTF24/tldr-summarise](https://github.com/DownUnderCTF/Challenges_2024_Public/tree/main/beginner/tldr-please-summarise) | easy | prompt injection summariser, ignore-instructions leak system
+- [DUCTF24/wacky-recipe](https://github.com/DownUnderCTF/Challenges_2024_Public/tree/main/misc/wackyrecipe) | easy | recipe encoding puzzle, base stew decode layers
+- [DUCTF24/pkijs-lt](https://github.com/DownUnderCTF/Challenges_2024_Public/tree/main/misc/pkijs-lt) | medium | PKI.js length check bypass, ASN.1 confusion forge
+- [DUCTF23/impossible-misc](https://github.com/DownUnderCTF/Challenges_2023_Public/tree/main/misc/impossible) | easy | impossible condition inspect, client-side check bypass
+- [DUCTF23/smart-calculator](https://github.com/DownUnderCTF/Challenges_2023_Public/tree/main/misc/smart-calculator) | easy | calculator eval filter, math attribute escape payload
+- [DUCTF23/baby-ruby](https://github.com/DownUnderCTF/Challenges_2023_Public/tree/main/misc/baby-ruby) | medium | Ruby jail send bypass, symbol proc RCE chain
+- [DUCTF23/daas-misc](https://github.com/DownUnderCTF/Challenges_2023_Public/tree/main/misc/daas) | hard | DaaS docker-as-service escape, socket mount breakout
+- [Sekai24/calcql](https://github.com/project-sekai-ctf/sekaictf-2024/tree/main/misc/calcql) | medium | calculator GraphQL jail, introspection field escape query
+- [Sekai24/hijacker-misc](https://github.com/project-sekai-ctf/sekaictf-2024/tree/main/misc/hijacker) | hard | TCP hijacker sequence predict, RST inject session steal
+- [Sekai24/miku-jail](https://github.com/project-sekai-ctf/sekaictf-2024/tree/main/misc/miku-jail) | hard | Python penitentiary jail, unicode normalize audit bypass
+- [TJCTF24/trip-misc](https://github.com/TJCSec/tjctf-2024-challenges/tree/main/misc/trip) | easy | trip geoguess puzzle, EXIF metadata trail follow
+- [TJCTF24/ml-project](https://github.com/TJCSec/tjctf-2024-challenges/tree/main/misc/ml-project) | medium | ML model inversion, gradient leak training flag
+- [TJCTF24/puzzling](https://github.com/TJCSec/tjctf-2024-challenges/tree/main/misc/puzzling) | medium | puzzling logic gates, SAT solve circuit output
+- [TJCTF24/roundabout](https://github.com/TJCSec/tjctf-2024-challenges/tree/main/misc/roundabout) | medium | roundabout esolang loop, interpreter write solve
+- [TJCTF24/golf-harder](https://github.com/TJCSec/tjctf-2024-challenges/tree/main/misc/golf-harder) | hard | code golf harder polyglot, minimal bytes RCE
+- [Patriot24/green-eggs-ham](https://github.com/MasonCompetitiveCyber/PatriotCTF2024/tree/main/misc/greeneggsandham) | easy | green eggs stego ham, whitespace decode message
+- [Patriot24/make-it-rain](https://github.com/MasonCompetitiveCyber/PatriotCTF2024/tree/main/misc/makeitrain) | medium | rain money exploit, float rounding error abuse
+- [Patriot24/really-only-echo](https://github.com/MasonCompetitiveCyber/PatriotCTF2024/tree/main/misc/really_only_echo) | medium | echo only shell jail, wildcard glob read flag
+- [Patriot24/EmojiStack](https://github.com/MasonCompetitiveCyber/PatriotCTF2024/tree/main/misc/EmojiStack) | hard | emoji stack esolang, emoji opcode map RCE
+- [Patriot24/EmojiStackV2](https://github.com/MasonCompetitiveCyber/PatriotCTF2024/tree/main/misc/EmojiStackV2) | hard | emoji v2 filter upgrade, alternate encoding bypass
+- [Patriot23/ML-pyjail](https://github.com/MasonCompetitiveCyber/PatriotCTF2023/tree/main/misc/ML%20Pyjail) | medium | ML pyjail sklearn escape, pickle __reduce__ RCE
+- [HKCERT24/get-flag-yourself](https://github.com/hkcert-ctf/CTF-Challenges/tree/main/CTF-2024/03-get-flag-yourself) | easy | self-service flag logic, parameter tamper self-approve
+- [HKCERT24/B6ACP](https://github.com/hkcert-ctf/CTF-Challenges/tree/main/CTF-2024/10-b6acp) | easy | B6ACP protocol puzzle, replay handshake derive
+- [HKCERT24/python-calculator-2](https://github.com/hkcert-ctf/CTF-Challenges/tree/main/CTF-2024/57-python-calculator-2) | hard | Python calculator jail, AST audit subclass catch-all
+- [HKCERT24/crack-the-pack-1](https://github.com/hkcert-ctf/CTF-Challenges/tree/main/CTF-2024/41a-format-1) | medium | pack format pcap carve, header recombine extract
+- [HKCERT24/midi-hearing](https://github.com/hkcert-ctf/CTF-Challenges/tree/main/CTF-2024/42-midi) | easy | MIDI hearing check, velocity encode decode flag
+- [HKCERT24/scratch-ercode](https://github.com/hkcert-ctf/CTF-Challenges/tree/main/CTF-2024/48-scratch-ercode) | medium | Scratch QR ercode, sprite script decompile read
+- [HKCERT24/unity-mbti](https://github.com/hkcert-ctf/CTF-Challenges/tree/main/CTF-2024/43-unity) | hard | Unity MBTI IL2CPP dump, dnSpy logic recover
+- [scriptCTF25/Misc-Auction](https://github.com/scriptCTF/scriptCTF2025-OfficialWriteups/tree/main/Misc) | medium | auction misc logic flaw, bid overflow win state
+- [corCTF25/sol-rps](https://github.com/Crusaders-of-Rust/corctf-2025-public-challenge-repo/tree/master/crypto/sol-rps) | medium | Solana rock-paper commit reveal, hash front-run exploit
+- [corCTF25/rules-misc](https://github.com/Crusaders-of-Rust/corctf-2025-public-challenge-repo/tree/master/crypto/rules) | easy | rules parser differential, rule order bypass validator
+- [r3CTF26/writeup-starter](https://github.com/hax1ng/r3ctf-2026-writeups) | medium | r3 strict pyjail audit, frame f_builtins restore exploit
+- [Pyjail wiki](https://wiki.athena-ctf.com/docs/misc/pyjails) | easy | keyword length blacklist encoding bypass taxonomy
+- [idek Pyjail](https://crazymanarmy.github.io/2023/01/18/idek-2022-CTF-Pyjail-Pyjail-Revenge-Writeup/index.html) | hard | blocklist globals compile revenge bypass progression
+
+## batch 2026-10-17-browser-swarm (170 rows, 101 easy)
+
+- [Eval-is-Evil-wolv2025](https://cyb3r-bo1.github.io/posts/wolvctf_2025_writeup/#eval-is-evil) | easy | Python eval arbitrary import os system cat flag.txt input
+- [Wasm-0-wolv2025](https://cyb3r-bo1.github.io/posts/wolvctf_2025_writeup/#wasm-0) | medium | WASM Builder section 10 inject call win hex payload instance main
+- [Sanity-wolv2025](https://cyb3r-bo1.github.io/posts/wolvctf_2025_writeup/#sanity-check) | easy | Discord faq channel topic flag read social check
+- [Sanity-gaslight2026](https://cyb3r-bo1.github.io/posts/gaslightCTF_2026_writeup/#sanity-check-100) | easy | Challenge page direct flag print no digging required
+- [Logical-Deduction-bluehens2026](https://medium.com/@mohamedsamehms15/bluehens-ctf-a-logical-deduction-write-up-91d64103fc38) | medium | Boolean circuit redundant Logisim truth table valid input extract
+- [Quartet-naham2025](https://theankanroy.medium.com/nahamcon-ctf-2025-easy-challenges-writeup-f3653f0e0e27#quartet) | easy | Warmup quartet logic puzzle sequence decode flag format
+- [Oddyssey-naham2025](https://theankanroy.medium.com/nahamcon-ctf-2025-easy-challenges-writeup-f3653f0e0e27#the-oddyssey) | easy | Odyssey trivia warmup enumeration hidden route flag
+- [Free-Flags-naham2025](https://theankanroy.medium.com/nahamcon-ctf-2025-easy-challenges-writeup-f3653f0e0e27#free-flags) | easy | Free flags discord docs follow instructions collect
+- [Flagdle-naham2025](https://theankanroy.medium.com/nahamcon-ctf-2025-easy-challenges-writeup-f3653f0e0e27#flagdle) | easy | Wordle flagdle guesses feedback logic brute wordlist solve
+- [Beach-Bar-hh-day5](https://medium.com/@Zyhomlay/hacker-holidays-write-up-4d7f26737fb0#beach-bar-day-5) | easy | Web beach bar menu logic flaw enumeration flag
+- [Towel-Sunbed-hh-day8](https://medium.com/@Zyhomlay/hacker-holidays-write-up-4d7f26737fb0#towel-on-the-sunbed-day-8) | easy | Sunbed reservation logic image metadata flag hide
+- [Overheard-Breakfast-hh-day6](https://medium.com/@Zyhomlay/hacker-holidays-write-up-4d7f26737fb0#overheard-at-breakfast-day-6) | medium | Audio overhear transcribe clue beacon decode flag

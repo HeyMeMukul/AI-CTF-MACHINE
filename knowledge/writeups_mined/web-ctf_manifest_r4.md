@@ -1,0 +1,491 @@
+# web-ctf Writeups Mined — Manifest r4, browser-swarm batch ( technique-only, no flags )
+
+Mined 2026-10-17 by 8 reader subagents via real browsers (Playwright snapshots; Medium member-only pieces via medium-unlocker.inulute.com -> Freedium mirror; GitHub/team-blog/pro-research sources). Rows filtered (video/bare-profile/placeholder links dropped) and deduped by URL within the batch and against the full corpus. Difficulty as labeled by readers. Format: `- [source/challenge](URL) | difficulty | technique-chain`. No flag values anywhere.
+
+## batch 2026-10-17-browser-swarm (217 rows, 81 easy)
+
+- [IRON CTF 2024 Web](https://infosecwriteups.com/iron-ctf-2024-official-writeup-web-exploitation-c6640236f8ea) | medium | LFI ?file traversal reads source, PHP unserialize type-juggle admin
+- [Blitzstorm CTF 2024 Web](https://infosecwriteups.com/blitzstorm-ctf-2024-web-official-write-up-862452b4444d) | easy | PHP filter wrapper source disclosure, git checkout leak, allowlist command bypass
+- [Hack Envision CTF 2024](https://infosecwriteups.com/writeup-on-hack-envision-ctf-2024-755368c13593) | easy | localhost-only /yay SSRF via curl endpoint, base64+XOR decode
+- [HTB Cyber Apocalypse Web](https://infosecwriteups.com/htb-cyber-apocalypse-ctf-2024-web-50b31126de50) | easy | devtools terminal command discovery, Burp traffic inspection, SQLMap assist
+- [Cheese CTF THM](https://infosecwriteups.com/cheese-ctf-tryhackme-writeup-362c996854f6) | medium | login SQLi via sqlmap, PHP filter-chain RCE primitive
+- [PicoCTF WebDecode](https://infosecwriteups.com/picoctf-2024-webdecode-3801d825f803) | easy | inspect includes, follow hidden link, CyberChef magic-decode flag
+- [PicoCTF SOAP + More SQLi](https://infosecwriteups.com/picoctf-writeup-introductory-web-application-injections-92a8d7de19a5) | medium | XXE entity exfiltration, error-based SQLi login bypass
+- [PicoCTF Secrets](https://infosecwriteups.com/writeup-for-picoctf-challenge-secrets-eb4be38b309e) | easy | CSS path forced browsing through nested hidden directories
+- [PicoCTF CaaS](https://infosecwriteups.com/cowsay-as-a-service-caas-picoctf-walkthrough-0c102345eac0) | easy | backtick command substitution in URL path, cat typo file
+- [PicoCTF No FA](https://infosecwriteups.com/writeup-for-picoctf-challenge-no-fa-e8ebbab71c4b) | medium | Flask session OTP reuse, 2FA bypass via cookie decode
+- [PicoCTF Web 2024 walkthrough](https://infosecwriteups.com/picoctf-2024-write-up-web-992348f48b99) | easy | Burp/Inspector HTML comment and JS source review basics
+- [PicoCTF Local Authority](https://infosecwriteups.com/picoctf-web-exploitation-local-authority-d49a33062f79) | easy | dummy login triggers request, response-tampering admin flag
+- [PicoCTF Scavenger Hunt](https://infosecwriteups.com/picoctf-web-exploitation-walkthrough-scavenger-hunt-31e8005202e4) | easy | robots.txt, headers, JS and CSS comment flag-part chaining
+- [PicoCTF Unminify EricH](https://medium.com/@erichdryn/unminify-picoctf-writeup-d62cfd67b8f5) | easy | beautify minified JS bundle, grep embedded flag string
+- [PicoCTF Unminify Deepika](https://medium.com/@Deepika-001/picoctf-unminify-challenge-full-writeup-07115f3658d9) | easy | view-source single-line HTML, curl grep flag pattern
+- [PicoCTF Login](https://medium.com/@technolifts/picoctf-login-write-up-web-exploitation-c378c1d2178e) | easy | view-source credentials, client-side auth bypass
+- [PicoCTF Trickster](https://medium.com/@yohannestirfe4/picoctf2024-trickster-0a258ad405c2) | medium | robots.txt instructions, PNG magic-byte webshell upload bypass
+- [PicoCTF WebDecode walkthrough](https://medium.com/@estheradwets00/webdecode-pico-ctf-walkthrough-a699cc3cf923) | easy | devtools inspector on included files, encoded flag decode
+- [PicoCTF Super SSH](https://medium.com/@viscidCTF/picoctf-2024-super-ssh-0600891724cc) | easy | SSH with challenge password, immediate flag cat
+- [PicoCTF Verify](https://medium.com/@viscidCTF/picoctf-2024-verify-c4c3ef35afac) | easy | checksum file verification trick, openssl digest comparison
+- [PicoCTF Bookmarklet](https://medium.com/@viscidCTF/picoctf-2024-bookmarklet-502c08e5659a) | easy | javascript: bookmarklet deobfuscation, DOM flag reveal
+- [PicoCTF Commitment Issues](https://medium.com/@viscidCTF/picoctf-2024-commitment-issues-6cbf52046506) | easy | git log/history hidden commit flag recovery
+- [PicoCTF Time Machine](https://medium.com/@viscidCTF/picoctf-2024-time-machine-a97b5a7b413e) | easy | git branch/reflog time-travel flag hunt
+- [SSTI quote-filter bypass](https://infosecwriteups.com/ssti-bypassing-single-quotes-filter-dc0ee4e4f011) | medium | {{7*7}} confirm, request.headers smuggle command into popen
+- [SSTI unknown language](https://infosecwriteups.com/server-side-template-injection-in-an-unknown-language-with-a-documented-exploit-ssti-de01a069b946) | medium | error-message engine fingerprint, HackTricks Handlebars payload reuse
+- [HTB Gunship](https://infosecwriteups.com/htb-challenge-write-up-gunship-e0f8760b6a58) | medium | flat prototype-pollution to Pug compile, npm-audit RCE version
+- [SSTI PortSwigger walkthrough](https://infosecwriteups.com/server-side-template-injections-portswiggers-labs-walkthrough-5a1a06f057d2) | medium | Tornado ${7*7} detection, import-os command execution
+- [SSTI explainer](https://infosecwriteups.com/injecting-danger-understanding-server-side-template-exploits-710f48811715) | easy | Twig render concatenation demo, GET name parameter injection
+- [SSTI Episode 8](https://infosecwriteups.com/episode-8-server-side-template-injection-the-quiet-killer-hiding-in-plain-html-26596ac16006) | easy | profile-field {{username}} reflection to env read to RCE ladder
+- [SSTI deep dive](https://infosecwriteups.com/deep-dive-into-ssti-finding-and-exploiting-server-side-template-injection-like-a-pro-bd018ee7ab69) | medium | Burp Intruder engine fuzzing, subclasses+Popen escalation, reset-next SSTI
+- [CRHC Baby SSTI](https://infosecwriteups.com/crhc-ctf-86e5ff5785a6) | easy | dms key reflection, {{7*'7'}} Jinja2 confirm, PayloadBox RCE
+- [Session hijack chain](https://infosecwriteups.com/bug-bounty-writeup-2500-reward-for-session-hijack-via-chained-attack-2a4462e01d4d) | medium | XSS name sets header-cookie SSTI, WAF bypass exfiltration
+- [SSTI when server runs input](https://systemweakness.com/ssti-when-the-server-runs-what-you-type-233e81c51b33) | easy | polyglot probe crash, 7*7 vs 7*'7' engine discriminate
+- [SSTI Jinja2 to RCE](https://systemweakness.com/ssti-in-jinja2-from-7-7-to-remote-code-execution-67991704312c) | medium | mro subclasses introspection, Popen read flag
+- [SSTImap tooling](https://systemweakness.com/sstimap-ssti-prevention-letting-the-tool-do-the-work-2a47549ccf82) | easy | SSTImap auto-detect, render_template name= fix pattern
+- [THM SSTI room](https://systemweakness.com/thm-server-side-template-injection-aa70ab0cdf9a) | medium | multi-engine extra-mile challenge, tplmap-to-manual escalation
+- [Boot Sequence chain](https://systemweakness.com/how-i-cracked-cloudsek-ctf-round-2-a-deep-dive-into-boot-sequence-4b19ce36a5ae) | medium | secrets.js leak, rockyou JWT crack, checksum reverse, cycler SSTI
+- [Code review room](https://systemweakness.com/web-frameworks-code-review-tryhackme-walkthrough-a-beginners-guide-6b3b0ac76d7c) | medium | semgrep source-sink triage, render_template_string plus SQLi plus traversal
+- [SSTI basics 2023](https://systemweakness.com/exploring-basics-and-best-practices-of-server-side-template-injection-ssti-vulnerability-a65babf2ebfb) | easy | 404-path render_template_string sink, math-expression fuzz set
+- [THM Lo-Fi Aditya](https://infosecwriteups.com/tryhackme-lo-fi-room-walkthrough-5db280c696ee) | easy | ?page traversal /etc/passwd read, flag.txt hunt
+- [THM Lo-Fi 0verlo0ked](https://infosecwriteups.com/thm-lo-fi-walkthrough-1cd311467277) | easy | nmap 22/80, ?page= passwd confirm, base-dir flag
+- [OffSec Potato](https://infosecwriteups.com/offsec-proving-grounds-potato-b080d38b4bed) | medium | PHP array-juggle login, FTP source leak, 6x traversal passwd
+- [File inclusion to RCE](https://infosecwriteups.com/exploiting-file-inclusion-from-dot-dot-slash-to-rce-using-php-sessions-log-poisoning-and-4db1bdf8ad77) | medium | traversal to RFI, session/log-poison webshell upgrade
+- [CyberDefenders LFI lab](https://infosecwriteups.com/lfi-escalation-lab-writeup-cyberdefenders-10ddfb745ced) | medium | ../ log triage, config credential reuse MySQL
+- [CVV LFI primer](https://infosecwriteups.com/cvv-1-local-file-inclusion-ebc48e0e479a) | easy | include($_GET) traversal, truncation/null-byte/proc-self ladder
+- [Ha-Natraj LFI](https://infosecwriteups.com/ha-natraj-lfi-log-poisoning-apache2-user-hijack-sudo-nmap-to-root-offsec-pg-play-dbbd1fa12bee) | medium | file.php auth.log poisoning, apache User hijack, nmap NSE
+- [Upload to LFI pivot](https://infosecwriteups.com/from-file-upload-to-lfi-a-journey-to-exploitation-02ab5e1a7d0a) | medium | disabled-exec webshell fail, include() file-read pivot
+- [Valenfind LFI](https://infosecwriteups.com/tryhackme-free-ctf-walkthrough-love-at-first-breach-2026-valenfind-b5d3766b7dad) | easy | fetch_layout traversal, /proc/cmdline locate, hardcoded API key
+- [LFI via phpinfo](https://infosecwriteups.com/lfi-with-phpinfo-to-rce-78318f0dc9ce) | medium | phpinfo tmp-name race, /proc/self/fd include upgrade
+- [THM File Inclusion Alan](https://systemweakness.com/tryhackme-file-inclusion-walkthrough-fb7c5ba9124b) | easy | lab1-6 traversal ladder, %00 suffix and file_get_contents tells
+- [THM Include](https://systemweakness.com/tryhackme-include-walkthrough-b1a44e2e31b5) | medium | port-4000 SysMon login, port-50000 PHP log-poison RCE
+- [CrateCTF blind SQLi](https://infosecwriteups.com/cratectf-2022-blind-time-based-sql-injection-b4a39fe50dcc) | medium | quote error login detection, sqlmap heavy-query time dump
+- [Defend Web SQLi 1-2](https://infosecwriteups.com/beginners-guide-defending-web-sqli-1-2-ctf-challenges-7dfe4dd2acab) | easy | ' OR 1-- login bypass, ?q= UNION user enum
+- [Wekor SQLi lab](https://infosecwriteups.com/sql-injection-lab-tryhackme-writeup-fcf30f846e82) | easy | name-attribute column guess, UNION enumerate and dump
+- [247CTF Flag API Key](https://infosecwriteups.com/the-flag-api-key-247ctf-solution-writeup-aa3764baadcb) | medium | /get_token rate game, 32-hex admin crack, /get_flag POST
+- [DaVinciCTF web](https://infosecwriteups.com/davincictf-web-challenges-writeup-517e77d6fa39) | medium | JSNice deobfuscation, ' OR 1==1 plus UNION schema steal
+- [PicoCTF ORDER ORDER](https://infosecwriteups.com/order-order-picoctf-writeup-b7c7de44f296) | hard | report CSV ORDER BY injection, column-count UNION exfil
+- [Time-based blind SQLi](https://infosecwriteups.com/time-based-blind-sql-injection-hack-the-clock-ae15b0aad295) | medium | pg_sleep/SLEEP/WAITFOR conditional timing, char-by-char retrieval
+- [AngstromCTF web](https://infosecwriteups.com/angstromctf-2018-web-writeups-part-1-944b57b3f1b5) | easy | admin'/* error tell, '/or-equals bypass chain
+- [ContainMe web](https://infosecwriteups.com/containme-command-injection-a-suid-binary-and-pivoting-through-two-lxd-containers-to-root-afe823f3e566) | medium | Apache command injection foothold, SUID+LXD pivot chain
+- [Intigriti Mar 2026 XSS](https://infosecwriteups.com/intigriti-march-2026-xss-challenge-writeup-chaining-3-bypasses-to-steal-admin-cookies-4e1910864582) | hard | DOM-clobber plus hijack plus JSONP past DOMPurify+CSP
+- [Intigriti May 2026 XSS](https://infosecwriteups.com/how-i-chained-three-bugs-to-xss-an-intigriti-ctf-idor-dom-clobbering-dompurify-3-0-9-bypass-25b74fc7afc7) | hard | sequential-session IDOR admin, window-config script sink, id/name clobber
+- [DOM Clobbering coup](https://infosecwriteups.com/day-28-the-dom-clobbering-coup-how-i-turned-a-simple-comment-box-into-a-csp-bypass-109af0e954a6) | medium | comment-structure injection hijacks JS vars, CSP bypass
+- [Merry XSSMas](https://infosecwriteups.com/xss-merry-xssmas-writeup-day-11-advent-of-cyber-tryhackme-2025-5a1b014dc23d) | easy | reflected probe then stored persist, alert-to-impact ladder
+- [XSS THM Amiruddin](https://infosecwriteups.com/cross-site-scripting-tryhackme-room-writeup-walkthrough-by-md-amiruddin-5baf3a4d96e2) | easy | payload intention/modification drills, filter-evasion lab capstone
+- [Google XSS game](https://infosecwriteups.com/google-appspot-xss-ctf-walkthrough-1c0f32dfd30a) | easy | six-level reflected-to-stored progression, sink-by-sink payloads
+- [Wacky XSS amazon](https://infosecwriteups.com/wacky-xss-challenge-with-amazon-by-bugpoc-d10d43d7707c) | medium | iframe double-reflection title injection, CSP+SRI-constrained chain
+- [Upload-to-takeover XSS](https://infosecwriteups.com/from-image-upload-to-workspace-takeover-deconstructing-a-critical-stored-xss-attack-55d821c73b72) | medium | Content-Type text/html mismatch, same-origin admin-link execution
+- [Data-stealing XSS](https://infosecwriteups.com/stealing-your-data-using-xss-bf7e4a31e6ee) | medium | WAF-blocked alert bypass via pointerover, AngularJS vector escalation
+- [Command injections primer](https://infosecwriteups.com/breaking-down-command-injections-97d1029576) | easy | unsanitized form-to-shell demo, separator and encoding bypasses
+- [JWT takeover guide](https://infosecwriteups.com/jwt-pentesting-a-journey-from-token-to-takeover-1b2a7af08933) | medium | none-alg forge, rockyou HS256 crack, RS/HS confusion
+- [JaWT Scratchpad](https://infosecwriteups.com/jawt-scratchpad-picoctf-93766d81fd8e) | easy | HS256 weak-secret brute force, user-to-admin claim resign
+- [OAuth JWT theft](https://infosecwriteups.com/stealing-jwt-tokens-via-oauth-redirect-uri-manipulation-a-critical-vulnerability-abbd579b5443) | medium | redirect_uri no-validate, id_token URL-leak collaborator catch
+- [Attacking JWTs Neha](https://infosecwriteups.com/attacking-json-web-tokens-jwts-d1d51a1e17cb) | easy | alg-none header strip, kid/SQLi claim tricks catalog
+- [JWT admin bypass Hohky](https://infosecwriteups.com/jwt-authentication-bypass-leads-to-admin-control-panel-dfa6efcdcbf5) | easy | Burp JWT editor claim edit, empty-alg acceptance
+- [JWT weak key Bhatt](https://infosecwriteups.com/cracking-jwts-a-bug-bounty-hunting-guide-part-2-7bd111ddadd8) | easy | hashcat-16500 secret1 crack, Burp symmetric re-sign
+- [JWT flawed signature](https://infosecwriteups.com/write-up-jwt-authentication-bypass-via-flawed-signature-verification-portswigger-academy-2107eddec3b7) | easy | RS256 empty-signature acceptance, sub-to-admin edit
+- [JWT kid traversal Bhatt](https://infosecwriteups.com/cracking-jwts-a-bug-bounty-hunting-guide-part-5-2791be30bd17) | medium | kid ../../dev/null key load, null-byte HMAC forge
+- [JWT jku injection Bhatt](https://infosecwriteups.com/cracking-jwts-a-bug-bounty-hunting-guide-part-4-ad98636c5238) | medium | attacker JWK-set hosting, exploit-server jku trust abuse
+- [JWT none Part 1](https://infosecwriteups.com/cracking-jwts-a-bug-bounty-hunting-guide-99d6c21d78c9) | easy | unverified-signature lab, none-header admin forge
+- [GraphQL IDOR fintech](https://infosecwriteups.com/graphql-security-how-i-found-and-exploited-critical-idor-and-authorization-bypass-in-a-42ab78e13642) | medium | introspection schema map, batch-query transaction IDOR
+- [GraphQL data dump](https://infosecwriteups.com/the-hidden-language-exploiting-graphql-for-unauthorized-data-dump-8be49f30a005) | easy | /graphql probe, introspection field crawl, overfetch dump
+- [GraphQL millions leak](https://infosecwriteups.com/how-i-found-a-graphql-endpoint-leaking-millions-5cbfd55d994e) | medium | unauthenticated query batch, pagination mass extraction
+- [GraphQL blind SQLi](https://infosecwriteups.com/i-earned-3500-and-40-points-for-a-graphql-blind-sql-injection-vulnerability-5b7e428c477d) | hard | GraphQL-arg SQL probing, sqlmap-proof manual blind timing
+- [GraphQL mastery labs](https://infosecwriteups.com/mastering-the-realm-of-graphql-exploitation-a12ed5e04263) | medium | InQL introspection, private-post plus hidden-endpoint plus CSRF chain
+- [GraphQL gov flaw](https://infosecwriteups.com/how-i-found-an-auth-flaw-in-a-government-site-from-graphql-introspection-to-unauthorized-access-0c877cc3ee07) | medium | version-disclosure tell, Voyager schema map, resolver authz gap
+- [SSRF primer](https://infosecwriteups.com/server-side-request-forgery-ssrf-f62235a2c151) | easy | internal-only fetch abuse, cloud-metadata IAM key path
+- [SSRF bootcamp](https://infosecwriteups.com/bug-bounty-bootcamp-35-ssrf-turning-the-server-into-your-personal-proxy-to-hack-internal-c9f74582cf0c) | easy | image-proxy URL fetch, localhost plus metadata pivot
+- [SSRF flawed parsing](https://infosecwriteups.com/ssrf-via-flawed-request-parsing-7b32a119f047) | medium | Host-vs-URL validation gap, 192.168.x admin delete CSRF
+- [AWS SSRF IMDSv2](https://infosecwriteups.com/aws-cloud-security-challenge-ssrf-imdsv2-and-cloud-takeover-4cc6374ef67f) | medium | dashboard URL fetch, IMDSv2 hop bypass, S3 flag
+- [SSRF exploitation 02](https://infosecwriteups.com/ssrf-exploitation-02-b682de16594) | medium | response-diff net/port scan, metadata and access-control bypass
+- [Proxy plus SSRF](https://infosecwriteups.com/proxy-misconfiguration-ssrf-how-i-chained-two-bugs-into-internal-admin-panel-access-cf0e43bf79e4) | medium | X-Forwarded-For/Host injection, proxy route-confusion admin reach
+- [SSRF admin payloads](https://infosecwriteups.com/how-i-used-ssrf-to-gain-admin-access-step-by-step-with-payloads-6717457a125a) | medium | URL-preview SSRF, internal admin panel walkthrough
+- [Upload vulns Ehxb](https://infosecwriteups.com/ehxb-file-upload-vulnerabilities-i-6ed033539682) | medium | unrestricted shell, Content-Type spoof, traversal overwrite chain
+- [Upload THM Shamsher](https://infosecwriteups.com/upload-vulnerabilities-tryhackme-writeup-f6fba1dad902) | easy | overwrite known image path, extension-bypass webshell RCE
+- [.htaccess bypass](https://infosecwriteups.com/bypassing-file-upload-filter-using-htaccess-file-ctf-ca06d7e9ebd7) | easy | AddType .evil-as-PHP, Apache blacklist sidestep
+- [Content-Type bypass](https://infosecwriteups.com/write-up-web-shell-upload-via-content-type-restriction-bypass-portswigger-academy-839365e13bc) | easy | MIME-only check, shell.php with image MIME pass
+- [Zippy zip parser](https://infosecwriteups.com/zippy-challenge-writeup-cyberhack-ctf-80eb1d422249) | medium | admin.gif credential hint, zip:// wrapper and symlink read
+- [RCE webshell lab](https://infosecwriteups.com/write-up-remote-code-execution-via-web-shell-upload-portswigger-academy-839365e13bc) | easy | unrestricted avatar upload, direct PHP execution
+- [Ffuf web fuzz](https://infosecwriteups.com/attacking-web-applications-with-ffuf-solving-the-ctf-challenge-c22263cf67e1) | easy | vhost/param/extension fuzzing, hidden-flag route discovery
+- [XXE bootcamp](https://infosecwriteups.com/bug-bounty-bootcamp-40-xxe-reading-server-files-and-pivoting-to-internal-networks-through-xml-17708cf6029b) | medium | DOCTYPE entity file read, blind-DTD base64 exfiltration
+- [XXE THM](https://infosecwriteups.com/xxe-tryhackme-writeup-29fb1e0e2666) | easy | in-band vs out-of-band drills, DTD payload basics
+- [DevOops XXE Mitch](https://infosecwriteups.com/devoops-an-xml-external-entity-xxe-hackthebox-walkthrough-fb5ba03aaaa2) | medium | /upload XXE passwd read, bash-history SSH key steal
+- [XLSX XXE](https://infosecwriteups.com/the-file-that-answered-back-xxe-hidden-in-cell-a2-20dbb8161dd8) | hard | unzip-xlsx sharedStrings DOCTYPE, win.ini-to-web.config read
+- [DevOops Vitoria](https://infosecwriteups.com/hack-the-box-devoops-write-up-367d260d550c) | medium | ENTITY SYSTEM file:///, page-source disclosure read
+- [Mustacchio XXE](https://infosecwriteups.com/tryhackme-writeup-mustacchio-ee526a543d8a) | medium | :8765 XML comment field XXE, SSH key plus passphrase crack
+- [RCE bootcamp](https://infosecwriteups.com/bug-bounty-bootcamp-41-remote-command-execution-from-innocent-inputs-to-full-server-takeover-64b39d6e8072) | medium | stocklookup/ping sink mapping, separator-to-blind escalation
+- [Blind CMD Ryan](https://infosecwriteups.com/blind-os-command-injection-with-output-redirection-1d08c3793ff1) | medium | || redirection to /images, whoami file-read retrieval
+- [CMD all labs](https://infosecwriteups.com/portswigger-command-injection-all-labs-walkthrough-bug-bounty-prep-by-dollarboysushil-e836421212cf) | easy | stockreport.pl separators, sleep-timing plus redirection blinds
+- [CMD Episode 2](https://infosecwriteups.com/episode-2-os-command-injection-talking-directly-to-the-servers-brain-7fdb828aaae3) | easy | diagnostic-field separator probe, output-delay confirmation
+- [CMD request body](https://infosecwriteups.com/analysing-command-detected-in-request-body-1524b2744449) | easy | WAF log whoami tell, shell-keyword source grep
+- [CMD mechanics](https://infosecwriteups.com/mastering-the-mechanics-of-command-injection-unraveling-the-webs-silent-threat-890055b5954a) | medium | param-name sink list, IFS/dollar-at plus ping-exfil bypasses
+- [OS CMD Hashar](https://infosecwriteups.com/exploiting-os-command-injection-vulnerabilities-14195c9a410b) | easy | eval/system sink review, sleep/ping blind plus separator set
+- [THM Dav](https://systemweakness.com/try-hack-me-dav-walkthrough-6bad55f6bab9) | easy | gobuster /webdav find, default-credential file-write shell
+- [AoC Day 3 web shell](https://systemweakness.com/advent-of-cyber-2024-day-3-writeup-with-answers-tryhackme-walkthrough-6616c85045ba) | easy | Elastic log shell-path hunt, reservation auth plus upload reuse
+- [Madness THM](https://systemweakness.com/try-hack-me-madness-walkthrough-6636e01d1b4f) | medium | Apache hidden image, magic-byte repair plus steghide extract
+- [Whiterose THM](https://systemweakness.com/whiterose-tryhackme-walkthrough-bb303ef89f3f) | medium | ffuf vhost admin find, ?c=0 IDOR credential chain
+- [Probe THM](https://systemweakness.com/tryhackme-room-probe-writeup-8ead9d0e31a7) | easy | cert/FQDN/banner enum, CMS-version plus phpmyadmin mapping
+- [Hammer THM](https://systemweakness.com/tryhackme-hammer-walk-through-765ae11567f6) | medium | error.log email leak, X-Forwarded-For 4-digit rate-limit bypass
+- [Upload Lab 5](https://infosecwriteups.com/portswigger-lab-5-web-shell-upload-via-obfuscated-file-extension-bug-bounty-prep-by-5232dd3fb8fa) | medium | avatar Repeater flow, obfuscated-extension file_get_contents read
+- [Deserialization Moad](https://infosecwriteups.com/insecure-deserialization-2a8dbdb94a81) | medium | PHP/Python serialize theory, PortSwigger session-cookie role edit
+- [Deserialization xssrat](https://infosecwriteups.com/insecure-deserialization-its-super-hard-or-is-it-94d89e2847) | medium | PHP/Ruby magic-method review, lab gadget-chain walkthrough
+- [Upload Lab 4 blacklist](https://infosecwriteups.com/portswigger-lab-4-web-shell-upload-via-extension-blacklist-bypass-bug-bounty-prep-by-7c6233320f81) | medium | avatar GET-path tracking, double-extension matrix bypass
+- [Deserialization Sourov](https://infosecwriteups.com/demystifying-insecure-deserialization-in-php-684cab9c4d24) | medium | __wakeup/__destruct gadget, cache-file delete-to-shell write
+- [Request smuggling](https://infosecwriteups.com/write-up-http-request-smuggling-basic-cl-te-vulnerability-portswigger-academy-5acbbc040c74) | hard | CL.TE desync probe, smuggled-prefix admin hijack
+- [Path traversal labs](https://infosecwriteups.com/portswigger-path-traversal-all-labs-walkthrough-bug-bounty-prep-by-dollarboysushil-85ab64d6106a) | easy | base-folder prefix trap, traversal-sequence absolute-path escape
+- [Debug page disclosure](https://infosecwriteups.com/portswigger-lab-information-disclosure-on-debug-page-283feb79c5f5) | easy | crawl-discovered debug dir, phpinfo secret extraction
+- [PortSwigger/Smashing-State-Machine](https://portswigger.net/research/smashing-the-state-machine) | hard | single-packet HTTP/2 race, sub-state collision, Turbo Intruder gate sync
+- [PortSwigger/Gotta-Cache-Em-All](https://portswigger.net/research/gotta-cache-em-all) | hard | cache delimiter discrepancy, path normalization mismatch, poison then deception chain
+- [PortSwigger/TRACE-Desync](https://portswigger.net/research/trace-desync-attack) | hard | TRACE reflection, response splitting, cache store arbitrary poisoned response
+- [PortSwigger/Browser-Powered-Desync](https://portswigger.net/research/browser-powered-desync-attacks) | hard | browser fetch desync, CL.0 smuggling, client-side cache poisoning redirect
+- [PortSwigger/Web-Cache-Entanglement](https://portswigger.net/research/web-cache-entanglement) | hard | cache key transformation oracle, normalization poisoning, homepage takeover
+- [PortSwigger/Practical-Cache-Poisoning](https://portswigger.net/research/practical-web-cache-poisoning) | medium | unkeyed header injection, cache oracle detection, XSS payload persistence
+- [PortSwigger/HTTP2-Continuations](https://portswigger.net/research/http2-continuation-flood) | hard | HTTP/2 CONTINUATION flood, DoS then smuggling, front-end downgrade confusion
+- [PortSwigger/Request-Smuggling-Reborn](https://portswigger.net/research/http-desync-attacks-request-smuggling-reborn) | medium | CL.TE desync, prefix smuggling, victim credential capture store
+- [PortSwigger/JWT-Confusion](https://portswigger.net/research/jwt-attacks) | medium | alg none confusion, jku/x5u injection, kid path traversal verify bypass
+- [PortSwigger/OAuth-Flaws](https://portswigger.net/web-security/oauth/lab-oauth-authentication-bypass-via-oauth-implicit-flow) | medium | implicit flow token leak, redirect_uri validation bypass, account takeover
+- [PortSwigger/Prototype-Pollution-Gadgets](https://portswigger.net/research/widespread-prototype-pollution-gadgets) | hard | client pollution, third-party gadget, DOM Invader XSS sink trigger
+- [PortSwigger/Race-Limit-Overrun-Lab](https://portswigger.net/web-security/race-conditions/lab-race-conditions-limit-overrun) | easy | parallel coupon apply, check-then-act window, balance overrun purchase
+- [PortSwigger/Race-Multi-Endpoint-Lab](https://portswigger.net/web-security/race-conditions/lab-race-conditions-multi-endpoint) | medium | cart plus checkout collision, funds check bypass, price confusion
+- [PortSwigger/Race-Single-Endpoint-Lab](https://portswigger.net/web-security/race-conditions/lab-race-conditions-single-endpoint) | medium | email change race, token misroute, confirmation link hijack
+- [PortSwigger/Race-Partial-Construction-Lab](https://portswigger.net/web-security/race-conditions/lab-race-conditions-partial-construction) | hard | null-array register, pending row confirm, pre-token auth bypass
+- [PortSwigger/Cache-Deception-Lab](https://portswigger.net/web-security/web-cache-deception/lab-web-cache-deception-exploiting-path-mapping-for-cache-deception) | medium | path mapping delimiter, static extension trick, auth response caching
+- [PortSwigger/SSTI-Lab](https://portswigger.net/web-security/cross-site-scripting/server-side-template-injection) | medium | Twig injection, object traversal, RCE via crafted template directive
+- [PortSwigger/GraphQL-Batch](https://portswigger.net/research/graphqlBatching) | medium | batch brute-force, field suggestion, introspection bypass IDOR chain
+- [PortSwigger/WebSocket-Hijacking](https://portswigger.net/web-security/websockets) | medium | CSRF handshake, Cross-Site Hijacking, message forgery exfiltration
+- [Intigriti/7-Ways-RCE](https://www.intigriti.com/researchers/blog/hacking-tools/7-ways-to-achieve-remote-code-execution-rce) | medium | SSRF plus deserialization, file upload chain, RCE escalation playbook
+- [Intigriti/0124-Challenge](https://medium.com/@rodriguezjorgex/how-i-passed-the-intigriti-0124-challenge-b6c2d1cd1b7b) | hard | DOM clobbering, axios prototype pollution, jQuery gadget XSS
+- [Intigriti/Revenge-Author-Writeup](https://blog.huli.tw/2022/05/02/en/intigriti-revenge-challenge-author-writeup/) | hard | recursive merge pollution, BFS property search, constructor prototype escape
+- [Intigriti/XSS-Challenge-0621](https://www.intigriti.com/blog/news/intigriti-xss-challenge-1) | medium | mutation XSS, sanitizer bypass, SVG foreignObject payload execution
+- [Intigriti/May-2026-XSS](https://github.com/Adonis4621/intigriti-may-2026-xss) | hard | stored author-name XSS, IDOR sequential session, DOMPurify CVE chain
+- [Corelan/Heap-Massage](https://www.corelan.be/blog/) | hard | heap spray grooming, use-after-free, SEH overwrite exploit development
+- [Corelan/Stack-BOF-Win](https://www.corelan.be/index.php/2009/07/19/exploit-writing-tutorial-part-1-stack-based-overflows/) | easy | fuzz offset, EIP control, JMP ESP shellcode
+- [DeadSec/Log4Shell-CTF](https://blog.deadsec.sh/pwn-log4shell-ctf/) | medium | JNDI LDAP injection, Log4j lookup bypass, callback RCE staging
+- [DeadSec/Node-Deserialization](https://blog.deadsec.sh/node-deserialization-rce/) | hard | node-serialize polluted IIFE, require gadget, child_process exec chain
+- [Caletorito/SSTI-Flask](https://blog.caletorito.xyz/ssti-flask-jinja-escape/) | medium | Jinja sandbox escape, subclass traversal, os popen RCE
+- [Caletorito/Prototype-Pollution-EJS](https://blog.caletorito.xyz/prototype-pollution-ejs-rce/) | hard | outputFunctionName pollution, EJS render gadget, execSync RCE
+- [0xdf/HTB-Precious](https://0xdf.gitlab.io/2022/10/22/htb-precious.html) | easy | Ruby YAML deserialization, PDFKit command injection, reverse shell upgrade
+- [0xdf/HTB-OnlyForYou](https://0xdf.gitlab.io/2023/01/14/htb-onlyforyou.html) | medium | Neo4j Cypher injection, Apache SSTI traversal, JWT secret crack
+- [0xdf/HTB-Socket](https://0xdf.gitlab.io/2023/05/27/htb-socket.html) | medium | SSTI blind exfiltration, WebSocket hijack, SQLi to RCE chain
+- [0xdf/HTB-Topology](https://0xdf.gitlab.io/2023/06/10/htb-topology.html) | medium | LaTeX injection, plot command exec, privilege escalation enumeration
+- [Assetnote/Jenkins-RCE](https://www.slcyber.io/research/more-critical-bugs-in-adobe-experience-manager-pre-auth-rce) | hard | AEM path traversal, pre-auth dispatcher bypass, RCE gadget deserialization
+- [Assetnote/Discourse-Race-Ghost](https://www.slcyber.io/research/a-jpeg-a-race-and-a-ghost-breaking-discourses-image-pipeline) | hard | JPEG pipeline race, ImageMagick ghostscript, cache poisoned RCE
+- [Assetnote/Goja-Sandbox-Escape](https://www.slcyber.io/research/out-of-bounds-out-of-sandbox-rce-goja) | hard | Goja OOB bounds, JS engine sandbox escape, Go native RCE
+- [Assetnote/WordPress-SQLi](https://www.slcyber.io/blog/wordpress-sql-injection-technical-deep-dive) | medium | plugin SQLi union, nonce bypass, authenticated RCE upload
+- [NCCGroup/JWT-Toolkit](https://research.nccgroup.com/2024/01/11/jwt-toolkit/) | medium | weak secret brute, kid SQLi, JWKS spoof verification bypass
+- [HackTricks/Node-Proto-Pollution](https://book.hacktricks.xyz/pentesting-web/deserialization/nodejs-proto-prototype-pollution/client-side-prototype-pollution) | medium | __proto__ merge, gadget finder, XSS to RCE escalation
+- [PracticalCTF/Prototype-Pollution](https://github.com/JorianWoltjer/practical-ctf/blob/main/languages/javascript/prototype-pollution.md) | medium | lodash merge sink, constructor.prototype bypass, admin flag pollution
+- [Samhaxr/Prototype-RCE-CTF](https://github.com/samhaxr/Prototype-pollution-exploit-ctf) | hard | pollution to EJS RCE, Python exploit harness, reverse shell
+- [Medium/PortSwigger-Proto-Labs](https://medium.com/@awes0me.writes/portswigger-labs-prototype-pollution-writeup-all-labs-9a2534bc8e07) | medium | DOM Invader vectors, sanitization bypass, server merge privilege escalation
+- [TryHackMe/Prototype-Room](https://github.com/thmrevenant/tryhackme/blob/main/rooms/prototype%20pollution.txt) | easy | lodash set sink, __proto__ property, toLocaleString override
+- [Jorian/CTF-Book-Proto](https://book.jorianwoltjer.com/languages/javascript/prototype-pollution) | medium | merge recursion debug, gadget library, browser API pollution
+- [KTH/Server-Side-Proto](https://github.com/KTH-LangSec/server-side-prototype-pollution) | hard | NodeJS merge audit, Arteau exploitation model, mitigation bypass
+- [TurboIntruder/Race-Docs](https://github.com/PortSwigger/turbo-intruder/blob/master/docs/race-conditions.md) | medium | gated single-packet, HTTP/2 sync, response order oracle
+- [GitHub/Race-Labs-Notes](https://github.com/themayursinha/portswigger-web-security-academy-labs/blob/main/race-conditions/README.md) | medium | last-byte sync, session-lock bypass, pending-row confirm race
+- [PortSwigger/Host-Header-Poisoning](https://portswigger.net/web-security/host-header) | medium | X-Forwarded-Host injection, password reset poison, cache link hijack
+- [PortSwigger/ESI-Injection](https://portswigger.net/web-security/server-side-template-injection/esi) | medium | ESI tag injection, SSRF chain, cache-mediated XSS
+- [PortSwigger/GraphQL-IDOR](https://portswigger.net/web-security/graphql) | medium | nested query IDOR, batch bypass, field duplication exploit
+- [PortSwigger/SSRF-Cloud-Metadata](https://portswigger.net/web-security/ssrf) | medium | metadata 169.254 abuse, redirect bypass, internal credential theft
+- [PortSwigger/XXE-Blind-OOB](https://portswigger.net/web-security/xxe/blind) | medium | blind XXE, Collaborator exfiltration, DTD parameter entity chain
+- [PortSwigger/SQLi-Time-Based](https://portswigger.net/web-security/sql-injection/blind/lab-time-delays) | easy | time delay oracle, conditional responses, data extraction loop
+- [PortSwigger/NoSQL-Injection](https://portswigger.net/web-security/nosql-injection) | medium | Mongo operator injection, password regex bypass, login brute
+- [PortSwigger/LDAP-Injection](https://portswigger.net/web-security/ldap-injection) | medium | filter wildcard abuse, blind attribute extraction, auth bypass
+- [PortSwigger/XPath-Injection](https://portswigger.net/web-security/xpath-injection) | medium | XPath booleanizer, document traversal, credential disclosure
+- [PortSwigger/Clickjacking-CSRF](https://portswigger.net/web-security/csrf) | easy | SameSite lax bypass, method override, state-changing CSRF chain
+- [PortSwigger/WebSocket-CSRF](https://portswigger.net/web-security/websockets/lab-cross-site-websocket-hijacking) | medium | Origin validation missing, hijacked socket, victim message forgery
+- [PortSwigger/CORS-Misconfig](https://portswigger.net/web-security/cors/lab-basic-origin-reflection-attack) | easy | null origin trust, credentials reflection, token theft
+- [PortSwigger/JWT-None-KID](https://portswigger.net/web-security/jwt/lab-jwt-authentication-bypass-via-unverified-signature) | easy | none alg, kid traversal, weak secret crack
+- [PortSwigger/OAuth-OpenRedirect](https://portswigger.net/web-security/oauth/lab-oauth-authentication-bypass-via-open-redirect) | medium | redirect_uri bypass, code theft, account takeover
+- [PortSwigger/Directory-Traversal](https://portswigger.net/web-security/file-path-traversal) | easy | dot-dot slash, absolute path, /etc/passwd retrieval
+- [PortSwigger/File-Upload-Polyglot](https://portswigger.net/web-security/file-upload) | medium | MIME spoof, polyglot webshell, extension blacklist bypass
+- [PortSwigger/Command-Injection](https://portswigger.net/web-security/os-command-injection) | easy | shell metacharacter, blind time exfil, reverse shell staging
+- [PortSwigger/XSS-DOM-Clobbering](https://portswigger.net/web-security/dom-based/dom-clobbering) | hard | anchor id clobber, script src override, filter bypass XSS
+- [PortSwigger/HTTP-Response-Splitting](https://portswigger.net/web-security/http-response-splitting) | medium | CRLF injection, header splitting, cache poisoning chain
+- [PortSwigger/Host-Header-Password-Reset](https://portswigger.net/web-security/host-header/exploiting/lab-host-header-authentication-bypass) | medium | Host poison, reset token leak, Collaborator capture
+- [0xdf/PermX Chamilo Upload](https://0xdf.gitlab.io/2024/11/02/htb-permx.html/) | easy | ffuf subdomains, CVE-2023-31803 bigUpload webshell, ACL symlink privesc
+- [0xdf/Poison LFI Log](https://0xdf.gitlab.io/2018/09/08/htb-poison.html/) | easy | LFI browse.php, log poisoning webshell, VNC decrypt privesc
+- [0xdf/Traverxec Nostromo RCE](https://0xdf.gitlab.io/2020/04/11/htb-traverxec.html/) | easy | Nostromo RCE, homedir SSH keys, journalctl sudo privesc
+- [0xdf/BroScience Salted MD5](https://0xdf.gitlab.io/2023/04/08/htb-broscience.html/) | medium | wfuzz img path, activation brute, NaCl MD5 salt, db creds
+- [0xdf/Writer SQLi WSGI](https://0xdf.gitlab.io/2021/12/11/htb-writer.html/) | medium | ffuf SQLi bypass, file read, stories SSTI, postfix filter privesc
+- [0xdf/Writeup CMSMS Blind SQLi](https://0xdf.gitlab.io/2019/10/12/htb-writeup.html/) | easy | robots CMSMS, blind SQLi cracker, staff run-parts SSH trigger
+- [0xdf/Shared Cookie SQLi Redis](https://0xdf.gitlab.io/2022/11/12/htb-shared.html/) | medium | cookie SQLi sqlmap, Redis CVE-2022-0543, ipython lib privesc
+- [0xdf/Spider Flask SSTI XXE](https://0xdf.gitlab.io/2021/10/23/htb-spider.html/) | hard | username SSTI secret leak, cookie SQLi admin, blind SSTI XXE
+- [0xdf/HackNet Django SSTI Pickle](https://0xdf.gitlab.io/2026/01/17/htb-hacknet.html/) | medium | cache pickle RCE, username SSTI users.values dump, GPG crack
+- [0xdf/Sightless SQLPad SSTI](https://0xdf.gitlab.io/2024/09/14/htb-sightless.html/) | easy | FTP TLS, SQLPad CVE-2022-0944, Python SSTI shell
+- [0xdf/Cicada Backup Operators](https://0xdf.gitlab.io/2024/09/28/htb-cicada.html/) | easy | rid spray, backup privilege, reg secretsdump NTDS
+- [0xdf/Analytics Metabase RCE](https://0xdf.gitlab.io/2023/10/07/htb-analytics.html/) | easy | Metabase setup-token RCE, env creds, kernel exploit
+- [0xdf/Pilgrimage ImageMagick](https://0xdf.gitlab.io/2023/10/21/htb-pilgrimage.html/) | easy | ImageMagick convert RCE, git repo creds, binwalk privesc
+- [0xdf/Monitor Nagios XI](https://0xdf.gitlab.io/2023/11/18/htb-monitor.html/) | medium | Nagios XI authenticated RCE, SNMP creds, escalation scripts
+- [0xdf/Clicker NFS JWT](https://0xdf.gitlab.io/2023/12/02/htb-clicker.html/) | medium | NFS export, JWT admin forge, Perl app RCE
+- [0xdf/Format Redis UDF](https://0xdf.gitlab.io/2022/01/01/htb-format.html/) | medium | microblog leak, Redis UDF RCE, kernel privesc
+- [GitHub/Momen Web 75+ Index](https://github.com/momenbasel/htb-writeups/tree/main/challenges/web/) | medium | XSS SQLi SSTI SSRF deserialization JWT GraphQL series
+- [GitHub/SSTI1 No Sanity](https://github.com/Promesse06/ctf-writeups/blob/main/SSTI1.md/) | easy | path traversal fail, {{7*7}} 49 confirm, SSTI flag read
+- [Medium/THM Blue MS17-010](https://medium.com/@ashbaarshad777/blue-tryhackme-walkthrough-7ea2e6bbbb43/) | easy | recon nmap, EternalBlue metasploit, Windows exploitation intro
+- [0xdf/Smasher Tiny BOF](https://0xdf.gitlab.io/2018/11/24/htb-smasher.html/) | hard | tiny-web-server BOF, timing padding-oracle AES, traversal chain
+- [HTB/Challenge Web Index Momen](https://raw.githubusercontent.com/momenbasel/htb-writeups/main/README.md/) | medium | web crypto forensics counts, skill trees, attack paths
+- [Medium/Tux Insanity Check Ticket](https://medium.com/@ctfhuntertux/insanity-check-d6178d234d7b/) | easy | support ticket hint, Base64 flag encode, logic bypass
+
+## batch 2026-10-17-browser-swarm (440 rows, 209 easy)
+
+- [Burp Basics Jabbour](https://medium.com/@cyberjab/burp-suite-the-basics-tryhackme-writeup-8cbef178f0b0) | easy | proxy scope spider intruder repeater xss-practice
+- [Burp Basics Hydara](https://medium.com/@topcyberdawg/tryhackme-room-walkthrough-burp-suite-the-basics-bcef4faead27) | easy | intercept foxyproxy sitemap scope repeater
+- [Burp Repeater Rahul](https://medium.com/@rahulk2903/burp-suite-repeater-tryhackme-walkthrough-907c11548c4e) | easy | intercept relay craft-request response-tamper idor-test
+- [Burp Basics Amshi](https://medium.com/@am-shi/burp-suite-the-basics-tryhackme-walkthrough-9964dbb7eac3) | easy | cookie-jar sitemap proxy-history flag-retrieve
+- [Burp Basics Techwizard](https://medium.com/@gkpl0010/burp-suite-the-basics-thm-walkthrough-0fa0db238415) | easy | dashboard proxy intruder repeater sequencer decoder
+- [Burp Basics Isiah](https://medium.com/@isiahjohnstone/burp-suite-the-basics-thm-27e2627e0205) | easy | enterprise-vs-community proxy intruder event-log suite-settings xss
+- [Corridor THM](https://medium.com/@rishi.b.vashist/corridor-tryhackme-walkthrough-e002ee712626) | easy | door-url md5-hash crackstation cyberchef hash-lookup redirect
+- [RootMe THM](https://medium.com/@kingsuba99/walkthrough-rootme-tryhackme-7d37200f8c29) | easy | nmap gobuster upload-bypass reverse-shell suid-privesc
+- [Blue THM](https://medium.com/@mrxe/tryhackme-room-blue-walkthrough-78c5097a3205) | easy | nmap eternalblue ms17-010 metasploit mimikatz hashdump
+- [VulnNet THM](https://medium.com/@23bt04145/tryhackme-vulnnet-room-walkthrough-writeup-4eb22bada0e5) | easy | subdomain wildcard-injection redis cron privesc
+- [Cyborg THM](https://medium.com/@inzelsec/cyborg-tryhackme-walkthrough-621e50d01e32) | easy | encrypted-archive source-audit borg-backup ssh-key privesc
+- [Pico Web SSTI1 Akash](https://medium.com/@akashxak/picoctf-2025-writeup-easy-15154b74a145) | easy | ssti jinja payloadbox server-template rce-lite
+- [Pico Web All 2025 Maram](https://medium.com/@maram.raboudi/picoctf-2025-all-web-exploitation-challenges-solution-2740ac1a7ab6) | easy | ssti header-inject mime-boundary stored-xss admin-bot
+- [Pachinko Pico 2025](https://medium.com/@kofikitiabi/pachinko-picoctf-2025-full-walkthrough-beginner-friendly-91f263c801d2) | easy | request-manip fuzz hidden-flag param-tamper
+- [FindMe picoGym](https://medium.com/@mh4ck3r0n3/posts/2025/02/28/findme) | easy | login-bypass redirect-id base64-decode concat-flag devtools-network
+- [Gatekeeper THM](https://medium.com/@cyberlarry/tryhackme-walkthrough-gatekeeper-618da445b2e1) | medium | nmap smb-share exe-download bof-offset immunity-debugger
+- [THM Burp Basics Room](https://tryhackme.com/room/burpsuitebasics) | easy | proxy intercept repeater intruder sequencer
+- [THM Burp Repeater](https://tryhackme.com/room/burpsuiterepeater) | easy | manual-request response-edit auth-test rate-limit
+- [THM Burp Intruder](https://tryhackme.com/room/burpintruder) | easy | sniper-cluster wordlist ffuf brute-login
+- [THM Burp Suite](https://tryhackme.com/room/burpsuite) | easy | setup scope spider scanner basics
+- [THM OWASP Top10](https://tryhackme.com/room/owasptop10) | easy | injection broken-auth xss xxex ssrf idor
+- [THM OWASP Juice Shop](https://tryhackme.com/room/owaspjuiceshop) | easy | sqli xss jwt-bypass basket-manip
+- [THM WebApp Basics](https://tryhackme.com/room/webappbasics) | easy | http methods headers cookies sessions
+- [THM Vulnerable Web](https://tryhackme.com/room/vulnerableweb) | easy | gobuster nikto sqlmap xss-stored
+- [THM Injection](https://tryhackme.com/room/injection) | easy | command-os sqli blind ssti lfi-rfi
+- [THM LFI](https://tryhackme.com/room/lfi) | easy | path-traversal log-poison php-wrapper null-byte
+- [THM SSTI](https://tryhackme.com/room/ssti) | easy | jinja-twig payload-detect rce-escape sandbox
+- [THM XSS](https://tryhackme.com/room/xss) | easy | reflected-stored dom cookie-steal filter-bypass
+- [THM SQLI](https://tryhackme.com/room/sqli) | easy | union-error blind-time sqlmap tamper
+- [THM Advent Web](https://tryhackme.com/room/adventofcyber2) | easy | logic-flaw cookie-tamper dir-enum api-abuse
+- [THM Brooklyn Nine Nine](https://tryhackme.com/room/brooklynninenine) | easy | anon-ftp notes-txt stego hydra-bypass suid
+- [THM Bounty Hacker](https://tryhackme.com/room/cowboyhacker) | easy | ftp-anon tar-crack linpeas privesc
+- [THM RootMe](https://tryhackme.com/room/rrootme) | easy | upload-shell cron suid python-privesc
+- [THM Corridor](https://tryhackme.com/room/corridor) | easy | hash-doors md5-crack redirect-chain
+- [THM Gatekeeper](https://tryhackme.com/room/gatekeeper) | medium | smb-enum bof fuzzer offset shellcode
+- [THM Cyborg](https://tryhackme.com/room/cyborg) | easy | nmap smb-borg config-leak ssh-passkey
+- [THM Break Out Cage](https://tryhackme.com/room/breakoutthecage1) | easy | rce-filter waf-bypass python-escape reverse-shell
+- [THM Ignite](https://tryhackme.com/room/ignite) | easy | fuel-cms rce msfconsole privesc-path
+- [THM ThemeDB](https://tryhackme.com/room/themedb) | easy | wordpress-social-engine exploitdb kernel-privesc
+- [THM Year Of Jelly](https://tryhackme.com/room/yearofthejellyfish) | easy | jwt-none jwt-crack redis-rce cron
+- [THM Jack](https://tryhackme.com/room/jackofalltrades) | easy | cms-hunt lfi-log nginx-escape sudo-privesc
+- [THM Atlas](https://tryhackme.com/room/atlas) | medium | sql-inject file-upload sqlmap-shell port-forward
+- [picoGym Cookie](https://play.picoctf.org/practice/challenge/34) | easy | cookie-tamper base64 role-escalate flag-panel
+- [picoGym Scavenger Hunt](https://play.picoctf.org/practice/challenge/30) | easy | html-comments css-js robots-txt htaccess apache
+- [picoGym Insp3ct0r](https://play.picoctf.org/practice/challenge/18) | easy | view-source html-css-js flag-parts concat
+- [picoGym Dont-Use-Client-Side](https://play.picoctf.org/practice/challenge/57) | easy | js-validation bypass disabled-button client-check
+- [picoGym Logon](https://play.picoctf.org/practice/challenge/46) | easy | devtools-password view-source js-bypass
+- [picoGym Web Gauntlet](https://play.picoctf.org/practice/challenge/92) | easy | sql-filter bypassquote auth-escape chained-filters
+- [PicoCTF SSTI1 Trio](https://github.com/PS-003R32/picoCTF/tree/main/picoCTF-2025/Web-Exploitation) | easy | jinja os-popen cat-flag template-escape
+- [THM Upload Vulns](https://tryhackme.com/room/uploadvulns) | easy | mime-bypass extension-blacklist reverse-shell .htaccess
+- [THM Authenticate](https://tryhackme.com/room/authenticate) | easy | brute-logic session-fix google-dork default-creds
+- [THM IDOR](https://tryhackme.com/room/idor) | easy | param-tamper api-enum mass-assign order-bypass
+- [Trapped Source](https://7rocky.github.io/en/ctf/htb-challenges/web/trapped-source/) | easy | inspect client JS source reveal hidden flag path
+- [Templated](https://7rocky.github.io/en/ctf/htb-challenges/web/templated/) | easy | Jinja2 SSTI {{7*7}} to RCE payload
+- [Flag Command](https://7rocky.github.io/en/ctf/htb-challenges/web/flag-command/) | easy | API parameter command injection flag retrieval
+- [looking glass](https://7rocky.github.io/en/ctf/htb-challenges/web/looking-glass/) | easy | SSTI probe then OS command injection
+- [Gunship](https://7rocky.github.io/en/ctf/htb-challenges/web/gunship/) | easy | prototype pollution AST injection RCE
+- [Toxic](https://7rocky.github.io/en/ctf/htb-challenges/web/toxic/) | easy | PHP deserialization plus log poisoning webshell
+- [sanitize](https://7rocky.github.io/en/ctf/htb-challenges/web/sanitize/) | easy | NoSQL injection bypass login extraction
+- [baby auth](https://7rocky.github.io/en/ctf/htb-challenges/web/baby-auth/) | easy | authentication logic flaw bypass admin
+- [LoveTok](https://7rocky.github.io/en/ctf/htb-challenges/web/lovetok/) | easy | PHP code injection token forge
+- [TimeKORP](https://medium.com/@rahulhoysala07/hack-the-box-web-challenge-timekorp-writeup-e03cc2f08d70) | easy | PHP time-based injection command execution
+- [KORP Terminal](https://7rocky.github.io/en/ctf/htb-challenges/web/korp-terminal/) | easy | SQL injection terminal hashcat crack
+- [Neonify](https://7rocky.github.io/en/ctf/htb-challenges/web/neonify/) | easy | Ruby SSTI regex bypass RCE
+- [Slippy](https://7rocky.github.io/en/ctf/htb-challenges/web/slippy/) | easy | Python tar slip path traversal overwrite
+- [Full Stack Conf](https://7rocky.github.io/en/ctf/htb-challenges/web/full-stack-conf/) | easy | source code review API secret leak
+- [CurlAsAService](https://7rocky.github.io/en/ctf/htb-challenges/web/curlasaservice/) | easy | SSRF curl file read internal
+- [Wild Goose Hunt](https://7rocky.github.io/en/ctf/htb-challenges/web/wild-goose-hunt/) | easy | NoSQL regex exfiltration blind
+- [E.Tree](https://7rocky.github.io/en/ctf/htb-challenges/web/e.tree/) | easy | XPath injection XML extraction
+- [CandyVault](https://7rocky.github.io/en/ctf/htb-challenges/web/candyvault/) | easy | MongoDB NoSQL operator bypass
+- [SpookTastic](https://7rocky.github.io/en/ctf/htb-challenges/web/spooktastic/) | easy | stored XSS admin bot cookie steal
+- [Saturn](https://7rocky.github.io/en/ctf/htb-challenges/web/saturn/) | easy | path traversal arbitrary file read
+- [HTBank](https://7rocky.github.io/en/ctf/htb-challenges/web/htbank/) | easy | race condition integer overflow balance
+- [Watersnake](https://7rocky.github.io/en/ctf/htb-challenges/web/watersnake/) | easy | Java SnakeYAML deserialization RCE
+- [Lazy Ballot](https://7rocky.github.io/en/ctf/htb-challenges/web/lazy-ballot/) | easy | SQL injection vote manipulation
+- [emoji voting](https://7rocky.github.io/en/ctf/htb-challenges/web/emoji-voting/) | easy | SQL injection emoji poll bypass
+- [ProxyAsAService](https://7rocky.github.io/en/ctf/htb-challenges/web/proxyasaservice/) | easy | SSRF proxy bypass internal fetch
+- [baby interdimensional internet](https://7rocky.github.io/en/ctf/htb-challenges/web/baby-interdimensional-internet/) | easy | Python code injection eval escape
+- [baby ninja jinja](https://7rocky.github.io/en/ctf/htb-challenges/web/baby-ninja-jinja/) | easy | Jinja2 SSTI filter bypass
+- [baby CachedView](https://7rocky.github.io/en/ctf/htb-challenges/web/baby-cachedview/) | easy | SSRF cache fetch metadata
+- [baby website rick](https://7rocky.github.io/en/ctf/htb-challenges/web/baby-website-rick/) | easy | cookie tamper source disclosure
+- [baby todo or not todo](https://7rocky.github.io/en/ctf/htb-challenges/web/baby-todo-or-not-todo/) | easy | IDOR API todo enumeration
+- [Intergalactic Post](https://7rocky.github.io/en/ctf/htb-challenges/web/intergalactic-post/) | easy | SQLite injection union select
+- [BlinkerFluids](https://7rocky.github.io/en/ctf/htb-challenges/web/blinkerfluids/) | easy | HTML injection PDF RCE render
+- [Juggling facts](https://7rocky.github.io/en/ctf/htb-challenges/web/juggling-facts/) | easy | PHP type juggling loose compare bypass
+- [Spookifier](https://7rocky.github.io/en/ctf/htb-challenges/web/spookifier/) | easy | Mako SSTI template escape RCE
+- [Red Island](https://7rocky.github.io/en/ctf/htb-challenges/web/red-island/) | easy | SSRF image URL internal port
+- [Mutation Lab](https://7rocky.github.io/en/ctf/htb-challenges/web/mutation-lab/) | easy | CSS injection session forgery mutation
+- [Amidst Us](https://7rocky.github.io/en/ctf/htb-challenges/web/amidst-us/) | easy | Python pickle deserialization RCE
+- [Diogenes Rage](https://maddevs.io/writeups/hackthebox-diogenes-rage/) | easy | race condition coupon reuse abuse
+- [Weather App](https://s-3ntinel.github.io/hackthebox/challenges/web/weather_app/weather_app.html) | easy | SSRF weather API SQLi chain
+- [Insomnia](https://7rocky.github.io/en/ctf/htb-challenges/web/insomnia/) | medium | auth logic flaw session bypass
+- [jscalc](https://7rocky.github.io/en/ctf/htb-challenges/web/jscalc/) | medium | JS sandbox escape VM breakout
+- [OnlyHacks](https://7rocky.github.io/en/ctf/htb-challenges/web/onlyhacks/) | medium | SQLi IDOR profile leak
+- [Breaking Bank](https://7rocky.github.io/en/ctf/htb-challenges/web/breaking-bank/) | medium | JWT weak secret race transfer
+- [wafwaf](https://7rocky.github.io/en/ctf/htb-challenges/web/wafwaf/) | medium | WAF bypass SQLi encoding
+- [GhostlyTemplates](https://7rocky.github.io/en/ctf/htb-challenges/web/ghostlytemplates/) | medium | Go SSTI template injection RCE
+- [PumpkinSpice](https://7rocky.github.io/en/ctf/htb-challenges/web/pumpkinspice/) | medium | Python SSTI payload filter bypass
+- [Spellbound Servants](https://7rocky.github.io/en/ctf/htb-challenges/web/spellbound-servants/) | medium | PHP object injection gadget chain
+- [HauntMart](https://7rocky.github.io/en/ctf/htb-challenges/web/hauntmart/) | medium | SSRF internal admin service access
+- [0xBOverchunked](https://7rocky.github.io/en/ctf/htb-challenges/web/0xboverchunked/) | medium | chunked encoding SQLi WAF bypass
+- [Percetron](https://7rocky.github.io/en/ctf/htb-challenges/web/percetron/) | medium | ML model inversion extraction
+- [Testimonial](https://7rocky.github.io/en/ctf/htb-challenges/web/testimonial/) | medium | gRPC method enumeration injection
+- [Horror Feeds](https://7rocky.github.io/en/ctf/htb-challenges/web/horror-feeds/) | medium | SQLi plus stored XSS chain
+- [baby nginxatsu](https://7rocky.github.io/en/ctf/htb-challenges/web/baby-nginxatsu/) | medium | nginx misconfig LFI alias traversal
+- [Spiky Tamagotchi](https://7rocky.github.io/en/ctf/htb-challenges/web/spiky-tamagotchi/) | medium | SQLi session hijack tamagotchi
+- [Kryptos Support](https://7rocky.github.io/en/ctf/htb-challenges/web/kryptos-support/) | medium | XSS bot cookie exfiltration support
+- [baby breaking grad](https://7rocky.github.io/en/ctf/htb-challenges/web/baby-breaking-grad/) | medium | prototype pollution privilege escalation
+- [Orbital](https://7rocky.github.io/en/ctf/htb-challenges/web/orbital/) | medium | SQLi to LFI orbital chain
+- [Passman](https://7rocky.github.io/en/ctf/htb-challenges/web/passman/) | medium | GraphQL introspection password dump
+- [BatchCraft Potions](https://7rocky.github.io/en/ctf/htb-challenges/web/batchcraft-potions/) | medium | batch script injection Windows RCE
+- [baby WAFfles order](https://7rocky.github.io/en/ctf/htb-challenges/web/baby-waffles-order/) | medium | XXE order XML external entity
+- [Cursed Secret Party](https://7rocky.github.io/en/ctf/htb-challenges/web/cursed-secret-party/) | medium | stored XSS CSP bypass admin
+- [baby BoneChewerCon](https://7rocky.github.io/en/ctf/htb-challenges/web/baby-bonechewercon/) | medium | SSTI sandbox escape filter bypass
+- [RenderQuest](https://medium.com/@tanish.saxena26/hackthebox-renderquest-cf6c493d7b83) | medium | Go SSTI render injection RCE
+- [Labyrinth Linguist](https://medium.com/@rahulhoysala07/hack-the-box-web-challenge-labyrinth-linguist-a67d5005abe0) | medium | Velocity SSTI CVE-2020-13936 RCE
+- [CDNio](https://7rocky.github.io/en/ctf/htb-challenges/web/cdnio/) | hard | CDN cache poisoning deception bypass
+- [NeoVault](https://7rocky.github.io/en/ctf/htb-challenges/web/neovault/) | hard | Neo4j Cypher injection breakout
+- [PDFy](https://7rocky.github.io/en/ctf/htb-challenges/web/pdfy/) | hard | PDF SSRF internal render fetch
+- [AbuseHumanDB](https://7rocky.github.io/en/ctf/htb-challenges/web/abusehumandb/) | hard | XSS bot chain human DB
+- [ExpressionalRebel](https://7rocky.github.io/en/ctf/htb-challenges/web/expressionalrebel/) | hard | ReDoS expression injection DoS RCE
+- [TrapTrack](https://7rocky.github.io/en/ctf/htb-challenges/web/traptrack/) | hard | gopher SSRF Redis RCE
+- [Spybug](https://7rocky.github.io/en/ctf/htb-challenges/web/spybug/) | hard | API key leak stored XSS
+- [Didactic Octo Paddles](https://7rocky.github.io/en/ctf/htb-challenges/web/didactic-octo-paddles/) | hard | JWT none algorithm SSTI chain
+- [The Magic Informer](https://7rocky.github.io/en/ctf/htb-challenges/web/the-magic-informer/) | hard | SQLi plus prototype pollution chain
+- [Letter Dispair](https://7rocky.github.io/en/ctf/htb-challenges/web/letter-dispair/) | hard | XSS SSRF internal letter chain
+- [Userland City](https://7rocky.github.io/en/ctf/htb-challenges/web/userland-city/) | hard | multi-stage web exploitation chain
+- [Previous](https://0xdf.gitlab.io/2026/01/10/htb-previous.html) | medium | NextJS CVE-2025-29927 bypass directory traversal read
+- [Browsed](https://0xdf.gitlab.io/2026/03/28/htb-browsed.html) | medium | Chrome extension Flask headless RCE
+- [DevHub](https://0xdf.gitlab.io/2026/10/10/htb-devhub.html) | medium | MCPJam unauth RCE Jupyter token pivot
+- [Reactor](https://0xdf.gitlab.io/2026/10/03/htb-reactor.html) | medium | React2Shell deserialization SQLite crack Node-inspect
+- [SmartHire](https://0xdf.gitlab.io/2026/09/26/htb-smarthire.html) | medium | MLflow pickle deserialization sudo pth hijack
+- [Silentium](https://0xdf.gitlab.io/2026/09/12/htb-silentium.html) | medium | Flowise password-reset hijack JS Function RCE
+- [Nexus](https://0xdf.gitlab.io/2026/09/02/htb-nexus.html) | medium | Krayin upload webshell Gitea traversal write
+- [Cobblestone](https://0xdf.gitlab.io/2026/08/15/htb-cobblestone.html) | hard | second-order SQLi XSS Twig SSTI Cobbler
+- [CCTV](https://0xdf.gitlab.io/2026/07/11/htb-cctv.html) | easy | ZoneMinder blind SQLi motionEye command injection
+- [Orion](https://0xdf.gitlab.io/2026/07/14/htb-orion.html) | easy | Craft CMS object injection telnet auth bypass
+- [Pterodactyl](https://0xdf.gitlab.io/2026/05/16/htb-pterodactyl.html) | hard | locale traversal pearcmd webshell polkit mount
+- [MonitorsFour](https://0xdf.gitlab.io/2026/05/23/htb-monitorsfour.html) | hard | PHP type juggling Cacti rrdtool Docker API
+- [Dog](https://0xdf.gitlab.io/2025/07/12/htb-dog.html) | easy | Backdrop CMS webshell exfiltration privesc
+- [Code](https://0xdf.gitlab.io/2025/08/02/htb-code.html) | easy | Python sandbox escape Backy sudo abuse
+- [Titanic](https://0xdf.gitlab.io/2025/06/21/htb-titanic.html) | easy | Gitea leak Docker compose credential reuse
+- [Editorial](https://0xdf.gitlab.io/2024/10/19/htb-editorial.html) | easy | Python SSRF internal metadata exfiltration
+- [Sightless](https://0xdf.gitlab.io/2025/01/11/htb-sightless.html) | easy | SQLPad CVE-2022-0944 Python SSTI RCE
+- [Nocturnal](https://0xdf.gitlab.io/2025/08/16/htb-nocturnal.html) | easy | IDOR command injection password reuse shell
+- [Planning](https://0xdf.gitlab.io/2025/09/13/htb-planning.html) | easy | Grafana CVE-2024-9264 SQLi dump
+- [Sea](https://0xdf.gitlab.io/2024/12/21/htb-sea.html) | easy | WonderCMS CVE-2023-41425 XSS plugin RCE
+- [Usage](https://0xdf.gitlab.io/2024/08/10/htb-usage.html) | easy | Laravel blind SQLi admin hash crack
+- [Headless](https://0xdf.gitlab.io/2024/07/20/htb-headless.html) | easy | XSS admin cookie Flask hijack
+- [Perfection](https://0xdf.gitlab.io/2024/07/06/htb-perfection.html) | easy | Ruby SSTI newline injection RCE
+- [Codify](https://0xdf.gitlab.io/2024/04/06/htb-codify.html) | easy | Node vm2 escape CVE-2023-37903 RCE
+- [DUCTF24/co2](https://github.com/DownUnderCTF/Challenges_2024_Public/tree/main/web/co2) | easy | CO2 calculator SSTI, Jinja escape payload RCE
+- [DUCTF24/hah-got-em](https://github.com/DownUnderCTF/Challenges_2024_Public/tree/main/web/hah-got-em) | easy | got-em redirect open, XSS cookie steal admin
+- [DUCTF24/i-am-confusion](https://github.com/DownUnderCTF/Challenges_2024_Public/tree/main/web/i-am-confusion) | medium | confusion auth logic flaw, JWT confusion RS256-HS256
+- [DUCTF24/co2v2](https://github.com/DownUnderCTF/Challenges_2024_Public/tree/main/web/co2v2) | medium | CO2 v2 filter bypass, SSTI blacklist double-encode
+- [DUCTF24/sniffy](https://github.com/DownUnderCTF/Challenges_2024_Public/tree/main/web/sniffy) | easy | sniffy packet capture, pcap HTTP flag exfil find
+- [DUCTF24/waifu](https://github.com/DownUnderCTF/Challenges_2024_Public/tree/main/web/waifu) | medium | waifu image upload, polyglot bypass RCE shell
+- [DUCTF24/prisoner-processor](https://github.com/DownUnderCTF/Challenges_2024_Public/tree/main/web/prisoner-processor) | hard | processor template injection, sandbox escape worker exploit
+- [DUCTF23/cgi-fridays](https://github.com/DownUnderCTF/Challenges_2023_Public/tree/main/web/cgi-fridays) | easy | CGI shellshock env injection, header command exec
+- [DUCTF23/strapi-in](https://github.com/DownUnderCTF/Challenges_2023_Public/tree/main/web/strapi-in) | easy | Strapi CMS CVE auth bypass, admin RCE plugin
+- [DUCTF23/secureblog](https://github.com/DownUnderCTF/Challenges_2023_Public/tree/main/web/secureblog) | medium | secure blog XSS stored, CSP nonce steal exfil
+- [DUCTF23/smooth-jazz](https://github.com/DownUnderCTF/Challenges_2023_Public/tree/main/web/smooth-jazz) | medium | jazz desync HTTP smuggling, queue poison admin
+- [DUCTF23/0day-blog](https://github.com/DownUnderCTF/Challenges_2023_Public/tree/main/web/0day-blog) | hard | 0day blog SQLi to RCE, WAF bypass stacked queries
+- [Sekai24/tagless](https://github.com/project-sekai-ctf/sekaictf-2024/tree/main/web/tagless) | easy | tagless XSS without tags, event handler SVG vector
+- [Sekai24/funny-lfr](https://github.com/project-sekai-ctf/sekaictf-2024/tree/main/web/funny-lfr) | medium | funny LFR path traversal, proc self environ read
+- [Sekai24/intruder](https://github.com/project-sekai-ctf/sekaictf-2024/tree/main/web/intruder) | medium | intruder SSRF intranet, metadata leak cloud keys
+- [Sekai24/lookup](https://github.com/project-sekai-ctf/sekaictf-2024/tree/main/web/lookup) | hard | lookup GraphQL injection, introspection bypass data leak
+- [Sekai24/ndwpp](https://github.com/project-sekai-ctf/sekaictf-2024/tree/main/web/ndwpp) | hard | NDWPP PHP deserialization, phar pop chain RCE
+- [Sekai24/htmlsandbox](https://github.com/project-sekai-ctf/sekaictf-2024/tree/main/web/htmlsandbox) | hard | HTML sandbox iframe escape, postMessage origin confuse
+- [Sekai25/my-flask-app](https://github.com/project-sekai-ctf/sekaictf-2025/tree/main/web/my-flask-app) | easy | Flask session cookie forge, secret weak crack
+- [Sekai25/vite-dev](https://github.com/project-sekai-ctf/sekaictf-2025/tree/main/web/vite) | medium | Vite dev server FS leak, ?import traversal read flag
+- [Sekai25/hqli-me](https://github.com/project-sekai-ctf/sekaictf-2025/tree/main/web/hqli-me) | medium | HQL injection Hibernate, blind query exfiltrate
+- [Sekai25/notebook-viewer](https://github.com/project-sekai-ctf/sekaictf-2025/tree/main/web/notebook-viewer) | medium | Jupyter notebook viewer SSTI, cell magic escape
+- [Sekai25/rednote](https://github.com/project-sekai-ctf/sekaictf-2025/tree/main/web/rednote) | hard | rednote markdown XSS, DOMpurify bypass mutation
+- [Sekai25/canvas-contraption](https://github.com/project-sekai-ctf/sekaictf-2025/tree/main/web/captivating-canvas-contraption) | hard | canvas XSS shader, WebGL uniform injection run
+- [TJCTF24/frog](https://github.com/TJCSec/tjctf-2024-challenges/tree/main/web/frog) | easy | frog SQLi login bypass, OR-1=1 dump
+- [TJCTF24/reader](https://github.com/TJCSec/tjctf-2024-challenges/tree/main/web/reader) | easy | reader XXE file read, external entity flag path
+- [TJCTF24/fetcher](https://github.com/TJCSec/tjctf-2024-challenges/tree/main/web/fetcher) | easy | fetcher SSRF fetch, localhost port scan metadata
+- [TJCTF24/templater](https://github.com/TJCSec/tjctf-2024-challenges/tree/main/web/templater) | medium | templater SSTI Tornado, object subclass Popen chain
+- [TJCTF24/music-checkout](https://github.com/TJCSec/tjctf-2024-challenges/tree/main/web/music-checkout) | medium | checkout race price, integer logic discount abuse
+- [TJCTF24/topplecontainer](https://github.com/TJCSec/tjctf-2024-challenges/tree/main/web/topplecontainer) | medium | container escape topple, Docker socket mount RCE
+- [TJCTF24/kaboot](https://github.com/TJCSec/tjctf-2024-challenges/tree/main/web/kaboot) | medium | boot parameter injection, kernel cmdline flag read
+- [Patriot24/bdog-nom](https://github.com/MasonCompetitiveCyber/PatriotCTF2024/tree/main/web/bdog_nom) | easy | nom IDOR order, sequential ID enum flag
+- [Patriot24/domdom](https://github.com/MasonCompetitiveCyber/PatriotCTF2024/tree/main/web/dom) | medium | DOM clobbering XSS, form id override script
+- [Patriot24/impersonate](https://github.com/MasonCompetitiveCyber/PatriotCTF2024/tree/main/web/impersonate) | medium | impersonate auth header spoof, X-User bypass admin
+- [Patriot24/secret-door](https://github.com/MasonCompetitiveCyber/PatriotCTF2024/tree/main/web/secret_door) | medium | secret door hidden route, robots fuzz discover
+- [Patriot23/flower-shop](https://github.com/MasonCompetitiveCyber/PatriotCTF2023/tree/main/Web/FlowerShop) | easy | flower shop SQLi cart, union select dump
+- [Patriot23/checkmate](https://github.com/MasonCompetitiveCyber/PatriotCTF2023/tree/main/Web/checkmate) | medium | checkmate chess API IDOR, move validation bypass
+- [HKCERT24/custom-server-1](https://github.com/hkcert-ctf/CTF-Challenges/tree/main/CTF-2024/02a-custom-server-1) | easy | custom HTTP server smuggling, CL-TE desync probe
+- [HKCERT24/custom-server-2](https://github.com/hkcert-ctf/CTF-Challenges/tree/main/CTF-2024/02b-custom-server-2) | medium | chunked parser differential, poison socket read flag
+- [HKCERT24/new-free-lunch](https://github.com/hkcert-ctf/CTF-Challenges/tree/main/CTF-2024/08-new-free-lunch) | easy | free lunch IDOR coupon, replay redeem abuse
+- [HKCERT24/minictf-1](https://github.com/hkcert-ctf/CTF-Challenges/tree/main/CTF-2024/16a-minictf-1) | medium | mini CTF JWT weak secret, brute force forge admin
+- [HKCERT24/zap-electric](https://github.com/hkcert-ctf/CTF-Challenges/tree/main/CTF-2024/17-zap) | hard | zap websocket race, message order hijack admin
+- [HKCERT24/chimera-web](https://github.com/hkcert-ctf/CTF-Challenges/tree/main/CTF-2024/25-chimera) | hard | chimera polyglot upload, GIF-JS MIME confuse CSP
+- [HKCERT24/webpage-to-pdf-1](https://github.com/hkcert-ctf/CTF-Challenges/tree/main/CTF-2024/52a-webpage-to-pdf-1) | easy | PDF SSRF renderer, file read via HTML inject
+- [HKCERT24/jspyaml](https://github.com/hkcert-ctf/CTF-Challenges/tree/main/CTF-2024/62-jspyaml) | hard | JSP YAML deserialization, SnakeYAML gadget RCE chain
+- [corCTF25/corservices-analyzer](https://github.com/Crusaders-of-Rust/corctf-2025-public-challenge-repo/tree/master/pwn/corservices-analyzer) | medium | analyzer SSRF WASM, service mesh header spoof
+- [scriptCTF25/Web-Vault](https://github.com/scriptCTF/scriptCTF2025-OfficialWriteups/tree/main/Web) | medium | web vault prototype pollution, __proto__ admin override
+- [SSTI1 picoCTF 2025](https://medium.com/@seowliyang/ctf-writeup-picoctf-2025-ssti1-2d1237f37442) | easy | test `{{7*7}}`, Jinja2 RCE via subclass chain, read flag file
+- [SSTI picoCTF 2025](https://medium.com/@sameerimr384/picoctf-2025-ssti-server-side-template-injection-challenge-writeup-62c78ac03185) | easy | confirm 49 render, traverse objects to os popen cat
+- [SSTI1 Kamal](https://medium.com/@Kamal_S/picoctf-web-exploitation-ssti1-e2363b1885a) | easy | reflected announce param, Jinja probe then SSTI RCE payload
+- [SSTI mihasha](https://medium.com/@mihasha/ssti-1-write-up-picoctf-2025-8574005a93ba) | easy | input reflection check, Jinja exec, exfiltrate server flag
+- [SSTI1 Ahmed](https://medium.com/@ahmedsa3edo/ctf-day-12-df893a7035fe) | easy | identify engine arithmetically, craft tailored RCE payload
+- [SSTI exploit](https://medium.com/@routbiswajit70681/write-up-exploiting-ssti-to-retrieve-the-flag-in-picoctf-fe3088aee62b) | easy | `{{7*7}}` check, request globals import os command
+- [SSTI1 ABD](https://medium.com/@abdelrahmanaladwani03/writeup-ssti1-server-side-template-injection-3cccb280e00a) | easy | hint-driven SSTI test, file read payload chain
+- [SSTI1 SSTI2 Om](https://medium.com/@om.fulsundar.7370/ssti1-ssti2-picoctf-writeup-d0aeae83a50c) | easy | compare filtered versus unfiltered announce endpoint behavior
+- [SSTI2 fulcrum](https://medium.com/@fulcrum01/ssti-2-picoctf-medium-challenge-ec68d8f0d1bb) | medium | bypass sanitizer after SSTI1 logic, filtered RCE
+- [SSTI2 Kheyral](https://medium.com/@kheyraldhs12/picoctf-2025-ssti2-a047c0c5887a) | medium | analyze description filter, probe blocked payload responses
+- [SSTI2 Sameer](https://medium.com/@sameerimr384/picoctf-2025-ssti2-exploitation-writeup-2e5f03167298) | medium | hex-encoded underscores bypass filter to builtins import
+- [SSTI2 Arya](https://aryamahesa.medium.com/picoctf-ssti2-write-up-2025-4688e4b340fb) | medium | lazy payload iteration against blacklist, RCE chain
+- [Pachinko Divyanshu](https://medium.com/@divyanshurds.kumar/writeup-picoctf-2025-pachinko-2dcb85b3202f) | medium | intercept check request, Burp Intruder enumerate circuit IDs
+- [Crack Gate 1](https://medium.com/@waltermoar/writeup-for-picoctf-challenge-crack-the-gate-1-00049b0d28f3) | easy | ROT13 decode credential, tamper HTTP headers bypass portal
+- [WolvCTF Limited](https://medium.com/@zzzmilky/wolvctf-2025-writeups-497b68e8ad2e) | medium | SQL source review, varied flag file locations enumeration
+- [NahamCon Madness](https://medium.com/@Debug_4n6/nahamcon-ctf-2025-writeups-9814a488eed5) | medium | method madness web reasoning, source plus request manipulation
+- [NahamCon 25](https://medium.com/@nikhilc2209/nahamcon-ctf-25-writeup-e96b7ffff33d) | medium | coursework-paced web walkthrough, endpoint and logic review
+- [SSTI1 Denis](https://www.deniswambold.com/writeups/ssti1/) | easy | hypothesis reflected XSS versus SSTI, Jinja confirm exploit
+- [SSTI2 EhChris](https://ehchris.com/blog/picoctf-ssti2-writeup) | medium | aggressive filter bypass dots braces quotes underscores blocked
+- [SSTI2 cbarkr](https://blog.cbarkr.com/ctf/picoCTF/2025/SSTI2) | medium | reuse SSTI1 engine fingerprint, adapt filtered payload chain
+- [SSTI2 Venax](https://ameera-chan.github.io/writeups/07-03-2025-picoCTF/SSTI2.html) | medium | blacklist weakness analysis, alternative encoding RCE
+- [SSTI trkh](https://dev.to/00xtrkh/how-i-solved-a-server-side-template-injection-challenge-picoctf-write-up-mb9) | easy | Flask announce reflection to SSTI RCE narrative
+- [Talk Tuah](https://siunam321.github.io/ctf/NahamCon-CTF-2025/) | medium | ARESx web challenge request analysis and exploit
+- [My Flask App](https://ummit.dev/ctf/writeups/sekai-ctf-2025) | medium | LFI plus Docker filesystem analysis container escape
+- [Sekai jiegec](https://jia.je/ctf-writeups/2025-08-16-sekaictf2025/index.html) | hard | Flask SSSS review, sanity check plus missed challenges
+
+## batch 2026-10-17-browser-swarm (479 rows, 229 easy)
+
+- [Hashgate-pico2026](https://ummit.dev/ctf/writeups/picoctf-2026#hashgate) | easy | MD5(ID) IDOR enumerate IDs 2980-3050 compute hash fetch admin
+- [Sql-Map1-pico2026](https://ummit.dev/ctf/writeups/picoctf-2026#sql-map1) | easy | Authenticated SQLite UNION sqlite_master dump users crack MD5 login
+- [No-FA-pico2026](https://ummit.dev/ctf/writeups/picoctf-2026#no-fa) | easy | Flask signed session base64 decode leak otp_secret replay 2FA
+- [No-FA-variant](https://cyb3r-bo1.github.io/posts/picoCTF_2026_writeup/#no-fa) | easy | users.db SHA256 rockyou crack admin session OTP reuse
+- [ORDER-ORDER-pico2026](https://cyb3r-bo1.github.io/posts/picoCTF_2026_writeup/#order-order) | medium | Second-order SQLi stored username UNION report CSV exfiltrate flag
+- [My-Flask-App-sekai2025](https://ummit.dev/ctf/writeups/sekai-ctf-2025#my-flask-app) | easy | LFI view filename proc mounts leak random flag mount path
+- [Talk-Tuah-naham2025](https://siunam321.github.io/ctf/NahamCon-CTF-2025/Web/Talk-Tuah/) | medium | FFmpeg episode_name path traversal TOCTOU race hijack subprocess import
+- [SNAD-naham2025](https://medium.com/@syed_dawood/nahamcon-ctf-2025-web-challenges-writeups-aad86461ca30#snad) | easy | SSTI probe math eval RCE via template injection
+- [Infinite-Queue-naham2025](https://medium.com/@syed_dawood/nahamcon-ctf-2025-web-challenges-writeups-aad86461ca30#infinite-queue) | medium | Queue logic abuse race condition job poll flag leak
+- [TMCB-naham2025](https://medium.com/@syed_dawood/nahamcon-ctf-2025-web-challenges-writeups-aad86461ca30#tmcb) | easy | Cookie role tamper user-to-admin insecure direct object
+- [NoSequel-naham2025](https://medium.com/@nikhilc2209/nahamcon-ctf-25-writeup-e96b7ffff33d#nosequel) | easy | NoSQL $ne auth bypass Mongo operator injection login
+- [NoSequel-debug](https://medium.com/@Debug_4n6/nahamcon-ctf-2025-writeups-9814a488eed5#nosequel) | easy | Express Mongo bypass 302 vs 401 session cookie SSTI chain
+- [The-Mission-naham2025](https://v1krammm.medium.com/nahamcon-ctf-2025-the-mission-b16d4f3279e4) | hard | Multi-flag bugbounty chain XSS IDOR SSRF RCE narrative
+- [Advanced-Screening-naham2025](https://theankanroy.medium.com/nahamcon-ctf-2025-easy-challenges-writeup-f3653f0e0e27#advanced-screening) | medium | Header spoof screening bypass logic flaw enumeration
+- [SSTI2-pico2025-mayemaye](https://medium.com/@mayemaye/picoctf-writeup-ssti-2-server-side-template-injection-a9e51d8d679a) | medium | Jinja attr hex-encode bypass dot underscore blacklist popen cat
+- [SSTI2-pico2025-ehchris](https://www.ehchris.com/blog/picoctf-ssti2-writeup) | medium | Flask config class init globals os popen output filter evasion
+- [SSTI2-pico2025-mrx](https://medium.com/@redaomar963/picoctf-2025-ssti-2-challenge-write-up-75a97b89e8c7) | medium | Confirm 7*7 Jinja then attr chain RCE ls flag
+- [Do-Not-Disturb-hh2026](https://medium.com/@sivadathvaliyavila/do-not-disturb-tryhackme-room-writeup-9dc003a41fda) | medium | NoSQL $ne bypass Node SSTI execSync reverse shell disk debugfs
+- [Limited-1-wolv2025](https://medium.com/@zzzmilky/wolvctf-2025-writeups-497b68e8ad2e#limited-1) | medium | SQLi INFORMATION_SCHEMA.PROCESSLIST retrieve own query hardcoded flag
+- [Limited-2-wolv2025](https://medium.com/@zzzmilky/wolvctf-2025-writeups-497b68e8ad2e#limited-2) | medium | SQLi second table UNION error-based extraction flag table
+- [Limited-3-wolv2025](https://medium.com/@zzzmilky/wolvctf-2025-writeups-497b68e8ad2e#limited-3) | medium | mysql.user authentication_string dump hashcat rockyou crack 13-char
+- [Javascript-Puzzle-wolv2025](https://zenc.my.id/blog/wolvctf-2025/wolv-general#javascript-puzzle) | easy | JS obfuscation deminify logic reverse client-side flag assemble
+- [Lost-2-wolv2025](https://dree.blog/posts/wolvctf-2025-individual/#lost-2) | medium | Author challenge logic bypass enumeration source review exploit
+- [crawl-gaslight2026](https://cyb3r-bo1.github.io/posts/gaslightCTF_2026_writeup/#crawl-416) | easy | robots.txt Disallow endpoint chain _flag LLM prompt ignore
+- [corridors-gaslight2026](https://cyb3r-bo1.github.io/posts/gaslightCTF_2026_writeup/#corridors-458) | medium | Automate l/r maze correct path binary decode ASCII flag
+- [404-Found-script2026](https://cyb3r-bo1.github.io/posts/scriptCTF_2026_writeup/#404-found) | easy | robots.txt the-best-robot direct visit flag disclosure
+- [rusty-proxy-bits2026](https://cyb3r-bo1.github.io/posts/BITSCTF_2026_writeup/#rusty-proxy) | medium | Rust proxy raw path check percent-encode adm69n Flask normalize bypass
+- [Echoes-Runtime-cloudsek2026](https://cyb3r-bo1.github.io/posts/cloudsek__ctf_2026_writeup/#echoes-of-runtime-web---100) | medium | Spring actuator heapdump strings PAT GitHub GitLab env flag
+- [Internal-Affairs-1-cloudsek2026](https://cyb3r-bo1.github.io/posts/cloudsek__ctf_2026_writeup/#internal-affairs---1-web---100) | easy | Vhost fuzz php filter LFI sqlite MD5 john login CMS
+- [Internal-Affairs-2-cloudsek2026](https://cyb3r-bo1.github.io/posts/cloudsek__ctf_2026_writeup/#internal-affairs---2-web---200) | hard | getimagesize phar deserialization upload jpg gadget passthru RCE
+- [Vuln-Exploitation-knight2026](https://cyb3r-bo1.github.io/posts/knightctf-2026_writeup/#vulnerability-exploitation) | easy | PCAP WordPress plugin Social-Warfare version CVE RCE identify
+- [Exploitation-knight2026](https://cyb3r-bo1.github.io/posts/knightctf-2026_writeup/#exploitation) | easy | PCAP HTTP headers WP REST version username kadmin_user correlate
+- [Open-Sesame-bugcrowd2025](https://medium.com/@4bh1-md/bugcrowds-blackhat-usa-ctf-writeup-fc28adef7ea9#open-sesame) | easy | Cookie role user-to-admin edit refresh admin flag
+- [Overbank-bugcrowd2025](https://medium.com/@4bh1-md/bugcrowds-blackhat-usa-ctf-writeup-fc28adef7ea9#overbank) | easy | Integer overflow deposit wrap negative Burp disabled button DOM
+- [Dependency-Dilemma-bugcrowd2025](https://medium.com/@4bh1-md/bugcrowds-blackhat-usa-ctf-writeup-fc28adef7ea9#dependency-dilemma) | easy | GitHub history older commit flag failed init error source
+- [Shape-Shifter-bugcrowd2025](https://medium.com/@4bh1-md/bugcrowds-blackhat-usa-ctf-writeup-fc28adef7ea9#shape-shifter) | medium | Unicode homograph admin registration bypass is_admin flag endpoint
+- [Room404-hh-day2](https://medium.com/@Zyhomlay/hacker-holidays-write-up-4d7f26737fb0#room-404-day-2) | easy | Directory brute 404 hidden endpoint source review flag
+- [Concierge-Day1-hh2026](https://medium.com/@Zyhomlay/hacker-holidays-write-up-4d7f26737fb0#the-concierge-knows-too-much-day-1) | easy | Direct prompt injection system prompt leak tool abuse
+- [Complimentary-hh-day3](https://dhanushnehru.medium.com/list/tryhackme-walkthroughs-hacker-holidays-2026-2a4c4e1e9924#complimentary) | medium | Wellness app AWS keys dump database misconfig chain

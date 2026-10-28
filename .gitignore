@@ -1,0 +1,31 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+
+# Runtime / event data
+events/
+runs/
+*.sqlite3
+*.sqlite3-wal
+*.sqlite3-shm
+flags/
+
+# Browser and session artifacts
+.playwright-mcp/
+.browser-profile/
+.browser-profile-mcp/
+downloads/_staging/
+
+# Credentials and local state
+.env
+.env.*
+.creds*
+state.json.bak
+.state.lock
+challenges/_answer_evidence.json
+
+# OS noise
+.DS_Store
+Thumbs.db

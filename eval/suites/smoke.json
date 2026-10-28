@@ -1,0 +1,4 @@
+{
+  "name": "smoke",
+  "tasks": ["base64", "caesar", "xor", "strings"]
+}

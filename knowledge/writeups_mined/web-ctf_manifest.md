@@ -1,0 +1,428 @@
+# Web-CTF Writeups Mined — Manifest (technique-only, no flags, no live targets)
+
+> Method: WebSearch (25+ queries, 2022-2026 hard web) + WebFetch (deep reads) + GitHub API tree + raw fetch classification.
+> Every URL below was returned by search/fetch (ctftime, GitHub, team blogs, PortSwigger labs applied in CTFs).
+> Easy/trivial excluded (no plain-strings, no single-payload SQLi without twist). Hard primarily, some medium.
+> Technique chains are 1-line notes extracted from excerpts/fetches. No flag values, no live challenge hosts.
+
+## Batch A — daffainfo/ctf-writeup solid-web (raw-fetched, keyword-verified)
+- [2023/the Injection](https://github.com/daffainfo/ctf-writeup/blob/main/2023/0ByteCTF%202023/the%20Injection/README.md) | medium | sql injection+php+rce chain (verified via raw fetch)
+- [2023/Bruh](https://github.com/daffainfo/ctf-writeup/blob/main/2023/0xL4ugh%20CTF%202023/Bruh%202/README.md) | medium | sqli+php chain (verified via raw fetch)
+- [2023/Bruh](https://github.com/daffainfo/ctf-writeup/blob/main/2023/0xL4ugh%20CTF%202023/Bruh/README.md) | medium | sqli+php chain (verified via raw fetch)
+- [2023/XSS 1](https://github.com/daffainfo/ctf-writeup/blob/main/2023/0xL4ugh%20CTF%202023/XSS%201/README.md) | medium | xss+upload+php chain (verified via raw fetch)
+- [2023/Bug Bank](https://github.com/daffainfo/ctf-writeup/blob/main/2023/1337UP%20LIVE%20CTF/Bug%20Bank/README.md) | hard | graphql+rce chain (verified via raw fetch)
+- [2023/Pizza Time](https://github.com/daffainfo/ctf-writeup/blob/main/2023/1337UP%20LIVE%20CTF/Pizza%20Time/README.md) | hard | ssti+rce chain (verified via raw fetch)
+- [2023/Blue's Clues 7/8: Tunnel](https://github.com/daffainfo/ctf-writeup/blob/main/2023/24h%40CTF%202023/Blue%27s%20Clues%207%20Tunnel/README.md) | medium | upload chain (verified via raw fetch)
+- [2023/SadQL](https://github.com/daffainfo/ctf-writeup/blob/main/2023/ASC%20Cyber%20Wargames%20Qualification%202023/SadQL/README.md) | medium | sqli+sql injection+php chain (verified via raw fetch)
+- [2023/Was it Vulnerable?](https://github.com/daffainfo/ctf-writeup/blob/main/2023/BDSec%20CTF%202023/Was%20it%20Vulnerable/README.md) | medium | sqli+php+idor chain (verified via raw fetch)
+- [2023/Just Cat The Flask 1/2](https://github.com/daffainfo/ctf-writeup/blob/main/2023/BlueHens%20CTF%202023/Just%20Cat%20The%20Flask%201/README.md) | hard | ssti+flask+jinja chain (verified via raw fetch)
+- [2023/Super Admin](https://github.com/daffainfo/ctf-writeup/blob/main/2023/BlueHens%20CTF%202023/Super%20Admin/README.md) | medium | jwt+rce chain (verified via raw fetch)
+- [2023/Auth](https://github.com/daffainfo/ctf-writeup/blob/main/2023/Bucket%20CTF%202023/Auth/README.md) | medium | jwt+rce chain (verified via raw fetch)
+- [2023/gif](https://github.com/daffainfo/ctf-writeup/blob/main/2023/Bucket%20CTF%202023/gif/README.md) | medium | upload+php chain (verified via raw fetch)
+- [2023/Text Adventure API](https://github.com/daffainfo/ctf-writeup/blob/main/2023/Buckeye%20CTF%202023/Text%20Adventure%20API/README.md) | medium | upload+flask+rce chain (verified via raw fetch)
+- [2023/Hypercraft](https://github.com/daffainfo/ctf-writeup/blob/main/2023/Business%20CTF%202023%20The%20Great%20Escape/Hypercraft/README.md) | medium | php+waf chain (verified via raw fetch)
+- [2023/BxMCTF 2023](https://github.com/daffainfo/ctf-writeup/blob/main/2023/BxMCTF%202023/README.md) | medium | lfi chain (verified via raw fetch)
+- [2023/Selfie](https://github.com/daffainfo/ctf-writeup/blob/main/2023/BxMCTF%202023/Selfie/README.md) | medium | lfi chain (verified via raw fetch)
+- [2023/Username Decorator](https://github.com/daffainfo/ctf-writeup/blob/main/2023/BxMCTF%202023/Username%20Decorator/README.md) | hard | ssti chain (verified via raw fetch)
+- [2023/Such popular, much wow](https://github.com/daffainfo/ctf-writeup/blob/main/2023/CCCamp%202023/Such%20popular%2C%20much%20wow/README.md) | medium | xss chain (verified via raw fetch)
+- [2023/Smug-Dino](https://github.com/daffainfo/ctf-writeup/blob/main/2023/CSAW%20CTF%20Qualification%20Round%202023/Smug-Dino/README.md) | hard | smuggl chain (verified via raw fetch)
+- [2023/Noctchill DB](https://github.com/daffainfo/ctf-writeup/blob/main/2023/CTF%20ARA%202023/Noctchill%20DB/README.md) | hard | ssti chain (verified via raw fetch)
+- [2023/CTF After Dark - Winter 2023](https://github.com/daffainfo/ctf-writeup/blob/main/2023/CTF%20After%20Dark%20-%20Winter%202023/README.md) | medium | sqli+lfi chain (verified via raw fetch)
+- [2023/SQL Prevention-101](https://github.com/daffainfo/ctf-writeup/blob/main/2023/CTF%20After%20Dark%20-%20Winter%202023/SQL%20Prevention-101/README.md) | medium | sql injection chain (verified via raw fetch)
+- [2023/UREL-EX2S](https://github.com/daffainfo/ctf-writeup/blob/main/2023/CTF%20Secur%7Bi%7De%20The%20System/UREL-EX2S/README.md) | medium | xss chain (verified via raw fetch)
+- [2023/Encrypt10n (2)](https://github.com/daffainfo/ctf-writeup/blob/main/2023/CrewCTF%202023/Encrypt10n%20%282%29/README.md) | medium | upload chain (verified via raw fetch)
+- [2023/Critical Flight](https://github.com/daffainfo/ctf-writeup/blob/main/2023/Cyber%20Apocalypse%202023%20The%20Cursed%20Mission/Critical%20Flight/README.md) | medium | upload chain (verified via raw fetch)
+- [2023/Hijack](https://github.com/daffainfo/ctf-writeup/blob/main/2023/Cyber%20Apocalypse%202023%20The%20Cursed%20Mission/Hijack/README.md) | hard | deserial+upload chain (verified via raw fetch)
+- [2023/Magic 1](https://github.com/daffainfo/ctf-writeup/blob/main/2023/Cyber%20Jawara%202023%20-%20Umum/Magic%201/README.md) | medium | upload chain (verified via raw fetch)
+- [2023/A Good Vue](https://github.com/daffainfo/ctf-writeup/blob/main/2023/CyberSecurityRumble%20Quals/A%20Good%20Vue/README.md) | medium | xss chain (verified via raw fetch)
+- [2023/ChapGPyT](https://github.com/daffainfo/ctf-writeup/blob/main/2023/CyberSecurityRumble%20Quals/ChapGPyT/README.md) | hard | ssti+upload chain (verified via raw fetch)
+- [2023/Dante Barber Shop](https://github.com/daffainfo/ctf-writeup/blob/main/2023/DanteCTF%202023/Dante%20Barber%20Shop/README.md) | medium | sqli+sql injection+nosql chain (verified via raw fetch)
+- [2023/Dumb Admin](https://github.com/daffainfo/ctf-writeup/blob/main/2023/DanteCTF%202023/Dumb%20Admin/README.md) | medium | sql injection+upload chain (verified via raw fetch)
+- [2023/Mastermind](https://github.com/daffainfo/ctf-writeup/blob/main/2023/DeconstruCT.F%202023/Mastermind/README.md) | medium | upload chain (verified via raw fetch)
+- [2023/Very Basic](https://github.com/daffainfo/ctf-writeup/blob/main/2023/DeconstruCT.F%202023/Very%20Basic/README.md) | hard | ssrf chain (verified via raw fetch)
+- [2023/boze](https://github.com/daffainfo/ctf-writeup/blob/main/2023/DefCamp%20Capture%20the%20Flag%20%28D-CTF%29%202023%20Quals/boze/README.md) | hard | ssti chain (verified via raw fetch)
+- [2023/Old](https://github.com/daffainfo/ctf-writeup/blob/main/2023/EKOPARTY%20CTF%202023/Old/README.md) | medium | sqli+sql injection chain (verified via raw fetch)
+- [2023/inspect](https://github.com/daffainfo/ctf-writeup/blob/main/2023/Foobar%20CTF%202023/inspect/README.md) | hard | graphql chain (verified via raw fetch)
+- [2023/fancy-page](https://github.com/daffainfo/ctf-writeup/blob/main/2023/HSCTF%202023/fancy-page/README.md) | medium | xss chain (verified via raw fetch)
+- [2023/HackerChat](https://github.com/daffainfo/ctf-writeup/blob/main/2023/Hackpack%20CTF%202023/HackerChat/README.md) | medium | sqli+sql injection+jwt chain (verified via raw fetch)
+- [2023/Wolfhowl](https://github.com/daffainfo/ctf-writeup/blob/main/2023/Hackpack%20CTF%202023/WolfHowl/README.md) | medium | sql injection chain (verified via raw fetch)
+- [2023/Idoriot](https://github.com/daffainfo/ctf-writeup/blob/main/2023/ImaginaryCTF%202023/Idoriot/README.md) | medium | sqli+idor chain (verified via raw fetch)
+- [2023/Feeling Tagged](https://github.com/daffainfo/ctf-writeup/blob/main/2023/IrisCTF%202023/Feeling%20Tagged/README.md) | medium | xss chain (verified via raw fetch)
+- [2023/Stickers](https://github.com/daffainfo/ctf-writeup/blob/main/2023/NahamCon%20CTF%202023/Stickers/README.md) | hard | ssrf chain (verified via raw fetch)
+- [2023/Galleria](https://github.com/daffainfo/ctf-writeup/blob/main/2023/NewportBlakeCTF%202023/Galleria/README.md) | medium | upload chain (verified via raw fetch)
+- [2023/secret tunnel](https://github.com/daffainfo/ctf-writeup/blob/main/2023/NewportBlakeCTF%202023/secret%20tunnel/README.md) | hard | ssrf chain (verified via raw fetch)
+- [2023/walter's crystal shop](https://github.com/daffainfo/ctf-writeup/blob/main/2023/NewportBlakeCTF%202023/walter%27s%20crystal%20shop/README.md) | medium | sqli+sql injection chain (verified via raw fetch)
+- [2023/spice](https://github.com/daffainfo/ctf-writeup/blob/main/2023/OmWars%20CTF%202023%20Quals/spice/README.md) | medium | sqli+jwt chain (verified via raw fetch)
+- [2023/Pickle Store](https://github.com/daffainfo/ctf-writeup/blob/main/2023/RITSEC%20CTF%202023/Pickle%20Store/README.md) | hard | deserial chain (verified via raw fetch)
+- [2023/🎓Throw your malware here!](https://github.com/daffainfo/ctf-writeup/blob/main/2023/SEETF%202023/%F0%9F%8E%93Throw%20your%20malware%20here%21/README.md) | medium | upload chain (verified via raw fetch)
+- [2023/flagcopy](https://github.com/daffainfo/ctf-writeup/blob/main/2023/Security%20Fest%20CTF%202023/flagcopy/README.md) | medium | upload chain (verified via raw fetch)
+- [2023/legacy](https://github.com/daffainfo/ctf-writeup/blob/main/2023/Security%20Fest%20CTF%202023/legacy/README.md) | medium | xss chain (verified via raw fetch)
+- [2023/legacyversion2](https://github.com/daffainfo/ctf-writeup/blob/main/2023/Security%20Fest%20CTF%202023/legacyversion2/README.md) | medium | xss chain (verified via raw fetch)
+- [2023/A new hope](https://github.com/daffainfo/ctf-writeup/blob/main/2023/SpringForwardCTF%202023/A%20new%20hope/README.md) | hard | xxe chain (verified via raw fetch)
+- [2023/Spongeweb](https://github.com/daffainfo/ctf-writeup/blob/main/2023/Srdnlen%20CTF%202023/Spongeweb/README.md) | medium | sqli+sql injection+xss chain (verified via raw fetch)
+- [2023/BeepBoop Blog](https://github.com/daffainfo/ctf-writeup/blob/main/2023/SunshineCTF%202023/BeepBoop%20Blog/README.md) | medium | idor chain (verified via raw fetch)
+- [2023/BeepBoop Cryptography](https://github.com/daffainfo/ctf-writeup/blob/main/2023/SunshineCTF%202023/BeepBoop%20Cryptography/README.md) | medium | upload chain (verified via raw fetch)
+- [2023/beep-boop-robot](https://github.com/daffainfo/ctf-writeup/blob/main/2023/TJCTF%202023/beep-boop-robot/README.md) | medium | upload chain (verified via raw fetch)
+- [2023/outdated](https://github.com/daffainfo/ctf-writeup/blob/main/2023/TJCTF%202023/outdated/README.md) | medium | upload chain (verified via raw fetch)
+- [2023/swill-squill](https://github.com/daffainfo/ctf-writeup/blob/main/2023/TJCTF%202023/swill-squill/README.md) | medium | sql injection+jwt chain (verified via raw fetch)
+- [2023/Bad Waf No Donut](https://github.com/daffainfo/ctf-writeup/blob/main/2023/Tenable%20CTF%202023/Bad%20Waf%20No%20Donut/README.md) | medium | waf chain (verified via raw fetch)
+- [2023/Tenable CTF 2023](https://github.com/daffainfo/ctf-writeup/blob/main/2023/Tenable%20CTF%202023/README.md) | medium | waf chain (verified via raw fetch)
+- [2023/facegram](https://github.com/daffainfo/ctf-writeup/blob/main/2023/The%20Cyber%20Cooperative%20CTF/facegram/README.md) | medium | sql injection+upload chain (verified via raw fetch)
+- [2023/grayboard](https://github.com/daffainfo/ctf-writeup/blob/main/2023/The%20Cyber%20Cooperative%20CTF/grayboard/README.md) | medium | xss chain (verified via raw fetch)
+- [2023/inbox](https://github.com/daffainfo/ctf-writeup/blob/main/2023/The%20Cyber%20Cooperative%20CTF/inbox/README.md) | medium | sqli+sql injection chain (verified via raw fetch)
+- [2023/Black Pandora](https://github.com/daffainfo/ctf-writeup/blob/main/2023/The%20Odyssey%20CTF/Black%20Pandora/README.md) | medium | upload chain (verified via raw fetch)
+- [2023/Tengu In Colosseum](https://github.com/daffainfo/ctf-writeup/blob/main/2023/The%20Odyssey%20CTF/Tengu%20In%20Colosseum/README.md) | medium | sqli chain (verified via raw fetch)
+- [2023/What email address is setup on com.android.email service](https://github.com/daffainfo/ctf-writeup/blob/main/2023/VU%20CYBERTHON%202023/What%20email%20address%20is%20setup%20on%20com.android.email%20service/README.md) | medium | sqli chain (verified via raw fetch)
+- [2023/What is the name of WhatsApp user which has phone number +37](https://github.com/daffainfo/ctf-writeup/blob/main/2023/VU%20CYBERTHON%202023/What%20is%20the%20name%20of%20WhatsApp%20user%20which%20has%20phone%20number%20%2B37062166565/README.md) | medium | sqli chain (verified via raw fetch)
+- [2023/What is the name of the username telegram](https://github.com/daffainfo/ctf-writeup/blob/main/2023/VU%20CYBERTHON%202023/What%20is%20the%20name%20of%20the%20username%20telegram/README.md) | medium | sqli chain (verified via raw fetch)
+- [2023/What tank specs the user was looking for](https://github.com/daffainfo/ctf-writeup/blob/main/2023/VU%20CYBERTHON%202023/What%20tank%20specs%20the%20user%20was%20looking%20for/README.md) | medium | sqli chain (verified via raw fetch)
+- [2023/What web address was provided for a company that can rent ca](https://github.com/daffainfo/ctf-writeup/blob/main/2023/VU%20CYBERTHON%202023/What%20web%20address%20was%20provided%20for%20a%20company%20that%20can%20rent%20cargo%20planes/README.md) | medium | sqli chain (verified via raw fetch)
+- [2023/spooky](https://github.com/daffainfo/ctf-writeup/blob/main/2023/VishwaCTF%202023/spooky/README.md) | medium | nosql chain (verified via raw fetch)
+- [2023/Extract Service 1](https://github.com/daffainfo/ctf-writeup/blob/main/2023/WaniCTF%202023/Extract%20Service%201/README.md) | medium | upload chain (verified via raw fetch)
+- [2023/Image Gallery](https://github.com/daffainfo/ctf-writeup/blob/main/2023/niteCTF%202023/Image%20Gallery/README.md) | medium | sqli+sql injection chain (verified via raw fetch)
+- [2023/LiteLibrary](https://github.com/daffainfo/ctf-writeup/blob/main/2023/niteCTF%202023/LiteLibrary/README.md) | medium | sqli+sql injection chain (verified via raw fetch)
+- [2023/Matryoshka](https://github.com/daffainfo/ctf-writeup/blob/main/2023/niteCTF%202023/Matryoshka/README.md) | medium | upload chain (verified via raw fetch)
+- [2023/Mini Survey](https://github.com/daffainfo/ctf-writeup/blob/main/2023/niteCTF%202023/Mini%20Survey/README.md) | hard | prototype pollution chain (verified via raw fetch)
+- [2023/picoCTF 2023](https://github.com/daffainfo/ctf-writeup/blob/main/2023/picoCTF%202023/README.md) | medium | sqli chain (verified via raw fetch)
+- [2023/SOAP](https://github.com/daffainfo/ctf-writeup/blob/main/2023/picoCTF%202023/SOAP/README.md) | hard | xxe chain (verified via raw fetch)
+- [2023/hard-work](https://github.com/daffainfo/ctf-writeup/blob/main/2023/pingCTF%202023/hard-work/README.md) | medium | upload chain (verified via raw fetch)
+- [2023/i-see-no-vulnerability](https://github.com/daffainfo/ctf-writeup/blob/main/2023/pingCTF%202023/i-see-no-vulnerability/README.md) | medium | xss+upload chain (verified via raw fetch)
+- [2023/internet-cat](https://github.com/daffainfo/ctf-writeup/blob/main/2023/pingCTF%202023/internet-cat/README.md) | medium | upload chain (verified via raw fetch)
+- [2023/The Vault of Asgaard](https://github.com/daffainfo/ctf-writeup/blob/main/2023/vikeCTF%202023/The%20Vault%20of%20Asgaard/README.md) | medium | sql injection chain (verified via raw fetch)
+- [2024/Java Box](https://github.com/daffainfo/ctf-writeup/blob/main/2024/Cyber%20Jawara%20CTF%20International%202024/Java%20Box/README.md) | medium | jwt chain (verified via raw fetch)
+- [2024/tempest-poc](https://github.com/daffainfo/ctf-writeup/blob/main/2024/Final%20Gemastik%202024/tempest-poc/README.md) | hard | ssti+smuggl chain (verified via raw fetch)
+- [2024/Embed Flow](https://github.com/daffainfo/ctf-writeup/blob/main/2024/Incognito%205.0/Embed%20Flow/README.md) | hard | ssti chain (verified via raw fetch)
+- [2024/Gain Access 1](https://github.com/daffainfo/ctf-writeup/blob/main/2024/KnightCTF%202024/Gain%20Access%201/README.md) | medium | sql injection chain (verified via raw fetch)
+- [2024/Kitty](https://github.com/daffainfo/ctf-writeup/blob/main/2024/KnightCTF%202024/Kitty/README.md) | medium | sql injection chain (verified via raw fetch)
+- [2024/UNbreakable International 2024 - Team Phase](https://github.com/daffainfo/ctf-writeup/blob/main/2024/UNbreakable%20International%202024%20-%20Team%20Phase/README.md) | medium | upload chain (verified via raw fetch)
+- [2024/Eat More Cookies (Part 2)](https://github.com/daffainfo/ctf-writeup/blob/main/2024/Wayne%20State%20University%20-%20CTF24/Eat%20More%20Cookies%20%28Part%202%29/README.md) | medium | sql injection chain (verified via raw fetch)
+- [2024/Eat More Cookies](https://github.com/daffainfo/ctf-writeup/blob/main/2024/Wayne%20State%20University%20-%20CTF24/Eat%20More%20Cookies/README.md) | medium | sql injection chain (verified via raw fetch)
+
+## Batch B — jameskaois/ctf-writeups dreamhack/pico/sunshine (tree-listed, medium-hard only)
+- [dreamhack/web](https://github.com/jameskaois/ctf-writeups/blob/main/dreamhack/web/README.md) | medium | web exploitation chain (see writeup)
+- [dreamhack/My-Best-Friend](https://github.com/jameskaois/ctf-writeups/blob/main/dreamhack/web/level-1/My-Best-Friend/README.md) | medium | web exploitation chain (see writeup)
+- [dreamhack/level-1](https://github.com/jameskaois/ctf-writeups/blob/main/dreamhack/web/level-1/README.md) | medium | web exploitation chain (see writeup)
+- [dreamhack/[wargame.kr]-crack-crack-crack-it](https://github.com/jameskaois/ctf-writeups/blob/main/dreamhack/web/level-2/%5Bwargame.kr%5D-crack-crack-crack-it/README.md) | medium | web exploitation chain (see writeup)
+- [dreamhack/[wargame.kr]-dmbs335](https://github.com/jameskaois/ctf-writeups/blob/main/dreamhack/web/level-2/%5Bwargame.kr%5D-dmbs335/README.md) | medium | web exploitation chain (see writeup)
+- [dreamhack/addition-calculator](https://github.com/jameskaois/ctf-writeups/blob/main/dreamhack/web/level-2/addition-calculator/README.md) | medium | web exploitation chain (see writeup)
+- [dreamhack/are-you-admin?](https://github.com/jameskaois/ctf-writeups/blob/main/dreamhack/web/level-2/are-you-admin%3F/README.md) | medium | web exploitation chain (see writeup)
+- [dreamhack/baby-sqlite](https://github.com/jameskaois/ctf-writeups/blob/main/dreamhack/web/level-2/baby-sqlite/README.md) | medium | NoSQLi operator ($ne/$regex) auth bypass + extract
+- [dreamhack/black-hacker-company](https://github.com/jameskaois/ctf-writeups/blob/main/dreamhack/web/level-2/black-hacker-company/README.md) | medium | web exploitation chain (see writeup)
+- [dreamhack/blind-command](https://github.com/jameskaois/ctf-writeups/blob/main/dreamhack/web/level-2/blind-command/README.md) | medium | blind CMDi time/OOB oracle + IFS/wildcard bypass
+- [dreamhack/blind-sql-injection-advanced](https://github.com/jameskaois/ctf-writeups/blob/main/dreamhack/web/level-2/blind-sql-injection-advanced/README.md) | medium | blind SQLi boolean/time oracle + WAF-bypass ladder
+- [dreamhack/client-side-template-injection](https://github.com/jameskaois/ctf-writeups/blob/main/dreamhack/web/level-2/client-side-template-injection/README.md) | medium | CSTI Angular/Vue expression -> XSS/RCE gadget
+- [dreamhack/crawling](https://github.com/jameskaois/ctf-writeups/blob/main/dreamhack/web/level-2/crawling/README.md) | medium | log poisoning / traversal -> LFI chain
+- [dreamhack/csp-bypass](https://github.com/jameskaois/ctf-writeups/blob/main/dreamhack/web/level-2/csp-bypass/README.md) | hard | XSS filter ladder + CSP bypass (nonce/JSONP/polyglot)
+- [dreamhack/curling](https://github.com/jameskaois/ctf-writeups/blob/main/dreamhack/web/level-2/curling/README.md) | medium | web exploitation chain (see writeup)
+- [dreamhack/development-env](https://github.com/jameskaois/ctf-writeups/blob/main/dreamhack/web/level-2/development-env/README.md) | medium | web exploitation chain (see writeup)
+- [dreamhack/dom-xss](https://github.com/jameskaois/ctf-writeups/blob/main/dreamhack/web/level-2/dom-xss/README.md) | medium | DOM XSS sink + event-handler/gadget bypass
+- [dreamhack/dream-gallery](https://github.com/jameskaois/ctf-writeups/blob/main/dreamhack/web/level-2/dream-gallery/README.md) | medium | web exploitation chain (see writeup)
+- [dreamhack/easy-login](https://github.com/jameskaois/ctf-writeups/blob/main/dreamhack/web/level-2/easy-login/README.md) | medium | web exploitation chain (see writeup)
+- [dreamhack/file-csp-1](https://github.com/jameskaois/ctf-writeups/blob/main/dreamhack/web/level-2/file-csp-1/README.md) | medium | XSS filter ladder + CSP bypass (nonce/JSONP/polyglot)
+- [dreamhack/funjs](https://github.com/jameskaois/ctf-writeups/blob/main/dreamhack/web/level-2/funjs/README.md) | medium | web exploitation chain (see writeup)
+- [dreamhack/hangul](https://github.com/jameskaois/ctf-writeups/blob/main/dreamhack/web/level-2/hangul/README.md) | medium | web exploitation chain (see writeup)
+- [dreamhack/hello-go](https://github.com/jameskaois/ctf-writeups/blob/main/dreamhack/web/level-2/hello-go/README.md) | medium | web exploitation chain (see writeup)
+- [dreamhack/i-love-xss](https://github.com/jameskaois/ctf-writeups/blob/main/dreamhack/web/level-2/i-love-xss/README.md) | medium | DOM XSS sink + event-handler/gadget bypass
+- [dreamhack/i-wish-a-grade](https://github.com/jameskaois/ctf-writeups/blob/main/dreamhack/web/level-2/i-wish-a-grade/README.md) | medium | web exploitation chain (see writeup)
+- [dreamhack/liteboard](https://github.com/jameskaois/ctf-writeups/blob/main/dreamhack/web/level-2/liteboard/README.md) | medium | web exploitation chain (see writeup)
+- [dreamhack/login-1](https://github.com/jameskaois/ctf-writeups/blob/main/dreamhack/web/level-2/login-1/README.md) | medium | web exploitation chain (see writeup)
+- [dreamhack/mango](https://github.com/jameskaois/ctf-writeups/blob/main/dreamhack/web/level-2/mango/README.md) | medium | NoSQLi operator ($ne/$regex) auth bypass + extract
+- [dreamhack/md5-password](https://github.com/jameskaois/ctf-writeups/blob/main/dreamhack/web/level-2/md5-password/README.md) | medium | web exploitation chain (see writeup)
+- [dreamhack/node-serialize](https://github.com/jameskaois/ctf-writeups/blob/main/dreamhack/web/level-2/node-serialize/README.md) | medium | deserialization gadget (node/pickle) -> RCE
+- [dreamhack/not-only](https://github.com/jameskaois/ctf-writeups/blob/main/dreamhack/web/level-2/not-only/README.md) | medium | web exploitation chain (see writeup)
+- [dreamhack/ptml](https://github.com/jameskaois/ctf-writeups/blob/main/dreamhack/web/level-2/ptml/README.md) | medium | web exploitation chain (see writeup)
+- [dreamhack/relative-path-overwrite-advanced](https://github.com/jameskaois/ctf-writeups/blob/main/dreamhack/web/level-2/relative-path-overwrite-advanced/README.md) | medium | RPO + CSS injection -> stored XSS escalation
+- [dreamhack/relative-path-overwrite](https://github.com/jameskaois/ctf-writeups/blob/main/dreamhack/web/level-2/relative-path-overwrite/README.md) | medium | RPO + CSS injection -> stored XSS escalation
+- [dreamhack/secure-secret](https://github.com/jameskaois/ctf-writeups/blob/main/dreamhack/web/level-2/secure-secret/README.md) | medium | web exploitation chain (see writeup)
+- [dreamhack/special-letter-translator](https://github.com/jameskaois/ctf-writeups/blob/main/dreamhack/web/level-2/special-letter-translator/README.md) | medium | web exploitation chain (see writeup)
+- [dreamhack/sql-injection-bypass-waf-advanced](https://github.com/jameskaois/ctf-writeups/blob/main/dreamhack/web/level-2/sql-injection-bypass-waf-advanced/README.md) | medium | SQLi WAF-bypass (comments/case/encoding) -> UNION exfil
+- [dreamhack/test-site](https://github.com/jameskaois/ctf-writeups/blob/main/dreamhack/web/level-2/test-site/README.md) | medium | web exploitation chain (see writeup)
+- [dreamhack/tomcat-manager](https://github.com/jameskaois/ctf-writeups/blob/main/dreamhack/web/level-2/tomcat-manager/README.md) | medium | web exploitation chain (see writeup)
+- [dreamhack/web-deserialize-python](https://github.com/jameskaois/ctf-writeups/blob/main/dreamhack/web/level-2/web-deserialize-python/README.md) | hard | deserialization gadget (node/pickle) -> RCE
+- [dreamhack/web-ssrf](https://github.com/jameskaois/ctf-writeups/blob/main/dreamhack/web/level-2/web-ssrf/README.md) | hard | SSRF OOB confirm -> localhost/metadata pivot
+- [dreamhack/weblog-1](https://github.com/jameskaois/ctf-writeups/blob/main/dreamhack/web/level-2/weblog-1/README.md) | medium | log poisoning / traversal -> LFI chain
+- [dreamhack/거북이](https://github.com/jameskaois/ctf-writeups/blob/main/dreamhack/web/level-2/%EA%B1%B0%EB%B6%81%EC%9D%B4/README.md) | medium | web exploitation chain (see writeup)
+- [dreamhack/phpMyRedis](https://github.com/jameskaois/ctf-writeups/blob/main/dreamhack/web/level-3/phpMyRedis/README.md) | hard | PHP+Redis deserialization/session -> RCE
+- [dreamhack/xss-filtering-bypass-advanced](https://github.com/jameskaois/ctf-writeups/blob/main/dreamhack/web/level-3/xss-filtering-bypass-advanced/README.md) | hard | XSS filter ladder + CSP bypass (nonce/JSONP/polyglot)
+- [dreamhack/Flask-Dev](https://github.com/jameskaois/ctf-writeups/blob/main/dreamhack/web/level-4/Flask-Dev/README.md) | hard | SSTI/template + session/JWT forge chain
+- [dreamhack/KeyCat](https://github.com/jameskaois/ctf-writeups/blob/main/dreamhack/web/level-4/KeyCat/README.md) | hard | auth/logic patch-diff bypass + IDOR chain
+- [dreamhack/PATCH-1](https://github.com/jameskaois/ctf-writeups/blob/main/dreamhack/web/level-4/PATCH-1/README.md) | hard | auth/logic patch-diff bypass + IDOR chain
+- [dreamhack/Proton-Memo](https://github.com/jameskaois/ctf-writeups/blob/main/dreamhack/web/level-4/Proton-Memo/README.md) | hard | SSTI/template + session/JWT forge chain
+- [dreamhack/spring-view](https://github.com/jameskaois/ctf-writeups/blob/main/dreamhack/web/level-4/spring-view/README.md) | hard | SSTI/template + session/JWT forge chain
+- [dreamhack/web-HTTP-CLI](https://github.com/jameskaois/ctf-writeups/blob/main/dreamhack/web/level-4/web-HTTP-CLI/README.md) | hard | web exploitation chain (see writeup)
+- [dreamhack/dreamschool](https://github.com/jameskaois/ctf-writeups/blob/main/dreamhack/web/level-7/dreamschool/README.md) | hard | web exploitation chain (see writeup)
+- [iran-tech-olympics-ctf-2025/vibe-web-mail](https://github.com/jameskaois/ctf-writeups/blob/main/iran-tech-olympics-ctf-2025/vibe-web-mail/README.md) | medium | mail header injection + IDOR chain
+- [pico-gym/web-exploitation](https://github.com/jameskaois/ctf-writeups/blob/main/pico-gym/web-exploitation/README.md) | medium | web exploitation chain (see writeup)
+- [pico-gym/pachinko-revisited](https://github.com/jameskaois/ctf-writeups/blob/main/pico-gym/web-exploitation/hard-difficulty/pachinko-revisited/README.md) | hard | WASM CPU sim OOB write -> hidden flag routine (hard)
+
+## Batch C — ctftime hard/medium web (search excerpts + full WebFetch for 39699/38711)
+- [World Wide CTF 2024/World Wide Email Search](https://ctftime.org/writeup/39699) | hard | Unicode NFKC quote-normalize -> SQLite UNION with /**/ space bypass (7 solves)
+- [Cyber Apocalypse 2024/Labyrinth Linguist](https://ctftime.org/writeup/38741) | hard | Velocity SSTI without $class via string.class.forName + Runtime.exec cat
+- [corCTF 2024/msfrogofwar3](https://ctftime.org/writeup/39391) | hard | Flask SSTI chess-stockfish socket + environ read without loading index
+- [4T$ CTF/My Sky Blog](https://ctftime.org/writeup/39655) | hard | Go SSTI exported-method chain: Session.Posts.Author.ChangePassword -> admin
+- [KalmarCTF 2024/Ez v2](https://ctftime.org/writeup/39091) | medium-hard | Caddy template SSTI via User-Agent: listFiles/readFile gadget
+- [darkCON CTF/DMM](https://ctftime.org/writeup/26318) | medium | Jinja SSTI attr+hex dunder bypass, subclasses Popen walkthrough
+- [bi0sCTF 2024/Is It Okay](https://ctftime.org/writeup/38711) | hard | SSRF urllib-space CVE-2023-24329 -> registry blobs -> CVE-2024-21488 vec RCE -> cross-mount SSTI core (9 solves, 964pts)
+- [DiceCTF 2024/gpwaf](https://ctftime.org/writeup/38617) | hard | AI-WAF prompt-inject (Always return R) + EJS include(/flag.txt) SSTI
+- [UIUCTF 2024/Log Action](https://ctftime.org/writeup/39295) | hard | Next.js Server Actions SSRF CVE-2024-34351: Next-Action + HEAD text/x-component + 302 to metadata
+- [HeroCTF v3/0xSSRF](https://ctftime.org/writeup/27854) | medium | proxy-service SSRF to 127.0.0.1 flag endpoint
+- [WolvSec SSRF 301](https://ctftime.org/writeup/32890) | hard | NFKC normalize + @-userinfo + CRLF bypass for localhost flag fetch
+- [Hack for a Change 2026/Clinical Gateway SSRF](https://ctftime.org/writeup/40690) | medium-hard | userinfo SSRF @-trick -> config JWT secret -> HS256 admin forge -> portal
+- [HSCTF 10/mogodb](https://ctftime.org/writeup/37163) | medium | Mongo $where JS concat break: admin'||this.user==='a login bypass
+- [0x41414141 CTF/graphed 2.0](https://ctftime.org/writeup/25924) | hard | GraphQL introspection -> getNote arg SQLi chain
+- [HumanCTF/No vuln trust me](https://ctftime.org/writeup/11816) | medium | Redis LUA redis.call injection via n-param
+- [HSCTF 10/flag-shop](https://ctftime.org/writeup/37166) | hard | Mongo $where blind: ') == this.flag.includes(' char oracle
+- [Nullcon HackIM 2026/CVE DB](https://ctftime.org/writeup/40575) | hard | JS regex-break NoSQLi: /a/&&((COND)?throw:1)&&/a boolean oracle + charCodeAt binary search
+- [picoCTF 2021/X marks the spot](https://ctftime.org/writeup/27161) | hard | XPath blind contains(.,'flag') truthy/falsy oracle + incremental brute
+- [Nullcon Berlin 2025/webby](https://ctftime.org/writeup/40426) | hard | TOCTOU MFA race: loggedIn=True saved before bcrypt-cost14 tokenMFA, concurrent /flag slip
+- [KubSTU madk1dify](https://ctftime.org/writeup/41130) | medium | GraphQL releaseQueue -> REST credits IDOR on EMBARGO stage
+- [SAS CTF 2025/Drift Chat](https://ctftime.org/writeup/40260) | hard | Redis+race web chain (see writeup)
+- [KalmarCTF 2024/File Store](https://ctftime.org/writeup/40063) | hard | Flask filesystem session overwrite -> pickle RCE (see HackMD)
+- [Securinets 2025/Puzzle 302](https://ctftime.org/writeup/40465) | hard | register role=1 priv-esc -> IDOR collab accept -> admin info-leak -> file read
+- [JerseyCTF V/Leaky-Endpoints](https://ctftime.org/writeup/40134) | medium-hard | admin dev users UNION group_concat(flog3) IDOR+SQLi
+- [HTB Kryptos Support](https://ctftime.org/writeup/33931) | medium | stored XSS -> admin cookie -> backend IDOR
+- [Tenable 2021/Phar out](https://ctftime.org/writeup/26149) | hard | upload + s=p/file:// toggle -> phar:// metadata deser via md5_file
+- [35C3/php](https://ctftime.org/writeup/12781) | hard | single-file PHP logic/deser chain (see repo)
+- [WolvCTF 2024/Upload Fun](https://ctftime.org/writeup/38824) | medium | unrestricted upload -> php fetch + locate execution
+- [CrewCTF 2022/Uploadz](https://ctftime.org/writeup/33355) | hard | temp-dir .htaccess overwrite race (1s window) + .pwn as PHP exec
+- [HITCON 2018/Baby Cake](https://ctftime.org/writeup/11896) | hard | CakePHP body.cache write + file-op phar:// + Monolog RCE gadget (4 solves)
+- [KnightCTF 2025/Baby Injection](https://ctftime.org/writeup/39818) | medium | YAML !!python/object/apply:subprocess.getoutput base64 path
+- [Nullcon 2025/Paginator v2](https://ctftime.org/writeup/39912) | medium | SQLite p=min,max UNION without comma: 2,1 UNION SELECT flag
+- [K!nd4SUS/UnderConstruction](https://ctftime.org/writeup/40083) | hard | JSON id UNION col-count -> SLEEP(10) LIKE length oracle -> info_schema flag hunt
+- [Cyber Apocalypse 2024/TimeKORP](https://ctftime.org/writeup/38759) | medium | PHP date-format CMDi: format=';cat ../flag #%23 URL-encoded
+- [Nullcon 2025/Temptation](https://ctftime.org/writeup/39849) | hard | webpy template SSTI + /tmp/*.txt flag-word bypass + collaborator exfil
+- [K!nd4SUS/SUS Archive](https://ctftime.org/writeup/40084) | hard | search?q XOR(if(now()=sysdate(),sleep(3),0)) time blind pre-auth
+- [WolvSec/Don't Only Mash Clobber](https://ctftime.org/writeup/32719) | hard | DOM clobber DEBUG_MODE + CSP self + HTML injection chain
+- [TetCTF 2023/GIFT](https://ctftime.org/writeup/36054) | hard | blind SQLi type-juggle + case-sensitive column bypass + LFI blacklist .././.. + PHP_SESSION_UPLOAD_PROGRESS race
+- [SekaiCTF 2023/Chunky](https://ctftime.org/writeup/37872) | hard | CL.TE smuggle cache->nginx + poisoned JWKS + attacker-key JWT sign (16 solves)
+- [Securinets Quals 2023/0 CSP](https://ctftime.org/writeup/37712) | hard | Werkzeug headers.set CRLF -> /?user= XSS at /helloworld + cache-poison admin visit
+- [HSCTF 8/big-blind](https://ctftime.org/writeup/28977) | hard | POST user boolean+time blind sqlmap + CASE-WHEN/SLEEP payloads
+- [HSCTF 8/big-blind MOCTF](https://ctftime.org/writeup/28996) | hard | IF(LENGTH(pass)=27,sleep(10),0) LIKE brute script
+- [Bucket CTF 2023/SQLi 2](https://ctftime.org/writeup/36746) | medium | SQLi round-2 filter ladder (see repo)
+- [PatriotCTF/Mr. O](https://ctftime.org/writeup/33605) | hard | {{}} filtered -> {% if os.popen().startswith() %} blind char oracle script
+- [HackIT 2018/Believer Case](https://ctftime.org/writeup/11014) | hard | Jinja SSTI WAF on self/config/request, g/url_for MRO walk
+- [HacktivityCon/Template Shack](https://ctftime.org/writeup/22828) | medium | Flask custom-404 SSTI + JWT admin path
+- [LITCTF 2025/group chat](https://ctftime.org/writeup/40381) | hard | split-brace SSTI across usernames + unterminated ~ swallow + os.popen
+- [idekCTF 2022/task manager](https://ctftime.org/writeup/36082) | hard | pydash.set_ proto-style + jinja pardir->exported RCE
+- [1753CTF 2024/Ticket API](https://ctftime.org/writeup/38779) | hard | QR-content SQLi: exploit.pdf hash link + inject.pdf UUID');-- second-order verify
+- [BlackHat MEA 2024/Free Flag](https://ctftime.org/writeup/39430) | medium-hard | php_filter_chain_generator LFD -> /flag.txt converts
+- [VishwaCTF 2024/MEDICARE PHARMA](https://ctftime.org/writeup/39505) | hard | UNION auth bypass -> search shell_exec CMDi find/cat flag
+- [SekaiCTF 2024/Tagless](https://ctftime.org/writeup/39404) | hard | XSS tagless CSP script-src self bypass (see ICEDTEA)
+- [Imaginary Roks](https://cryptocat.me/blog/ctf/2023/imaginary-ictf/web/roks/) | medium | web chain (indexed writeup)
+- [ImaginaryCTF 2024/Amazing Race](https://ctftime.org/writeup/39337) | hard | last-byte sync race through single-space check
+- [corCTF 2024/challenge-dev](https://ctftime.org/writeup/39390) | medium | dev-endpoint web chain (FireShell)
+- [TuxCTF V1/Web](https://ctftime.org/writeup/39020) | medium | multi-web chain set (see h0t posts)
+- [bi0sCTF 2024/Variety Notes](https://ctftime.org/writeup/38712) | hard | ReDoS search flag-id + /uuid/raw XSS + frame-src redirect CSP bypass
+- [DiceCTF 2023/recursive-csp](https://ctftime.org/writeup/36140) | hard | random-nonce + hash-collider payload -> admin XSS
+- [SunshineCTF 2024/Puzzling](https://ctftime.org/writeup/39579) | hard | strict-XML param-entity OOB: external DTD b64 flag exfil
+- [GlacierCTF 2023/Peak](https://ctftime.org/writeup/38308) | hard | JPEG/JS polyglot CSP script-src + contact-form upload + XXE marker read
+- [TeamItaly 2022/Flag proxy](https://ctftime.org/writeup/35398) | hard | %0a header-split smuggle: token -> Content-Length/Connection + GET /add-token
+- [BsidesBOS/skid](https://ctftime.org/writeup/23657) | hard | JWT kid UNION SELECT key -> sign attacker-key admin token
+- [Cyber Jawara 2024/Java Box](https://ctftime.org/writeup/39608) | medium | JWT HS secret leak from decompiled class -> isAdmin true forge (token.dev quirk)
+- [Lexington 2024/jwt](https://ctftime.org/writeup/39392) | medium | source secret -> /flag path swap via repeater
+- [LINE CTF 2024/graphql-101](https://ctftime.org/writeup/39013) | medium | GraphQL intro/bypass starter (see writeup)
+- [BITSCTF 2025/Baby Web](https://ctftime.org/writeup/39955) | medium | JWT web starter chain
+- [LA CTF 2025/Cache It to Win It](https://ctftime.org/writeup/40019) | hard | cache-poison web (buster-pair + unkeyed header)
+- [FAUST 2024/missions](https://ctftime.org/writeup/39632) | hard | Varnish /imgs cache-key + session-cookie cache + missioninfo poison checker race
+- [33C3/yolovault](https://ctftime.org/writeup/5255) | hard | stored user HTML XSS + content.php admin browse + SOP iframe secret steal
+- [WORMCON/File Upload](https://ctftime.org/writeup/30045) | medium | htaccess web upload chain
+- [KubSTU/Clearline](https://ctftime.org/writeup/41131) | medium | echo-renders Jinja: expr={{7*7}} -> lipsum/cycler os.popen
+- [HeroCTF v5/Drink from my Flask#2](https://ctftime.org/writeup/37019) | hard | SSTI RCE -> Werkzeug PIN bypass via boot-id/machine-id
+
+## Batch D — original writeup documents (separate docs for Batch C challenges)
+- [World Wide Email Search/original](https://www.thesecuritywind.com/post/world-wide-ctf-2024-world-wide-email-search-web) | hard | same Unicode-SQLi chain, full email-format + Cloudflare-decode narrative
+- [Labyrinth Linguist/original](https://cryptocat.me/blog/ctf/2024/htb-cyber-apocalypse/web/labyrinth_linguist/) | hard | same Velocity no-$class chain, Burp + gosecure workshop payload
+- [msfrogofwar3/original](https://stuxf.dev/blog/msfrogofwar3/) | hard | same socket-SSTI environ read, no-index.html technique
+- [My Sky Blog/original](https://www.thesecuritywind.com/post/4t-ctf-2024-my-sky-blog) | hard | same Go exported-method admin password change
+- [Ez v2/original](https://seall.dev/posts/ezv2kalmarctf2024) | medium-hard | same Caddy User-Agent template listFiles/readFile
+- [Is It Okay/original](https://blog.bi0s.in/2024/02/26/Misc/IsItOkay-bi0sCTF2024/) | hard | same registry+CVE chain with blob-download script
+- [gpwaf/original](https://book.hacktricks.xyz/pentesting-web/ssti-server-side-template-injection) | hard | same EJS include + GPT-WAF prompt-inject class
+- [Log Action/original](https://github.com/Samik081/ctf-writeups/blob/master/UIUCTF%202024/web/log_action.md) | hard | same Next-Action SSRF with HEAD/302 server
+- [SSRF 301/original](https://github.com/Dom0nS/ctf/blob/main/CTF_writeups/Wolvsec-ctf-2022/web_ssrf_301.md) | hard | same NFKC+@+CRLF bypass set
+- [Ticket API/original](https://www.cqql.site/ctf/2024/1753ctf/ticket_api.html) | hard | same QR-PDF second-order hash-link SQLi
+- [Mr. O/original](https://github.com/NihilistPenguin/PatriotCTF2022-Writeups/blob/main/Web/MrO.md) | hard | same {% if %} startswith blind script
+- [task manager/original](https://kdxcxs.github.io/en/posts/wp/idekctf-2022-task-manager-wp/) | hard | same pydash+jinja exported RCE
+- [GIFT/unsolved-notes](https://github.com/RaccoonNinja/TetCTF-2023-Writeups/blob/main/GIFT%20%5Bunsolved%5D.md) | hard | same blind+SQLi+LFI rabbit-hole map + upload-progress race pointer
+- [Chunky/original](https://fireshellsecurity.team/sekaictf-frog-waf-and-chunky/#challenge-chunky-16-solves) | hard | same CL.TE + JWKS poison + attacker-sign
+- [0 CSP/original](https://blog.bi0s.in/2023/08/07/Web/0_CSP-Securinets-Quals2023/) | hard | same CRLF+XSS+poison chain
+- [big-blind MOCTF/original](https://github.com/MOCSCTF/CTF-Write-UP/blob/master/Web/HSCTF8%20-%20big-blind/README.md) | hard | same IF/LIKE sleep brute
+- [group chat/original](https://www.violent.team/writeups/litctf2025/group-chat) | hard | same split-brace + ~ swallow with SocketIO context
+- [Free Flag/original](https://ilyshoaib.medium.com/writeup-blackhat-mea-qualification-ctf-2024-free-flag-110-a6482cf61128) | medium-hard | same filter-chain generator curl POST
+- [Variety Notes/original](https://blog.bi0s.in/2024/02/26/Web/VarietyNotes-bi0sCTF2024/) | hard | same ReDoS+CSP-redirect chain
+- [recursive-csp/original](https://lu513n.com/blog/posts/rescursive-csp/) | hard | same nonce hash-collider admin XSS
+- [Puzzling/notion-mirror](https://humble-raptor-f30.notion.site/SunshineCTF-2024-1254c8e5237680128414c01ddd42cc09) | hard | same param-entity OOB Sudoku XML
+- [Peak/original](https://sigflag.at/blog/2023/writeup-glacierctf23-peak/) | hard | same polyglot + XXE marker
+- [NahamCon TMCB](https://cryptocat.me/blog/ctf/2025/nahamcon/web/tmcb/) | medium-hard | web chain (indexed writeup)
+- [skid/original](https://github.com/roberson-io/bsides_boston_2020/tree/master/skid) | hard | same kid-UNION key sign
+- [Java Box/original](https://github.com/daffainfo/ctf-writeup/tree/main/2024/Cyber%20Jawara%20CTF%20International%202024/Java%20Box) | medium | same JWT secret + token.dev quirk
+- [XSS 401/original](https://github.com/Dom0nS/ctf/blob/main/CTF_writeups/Wolvsec-ctf-2022/web_xss_401.md) | hard | same atob-slice lowercase hostname bypass
+- [XSS 401 alt](https://pipuninstallpip.github.io/writeups/ez-ctf-i-made-a-blog) | medium | LFI php://filter b64 blog1.html chain (companion doc)
+- [Obligatory/cryptocat](https://cryptocat.me/blog/ctf/2023/nahamcon/web/obligatory) | hard | Jinja blacklist -> attr+hex+concat os.popen rev-shell (success-param)
+- [SSRF guide/pico](https://picoctfsolutions.com/posts/ssrf-for-ctf) | medium-hard | localhost->metadata->bypass->gopher->blind ladder with Capital-One/IMDSv2 context
+- [XSS guide/pico](https://picoctfsolutions.com/posts/xss-for-ctf) | medium-hard | reflected->stored->DOM->CSP bypass ladder with 2024-26 CVE receipts
+
+## Batch E — GitHub/blog search hits (excerpts extracted)
+- [PT-SKILLS SSRF exploitation](https://github.com/u-ahmedofficial/PT-SKILLS/blob/main/skills/web-attacks/ssrf-exploitation.md) | medium-hard | IMDSv1/v2 + GCP/Azure headers + DNS-rebind + Gopherus ladder
+- [CTF-Vault SSRF (Thai)](https://github.com/KiwKNR/CTF-Vault/blob/main/03-Web-Exploitation/SSRF.md) | medium-hard | metadata + Redis/Memcached/ES protocol + Gopherus + ffuf port sweep
+- [SSRF repo Ramyar](https://github.com/ramyardaneshgar/SSRF) | medium | dateserver reflect->blind + ffuf ports + admin + metadata creds
+- [Sunshine web-forge](https://github.com/jameskaois/ctf-writeups/blob/main/sunshine-ctf-2025/web-forge/README.md) | medium | SSRF header-auth bypass fuzz (X-SSRF-Access true)
+- [KI-CTF 2025 web index](https://encryptionspidy.github.io/KI-CTF-writeups/ctf/KI-CTF-2025/web) | hard | ZIP-slip+OOB / SSRF-denylist+LFI / JWT+GraphQL+SSRF / blind-CMDi / truncation set
+- [DASCTF HDCTF official WP](https://github.com/shao65308/ctf_writeup/blob/main/DASCTF%20X%20HDCTF%202024%20%E5%AE%98%E6%96%B9WP.md) | hard | BinaryFormatter/DataSet gadget + NoCommonCollections cold chain
+- [TCP1P Un Secure](https://www.ctfiot.com/139455.html) | hard | PHP __construct/__destruct/__toString eval gadget chain via cookie unserialize
+- [ctf-skills deser](https://github.com/ljagiello/ctf-skills/blob/2fddcdee9dd868103790c298d40e95ead5c2359a/ctf-web/server-side-deser.md) | hard | STOP-strip pickle chain + XMLDecoder + TypeNameHandling + PCRE-backtrack WAF bypass
+- [JohnathanHuutri index](https://github.com/johnathanhuutri/CTFWriteup) | medium | pwn/web index (KMACTF cmd-inject, Tiny Webserver OOB)
+- [Nexus 398-php-deser](https://github.com/AbdullahMaqbool22/Nexus-Defenders-Cyber-Operations-CTF-Writeups/blob/main/hard/398-php-deserialization/README.md) | hard | PHP deser hard set (30/30 op)
+- [PP2RCE atz1luth](https://atz1luth.github.io/projects/prototype-pollution-to-rce) | hard | merge/clone PP -> normalizeSpawnArguments envPairs + kEmptyObject v18.4 guard
+- [Brunner Recipe Disaster](https://anthr4ce.github.io/ctf-writeups/brunnerctf-2025/web) | hard | deepMerge PP env.PATH hijack + fake zip binary + delete-env bypass
+- [samhaxr PP exploit](https://github.com/samhaxr/Prototype-pollution-exploit-ctf/blob/main/Prototype.py) | medium | PP RCE PoC script
+- [0init PP CTF](https://github.com/0init/prototype-pollution-ctf) | hard | lodash.merge PP -> admin -> HTMLi -> SSRF -> flag.txt chain
+- [picoclone PP](https://github.com/picoclone/prototype-pollution) | hard | deep-merge admin-gate flip (350pts)
+- [athena PP docs](https://wiki.athena-ctf.com/docs/web/misc-web/prototype-pollution) | medium | merge/assign patterns + isAdmin/config + EJS/child_process RCE gadgets
+- [boxgramer cache note](https://github.com/boxgramer/writeup/blob/main/writeup-20250427.md) | medium | utm_content unkeyed -> cache HIT poison -> stored XSS
+- [arnavps CTF-Web-Exploit](https://github.com/arnavps/CTF-Web-Exploitation) | hard | 12-box set: CVE-2023-25690 CRLF/smuggle + WebAuthn collide + HTTP/3 smuggle + XSS/RCE
+- [Sec-Llama smuggle-cache](https://github.com/Sec-Llama/web-security-academy-solutions/blob/main/HTTP%20Request%20Smuggling/17-web-cache-poisoning-via-smuggling.py) | hard | CL.TE smuggled GET+Host -> JS cache poison loop vs max-age 30
+- [D0R07HY cache-poison skill](https://github.com/D0R07HY/ctf_opencode_skil/blob/main/hunt-cache-poison/SKILL.md) | hard | XFH poisoning + WCD + Cloudflare-armor + Akamai hop-by-hop smuggle
+- [Tomcat CVE-2023-46589](https://www.redpacketsecurity.com/apache-tomcat-http-request-smuggling-cve-2023-46589) | hard | trailer-header smuggle -> cache poison + WAF bypass + XSS
+- [CyberSpark LFI](https://github.com/hewhomusntbenamed/ctf-writeups/blob/master/CyberSpark-CTF/LFI-Writeup.md) | medium | php://filter b64 -> filter-chain RCE (no log/input/session)
+- [HTB Poison](https://github.com/Bengman/CTF-writeups/blob/master/Hackthebox/poison.md) | medium | LFI log-poison via UA php shell + phpinfo race appendix
+- [Olicyber LightOrDark](https://github.com/AnouarVision/ctf-writeups/blob/main/Olicyber/OIC/Web%20Security/14%20-%20LightOrDark/writeup-en.md) | medium | tema LFI + ...// + %00 null-byte on PHP4
+- [CTF Support php-filter](https://ctf.support/web/lfi/php-filter) | medium | php://filter b64 + environ/log/session tips
+- [zapstiko LFI sheet](https://github.com/zapstiko/CTF/blob/main/LFI%20%20%20Cheat%20Sheet.md) | medium | traversal matrix + wrappers + zip/phar + session/log poison + ffuf
+- [Cheese CTF](https://wh1tegh0st.medium.com/cheese-ctf-complete-walkthrough-writeup-5ff9a1846265) | medium-hard | SQLi '||1=1 bypass -> LFI filter-chain rev-shell + systemd SUID xxd
+- [Mehdi JWT](https://github.com/Mehdi0x90/Web_Hacking/blob/main/JWT.md) | medium | none/null-sig + disclosure + RS/HS + jku/new-key + at-playbook
+- [Aditya JKU injection](https://github.com/AdityaBhatt3010/JWT-Authentication-Bypass-via-JKU-Header-Injection) | medium-hard | jku untrusted -> hosted JWK + kid + Don't-modify-header sign
+- [CVE-2026-4444 kid](https://github.com/George0Papasotiriou/CVE-2026-4444-JWT-Algorithm-Confusion-via-kid-Injection) | hard | kid URL trust -> attacker key forge + priv-esc
+- [HackTricks JWT](https://github.com/jkubli/pentest-hacktricks/blob/master/pentesting-web/hacking-jwt-json-web-tokens.md) | hard | kid reveal/traversal/SQLi/OS + jku/x5u + /dev/tcp probe
+- [PortSwigger jku lab](https://portswigger.net/web-security/jwt/lab-jwt-authentication-bypass-via-jku-header-injection) | medium-hard | empty keys -> copy-JWK -> sub administrator + jku sign
+- [HTB Way Witch](https://medium.com/@pr0tag0nist/way-witch-very-easy-web-ctf-hack-the-box-85f0a538dfdd) | medium | client-side JWT secret leak -> guest->admin forge
+- [HTB Under Construction](https://github.com/HHousen/hack-the-box/blob/master/Challenges/Web/Under%20Construction/README.md) | hard | JWT RS->HS pub.key + username SQLi via jwt_tool -X k
+- [HTB Principal](https://github.com/ledksv/Principal-HackTheBox) | hard | pac4j CVE-2026-29000 JWE public-as-private + settings SSH + CA root
+- [HTB Analysis LDAP](https://medium.com/@messaadimouadh/hackthebox-analysis-writeup-e29363c4bb01) | hard | LDAP * wildcard oracle + custom blind extract script
+- [HTB Trick](https://github.com/k41r0s3/Hack-The-Box/blob/main/Write-ups/Trick/README.md) | medium | zone-transfer + vhost + SQLi auth + ....// LFI SSH key + fail2ban
+- [HTB Inject](https://github.com/francescolonardo/pentest-machine-writeups/blob/main/hackthebox_inject.md) | hard | LFI -> Spring-Cloud-Function CVE-2022-22963
+- [Blind XXE jadu](https://jadu101.github.io/Web_App/M-Web-Attacks%E2%9A%94%EF%B8%8F/XXE/d-Blind-Data-Exfiltration) | hard | param-entity + php-filter b64 + OOB HTTP + XXEinjector auto
+- [pico SOAP Cajac](https://github.com/Cajac/picoCTF-Writeups/blob/main/picoCTF_2023/Web_Exploitation/SOAP.md) | medium | DOCTYPE ENTITY file:///etc/passwd in ID field
+- [Java XXE bfengj](https://github.com/bfengj/CTF/blob/main/Web/java/XXE/Java%E4%B8%AD%E7%9A%84XXE.md) | hard | jar:/netdoc:/ftp OOB + newline FTP fallback + error-based
+- [infosec blind XXE](https://infosecwriteups.com/blind-xxe-with-oob-interaction-via-xml-parameter-entities-97244bf2b85e) | hard | param-entity OOB interaction class
+- [blind XXE hackmd](https://hackmd.io/@SBK6401/S137CKUEh) | medium-hard | stockCheck %xxe + evil DTD file/eval/exfil to collaborator
+- [M1SD4Q XXE labs](https://github.com/M1SD4Q/Portswigger-Writeups/blob/main/Web%20Application%20Security/6%20XXE/6%201%20XXE%20LABS%20300146b3c43680588272c14c4da04854.md) | hard | EC2 XXE + blind %xxe + DTD hostname + error file:///invalid/%file%
+- [payloadplay XXE](https://payloadplayground.com/blog/xxe-injection-exploitation-complete-guide) | medium-hard | basic->blind OOB DNS/HTTP + SVG/DOCX + php wrappers + bypass
+- [CSAW rainbow-notes](https://github.com/osirislab/CSAW-CTF-2023-Quals/blob/main/web/rainbow-notes/SOLUTION.md) | hard | STTF + :target + DOM-clobber removeChild + url(?leak=a) brute
+- [hyperreality list](https://github.com/hyperreality/ctf-writeups) | medium-hard | 2018-25 index (CSAW/Plaid/DEFCON/HITCON) pointer set
+- [Plaid TTT Hong](https://hong5489.github.io/2023-04-18-plaidctf2023) | hard | Flask sympy postfix literal_eval + latex RCE surface
+- [Plaid siunam](https://siunam321.github.io/ctf/PlaidCTF-2023) | hard | Putlocker stored-XSS -> high-priv GraphQL query
+- [HTB Craft/LinkVortex](https://k41r0s3.github.io/Hack-The-Box/README.md) | medium | git disclose + eval RCE / symlink bypass index
+- [pico PS-003R32](https://github.com/PS-003R32/picoCTF) | medium | 2019-25 web index (SSTI/XSS/SQLi) pointer
+- [snwau pico25](https://github.com/snwau/picoCTF-2025-Writeup) | medium-hard | SSTI1/2 + 3v@l + Pachinko + WebSockFish set
+- [pico Pachinko Rev](https://picoctfsolutions.com/picoctf-2025-pachinko-revisited) | hard | WASM nand_checker bounds bypass -> OOB instr overwrite
+- [pico head-dump Cajac](https://github.com/Cajac/picoCTF-Writeups/blob/main/picoCTF_2025/Web_Exploitation/head-dump.md) | medium | /api-docs /heapdump HPROF grep
+- [pico SSTI1](https://picoctfsolutions.com/picoctf-2025-ssti1) | medium | cycler.__init__.__globals__.os.popen RCE
+- [ICEDTEA Sekai Tagless](https://blog.ic3dt3a.org/posts/2024pjskctf) | hard | localhost-only report + CSP script-src self stored-XSS chain
+- [corCTF rstacks](https://github.com/rstacks/corCTF2024-writeup) | medium | erm/rock-paper-scissors unfinished + forensics set
+- [siunam corCTF](https://siunam321.github.io/ctf/corCTF-2024) | hard | rock-paper-scissors type-validation + erm Sequelize eager-load info-leak
+- [Sekai list](https://2024.ctf.sekai.team/challenges/) | hard | Tagless/Funny-lfr/Intruder/lookup/htmlsandbox/NDWPP point map
+- [Luna Sekai](https://github.com/LunaQu4kez/CTF_Writeups/blob/master/SekaiCTF_2024/Writeup.md) | medium | Sekai event file-index pointer
+- [UIUCTF Log Action siunam](https://siunam321.github.io/ctf/UIUCTF-2024/) | hard | transit-outage SSRF set (indexed writeup)
+- [siunam UIUCTF](https://siunam321.github.io/ctf/UIUCTF-2024) | hard | Log Action transit-outage SSRF set
+- [ozcancel SSTI](https://github.com/ozcanceliksf/ctf-writeups/blob/main/ssti-challenge.md) | medium | pico SSTI Jinja primer
+- [bernardo SSTI](https://github.com/bernardoamc/ctf_writeups/blob/master/SSTI.md) | medium | tplmap GET/POST primer
+- [Kuwerin ctf-ssti](https://github.com/Kuwerin/ctf-ssti) | medium | middleware-abort SSTI lab
+- [Shaker SSTI sheet](https://github.com/Shaker-maker/ctf-writeups/blob/main/cheatsheets/ssti-techniques.md) | hard | engine matrix + attr/concat/hex + blind + sandbox-escape ladder
+- [pico notepad](https://medium.com/%40banyapong.sec/writeup-picoctf-notepad-c315454b386d) | hard | include errors/+error+.html + \->/ write to templates/errors + \x5f attr RCE
+- [NahamCon Hidden Figures](https://cryptocat.me/blog/ctf/2023/nahamcon/web/hidden_figures/) | hard | web chain (indexed writeup)
+- [StackOverflow Jinja](https://stackoverflow.com/questions/76034298/jinja2-ssti-filter-bypasses) | hard | no-\|,. _ bypass via foo['bar'] + dict['class'] subscript
+- [murillohwg ssti1](https://github.com/murillohwg/ctf-writeup/blob/main/picoCTF/ssti1/writeup.md) | medium | {{7*7}}->49 + config + cycler os.popen id
+- [PHAR advisory](https://github.com/advisories/GHSA-2fmj-p74r-3wjm) | hard | PHAR:// case-insensitive strpos bypass + file_exists deser (PHP7)
+- [ThinkPHP deser](https://github.com/nn0nkey/CVE/blob/main/Thinkphp/CVE-2024-48112.md) | hard | Pivot/ResourceRegister lazySave/withEvent RCE chain
+- [rafael PHAR lab](https://github.com/rafaelchriss/portswigger-labs/blob/master/deserialization/lab-10-phar-deserialization.md) | hard | PHAR-JPG + Blog/CustomTemplate + Twig exec rm morale
+- [blacksp00k phar](https://github.com/blacksp00k/ctftrix/blob/master/pentesting-web/file-inclusion/phar-deserialization.md) | hard | JPG-magic stub + setMetadata __destruct + filesize trigger
+- [phpggc](https://github.com/ambionics/phpggc/blob/master/lib/PHPGGC.php) | hard | gadget-chain test/output/phar-prefix/jpeg harness
+- [PortSwigger PHAR lab](https://portswigger.net/web-security/deserialization/exploiting/lab-deserialization-using-phar-deserialization-to-deploy-a-custom-gadget-chain) | hard | avatar phar:// + .php~ source + Twig registerUndefinedFilterCallback
+- [CTFshow web276](https://www.cnblogs.com/FallenStar/articles/17074198.html) | hard | filter __destruct rm + phar write/delete race threads
+
+## Batch F — hyperreality best-web-ctf-writeups externals (fetched README)
+- [INS'hAck Bypasses Everywhere](https://corb3nik.github.io/blog/ins-hack-2019/bypasses-everywhere) | hard | XSS auditor + CSP + iframe bypass set
+- [GoogleCTF Pasteurize](https://pop-eax.github.io/blog/posts/ctf-writeup/web/xss/2020/08/23/googlectf2020-pasteurize-tech-support-challenge-writeups/) | hard | DOMPurify bypass chain
+- [GoogleCTF All Little Things](https://blog.s1r1us.ninja/CTF/IuseBing) | hard | proto-pollution + DOM-clobber + CSP bypass
+- [GoogleCTF gCalc](https://blog.orange.tw/2018/06/google-ctf-2018-quals-web-gcalc.html) | hard | CSP bypass (orange)
+- [GoogleCTF X Sanitizer](https://kitctf.de/writeups/googlectf/x-sanitizer) | hard | CSP + encoding bypass
+- [GoogleCTF gLotto](https://ctftime.org/writeup/15812) | hard | MySQL ORDER-based + JSON SQLi
+- [GoogleCTF BNV](https://medium.com/hmif-itb/googlectf-2019-web-bnv-writeup-nicholas-rianto-putra-medium-b8e2d86d78b2) | hard | content-type XXE
+- [GoogleCTF Cat Chat](https://twisted-fun.github.io/2018-06-26-GCTF18-WEB-210/) | hard | CSS exfil chain
+- [36C3 WriteupBin](https://ctftime.org/writeup/17891) | hard | DOM-based chain (luminougat)
+- [INS'hAck Phuck3](https://flagbot.ch/posts/phuck3/) | hard | PHP open_basedir bypass
+- [CCCamp PDF Creator](https://bananamafia.dev/post/php-deserialize-cccamp19/) | hard | phar deser chain
+- [0CTF Wallbreaker Easy](https://github.com/mdsnins/ctf-writeups/blob/master/2019/0ctf%202019/Wallbreaker%20Easy/WallbreakerEasy.md) | hard | LD_PRELOAD + GhostScript
+- [DefCamp HTTP For Pros](https://ctftime.org/writeup/25264) | hard | template injection + WAF bypass
+- [CSAW flask_caching](https://ctftime.org/writeup/23360) | hard | deserialization chain
+- [pbctf R0bynotes](https://flagbot.ch/posts/r0bynotes/) | hard | Ruby deserialization
+- [ALLES Only Freights](https://github.com/0x13A0F/CTF_Writeups/tree/master/alles_ctf#onlyfreights) | hard | proto-pollution + CMDi
+- [pbctf Ikea Name Gen](https://blog.jimmyli.us/articles/2020-12/PerfectBlueCTF-WebExploitaiton) | hard | PP + clobber + PHP-encode + CSP
+- [Ikea alt](https://w0y.at/writeup/2020/12/08/pbctf-2020-ikea-name-generator.html) | hard | same PP chain alt doc
+- [Insomnihack Defiltrate](https://r3billions.com/writeup-defiltrate-part1/) | hard | deserialization part-1
+- [SRI Service Workers](https://frederik-braun.com/sw-sri-challenge.html) | hard | SRI in workers
+- [RCTF Jail](https://ctftime.org/writeup/15351) | hard | CSP + WebRTC bypass
+- [CSAW Web RTC Chat](https://github.com/zoeyg/public-write-ups/blob/master/csaw-2020/web-real-time-chat.md) | hard | TURN TCP proxying
+- [zer0pts urlapp](https://ctftime.org/writeup/18603) | hard | Ruby regex bypass
+- [GoogleCTF gPhotos](https://blog.bushwhackers.ru/googlectf-2019-gphotos-writeup/) | hard | XXE via photos
+- [GoogleCTF Geokitties](https://github.com/numirias/ctf/blob/master/writeup-google-ctf-2017-geokitties-v2.md) | hard | charset sniffing
+- [ASIS Unicorn Shop](https://github.com/hyperreality/ctf-writeups/tree/master/2019-asis) | hard | unicode shop logic
+- [h@cktivity Pizza Time](https://buer.haus/2020/07/31/hcktivitycon-pizza-time-web-750/) | hard | SQLi+XSS+SSRF triple
+- [NahamCon Trash Cache](https://buer.haus/2020/06/14/nahamcon-trash-the-cache-write-up-web-1000/) | hard | XSS+SSRF cache chain
+- [H1-5411](https://hackerone.com/reports/415137#) | hard | deser+XXE HackerOne
+- [pico 2018 s0cket7](https://s0cket7.com/picoctf-web/) | medium | pico web set pointer
+
+## Batch G — PortSwigger applied + pico hard + siunam/cryptocat select
+- [PortSwigger SQLi XML-encode](https://github.com/Crypto-Cat/CTF/blob/main/web/WebSecurityAcademy/sql_injection/filter_bypass_via_xml_encoding/writeup.md) | medium-hard | UNION via &#x53; XML-entity WAF bypass in stockCheck
+- [PortSwigger blind OOB Frank](https://github.com/frank-leitner/portswigger-websecurity-academy/blob/main/01-sqli/Blind_SQL_injection_with_out-of-band_data_exfiltration/README.md) | hard | Oracle extractvalue(xmltype(DTD %remote)) to collaborator subdomain
+- [PortSwigger smuggle M1SD4Q](https://github.com/M1SD4Q/Portswigger-Writeups/blob/main/Web%20Application%20Security/8%20HTTP%20REQUEST%20SMUGGLING/8%201%20HRS%20LABS%2030b146b3c43680a18d1ccfc2298e3293.md) | hard | CL.TE/TE.CL + admin-delete smuggle + H2.TE queue poison
+- [PortSwigger SSTI M1SD4Q](https://github.com/M1SD4Q/Portswigger-Writeups/blob/main/Web%20Application%20Security/10%20SSTI/10%201%20SSTI%20LABS%20320146b3c436808bbe49f5a36f6d0f0c.md) | hard | FreeMarker sandbox + Twig custom-payload ladder
+- [PortSwigger XXE image](https://github.com/sh3bu/Portswigger_labs/tree/main/XXE/Exploiting%20XXE%20via%20image%20file%20upload) | medium-hard | SVG-via-PNG/JPEG parser XXE surface
+- [HackerOne XXE payloads](https://github.com/ashikkunjumon/HackerOne-Disclosed-Reports-Payloads/blob/main/payloads/xxe.md) | hard | expect://id + php://filter + blind %ext DTD set
+- [ljagiello server-side-2](https://github.com/ljagiello/ctf-skills/blob/main/ctf-web/server-side-2.md) | hard | DOCX [Content_Types] XXE + SVG svglib PNG + $$var + uniqid predict + regex-bypass
+- [ljagiello client-side](https://github.com/ljagiello/ctf-skills/blob/main/ctf-web/client-side.md) | hard | replace $` + CSPT + XS-leak image-timing + javascript: bot bypass
+- [ljagiello sql-injection](https://github.com/ljagiello/ctf-skills/blob/main/ctf-web/sql-injection.md) | hard | host-header PROCEDURE ANALYSE + BETWEEN + processlist race + Shift-JIS/QR/EXIF
+- [pico cancri-sp](https://picoctfsolutions.com/picoctf-2023-cancri-sp) | hard | SSRF internal-service chain (pico hard)
+- [pico Bithug](https://picoctfsolutions.com/picoctf-2021-bithug) | hard | Go-template token strip filter-bypass SSRF
+- [pico SSTI2 kkk](https://github.com/kkk0813/CTF-Writeups/tree/main/PicoCTF/Web_Exploitation/SSTI2) | medium-hard | dunder-block -> attr+hex bypass
+- [pico No-Sql noamgari](https://github.com/noamgariani11/picoCTF-2024-Writeup/blob/main/Web%20Exploitation/No-Sql-Injection.md) | medium | Mongo $ne auth + base64 token
+- [pico SSTI deep](https://github.com/deepkarmakar-appsec/ctf-writeups/blob/main/picoctf/SSTI1.md) | medium | cycler os.popen ls/cat flag
+- [makhansingh labs](https://github.com/makhansingh2026/portswigger-labs-writeups) | medium-hard | 13-lab XSS/SQLi/JWT/OAuth/GraphQL/SSTI set
+- [siunam Hero Flask1](https://siunam321.github.io/ctf/HeroCTF-v5/Web/Drink-from-my-Flask-1/) | medium | Flask SSTI starter to Flask2 PIN chain
+- [siunam Knight Search](https://siunam321.github.io/ctf/KnightCTF-2023/Web-API/Knight-Search/) | hard | Werkzeug debugger PIN bypass via boot/machine-id
+- [cryptocat WHY Shoe Shop](https://cryptocat.me/blog/ctf/2025/why/web/shoe_shop/) | medium-hard | web shop logic chain (see writeup)
+- [cryptocat WHY Planets](https://cryptocat.me/blog/ctf/2025/why/web/planets/) | medium-hard | web chain (see writeup)
+- [cryptocat N0PS Press](https://cryptocat.me/blog/ctf/2025/nops/web/press_me_if_you_can/) | medium-hard | web race/click chain (see writeup)
+- [cryptocat Tsuku YAMLwaf](https://cryptocat.me/blog/ctf/2025/tsuku/web/yamlwaf/) | hard | YAML deser + WAF ladder
+- [cryptocat CIT JSON](https://cryptocat.me/blog/ctf/2025/cit/web/how_i_parsed_your_json/) | hard | JSON parser differential chain
+- [cryptocat CSAW Backcourts](https://cryptocat.me/blog/ctf/2024/csaw/web/playing_on_the_backcourts/) | hard | CSAW web chain
+- [cryptocat HTB Flag Command](https://cryptocat.me/blog/ctf/2024/htb-cyber-apocalypse/web/flag_command/) | medium | HTB command injection chain
+- [cryptocat HTB KORP Terminal](https://cryptocat.me/blog/ctf/2024/htb-cyber-apocalypse/web/korp_terminal/) | medium-hard | HTB terminal auth chain
+- [cryptocat HTB SerialFlow](https://cryptocat.me/blog/ctf/2024/htb-cyber-apocalypse/web/serial_flow/) | hard | deserialization flow chain
+- [cryptocat SEETF SSRF](https://cryptocat.me/blog/ctf/2022/seetf/web/super_secure_requests_forwarder/) | medium-hard | SSRF forwarder bypass
+- [cryptocat Angstrom Crumbs](https://cryptocat.me/blog/ctf/2022/angstrom/web/crumbs/) | medium | web crumbs chain
+- [cryptocat Pico Noted](https://cryptocat.me/blog/ctf/2022/pico/web/noted/) | medium | pico noted web chain
+- [second-order paper](https://www.usenix.org/sites/default/files/conference/protected-files/sec14_slides_dahse.pdf) | hard | static PDS write/read + file-upload->reconfigure->include multi-step
+- [MetaCTF Second Breakfast](https://metactf.com/blog/flash-ctf-second-breakfast) | hard | register ' UNION SELECT flag -> profile SELECT second-order
+- [DNS-OOB lab zinzloun](https://github.com/zinzloun/blindSQLi-DNS-OOB) | hard | /search?id nslookup + set-dns CMDi + UDP DNS exfil lab
+- [DeadSec Bing](http://alawneh.app/posts/DeadSec-CTF-2024) | hard | non-recursive strip bypass ccat->ccatat + python sleep->binary-search time blind
+- [Business Phishtale](https://www.hackthebox.com/blog/business-ctf-2022-phishtale-writeup) | hard | H2 smuggle + SSTI creator chain
+- [Cobblestone HTB](https://www.moamenbasel.com/htb-writeups/machines/insane/cobblestone) | hard | vhost ffuf + second-order LOAD_FILE + stored XSS + Twig SSTI + CVE-2024-47533
+
+- [pico-gym/3@vl](https://github.com/jameskaois/ctf-writeups/blob/main/pico-gym/web-exploitation/medium-difficulty/3%40vl/README.md) | medium | web exploitation chain (see writeup)
+- [pico-gym/no-sql-injection](https://github.com/jameskaois/ctf-writeups/blob/main/pico-gym/web-exploitation/medium-difficulty/no-sql-injection/README.md) | medium | web exploitation chain (see writeup)
+- [pico-gym/ssti2](https://github.com/jameskaois/ctf-writeups/blob/main/pico-gym/web-exploitation/medium-difficulty/ssti2/README.md) | medium | web exploitation chain (see writeup)
+- [pico-gym/trickster](https://github.com/jameskaois/ctf-writeups/blob/main/pico-gym/web-exploitation/medium-difficulty/trickster/README.md) | medium | web exploitation chain (see writeup)
+- [qnqsec-ctf-2025/a-easy-web](https://github.com/jameskaois/ctf-writeups/blob/main/qnqsec-ctf-2025/a-easy-web/README.md) | medium | web exploitation chain (see writeup)
+- [sunshine-ctf-2025/intergalactic-webhook-service](https://github.com/jameskaois/ctf-writeups/blob/main/sunshine-ctf-2025/intergalactic-webhook-service/README.md) | medium | web exploitation chain (see writeup)
+- [tryhackme/tryhackme](https://github.com/jameskaois/ctf-writeups/blob/main/tryhackme/detecting-web-attacks.md) | medium | web exploitation chain (see writeup)
+- [tryhackme/tryhackme](https://github.com/jameskaois/ctf-writeups/blob/main/tryhackme/how-websites-work.md) | medium | web exploitation chain (see writeup)
+- [tryhackme/tryhackme](https://github.com/jameskaois/ctf-writeups/blob/main/tryhackme/web-application-security.md) | medium | web exploitation chain (see writeup)
+- [w3challs/change-your-browser](https://github.com/jameskaois/ctf-writeups/blob/main/w3challs/web/change-your-browser/README.md) | medium | web exploitation chain (see writeup)
+- [w3challs/mobile-downloads](https://github.com/jameskaois/ctf-writeups/blob/main/w3challs/web/mobile-downloads/README.md) | medium | web exploitation chain (see writeup)
+- [NahamCon Marmalade 5](https://cryptocat.me/blog/ctf/2023/nahamcon/web/marmalade_5/) | hard | web chain (indexed writeup)
+- [NahamCon Star Wars](https://cryptocat.me/blog/ctf/2023/nahamcon/web/star_wars/) | hard | web chain (indexed writeup)
+- [Imaginary Blank](https://cryptocat.me/blog/ctf/2023/imaginary-ictf/web/blank/) | medium | web chain (indexed writeup)
+- [Imaginary Login](https://cryptocat.me/blog/ctf/2023/imaginary-ictf/web/login/) | medium | auth bypass chain (indexed writeup)
+- [Amateurs Sanity](https://cryptocat.me/blog/ctf/2023/amateurs/web/sanity/) | medium | web sanity chain (indexed writeup)
+- [NahamCon SNAD](https://cryptocat.me/blog/ctf/2025/nahamcon/web/snad/) | medium-hard | web chain (indexed writeup)

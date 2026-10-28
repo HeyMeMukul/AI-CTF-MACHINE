@@ -1,0 +1,42 @@
+{
+ "id": "imported-static-analysis-semgrep",
+ "domain": "rev",
+ "title": "Semgrep / CodeQL source triage",
+ "signals": [
+  "source tree",
+  "framework config",
+  "many routes",
+  "suspicious sink"
+ ],
+ "preconditions": [
+  "source available",
+  "buildable or parseable"
+ ],
+ "steps": [
+  "`semgrep --config auto .` for a quick baseline; add a focused rule for the framework's sink (SQL, exec, template, deserialize).",
+  "For deeper dataflow, `codeql database create db --language=<lang>` then `codeql database analyze db <suite> --format=sarif-latest`.",
+  "Triage by reachability: is the sink reachable from an unauthenticated route/input?",
+  "Confirm with one benign request or a local unit test; do not report an unconfirmed static hit."
+ ],
+ "falsifier": "No source-to-sink path or a sanitizer/allowlist blocks the input.",
+ "pitfalls": [
+  "false positives",
+  "generated code",
+  "missing build",
+  "framework magic",
+  "sanitizers"
+ ],
+ "sources": [
+  "https://github.com/trailofbits/skills/tree/main/plugins/static-analysis/skills/semgrep"
+ ],
+ "fixtures": [],
+ "verified_by": "source:Trail of Bits",
+ "last_verified": "2026-10-20",
+ "verified": false,
+ "verification": "source",
+ "license": "CC-BY-SA-4.0",
+ "ctf_domains": [
+  "web-ctf",
+  "rev"
+ ]
+}

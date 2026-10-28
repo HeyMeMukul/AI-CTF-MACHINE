@@ -1,0 +1,42 @@
+{
+ "id": "imported-crypto-test-vectors",
+ "domain": "crypto",
+ "title": "Crypto test vectors / property tests",
+ "signals": [
+  "custom crypto",
+  "verify/decrypt API",
+  "edge cases",
+  "test vectors",
+  "property oracle"
+ ],
+ "preconditions": [
+  "local implementation or API",
+  "vector set or property to test"
+ ],
+ "steps": [
+  "Load Wycheproof JSON for the primitive; run every vector and compare accept/reject, not just success cases.",
+  "Add property tests: round-trip, boundary values (0, n-1, max), malformed lengths, and nonce/IV reuse.",
+  "For a live oracle, batch queries within rate limits and record the exact input/response.",
+  "Treat a single passing vector as insufficient; require the full edge-case set or a reproducible property violation."
+ ],
+ "falsifier": "All vectors and properties pass; the primitive is correctly implemented and the bug is elsewhere.",
+ "pitfalls": [
+  "harness bugs",
+  "vector version mismatch",
+  "only happy-path tests",
+  "timing/rate limits",
+  "encoding differences"
+ ],
+ "sources": [
+  "https://github.com/trailofbits/skills/tree/main/plugins/testing-handbook-skills/skills/wycheproof"
+ ],
+ "fixtures": [],
+ "verified_by": "source:Trail of Bits",
+ "last_verified": "2026-10-20",
+ "verified": false,
+ "verification": "source",
+ "license": "CC-BY-SA-4.0",
+ "ctf_domains": [
+  "crypto"
+ ]
+}

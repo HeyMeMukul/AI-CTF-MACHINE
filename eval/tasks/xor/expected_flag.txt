@@ -1,0 +1,1 @@
+FLAG{xor_demo_2026}

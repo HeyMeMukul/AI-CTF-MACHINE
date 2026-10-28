@@ -1,0 +1,439 @@
+# Forensics writeups mined R2 (HARD-only, 2024-2026 preferred)
+
+Lines: 435 (one per writeup set/challenge). Method: WebSearch + WebFetch per writeup + ctftime index mining (writeups pages 1-300) with body-keyword technique distillation; technique-chain distilled from the published solution path. R1-overlap: 0 shared URLs; 0 same-challenge entries (17 candidates removed). Technique-only: no flag values, no file-content secrets. Format: `- [event/challenge](URL) | difficulty | technique-chain`.
+
+- [O24 CTF 2024 / Ghost In The Wall](https://tuxpad.github.io/posts/o24_ghosts_in_the_wall/) | hard | QUIC+TLS pcap triage -> HTTP GET param + form-encoded revshell -> session-cookie login bypass -> sudo-path privesc
+- [CorrelationOne CTF 2025 / Decryption Conniption](https://m4lwhere.medium.com/decryption-conniption-2025-correlation-one-ctf-e864f274ebb9) | hard | mem-carve SSLKEYLOGFILE (TLS label strings) -> TLS decrypt -> 7z carve from POST -> VNC keystroke password
+- [D3CTF 2021 / Robust](https://www.zhouweitong.site/2023/09/11/d3ctf-2021-misc-robust-writeup/) | hard | QUIC/HTTP3 HLS m3u8 + key carve -> ffmpeg AES-128 decrypt -> ultrasonic modem decode -> zip known-plaintext -> whitespace-steg -> base85
+- [Srdnlen CTF 2025 Quals / Average HTTP/3 Enjoyer](https://ctftime.org/writeup/39822) | hard | HTTP/3-only recon -> HAProxy path rule read -> encoded-slash bypass re-check
+- [UMassCTF 2025 / Real Forensics 2](https://www.abu.rocks/docs/ctf/2025/umassctf/) | hard | QUIC-noted pcap hierarchy -> TCP-stream PDF carve -> olevba JS deobf -> XOR key derive -> RC4 stage -> mock-server telemetry decrypt
+- [NexHunt CTF 2025 / Oczy Forensics](https://medium.com/@abdjaar36/nexhunt-ctf-2025-oczy-forensics-writeup-4f3d3c5f7e40) | hard | QUIC-share triage + keylog decrypt -> export-objects PS-loader hunt -> staged TCP-blob script-order reassembly + XOR + hash-gate -> Ghidra PE + PDF-dependent path
+- [HTB Cyber Apocalypse 2024 / Fake Boost + Phreaky](https://v0lk3n.github.io/writeup/HTB-CyberApocalypse2024/HTB-CyberApocalypse2024-WriteUp.html) | hard | QUIC-share hierarchy -> HTTP export -> PS AES-key harvest + decrypt -> SMTP zip ladder (NetworkMiner/export-objects) -> EZRAT key recovery
+- [Wiz Cloud Hunting Games / S3 + CloudTrail chain](https://medium.com/devsecops-ai/solving-a-cloud-ctf-cloud-hunting-games-4fa54ff46232) | hard | S3 data-events SQL sort -> assumed-role session pivot -> CloudTrail AssumeRole user hunt -> Lambda UpdateFunctionCode persistence -> unmount /var/log auth.log SSH pivot -> cron b64 persistence
+- [AWS EKS Takeover / Cloud DFIR series](https://medium.com/@adammesser_51095/cloud-digital-forensics-and-incident-response-elastic-kubernetes-service-takeover-leads-to-9553c5424df5) | hard | nginx command-injection -> btmp su-bruteforce -> IMDS cluster API + JWT harvest -> k8s API-audit SA-enum hunt -> CloudTrail control-plane pivot -> rogue EC2 miner attribution
+- [HTB Sherlock MisCloud](https://blog.cyberethical.me/htb-sherlock-miscloud) | hard | VPC pcap Gitea CVE RCE -> revshell ngrok pivot -> gcloud auth list harvest -> OsLogin CheckPolicy lateral map -> storage.objects.get exfil -> XOR sheet decrypt
+- [HTB Sherlock MisCloud (alt)](https://infosecwriteups.com/miscloud-hackthebox-sherlock-writeup-bea5403dbcc2) | hard | VPC pcap Gitea CVE RCE -> revshell ngrok pivot -> gcloud auth list harvest -> OsLogin CheckPolicy lateral map -> storage.objects.get exfil -> XOR sheet decrypt
+- [CyberDefenders GoogleCloudHunt (walkthrough)](https://inksec.io/blue-team/labs/googlecloudhunt/) | hard | GCP audit jq principal-volume hunt -> bucket object-repeat exfil tell -> compute serviceAccountDelegationInfo pivot -> CloudSQL export-fail trace -> CreateServiceAccount+Key persistence pair
+- [Thunder CTF Defender / GCP audit-log IR](https://codelabs.cs.pdx.edu/labs/W8.3_gcp_defender/index.html?index=..%2F..cs495) | hard | leaked-key Logs-Explorer pivot -> VM-metadata boot-image swap trace -> bucket key-material hunt -> log-viewer ListLogEntries abuse -> error-log key leak
+- [SecAtScale GCP CTF / learnings](https://github.com/quadristan/quadblog/blob/main/content/posts/2024/2024-01-learnings-from-gcp-ctf.md) | hard | asset-level vs IAM permission split -> storage-hosted SA-key hunt -> stale-image supply-chain sweep
+- [P3rf3ctr00t CTF 2024 / Dive](https://05t3.github.io/posts/PerfectRootCTF/) | hard | docker-save tar -> manifest.json layer map -> dive per-layer walk -> deleted flag.txt layer carve
+- [CyberTalents New Year Challenge 2025 / Docker layers](https://medium.com/@SIGMA_001/new-year-challenge-cybertalents-ctf-2025-forensics-writeup-dd5c46e126c4) | hard | manifest layer walk -> per-dir layer.tar extract script -> data.txt grep pivot
+- [FCSC 2024 / Layer Cake 1-3](https://blog.i5-650.systems/fcsc-2024/) | hard | docker history env-leak -> layer.tar vim-walk copy-then-delete carve -> nix single-layer hello-binary hunt
+- [Cloud Village CTF / Case of the Missing Flag](https://medium.com/@hm.mythreya/cloud-village-ctf-case-of-the-missing-flag-bd5f12a152ea) | hard | docker history delete-spot -> docker-save tar -> oci_layers prior-layer flag.txt recover
+- [Punk Security DevSecOps Birthday CTF / Docker 3](https://ctftime.org/writeup/36957) | hard | image-history copy-hash-remove spot -> save-tar layer sweep (tar -tf FLAG grep) -> opt/flag carve
+- [Wiz Contain Me If You Can](https://unicrons.cloud/en/2025/08/15/writeup-cloud-security-championship-2---contain-me-if-you-can/) | hard | overlayfs mount lowerdir leak -> lsblk + /proc/1/root namespace test -> postgres COPY-PROGRAM privesc -> host-disk mount + flag read
+- [CyCTF 2025 Quals / DokDok DFIR](https://mmox.me/posts/writeups/cyctf2025-qual-official-writeup/) | hard | image-layer IMPORTANT UPX carve -> XOR wallet decode -> layer-ID scope -> WMI persistence parse -> BITS exfil pair
+- [THM Advent of Cyber 2024 Day 22 / Kubed](https://solvere.app/ctfs/thm/day-22/) | hard | k8s audit-log user/verb/resource grep -> registry HEAD/MANIFEST rogue-IP hunt -> RBAC role/rolebinding describe chain -> SA secret pull-creds recover -> image-push persistence
+- [THM Advent of Cyber 2024 Day 22 (alt)](https://osintteam.blog/tryhackmes-advent-of-cyber-2024-day-22-writeup-194e128101ae) | hard | minikube audit-log DFIR -> webshell apache-log gap -> docker-registry PATCH push-time hunt -> RBAC get-role describe chain
+- [Kubernetes DFIR project](https://github.com/caydenrgarrett/Kubernetes-DFIR) | hard | audit + runtime + app log triple -> kubectl exec/netstat process hunt -> NetworkPolicy quarantine -> kubectl-cp evidence pack
+- [Certified Cyber Defenders MacLock](https://medium.com/@itsGir/ctf-write-up-maclock-certified-cyber-defenders-b0fef014e96f) | hard | loginwindow.plist mtime enable-time -> kcpassword xxd + XOR-default-key decode -> chainbreaker keychain dump -> Secure-Note create-time read
+- [THM Mac Hunt](https://domoon.medium.com/mac-hunt-thm-writeup-bbdaed316031) | hard | Finder FXRecentFolders plist -> Safari History.db/Downloads.plist -> known-networks + dhcpclient leases -> InstallHistory + TCC.db -> LaunchAgents persist -> exfil URL
+- [THM macOS Forensics Artefacts](https://jebitok.hashnode.dev/macos-forensics-artefacts-tryhackme) | hard | apfs-fuse mount -> mac_apt FAST plugins -> .AppleSetupDone stat + journal.plist -> system.log BOOT_TIME -> tracev3 Unified-Log Parser CSV
+- [CyberDefenders Spotlight (macOS)](https://nathan-out.github.io/write-up/cyberdefenders-spotlight/) | hard | mac_apt FSEVENTS db -> File_ID rename-chain hunt -> quarantine LSQuarantineDataURLString -> Spotlight Shortcuts timestamp read
+- [Magnet Virtual Summit CTF 2024 / Android](https://sarahosborn.com/4n6/posts/MVS_CTF_2024_Android_Writeup/) | hard | logical-image shared_prefs user hunt -> telephony.db SIM pivot -> accounts_ce.db + roles.xml browser -> recent_tasks/snapshots score -> suggestions.db vault-app lead -> EXIF GPS map
+- [Magnet Virtual Summit CTF 2025 / Android](https://www.stark4n6.com/2025/03/magnet-virtual-summit-2025-ctf-android.html) | hard | dialer normalized_spam.db epoch-convert filter -> play_app installs sort -> staged DB question ladder
+- [Certified Cyber Defenders AndroidBreach](https://medium.com/@itsGir/ctf-write-up-androidbreach-certified-cyber-defenders-c9f068caac0d) | hard | ALEAPP Chrome-downloads triage -> media Download APK pull -> JADX package hunt -> SMTP host exfil chain -> AESUtils b64-key recover -> gallery aux-image carve
+- [BelkaCTF 7 / Stranger Dfings (mem+android)](https://medium.com/@sshekhar01/belkactf-7-stranger-dfings-writeup-e9f29561926c) | hard | Volatility vs MemprocFS file-recovery split -> explorer-envars user hunt -> dumpfiles virtaddr + xxd trim -> accounts_ce.db Google-account query -> Speedtest/Gearhead app pivot
+- [BelkaCTF 7 / open-source-only path](https://medium.com/@Debug_4n6/belkactf-7-writeup-our-deep-dive-into-the-stranger-dfings-memory-verse-077ac8eb5f3b) | hard | strings-index + grep email hunt -> Telegram Bot-API URL signature -> notepad-envars user@host -> typo-squat explorer hunt -> filescan + handles DB dump -> mspaint foremost screenshot
+- [ITSEC CTF 2025 / HMICast + Hacked](https://hackmd.io/@blacowhait/itsec-ctf-2025) | hard | ALEAPP APK lead -> JADX MediaProjection + Frida AES/IV hook -> Telegram exfil + native-RSA hook -> VMDK-FTK ransomware triage -> VT-behavior stage-2 -> webhook exfil key
+- [HackCTF 2024 / Dumped (JTAG)](https://thamizhiniyancs.gitbook.io/writeups/ctf/2024/hackctf/forensics/dumped.md) | hard | JTAG dump 7zip split -> binwalk -D signature carve -> header/footer-bounded file recover
+- [justCTF 2024 teaser / Baby SoC](https://ctftime.org/writeup/39209) | hard | ESP32 partition-table magic (custom binwalk defs) -> app-image entry carve -> Ghidra Xtensa HTML-writer hunt -> rwip-heap XOR dual-section decode
+- [NoHat CTF 2024 / NOZOMI Firmware Forensics (task)](https://ctftime.org/task/29163) | hard | firmware-image triage stub -> flash-layout + filesystem carve pattern
+- [picoCTF 2025 / Bitlocker-2](https://blog.cbarkr.com/ctf/picoCTF/2025/Bitlocker-2) | hard | Vol3 windows.info build-lock -> strings -el BitLocker-file hunt -> Vol2 filescan + dumpfiles -> Vol2-bitlocker FVEK dislocker-file -> dislocker -k + ntfs-3g mount
+- [BYUCTF 2024 / Not Again (BitLocker)](https://infoseciitr.in/ctf-writeups/byu-ctf/not_again/) | hard | Vol2 imageinfo profile (slow-image discipline) -> bitlocker plugin FVEK sweep -> Win8+ key trial ladder
+- [Why2025 CTF / BitLocked](https://triettran2222.gitbook.io/dfir-writeups/bitlocked-why2025-ctf) | hard | SD-image FTK triage -> photo partial-key read (known-segment brute) -> manage-bde RecoveryPassword loop -> unlock + toplead
+- [BTLO The Key](https://graymanre.github.io/ctf/btlo_thekey.html) | hard | Arsenal online-mount volume map -> VSS shadow link + mklink restore -> Bit.TXT recovery-key pull -> F: unlock -> hidden-text credential + security-question password combo
+- [Lock? / BitLocker + Hayabusa](https://qiaonpc.github.io/post/lock/) | hard | Hayabusa evtx sweep -> log-surface password lead -> BitLocker image ident -> password unlock + filesystem flag hunt
+- [LUKS live key recovery (incident)](https://jfr.im/blog/2025/03/recovering-luks-keys/) | hard | LiME insmod RAM dump -> findaes volume-key scan -> hex-to-bin convert -> cryptsetup luksAddKey + reencrypt rotate
+- [EG-CTF 2025 / Timestomp](https://mahmoud-shaker.gitbook.io/dfir-notes/timestomp-challenge-eg-ctf-2025-forensics-write) | hard | FTK $MFT+$LogFile export -> MFTECmd CSV + NTFS-Log-Tracker CSV -> Timeline-Explorer 0x10/0x30 Created pair diff -> backdated-$SI file isolate
+- [EG-CERT CTF 2025 / Timestomp (E01 path)](https://medium.com/@amrwaseif1911/timestomp-eg-cert-ctf-challenge-write-up-c32488b97886) | hard | E01 bodyfile build -> $SI vs $FN skew hunt -> istat LSN read (flag = decimal LSN)
+- [EG-CTF 2025 / Timestomp (Timeline path)](https://medium.com/@ms2002es/timestomp-challenge-eg-ctf-2025-forensics-write-up-d702da4a5a13) | hard | MFTECmd --csv + $LogFile tracker load -> Created0x10 vs Created0x30 pair diff -> all-4-$SI-backdated isolate
+- [EG-CERT CTF 2025 / TimeStomp (LSN outlier)](https://diablo666.medium.com/timestomp-eg-cert-ctf-2025-forensics-write-up-ea248ab20ba4) | hard | fls+istat per-inode timestamp sweep -> LSN sort outlier (14699247 vs 2131xxx) -> sub-second-truncation tell + same-dir mimic confirm
+- [$UsnJrnl time-stomp demo (nTimestomp)](https://medium.com/@matchadonutforensics/determining-time-stomping-activities-with-usn-journal-usnjrnl-3c797c1dbf4a) | hard | MFTECmd $J+MFT merge -> Update-Reasons BasicInfoChange filter -> create-vs-claimed UTC compare (timezone-normalized)
+- [DukeCTF 2025 / Events Never Lie](https://mblunt.dev/writeups/dukectf-2025-events-never-lie/) | hard | chainsaw hunt sigma-event-logs-all -> EID-5001 Defender-off time -> detection-count peak -> 4104 ScriptBlock tail
+- [HTB Sherlock Unit42 (chainsaw path)](https://noc.hashnode.dev/hackthebox-unit42-sherlock) | hard | chainsaw search EID1 process-create -> EID15 Zone.Identifier MotW -> EID2 timestomp (CreationUtcTime vs UtcTime) -> EID3 C2 -> EID5 terminate
+- [Holmes CTF 2025 / The Enduring Echo](https://medium.com/@krzysztof.kuzin/holmes-ctf-2025-the-enduring-echo-c45c1f0d18f5) | hard | EZTools (MFTCmd/PECmd/EvtxECmd) base -> Hayabusa Impacket-rule sweep -> 4688 parent hunt + logon-IP -> PortProxy pivot + MITRE map -> ConsoleHost_history audit command
+- [Certified Cyber Defenders Sigma 101](https://medium.com/@itsGir/ctf-write-up-sigma-101-certified-cyber-defenders-c9f068caac0d) | hard | evtx per-level triage -> Sigma title/detection/logsource authoring (process_creation vs file_event) -> wscript/PS + hollowing + PSLockdownPolicy rules
+- [HTB Academy YARA+Sigma assessment](https://mrheckercat.github.io/yara/sigma/soc/htb/cybersecurity/2025/01/20/write-up-yara-sigma-skill-assessment/) | hard | chainsaw hunt single-rule + sigma-event-logs-all mapping -> ScriptBlockId detection read
+- [TCP1P CTF 2024 / forensics set](https://warlocksmurf.github.io/posts/tcp1pctf2024/) | hard | Discord multi-process GIMP-memory carve -> broken-ZIP header/flag fix -> Mercurial hg AES stage -> encrypted-zip docm macro PS URL
+- [Arkavidia CTF 2025 / Trail](https://hackmd.io/@asterrr/ry_S7GXhJe) | hard | MQTT PUBLISH b85 carve -> olevba macro -> XOR stage EXE -> pylingual pyc -> eth-tx timing side-channel zip password
+- [PolyU x NuttyShell CTF 2025 / C2 Pcap Analysis](https://qiita.com/tournip/items/448ff703c3f525274f86) | hard | deadbeef magic pin -> AES-key + IV split (12B offset) -> AES-256-CTR per-packet decrypt
+- [CrewCTF 2023 / Attaaaaack11](https://ctftime.org/writeup/37426) | hard | SSLKEYLOGFILE TLS-decrypt + export-objects -> Vol pslist/netscan + memmap dump + strings IOC
+- [CrewCTF 2023 / Attaaaaack7](https://ctftime.org/writeup/37422) | hard | SSLKEYLOGFILE TLS-decrypt + export-objects -> k8s audit-log verb/objectRef hunt + RBAC path -> Vol pslist/netscan + memmap dump + strings IOC
+- [CrewCTF 2023 / Attaaaaack9](https://ctftime.org/writeup/37424) | hard | SSLKEYLOGFILE TLS-decrypt + export-objects -> Vol pslist/netscan + memmap dump + strings IOC -> HID usage decode + edge-detect + layout fix
+- [IrisCTF 2024 / Not Just Media](https://ctftime.org/writeup/38427) | hard | CloudTrail SQL/jq hunt + AssumeRole pivot -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk -> LNK args + EML carve + macro deobf
+- [IrisCTF 2024 / What the Beep?](https://ctftime.org/writeup/38434) | hard | CloudTrail SQL/jq hunt + AssumeRole pivot -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk -> LNK args + EML carve + macro deobf
+- [MetaCTF CyberGames 2021 / Step into the NET](https://ctftime.org/writeup/31782) | hard | CloudTrail SQL/jq hunt + AssumeRole pivot -> tshark hierarchy + follow/export-objects + scapy carve
+- [UofTCTF 2024 / No grep](https://ctftime.org/writeup/38465) | hard | CloudTrail SQL/jq hunt + AssumeRole pivot -> tshark hierarchy + follow/export-objects + scapy carve
+- [Cyber Apocalypse 2023: The Cursed Mission / Packet Cyclone](https://ctftime.org/writeup/36473) | hard | docker-save layer walk + deleted-file whiteout -> chainsaw/Sigma hunt + Sysmon EID ladder -> label-order preserve + encoding-tell decode
+- [DownUnderCTF 2022 (Online) / Ogres are like onions](https://ctftime.org/writeup/35682) | hard | docker-save layer walk + deleted-file whiteout
+- [eHaCON CTF 2K21 / Use Me](https://ctftime.org/writeup/31266) | hard | docker-save layer walk + deleted-file whiteout -> tshark hierarchy + follow/export-objects + scapy carve
+- [Hacky Holidays - Unlock the City / Protect the supply](https://ctftime.org/writeup/34756) | hard | docker-save layer walk + deleted-file whiteout
+- [Hacky Holidays - Unlock the City / Protect the supply](https://ctftime.org/writeup/34707) | hard | docker-save layer walk + deleted-file whiteout -> tshark hierarchy + follow/export-objects + scapy carve
+- [HTB Uni CTF 2021 - Quals / Peel back the layers](https://ctftime.org/writeup/31414) | hard | docker-save layer walk + deleted-file whiteout -> tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [KnightCTF 2024 / Execution](https://ctftime.org/writeup/38569) | hard | k8s audit-log verb/objectRef hunt + RBAC path -> Vol pslist/netscan + memmap dump + strings IOC -> tshark hierarchy + follow/export-objects + scapy carve
+- [BYUCTF 2022 / Banana Smoothie](https://ctftime.org/writeup/34123) | hard | mac_apt/APOLLO + unified-log tracev3 + snapshot diff -> tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [Nullcon Goa HackIM 2026 CTF / ZFS rescue](https://ctftime.org/writeup/40565) | hard | mac_apt/APOLLO + unified-log tracev3 + snapshot diff -> b64/xor/AES ladder + hinted john/hashcat
+- [Insomni&#39;hack teaser 2022 / AndroNotes](https://ctftime.org/writeup/32224) | hard | ALEAPP/ADB triage + JADX APK reverse -> tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [SunshineCTF 2023 / Low Effort Wav ?](https://ctftime.org/writeup/38025) | hard | ALEAPP/ADB triage + JADX APK reverse -> LNK args + EML carve + macro deobf
+- [VU CYBERTHON 2023 / What email address is setup on com.android.email service?](https://ctftime.org/writeup/37634) | hard | ALEAPP/ADB triage + JADX APK reverse -> tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [3st stage MetaRed CTF Argentina|CERTUNLP 2023 / Shuffle](https://ctftime.org/writeup/38075) | hard | binwalk + UBIFS/JFFS2 mount + config carve -> magic-graft + carver ladder + structural open
+- [Cyber Heroines CTF / Margaret Hamilton](https://ctftime.org/writeup/37890) | hard | binwalk + UBIFS/JFFS2 mount + config carve -> magic-graft + carver ladder + structural open
+- [DCTF 2022 / Corrupt company](https://ctftime.org/writeup/33316) | hard | binwalk + UBIFS/JFFS2 mount + config carve
+- [Grey Cat The Flag 2022 / Firmware](https://ctftime.org/writeup/34269) | hard | binwalk + UBIFS/JFFS2 mount + config carve -> tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [JerseyCTF II / data-backup](https://ctftime.org/writeup/33171) | hard | binwalk + UBIFS/JFFS2 mount + config carve
+- [Jornadas 2021 / A Castle&#39;s Flag](https://ctftime.org/writeup/31054) | hard | binwalk + UBIFS/JFFS2 mount + config carve -> tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [Space Heroes 2023 / File_Size_Matter_Not](https://ctftime.org/writeup/36897) | hard | binwalk + UBIFS/JFFS2 mount + config carve -> tshark hierarchy + follow/export-objects + scapy carve -> magic-graft + carver ladder + structural open
+- [Space Heroes 2024 / Petey the Panther&#39;s Guide to the Galaxy](https://ctftime.org/writeup/39061) | hard | binwalk + UBIFS/JFFS2 mount + config carve -> magic-graft + carver ladder + structural open
+- [SpringForwardCTF / Her-Eyes](https://ctftime.org/writeup/39116) | hard | binwalk + UBIFS/JFFS2 mount + config carve -> tshark hierarchy + follow/export-objects + scapy carve -> magic-graft + carver ladder + structural open
+- [Srdnlen CTF 2023 / Audio misc challenge](https://ctftime.org/writeup/38091) | hard | binwalk + UBIFS/JFFS2 mount + config carve -> LNK args + EML carve + macro deobf -> magic-graft + carver ladder + structural open
+- [TCP1P CTF 2023: First Step Beyond Nusantara / brokenimg 100](https://ctftime.org/writeup/38002) | hard | binwalk + UBIFS/JFFS2 mount + config carve -> tshark hierarchy + follow/export-objects + scapy carve -> b64/xor/AES ladder + hinted john/hashcat
+- [The Cyber Cooperative CTF / babyhide](https://ctftime.org/writeup/38409) | hard | binwalk + UBIFS/JFFS2 mount + config carve -> tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [The Cyber Cooperative CTF / funding secured](https://ctftime.org/writeup/38410) | hard | binwalk + UBIFS/JFFS2 mount + config carve -> tshark hierarchy + follow/export-objects + scapy carve -> magic-graft + carver ladder + structural open
+- [VishwaCTF 2022 / Epistemus](https://ctftime.org/writeup/32607) | hard | binwalk + UBIFS/JFFS2 mount + config carve -> magic-graft + carver ladder + structural open
+- [BDSec CTF 2023 / SYSTEM CHECK](https://ctftime.org/writeup/37585) | hard | chainsaw/Sigma hunt + Sysmon EID ladder -> tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [MetaCTF CyberGames 2021 / Et tu, Hacker?](https://ctftime.org/writeup/31654) | hard | chainsaw/Sigma hunt + Sysmon EID ladder -> tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [Securinets CTF Quals 2025 / Lost File](https://ctftime.org/writeup/40466) | hard | chainsaw/Sigma hunt + Sysmon EID ladder -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [CrewCTF 2023 / Attaaaaack12](https://ctftime.org/writeup/37427) | hard | Vol pslist/netscan + memmap dump + strings IOC
+- [CrewCTF 2023 / Attaaaaack2](https://ctftime.org/writeup/37417) | hard | Vol pslist/netscan + memmap dump + strings IOC -> tshark hierarchy + follow/export-objects + scapy carve
+- [CrewCTF 2023 / Attaaaaack3](https://ctftime.org/writeup/37418) | hard | Vol pslist/netscan + memmap dump + strings IOC
+- [CrewCTF 2023 / Attaaaaack6](https://ctftime.org/writeup/37421) | hard | Vol pslist/netscan + memmap dump + strings IOC
+- [Cyber Apocalypse CTF 2022: Intergalactic Chase / Seized](https://ctftime.org/writeup/33938) | hard | Vol pslist/netscan + memmap dump + strings IOC -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk -> WAL-aware copy query + epoch convert + freelist
+- [Cyber Heroines CTF / Stephanie Wehner](https://ctftime.org/writeup/37923) | hard | Vol pslist/netscan + memmap dump + strings IOC -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [Cyber Heroines CTF / Stephanie Wehner](https://ctftime.org/writeup/37892) | hard | Vol pslist/netscan + memmap dump + strings IOC -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [Cyber Santa is Coming to Town / Honeypot](https://ctftime.org/writeup/31727) | hard | Vol pslist/netscan + memmap dump + strings IOC -> tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [Cyber Santa is Coming to Town / Persist](https://ctftime.org/writeup/31757) | hard | Vol pslist/netscan + memmap dump + strings IOC -> tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [Cyber Santa is Coming to Town / Persist](https://ctftime.org/writeup/31697) | hard | Vol pslist/netscan + memmap dump + strings IOC -> tshark hierarchy + follow/export-objects + scapy carve
+- [Insomni&#39;hack 2025 / v0l4til3](https://ctftime.org/writeup/40085) | hard | Vol pslist/netscan + memmap dump + strings IOC -> tshark hierarchy + follow/export-objects + scapy carve
+- [JerseyCTF II / recent-memory](https://ctftime.org/writeup/33172) | hard | Vol pslist/netscan + memmap dump + strings IOC -> tshark hierarchy + follow/export-objects + scapy carve
+- [Junior.Crypt.2024 CTF / Banishment](https://ctftime.org/writeup/39307) | hard | Vol pslist/netscan + memmap dump + strings IOC -> b64/xor/AES ladder + hinted john/hashcat -> NTLMv2 capture + session-key decrypt chain
+- [KnightCTF 2024 / Path of the Executable](https://ctftime.org/writeup/38578) | hard | Vol pslist/netscan + memmap dump + strings IOC
+- [NahamCon CTF 2023 / Raided](https://ctftime.org/writeup/37277) | hard | Vol pslist/netscan + memmap dump + strings IOC
+- [QnQSec CTF 2025 / Shadow Cache](https://ctftime.org/writeup/40449) | hard | Vol pslist/netscan + memmap dump + strings IOC -> tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [Space Heroes 2023 / conspiracy nut](https://ctftime.org/writeup/36877) | hard | Vol pslist/netscan + memmap dump + strings IOC
+- [Space Heroes 2023 / conspiracy nut](https://ctftime.org/writeup/36851) | hard | Vol pslist/netscan + memmap dump + strings IOC
+- [SpookyCTF 2024 / [Forensics] Lssas Crackdown](https://ctftime.org/writeup/39620) | hard | Vol pslist/netscan + memmap dump + strings IOC -> tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [WolvCTF 2024 / Eternally Pwned: Persistence](https://ctftime.org/writeup/38787) | hard | Vol pslist/netscan + memmap dump + strings IOC
+- [0xFUN CTF 2026 / VMware](https://ctftime.org/writeup/40681) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [1753CTF 2025 / Rest In Peace](https://ctftime.org/writeup/40156) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [Alfa Surfing CTF / Запутанная история (octopus)](https://ctftime.org/writeup/40436) | hard | tshark hierarchy + follow/export-objects + scapy carve
+- [AmateursCTF 2023 / zipper](https://ctftime.org/writeup/37484) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [BCACTF 3.0 / My New Friend](https://ctftime.org/writeup/34229) | hard | tshark hierarchy + follow/export-objects + scapy carve -> LNK args + EML carve + macro deobf -> magic-graft + carver ladder + structural open
+- [BDSec CTF 2023 / Find Values](https://ctftime.org/writeup/37588) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [BDSec CTF 2023 / Hackers username and email](https://ctftime.org/writeup/37587) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [BDSec CTF 2023 / Maintain shedule](https://ctftime.org/writeup/37586) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [BlackHat MEA CTF Qualification 2024 / Artifact](https://ctftime.org/writeup/39429) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [BlackHat MEA CTF Qualification 2024 / Stealer](https://ctftime.org/writeup/39424) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk -> b64/xor/AES ladder + hinted john/hashcat
+- [BlueHens CTF 2023 / Big JPG](https://ctftime.org/writeup/38104) | hard | tshark hierarchy + follow/export-objects + scapy carve -> magic-graft + carver ladder + structural open
+- [boroCTF 2026 / Chronos](https://ctftime.org/writeup/40868) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [boroCTF 2026 / slack](https://ctftime.org/writeup/40890) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [Break the Syntax CTF 2024 / freeflag](https://ctftime.org/writeup/39162) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [Break the Syntax CTF 2025 / Chiroptera Timida](https://ctftime.org/writeup/40223) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [Break the Syntax CTF 2025 / copypasta](https://ctftime.org/writeup/40224) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [BroncoCTF 2026 / Bundle 99](https://ctftime.org/writeup/41016) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [BSidesSF 2022 CTF / lph](https://ctftime.org/writeup/34218) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [BuckeyeCTF 2021 / USB Exfiltration](https://ctftime.org/writeup/31089) | hard | tshark hierarchy + follow/export-objects + scapy carve -> HID usage decode + edge-detect + layout fix -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [BuckeyeCTF 2024 / duck-pics](https://ctftime.org/writeup/39499) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [BuckeyeCTF 2025 / 1985](https://ctftime.org/writeup/40487) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [BxMCTF 2023 / Selfie](https://ctftime.org/writeup/37507) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [BxMCTF 2023 / Street View](https://ctftime.org/writeup/37508) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [BYUCTF 2022 / Sticky Key](https://ctftime.org/writeup/34044) | hard | tshark hierarchy + follow/export-objects + scapy carve
+- [BYUCTF 2022 / Treasure Scanner](https://ctftime.org/writeup/34045) | hard | tshark hierarchy + follow/export-objects + scapy carve
+- [BYUCTF 2023 / Bing Chilling](https://ctftime.org/writeup/37067) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [CrewCTF 2022 / Corrupted](https://ctftime.org/writeup/33369) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [CrewCTF 2022 / Policy Violation Pt.1](https://ctftime.org/writeup/33287) | hard | tshark hierarchy + follow/export-objects + scapy carve
+- [CrewCTF 2022 / Screenshot Pt. 3](https://ctftime.org/writeup/33278) | hard | tshark hierarchy + follow/export-objects + scapy carve
+- [CrewCTF 2023 / Attaaaaack2](https://ctftime.org/writeup/37517) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [CrewCTF 2023 / Attaaaaack3](https://ctftime.org/writeup/37518) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [CrewCTF 2023 / Attaaaaack4](https://ctftime.org/writeup/37519) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [CrewCTF 2023 / Attaaaaack5](https://ctftime.org/writeup/37520) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [CrewCTF 2023 / Attaaaaack6](https://ctftime.org/writeup/37521) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [CSAW CTF Final Round 2021 / No time to register](https://ctftime.org/writeup/31350) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [CTF Internacional MetaRed 2021 - 5th STAGE / Happy meal](https://ctftime.org/writeup/31853) | hard | tshark hierarchy + follow/export-objects + scapy carve
+- [CTF@CIT 2025 / Bits &#39;n Pieces](https://ctftime.org/writeup/40179) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [CTF@CIT 2025 / Brainrot Quiz!](https://ctftime.org/writeup/40182) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [CTF@CIT 2025 / True CTF Love](https://ctftime.org/writeup/40180) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [CTF@CIT 2025 / We lost the flag](https://ctftime.org/writeup/40181) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [Cyber Apocalypse 2021 / Alienphish](https://ctftime.org/writeup/32234) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [Cyber Apocalypse 2021 / Key mission](https://ctftime.org/writeup/32236) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [Cyber Apocalypse 2021 / Low Energy Crypto](https://ctftime.org/writeup/32233) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [Cyber Apocalypse 2023: The Cursed Mission / Alien Cradle](https://ctftime.org/writeup/37529) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [Cyber Apocalypse 2023: The Cursed Mission / Artifacts of Dangerous Sightings](https://ctftime.org/writeup/36463) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [Cyber Apocalypse 2023: The Cursed Mission / Plaintext Tleasure](https://ctftime.org/writeup/37528) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [Cyber Apocalypse 2023: The Cursed Mission / Relic Map](https://ctftime.org/writeup/36564) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [Cyber Apocalypse 2024: Hacker Royale / An Unusual Sighting](https://ctftime.org/writeup/38813) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [Cyber Apocalypse 2024: Hacker Royale / Data Siege](https://ctftime.org/writeup/38764) | hard | tshark hierarchy + follow/export-objects + scapy carve
+- [Cyber Apocalypse 2024: Hacker Royale / Fake Boost](https://ctftime.org/writeup/38843) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [Cyber Apocalypse 2024: Hacker Royale / Fake Boost](https://ctftime.org/writeup/38810) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [Cyber Apocalypse 2024: Hacker Royale / It Has Begun](https://ctftime.org/writeup/38812) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [Cyber Apocalypse 2024: Hacker Royale / Phreaky](https://ctftime.org/writeup/38809) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [Cyber Apocalypse 2024: Hacker Royale / Phreaky](https://ctftime.org/writeup/38763) | hard | tshark hierarchy + follow/export-objects + scapy carve -> LNK args + EML carve + macro deobf
+- [Cyber Apocalypse 2024: Hacker Royale / Pursue The Tracks](https://ctftime.org/writeup/38814) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [Cyber Apocalypse 2024: Hacker Royale / Urgent](https://ctftime.org/writeup/38811) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [Cyber Apocalypse CTF 2022: Intergalactic Chase / Automation](https://ctftime.org/writeup/33901) | hard | tshark hierarchy + follow/export-objects + scapy carve
+- [Cyber Apocalypse CTF 2022: Intergalactic Chase / Automation](https://ctftime.org/writeup/33898) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [Cyber Apocalypse CTF 2022: Intergalactic Chase / Intergalactic Recovery](https://ctftime.org/writeup/34081) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [Cyber Apocalypse CTF 2022: Intergalactic Chase / Puppeteer](https://ctftime.org/writeup/34220) | hard | tshark hierarchy + follow/export-objects + scapy carve
+- [Cyber Apocalypse CTF 2022: Intergalactic Chase / Puppeteer](https://ctftime.org/writeup/33897) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [Cyber Apocalypse CTF 2025: Tales from Eldoria / A new Hire](https://ctftime.org/writeup/40110) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [Cyber Heroines CTF / Elizabeth Feinler](https://ctftime.org/writeup/37889) | hard | tshark hierarchy + follow/export-objects + scapy carve
+- [Cyber Heroines CTF / Marian Croak](https://ctftime.org/writeup/37916) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [Cyber Heroines CTF / Marian Croak](https://ctftime.org/writeup/37891) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [Cyber Santa is Coming to Town / baby APT](https://ctftime.org/writeup/31787) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [Cyber Santa is Coming to Town / baby APT](https://ctftime.org/writeup/31640) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [Cyber Santa is Coming to Town / Giveaway](https://ctftime.org/writeup/31786) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [Cyber Santa is Coming to Town / Honeypot](https://ctftime.org/writeup/31643) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [Cyberconférence CTF (24h@CTF &#39;23) / Preparation - Adipol Lipidex 32mg](https://ctftime.org/writeup/37473) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [DamCTF 2021 / sneaky-script](https://ctftime.org/writeup/31237) | hard | tshark hierarchy + follow/export-objects + scapy carve -> label-order preserve + encoding-tell decode
+- [DanteCTF 2023 / Imago Qualitatis](https://ctftime.org/writeup/37260) | hard | tshark hierarchy + follow/export-objects + scapy carve
+- [DanteCTF 2023 / Routes Mark The Spot](https://ctftime.org/writeup/37160) | hard | tshark hierarchy + follow/export-objects + scapy carve
+- [DanteCTF 2023 / Who Can Haz Flag](https://ctftime.org/writeup/37159) | hard | tshark hierarchy + follow/export-objects + scapy carve
+- [DawgCTF 2025 / Chunked Integrity](https://ctftime.org/writeup/40172) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [DawgCTF 2025 / Just Packets](https://ctftime.org/writeup/40171) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [DEADFACE CTF / Blood Bash](https://ctftime.org/writeup/31030) | hard | tshark hierarchy + follow/export-objects + scapy carve
+- [DEADFACE CTF / Blood Bash 3](https://ctftime.org/writeup/31032) | hard | tshark hierarchy + follow/export-objects + scapy carve -> b64/xor/AES ladder + hinted john/hashcat -> bash_history/auth.log + cron + timeline weave
+- [DEADFACE CTF / Blood Bash 3](https://ctftime.org/writeup/30960) | hard | tshark hierarchy + follow/export-objects + scapy carve
+- [DEADFACE CTF / Blood Bash 4](https://ctftime.org/writeup/30952) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [DEADFACE CTF / File 101](https://ctftime.org/writeup/30962) | hard | tshark hierarchy + follow/export-objects + scapy carve -> b64/xor/AES ladder + hinted john/hashcat
+- [DEADFACE CTF / File 101](https://ctftime.org/writeup/30899) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [DEADFACE CTF 2023 / Creepy Crawling](https://ctftime.org/writeup/38551) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [DEADFACE CTF 2023 / Git Rekt](https://ctftime.org/writeup/38548) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [DEADFACE CTF 2023 / Sometimes IT Lets You Down](https://ctftime.org/writeup/38547) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [DEADFACE CTF 2023 / UVB-76 (Hello, are you there?)](https://ctftime.org/writeup/38549) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [DEADFACE CTF 2023 / What&#39;s the Wallet](https://ctftime.org/writeup/38047) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk -> b64/xor/AES ladder + hinted john/hashcat
+- [DeconstruCT.F 2023 / GAMBIT](https://ctftime.org/writeup/37715) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [DeconstruCT.F 2023 / Magicplay](https://ctftime.org/writeup/37713) | hard | tshark hierarchy + follow/export-objects + scapy carve
+- [eHaCON CTF 2K21 / Hybrid Tree](https://ctftime.org/writeup/31287) | hard | tshark hierarchy + follow/export-objects + scapy carve
+- [eHaCON CTF 2K21 / Hybrid Tree](https://ctftime.org/writeup/31268) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [eHaCON CTF 2K21 / Snow White](https://ctftime.org/writeup/31297) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk -> magic-graft + carver ladder + structural open
+- [eHaCON CTF 2K21 / snow white, hybrid tree, PikaZip](https://ctftime.org/writeup/31285) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [FE-CTF 2022: Cyber Demon / Coredump](https://ctftime.org/writeup/35982) | hard | tshark hierarchy + follow/export-objects + scapy carve
+- [GDG Algiers CTF 2022 / POSTAL](https://ctftime.org/writeup/35884) | hard | tshark hierarchy + follow/export-objects + scapy carve -> b64/xor/AES ladder + hinted john/hashcat -> magic-graft + carver ladder + structural open
+- [GPN CTF 2023 / pixelperfect](https://ctftime.org/writeup/37176) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [GrabCON CTF 2021 / Gang Busted](https://ctftime.org/writeup/31559) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [Grey Cat The Flag 2022 / Image Upload](https://ctftime.org/writeup/34270) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [Grey Cat The Flag 2023 Qualifiers / ReService](https://ctftime.org/writeup/37397) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [Grey Cat The Flag 2025 / Notsus.Exe 718](https://ctftime.org/writeup/40263) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [Hacky Holidays - Unlock the City / Protect the supply](https://ctftime.org/writeup/34709) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [Hacky Holidays - Unlock the City / Stop The Heist](https://ctftime.org/writeup/34708) | hard | tshark hierarchy + follow/export-objects + scapy carve -> b64/xor/AES ladder + hinted john/hashcat
+- [HASBLCTF26 / Digits](https://ctftime.org/writeup/40841) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [HASBLCTF26 / Logo](https://ctftime.org/writeup/40840) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [HASBLCTF26 / our sweet cat, Pamuk](https://ctftime.org/writeup/40843) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [HASBLCTF26 / Quick Response](https://ctftime.org/writeup/40839) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [HASBLCTF26 / The Magic of “Magic Numbers”](https://ctftime.org/writeup/40842) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [HTB Business CTF 2022: Dirty Money / Breakout](https://ctftime.org/writeup/34578) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [HTB Uni CTF 2021 - Quals / Strike Back](https://ctftime.org/writeup/31415) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [HTB Uni CTF 2021 - Quals / Upgrades](https://ctftime.org/writeup/31416) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [ImaginaryCTF 2024 / Crash](https://ctftime.org/writeup/39341) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [Insomni&#39;hack teaser 2022 / AndroNotes](https://ctftime.org/writeup/32240) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [Insomni&#39;hack teaser 2022 / ExPiltration](https://ctftime.org/writeup/32288) | hard | tshark hierarchy + follow/export-objects + scapy carve
+- [Insomni&#39;hack teaser 2022 / ExPiltration](https://ctftime.org/writeup/32243) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [Inter-Galactic CTF Competition / Alien Corruption](https://ctftime.org/writeup/35342) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [Inter-Galactic CTF Competition / Dinosaurs are cool](https://ctftime.org/writeup/35345) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [Inter-Galactic CTF Competition / InterMidiate](https://ctftime.org/writeup/35334) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [Inter-Galactic CTF Competition / Matilda](https://ctftime.org/writeup/35336) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [Inter-Galactic CTF Competition / Nothing to see here](https://ctftime.org/writeup/35346) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [Inter-Galactic CTF Competition / Redacted Letter](https://ctftime.org/writeup/35318) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [Inter-Galactic CTF Competition / Say Hello](https://ctftime.org/writeup/35298) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [Inter-Galactic CTF Competition / SIGINT](https://ctftime.org/writeup/35337) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [Inter-Galactic CTF Competition / Traffic in the Clear](https://ctftime.org/writeup/35335) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [Inter-Galactic CTF Competition / Where did the flag go?](https://ctftime.org/writeup/35333) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [IrisCTF 2023 / wi-the-fi](https://ctftime.org/writeup/36060) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [IrisCTF 2024 / skat&#39;s SD card](https://ctftime.org/writeup/38419) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [JerseyCTF II / stolen-data](https://ctftime.org/writeup/33169) | hard | tshark hierarchy + follow/export-objects + scapy carve
+- [JerseyCTF III / firefox-history](https://ctftime.org/writeup/36832) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [JerseyCTF IV / insecure-creds](https://ctftime.org/writeup/38993) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [JerseyCTF IV / vibrations](https://ctftime.org/writeup/38930) | hard | tshark hierarchy + follow/export-objects + scapy carve
+- [JerseyCTF V / Dollhouse-Confidential](https://ctftime.org/writeup/40129) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [Junior.Crypt.2024 CTF / Admin rights](https://ctftime.org/writeup/39323) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [KalmarCTF 2023 / sewing-waste-and-agriculture-leftovers](https://ctftime.org/writeup/37559) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [Killer Queen CTF 2021 / Obligatory Shark](https://ctftime.org/writeup/31177) | hard | tshark hierarchy + follow/export-objects + scapy carve -> WAL-aware copy query + epoch convert + freelist
+- [KnightCTF 2023 / Hello](https://ctftime.org/writeup/36104) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk -> b64/xor/AES ladder + hinted john/hashcat
+- [KnightCTF 2024 / Execution](https://ctftime.org/writeup/38577) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [KubanCTF Qualifier 2024 / Изменен, но не сломлен.](https://ctftime.org/writeup/39466) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [KubSTU CTF / Cat-girl conspiracy](https://ctftime.org/writeup/40759) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [KubSTU CTF / Demo](https://ctftime.org/writeup/40761) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [KubSTU CTF / Nintendo 3DS](https://ctftime.org/writeup/40758) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [KubSTU CTF / Not enough part 1](https://ctftime.org/writeup/40760) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [KubSTU CTF / Unlucky 13](https://ctftime.org/writeup/40757) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [L3akCTF 2024 / Air](https://ctftime.org/writeup/39175) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [L3akCTF 2026 / Transcendent Renovation Challenge](https://ctftime.org/writeup/41069) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [L3akCTF 2026 / You Scanned WHAT?!?](https://ctftime.org/writeup/41067) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [LYKNCTF / Follow The Layer](https://ctftime.org/writeup/40998) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [LYKNCTF / Photograph](https://ctftime.org/writeup/40985) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [Mapna CTF 2024 / PLC I ? (32)](https://ctftime.org/writeup/38537) | hard | tshark hierarchy + follow/export-objects + scapy carve
+- [MetaCTF CyberGames 2021 / Pattern of Life](https://ctftime.org/writeup/31711) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [n00bzCTF 2023 / Crack &amp; Crack](https://ctftime.org/writeup/37237) | hard | tshark hierarchy + follow/export-objects + scapy carve -> LNK args + EML carve + macro deobf -> b64/xor/AES ladder + hinted john/hashcat
+- [NahamCon CTF 2023 / IR](https://ctftime.org/writeup/37589) | hard | tshark hierarchy + follow/export-objects + scapy carve
+- [NahamCon CTF 2023 / Perfectly Disinfected](https://ctftime.org/writeup/37591) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [NahamCon CTF 2023 / Perfectly Disinfected](https://ctftime.org/writeup/37276) | hard | tshark hierarchy + follow/export-objects + scapy carve
+- [NahamCon CTF 2023 / Raided](https://ctftime.org/writeup/37590) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [Newark Academy CTF / The Warning 2](https://ctftime.org/writeup/32040) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [niteCTF / Boys](https://ctftime.org/writeup/36049) | hard | tshark hierarchy + follow/export-objects + scapy carve
+- [Nullcon Goa HackIM 2025 CTF / USBNet](https://ctftime.org/writeup/39867) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [Nullcon Goa HackIM 2025 CTF / USBNet](https://ctftime.org/writeup/39841) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [OFPPT-CTF Morocco / pcap analysis](https://ctftime.org/writeup/32658) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [OFPPT-CTF Morocco / Pcap Analysis 2](https://ctftime.org/writeup/32706) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [OFPPT-CTF Morocco / shark](https://ctftime.org/writeup/32657) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [OmniCTF 2026 Quals / QuackQuackDiriDiriDuck](https://ctftime.org/writeup/41039) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [PatriotCTF 2023 / Capybara](https://ctftime.org/writeup/37919) | hard | tshark hierarchy + follow/export-objects + scapy carve
+- [picoCTF 2022 / Eavesdrop](https://ctftime.org/writeup/32908) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [picoCTF 2022 / Enhance!](https://ctftime.org/writeup/32771) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [picoCTF 2022 / File types](https://ctftime.org/writeup/32887) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [picoCTF 2022 / Lookey here](https://ctftime.org/writeup/32772) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [picoCTF 2022 / Operation Orchid](https://ctftime.org/writeup/32733) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [picoCTF 2022 / Packets Primer](https://ctftime.org/writeup/32773) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [picoCTF 2022 / Redaction gone wrong](https://ctftime.org/writeup/32774) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [picoCTF 2022 / Redaction gone Wrong](https://ctftime.org/writeup/32737) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [picoCTF 2022 / Sleuthkit Apprentice](https://ctftime.org/writeup/32776) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [picoCTF 2022 / Sleuthkit Apprentice](https://ctftime.org/writeup/32736) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [picoCTF 2022 / Sleuthkit Intro](https://ctftime.org/writeup/32775) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [picoCTF 2022 / St3g0](https://ctftime.org/writeup/32777) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [picoCTF 2022 / Torrent Analyze](https://ctftime.org/writeup/33266) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [picoCTF 2022 / Torrent Analyze](https://ctftime.org/writeup/32731) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [R3CTF 2026 / Tsuki’s Rhythm Game](https://ctftime.org/writeup/40997) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [RIFFHACK: Black Market Break-In / Black Mirror Memory Fragments](https://ctftime.org/writeup/40891) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [RITSEC CTF 2025 / Intercepted Transmission](https://ctftime.org/writeup/40109) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [SamaraCTF 2026 / Die Hard](https://ctftime.org/writeup/40802) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [San Diego CTF 2022 / Flag Trafficker](https://ctftime.org/writeup/33742) | hard | tshark hierarchy + follow/export-objects + scapy carve
+- [SekaiCTF 2022 / Matryoshka](https://ctftime.org/writeup/35870) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [Space Heroes 2022 / RF Math in Space](https://ctftime.org/writeup/32990) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [Space Heroes 2022 / Somethings Off](https://ctftime.org/writeup/32991) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [Space Heroes 2023 / Felicette](https://ctftime.org/writeup/36853) | hard | tshark hierarchy + follow/export-objects + scapy carve
+- [Space Heroes 2023 / i OFTen see star wars](https://ctftime.org/writeup/36895) | hard | tshark hierarchy + follow/export-objects + scapy carve
+- [SwampCTF 2024 / Notoriously Tricky Login Mess (Part 1)](https://ctftime.org/writeup/39039) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [SwampCTF 2024 / Notoriously Tricky Login Mess (Part 2)](https://ctftime.org/writeup/39038) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [TCP1P CTF 2024: Exploring Nusantara&#39;s Digital Realm / [Forensics] Doxxed](https://ctftime.org/writeup/39559) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [TCP1P CTF 2024: Exploring Nusantara&#39;s Digital Realm / [Forensics] Lost Progress](https://ctftime.org/writeup/39560) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [Tenable CTF 2022 / Top Secret](https://ctftime.org/writeup/34325) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [Texas Security Awareness Week 2023 / Lazy Admin](https://ctftime.org/writeup/36795) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [TFC CTF 2024 / HE DID WHAT?!](https://ctftime.org/writeup/39363) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk -> b64/xor/AES ladder + hinted john/hashcat
+- [The Cyber Cooperative CTF / Lost at Sea](https://ctftime.org/writeup/38411) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [TJCTF 2022 / fake-geoguessr](https://ctftime.org/writeup/33819) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [TJCTF 2022 / sneaker-zipper](https://ctftime.org/writeup/33829) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk -> b64/xor/AES ladder + hinted john/hashcat
+- [TJCTF 2023 / beep-boop-robot](https://ctftime.org/writeup/37610) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [TJCTF 2023 / neofeudalism](https://ctftime.org/writeup/37612) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [TJCTF 2023 / nothing-to-see](https://ctftime.org/writeup/37611) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [Ugra CTF Quals 2022 / cmap](https://ctftime.org/writeup/32512) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [UniVsThreats 25 CTF / Dark Web](https://ctftime.org/writeup/40212) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [UniVsThreats 25 CTF / Flag Shredder](https://ctftime.org/writeup/40211) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [UniVsThreats 25 CTF / RAMblings of Cornelia](https://ctftime.org/writeup/40213) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [UofTCTF 2024 / EnableMe](https://ctftime.org/writeup/38502) | hard | tshark hierarchy + follow/export-objects + scapy carve -> LNK args + EML carve + macro deobf
+- [UofTCTF 2024 / EnableMe](https://ctftime.org/writeup/38444) | hard | tshark hierarchy + follow/export-objects + scapy carve
+- [UofTCTF 2024 / Illusion](https://ctftime.org/writeup/38501) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [UofTCTF 2024 / Secret Message 1](https://ctftime.org/writeup/38473) | hard | tshark hierarchy + follow/export-objects + scapy carve
+- [UofTCTF 2024 / Secret Message 1](https://ctftime.org/writeup/38445) | hard | tshark hierarchy + follow/export-objects + scapy carve
+- [Urmia CTF 2023 / Network Punk](https://ctftime.org/writeup/37845) | hard | tshark hierarchy + follow/export-objects + scapy carve -> LNK args + EML carve + macro deobf
+- [Urmia CTF 2024 / The Road of Redemption](https://ctftime.org/writeup/39460) | hard | tshark hierarchy + follow/export-objects + scapy carve -> b64/xor/AES ladder + hinted john/hashcat
+- [US Cyber Open CTF: Season II / hidden widsom](https://ctftime.org/writeup/34631) | hard | tshark hierarchy + follow/export-objects + scapy carve
+- [US Cyber Open CTF: Season II / stomped](https://ctftime.org/writeup/34611) | hard | tshark hierarchy + follow/export-objects + scapy carve
+- [UTCTF 2022 / IRC](https://ctftime.org/writeup/32528) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [UTCTF 2022 / Sounds Familiar](https://ctftime.org/writeup/32527) | hard | tshark hierarchy + follow/export-objects + scapy carve -> b64/xor/AES ladder + hinted john/hashcat
+- [VishwaCTF 2022 / So Forgetful!](https://ctftime.org/writeup/32604) | hard | tshark hierarchy + follow/export-objects + scapy carve
+- [VishwaCTF 2022 / So Forgetful!](https://ctftime.org/writeup/32594) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [VishwaCTF 2023 / Can you see me](https://ctftime.org/writeup/36665) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [vsCTF 2022 / Portal Savior](https://ctftime.org/writeup/34539) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [vsCTF 2022 / Roblox 1](https://ctftime.org/writeup/34538) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [VU CYBERTHON 2023 / Based on the analysis of the video file 20221015_173902.mp4...](https://ctftime.org/writeup/37627) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [VU CYBERTHON 2023 / Based on the review of the media files, please provide the GPS..](https://ctftime.org/writeup/37628) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [VU CYBERTHON 2023 / Find location](https://ctftime.org/writeup/37631) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [VU CYBERTHON 2023 / How much dollars the seized weapons (stuff) may have cost?](https://ctftime.org/writeup/37632) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [VU CYBERTHON 2023 / RFC standard for security policy information](https://ctftime.org/writeup/37633) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [VU CYBERTHON 2023 / What is a name of audio file which is related with rifles and...](https://ctftime.org/writeup/37636) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [VU CYBERTHON 2023 / What is a name of video file which is related with tanks?](https://ctftime.org/writeup/37637) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [VU CYBERTHON 2023 / What is a Username of telegram messenger?](https://ctftime.org/writeup/37643) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [VU CYBERTHON 2023 / What is SHA1 checksum of image file blk0_mmcblk0.bin?](https://ctftime.org/writeup/37635) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [VU CYBERTHON 2023 / What is the brand (vendor) of phone?](https://ctftime.org/writeup/37639) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [VU CYBERTHON 2023 / What is the model of phone?](https://ctftime.org/writeup/37640) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [VU CYBERTHON 2023 / What is the name of the largest partition?](https://ctftime.org/writeup/37642) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [VU CYBERTHON 2023 / What is the name of WhatsApp user which has phone number...](https://ctftime.org/writeup/37641) | hard | tshark hierarchy + follow/export-objects + scapy carve -> WAL-aware copy query + epoch convert + freelist
+- [VU CYBERTHON 2023 / What is the SIM card number (ICCID) used on the phone?](https://ctftime.org/writeup/37629) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [VU CYBERTHON 2023 / What tank specs the user was looking for?](https://ctftime.org/writeup/37638) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [VU CYBERTHON 2023 / What was the subscriber&#39;s phone number (MSISDN)?](https://ctftime.org/writeup/37630) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [VU CYBERTHON 2023 / What web address was provided for a company that can rent ...](https://ctftime.org/writeup/37644) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [VuwCTF 2026 / compression](https://ctftime.org/writeup/41058) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [Wargames.MY CTF 2024 / [Forensics] I Cant Manipulate People](https://ctftime.org/writeup/39742) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [Winja CTF / c0c0n 2021](https://ctftime.org/writeup/31307) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [WolvCTF 2023 / Dino Trading](https://ctftime.org/writeup/36674) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [WolvCTF 2023 / Dino Trading](https://ctftime.org/writeup/36464) | hard | tshark hierarchy + follow/export-objects + scapy carve -> b64/xor/AES ladder + hinted john/hashcat -> magic-graft + carver ladder + structural open
+- [WolvCTF 2023 / Dino Trading](https://ctftime.org/writeup/36446) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [WolvCTF 2023 / Dino Trading](https://ctftime.org/writeup/36394) | hard | tshark hierarchy + follow/export-objects + scapy carve -> LNK args + EML carve + macro deobf -> magic-graft + carver ladder + structural open
+- [WolvCTF 2023 / Employee 427: Compromised](https://ctftime.org/writeup/36445) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [WolvCTF 2023 / Employee 427: Locate](https://ctftime.org/writeup/36444) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [WolvCTF 2023 / important_notes](https://ctftime.org/writeup/37653) | hard | tshark hierarchy + follow/export-objects + scapy carve
+- [WolvCTF 2024 / Eternally Pwned: Infiltration](https://ctftime.org/writeup/38968) | hard | tshark hierarchy + follow/export-objects + scapy carve
+- [WolvCTF 2024 / Eternally Pwned: Infiltration](https://ctftime.org/writeup/38861) | hard | tshark hierarchy + follow/export-objects + scapy carve -> b64/xor/AES ladder + hinted john/hashcat -> NTLMv2 capture + session-key decrypt chain
+- [WolvCTF 2024 / Eternally Pwned: Infiltration](https://ctftime.org/writeup/38786) | hard | tshark hierarchy + follow/export-objects + scapy carve -> NTLMv2 capture + session-key decrypt chain
+- [WolvCTF 2024 / Eternally Pwned: Persistence](https://ctftime.org/writeup/38862) | hard | tshark hierarchy + follow/export-objects + scapy carve
+- [WolvCTF 2024 / Forensics: Hidden Data](https://ctftime.org/writeup/38819) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk -> LNK args + EML carve + macro deobf
+- [Wolverine Security Conference/CTF / Flaggy](https://ctftime.org/writeup/32695) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [Wolverine Security Conference/CTF / Lectures_22_Forensics](https://ctftime.org/writeup/32678) | hard | tshark hierarchy + follow/export-objects + scapy carve
+- [Wolverine Security Conference/CTF / Lectures_22_Forensics](https://ctftime.org/writeup/32676) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [Wolverine Security Conference/CTF / Noise](https://ctftime.org/writeup/32696) | hard | tshark hierarchy + follow/export-objects + scapy carve -> MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [Engineer CTF / Plain Sight](https://ctftime.org/writeup/32381) | hard | label-order preserve + encoding-tell decode
+- [BackdoorCTF 2024 / Cursed Credential](https://ctftime.org/writeup/39721) | hard | MFT/MFTECmd timeline + icat/blkls carve + TestDisk -> b64/xor/AES ladder + hinted john/hashcat
+- [BlackHat MEA CTF Qualification 2024 / Artifact](https://ctftime.org/writeup/39463) | hard | MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [CrewCTF 2022 / Em31l Pt.1](https://ctftime.org/writeup/33280) | hard | MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [CrewCTF 2022 / Policy Violation Pt.1](https://ctftime.org/writeup/33317) | hard | E01 ewfmount + filesystem triage + timeline
+- [CrewCTF 2022 / Policy Violation Pt.2](https://ctftime.org/writeup/33288) | hard | MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [CrewCTF 2022 / Screenshot Pt. 1](https://ctftime.org/writeup/33276) | hard | MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [Cyber Apocalypse CTF 2025: Tales from Eldoria / A new Hire](https://ctftime.org/writeup/40114) | hard | MFT/MFTECmd timeline + icat/blkls carve + TestDisk -> LNK args + EML carve + macro deobf
+- [H7CTF 2025 / KGF 1.0](https://ctftime.org/writeup/40458) | hard | MFT/MFTECmd timeline + icat/blkls carve + TestDisk -> bash_history/auth.log + cron + timeline weave
+- [H7CTF 2025 / RecoverFS](https://ctftime.org/writeup/40457) | hard | MFT/MFTECmd timeline + icat/blkls carve + TestDisk -> magic-graft + carver ladder + structural open
+- [Insomni&#39;hack 2025 / The quiet fruit](https://ctftime.org/writeup/40086) | hard | MFT/MFTECmd timeline + icat/blkls carve + TestDisk -> b64/xor/AES ladder + hinted john/hashcat
+- [JerseyCTF III / after-all-this-time](https://ctftime.org/writeup/36806) | hard | MFT/MFTECmd timeline + icat/blkls carve + TestDisk -> b64/xor/AES ladder + hinted john/hashcat
+- [K3RN3LCTF / Zabomb](https://ctftime.org/writeup/31329) | hard | MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [Mapna CTF 2024 / JigBoy](https://ctftime.org/writeup/38589) | hard | MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [niteCTF / Phantasmagoria](https://ctftime.org/writeup/38339) | hard | MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [Securinets CTF Quals 2025 / Silent Visitor](https://ctftime.org/writeup/40467) | hard | MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [Space Heroes 2022 / The Legend of the Chozo](https://ctftime.org/writeup/32982) | hard | MFT/MFTECmd timeline + icat/blkls carve + TestDisk
+- [Cyber Apocalypse CTF 2022: Intergalactic Chase / Intergalactic Recovery](https://ctftime.org/writeup/33886) | hard | Amcache/Shimcache/Prefetch ladder + timeline
+- [picoCTF 2022 / Eavesdrop](https://ctftime.org/writeup/33259) | hard | Amcache/Shimcache/Prefetch ladder + timeline
+- [picoCTF 2022 / Operation Oni](https://ctftime.org/writeup/33252) | hard | Amcache/Shimcache/Prefetch ladder + timeline
+- [picoCTF 2022 / Sleuthkit Apprentice](https://ctftime.org/writeup/33299) | hard | Amcache/Shimcache/Prefetch ladder + timeline
+- [picoCTF 2022 / St3g0](https://ctftime.org/writeup/33260) | hard | Amcache/Shimcache/Prefetch ladder + timeline
+- [Space Heroes 2022 / Strange Traffic](https://ctftime.org/writeup/33250) | hard | Amcache/Shimcache/Prefetch ladder + timeline
+- [Texas Security Awareness Week 2023 / Ghost in the Clipboard](https://ctftime.org/writeup/36769) | hard | WAL-aware copy query + epoch convert + freelist
+- [Junior.Crypt.2024 CTF / Admin rights](https://ctftime.org/writeup/39309) | hard | NTLMv2 capture + session-key decrypt chain
+- [Junior.Crypt.2024 CTF / Series SAM](https://ctftime.org/writeup/39308) | hard | b64/xor/AES ladder + hinted john/hashcat -> NTLMv2 capture + session-key decrypt chain
+- [WolvCTF 2024 / Log Analysis](https://ctftime.org/writeup/38860) | hard | NTLMv2 capture + session-key decrypt chain
+- [BrunnerCTF 2025 / New Order](https://ctftime.org/writeup/40384) | hard | LNK args + EML carve + macro deobf
+- [DanteCTF 2023 / Do You Know GIF?](https://ctftime.org/writeup/37261) | hard | LNK args + EML carve + macro deobf -> magic-graft + carver ladder + structural open
+- [GREP CTF / Doctored image](https://ctftime.org/writeup/36686) | hard | LNK args + EML carve + macro deobf
+- [Lexington Informatics Tournament CTF 2022 / misc/CodeTiger orz Is Meta](https://ctftime.org/writeup/34647) | hard | LNK args + EML carve + macro deobf
+- [n00bzCTF 2023 / Avengers](https://ctftime.org/writeup/37238) | hard | LNK args + EML carve + macro deobf
+- [TAMUctf 2023 / Discordance](https://ctftime.org/writeup/36934) | hard | LNK args + EML carve + macro deobf
+- [Texas Security Awareness Week 2023 / Ghost in the Clipboard](https://ctftime.org/writeup/37726) | hard | LNK args + EML carve + macro deobf
+- [BlueHens CTF 2022 / Audio Salad](https://ctftime.org/writeup/35965) | hard | b64/xor/AES ladder + hinted john/hashcat
+- [BSidesSF 2022 CTF / dual-type-multi-format](https://ctftime.org/writeup/34408) | hard | b64/xor/AES ladder + hinted john/hashcat
+- [BuckeyeCTF 2025 / zip2john2zip](https://ctftime.org/writeup/40488) | hard | b64/xor/AES ladder + hinted john/hashcat
+- [DEADFACE CTF / File 101](https://ctftime.org/writeup/31033) | hard | b64/xor/AES ladder + hinted john/hashcat
+- [JerseyCTF II / we-will](https://ctftime.org/writeup/33173) | hard | b64/xor/AES ladder + hinted john/hashcat
+- [WolvCTF 2023 / important_notes](https://ctftime.org/writeup/36396) | hard | b64/xor/AES ladder + hinted john/hashcat
+- [SunshineCTF 2025 / Remotely Interesting](https://ctftime.org/writeup/40444) | hard | magic-graft + carver ladder + structural open
+- [BYUCTF 2022 / Alpine 1](https://ctftime.org/writeup/34103) | hard | file-path hunt + web-access log pivot
+- [BYUCTF 2022 / Alpine 2](https://ctftime.org/writeup/34104) | hard | auth/log triage + remote-login IP attribution
+- [CrewCTF 2022 / Corrupted](https://ctftime.org/writeup/33318) | hard | header-graft + hex carve + structural validate
+- [CrewCTF 2023 / Attaaaaack10](https://ctftime.org/writeup/37425) | hard | Vol persistence (schtasks/Run key) + autoruns cross-check
+- [CrewCTF 2023 / Attaaaaack13](https://ctftime.org/writeup/37428) | hard | Vol malfind/dumpfiles + VT family map (DarkComet)
+- [CrewCTF 2023 / Attaaaaack4](https://ctftime.org/writeup/37419) | hard | Vol pslist/psscan + suspicious-PID memmap dump
+- [CrewCTF 2023 / Attaaaaack5](https://ctftime.org/writeup/37420) | hard | Vol PPID-child + cmdline anomaly process hunt
+- [Cyber Apocalypse CTF 2022: Intergalactic Chase / Automation](https://ctftime.org/writeup/34222) | hard | PS AES-CBC stage + key/IV harvest + decrypt
+- [Cyber Apocalypse CTF 2022: Intergalactic Chase / Golden Persistence](https://ctftime.org/writeup/34221) | hard | PS crypto stage + persistence artefact pivot
+- [Cyber Heroines CTF / Barbara Liskov](https://ctftime.org/writeup/37888) | hard | pyc decompile (pylingual/uncompyle6) + logic reverse
+- [DaVinciCTF 2022 / Very Bad Script](https://ctftime.org/writeup/32548) | hard | doc-macro (olevba) + deobf + stage-2 fetch
+- [FE-CTF 2022: Cyber Demon / Tar and Feathers](https://ctftime.org/writeup/35938) | hard | tar-layer walk + layer-reorder file rebuild
+- [ImaginaryCTF 2023 / blurry](https://ctftime.org/writeup/37668) | hard | artefact triage + timeline weave
+- [Mapna CTF 2024 / Tampered](https://ctftime.org/writeup/38535) | hard | flag-format + repo-diff counterfeit hunt
+- [Mapna CTF 2024 / XXG](https://ctftime.org/writeup/38541) | hard | XCF/GIMP layer + hex-string carve
+- [NahamCon CTF 2023 / Hidden Figures](https://ctftime.org/writeup/37304) | hard | web-asset carve + appended-file/binwalk split
+- [Nullcon Goa HackIM 2026 CTF / rdctd 1-6](https://ctftime.org/writeup/40573) | hard | PDF text/metadata triage + hidden-layer carve
+- [Space Heroes 2022 / Buzz&#39;s Secret Watch (Part 1)](https://ctftime.org/writeup/32964) | hard | LED blink binary + timing decode to ascii
+- [Space Heroes 2022 / Buzz&#39;s Secret Watch (Part 2)](https://ctftime.org/writeup/32965) | hard | video-frame script carve + pixel-position decode
+- [Space Heroes 2023 / A New Hope](https://ctftime.org/writeup/36967) | hard | damaged-message reassembly + frame-order fix
+- [Space Heroes 2023 / i OFTen see star wars](https://ctftime.org/writeup/36855) | hard | font-file hex carve + custom-glyph decode
+- [Srdnlen CTF 2023 / Audio misc challenge](https://ctftime.org/writeup/38086) | hard | audio file decode + spectral/FFT read
+- [Texas Security Awareness Week 2024 / Malicious Threat](https://ctftime.org/writeup/38912) | hard | admin-activity log audit + anomaly pivot
+- [UIUCTF 2023 / Tornado Warning](https://ctftime.org/writeup/37408) | hard | radio-header error-correct + bit-carve message
+- [VishwaCTF 2022 / Keep the flag high](https://ctftime.org/writeup/32605) | hard | image-asset triage + metadata/append carve
+- [VishwaCTF 2024 / Repo Riddles](https://ctftime.org/writeup/38925) | hard | git branch/show + commit-history secret hunt

@@ -1,0 +1,43 @@
+{
+ "id": "imported-js-deobfuscation",
+ "domain": "web-ctf",
+ "title": "JavaScript deobfuscation",
+ "signals": [
+  "obfuscated JS",
+  "string array",
+  "_0x names",
+  "eval/Function",
+  "source map"
+ ],
+ "preconditions": [
+  "JS file/bundle",
+  "Node sandbox and browser devtools"
+ ],
+ "steps": [
+  "`js-beautify`/prettier first; look for string arrays, decoder functions, and `eval`/`Function` wrappers.",
+  "Use `webcrack`/`de4js` or a small Babel AST pass to fold string arrays and constant expressions.",
+  "Run suspicious code in a Node VM/browser sandbox with network blocked; log arguments to eval/Function.",
+  "Check source maps, `atob`/`crypto` calls, and DOM sinks; extract the check/flag path and confirm in the browser."
+ ],
+ "falsifier": "The code is server-side or WASM; static JS deobfuscation cannot recover it.",
+ "pitfalls": [
+  "anti-debug",
+  "eval obfuscation",
+  "browser-only APIs",
+  "infinite loops",
+  "prototype pollution in the sandbox"
+ ],
+ "sources": [
+  "https://github.com/mukul975/Anthropic-Cybersecurity-Skills/tree/main/skills/deobfuscating-javascript-malware"
+ ],
+ "fixtures": [],
+ "verified_by": "source:Anthropic Cybersecurity Skills",
+ "last_verified": "2026-10-20",
+ "verified": false,
+ "verification": "source",
+ "license": "Apache-2.0",
+ "ctf_domains": [
+  "web-ctf",
+  "rev"
+ ]
+}

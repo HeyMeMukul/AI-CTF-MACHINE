@@ -1,0 +1,417 @@
+# Stego Writeups Mined (technique-only)
+
+Method: ctftime tag-filtered listing harvest (`hidden-tags`+`tags` per tag, tag-fraction
+validated >=0.5) across 2022-2026, every kept page fetched (HTTP 200) and parsed for
+event/task/tags/rating/original-link/body technique tokens; plus primary GitHub writeups
+read in full from repo tarballs. Trivial append-carve-only and non-stego rows excluded.
+Difficulty rule: hard = rating>=4.0, or >=3 technique families, or finals-tier event, or
+hard-named/high-point task; else medium.
+Tiers: [page] = ctftime page read in full (event/task/tags/rating/tech-tokens);
+[index] = technique+event/challenge attribution from curated index doc read in full;
+[snippet] = technique from search-result excerpt (URL real, page not fully read).
+[page-thin] = writeup body is image-only; chain synthesized from its tags+task title.
+Technique chains only — no flag or payload values anywhere.
+
+- [SekaiCTF 2026 / impossible stego](https://ctftime.org/writeup/40960) | hard | steganography sekaictf stego [page-thin: body image-only, chain from tags/task]
+- [KubSTU CTF / Krasnodar tram](https://ctftime.org/writeup/40767) | hard | tools: exiftool,strings
+- [CTF@CIT 2026 / Cool Car](https://ctftime.org/writeup/40752) | hard | tools: exiftool,strings,idat,lsb
+- [Nullcon Goa HackIM 2026 CTF / rdctd 1-6](https://ctftime.org/writeup/40573) | hard | pdf; tools: strings,pdftotext,idat,dct
+- [BuckeyeCTF 2025 / zip2john2zip](https://ctftime.org/writeup/40488) | hard | hash_cracking hash; tools: john,crc
+- [SunshineCTF 2025 / Remotely Interesting](https://ctftime.org/writeup/40444) | hard | dwm windows; tools: foremost,idat,ass
+- [SAS CTF 2025 Quals / Lirili Larila](https://ctftime.org/writeup/40317) | hard | stego; tools: stegsolve
+- [SAS CTF 2025 Quals / Lirili Larila](https://ctftime.org/writeup/40254) | hard | stegano gif, rating 5.0; 68-frame GIF local-palette hiding, PIL mishandles locals, Go image/gif + random-palette replacement reveals parts
+- [Nullcon Goa HackIM 2025 CTF / Profound thought](https://ctftime.org/writeup/39868) | hard | stego [page-thin: body image-only, chain from tags/task]
+- [Nullcon Goa HackIM 2025 CTF / Profound thought](https://ctftime.org/writeup/39863) | hard | steganography steg [page-thin: body image-only, chain from tags/task]
+- [Urmia CTF 2024 / The Road of Redemption](https://ctftime.org/writeup/39460) | hard | tools: qr,strings
+- [Cybercoliseum Ⅲ / Neural network](https://ctftime.org/writeup/39120) | hard | steganography [page-thin: body image-only, chain from tags/task]
+- [Cybercoliseum Ⅲ / Omniscient](https://ctftime.org/writeup/39119) | hard | tools: stegsolve
+- [Insomni'hack 2024 / Puzzled](https://ctftime.org/writeup/39109) | hard | brute qrcode; task-signal: reassembly; tools: qr,idat,pyzbar
+- [Cyber Apocalypse 2024: Hacker Royale / Phreaky](https://ctftime.org/writeup/38763) | hard | tools: qr,f5
+- [The Cyber Cooperative CTF / Lost at Sea](https://ctftime.org/writeup/38411) | hard | wireshark; tools: apng
+- [1337UP LIVE CTF / Photographs](https://ctftime.org/writeup/38276) | hard | googling osint exif; surfaced-via: exif tag listing [page-thin: body image-only, chain from tags/task]
+- [BlueHens CTF 2023 / Big JPG](https://ctftime.org/writeup/38104) | hard | lsb hidden steghide; tools: steghide,stegsolve,aperisolve,lsb
+- [DEADFACE CTF 2023 / You've Been Ransomwared](https://ctftime.org/writeup/38058) | hard | stegsolve binary; tools: stegsolve
+- [SunshineCTF 2023 / Low Effort Wav ?](https://ctftime.org/writeup/38025) | hard | android mobile; task-signal: audio-WAV; tools: exiftool,strings,idat
+- [TeamItaly CTF 2023 / LIGAbue](https://ctftime.org/writeup/37967) | hard | rating 5.0; OTF font GSUB ligature-substitution state machine, otfinfo tables, fea decompile, backwards chain from glyph s1337 to input string
+- [PatriotCTF 2023 / Capybara](https://ctftime.org/writeup/37919) | hard | forensic+crypto team_valhalla stenography; tools: morse
+- [Tenable CTF 2023 / Cyberpunk Cafe](https://ctftime.org/writeup/37825) | hard | tools: qr
+- [SekaiCTF 2023 / QR God](https://ctftime.org/writeup/37823) | hard | qr qrcode; task-signal: QR carrier; tools: qr
+- [DeconstruCT.F 2023 / GAMBIT](https://ctftime.org/writeup/37715) | hard | crypto steganography chess [page-thin: body image-only, chain from tags/task]
+- [DeconstruCT.F 2023 / Magicplay](https://ctftime.org/writeup/37713) | hard | medium; tools: xxd,ihdr,idat,plte
+- [Google Capture The Flag 2023 / Symatrix](https://ctftime.org/writeup/37344) | hard | stegano; tools: idat
+- [Google Capture The Flag 2023 / Symatrix](https://ctftime.org/writeup/37337) | hard | steganography python; tools: idat
+- [NahamCon CTF 2023 / Hidden Figures](https://ctftime.org/writeup/37304) | hard | task-signal: hidden-data; tools: john
+- [n00bzCTF 2023 / LSB](https://ctftime.org/writeup/37241) | hard | wav-steg lsb-stego; task-signal: LSB; tools: lsb,stegolsb,wavsteg
+- [HeroCTF v5 / PNG-G](https://ctftime.org/writeup/37015) | hard | rating 5.0; PNG that is secretly APNG (AnimationFrames 2), stegoveritas carve frames+zlib streams, siunam pipeline
+- [RITSEC CTF 2023 / bitmap](https://ctftime.org/writeup/36995) | hard | rating 4.5; BMP hex hint XOR-BY-FF, unique non-gray pixels to hex, BGR endian swap, XOR FF reveals blowfish payload
+- [Space Heroes 2023 / My God, it's full of .- ... -.-. .. ..](https://ctftime.org/writeup/36850) | hard | tools: audacity,morse
+- [RITSEC CTF 2023 / QR](https://ctftime.org/writeup/36640) | hard | qr qrcode steg; task-signal: QR carrier; tools: qrazybox,qr
+- [RITSEC CTF 2023 / turtle](https://ctftime.org/writeup/36631) | hard | tools: steghide,binwalk,foremost,stegsolve,exiftool
+- [DownUnderCTF 2022 (Online)  / Rage!](https://ctftime.org/writeup/35660) | hard | morse audacity frequency-analysis; tools: audacity,morse
+- [Lexington Informatics Tournament CTF 2022 / misc/Trash Royale](https://ctftime.org/writeup/34667) | hard | tools: steghide,binwalk,audacity,morse
+- [BSidesSF 2022 CTF / dual-type-multi-format](https://ctftime.org/writeup/34408) | hard | dtmf; tools: audacity,spectrogram,dtmf,riff
+- [BYUCTF 2022 / Banana Smoothie](https://ctftime.org/writeup/34123) | hard | steganography [page-thin: body image-only, chain from tags/task]
+- [NahamCon CTF 2022 / Ostrich](https://ctftime.org/writeup/33450) | hard | python steganography [page-thin: body image-only, chain from tags/task]
+- [NahamCon CTF 2022 / Ostrich](https://ctftime.org/writeup/33427) | hard | tools: apng
+- [Incognito 3.0 / xD](https://ctftime.org/writeup/33397) | hard | hexeditor exiftool binwalk; tools: binwalk,exiftool
+- [DiceCTF 2022 / taxes](https://ctftime.org/writeup/32284) | hard | reversing pdf; tools: pdftotext,idat
+- [KnightCTF 2022 / QR Code From The Future](https://ctftime.org/writeup/32207) | hard | steganography; task-signal: QR carrier; tools: qr
+- [DEADFACE CTF / Slouching Toward Bethlehem](https://ctftime.org/writeup/31106) | hard | steganography deadfacectf; tools: openstego
+- [DEADFACE CTF / Behind the Curtain](https://ctftime.org/writeup/31022) | hard | stegsolve Frame Browser reveals second image hidden in frame 2
+- [Hacky Holidays - Space Race / Unidentified Graphics Object](https://ctftime.org/writeup/29386) | hard | stego; tools: strings,apng,subliminal
+- [darkCON CTF / The Reporter](https://ctftime.org/writeup/26044) | hard | osint social qrcode; surfaced-via: qrcode tag listing [page-thin: body image-only, chain from tags/task]
+- [Brixel CTF winter edition / Rufus the vampire cat](https://ctftime.org/writeup/25616) | hard | steganography; tools: f5
+- [Brixel CTF winter edition / A message from space](https://ctftime.org/writeup/25606) | hard | tools: sstv,qsstv
+- [CyberSecurityRumble CTF / Steg1](https://ctftime.org/writeup/24740) | hard | stegano steganography steg1 [page-thin: body image-only, chain from tags/task]
+- [DarkCTF / crcket](https://ctftime.org/writeup/23809) | hard | tools: pngcheck,f5,crc,ihdr,idat
+- [PoseidonCTF 1st Edition / Gallery](https://ctftime.org/writeup/22951) | hard | bruteforce steganography; tools: steghide,qr,f5
+- [HacktivityCon CTF / Spy vs. Spy](https://ctftime.org/writeup/22853) | hard | steganography stegsolve; tools: zsteg,stegsolve,morse,exiftool,strings
+- [Zh3r0 CTF / Snow](https://ctftime.org/writeup/21649) | hard | task-signal: SNOW/whitespace; tools: zsteg,steghide,stegsnow,snow,lsb
+- [Zh3r0 CTF / is it a troll???](https://ctftime.org/writeup/21648) | hard | tools: zsteg,steghide,stegsnow,snow,lsb
+- [NahamCon CTF / Walkman](https://ctftime.org/writeup/21632) | hard | tools: snow,exiftool,strings
+- [NahamCon CTF / Dead Swap](https://ctftime.org/writeup/21631) | hard | tools: snow,exiftool,strings
+- [NahamCon CTF / Snowflake](https://ctftime.org/writeup/21618) | hard | task-signal: SNOW/whitespace; tools: snow,exiftool,strings
+- [castorsCTF20 / Gif](https://ctftime.org/writeup/21023) | hard | steganography; task-signal: GIF frames [page-thin: body image-only, chain from tags/task]
+- [VirSecCon CTF / Whitepages](https://ctftime.org/writeup/19594) | hard | tools: whitespace
+- [riceteacatpanda / catch-at](https://ctftime.org/writeup/18134) | hard | morse discord encyryption; tools: morse
+- [BambooFox CTF / Find the Cat](https://ctftime.org/writeup/17912) | hard | qr python; surfaced-via: qr tag listing [page-thin: body image-only, chain from tags/task]
+- [TCS Hackquest 4.0 / Calling Charlie](https://ctftime.org/writeup/17105) | hard | steganalysis audio; tools: morse
+- [HSCTF 6 / Hidden Flag](https://ctftime.org/writeup/15692) | hard | rating 4.0; undecodable PNG, key line in hexdump tail, xortool single-byte XOR sweep to flag [page-thin: body image-only, chain from tags/task]
+- [HSCTF 6 / Fish](https://ctftime.org/writeup/15659) | hard | steganography; tools: steghide,strings
+- [HSCTF 6 / Hidden Flag](https://ctftime.org/writeup/15588) | hard | magic-less file, strings hint key-is-invisible, repeating-key XOR decrypt to PNG, Misc 296
+- [BTH_CTF{sM3ll_th3_sH3ll} / What is Hidden](https://ctftime.org/writeup/15080) | hard | task-signal: hidden-data [page-thin: body image-only, chain from tags/task]
+- [RADARCTF / Hawking](https://ctftime.org/writeup/14354) | hard | steganography; tools: steghide
+- [RADARCTF / Logo](https://ctftime.org/writeup/14353) | hard | radarctf steganography [page-thin: body image-only, chain from tags/task]
+- [Pragyan CTF 2019 / Magic PNGs](https://ctftime.org/writeup/13833) | hard | tools: binwalk,foremost,pngcheck,exiftool,strings
+- [TAMUctf 19 / -.-](https://ctftime.org/writeup/13557) | hard | morse; surfaced-via: morse tag listing [page-thin: body image-only, chain from tags/task]
+- [X-MAS CTF 2018 / A Christmas Carol](https://ctftime.org/writeup/12667) | hard | tools: f5,lsb,midi
+- [X-MAS CTF 2018 / Message from santa](https://ctftime.org/writeup/12662) | hard | tools: foremost,exiftool
+- [IceCTF 2018 / ilovebees](https://ctftime.org/writeup/11418) | hard | tools: strings,plte
+- [Trend Micro CTF 2018 - Raimund Genes Cup - Online Qualifier / Forensics-Crypto 1 100](https://ctftime.org/writeup/11127) | hard | task-signal: disk/image carve; tools: qrazybox,qr,reed-solomon
+- [Jordan & Tunisia National CTF / SoftwareCo Regsitration V2](https://ctftime.org/writeup/10379) | hard | stego [page-thin: body image-only, chain from tags/task]
+- [Security Fest CTF / Everywhere](https://ctftime.org/writeup/10207) | hard | image stego [page-thin: body image-only, chain from tags/task]
+- [Security Fest CTF / Zion](https://ctftime.org/writeup/10204) | hard | hexeditor stego [page-thin: body image-only, chain from tags/task]
+- [34C3 CTF / JuniorCTF - information society](https://ctftime.org/writeup/8689) | hard | tools: flac
+- [SEC-T CTF / Joeys screenshot](https://ctftime.org/writeup/7481) | hard | steganography stego stegano [page-thin: body image-only, chain from tags/task]
+- [The 318br, DESEC, and SucuriHC Capture The Flag (3DSCTF) / We also have memes!](https://ctftime.org/writeup/5196) | hard | stego [page-thin: body image-only, chain from tags/task]
+- [The 318br, DESEC, and SucuriHC Capture The Flag (3DSCTF) / 0liver "Imaged"](https://ctftime.org/writeup/5195) | hard | stego [page-thin: body image-only, chain from tags/task]
+- [The 318br, DESEC, and SucuriHC Capture The Flag (3DSCTF) / Excaliflag](https://ctftime.org/writeup/5194) | hard | stego [page-thin: body image-only, chain from tags/task]
+- [SamaraCTF 2026 / Visual Audio](https://ctftime.org/writeup/40805) | medium | stego; task-signal: audio [page-thin: body image-only, chain from tags/task]
+- [SamaraCTF 2026 / Archived](https://ctftime.org/writeup/40804) | medium | stego [page-thin: body image-only, chain from tags/task]
+- [SamaraCTF 2026 / JS](https://ctftime.org/writeup/40803) | medium | stego [page-thin: body image-only, chain from tags/task]
+- [KubSTU CTF / Vanishing act](https://ctftime.org/writeup/40763) | medium | stego; tools: openstego
+- [CTF@CIT 2026 / Car Crash](https://ctftime.org/writeup/40751) | medium | tools: zsteg,exiftool,lsb
+- [CTF@CIT 2026 / (INSERT CHALLENGE TITLE HERE)](https://ctftime.org/writeup/40750) | medium | tools: exiftool,xxd
+- [BrunnerCTF 2025 / Planes!](https://ctftime.org/writeup/40386) | medium | stego stegsolve lsb; task-signal: bit-plane; tools: stegsolve,lsb
+- [BrunnerCTF 2025 / Bakerman](https://ctftime.org/writeup/40385) | medium | base64 zsteg; tools: zsteg
+- [CTF@CIT 2025 / Calculator](https://ctftime.org/writeup/40210) | medium | whitespace; tools: whitespace
+- [CTF@CIT 2025 / Blank Image](https://ctftime.org/writeup/40178) | medium | steganography [page-thin: body image-only, chain from tags/task]
+- [DawgCTF 2025 / Chunked Integrity](https://ctftime.org/writeup/40172) | medium | steganography stegno [page-thin: body image-only, chain from tags/task]
+- [New Year CTF 2025 / Broken QR](https://ctftime.org/writeup/39908) | medium | task-signal: QR carrier; tools: qrazybox,qr
+- [SpookyCTF 2024 / (Misc) Strange Sightings](https://ctftime.org/writeup/39621) | medium | ftp ip morsecode; surfaced-via: video tag listing [page-thin: body image-only, chain from tags/task]
+- [Z3R0 D4Y CTF / What type of image](https://ctftime.org/writeup/39586) | medium | tools: qr
+- [Z3R0 D4Y CTF / dot dot everywhere](https://ctftime.org/writeup/39585) | medium | tools: stegsolve
+- [VishwaCTF 2024 / Secret Code](https://ctftime.org/writeup/39517) | medium | tools: binwalk,john
+- [VishwaCTF 2024 / WE_ARE_VALORANT](https://ctftime.org/writeup/39514) | medium | tools: steghide
+- [CrewCTF 2024 / Recursion](https://ctftime.org/writeup/39364) | medium | usb crewctf2024; tools: qr,xxd,apng
+- [Junior.Crypt.2024 CTF / Whisper in your ear](https://ctftime.org/writeup/39311) | medium | stego [page-thin: body image-only, chain from tags/task]
+- [Junior.Crypt.2024 CTF / Banishment](https://ctftime.org/writeup/39307) | medium | tools: idat
+- [NahamCon CTF 2024 / Twine](https://ctftime.org/writeup/39169) | medium | hexeditor steganography hidden [page-thin: body image-only, chain from tags/task]
+- [SpringForwardCTF / Her-Eyes](https://ctftime.org/writeup/39116) | medium | zlib zsteg; tools: zsteg,binwalk,lsb
+- [Space Heroes 2024 / Petey the Panther's Guide to the Galaxy](https://ctftime.org/writeup/39061) | medium | binwalk forensic qrcode; tools: binwalk,qr
+- [Space Heroes 2024 / Petey the Panther's Guide to the Galaxy](https://ctftime.org/writeup/39051) | medium | python qrcode steganography; tools: binwalk,qr,strings
+- [ WolvCTF 2024 / Forensics: Hidden Data](https://ctftime.org/writeup/38937) | medium | strings beginner; task-signal: hidden-data,disk/image carve; tools: strings
+- [JerseyCTF IV / vibrations](https://ctftime.org/writeup/38930) | medium | modbus tcp network; tools: apng
+- [Texas Security Awareness Week 2024 / Lightning(the correct one)](https://ctftime.org/writeup/38875) | medium | exif exiftool; tools: exiftool
+- [Cyber Apocalypse 2024: Hacker Royale / Fake Boost](https://ctftime.org/writeup/38843) | medium | pcap htb networking; tools: apng,f5
+- [1753CTF 2024 / Ticket API](https://ctftime.org/writeup/38779) | medium | csharp pdf qr; tools: qr,f5
+- [Cyber Apocalypse 2024: Hacker Royale / Data Siege](https://ctftime.org/writeup/38764) | medium | tools: qr,strings,ass
+- [osu!gaming CTF 2024 / When You See It](https://ctftime.org/writeup/38722) | medium | steganography osint [page-thin: body image-only, chain from tags/task]
+- [NO ESCAPE CTF 2022 / Nectf Writeup](https://ctftime.org/writeup/38685) | medium | web osint algorithms [page-thin: body image-only, chain from tags/task]
+- [NO ESCAPE CTF 2022 / Nectf Writeup](https://ctftime.org/writeup/38684) | medium | web osint algorithms [page-thin: body image-only, chain from tags/task]
+- [UofTCTF 2024 / Secret Message 1](https://ctftime.org/writeup/38513) | medium | easy copy paste; surfaced-via: pdf tag listing [page-thin: body image-only, chain from tags/task]
+- [UofTCTF 2024 / Secret Message 1](https://ctftime.org/writeup/38473) | medium | pdf; surfaced-via: pdf tag listing [page-thin: body image-only, chain from tags/task]
+- [The Cyber Cooperative CTF / funding secured](https://ctftime.org/writeup/38410) | medium | lsb binwalk; tools: binwalk,stegsolve
+- [BackdoorCTF 2023 / Sonic Hide and Seek](https://ctftime.org/writeup/38368) | medium | tools: spectrogram,sstv,deepsound
+- [niteCTF / Phantasmagoria](https://ctftime.org/writeup/38339) | medium | qr_code qr nitectf; tools: qr,f5
+- [1337UP LIVE CTF / Over the Wire (part 2)](https://ctftime.org/writeup/38214) | medium | lsb pcap; tools: stegsolve,strings
+- [1337UP LIVE CTF / Encoding](https://ctftime.org/writeup/38211) | medium | base32 encoding base64; tools: morse
+- [BlueHens CTF 2023 / Hide n Seek](https://ctftime.org/writeup/38128) | medium | morse binarytotext steghide; surfaced-via: morse tag listing [page-thin: body image-only, chain from tags/task]
+- [BlueHens CTF 2023 / Least Significant Color](https://ctftime.org/writeup/38123) | medium | lsb steganography; task-signal: color-channel; tools: lsb
+- [Srdnlen CTF 2023 / Audio misc challenge](https://ctftime.org/writeup/38091) | medium | miscellaneous; task-signal: audio; tools: binwalk,sstv,qsstv
+- [Srdnlen CTF 2023 / Audio misc challenge](https://ctftime.org/writeup/38086) | medium | task-signal: audio; tools: dct
+- [DefCamp Capture the Flag (D-CTF) 2023 Quals / defcamp6](https://ctftime.org/writeup/38085) | medium | osint stego; tools: lsb
+- [DefCamp Capture the Flag (D-CTF) 2023 Quals / euler-the-cat](https://ctftime.org/writeup/38066) | medium | steganography audio; tools: audacity,spectrogram
+- [DEADFACE CTF 2023 / Syncopated Beat](https://ctftime.org/writeup/38062) | medium | steganography [page-thin: body image-only, chain from tags/task]
+- [DEADFACE CTF 2023 / HAM JAM](https://ctftime.org/writeup/38044) | medium | morse barcode crypto; tools: morse,barcode
+- [DEADFACE CTF 2023 / Electric Steel](https://ctftime.org/writeup/38040) | medium | steganography [page-thin: body image-only, chain from tags/task]
+- [vsCTF 2023 / Sheep loves Maths](https://ctftime.org/writeup/37941) | medium | zip oeis crc32; surfaced-via: qrcode tag listing [page-thin: body image-only, chain from tags/task]
+- [Cyber Heroines CTF / Maddie Stone](https://ctftime.org/writeup/37897) | medium | rev apk lsb-stego; surfaced-via: lsb-stego tag listing [page-thin: body image-only, chain from tags/task]
+- [Cyber Heroines CTF / Barbara Liskov](https://ctftime.org/writeup/37888) | medium | pyc; tools: idat
+- [Urmia CTF 2023 / Dorna](https://ctftime.org/writeup/37857) | medium | tools: steghide
+- [Urmia CTF 2023 / Appellations](https://ctftime.org/writeup/37841) | medium | audio morse; tools: morse
+- [Urmia CTF 2023 / Dorna](https://ctftime.org/writeup/37836) | medium | steghide; tools: steghide
+- [Urmia CTF 2023 / Deb File | The Old Systems](https://ctftime.org/writeup/37835) | medium | stego binwalk; tools: binwalk
+- [Tenable CTF 2023 / Cyberpunk Cafe](https://ctftime.org/writeup/37746) | medium | qr code; surfaced-via: qr tag listing [page-thin: body image-only, chain from tags/task]
+- [Tenable CTF 2023 / Ancient Scrawls](https://ctftime.org/writeup/37740) | medium | tools: qr
+- [Tenable CTF 2023 / Cyberpunk Cafe](https://ctftime.org/writeup/37734) | medium | tools: qr
+- [ImaginaryCTF 2023 / blurry](https://ctftime.org/writeup/37668) | medium | tools: qr
+- [0xL4ughCTF 2023 / Colorful](https://ctftime.org/writeup/37470) | medium | steganography; task-signal: color-channel [page-thin: body image-only, chain from tags/task]
+- [NahamCon CTF 2023 / Raided](https://ctftime.org/writeup/37277) | medium | volatility strings; tools: strings,volatility,f5,lsb
+- [DanteCTF 2023 / Do You Know GIF?](https://ctftime.org/writeup/37261) | medium | invaders0x1 mj0ln1r gif; task-signal: GIF frames; tools: steghide,exiftool,strings
+- [DanteCTF 2023 / Imago Qualitatis](https://ctftime.org/writeup/37260) | medium | radio mj0ln1r invaders0x1; tools: qr
+- [n00bzCTF 2023 / BeepBop](https://ctftime.org/writeup/37223) | medium | sstv; tools: sstv
+- [n00bzCTF 2023 / LSB](https://ctftime.org/writeup/37222) | medium | steganography lsb; task-signal: LSB; tools: lsb,wavsteg
+- [n00bzCTF 2023 / QRazy CSV](https://ctftime.org/writeup/37220) | medium | qr-code programming; task-signal: QR carrier; tools: qr
+- [DanteCTF 2023 / Routes Mark The Spot](https://ctftime.org/writeup/37160) | medium | network; tools: qr,wireshark
+- [TJCTF 2023 / beep-boop-robot](https://ctftime.org/writeup/37141) | medium | tools: morse
+- [DamCTF 2023 / de-compressed](https://ctftime.org/writeup/36731) | medium | steganography zip unicode; tools: strings,f5
+- [VishwaCTF 2023 / Guatemala](https://ctftime.org/writeup/36666) | medium | stego [page-thin: body image-only, chain from tags/task]
+- [VishwaCTF 2023 / Can you see me](https://ctftime.org/writeup/36665) | medium | stego [page-thin: body image-only, chain from tags/task]
+- [VishwaCTF 2023 / CID](https://ctftime.org/writeup/36647) | medium | tools: steghide,aperisolve,f5
+- [RITSEC CTF 2023 / Weird](https://ctftime.org/writeup/36632) | medium | tools: aperisolve,exiftool
+- [RITSEC CTF 2023 / Chandi Bot 3](https://ctftime.org/writeup/36618) | medium | steganography; tools: zsteg,lsb
+- [WolvCTF 2023 / Dino Trading](https://ctftime.org/writeup/36464) | medium | pcap wireshark stegseek; tools: steghide,stegseek,stegsolve,wireshark
+- [WolvCTF 2023 / Dino Trading](https://ctftime.org/writeup/36446) | medium | stegano wireshark [page-thin: body image-only, chain from tags/task]
+- [WolvCTF 2023 / important_notes](https://ctftime.org/writeup/36396) | medium | stego; tools: whitespace
+- [WolvCTF 2023 / Dino Trading](https://ctftime.org/writeup/36394) | medium | pcap stego; tools: steghide,exiftool,wireshark
+- [WolvCTF 2023 / elytra](https://ctftime.org/writeup/36382) | medium | warmup stego [page-thin: body image-only, chain from tags/task]
+- [WRECKCTF 2022 / barcode](https://ctftime.org/writeup/36335) | medium | image; task-signal: barcode carrier; tools: barcode
+- [ BlueHens CTF 2022 / Audio Salad](https://ctftime.org/writeup/35965) | medium | baby stegnography; task-signal: audio; tools: sonic-visualiser
+- [UACTF 2022 / Colour Blind](https://ctftime.org/writeup/34872) | medium | task-signal: color-channel,blind-carrier; tools: stegsolve
+- [Lexington Informatics Tournament CTF 2022 / misc/Trash Royale](https://ctftime.org/writeup/34769) | medium | morse; tools: morse
+- [Lexington Informatics Tournament CTF 2022 / misc/We're no stranger to love](https://ctftime.org/writeup/34753) | medium | tools: morse
+- [Lexington Informatics Tournament CTF 2022 / misc/MURDER MYSTERY](https://ctftime.org/writeup/34751) | medium | tools: zero-width
+- [Hacky Holidays - Unlock the City / Audible Transmission](https://ctftime.org/writeup/34729) | medium | stego; tools: spectrogram,sox
+- [Hacky Holidays - Unlock the City / Audible Transmission](https://ctftime.org/writeup/34720) | medium | stego frequency-analysis [page-thin: body image-only, chain from tags/task]
+- [Lexington Informatics Tournament CTF 2022 / misc/kirby!!](https://ctftime.org/writeup/34668) | medium | stego audio [page-thin: body image-only, chain from tags/task]
+- [Lexington Informatics Tournament CTF 2022 / misc/We're no stranger to love](https://ctftime.org/writeup/34665) | medium | tools: audacity,spectrogram,morse
+- [Lexington Informatics Tournament CTF 2022 / misc/Trash Royale](https://ctftime.org/writeup/34653) | medium | decompile morse; tools: audacity,morse,strings
+- [XeroCTF 2022 - Teaser / Sparrow](https://ctftime.org/writeup/34397) | medium | steganography ocr; tools: lsb
+- [Grey Cat The Flag 2022 / Image Upload](https://ctftime.org/writeup/34270) | medium | wireshark exif exiftool; surfaced-via: exif tag listing [page-thin: body image-only, chain from tags/task]
+- [BCACTF 3.0 / My New Friend](https://ctftime.org/writeup/34229) | medium | steganography; tools: zsteg
+- [San Diego CTF 2022 / Free Flag](https://ctftime.org/writeup/34120) | medium | steganography; tools: dct,watermark
+- [HeroCTF v4 / Colorz](https://ctftime.org/writeup/34059) | medium | steganography stegsolve; task-signal: color-channel; tools: stegsolve
+- [BYUCTF 2022 / Treasure Scanner](https://ctftime.org/writeup/34045) | medium | qr-code; tools: qr
+- [TJCTF 2022 / cool-school](https://ctftime.org/writeup/33828) | medium | png aperisolve stego; tools: aperisolve,qr
+- [TJCTF 2022 / fake-geoguessr](https://ctftime.org/writeup/33826) | medium | tools: exiftool
+- [TJCTF 2022 / cool-school](https://ctftime.org/writeup/33816) | medium | steganography images rgb [page-thin: body image-only, chain from tags/task]
+- [TJCTF 2022 / fake-geoguessr](https://ctftime.org/writeup/33815) | medium | steganography images exiftool; tools: exiftool
+- [ångstromCTF 2022 / The Flash](https://ctftime.org/writeup/33763) | medium | video; tools: qr
+- [San Diego CTF 2022 / Free Flag](https://ctftime.org/writeup/33726) | medium | steganography; tools: binwalk,qr,exiftool,f5,lsb
+- [EZ CTF | Beginner Friendly / Nobody's perfect](https://ctftime.org/writeup/33682) | medium | steganography [page-thin: body image-only, chain from tags/task]
+- [EZ CTF | Beginner Friendly / Neo](https://ctftime.org/writeup/33681) | medium | steganography [page-thin: body image-only, chain from tags/task]
+- [EZ CTF | Beginner Friendly / Bernie](https://ctftime.org/writeup/33680) | medium | steganography [page-thin: body image-only, chain from tags/task]
+- [CUCTF 1.0 / 4R3 Y0U CR4ZY](https://ctftime.org/writeup/33380) | medium | python zip crypto; tools: qr,zbarimg,ass
+- [picoCTF 2022 / morse-code](https://ctftime.org/writeup/33135) | medium | picoctf2022 morsedecode morse; task-signal: morse; surfaced-via: morse tag listing [page-thin: body image-only, chain from tags/task]
+- [Wolverine Security Conference/CTF / Noise](https://ctftime.org/writeup/32710) | medium | wav-steg photoshop wav; WAV reinterpreted as RAW 8-bit image in Photoshop (Joshua Casper idea), strings comment hints dimensions, 498pts/18solves
+- [OFPPT-CTF Morocco / Look in the shadow](https://ctftime.org/writeup/32686) | medium | steganography [page-thin: body image-only, chain from tags/task]
+- [OFPPT-CTF Morocco / Déja vu](https://ctftime.org/writeup/32669) | medium | morse warmup; surfaced-via: morse tag listing [page-thin: body image-only, chain from tags/task]
+- [OFPPT-CTF Morocco / Weird Colors](https://ctftime.org/writeup/32651) | medium | hexahues steganography; task-signal: color-channel [page-thin: body image-only, chain from tags/task]
+- [OFPPT-CTF Morocco / Weird sounds](https://ctftime.org/writeup/32649) | medium | task-signal: audio; tools: sstv
+- [UTCTF 2022 / Sounds Familiar](https://ctftime.org/writeup/32527) | medium | dtmf audio; task-signal: audio; tools: dtmf
+- [24h@CTF / Cassette track A](https://ctftime.org/writeup/32286) | medium | steganography audio; secret-vs-original hi-res sox spectrograms subtracted via ImageChops.difference + threshold to read text
+- [KnightCTF 2022 / The Lost Flag](https://ctftime.org/writeup/32130) | medium | stego [page-thin: body image-only, chain from tags/task]
+- [DEADFACE CTF / Nevermore](https://ctftime.org/writeup/31109) | medium | steganography deadfacectf [page-thin: body image-only, chain from tags/task]
+- [DEADFACE CTF / No One Ever Got Fired For...](https://ctftime.org/writeup/31070) | medium | steganography deadfacectf; tools: strings
+- [DEADFACE CTF / Syncopated Beat](https://ctftime.org/writeup/31069) | medium | steganography syncopatedbeat deadfacectf [page-thin: body image-only, chain from tags/task]
+- [DEADFACE CTF / Scary Bunny](https://ctftime.org/writeup/31035) | medium | steganography [page-thin: body image-only, chain from tags/task]
+- [DEADFACE CTF / Behind the Curtain](https://ctftime.org/writeup/31034) | medium | steganography [page-thin: body image-only, chain from tags/task]
+- [DEADFACE CTF / V0icE](https://ctftime.org/writeup/31025) | medium | tools: sonic-visualiser
+- [DEADFACE CTF / Send in the Clowns](https://ctftime.org/writeup/31024) | medium | tools: exiftool,strings,f5
+- [DEADFACE CTF / Scary Bunny](https://ctftime.org/writeup/31023) | medium | tools: steghide
+- [DEADFACE CTF / Send in the Clowns](https://ctftime.org/writeup/30901) | medium | steganography [page-thin: body image-only, chain from tags/task]
+- [DEADFACE CTF / V0icE](https://ctftime.org/writeup/30898) | medium | steganography [page-thin: body image-only, chain from tags/task]
+- [Hospital Under Siege / Be still my beating heart](https://ctftime.org/writeup/29131) | medium | processing signals spectrogram; tools: spectrogram,f5
+- [HSCTF 8 / audio-frequency-stego](https://ctftime.org/writeup/29103) | medium | task-signal: audio [page-thin: body image-only, chain from tags/task]
+- [HSCTF 8 / pallets-of-gold](https://ctftime.org/writeup/29072) | medium | tools: exiftool,strings
+- [HSCTF 8 / glass-windows](https://ctftime.org/writeup/29070) | medium | tools: binwalk,stegsolve,exiftool,strings,ass
+- [HSCTF 8 / pallets-of-gold](https://ctftime.org/writeup/29046) | medium | tools: exiftool,f5
+- [HSCTF 8 / pallets-of-gold](https://ctftime.org/writeup/29031) | medium | tools: stegsolve,ass
+- [HSCTF 8 / glass-windows](https://ctftime.org/writeup/29030) | medium | stego; tools: stegsolve,ass
+- [HSCTF 8 / LSBlue](https://ctftime.org/writeup/29029) | medium | stego; task-signal: LSB; tools: zsteg,lsb
+- [HSCTF 8 / audio-frequency-stego](https://ctftime.org/writeup/29028) | medium | stego; task-signal: audio; tools: audacity,spectrogram
+- [HSCTF 8 / audio-frequency-stego](https://ctftime.org/writeup/29014) | medium | stego; task-signal: audio [page-thin: body image-only, chain from tags/task]
+- [S.H.E.L.L. CTF / Hidden Inside 3](https://ctftime.org/writeup/28762) | medium | stegonography jpseek stego; task-signal: hidden-data [page-thin: body image-only, chain from tags/task]
+- [S.H.E.L.L. CTF / Hidden inside 2](https://ctftime.org/writeup/28708) | medium | steganography png lsb; task-signal: hidden-data [page-thin: body image-only, chain from tags/task]
+- [S.H.E.L.L. CTF / Hidden inside](https://ctftime.org/writeup/28702) | medium | steganography zsteg; task-signal: hidden-data; tools: zsteg
+- [b01lers CTF / NSNC](https://ctftime.org/writeup/26968) | medium | tools: qrazybox,qr,barcode
+- [Cyber Grabs CTF 0x02 / Jasper](https://ctftime.org/writeup/25720) | medium | steganography; tools: strings
+- [Brixel CTF winter edition / Scan me](https://ctftime.org/writeup/25676) | medium | tools: qr,barcode
+- [Brixel CTF winter edition / Rufus the vampire cat](https://ctftime.org/writeup/25675) | medium | tools: steghide
+- [Brixel CTF winter edition / Scan me](https://ctftime.org/writeup/25595) | medium | steganography; tools: qr
+- [Brixel CTF winter edition / Sea code ](https://ctftime.org/writeup/25571) | medium | morse; tools: morse
+- [Brixel CTF winter edition / Scan me](https://ctftime.org/writeup/25569) | medium | tools: qr,barcode
+- [DarkCTF / QuickFix](https://ctftime.org/writeup/24918) | medium | magic_byte stego [page-thin: body image-only, chain from tags/task]
+- [peaCTF #1 (Open to All) / TheGreatestFighter](https://ctftime.org/writeup/24632) | medium | tools: stegsolve
+- [peaCTF #1 (Open to All) / Introspective Investigation](https://ctftime.org/writeup/24631) | medium | tools: spectrogram
+- [peaCTF #1 (Open to All) / MadVillainy](https://ctftime.org/writeup/24625) | medium | tools: audacity
+- [peaCTF #1 (Open to All) / BasedSteg](https://ctftime.org/writeup/24623) | medium | tools: stegsolve
+- [TeamH4C CTF / message from space](https://ctftime.org/writeup/24154) | medium | sstv; surfaced-via: sstv tag listing [page-thin: body image-only, chain from tags/task]
+- [BalCCon2k20 CTF / Noob Game](https://ctftime.org/writeup/24017) | medium | programming ocr stego [page-thin: body image-only, chain from tags/task]
+- [DarkCTF / Tricky Bit](https://ctftime.org/writeup/23881) | medium | tools: lsb,ass
+- [DarkCTF / AW](https://ctftime.org/writeup/23880) | medium | tools: audacity,spectrogram
+- [DarkCTF / AW](https://ctftime.org/writeup/23833) | medium | spectrogram; surfaced-via: spectrogram tag listing [page-thin: body image-only, chain from tags/task]
+- [BsidesBOS CTF / Dimension 0](https://ctftime.org/writeup/23822) | medium | ascii stego; tools: zero-width
+- [DarkCTF / Tricky Bit](https://ctftime.org/writeup/23807) | medium | tools: lsb
+- [DarkCTF / AW](https://ctftime.org/writeup/23708) | medium | tools: idat,ass
+- [BsidesBOS CTF / Saving the World](https://ctftime.org/writeup/23649) | medium | tools: steghide,qr
+- [RESTCON CTF /  Bad cat ](https://ctftime.org/writeup/23127) | medium | tools: zsteg
+- [RESTCON CTF / Binod](https://ctftime.org/writeup/23126) | medium | tools: apng,wireshark
+- [HacktivityCon CTF / Chess Cheater](https://ctftime.org/writeup/22857) | medium | morse steganography stego; tools: morse
+- [HacktivityCon CTF / Cold War](https://ctftime.org/writeup/22854) | medium | whitespace steganography stegsnow; tools: stegsnow,snow,whitespace
+- [HacktivityCon CTF / Chess Cheater](https://ctftime.org/writeup/22744) | medium | stego; tools: morse
+- [HacktivityCon CTF / Cold War](https://ctftime.org/writeup/22743) | medium | stego; tools: stegsnow,snow
+- [HacktivityCon CTF / Spy vs. Spy](https://ctftime.org/writeup/22742) | medium | steganography; tools: f5
+- [Zh3r0 CTF / LSB fun](https://ctftime.org/writeup/21809) | medium | lsb jsteg stego; task-signal: LSB; tools: jsteg,lsb
+- [Zh3r0 CTF / LSB fun](https://ctftime.org/writeup/21717) | medium | task-signal: LSB [page-thin: body image-only, chain from tags/task]
+- [Zh3r0 CTF / snow](https://ctftime.org/writeup/21716) | medium | task-signal: SNOW/whitespace [page-thin: body image-only, chain from tags/task]
+- [Zh3r0 CTF / Snow](https://ctftime.org/writeup/21715) | medium | stegno; task-signal: SNOW/whitespace [page-thin: body image-only, chain from tags/task]
+- [Zh3r0 CTF / snow](https://ctftime.org/writeup/21677) | medium | task-signal: SNOW/whitespace; tools: f5
+- [Zh3r0 CTF / LSB fun](https://ctftime.org/writeup/21676) | medium | task-signal: LSB; tools: f5
+- [Zh3r0 CTF / Hidden Music](https://ctftime.org/writeup/21669) | medium | stego audio; task-signal: hidden-data [page-thin: body image-only, chain from tags/task]
+- [Zh3r0 CTF / Tic Tac Toe](https://ctftime.org/writeup/21668) | medium | stego cryptography-rsa [page-thin: body image-only, chain from tags/task]
+- [Zh3r0 CTF / VOID](https://ctftime.org/writeup/21662) | medium | wav; tools: audacity,multimon,dtmf,morse,sox
+- [Zh3r0 CTF / Rainbow Hex](https://ctftime.org/writeup/21653) | medium | stego hexahues; tools: ffmpeg
+- [Zh3r0 CTF / Tic Tac Toe](https://ctftime.org/writeup/21651) | medium | tools: steghide,strings
+- [Zh3r0 CTF / Snow](https://ctftime.org/writeup/21647) | medium | forensic; task-signal: SNOW/whitespace [page-thin: body image-only, chain from tags/task]
+- [Zh3r0 CTF / Snow](https://ctftime.org/writeup/21638) | medium | task-signal: SNOW/whitespace; tools: snow
+- [NahamCon CTF / Old School](https://ctftime.org/writeup/21633) | medium | tools: snow,exiftool,strings
+- [NahamCon CTF / My Apologies](https://ctftime.org/writeup/21630) | medium | tools: snow,exiftool,strings
+- [NahamCon CTF / Walkman](https://ctftime.org/writeup/21516) | medium | lsb wav-steg; tools: f5
+- [NahamCon CTF / Dead Swap](https://ctftime.org/writeup/21457) | medium | binary steganography [page-thin: body image-only, chain from tags/task]
+- [HSCTF 7 / Untitled Audio Challenge](https://ctftime.org/writeup/21370) | medium | task-signal: audio; tools: audacity
+- [NoobCTF 0x1 / Frequency](https://ctftime.org/writeup/21317) | medium | dtmf crypto; tools: dtmf
+- [Hack-A-Sat Qualifiers / Ground Control to Major Tom](https://ctftime.org/writeup/21167) | medium | qpsk constellation gnuradio; tools: audacity,qr,f5
+- [castorsCTF20 / Goose Chase](https://ctftime.org/writeup/21020) | medium | steganography [page-thin: body image-only, chain from tags/task]
+- [castorsCTF20 / Jigglypuff's Song](https://ctftime.org/writeup/20977) | medium | tools: stegsolve,strings
+- [castorsCTF20 / Jigglypuff's Song](https://ctftime.org/writeup/20897) | medium | msb stego; tools: f5,idat
+- [S㎩mAndFlags Uけimate w呎は屸de C㏊mᒆonship Teaser ꕫꕫ - ㎩㏚i㎄ Edition / The 3D Printer Task](https://ctftime.org/writeup/20612) | medium | audio signal; tools: spectrogram
+- [riftCTF / Stegano 0x0004](https://ctftime.org/writeup/19111) | medium | audio steganography strings; tools: audacity,spectrogram,strings
+- [riftCTF / Stegano 0x0003](https://ctftime.org/writeup/19110) | medium | audacity steganography spectrogram; tools: audacity,spectrogram
+- [riftCTF / Stegano 0x0001](https://ctftime.org/writeup/19109) | medium | steganography image strings; tools: strings
+- [SarCTF by Saratov State University / Mind palace I](https://ctftime.org/writeup/18429) | medium | morse; tools: binwalk,john
+- [SarCTF by Saratov State University / Mind palace I](https://ctftime.org/writeup/18415) | medium | tools: morse
+- [SarCTF by Saratov State University / Red King](https://ctftime.org/writeup/18413) | medium | tools: lsb
+- [SarCTF by Saratov State University / Find Moriarty](https://ctftime.org/writeup/18412) | medium | tools: steghide
+- [riceteacatpanda / BTS-Crazed](https://ctftime.org/writeup/18086) | medium | strings stego [page-thin: body image-only, chain from tags/task]
+- [riceteacatpanda / Chugalug's Footpads](https://ctftime.org/writeup/18085) | medium | hex diff image [page-thin: body image-only, chain from tags/task]
+- [ENOWARS 3 / piano](https://ctftime.org/writeup/16006) | medium | web path-traversal php [page-thin: body image-only, chain from tags/task]
+- [HSCTF 6 / Double Trouble](https://ctftime.org/writeup/15728) | medium | tools: zsteg,lsb
+- [BTH_CTF{sM3ll_th3_sH3ll} / what_is_stego](https://ctftime.org/writeup/15045) | medium | tools: john
+- [BTH_CTF{sM3ll_th3_sH3ll} / Eye in the sky](https://ctftime.org/writeup/15040) | medium | tools: binwalk,foremost,stegsolve,qr,strings
+- [ENCRYPT CTF / Into The Black](https://ctftime.org/writeup/14400) | medium | tools: stegsolve
+- [RADARCTF / Logo](https://ctftime.org/writeup/14396) | medium | tools: pngcheck,f5,crc,ihdr,idat
+- [RADARCTF / Blanks](https://ctftime.org/writeup/14379) | medium | crypto stego [page-thin: body image-only, chain from tags/task]
+- [RADARCTF / QRadar](https://ctftime.org/writeup/14377) | medium | task-signal: QR carrier [page-thin: body image-only, chain from tags/task]
+- [ENCRYPT CTF / Into The Black](https://ctftime.org/writeup/14345) | medium | steganography [page-thin: body image-only, chain from tags/task]
+- [ENCRYPT CTF / yhpargonagets](https://ctftime.org/writeup/14344) | medium | steganography [page-thin: body image-only, chain from tags/task]
+- [ENCRYPT CTF / Into The Black](https://ctftime.org/writeup/14298) | medium | stego; tools: stegsolve
+- [TAMUctf 19 / -.-](https://ctftime.org/writeup/13975) | medium | morse crypto; surfaced-via: morse tag listing [page-thin: body image-only, chain from tags/task]
+- [Quals: Saudi and Oman National Cyber Security CTF / I love images](https://ctftime.org/writeup/13240) | medium | stego [page-thin: body image-only, chain from tags/task]
+- [Quals: Saudi and Oman National Cyber Security CTF / Try to See me](https://ctftime.org/writeup/13237) | medium | stegano steganography stegno; tools: steghide,f5
+- [Quals: Saudi and Oman National Cyber Security CTF / I love images](https://ctftime.org/writeup/13233) | medium | stegano steganography stegno [page-thin: body image-only, chain from tags/task]
+- [Quals: Saudi and Oman National Cyber Security CTF / Hack a nice day](https://ctftime.org/writeup/13232) | medium | stegano steganography stegno; tools: steghide
+- [35C3 CTF / stage diving](https://ctftime.org/writeup/12775) | medium | programming stego [page-thin: body image-only, chain from tags/task]
+- [OtterCTF / Gotta Go Deeper](https://ctftime.org/writeup/12626) | medium | tools: binwalk,qr
+- [Access Denied / GIFer](https://ctftime.org/writeup/12074) | medium | stego; task-signal: GIF frames [page-thin: body image-only, chain from tags/task]
+- [HumanCTF / Stealer](https://ctftime.org/writeup/11680) | medium | stego [page-thin: body image-only, chain from tags/task]
+- [Kaizen Arabia CTF / Green ](https://ctftime.org/writeup/9682) | medium | stego; tools: foremost,stegsolve,strings
+- [EasyCTF IV / Remember Me](https://ctftime.org/writeup/8835) | medium | audacity steganography mp3; tools: binwalk,audacity,exiftool
+- [ The 318br, DESEC and SucuriHC Capture The Flag (3DSCTF) / Microscope](https://ctftime.org/writeup/8434) | medium | stegano qr; tools: qr
+- [ The 318br, DESEC and SucuriHC Capture The Flag (3DSCTF) / Doesburg](https://ctftime.org/writeup/8425) | medium | tools: lsb
+- [SEC-T CTF / Report](https://ctftime.org/writeup/7488) | medium | python pdf; tools: binwalk,exiftool,strings,pdftotext
+- [SEC-T CTF / Joeys screenshot](https://ctftime.org/writeup/7486) | medium | comments stego [page-thin: body image-only, chain from tags/task]
+- [SEC-T CTF / Acid Burn](https://ctftime.org/writeup/7473) | medium | stego [page-thin: body image-only, chain from tags/task]
+- [bugs_bunny ctf 2k17 / steg150](https://ctftime.org/writeup/7086) | medium | bugs_bunny; tools: spectrogram,sox
+- [bugs_bunny ctf 2k17 / Stego10](https://ctftime.org/writeup/7073) | medium | steganography [page-thin: body image-only, chain from tags/task]
+- [bugs_bunny ctf 2k17 / Stego10](https://ctftime.org/writeup/7063) | medium | bugs_bunny; tools: strings
+- [WhiteHat Contest 13 / Hue](https://ctftime.org/writeup/6735) | medium | dotcode qrcode; tools: qr,barcode,zbarimg
+- [AlexCTF / SC2: Cutie Cat](https://ctftime.org/writeup/5494) | medium | steganography [page-thin: body image-only, chain from tags/task]
+- [AlexCTF / SC2: Cutie Cat](https://ctftime.org/writeup/5438) | medium | steganography [page-thin: body image-only, chain from tags/task]
+- [The 318br, DESEC, and SucuriHC Capture The Flag (3DSCTF) / 0liver "Imaged"](https://ctftime.org/writeup/5232) | medium | #stego [page-thin: body image-only, chain from tags/task]
+- [The 318br, DESEC, and SucuriHC Capture The Flag (3DSCTF) / We also have memes!](https://ctftime.org/writeup/5185) | medium | steganography; tools: f5
+- [The 318br, DESEC, and SucuriHC Capture The Flag (3DSCTF) / 0liver "Imaged"](https://ctftime.org/writeup/5182) | medium | stego [page-thin: body image-only, chain from tags/task]
+- [The 318br, DESEC, and SucuriHC Capture The Flag (3DSCTF) / We also have memes!](https://ctftime.org/writeup/5180) | medium | bruteforce stego [page-thin: body image-only, chain from tags/task]
+- [The 318br, DESEC, and SucuriHC Capture The Flag (3DSCTF) / HALP](https://ctftime.org/writeup/5162) | medium | dtmf voip; tools: audacity,dtmf,wireshark,flac
+- [The 318br, DESEC, and SucuriHC Capture The Flag (3DSCTF) / Excaliflag](https://ctftime.org/writeup/5158) | medium | tools: stegsolve
+- [The 318br, DESEC, and SucuriHC Capture The Flag (3DSCTF) / We also have memes!](https://ctftime.org/writeup/5154) | medium | #3dsctf #stego; tools: ass
+- [SharifCTF 7 / Camera Model](https://ctftime.org/writeup/5084) | medium | exif binwalk; surfaced-via: exif tag listing [page-thin: body image-only, chain from tags/task]
+- [SharifCTF 7 / Lobotomized LSB Oracle](https://ctftime.org/writeup/5080) | medium | oracle lsb rsa; task-signal: LSB; tools: lsb
+- [SharifCTF 7 / LSB Oracle](https://ctftime.org/writeup/5079) | medium | oracle lsb rsa; task-signal: LSB; tools: lsb
+- [picoCTF Hidden in Plainsight set](https://github.com/khairulharu/picoCTF) | medium | JPEG exiftool base64 hint decodes to steghide password, extract flag.txt
+- [picoCTF 2023 / MSB](https://github.com/snwau/picoCTF-2023-Writeup/blob/main/Forensics/MSB/MSB.md) | medium | passes LSB statistics, payload in most-significant bits extracted with sigBits.py MSB mode
+- [v1tCTF 2025 / Emoji Thief](https://github.com/srivats06-bot/CTF/blob/main/v1tCTF_2025.md) | medium | emoji carrying variation-selector payload, decoded with emoji-to-text decoder
+- [BuckeyeCTF 2025 / Bugle](https://github.com/t4mpr/ctf-writeups/blob/main/BuckeyeCTF-2025-Writeups/Bugle.md) | hard | trumpet MP3, clean note-breaks as morse via MusicGram piano-roll and DAW chop
+- [NNS CTF 2025 / ctf-speaker](https://github.com/t4mpr/ctf-writeups/blob/main/ctf-speaker-writeup/README.md) | hard | Bluetooth Ellisys btt trace, AVDTP media export, morse beeps decoded as spectrogram-drawn letters, 454pts
+- [DEADFACE 2025 / creepy_resume](https://github.com/t4mpr/ctf-writeups/blob/main/deadfaceCTF-2025-Writeups/Steganography/creepy_resume.md) | hard | PDF UserComment emoji plus Plane-14 variation selectors to ASCII with Caesar shift
+- [TJCTF 2025 / Masked](https://k3sero.github.io/posts/Masked-TJCTF2025/) | medium | QR wearing all 8 mask patterns at once, brute-force unmask per pattern to readable symbol
+- [HSCTF 2021 / pallets-of-gold](https://ph1nx.github.io/HSCTF-21/) | medium | palette-camouflaged bitmap read in stegsolve gray-bits plane
+- [peaCTF / BasedSteg](https://github.com/qumusabel/writeups/blob/master/peactf-1-open-to-all/misc/BasedSteg/README.md) | medium | stegsolve visual plane reveals base64 string, decode to text
+- [FCSC 2022 / QRCode](https://github.com/AnouarVision/ctf-writeups/blob/main/FCSC/2022/Misc/QRCode/writeup-en.md) | medium | finder-pattern inner-3x3 squares removed, Photopea repaint of three centers, scan
+- [ITASEC 2025 / MistyMorning](https://github.com/AnouarVision/ctf-writeups/blob/main/ITSCyberGame/ITASEC_2025/Misc/MistyMorning/writeup-en.md) | medium | Blue-channel bit-3 visual text isolated in StegOnline Browse Bit Planes
+- [ITASEC 2025 / Decode](https://github.com/AnouarVision/ctf-writeups/blob/main/ITSCyberGame/ITASEC_2025/Misc/Decode/writeup-en.md) | medium | decoy large QR over image, real tiny QR camouflaged in bottom-right corner of 3375px file
+- [ITASEC 2025 / CorruptedMemories](https://github.com/AnouarVision/ctf-writeups/blob/main/ITSCyberGame/ITASEC_2025/Misc/CorruptedMemories/writeup-en.md) | medium | placeholder magic bytes replaced via dd with PNG signature, binwalk zlib offset confirms intact body
+- [DeconstruCT.F 2023 / Mastermind](https://github.com/daffainfo/ctf-writeup/blob/main/2023/DeconstruCT.F%202023/Mastermind/README.md) | medium | phone-call WAV DTMF decode to decimal to hex to ASCII chain
+- [DeconstruCT.F 2023 / snowy rock](https://github.com/daffainfo/ctf-writeup/blob/main/2023/DeconstruCT.F%202023/snowy%20rock/README.md) | hard | binwalk zip carve, rockyou zip crack, stegsnow extract, base64, rot13 chain
+- [GREP CTF 2023 / Arctic Penguin](https://github.com/daffainfo/ctf-writeup/blob/main/2023/GREP%20CTF%202023/Arctic%20Penguin/README.md) | hard | stegseek rockyou to whitespace txt, metadata hint, password-protected SNOW cracked with SnowCracker
+- [GREP CTF 2023 / Missing Kitty](https://github.com/daffainfo/ctf-writeup/blob/main/2023/GREP%20CTF%202023/Missing%20Kitty/README.md) | medium | stegseek extract to kitten-language text, custom m/e alphabet to binary
+- [GREP CTF 2023 / R36](https://github.com/daffainfo/ctf-writeup/blob/main/2023/GREP%20CTF%202023/R36/README.md) | medium | Robot-36 SSTV warble decoded in QSSTV, 36-robots hint names the mode
+- [D-CTF 2023 Quals / morse-music](https://github.com/daffainfo/ctf-writeup/blob/main/2023/DefCamp%20Capture%20the%20Flag%20(D-CTF)%202023%20Quals/morse-music/README.md) | hard | morse decoy message disavows morse, spectrogram QR, base64, XOR with spectrogram password
+- [ByteBanditsCTF 2023 / Vastness of Space](https://github.com/daffainfo/ctf-writeup/blob/main/2023/ByteBanditsCTF%202023/Vastness%20of%20Space/README.md) | hard | stegseek with xp_comment metadata password to coordinate list, matplotlib scatter renders QR, zxing scan
+- [CTF ARA 2023 / D0ts N D4sh3s](https://github.com/daffainfo/ctf-writeup/blob/main/2023/CTF%20ARA%202023/D0ts%20N%20D4sh3s/README.md) | medium | morse decode then binary to ASCII layering
+- [0ByteCTF 2023 / greatest matches](https://github.com/daffainfo/ctf-writeup/blob/main/2023/0ByteCTF%202023/One%20of%20the%20greatest%20matches%20of%20all%20time!/README.md) | hard | exif comment to steghide to locked docx, office2john rockyou crack, l/I homoglyph letters per page to shortlink to locked pastebin
+- [BxMCTF 2023 / Where Snakes Die](https://github.com/daffainfo/ctf-writeup/blob/main/2023/BxMCTF%202023/Where%20Snakes%20Die/README.md) | medium | ternary-symbol morse: tab is dash, space is dot, pipe is separator, from hex dump
+- [ByteBanditsCTF 2023 / Meaning of Life](https://github.com/daffainfo/ctf-writeup/blob/main/2023/ByteBanditsCTF%202023/Meaning%20of%20Life/README.md) | medium | web form number 42 to video link, song-in-morse decoded with audio decoder
+- [MHSCTF 2022 forensics trio](https://github.com/leeyonjae/CTF_writeups/blob/main/MHSCTF2022/Forensics.md) | medium | grep-carved PNG text, stego-tool image message, BOM+ZWSP whitespace mapping that defeats stock ZWSP tools
+- [openECSC 2025 / Calamansi](https://ctf.zeba.dev/2025/openecsc/stego/calamansi/writeup) | hard | flat APNG with 50 fdAT frames, alpha-0 hidden letters revealed by ignoring alpha + concat strip
+- [HKCERT CTF 2025 / Suspicious File](https://github.com/hkcert-ctf/CTF-Challenges/blob/main/CTF-2025/Suspicious%20File/writeup/writeup.md) | hard | base58 to AVIF multi-frame, frame-duration regularity decoded as binary
+- [DOCTF 2022 / Based](https://github.com/danieltaylor/ctf-writeups/blob/main/doctf-22/based/README.md) | medium | encoding layer chain base64 to ROT13 to morse to vigenere with key
+- [CTF@CIT 2026 / There is No Room Left](https://github.com/bvr4j/CTF-CIT-Writeup) | medium | zero-width Unicode encoding in text carrier (index-level)
+- [nexhunt CTF 2025 / can-you-read-the-music](https://github.com/jiegec/ctf-writeups/blob/master/docs/2025-12-12-nexhunt-ctf-2025/can-you-read-the-music.md) | medium | stereo WAV left-channel-only sample LSB extraction to ASCII
+- [0xFunCTF 2026 / DTMF](https://github.com/shivang1209-dot/CTF-Writeup/blob/main/0xFunCTF26/Forensics/DTMF/writeup.md) | medium | DTMF decode to binary to base64 to text, vigenere finish with EXIF comment key
+- [picoCTF 2023 / HideToSee](https://picoctfsolutions.com/picoctf-2023-hidetosee) | medium | steghide empty-passphrase extract to ciphertext, Atbash decode
+- [Intigriti 1337UP 2024 / In Plain Sight](https://cryptocat.me/blog/ctf/2024/intigriti/warmup/in_plain_sight) | medium | embedded encrypted ZIP carved from JPEG, password from strings, hidden image inside
+- [RingZer0 / Hidden In Plain Sight](https://github.com/NotSurprised/RingZer0-CTF-Writeup/blob/master/Stego/05.%20Hidden%20In%20Plain%20Sight/Hidden%20In%20Plain%20Sight.md) | medium | diff of xxd hexdumps original vs modified manifesto text, column-cut differing bytes to chars
+- [FlagFrenzy / Phantom Frequency](https://ctf-flagfrenzy.github.io/challenge/forensics/phantom-frequency) | hard | audible 500Hz morse decoy plus ultrasonic 20kHz morse layer, spectrum retune, hex to flag-format fix
+- [m00nwalk SSTV](https://github.com/jon-brandy/CTF-WRITE-UP/blob/f4b443c2b810b37291faa8c2c26cc01dae90534e/Asset/m00nwalk/README.md) | medium | Apollo moon-landing hint names Scottie mode, RXSSTV decode to image
+- [picoCTF 2023 / Invisible WORDs](https://github.com/Cajac/picoCTF-Writeups/blob/main/picoCTF_2023/Forensics/Invisible_WORDs.md) | hard | BMP-embedded ZIP deinterleaved 2-of-4 bytes from 0x8c to FF00 run, unzip, base64 filename, text grep, Hard 300
+- [Google CTF Beginners Quest 2025 / SHREDDED](https://github.com/shankmsd/CTF_Writeups/blob/main/Google%20CTF%20Beginner's%20Quest%20-%202025/Misc/SHREDDED/SHREDDED.md) | medium | shredded-strip reassembly: blank-filter, edge-MSE ordering, column-swap, rotate-90 render
+- [STEM 2019 / QvR Code](https://github.com/face0xff/ctf/blob/master/2019/STEM_CTF/QvR_Code) | medium | multi-color QR variant, brute-force all binary mappings of non-pure colors with zbarimg oracle
+- [DUCTF / spot-the-difference](https://github.com/csivitu/CTF-Write-ups/blob/master/DUCTF/forensics/spot-the-difference/README.md) | medium | base64-file password hunt then steghide extraction over Publish/badfiles set
+- [UTCTF 2026 / hiddeninplainsight](https://github.com/prathamgupta36/CTF-Writeups/blob/main/2026/utctf2026/misc/hiddeninplainsight/WRITEUP.md) | medium | Unicode tag-characters U+E0000 block in title, subtract 0xE0000 to ASCII
+- [L3akCTF 2025 / whitespace](https://github.com/L3AK-TEAM/L3akCTF-2025-public/blob/main/misc/whitespace/solution/solution.md) | hard | ASCII-art generator 3x5 pound grid, spaces-removed file read 2-across per row
+- [NahamCon 2020 stego set (ksteg/DOH/Beep Boop/MICROOSOFT)](https://github.com/noob-atbash/CTF-writeups/blob/master/nahamcon-20/stego/stego.md) | medium | Jsteg tool-named JPEG, no-passphrase steghide, DTMF decimal to hex to ASCII, docx binwalk
+- [FlagFrenzy / Hidden Frequencies](https://github.com/CTF-FlagFrenzy/challenges/blob/main/Hidden_Frequencies/writeup.md) | medium | strings-revealed steghide passphrase to tar.gz to WAV spectrogram chain
+- [jdtherobot steganography-ctf set](https://github.com/jdtherobot/steganography-ctf/blob/main/WRITEUP.md) | medium | 4-level trainer: EXIF-Comment OpenSSL blob, weak-pass steghide doc, multi-payload carve with JPEG-QT AES key
+- [9447CTF 2015 / gife up now](https://github.com/pwning/public-writeup/blob/master/9447ctf2015/steg170-gife-up-now/readme.md) | hard | GIF dual-channel: per-frame QR run-length tap-code + frame-delay morse via identify %T (W2)
+- [9447CTF 2015 / imaged](https://github.com/pwning/public-writeup/blob/master/9447ctf2015/steg90-imaged/readme.md) | hard | PNG chunk CRCs spell ASCII key via big-endian walk; LSB-decoy (W1)
+- [HITCON 2015 / puzzleng](https://github.com/pwning/public-writeup/blob/master/hitcon2015/forensic250-puzzleng/readme.md) | hard | piecewise-XOR PNG decrypt: 256-key/chunk PNG-chunk+zlib+row-regex oracles to QR render (W4)
+- [9447CTF 2015 / binned](https://github.com/pwning/public-writeup/blob/master/9447ctf2015/steg100-binned/readme.md) | hard | syscall-number to ASCII via strace + ausyscall map, banner writes skipped (W5)
+- [Real World CTF 2023 / longrange](https://github.com/pwning/public-writeup/blob/master/rwctf2023/misc_longrange/README.md) | hard | SDR I/Q WAV LoRa chirp-spread decode, SF8/BW125k estimate then gr-lora (W6)
+- [MMA CTF 2015 / QR code recovery](https://github.com/pwning/public-writeup/blob/master/mma2015/misc400-qr/writeup.md) | hard | manual QR rebuild: format-bit ECC/mask lookup, unmask, zigzag extract, pad-byte recovery, reedsolo erasures (W33)
+- [HITCON 2015 / unreadable](https://github.com/pwning/public-writeup/blob/master/hitcon2015/stego100-unreadable/writeup.md) | medium | unknown-blob xxd printable-run carving between non-printables
+- [zer0pts CTF 2020 / QR Puzzle](https://github.com/TFNS/writeups/blob/master/2020-03-07-zer0ptsCTF/qr/README.md) | hard | adjacent-swap encrypted QR: reverse key order, PIL 25x25 re-render, scan (314p/48 solves)
+- [BambooFox CTF 2021 / NGSteg](https://github.com/TFNS/writeups/blob/master/2021-01-16-BambooFox/ngsteg/README.md) | hard | KSH beatmap legacy-FX single-letter codebook mapping in file order (W3, 500p)
+- [Steganography 101 set](https://github.com/anthonycdp/ctf-writeups/blob/main/misc/steganography-101/WRITEUP.md) | medium | 5-way trainer: zsteg RGB-LSB, bit-plane-1 stripes, appended-carve, metadata, palette-order
+- [Hidden in Plain Sight set](https://github.com/anthonycdp/ctf-writeups/blob/main/forensics/hidden-in-plain-sight/WRITEUP.md) | medium | trio: PNG LSB+zsteg, hidden-ZIP, polyglot detect via file+binwalk
+- [SpringForward CTF 2024 / Her-Eyes](https://github.com/juke-33/Write-ups/blob/main/SpringForwardCTF2024/Forensics/Her-Eyes/README.md) | medium | portrait LSB via online stegano decoder (manytools)
+- [SpringForward CTF 2024 / labours-of-hercules-1](https://github.com/juke-33/Write-ups/blob/main/SpringForwardCTF2024/Misc/labours-of-hercules-1/README.md) | medium | steghide with catchphrase passphrase, trivia-gated second read
+- [SpringForward CTF 2024 / labours-of-hercules-2](https://github.com/juke-33/Write-ups/blob/main/SpringForwardCTF2024/Misc/labours-of-hercules-2/README.md) | medium | browser LSB decode (stegano/decinput) of image payload
+- [OFPPT-CTF 2022 / Weird sounds](https://github.com/DoomHackCTF/WriteUps/blob/main/OFPPT-CTF2022/Crypto/Weird%20sounds/README.md) | medium | SSTV Martin-1 warble decoded with sstv -d to image
+- [mhsCTF 2022 / Blank Slate 4](https://github.com/DoomHackCTF/WriteUps/blob/main/mhsCTF-2022/Forensics/Blank%20Slate%204/README.md) | hard | ternary zero-width: BOM+ZWSP vs bare-ZWSP vs space to bits; stegsnow-negative (W31)
+- [mhsCTF 2022 / Blatant Corruption](https://github.com/DoomHackCTF/WriteUps/blob/main/mhsCTF-2022/Forensics/Blatant%20Corruption/README.md) | medium | truncated PNG signature restore + PCRT auto-repair of IHDR CRC/IDAT lengths (W23)
+- [picoCTF 2022 / Enhance!](https://github.com/DoomHackCTF/WriteUps/blob/main/picoCTF2022/Forensics/Enhance!/README.md) | medium | SVG tspan white micro-font letter concat in document order (W36)
+- [picoCTF 2022 / Redaction gone wrong](https://github.com/DoomHackCTF/WriteUps/blob/main/picoCTF2022/Forensics/Redaction%20gone%20wrong/README.md) | medium | PDF redaction overlay with selectable text underneath (W35)
+- [mhsCTF 2022 / Reconstruction](https://github.com/DoomHackCTF/WriteUps/blob/main/mhsCTF-2022/General/Reconstruction/README.md) | medium | CSV RGB dump reshaped to 960x960 PIL image + deskew read (W38)
+- [mhsCTF 2022 / What's Cooking 2](https://github.com/DoomHackCTF/WriteUps/blob/main/mhsCTF-2022/Crypto/What%27s%20Cooking%202/README.md) | hard | layer chain base32 to base64 to braille to morse to octal (W37)
+- [picoCTF 2022 / morse-code](https://github.com/DoomHackCTF/WriteUps/blob/main/picoCTF2022/Crypto/morse-code/README.md) | medium | WAV morse via adaptive audio decoder to text
+- [BYUCTF 2022 / XQR](https://github.com/danieltaylor/ctf-writeups/blob/main/byuctf-22/xqr/README.md) | hard | QR-tile grid XOR accumulation with ImageChops.logical_xor at 27px stride, scan result (W34)
+- [BSidesSF 2022 / dual-type-multi-format](https://github.com/danieltaylor/ctf-writeups/blob/main/bsidessf-22/dual-type-multi-format/README.md) | hard | WebP carve to WAV DTMF, spectrogram manual-fill of 4x4 ABCD tones, hash-to-F alias, hex to ASCII (W27+W40)
+- [BSidesSF 2022 / lph](https://github.com/danieltaylor/ctf-writeups/blob/main/bsidessf-22/lph/README.md) | hard | dial-click counting via spectrogram + lock-dial simulation over starts/directions (W27)
+- [BYUCTF 2022 / sticky-key](https://github.com/danieltaylor/ctf-writeups/blob/main/byuctf-22/sticky-key/README.md) | hard | Mac Option-key Alt-code symbol substitution, anchor-word partial decode (W37)
+- [San Diego CTF 2022 / Free Flag](https://github.com/danieltaylor/ctf-writeups/blob/main/sdctf-22/free-flag/README.md) | medium | palette-randomize reveal then first-row pixel-value substitution cipher with known-charset key map
+- [BUUCTF / LSB](https://github.com/cmacckk/CTFWriteUp/blob/main/buuctf/Misc/LSB.md) | medium | zsteg b1-rgb-lsb hit to embedded image, stegsolve Save-Bin, QR scan
+- [picoCTF 2019 / WhitePages](https://github.com/Dvd848/CTFs/blob/master/2019_picoCTF/WhitePages.md) | medium | EM SPACE U+2003 vs ASCII space binary via xxd, unbits decode (W31)
+- [Deloitte CyberTank 2020 / QR recovery](https://github.com/Dvd848/CTFs/blob/master/2020_Deloitte_CyberTank/QR_code.md) | hard | twirl-distortion counter-rotation, manual 57x57 bit transcription, finder repaint, zbarimg (W33)
+- [BSidesTLV / the dog ate my QR](https://github.com/Shotscape/ctf-writeups/blob/main/bsidestlv/the-dog-ate-my-QR!/README.md) | hard | occlusion removal, QRazyBox full recreate, empty format-info, manual ECC-Q/mask-7 search, RS decode, 491pts/4solves (W33)

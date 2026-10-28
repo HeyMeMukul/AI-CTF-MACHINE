@@ -1,0 +1,507 @@
+# rev writeups mined R2 — manifest (technique-only, no flags)
+
+Method: (A) same-task expansion from R1 hard rev tasks: all 476 R1 ctftime writeup pages refetched (polite 1-worker, UA, 0.7-1s delay) to map writeup→task (412 unique tasks); all 412 task pages fetched; sibling writeups for the SAME tasks not in R1 kept iff task points>=300 (hard) and task is rev-origin (R1 rev-filtered); technique chain inherited from R1 sibling for same task (task-identity inference). Ordered 2024-2026 first. (B) crackmes.one lasts/26-75 (50 pages, 5000 crackmes) filtered difficulty>=4.5 with ≥1 posted solution; all 254 crackme pages fetched; 353 solution URLs kept (0 overlap with R1 lasts/1-25). (C) GitHub-verified hard anchors via API trees/contents (no invented URLs): ZhangZhuoSJTU ctf-collection ctf-rev writeup.md paths (trees recursive), BYU-CSA BYUCTF-2026 rev READMEs, expend20 flare-on-12 dirs; all GET-verified pre-rate-limit, 2025-2026 hard rev.
+
+Difficulty scale: HARD ONLY. A = ctftime task points>=300 (same-task hard rev, rev-origin). B = crackmes.one difficulty>=4.5/6 with posted solution (hard keygen/VM/unpack). C = event/author reputation hard (Flare-On12, 2025 CTF rev, BYUCTF-2026 rev). No medium/easy in R2.
+
+Caveats (unverified): A chains inherit R1 sibling chain for same task (spot-checked, task-identity inference; original-writeup bodies not re-parsed per-writeup); B chains inferred from crackme name (VM/pack/obfus keywords, else generic hard keygen) + difficulty; C chains from repo path/task shape (VM/Flare-On/2025-rev) + file presence; URLs quoted as published/listed (A: ctftime IDs from task pages; B: solution IDs from crackme pages; C: GitHub API-verified paths); points/difficulty reflect fetch-time pages; no flag values anywhere.
+
+Counts: A=114 (hard>=300, known-event, 2024-2026 first) | B=353 (hard>=4.5, 0 overlap) | C=24 | TOTAL=491
+
+## A — ctftime same-task hard rev (NEW IDs, same hard tasks, 2024-2026 first)
+- [Nullcon Goa HackIM 2025 CTF / oscilloscope](https://ctftime.org/writeup/39905) | hard (379pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [Nullcon Goa HackIM 2025 CTF / oscilloscope](https://ctftime.org/writeup/39914) | hard (379pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [Nullcon Goa HackIM 2025 CTF / oscilloscope](https://ctftime.org/writeup/39956) | hard (379pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [Nullcon Goa HackIM 2025 CTF / oscilloscope](https://ctftime.org/writeup/40002) | hard (379pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [Nullcon Goa HackIM 2025 CTF / backtrack](https://ctftime.org/writeup/39895) | hard (328pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [Nullcon Goa HackIM 2025 CTF / backtrack](https://ctftime.org/writeup/39915) | hard (328pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [Nullcon Goa HackIM 2025 CTF / backtrack](https://ctftime.org/writeup/39950) | hard (328pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [Nullcon Goa HackIM 2025 CTF / backtrack](https://ctftime.org/writeup/39973) | hard (328pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [Nullcon Goa HackIM 2025 CTF / backtrack](https://ctftime.org/writeup/40032) | hard (328pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [UofTCTF 2024 / All Worbled Up](https://ctftime.org/writeup/38457) | hard (454pts) | crypto re-impl/keygen
+- [UofTCTF 2024 / CSS Password](https://ctftime.org/writeup/38485) | hard (362pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [justCTF 2024 teaser / just TV](https://ctftime.org/writeup/39195) | hard (326pts) | crypto re-impl/keygen
+- [justCTF 2024 teaser / just TV](https://ctftime.org/writeup/39239) | hard (326pts) | crypto re-impl/keygen
+- [justCTF 2024 teaser / just TV](https://ctftime.org/writeup/39248) | hard (326pts) | crypto re-impl/keygen
+- [Cyber Apocalypse 2024: Hacker Royale / Packed Away](https://ctftime.org/writeup/38772) | hard (300pts) | packer/OEP unpack
+- [Cyber Apocalypse 2024: Hacker Royale / Packed Away](https://ctftime.org/writeup/38773) | hard (300pts) | packer/OEP unpack
+- [Texas Security Awareness Week 2024 / Psychological Warfare](https://ctftime.org/writeup/38895) | hard (300pts) | crypto re-impl/keygen
+- [Equinor CTF 2023 / EPT1911](https://ctftime.org/writeup/38248) | hard (559pts) | .NET dnSpy/ILSpy → GDB/gdb+trace dynamic
+- [Tenable CTF 2023 / Brick Breaker](https://ctftime.org/writeup/37743) | hard (473pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [nullcon HackIM CTF Goa 2023 / Magic Cars](https://ctftime.org/writeup/37789) | hard (408pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [nullcon HackIM CTF Goa 2023 / Magic Cars](https://ctftime.org/writeup/37809) | hard (408pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [nullcon HackIM CTF Goa 2023 / Magic Cars](https://ctftime.org/writeup/37830) | hard (408pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [LA CTF 2023 / ctfd-plus](https://ctftime.org/writeup/36233) | hard (397pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [LA CTF 2023 / ctfd-plus](https://ctftime.org/writeup/36251) | hard (397pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [nullcon HackIM CTF Goa 2023 / Sebastian&#39;s Secret Sharing](https://ctftime.org/writeup/37781) | hard (375pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [nullcon HackIM CTF Goa 2023 / Sebastian&#39;s Secret Sharing](https://ctftime.org/writeup/37818) | hard (375pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [Cyber Apocalypse 2023: The Cursed Mission / Interstellar C2](https://ctftime.org/writeup/36505) | hard (325pts) | .NET dnSpy/ILSpy
+- [Cyber Apocalypse 2023: The Cursed Mission / Interstellar C2](https://ctftime.org/writeup/36528) | hard (325pts) | .NET dnSpy/ILSpy
+- [Cyber Apocalypse 2023: The Cursed Mission / Interstellar C2](https://ctftime.org/writeup/36757) | hard (325pts) | .NET dnSpy/ILSpy
+- [Cyber Apocalypse 2023: The Cursed Mission / Alien Saboteaur](https://ctftime.org/writeup/36907) | hard (325pts) | VM reversing → anti-debug bypass → crypto re-impl/keygen
+- [NahamCon CTF 2023 / Marmalade 5](https://ctftime.org/writeup/37296) | hard (322pts) | crypto re-impl/keygen
+- [LA CTF 2023 / finals-simulator](https://ctftime.org/writeup/36249) | hard (306pts) | z3/SMT solve
+- [UTCTF 2022 / UTCTF Adventure ROM 4](https://ctftime.org/writeup/32557) | hard (925pts) | VM/ISA reversing: handler-table recovery → bytecode disasm → re-impl/invert
+- [picoCTF 2022 / Wizardlike](https://ctftime.org/writeup/32729) | hard (500pts) | GDB/gdb+trace dynamic
+- [NahamCon CTF 2022 / Click Me!](https://ctftime.org/writeup/33430) | hard (466pts) | APK/jadx/smali
+- [NahamCon CTF 2022 / Click Me!](https://ctftime.org/writeup/33481) | hard (466pts) | APK/jadx/smali
+- [NahamCon CTF 2022 / Click Me!](https://ctftime.org/writeup/33495) | hard (466pts) | APK/jadx/smali
+- [NahamCon CTF 2022 / Click Me!](https://ctftime.org/writeup/34092) | hard (466pts) | APK/jadx/smali
+- [TAMUctf 2022 / REdo 3](https://ctftime.org/writeup/33360) | hard (421pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [hxp CTF 2022 / secure_flag_dispenser](https://ctftime.org/writeup/36292) | hard (417pts) | VM reversing → .NET dnSpy/ILSpy → crypto re-impl/keygen
+- [NahamCon CTF 2022 / OTP Vault](https://ctftime.org/writeup/33429) | hard (402pts) | APK/jadx/smali
+- [NahamCon CTF 2022 / OTP Vault](https://ctftime.org/writeup/33588) | hard (402pts) | APK/jadx/smali
+- [picoCTF 2022 / Keygenme](https://ctftime.org/writeup/32730) | hard (400pts) | crypto re-impl/keygen
+- [picoCTF 2022 / Keygenme](https://ctftime.org/writeup/32809) | hard (400pts) | crypto re-impl/keygen
+- [DaVinciCTF 2022 / Mine Game](https://ctftime.org/writeup/32472) | hard (393pts) | OLLVM/Tigress deobf → GDB/gdb+trace dynamic
+- [Space Heroes 2022 / Shai-Hulud](https://ctftime.org/writeup/33007) | hard (384pts) | crypto re-impl/keygen
+- [HTB Business CTF 2022: Dirty Money / Mr Abilgate](https://ctftime.org/writeup/34607) | hard (375pts) | Frida hook/dump → crypto re-impl/keygen → GDB/gdb+trace dynamic
+- [HTB Business CTF 2022: Dirty Money / Mr Abilgate](https://ctftime.org/writeup/35349) | hard (375pts) | Frida hook/dump → crypto re-impl/keygen → GDB/gdb+trace dynamic
+- [NahamCon CTF 2022 / Dweeno](https://ctftime.org/writeup/33459) | hard (368pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [NahamCon CTF 2022 / Dweeno](https://ctftime.org/writeup/33579) | hard (368pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [NahamCon CTF 2022 / Dweeno](https://ctftime.org/writeup/33688) | hard (368pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [Cyber Apocalypse CTF 2022: Intergalactic Chase / Nuts And Bolts](https://ctftime.org/writeup/33945) | hard (325pts) | Rust demangle+panic → crypto re-impl/keygen
+- [picoCTF 2022 / Bbbbloat](https://ctftime.org/writeup/32824) | hard (300pts) | GDB/gdb+trace dynamic
+- [picoCTF 2022 / unpackme](https://ctftime.org/writeup/32825) | hard (300pts) | packer/OEP unpack
+- [picoCTF 2022 / Bbbbloat](https://ctftime.org/writeup/32884) | hard (300pts) | GDB/gdb+trace dynamic
+- [Cyber Apocalypse CTF 2022: Intergalactic Chase / Rebuilding](https://ctftime.org/writeup/33919) | hard (300pts) | GDB/gdb+trace dynamic
+- [Cyber Apocalypse CTF 2022: Intergalactic Chase / Rebuilding](https://ctftime.org/writeup/33944) | hard (300pts) | GDB/gdb+trace dynamic
+- [Cyber Apocalypse CTF 2022: Intergalactic Chase / Rebuilding](https://ctftime.org/writeup/33968) | hard (300pts) | GDB/gdb+trace dynamic
+- [Cyber Apocalypse CTF 2022: Intergalactic Chase / Rebuilding](https://ctftime.org/writeup/35185) | hard (300pts) | GDB/gdb+trace dynamic
+- [Securinets CTF Quals 2021 / RUN!](https://ctftime.org/writeup/28947) | hard (930pts) | crypto re-impl/keygen
+- [UMDCTF 2021 / FeistyCrypt (Sponsor Challenge)](https://ctftime.org/writeup/28898) | hard (678pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [HTB Business CTF 2021 / Ghost](https://ctftime.org/writeup/29593) | hard (500pts) | Unicorn/Qiling emulation → .NET dnSpy/ILSpy → Go pclntab recovery
+- [UMassCTF 2021 / chains](https://ctftime.org/writeup/26863) | hard (497pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [UMassCTF 2021 / chains](https://ctftime.org/writeup/26868) | hard (497pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [corCTF 2021 / bank](https://ctftime.org/writeup/30028) | hard (489pts) | Python bundle: decompile (uncompyle/marshal) → logic re-impl
+- [corCTF 2021 / zoom_zoom_vision](https://ctftime.org/writeup/29929) | hard (482pts) | crypto re-impl/keygen → GDB/gdb+trace dynamic
+- [SCTF 2021 / godness dance](https://ctftime.org/writeup/31980) | hard (465pts) | GDB/gdb+trace dynamic
+- [PlaidCTF 2021 / minipokemon](https://ctftime.org/writeup/27588) | hard (450pts) | Unicorn/Qiling emulation → .NET dnSpy/ILSpy → crypto re-impl/keygen
+- [corCTF 2021 / babyrev](https://ctftime.org/writeup/29919) | hard (372pts) | GDB/gdb+trace dynamic
+- [corCTF 2021 / babyrev](https://ctftime.org/writeup/29933) | hard (372pts) | GDB/gdb+trace dynamic
+- [corCTF 2021 / babyrev](https://ctftime.org/writeup/29936) | hard (372pts) | GDB/gdb+trace dynamic
+- [DamCTF 2021 / sneaky-script](https://ctftime.org/writeup/31246) | hard (333pts) | VM reversing → pyc/marshal decompile → crypto re-impl/keygen
+- [Cyber Apocalypse 2021 / Alienphish](https://ctftime.org/writeup/27663) | hard (300pts) | APK/jadx/smali → crypto re-impl/keygen
+- [Cyber Apocalypse 2021 / Invitation](https://ctftime.org/writeup/27666) | hard (300pts) | APK/jadx/smali → crypto re-impl/keygen
+- [Cyber Apocalypse 2021 / Alienphish](https://ctftime.org/writeup/27748) | hard (300pts) | APK/jadx/smali → crypto re-impl/keygen
+- [Cyber Apocalypse 2021 / Alienphish](https://ctftime.org/writeup/27835) | hard (300pts) | APK/jadx/smali → crypto re-impl/keygen
+- [Cyber Apocalypse 2021 / Invitation](https://ctftime.org/writeup/27836) | hard (300pts) | APK/jadx/smali → crypto re-impl/keygen
+- [RaRCTF 2021 / Infinite Free Trial](https://ctftime.org/writeup/29722) | hard (300pts) | crypto re-impl/keygen
+- [Intent CTF 2021 / Scadomware](https://ctftime.org/writeup/31373) | hard (300pts) | crypto re-impl/keygen → GDB/gdb+trace dynamic
+- [RaziCTF 2020 / Crypto PHP](https://ctftime.org/writeup/24491) | hard (990pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [RaziCTF 2020 / Crypto PHP](https://ctftime.org/writeup/24619) | hard (990pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [RaziCTF 2020 / Chasing a lock](https://ctftime.org/writeup/24487) | hard (858pts) | Frida hook/dump → APK/jadx/smali
+- [RaziCTF 2020 / Chasing a lock](https://ctftime.org/writeup/24499) | hard (858pts) | Frida hook/dump → APK/jadx/smali
+- [RaziCTF 2020 / Chasing a lock](https://ctftime.org/writeup/24513) | hard (858pts) | Frida hook/dump → APK/jadx/smali
+- [RaziCTF 2020 / Chasing a lock](https://ctftime.org/writeup/24521) | hard (858pts) | Frida hook/dump → APK/jadx/smali
+- [RaziCTF 2020 / Chasing a lock](https://ctftime.org/writeup/24550) | hard (858pts) | Frida hook/dump → APK/jadx/smali
+- [RaziCTF 2020 / Chasing a lock](https://ctftime.org/writeup/25650) | hard (858pts) | Frida hook/dump → APK/jadx/smali
+- [Syskron Security CTF 2020 / Firmware update](https://ctftime.org/writeup/24437) | hard (500pts) | OLLVM/Tigress deobf → GDB/gdb+trace dynamic
+- [Syskron Security CTF 2020 / Firmware update](https://ctftime.org/writeup/24452) | hard (500pts) | OLLVM/Tigress deobf → GDB/gdb+trace dynamic
+- [Syskron Security CTF 2020 / Firmware update](https://ctftime.org/writeup/24476) | hard (500pts) | OLLVM/Tigress deobf → GDB/gdb+trace dynamic
+- [X-MAS CTF 2019 / Kernel Crackme](https://ctftime.org/writeup/17538) | hard (500pts) | crypto re-impl/keygen → GDB/gdb+trace dynamic
+- [X-MAS CTF 2019 / Kernel Crackme](https://ctftime.org/writeup/17612) | hard (500pts) | crypto re-impl/keygen → GDB/gdb+trace dynamic
+- [PoliCTF 2015 / John the Packer](https://ctftime.org/writeup/1504) | hard (350pts) | stub loop analysis → NOP-out repack → breakpoint-at-call → dumpmem → 3-part checker solve
+- [PoliCTF 2015 / John the Packer](https://ctftime.org/writeup/1531) | hard (350pts) | stub loop analysis → NOP-out repack → breakpoint-at-call → dumpmem → 3-part checker solve
+- [Cyber Santa is Coming to Town / Upgraded](https://ctftime.org/writeup/31776) | hard (1000pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [DEADFACE CTF / Cereal Killer3](https://ctftime.org/writeup/30886) | hard (500pts) | anti-debug bypass → crypto re-impl/keygen
+- [CyberSecurityRumble CTF / CSRunner](https://ctftime.org/writeup/31524) | hard (486pts) | Frida hook/dump → APK/jadx/smali
+- [CyberSecurityRumble CTF / CSRunner](https://ctftime.org/writeup/31560) | hard (486pts) | Frida hook/dump → APK/jadx/smali
+- [HSCTF 8 / scrambler](https://ctftime.org/writeup/29101) | hard (461pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [HSCTF 8 / sneks](https://ctftime.org/writeup/29043) | hard (403pts) | VM reversing → pyc/marshal decompile → crypto re-impl/keygen
+- [HSCTF 8 / sneks](https://ctftime.org/writeup/29064) | hard (403pts) | VM reversing → pyc/marshal decompile → crypto re-impl/keygen
+- [HSCTF 8 / sneks](https://ctftime.org/writeup/29100) | hard (403pts) | VM reversing → pyc/marshal decompile → crypto re-impl/keygen
+- [HSCTF 8 / warmup-rev](https://ctftime.org/writeup/28999) | hard (371pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [1337UP LIVE CTF / Gandalf&#39;s Interface](https://ctftime.org/writeup/32570) | hard (338pts) | APK/jadx/smali → crypto re-impl/keygen
+- [Cyber Santa is Coming to Town / Bamboozled](https://ctftime.org/writeup/31617) | hard (325pts) | Python bundle: decompile (uncompyle/marshal) → logic re-impl
+- [DEADFACE CTF / Cereal Killer 2](https://ctftime.org/writeup/31063) | hard (300pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [Cyber Santa is Coming to Town / Intercept](https://ctftime.org/writeup/31659) | hard (300pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [Cyber Santa is Coming to Town / Giveaway](https://ctftime.org/writeup/31679) | hard (300pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [Cyber Santa is Coming to Town / Gift Wrapping](https://ctftime.org/writeup/31684) | hard (300pts) | GDB/gdb+trace dynamic
+- [Cyber Santa is Coming to Town / Infiltration](https://ctftime.org/writeup/31686) | hard (300pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [Cyber Santa is Coming to Town / Infiltration](https://ctftime.org/writeup/31704) | hard (300pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [Cyber Santa is Coming to Town / Infiltration](https://ctftime.org/writeup/31737) | hard (300pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [Cyber Santa is Coming to Town / Giveaway](https://ctftime.org/writeup/31777) | hard (300pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [Cyber Santa is Coming to Town / Giveaway](https://ctftime.org/writeup/31786) | hard (300pts) | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+## B — crackmes.one hard solutions (lasts/26-75, difficulty>=4.5, NEW vs R1)
+- [crackmes.one / 05crackme by matias921](https://crackmes.one/solution/5ab950b133c5d422feed84bf) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / 2ez by magic_raph](https://crackmes.one/solution/5ab950b933c5d422feed8726) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / 2ez by magic_raph](https://crackmes.one/solution/5ab950b933c5d422feed8727) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / 2ez by magic_raph](https://crackmes.one/solution/5ab950b933c5d422feed8728) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / 77crackme by matias921](https://crackmes.one/solution/5ab950b133c5d422feed84be) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / GraxCode&#39;s Java CrackMe 1](https://crackmes.one/solution/5ae816e833c5d42f7b9fe9f9) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / GraxCode&#39;s Java CrackMe 2](https://crackmes.one/solution/5bc57f5733c5d4110a29b2ae) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / KeyGenMeByVladMetz](https://crackmes.one/solution/6a883230cab6678aefe9da67) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / ajroncrackme by ajron](https://crackmes.one/solution/5ab950bf33c5d422feed8933) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / annoyer by spider](https://crackmes.one/solution/5ab950ba33c5d422feed8787) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / applied_mathematics_crackme_1 by haldir](https://crackmes.one/solution/5ab950a533c5d422feed8082) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / arthiscrackme1.02final by arthi](https://crackmes.one/solution/5ab950c333c5d422feed8a7d) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / bustme_1 by bpx_](https://crackmes.one/solution/5ab950ac33c5d422feed82c9) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / bustme_1 by bpx_](https://crackmes.one/solution/5ab950ac33c5d422feed82ca) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / canyou by santmat](https://crackmes.one/solution/5ab950ac33c5d422feed830e) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / canyou by santmat](https://crackmes.one/solution/5ab950ac33c5d422feed830f) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / cff_crackme_2 by acid_bytes](https://crackmes.one/solution/5ab950a933c5d422feed819f) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / cff_crackme_2 by acid_bytes](https://crackmes.one/solution/5ab950a933c5d422feed81a0) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / cff_crackme_2 by acid_bytes](https://crackmes.one/solution/5ab950a933c5d422feed81a1) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / cff_crackme_2 by acid_bytes](https://crackmes.one/solution/5ab950a933c5d422feed81a2) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / cff_crackme_2 by acid_bytes](https://crackmes.one/solution/5ab950a933c5d422feed81a3) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / cff_crackme_3 by acid_bytes](https://crackmes.one/solution/5ab950a933c5d422feed81a4) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / cff_crackme_3 by acid_bytes](https://crackmes.one/solution/5ab950a933c5d422feed81a5) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / cff_crackme_3 by acid_bytes](https://crackmes.one/solution/5ab950a933c5d422feed81a6) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / cff_crackme_3 by acid_bytes](https://crackmes.one/solution/5ab950a933c5d422feed81a7) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / cff_crackme_4 by acid_bytes](https://crackmes.one/solution/5ab950a933c5d422feed81a8) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / cff_crackme_4 by acid_bytes](https://crackmes.one/solution/5ab950a933c5d422feed81a9) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / cff_crackme_4 by acid_bytes](https://crackmes.one/solution/5ab950a933c5d422feed81aa) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / cff_crackme_4 by acid_bytes](https://crackmes.one/solution/5ab950a933c5d422feed81ab) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / chili_crackme_11_by_witeg by witeg](https://crackmes.one/solution/5ab950b333c5d422feed8526) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / code_hex_v.1.00 by kamikaze](https://crackmes.one/solution/5ab950ba33c5d422feed87be) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / crackme by outcast3k](https://crackmes.one/solution/5ab950be33c5d422feed88f9) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / crackme by sonkite](https://crackmes.one/solution/5ab950c333c5d422feed8a8a) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / crackme02 by v0d](https://crackmes.one/solution/5ab950aa33c5d422feed8233) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / crackme02 by v0d](https://crackmes.one/solution/5ab950aa33c5d422feed8234) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / crackme02 by v0d](https://crackmes.one/solution/5ab950aa33c5d422feed8235) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / crackme11 by detten](https://crackmes.one/solution/5ab950b233c5d422feed84ff) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / crackme2 by sonkite](https://crackmes.one/solution/5ab950c333c5d422feed8a88) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / crackme2 by sonkite](https://crackmes.one/solution/5ab950c333c5d422feed8a89) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / crackme3 by sonkite](https://crackmes.one/solution/5ab950c333c5d422feed8a84) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / crackme4 by sonkite](https://crackmes.one/solution/5ab950c333c5d422feed8a86) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / crackme6 by detten](https://crackmes.one/solution/5ab950b233c5d422feed84fe) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / crackme_1 by basilik](https://crackmes.one/solution/5ab950c033c5d422feed8980) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / crackme_1 by bumpy_flea](https://crackmes.one/solution/5ab950b633c5d422feed8631) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / crackme_1 by cronos](https://crackmes.one/solution/5ab950bb33c5d422feed87e5) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / crackme_1 by dc0de](https://crackmes.one/solution/5ab950c033c5d422feed896e) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / crackme_1 by excrek](https://crackmes.one/solution/5ab950c433c5d422feed8ac6) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / crackme_1 by khanete](https://crackmes.one/solution/5ab950b933c5d422feed8716) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / crackme_1 by khanete](https://crackmes.one/solution/5ab950b933c5d422feed8717) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / crackme_1 by khanete](https://crackmes.one/solution/5ab950b933c5d422feed8718) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / crackme_1 by khanete](https://crackmes.one/solution/5ab950b933c5d422feed8719) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / crackme_1 by khanete](https://crackmes.one/solution/5ab950b933c5d422feed871a) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / crackme_1 by mm](https://crackmes.one/solution/5ab950a933c5d422feed8185) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / crackme_1 by mm](https://crackmes.one/solution/5ab950a933c5d422feed8186) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / crackme_1 by mm](https://crackmes.one/solution/5ab950a933c5d422feed8187) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / crackme_1 by quaygod](https://crackmes.one/solution/5ab950a833c5d422feed8166) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / crackme_1 by r0m4n](https://crackmes.one/solution/5ab950b233c5d422feed8517) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / crackme_1 by r0m4n](https://crackmes.one/solution/5ab950b233c5d422feed8518) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / crackme_1 by r0m4n](https://crackmes.one/solution/5ab950b233c5d422feed8519) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / crackme_1 by r0m4n](https://crackmes.one/solution/5ab950b233c5d422feed851a) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / crackme_1 by r0m4n](https://crackmes.one/solution/5ab950b233c5d422feed851b) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / crackme_1 by sir_liquid](https://crackmes.one/solution/5ab950b233c5d422feed84d6) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / crackme_1 by ubique.daemon](https://crackmes.one/solution/5ab950b533c5d422feed85da) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / crackme_1 by ubique.daemon](https://crackmes.one/solution/5ab950b533c5d422feed85db) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / crackme_2 by mogul](https://crackmes.one/solution/5ab950be33c5d422feed88b4) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / crackme_2 by mogul](https://crackmes.one/solution/5ab950be33c5d422feed88b5) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / crackme_2 by mogul](https://crackmes.one/solution/5ab950be33c5d422feed88b6) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / crackme_2 by mogul](https://crackmes.one/solution/5ab950be33c5d422feed88b7) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / crackme_2 by nordic](https://crackmes.one/solution/5ab950c233c5d422feed8a16) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / crackme_2 by outcast3k](https://crackmes.one/solution/5ab950be33c5d422feed88f6) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / crackme_2 by outcast3k](https://crackmes.one/solution/5ab950be33c5d422feed88f7) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / crackme_2 by outcast3k](https://crackmes.one/solution/5ab950be33c5d422feed88f8) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / crackme_2 by ubique.daemon](https://crackmes.one/solution/5ab950b533c5d422feed85dc) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / crackme_3 by f0dder](https://crackmes.one/solution/5ab950b233c5d422feed8510) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / crackme_3 by fuzzy_cat](https://crackmes.one/solution/5ab950a933c5d422feed81b4) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / crackme_3 by fuzzy_cat](https://crackmes.one/solution/5ab950a933c5d422feed81b5) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / crackme_3 by fuzzy_cat](https://crackmes.one/solution/5ab950a933c5d422feed81b6) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / crackme_3 by kamikaze](https://crackmes.one/solution/5ab950ba33c5d422feed87c0) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / crackme_3 by noodlespa](https://crackmes.one/solution/5ab950ad33c5d422feed8356) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / crackme_3 by tragen](https://crackmes.one/solution/5ab950bb33c5d422feed87f3) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / crackme_3 by webmasta](https://crackmes.one/solution/5ab950c033c5d422feed8960) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / crackme_3 by zeronet.l](https://crackmes.one/solution/5ab950ab33c5d422feed82b6) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / crackme_3 by zeronet.l](https://crackmes.one/solution/5ab950ab33c5d422feed82b7) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / crackme_4 by kamikaze](https://crackmes.one/solution/5ab950ba33c5d422feed87bf) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / crackme_4 by noodlespa](https://crackmes.one/solution/5ab950ad33c5d422feed8350) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / crackme_4 by tragen](https://crackmes.one/solution/5ab950bb33c5d422feed87f0) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / crackme_5 by code_inside](https://crackmes.one/solution/5ab950b433c5d422feed85a2) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / crackme_5 by noodlespa](https://crackmes.one/solution/5ab950ad33c5d422feed8353) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / crackme_6 by noodlespa](https://crackmes.one/solution/5ab950ad33c5d422feed8354) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / crackme_7 by scarebyte](https://crackmes.one/solution/5ab950bb33c5d422feed87eb) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / crackme_7 by scarebyte](https://crackmes.one/solution/5ab950bb33c5d422feed87ec) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / crackme_7 by scarebyte](https://crackmes.one/solution/5ab950bb33c5d422feed87ed) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / crackme_7_by_witeg by witeg](https://crackmes.one/solution/5ab950b333c5d422feed8521) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / crackme_v.4.78 by acid_cool_178](https://crackmes.one/solution/5ab950bd33c5d422feed8878) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / cruddme_3.0 by crudd](https://crackmes.one/solution/5ab950ac33c5d422feed82f6) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / cycle by cw](https://crackmes.one/solution/5ab950af33c5d422feed83e9) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / dec0deme2 by ruptor](https://crackmes.one/solution/5ab950b333c5d422feed8551) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / electric_camel by death](https://crackmes.one/solution/5ab950b233c5d422feed84dd) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / elfz_crackme_4 by elfz](https://crackmes.one/solution/5ab950b733c5d422feed869d) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / ernocube_2009 by ed](https://crackmes.one/solution/5ab950bc33c5d422feed8827) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / ernocube_2009 by ed](https://crackmes.one/solution/5ab950bc33c5d422feed8828) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / fant0mcollection by fant0m](https://crackmes.one/solution/5ab950ab33c5d422feed8276) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / fcf_1 by moustico](https://crackmes.one/solution/5ab950b533c5d422feed860b) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / fcf_1 by moustico](https://crackmes.one/solution/5ab950b533c5d422feed860c) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / fcf_1 by moustico](https://crackmes.one/solution/5ab950b533c5d422feed860d) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / fcf_1 by moustico](https://crackmes.one/solution/5ab950b533c5d422feed860e) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / figugegl_crackme_4 by figugegl](https://crackmes.one/solution/5ab950c333c5d422feed8a93) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / hasher001 by hasher](https://crackmes.one/solution/5ab950b133c5d422feed84b5) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / hellcrackme_2 by the_hellfish](https://crackmes.one/solution/5ab950a733c5d422feed8117) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / hellcrackme_2 by the_hellfish](https://crackmes.one/solution/5ab950a733c5d422feed8118) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / hexeditor_keygenme by bunnx](https://crackmes.one/solution/5ab950bd33c5d422feed889d) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / hooh by mcc](https://crackmes.one/solution/5ab950a633c5d422feed808f) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / jm_key1 by jm](https://crackmes.one/solution/5ab950c133c5d422feed89ae) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / jm_key1 by jm](https://crackmes.one/solution/5ab950c133c5d422feed89af) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / jm_key1 by jm](https://crackmes.one/solution/5ab950c133c5d422feed89b0) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / jm_key1 by jm](https://crackmes.one/solution/5ab950c133c5d422feed89b1) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / jm_key2 by jm](https://crackmes.one/solution/5ab950c133c5d422feed89b2) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / jm_key2 by jm](https://crackmes.one/solution/5ab950c133c5d422feed89b3) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / jm_key2 by jm](https://crackmes.one/solution/5ab950c133c5d422feed89b4) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / kcrackme by kathras](https://crackmes.one/solution/5ab950a833c5d422feed8167) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / keygenme by code_inside](https://crackmes.one/solution/5ab950b433c5d422feed85a0) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / keygenme by code_inside](https://crackmes.one/solution/5ab950b433c5d422feed85a1) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / keygenme1 by rascal](https://crackmes.one/solution/5ab950ba33c5d422feed87b7) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / keygenme1 by rascal](https://crackmes.one/solution/5ab950ba33c5d422feed87b8) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / keygenme1 by smoke_](https://crackmes.one/solution/5ab950a833c5d422feed813d) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / keygenme1 by smoke_](https://crackmes.one/solution/5ab950a833c5d422feed813e) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / keygenme1 by smoke_](https://crackmes.one/solution/5ab950a833c5d422feed813f) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / keygenme2 by thigo](https://crackmes.one/solution/5ab950c033c5d422feed899a) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / keygenme_2 by smoke_](https://crackmes.one/solution/5ab950a833c5d422feed8140) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / khattam_s_keyfile_me_v3 by khattam](https://crackmes.one/solution/5ab950b833c5d422feed86c0) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / khattam_s_what_is_my_password by khattam](https://crackmes.one/solution/5ab950b833c5d422feed86c3) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / lockless_4 by bishop](https://crackmes.one/solution/5ab950af33c5d422feed8411) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / lsd_v1 by webmasta](https://crackmes.one/solution/5ab950c033c5d422feed895d) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / lsd_v1 by webmasta](https://crackmes.one/solution/5ab950c033c5d422feed895e) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / megaasm1 by megassembler](https://crackmes.one/solution/5ab950a733c5d422feed8129) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / need4speed by mcc](https://crackmes.one/solution/5ab950a633c5d422feed8090) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / nsa_crackme_3 by sha6rath](https://crackmes.one/solution/5ab950ab33c5d422feed82b3) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / nsa_crackme_3 by sha6rath](https://crackmes.one/solution/5ab950ab33c5d422feed82b4) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / passme by code_inside](https://crackmes.one/solution/5ab950b433c5d422feed8596) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / passme by code_inside](https://crackmes.one/solution/5ab950b433c5d422feed8597) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / passme by code_inside](https://crackmes.one/solution/5ab950b433c5d422feed8598) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / passme by code_inside](https://crackmes.one/solution/5ab950b433c5d422feed8599) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / patchme_1 by gulhadore](https://crackmes.one/solution/5ab950b133c5d422feed8498) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / pgc_trial_crackme by pgc](https://crackmes.one/solution/5ab950ac33c5d422feed82e3) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / pgc_trial_crackme by pgc](https://crackmes.one/solution/5ab950ac33c5d422feed82e4) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / pgc_trial_crackme_ by pgc](https://crackmes.one/solution/5ab950ac33c5d422feed82e2) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / pitr_crackme_v.1.5 by pitr](https://crackmes.one/solution/5ab950ad33c5d422feed835e) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / pitr_crackme_v.1.5 by pitr](https://crackmes.one/solution/5ab950ad33c5d422feed835f) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / reverseme8_by_lena151 by lena151](https://crackmes.one/solution/5ab950be33c5d422feed88f2) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / scut039_s_2nd by scut](https://crackmes.one/solution/5ab950a633c5d422feed80cc) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / sddecoder by gbe32241](https://crackmes.one/solution/5ab950b233c5d422feed8500) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / security_pow_2 by bublic](https://crackmes.one/solution/5ab950ba33c5d422feed87a3) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / serializer by code_inside](https://crackmes.one/solution/5ab950b433c5d422feed85a8) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / shmoocon_2010_crypto_challenge_pack by andrewl.us](https://crackmes.one/solution/5ab950bd33c5d422feed88a2) | hard (6.0/6) | unpack: resource carve/dynamic dump → re-analyze → keygen: algorithm invert → verify
+- [crackmes.one / smart6.com___2400_bytes by ajax](https://crackmes.one/solution/5ab950be33c5d422feed88ba) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / solar by solar_designer](https://crackmes.one/solution/5ab950c133c5d422feed89fb) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / solutions by code_inside](https://crackmes.one/solution/5ab950b433c5d422feed859d) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / solutions by code_inside](https://crackmes.one/solution/5ab950b433c5d422feed859e) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / solveit_1 by mr.haandi](https://crackmes.one/solution/5ab950ba33c5d422feed878e) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / spvm_2 by mr.haandi](https://crackmes.one/solution/5ab950ba33c5d422feed8792) | hard (6.0/6) | VM/self-decrypting bytecode: trace → handler/bytecode recovery → oracle brute/keygen
+- [crackmes.one / strange_crackme_1 by tomkol](https://crackmes.one/solution/5ab950be33c5d422feed88ee) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / sureal_51 by idq000](https://crackmes.one/solution/5ab950aa33c5d422feed81e8) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / tarux___keygenme__1 by tarux](https://crackmes.one/solution/5ab950a733c5d422feed8125) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / terminator by terminator](https://crackmes.one/solution/5ab950b333c5d422feed855b) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / thales_keygenme_2 by bublic](https://crackmes.one/solution/5ab950ba33c5d422feed87a8) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / the_amazing_picture_downloader by warrantyvoider](https://crackmes.one/solution/5ab950ac33c5d422feed82cf) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / vb_crackme_1 by laokoon](https://crackmes.one/solution/5ab950b333c5d422feed8565) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / vb_crackme_1 by seixi](https://crackmes.one/solution/5ab950b533c5d422feed85d9) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / vb_crackmes_collection by acid_cool_178](https://crackmes.one/solution/5ab950bd33c5d422feed887e) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / vb_crkme_3 by kornflex](https://crackmes.one/solution/5ab950ae33c5d422feed837a) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / vbcrackmeh by shimnobiton](https://crackmes.one/solution/5ab950bb33c5d422feed87f5) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / vxd_crackme by the_dux](https://crackmes.one/solution/5ab950ae33c5d422feed837b) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / xtreme_v2.0 by webmasta](https://crackmes.one/solution/5ab950c033c5d422feed895f) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / yates_crackme by yates](https://crackmes.one/solution/5ab950aa33c5d422feed8248) | hard (6.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / Br34k_M3 if you can...](https://crackmes.one/solution/6493242d33c5d43938913a90) | hard (5.7/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / blackopcode by lockpicka](https://crackmes.one/solution/5ab950c233c5d422feed8a54) | hard (5.5/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / imagination by kratorius](https://crackmes.one/solution/5ab950ad33c5d422feed8359) | hard (5.5/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / imagination by kratorius](https://crackmes.one/solution/5ab950ad33c5d422feed835a) | hard (5.5/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / imagination by kratorius](https://crackmes.one/solution/5ab950ad33c5d422feed835b) | hard (5.5/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / phoenix2 by phoenix87](https://crackmes.one/solution/5ab950c433c5d422feed8ace) | hard (5.5/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / phoenix2 by phoenix87](https://crackmes.one/solution/5ab950c433c5d422feed8acf) | hard (5.5/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / KataVM -- Level 1](https://crackmes.one/solution/607be4ea33c5d45ca9489659) | hard (5.0/6) | VM/self-decrypting bytecode: trace → handler/bytecode recovery → oracle brute/keygen
+- [crackmes.one / KataVM -- Level 1](https://crackmes.one/solution/62e45a1133c5d44a934e9a3d) | hard (5.0/6) | VM/self-decrypting bytecode: trace → handler/bytecode recovery → oracle brute/keygen
+- [crackmes.one / KataVM -- Level 1](https://crackmes.one/solution/6a392adf6840520e01b21f2d) | hard (5.0/6) | VM/self-decrypting bytecode: trace → handler/bytecode recovery → oracle brute/keygen
+- [crackmes.one / Mars Analytica](https://crackmes.one/solution/5c452ad833c5d475210bc635) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / QR Scanner](https://crackmes.one/solution/6a836d7e08712c1a17cbadec) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / a_crackme by kemicza](https://crackmes.one/solution/5ab950ae33c5d422feed8377) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / a_crackme by kemicza](https://crackmes.one/solution/5ab950ae33c5d422feed8378) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / a_crackme by kemicza](https://crackmes.one/solution/5ab950ae33c5d422feed8379) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / advancrkme by d3ux](https://crackmes.one/solution/5ab950b333c5d422feed854b) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / application_security_v1.0 by btcentral_test](https://crackmes.one/solution/5ab950af33c5d422feed83e2) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / application_security_v1.1 by btcentral_test](https://crackmes.one/solution/5ab950af33c5d422feed83e3) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / arthis_keygenme_a.0.3final by arthi](https://crackmes.one/solution/5ab950c333c5d422feed8a7b) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / arthis_keygenme_a.0.3final by arthi](https://crackmes.one/solution/5ab950c333c5d422feed8a7c) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / arthis_keygenme_a0.2 by arthi](https://crackmes.one/solution/5ab950c333c5d422feed8a7a) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / aurora by encrypto](https://crackmes.one/solution/5ab950b433c5d422feed85ad) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / bitflip](https://crackmes.one/solution/5c7fbd6e33c5d4776a837db9) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / bitflip](https://crackmes.one/solution/5cd6b6ff33c5d4419da55a2d) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / bkeyme by blue_orka](https://crackmes.one/solution/5ab950ae33c5d422feed8384) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / bug_crypto_crackme by black_eye](https://crackmes.one/solution/5ab950ba33c5d422feed87c6) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / builtin_serialme_1.0_fixed by 0xfadedace](https://crackmes.one/solution/5ab950b133c5d422feed8485) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / bustme3 by bpx_](https://crackmes.one/solution/5ab950ac33c5d422feed82cc) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / bustme_4 by bpx_](https://crackmes.one/solution/5ab950ac33c5d422feed82c8) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / crack_thee_v1.02.0008_fixed by d_jester](https://crackmes.one/solution/5ab950aa33c5d422feed81ea) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / crackgenme_2 by skirby](https://crackmes.one/solution/5ab950a733c5d422feed811d) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / crackme1 by drakenza](https://crackmes.one/solution/5ab950ba33c5d422feed87ae) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / crackme1 by symbiont](https://crackmes.one/solution/5ab950b233c5d422feed8516) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / crackme_2 by f0dder](https://crackmes.one/solution/5ab950b233c5d422feed850d) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / crackme_2 by f0dder](https://crackmes.one/solution/5ab950b233c5d422feed850e) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / crackme_2 by f0dder](https://crackmes.one/solution/5ab950b233c5d422feed850f) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / crackme_2 by fuzzy_cat](https://crackmes.one/solution/5ab950a933c5d422feed81b3) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / crackme_3 by hellspwn](https://crackmes.one/solution/5ab950bf33c5d422feed8916) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / crackme_3 by rooj](https://crackmes.one/solution/5ab950a833c5d422feed8178) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / crackme_5 by lord_phoenix](https://crackmes.one/solution/5ab950b433c5d422feed8579) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / crackme_5_by_rewolf by rewolf](https://crackmes.one/solution/5ab950bd33c5d422feed8862) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / crackme_6 by kwasek](https://crackmes.one/solution/5ab950b833c5d422feed86cf) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / crackme_8_by_witeg by witeg](https://crackmes.one/solution/5ab950b333c5d422feed8527) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / crackme_8_by_witeg by witeg](https://crackmes.one/solution/5ab950b333c5d422feed8528) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / crackme_9_by_witeg by witeg](https://crackmes.one/solution/5ab950b333c5d422feed8529) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / crackme_os_1.2 by monkey](https://crackmes.one/solution/5ab950c433c5d422feed8aaa) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / crackme_os_1.2 by monkey](https://crackmes.one/solution/5ab950c433c5d422feed8aab) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / crackme_v1.00 by morglum](https://crackmes.one/solution/5ab950be33c5d422feed88e8) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / cranix039s_crackme3 by cranix_dup](https://crackmes.one/solution/5ab950bf33c5d422feed8924) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / cranixscrackme10 by cranix_dup](https://crackmes.one/solution/5ab950bf33c5d422feed891b) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / cranixscrackme12 by cranix_dup](https://crackmes.one/solution/5ab950bf33c5d422feed8923) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / cranixscrackme13 by cranix_dup](https://crackmes.one/solution/5ab950bf33c5d422feed891e) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / cranixscrackme4 by cranix_dup](https://crackmes.one/solution/5ab950bf33c5d422feed8922) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / cranixscrackme5 by cranix_dup](https://crackmes.one/solution/5ab950bf33c5d422feed891f) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / cranixscrackme7 by cranix_dup](https://crackmes.one/solution/5ab950bf33c5d422feed891c) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / cranixscrackme8 by cranix_dup](https://crackmes.one/solution/5ab950bf33c5d422feed8920) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / crueme by cruehead](https://crackmes.one/solution/5ab950ac33c5d422feed82f2) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / crypto_keygenme2 by black_eye](https://crackmes.one/solution/5ab950bb33c5d422feed87d8) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / dctf_5 by ksydfius](https://crackmes.one/solution/5ab950c133c5d422feed89f3) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / defender.exe by eldad_eilam](https://crackmes.one/solution/5ab950ab33c5d422feed828a) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / diablo2oo2039s_crackme_04 by diablo2oo2](https://crackmes.one/solution/5ab950b133c5d422feed846b) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / diablo2oo2039s_crackme_2 by diablo2oo2](https://crackmes.one/solution/5ab950b133c5d422feed8474) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / diablo2oo2039s_crackme_2 by diablo2oo2](https://crackmes.one/solution/5ab950b133c5d422feed8475) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / diablo2oo2039s_crackme_2 by diablo2oo2](https://crackmes.one/solution/5ab950b133c5d422feed8476) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / diablo2oo2039s_crackme_2 by diablo2oo2](https://crackmes.one/solution/5ab950b133c5d422feed8477) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / diablo2oo2s_crackme_08 by diablo2oo2](https://crackmes.one/solution/5ab950b133c5d422feed846d) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / diablo2oo2s_crackme_08 by diablo2oo2](https://crackmes.one/solution/5ab950b133c5d422feed846e) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / digital_arithmetic by malfunction](https://crackmes.one/solution/5ab950b633c5d422feed862f) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / donglecrackme by victoria](https://crackmes.one/solution/5ab950b733c5d422feed86a6) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / dr.xj_keygen_this_1 by dr.xj](https://crackmes.one/solution/5ab950b733c5d422feed866b) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / dr.xj_keygen_this_1 by dr.xj](https://crackmes.one/solution/5ab950b733c5d422feed866c) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / dybolic_v1_keygen by dybolic](https://crackmes.one/solution/5ab950b333c5d422feed8563) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / ecrypt7.2008.keygenme7.foff by encrypto](https://crackmes.one/solution/5ab950b433c5d422feed85ae) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / evil_crackme by polynomial](https://crackmes.one/solution/5ab950bd33c5d422feed8894) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / fedor_rumin_keygenme_1 by heinz](https://crackmes.one/solution/5ab950a733c5d422feed812b) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / first_iranian_obfuscator_crackme by benladan](https://crackmes.one/solution/5ab950b033c5d422feed845e) | hard (5.0/6) | deobfuscate: dispatcher triage → handler lift → transform invert → keygen
+- [crackmes.one / first_iranian_virtual_machine by hadi.delphi](https://crackmes.one/solution/5ab950b833c5d422feed8700) | hard (5.0/6) | VM/self-decrypting bytecode: trace → handler/bytecode recovery → oracle brute/keygen
+- [crackmes.one / freakdropper_series_1 by daxxor_101](https://crackmes.one/solution/5ab950aa33c5d422feed820e) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / freakdropper_series_1 by daxxor_101](https://crackmes.one/solution/5ab950aa33c5d422feed820f) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / fuckalight2](https://crackmes.one/solution/5b8d6d9c33c5d45fc286ad9f) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / fuckalight2](https://crackmes.one/solution/5c13194c33c5d41e58e00588) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / genocide_crew_trial_2 by gandalffalcon](https://crackmes.one/solution/5ab950b933c5d422feed8754) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / hard_core_poly_protection by benladan](https://crackmes.one/solution/5ab950b033c5d422feed845d) | hard (5.0/6) | unpack: resource carve/dynamic dump → re-analyze → keygen: algorithm invert → verify
+- [crackmes.one / hard_software](https://crackmes.one/solution/5d2727c733c5d410dc4d0ce5) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / hard_software](https://crackmes.one/solution/5d3a02cb33c5d444ad301822) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / haystack_1 by warrantyvoider](https://crackmes.one/solution/5ab950ac33c5d422feed82de) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / haze_keygenme by mysfyt](https://crackmes.one/solution/5ab950ad33c5d422feed8366) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / hazeme_2 by mysfyt](https://crackmes.one/solution/5ab950ae33c5d422feed8367) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / hd_vm_2.1 by hadi.delphi](https://crackmes.one/solution/5ab950b833c5d422feed86fd) | hard (5.0/6) | VM/self-decrypting bytecode: trace → handler/bytecode recovery → oracle brute/keygen
+- [crackmes.one / hide_encryption by opx](https://crackmes.one/solution/5ab950b333c5d422feed856d) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / intersection_1 by mr.haandi](https://crackmes.one/solution/5ab950ba33c5d422feed878f) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / java_crackme_3 by warsaw](https://crackmes.one/solution/5ab950b033c5d422feed845b) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / je_crc_drx by je](https://crackmes.one/solution/5ab950b333c5d422feed8572) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / jinku by black_eye](https://crackmes.one/solution/5ab950ba33c5d422feed87c4) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / jittery](https://crackmes.one/solution/5c50d3ce33c5d475210bc6cc) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / junor by black_eye](https://crackmes.one/solution/5ab950ba33c5d422feed87c2) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / keyfileme_1 by slashzero](https://crackmes.one/solution/5ab950ac33c5d422feed82cd) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / keygenme by noobpwnftw](https://crackmes.one/solution/5ab950a833c5d422feed8165) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / keygenme2 by reverend](https://crackmes.one/solution/5ab950b833c5d422feed8708) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / keygenme3 by adjiang](https://crackmes.one/solution/5ab950aa33c5d422feed824b) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / keygenme_1 by bundy](https://crackmes.one/solution/5ab950ba33c5d422feed8795) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / keygenme_1 by fortu](https://crackmes.one/solution/5ab950ab33c5d422feed8257) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / keygenme_2 by bundy](https://crackmes.one/solution/5ab950ba33c5d422feed8794) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / keygenme_3 by imp](https://crackmes.one/solution/5ab950b233c5d422feed84e1) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / keygenme_4 by daxxor_101](https://crackmes.one/solution/5ab950aa33c5d422feed820c) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / keygenme_4 by daxxor_101](https://crackmes.one/solution/5ab950aa33c5d422feed820d) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / keygenme_8 by qptj](https://crackmes.one/solution/5ab950aa33c5d422feed8229) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / keygenme_8 by qptj](https://crackmes.one/solution/5ab950aa33c5d422feed822a) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / keygenme_by_ms_rem by ms_rem](https://crackmes.one/solution/5ab950b333c5d422feed856f) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / keygenme_by_ms_rem by ms_rem](https://crackmes.one/solution/5ab950b333c5d422feed8570) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / keygenme_iii_v1.0 by luxor](https://crackmes.one/solution/5ab950be33c5d422feed88ea) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / keygenme_v1.0 by you_known](https://crackmes.one/solution/5ab950ac33c5d422feed82ed) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / keygenme_v1.00 by haykuro](https://crackmes.one/solution/5ab950b333c5d422feed8541) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / khattam_s_what_is_my_password_v13 by khattam](https://crackmes.one/solution/5ab950b833c5d422feed86bf) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / kratme by kratorius](https://crackmes.one/solution/5ab950ad33c5d422feed8357) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / loadercrackmev3.0 by rendariaka](https://crackmes.one/solution/5ab950c233c5d422feed8a17) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / loadercrackmev3.0 by rendariaka](https://crackmes.one/solution/5ab950c233c5d422feed8a18) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / loadercrackmev3.0 by rendariaka](https://crackmes.one/solution/5ab950c233c5d422feed8a19) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / loadercrackmev3.0 by rendariaka](https://crackmes.one/solution/5ab950c233c5d422feed8a1a) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / lord_phoenixs_crackme1 by lord_phoenix](https://crackmes.one/solution/5ab950b433c5d422feed8578) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / mastermind by spider](https://crackmes.one/solution/5ab950ba33c5d422feed8788) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / myvm_1 by bublic](https://crackmes.one/solution/5ab950ba33c5d422feed87a5) | hard (5.0/6) | VM/self-decrypting bytecode: trace → handler/bytecode recovery → oracle brute/keygen
+- [crackmes.one / myvm_1 by bublic](https://crackmes.one/solution/5ab950ba33c5d422feed87a6) | hard (5.0/6) | VM/self-decrypting bytecode: trace → handler/bytecode recovery → oracle brute/keygen
+- [crackmes.one / neuron_crackmes by bloody](https://crackmes.one/solution/5ab950a933c5d422feed81da) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / nightmare by black_eye](https://crackmes.one/solution/5ab950bb33c5d422feed87d6) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / nightmare by black_eye](https://crackmes.one/solution/5ab950bb33c5d422feed87d7) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / not4cracking by nagual](https://crackmes.one/solution/5ab950a933c5d422feed81cf) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / notepad_crackme by olici](https://crackmes.one/solution/5ab950b533c5d422feed860a) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / official_trial_crackme by black_eye](https://crackmes.one/solution/5ab950bb33c5d422feed87d5) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / oxfoo1me by 0xf001](https://crackmes.one/solution/5ab950aa33c5d422feed81f5) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / paic_citron_1 by paic_citron](https://crackmes.one/solution/5ab950bf33c5d422feed8918) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / pamplemousse by bigbang](https://crackmes.one/solution/5ab950ba33c5d422feed87b4) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / password_protection by sneakcharm](https://crackmes.one/solution/5ab950b233c5d422feed84c7) | hard (5.0/6) | unpack: resource carve/dynamic dump → re-analyze → keygen: algorithm invert → verify
+- [crackmes.one / password_protection by sneakcharm](https://crackmes.one/solution/5ab950b233c5d422feed84c8) | hard (5.0/6) | unpack: resource carve/dynamic dump → re-analyze → keygen: algorithm invert → verify
+- [crackmes.one / pdc by theq](https://crackmes.one/solution/5ab950ab33c5d422feed8290) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / pe_pro_2.0_crackme by yates](https://crackmes.one/solution/5ab950aa33c5d422feed8245) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / pe_pro_2.0_crackme by yates](https://crackmes.one/solution/5ab950aa33c5d422feed8246) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / pe_pro_2.0_crackme by yates](https://crackmes.one/solution/5ab950aa33c5d422feed8247) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / psychoo_crackme by agent](https://crackmes.one/solution/5ab950ad33c5d422feed8364) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / psychoo_crackme by agent](https://crackmes.one/solution/5ab950ad33c5d422feed8365) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / rascal999s_windows_crackme_challenge_cryptography by rascal999](https://crackmes.one/solution/5ab950b433c5d422feed85b4) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / re_venge by crudd](https://crackmes.one/solution/5ab950ac33c5d422feed82f5) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / reverseme2_by_lena151 by lena151](https://crackmes.one/solution/5ab950be33c5d422feed88f1) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / ring0_crackme by ms_rem](https://crackmes.one/solution/5ab950b333c5d422feed856e) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / root_me_1 by waganono](https://crackmes.one/solution/5ab950c433c5d422feed8abe) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / root_me_1 by waganono](https://crackmes.one/solution/5ab950c433c5d422feed8abf) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / root_me_1 by waganono](https://crackmes.one/solution/5ab950c433c5d422feed8ac0) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / saddam_crackme by death](https://crackmes.one/solution/5ab950b233c5d422feed84de) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / serial_crackme_revised by tragen](https://crackmes.one/solution/5ab950bb33c5d422feed87f2) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / shmoocon_2011_crypto_challenge_pack by andrewl.us](https://crackmes.one/solution/5ab950bd33c5d422feed88a3) | hard (5.0/6) | unpack: resource carve/dynamic dump → re-analyze → keygen: algorithm invert → verify
+- [crackmes.one / siege_toolme by black_eye](https://crackmes.one/solution/5ab950ba33c5d422feed87c1) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / simple_crackme by hackerman](https://crackmes.one/solution/5ab950a933c5d422feed81c8) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / smart5.com___185bytes by ajax](https://crackmes.one/solution/5ab950be33c5d422feed88c1) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / spvm by mr.haandi](https://crackmes.one/solution/5ab950ba33c5d422feed8790) | hard (5.0/6) | VM/self-decrypting bytecode: trace → handler/bytecode recovery → oracle brute/keygen
+- [crackmes.one / tarux_keygenme2 by tarux](https://crackmes.one/solution/5ab950a733c5d422feed8126) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / thales_3_keygenme by mr.haandi](https://crackmes.one/solution/5ab950ba33c5d422feed8789) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / the_outside_area by slift](https://crackmes.one/solution/5ab950b333c5d422feed8550) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / the_secret_of_the_invisible_lookup_table by warrantyvoider](https://crackmes.one/solution/5ab950ac33c5d422feed82d4) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / the_secret_of_the_invisible_lookup_table by warrantyvoider](https://crackmes.one/solution/5ab950ac33c5d422feed82d5) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / thigocrkme by thigo](https://crackmes.one/solution/5ab950c033c5d422feed8996) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / tkm_trial_crackme_v2 by gedtkm](https://crackmes.one/solution/5ab950bc33c5d422feed8833) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / trythisone by code_inside](https://crackmes.one/solution/5ab950b433c5d422feed859f) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / ucf_keygenme_1.0_official_ucf_trial by scarebyte](https://crackmes.one/solution/5ab950bb33c5d422feed87ee) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / uncrackable by anasazi](https://crackmes.one/solution/5ab950a833c5d422feed817f) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / unpackme_no.1 by black_eye](https://crackmes.one/solution/5ab950bb33c5d422feed87d0) | hard (5.0/6) | unpack: resource carve/dynamic dump → re-analyze → keygen: algorithm invert → verify
+- [crackmes.one / unpackme_no.1 by black_eye](https://crackmes.one/solution/5ab950bb33c5d422feed87d1) | hard (5.0/6) | unpack: resource carve/dynamic dump → re-analyze → keygen: algorithm invert → verify
+- [crackmes.one / unpackme_no.1 by black_eye](https://crackmes.one/solution/5ab950bb33c5d422feed87d2) | hard (5.0/6) | unpack: resource carve/dynamic dump → re-analyze → keygen: algorithm invert → verify
+- [crackmes.one / vm_keygenme by genaytyk](https://crackmes.one/solution/5ab950ab33c5d422feed8283) | hard (5.0/6) | VM/self-decrypting bytecode: trace → handler/bytecode recovery → oracle brute/keygen
+- [crackmes.one / vvm_keygenme_level_1 by antofik](https://crackmes.one/solution/5ab950c133c5d422feed89c1) | hard (5.0/6) | VM/self-decrypting bytecode: trace → handler/bytecode recovery → oracle brute/keygen
+- [crackmes.one / weakaes_2 by mr.haandi](https://crackmes.one/solution/5ab950ba33c5d422feed878d) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / xordinary by scarabee](https://crackmes.one/solution/5ab950b533c5d422feed861c) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / xzzxcrackme4 by xzzx](https://crackmes.one/solution/5ab950bf33c5d422feed893b) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / xzzxcrackme4 by xzzx](https://crackmes.one/solution/5ab950bf33c5d422feed893c) | hard (5.0/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / Crack Me](https://crackmes.one/solution/6489c29533c5d439389138c8) | hard (4.5/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / ReverseMe4](https://crackmes.one/solution/6262aab733c5d42a191a5d8a) | hard (4.5/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / cr4ckm3_0x](https://crackmes.one/solution/5e6da68e33c5d4439bb2de77) | hard (4.5/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / keygenme_1 by tiga](https://crackmes.one/solution/5ab950b633c5d422feed8629) | hard (4.5/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / keygenme_beef by subminking](https://crackmes.one/solution/5ab950c133c5d422feed89a8) | hard (4.5/6) | keygen: static analysis → algorithm re-impl → verify on binary
+- [crackmes.one / waga_invader by waganono](https://crackmes.one/solution/5ab950c433c5d422feed8ac3) | hard (4.5/6) | keygen: static analysis → algorithm re-impl → verify on binary
+
+## C — GitHub-verified hard anchors 2025-2026 (API-listed, no invented URLs)
+- [ctf-collection / buckeye_2025_befuddled](https://github.com/ZhangZhuoSJTU/ctf-collection/blob/main/ctf-rev/buckeye_2025_befuddled/writeup.md) | hard | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [ctf-collection / flareon11_2024_sshd](https://github.com/ZhangZhuoSJTU/ctf-collection/blob/main/ctf-rev/flareon11_2024_sshd/writeup.md) | hard | SSH-game logic reverse → staged checks → keygen/decrypt
+- [ctf-collection / flareon12_2025_chain_of_demands](https://github.com/ZhangZhuoSJTU/ctf-collection/blob/main/ctf-rev/flareon12_2025_chain_of_demands/writeup.md) | hard | NTFS/chain staged reverse → per-stage unpack → key assembly
+- [ctf-collection / flareon6_2019_dnschess](https://github.com/ZhangZhuoSJTU/ctf-collection/blob/main/ctf-rev/flareon6_2019_dnschess/writeup.md) | hard | loader decrypt-at-runtime → full process dump → carve decrypted asset → offline solve
+- [ctf-collection / flareon7_2020_break](https://github.com/ZhangZhuoSJTU/ctf-collection/blob/main/ctf-rev/flareon7_2020_break/writeup.md) | hard | multi-stage unpack → transform invert → verify
+- [ctf-collection / ictf_2025_lifetime](https://github.com/ZhangZhuoSJTU/ctf-collection/blob/main/ctf-rev/ictf_2025_lifetime/writeup.md) | hard | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [ctf-collection / ictf_2025_nowthiswillrunonmy486](https://github.com/ZhangZhuoSJTU/ctf-collection/blob/main/ctf-rev/ictf_2025_nowthiswillrunonmy486/writeup.md) | hard | 16-bit/retro low-level trace → semantics recovery → SMT/script invert
+- [ctf-collection / pwnme_2025_c4_license](https://github.com/ZhangZhuoSJTU/ctf-collection/blob/main/ctf-rev/pwnme_2025_c4_license/writeup.md) | hard | license check reverse → keygen: algorithm invert → verify
+- [ctf-collection / pwnme_2025_mimirev](https://github.com/ZhangZhuoSJTU/ctf-collection/blob/main/ctf-rev/pwnme_2025_mimirev/writeup.md) | hard | checker re-impl + dynamic confirm → transform invert
+- [ctf-collection / uiuctf_2025_damaged_soc](https://github.com/ZhangZhuoSJTU/ctf-collection/blob/main/ctf-rev/uiuctf_2025_damaged_soc/writeup.md) | hard | SoC/firmware-adjacent rev → carve + re-impl → verify
+- [ctf-collection / uiuctf_2025_flag_checker](https://github.com/ZhangZhuoSJTU/ctf-collection/blob/main/ctf-rev/uiuctf_2025_flag_checker/writeup.md) | hard | checker re-impl: static decompile → dynamic confirm → transform inversion → verify
+- [ctf-collection / wolvctf_2025_vinyl](https://github.com/ZhangZhuoSJTU/ctf-collection/blob/main/ctf-rev/wolvctf_2025_vinyl/writeup.md) | hard | audio/VM rev → transform invert → verify
+- [BYUCTF-2026 / back_and_forth](https://github.com/BYU-CSA/BYUCTF-2026/blob/main/rev/back_and_forth/README.md) | hard | rev triage → decompile/dynamic confirm → targeted solve (2026 rev)
+- [BYUCTF-2026 / mixed_signals](https://github.com/BYU-CSA/BYUCTF-2026/blob/main/rev/mixed_signals/README.md) | hard | rev triage → decompile/dynamic confirm → targeted solve (2026 rev)
+- [BYUCTF-2026 / picklerick](https://github.com/BYU-CSA/BYUCTF-2026/blob/main/rev/picklerick/readme.md) | hard | rev triage → decompile/dynamic confirm → targeted solve (2026 rev)
+- [BYUCTF-2026 / rcaas](https://github.com/BYU-CSA/BYUCTF-2026/blob/main/rev/rcaas/README.md) | hard | rev triage → decompile/dynamic confirm → targeted solve (2026 rev)
+- [BYUCTF-2026 / yara](https://github.com/BYU-CSA/BYUCTF-2026/blob/main/rev/yara/README.md) | hard | rev triage → decompile/dynamic confirm → targeted solve (2026 rev)
+- [Flare-On 12 / 01-DrillBabyDrill](https://github.com/expend20/flare-on-12-llm-solution/tree/master/01-DrillBabyDrill) | hard | layered unpack + LLM-assisted decompile → gate/key recovery → decrypt (LLM draft + human verify)
+- [Flare-On 12 / 03-pretty_devilish_file](https://github.com/expend20/flare-on-12-llm-solution/tree/master/03-pretty_devilish_file) | hard | layered unpack + LLM-assisted decompile → gate/key recovery → decrypt (LLM draft + human verify)
+- [Flare-On 12 / 04-UnholyDragon](https://github.com/expend20/flare-on-12-llm-solution/tree/master/04-UnholyDragon) | hard | layered unpack + LLM-assisted decompile → gate/key recovery → decrypt (LLM draft + human verify)
+- [Flare-On 12 / 05-ntfsm](https://github.com/expend20/flare-on-12-llm-solution/tree/master/05-ntfsm) | hard | layered unpack + LLM-assisted decompile → gate/key recovery → decrypt (LLM draft + human verify)
+- [Flare-On 12 / 06-ChainOfDemands](https://github.com/expend20/flare-on-12-llm-solution/tree/master/06-ChainOfDemands) | hard | layered unpack + LLM-assisted decompile → gate/key recovery → decrypt (LLM draft + human verify)
+- [Flare-On 12 / 08-FlareAuthenticator](https://github.com/expend20/flare-on-12-llm-solution/tree/master/08-FlareAuthenticator) | hard | layered unpack + LLM-assisted decompile → gate/key recovery → decrypt (LLM draft + human verify)
+- [Flare-On 12 / 09-10000](https://github.com/expend20/flare-on-12-llm-solution/tree/master/09-10000) | hard | layered unpack + LLM-assisted decompile → gate/key recovery → decrypt (LLM draft + human verify)
+
+(End of file)

@@ -1,0 +1,20 @@
+{
+  "id": "crypto-xor-single-byte",
+  "domain": "crypto",
+  "title": "Single-byte XOR brute force",
+  "signals": ["binary file with no known magic", "high entropy but short", "repeating structure", "no compression header"],
+  "preconditions": ["the whole payload was XORed with one repeated byte"],
+  "steps": [
+    "read the bytes, not the text",
+    "try all 256 keys",
+    "keep candidates containing a flag marker or printable English",
+    "confirm by re-XORing the candidate with the key"
+  ],
+  "falsifier": "no key yields a printable structure or marker; the key may be multi-byte",
+  "pitfalls": ["multi-byte keys are a different attack", "UTF-8 decode can hide a valid binary hit"],
+  "sources": ["https://en.wikipedia.org/wiki/XOR_cipher"],
+  "fixtures": ["xor"],
+  "verified_by": "engine:selftest",
+  "last_verified": "2026-10-20",
+  "verified": true
+}

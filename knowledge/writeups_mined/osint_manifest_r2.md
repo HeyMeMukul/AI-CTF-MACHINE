@@ -1,0 +1,730 @@
+# OSINT CTF Writeups — Mined Manifest R2 (Hard Only)
+
+> Methods-only. No flag values, no personal data. Every persona below is a
+> fictional CTF target. Technique-chains distilled from surveyed writeups
+> (2024–2026); all entries are Hard = multi-hop chaining and/or low-solve
+> method work. Format: `- [Event — Challenge](URL) | Hard | technique-chain`.
+> R2 adds flight/maritime tracking, radio-signal, satellite-change,
+> historical-overlay, language-ladder, font/metadata-deep, CT-pivot,
+> favicon-hash, breach-methodology (provided dumps only), and
+> sockpuppet-graph methods NOT covered in R1. Zero URL overlap with
+> `osint_manifest.md` (R1).
+> Top-up pass (2026-10-16): +305 hard lines (713 occurrences, 415 unique
+> URLs, still zero R1 overlap) from untapped veins — university CTF archives,
+> team-blog indexes, Bellingcat exercise series, THM recon rooms, Mrs OSINT
+> series, Hacktoria GEOINT, DIVER 2026/SWIMMER, k3sero OSINT tag, Sofia
+> Santos set, HeroCTF chain-OSINT, n00bzCTF gang-chain, 404CTF/DGSE geo.
+
+- [Cyber Apocalypse 2025 — Echoes in Stone (reverse-search)](https://blog.carsonshaffer.me/hack-the-box-cyber-apocalypse-ctf-2025-osint-writeup-c5ab878b700c) | Hard | monument-crop reverse-search → travel-archive cross-read → stone-name lock → maps confirm.
+- [Cyber Apocalypse 2025 — Stone That Whispers (hill-site)](https://blog.carsonshaffer.me/hack-the-box-cyber-apocalypse-ctf-2025-osint-writeup-c5ab878b700c) | Hard | hill-name search → heritage-listing match → vista-angle confirm → name-format rule.
+- [Cyber Apocalypse 2025 — Mechanical Bird Nest (vehicle-maps)](https://blog.carsonshaffer.me/hack-the-box-cyber-apocalypse-ctf-2025-osint-writeup-c5ab878b700c) | Hard | vehicle-marking read → fleet-route intersect → maps walk → doorway-stance confirm.
+- [Cyber Apocalypse 2025 — Hillside Haven (house-address)](https://blog.carsonshaffer.me/hack-the-box-cyber-apocalypse-ctf-2025-osint-writeup-c5ab878b700c) | Hard | suburb-cue narrow → housing-row satellite sweep → number-plate read → street confirm.
+- [Cyber Apocalypse 2025 — Ancient Citadel (castle-reverse)](https://blog.carsonshaffer.me/hack-the-box-cyber-apocalypse-ctf-2025-osint-writeup-c5ab878b700c) | Hard | fortress-crop reverse-search → heritage-page match → wall-geometry confirm.
+- [Cyber Apocalypse 2025 — Shadowed Sigil (IP-threat)](https://blog.carsonshaffer.me/hack-the-box-cyber-apocalypse-ctf-2025-osint-writeup-c5ab878b700c) | Hard | challenge-IP → threat-intel coven search → breach-report correlate → actor-number lock.
+- [Cyber Apocalypse 2025 — Poisoned Scroll (malware-actor)](https://blog.carsonshaffer.me/hack-the-box-cyber-apocalypse-ctf-2025-osint-writeup-c5ab878b700c) | Hard | victim-region reports → malware-family search → vendor-analysis match → actor-name lock.
+- [Cyber Apocalypse 2025 — Echoes in Stone (second-method)](https://thelastdanc3.medium.com/htb-cyber-apocalypse-2025-ctf-writeup-osint-challenges-dd09885055ce) | Hard | carving-detail crop → museum-record search → cross-name confirm (independent author).
+- [Cyber Apocalypse 2025 — Stone That Whispers (second-method)](https://thelastdanc3.medium.com/htb-cyber-apocalypse-2025-ctf-writeup-osint-challenges-dd09885055ce) | Hard | hill-context search → photo-archive match → slope-geometry confirm (independent author).
+- [Cyber Apocalypse 2025 — Mechanical Bird Nest (second-method)](https://thelastdanc3.medium.com/htb-cyber-apocalypse-2025-ctf-writeup-osint-challenges-dd09885055ce) | Hard | depot-cue search → vehicle-listing match → maps-lot confirm (independent author).
+- [Cyber Apocalypse 2025 — Hillside Haven (second-method)](https://thelastdanc3.medium.com/htb-cyber-apocalypse-2025-ctf-writeup-osint-challenges-dd09885055ce) | Hard | district-guess → estate-row walk → roofline-match confirm (independent author).
+- [Cyber Apocalypse 2025 — Ancient Citadel (second-method)](https://thelastdanc3.medium.com/htb-cyber-apocalypse-2025-ctf-writeup-osint-challenges-dd09885055ce) | Hard | stone-shadow pattern → castle-index search → tower-match confirm (independent author).
+- [Cyber Apocalypse 2025 — Shadowed Sigil (second-method)](https://thelastdanc3.medium.com/htb-cyber-apocalypse-2025-ctf-writeup-osint-challenges-dd09885055ce) | Hard | sigil-IP → blocklist-history search → incident-report pivot → coven lock (independent author).
+- [Cyber Apocalypse 2025 — Poisoned Scroll (second-method)](https://thelastdanc3.medium.com/htb-cyber-apocalypse-2025-ctf-writeup-osint-challenges-dd09885055ce) | Hard | council-lure theme → malware-report keyword hunt → LLM-assisted triage → family lock (independent author).
+- [Cyber Apocalypse 2025 — Hillside Haven (third-method)](https://100gryphons.wordpress.com/htb-cyber-apocalypse-2025) | Hard | hillside-panorama narrow → dwelling-row satellite walk → marker-number read (independent author).
+- [Cyber Apocalypse 2025 — Mechanical Bird Nest (third-method)](https://100gryphons.wordpress.com/htb-cyber-apocalypse-2025) | Hard | craft-marking search → spotter-photo match → apron-stance lock (independent author).
+- [Cyber Apocalypse 2025 — Ancient Citadel (third-method)](https://100gryphons.wordpress.com/htb-cyber-apocalypse-2025) | Hard | citadel-silhouette search → fortification-index match → gate-geometry lock (independent author).
+- [Cyber Apocalypse 2025 — Shadowed Sigil (third-method)](https://100gryphons.wordpress.com/htb-cyber-apocalypse-2025) | Hard | sigil-IP → collaborator-notebook triage → threat-report pivot → actor lock (independent author).
+- [Cyber Apocalypse 2025 — Poisoned Scroll (third-method)](https://100gryphons.wordpress.com/htb-cyber-apocalypse-2025) | Hard | enchantment-theme reports → malware-sample search → analysis-thread match → family lock (independent author).
+- [Cyber Apocalypse 2025 — Echoes set (fourth-method)](https://publication.osintambition.org/osint-writeups-cyber-apocalypse-ctf-2025-tales-from-eldoria-inferiorak-efd802bec6c2) | Hard | destiny-stone search → hill-name page → monument-field match (independent author).
+- [Cyber Apocalypse 2025 — Whispers set (fourth-method)](https://publication.osintambition.org/osint-writeups-cyber-apocalypse-ctf-2025-tales-from-eldoria-inferiorak-efd802bec6c2) | Hard | whisper-site search → heritage-listing compare → carving-match (independent author).
+- [Cyber Apocalypse 2025 — Sigil set (fourth-method)](https://publication.osintambition.org/osint-writeups-cyber-apocalypse-ctf-2025-tales-from-eldoria-inferiorak-efd802bec6c2) | Hard | sigil-IP → coven-record search → campaign-report correlate (independent author).
+- [Cyber Apocalypse 2025 — Citadel set (fourth-method)](https://publication.osintambition.org/osint-writeups-cyber-apocalypse-ctf-2025-tales-from-eldoria-inferiorak-efd802bec6c2) | Hard | grid-overlay fortress search → coordinate-server probe → courtyard-match (independent author).
+- [Cyber Apocalypse 2025 — OSINT set (repo-angle)](https://github.com/R4ptX/CTF-Writeups) | Hard | event-OSINT folder triage → monument-first pass → maps-confirm chain (independent author).
+- [Cyber Apocalypse 2025 — Sigil/Scroll set (repo-angle)](https://github.com/R4ptX/CTF-Writeups) | Hard | threat-leg triage → IP-then-malware order → report-pair lock (independent author).
+- [Cyber Apocalypse 2025 — Geo pair (repo-angle)](https://github.com/R4ptX/CTF-Writeups) | Hard | nest-haven pair walk → vehicle-then-dwelling order → stance-pair lock (independent author).
+- [Cyber Apocalypse 2025 — IrisCTF leg (repo-angle)](https://github.com/R4ptX/CTF-Writeups) | Hard | repo event-row scan → OSINT-folder filter → challenge-pair queue (independent author).
+- [Cyber Apocalypse 2025 — LaCTF leg (repo-angle)](https://github.com/R4ptX/CTF-Writeups) | Hard | second-event OSINT row → method-compare vs apocalypse set → gap-note (independent author).
+- [Cyber Apocalypse 2025 — set (collection-angle)](https://github.com/thewhitecircle/ctf_writeups/blob/main/cyber_apocalypse_2025/README.md) | Hard | collection-index OSINT row → per-challenge folder open → solve-order log (independent author).
+- [Cyber Apocalypse 2025 — web/chain context (collection-angle)](https://github.com/thewhitecircle/ctf_writeups/blob/main/cyber_apocalypse_2025/README.md) | Hard | adjacent-category notes → OSINT-vs-forensics boundary → handoff-point log (independent author).
+- [Cyber Apocalypse 2025 — Bird Nest official](https://github.com/hackthebox/cyber-apocalypse-2025) | Hard | official vehicle-on-maps objective → spotting-method note → address-rule read.
+- [Cyber Apocalypse 2025 — Hillside Haven official](https://github.com/hackthebox/cyber-apocalypse-2025) | Hard | official pictured-house objective → dwelling-signature note → road-rule read.
+- [Cyber Apocalypse 2025 — Ancient Citadel official](https://github.com/hackthebox/cyber-apocalypse-2025) | Hard | official castle reverse-search objective → stone-compare note → naming-rule read.
+- [Cyber Apocalypse 2025 — Shadowed Sigil official](https://github.com/hackthebox/cyber-apocalypse-2025) | Hard | official threat-actor-IP objective → intel-pivot note → number-rule read.
+- [Cyber Apocalypse 2025 — Poisoned Scroll official](https://github.com/hackthebox/cyber-apocalypse-2025) | Hard | official malware-actor objective → residue-analysis note → name-rule read.
+- [Cyber Apocalypse 2025 — stone pair official](https://github.com/hackthebox/cyber-apocalypse-2025/blob/main/README.md) | Hard | official monument reverse-search objectives → archive-compare note → cross-rule read.
+- [Cyber Apocalypse 2025 — geo pair official](https://github.com/hackthebox/cyber-apocalypse-2025/blob/main/README.md) | Hard | official map-locate objectives → grid-overlay note → sigil-rule read.
+- [DIVER 2025 — advertisement (Cyrillic-chain)](https://medium.com/@PretendNotToBe/writeup-of-diver-osint-ctf-2025-ea6e8f3fb763) | Hard | script-on-ad read → restaurant-chain search → city-scoped branch hunt → satellite-stance lock.
+- [DIVER 2025 — hole (void-photo)](https://medium.com/@PretendNotToBe/writeup-of-diver-osint-ctf-2025-ea6e8f3fb763) | Hard | corner-crop attention → ground-texture read → district-walk → opening-shape match.
+- [DIVER 2025 — what3slashes (grid-address)](https://medium.com/@PretendNotToBe/writeup-of-diver-osint-ctf-2025-ea6e8f3fb763) | Hard | slash-code read → district lock → adjacent-square trials → stance-micro-match.
+- [DIVER 2025 — night_accident (night-venue)](https://medium.com/@PretendNotToBe/writeup-of-diver-osint-ctf-2025-ea6e8f3fb763) | Hard | night-cue filter → venue-type search → lamp-sign match → location lock.
+- [DIVER 2025 — air2air (distant-craft)](https://medium.com/@PretendNotToBe/writeup-of-diver-osint-ctf-2025-ea6e8f3fb763) | Hard | video-frame freeze → distant-craft crop → callsign-vs-registration split → registry confirm.
+- [DIVER 2025 — platform (transit-corridor)](https://medium.com/@PretendNotToBe/writeup-of-diver-osint-ctf-2025-ea6e8f3fb763) | Hard | car-marking read → rolling-stock shortlist → shop-sign corridor walk → station lock.
+- [DIVER 2025 — 36_years_ago (historical-doc)](https://medium.com/@PretendNotToBe/writeup-of-diver-osint-ctf-2025-ea6e8f3fb763) | Hard | decades-old complaint cue → municipal-archive search → month-year doc match → reason-field read.
+- [DIVER 2025 — conclusion (meta-chain)](https://medium.com/@PretendNotToBe/writeup-of-diver-osint-ctf-2025-ea6e8f3fb763) | Hard | all-category answers pool → cross-leg consistency check → synthesis-field lock.
+- [DIVER 2025 — advertisement official](https://github.com/diver-osint-ctf/writeups/tree/main/diver2025) | Hard | official ad-geo solution → chain-branch note → stance-rule read.
+- [DIVER 2025 — hole official](https://github.com/diver-osint-ctf/writeups/tree/main/diver2025) | Hard | official void-photo solution → texture-cue note → shape-rule read.
+- [DIVER 2025 — what3slashes official](https://github.com/diver-osint-ctf/writeups/tree/main/diver2025) | Hard | official grid-address solution → square-trial note → format-rule read.
+- [DIVER 2025 — platform official](https://github.com/diver-osint-ctf/writeups/tree/main/diver2025) | Hard | official corridor solution → stock-shortlist note → sign-rule read.
+- [DIVER 2025 — air2air official](https://github.com/diver-osint-ctf/writeups/tree/main/diver2025) | Hard | official distant-craft solution → frame-freeze note → registry-rule read.
+- [DIVER 2025 — night_accident official](https://github.com/diver-osint-ctf/writeups/tree/main/diver2025) | Hard | official night-venue solution → cue-filter note → lamp-rule read.
+- [DIVER 2024 — chiban official](https://github.com/diver-osint-ctf/writeups) | Hard | official shop-sign chain → cadastral-viewer note → lot-rule read.
+- [DIVER 2024 — championships official](https://github.com/diver-osint-ctf/writeups) | Hard | official poster-keyword chain → sponsor-event note → winner-rule read.
+- [DIVER 2024 — power official](https://github.com/diver-osint-ctf/writeups) | Hard | official rail-corridor chain → pylon-sweep note → capacity-rule read.
+- [DIVER 2024 — construction official](https://github.com/diver-osint-ctf/writeups) | Hard | official site-cue chain → permit-doc note → history-rule read.
+- [DIVER 2024 — protest-road official](https://github.com/diver-osint-ctf/writeups) | Hard | official memorial-record chain → road-ID note → verify-rule read.
+- [DIVER 2024 — intro set official](https://github.com/diver-osint-ctf/writeups) | Hard | official beginner-geo set → Lens-triage note → trace-rule read.
+- [DIVER 2026 — first solve](https://medium.com/@stealthydeoxys/diver-osint-ctf-2026-writeup-58c5fab1bf7c) | Hard | timeboxed triage → strongest-geo first → satellite-stance confirm.
+- [DIVER 2026 — second solve](https://medium.com/@stealthydeoxys/diver-osint-ctf-2026-writeup-58c5fab1bf7c) | Hard | transport-cue shortlist → corridor-walk → marker-match.
+- [DIVER 2026 — third solve](https://medium.com/@stealthydeoxys/diver-osint-ctf-2026-writeup-58c5fab1bf7c) | Hard | archive-cross-check → second-method confirm → format-rule lock.
+- [DIVER 2026 — program-angle](https://github.com/diver-osint-ctf/writeups) | Hard | edition-diff (2024→2026) → technique-drift note → re-baseline rule.
+- [DIVER — advanced set (collection-angle)](https://github.com/redeex-zy/diver-osint-writeups) | Hard | hardest-first queue → method-note per solve → reasoning-log chain.
+- [DIVER — web/geo crossover (collection-angle)](https://github.com/redeex-zy/diver-osint-writeups) | Hard | adjacent-category scan → OSINT-applicable legs → method-transfer note.
+- [DIVER — swimmer beginner set](https://github.com/diver-osint-ctf/writeups) | Hard | swimmer-edition triage → beginner-geo legs → skill-transfer note.
+- [Searchlight — street-board (dual-solve)](https://blog.carsonshaffer.me/tryhackme-searchlight-imint-writeup-7f1a713af4d4) | Hard | arch-sign read → shop-sign second read → street-name lock.
+- [Searchlight — tube-city (dork-chain)](https://blog.carsonshaffer.me/tryhackme-searchlight-imint-writeup-7f1a713af4d4) | Hard | underground-entrance cues → city-dork → network-page confirm.
+- [Searchlight — statue-building (opposite-side)](https://blog.carsonshaffer.me/tryhackme-searchlight-imint-writeup-7f1a713af4d4) | Hard | statue-crop search → opposite-facade read → building-name lock.
+- [Searchlight — IMINT set (room-angle)](https://github.com/Cyb3rDoctor/Searchlight-IMINT/blob/main/writeup.md) | Hard | room-task queue → imagery-vs-geospatial split → per-task evidence row.
+- [Searchlight — hotel-view (demolished-venue)](https://github.com/Cyb3rDoctor/Searchlight-IMINT/blob/main/writeup.md) | Hard | room-window frames → old-imagery layer → prior-name lock.
+- [Searchlight — street-board (second-method)](https://github.com/GohEeEn/TryHackMe-Write-Up/tree/master/Searchlight-IMINT) | Hard | five-element IMINT pass → board-text lock → stance confirm (independent author).
+- [Searchlight — video-frame (second-method)](https://github.com/GohEeEn/TryHackMe-Write-Up/tree/master/Searchlight-IMINT) | Hard | clip-frame extract → key-image shortlist → reverse-search lock (independent author).
+- [Searchlight — objectives set (method-angle)](https://github.com/revanth3205/TryHackMe-Writeups/blob/main/Searchlight%20-%20IMINT/readme.md) | Hard | objective-list triage → context-then-analysis order → maps-verify chain.
+- [Searchlight — multi-source set (method-angle)](https://github.com/revanth3205/TryHackMe-Writeups/blob/main/Searchlight%20-%20IMINT/readme.md) | Hard | clue-correlate rule → public-record cross-check → verify-before-submit.
+- [Searchlight — IMINT elements (checklist-angle)](https://github.com/wh04M1i/tryHackMe/blob/main/SearchlightIMINT.md) | Hard | context/foreground/background/map/trial checklist → per-element row → dork-plus-reverse pair.
+- [Searchlight — hotel-view (second-method)](https://github.com/wh04M1i/tryHackMe/blob/main/SearchlightIMINT.md) | Hard | skyline-frame freeze → demolished-prior search → time-slider confirm (independent author).
+- [Searchlight — tube-city (second-method)](https://www.jalblas.com/blog/tryhackme-searchlight-imint-walkthrough) | Hard | GIS-background pass → entrance-feature read → city-network lock (independent author).
+- [Searchlight — statue-building (second-method)](https://www.jalblas.com/blog/tryhackme-searchlight-imint-walkthrough) | Hard | monument-crop search → facing-facade read → name-lock (independent author).
+- [Searchlight — hotel-view (third-method)](https://www.jalblas.com/blog/tryhackme-searchlight-imint-walkthrough) | Hard | warehouse-colour crop → rental-photo match → demolition-gap note → prior-name lock.
+- [Searchlight — demolition-gap (imagery-drift)](https://www.jalblas.com/blog/tryhackme-searchlight-imint-walkthrough) | Hard | current-vs-photo mismatch → imagery-date check → demolished-prior rule.
+- [Searchlight — YVR sign (code-cue)](https://www.jalblas.com/blog/tryhackme-searchlight-imint-walkthrough) | Hard | hall-sign text read → airport-code search → terminal lock.
+- [Searchlight — Richmond rule (airport-town)](https://www.jalblas.com/blog/tryhackme-searchlight-imint-walkthrough) | Hard | airport-name lock → outside-city rule → town-field lock.
+- [Searchlight — franchise sweep (store-chain)](https://www.jalblas.com/blog/tryhackme-searchlight-imint-walkthrough) | Hard | window-brand read → franchise-finder list → town-by-town stance trials.
+- [Searchlight — social contact (page-chain)](https://www.jalblas.com/blog/tryhackme-searchlight-imint-walkthrough) | Hard | venue-lock → social-page open → phone-email-owner fields.
+- [Searchlight — yandex deli (crop-chain)](https://www.jalblas.com/blog/tryhackme-searchlight-imint-walkthrough) | Hard | interior-crop reverse → fixture-match → venue-name lock.
+- [Searchlight — video stamp (timestamp-chain)](https://www.jalblas.com/blog/tryhackme-searchlight-imint-walkthrough) | Hard | venue-plus-show search → video-open → timestamp-caption read.
+- [Searchlight — keyword statue (term-chain)](https://www.jalblas.com/blog/tryhackme-searchlight-imint-walkthrough) | Hard | object-term search → photo-page match → park-plus-name lock.
+- [Searchlight — credit hunt (caption-chain)](https://www.jalblas.com/blog/tryhackme-searchlight-imint-walkthrough) | Hard | statue-name search → page-two result → image-credit read.
+- [Searchlight — courthouse article (stock-chain)](https://www.jalblas.com/blog/tryhackme-searchlight-imint-walkthrough) | Hard | figure reverse-search → stock-photo article → courthouse-name lock.
+- [Searchlight — ffmpeg stills (frame-chain)](https://www.jalblas.com/blog/tryhackme-searchlight-imint-walkthrough) | Hard | clip-download → frame-extract → landmark-triage → hotel lock.
+- [Searchlight — partial text (fragment-chain)](https://www.jalblas.com/blog/tryhackme-searchlight-imint-walkthrough) | Hard | fragment-text read → quoted-fragment search → station-page lock.
+- [Searchlight — wiki context (infobox-chain)](https://www.jalblas.com/blog/tryhackme-searchlight-imint-walkthrough) | Hard | station-page open → infobox read → year-plus-platform lock.
+- [Searchlight — street-task (board-pair)](https://osintteam.blog/searchlight-imint-tryhackme-challenge-walkthrough-4c5919fafca8) | Hard | street-board pair read → stance-verify → name lock (independent author).
+- [Searchlight — room method (detail-first)](https://osintteam.blog/searchlight-imint-tryhackme-challenge-walkthrough-4c5919fafca8) | Hard | visual-detail pass per task → technique-map → solve-order log.
+- [Searchlight — YVR-poster (ccTLD-chain)](https://osintteam.blog/searchlight-imint-work-in-progress-7c10152f628b) | Hard | poster-domain read → country-code cue → airport-site lock → town narrow.
+- [Searchlight — street-photo (element-chain)](https://osintteam.blog/searchlight-imint-work-in-progress-7c10152f628b) | Hard | marking/sign/establishment pass → easiest-cue first → location lock.
+- [OSINT Industries 2025 — Masked Man (GEOINT)](https://0xmanikmaya.medium.com/osint-industries-ctf-2025-write-ups-fb7ffc1079d7) | Hard | storefront-text read → architectural-style pass → image-search lock → metro-proximity rank.
+- [OSINT Industries 2025 — Holehe email (existence-check)](https://0xmanikmaya.medium.com/osint-industries-ctf-2025-write-ups-fb7ffc1079d7) | Hard | handle-to-email guess → existence-checker run → breach-context read → account lock.
+- [OSINT Industries 2025 — Hadjej file (doc-forensics)](https://0xmanikmaya.medium.com/osint-industries-ctf-2025-write-ups-fb7ffc1079d7) | Hard | file-metadata dump → author-token pivot → profile-search → second-source confirm.
+- [OSINT Industries 2025 — Benarroch file (doc-chain)](https://0xmanikmaya.medium.com/osint-industries-ctf-2025-write-ups-fb7ffc1079d7) | Hard | second-doc metadata → cross-doc author compare → handle-merge → confirm.
+- [OSINT Industries 2025 — Depix (degraded-asset)](https://0xmanikmaya.medium.com/osint-industries-ctf-2025-write-ups-fb7ffc1079d7) | Hard | pixelated-asset triage → reconstruction-tool pass → text-hypothesis verify.
+- [OSINT Industries 2025 — Silk Road trail (market-history)](https://0xmanikmaya.medium.com/osint-industries-ctf-2025-write-ups-fb7ffc1079d7) | Hard | marketplace-takedown reports → seizure-record search → address-cluster read.
+- [OSINT Industries 2025 — LockerGoga (incident-chain)](https://0xmanikmaya.medium.com/osint-industries-ctf-2025-write-ups-fb7ffc1079d7) | Hard | ransomware-incident reports → victim-sector filter → tooling-trace match.
+- [OSINT Industries 2025 — GRU operations (attribution-chain)](https://0xmanikmaya.medium.com/osint-industries-ctf-2025-write-ups-fb7ffc1079d7) | Hard | unit-history search → operation-record cross-read → persona-graph build.
+- [OSINT Industries 2025 — FSB part 1 (record-chain)](https://0xmanikmaya.medium.com/osint-industries-ctf-2025-write-ups-fb7ffc1079d7) | Hard | service-record search → posting-history assemble → timeline-verify.
+- [OSINT Industries 2025 — FSB part 2 (record-chain)](https://0xmanikmaya.medium.com/osint-industries-ctf-2025-write-ups-fb7ffc1079d7) | Hard | second-record set → cross-part consistency → entity-merge.
+- [OSINT Industries 2025 — FSB part 3 (record-chain)](https://0xmanikmaya.medium.com/osint-industries-ctf-2025-write-ups-fb7ffc1079d7) | Hard | third-record set → full-timeline reconcile → final-entity lock.
+- [OSINT Industries 2025 — Hacker find (persona-hunt)](https://0xmanikmaya.medium.com/osint-industries-ctf-2025-write-ups-fb7ffc1079d7) | Hard | alias-sweep → forum-record pivot → handle-cluster lock.
+- [OSINT Industries 2025 — Masked Man (second-method)](https://medium.com/@joyprog12/osint-industries-ctf-2025-my-solutions-to-5-challenges-how-i-tackled-geoint-data-recovery-email-a89077bade67) | Hard | AI-assisted architecture pass → targeted-image search → station-rank verify (independent author).
+- [OSINT Industries 2025 — data recovery (carve-chain)](https://medium.com/@joyprog12/osint-industries-ctf-2025-my-solutions-to-5-challenges-how-i-tackled-geoint-data-recovery-email-a89077bade67) | Hard | damaged-asset triage → carve-tool pass → content-verify.
+- [OSINT Industries 2025 — email probe (header-chain)](https://medium.com/@joyprog12/osint-industries-ctf-2025-my-solutions-to-5-challenges-how-i-tackled-geoint-data-recovery-email-a89077bade67) | Hard | message-header read → route-field parse → sender-verify.
+- [OSINT Industries 2025 — historical research (archive-chain)](https://medium.com/@joyprog12/osint-industries-ctf-2025-my-solutions-to-5-challenges-how-i-tackled-geoint-data-recovery-email-a89077bade67) | Hard | date-window search → archive-edition match → event-record lock.
+- [OSINT Industries 2025 — cybercriminal track (graph-chain)](https://medium.com/@joyprog12/osint-industries-ctf-2025-my-solutions-to-5-challenges-how-i-tackled-geoint-data-recovery-email-a89077bade67) | Hard | alias-cluster build → market-record pivot → entity-lock.
+- [OSINT Industries 2025 — lessons synthesis (method-angle)](https://medium.com/@joyprog12/osint-industries-ctf-2025-my-solutions-to-5-challenges-how-i-tackled-geoint-data-recovery-email-a89077bade67) | Hard | five-solve retro → technique-per-solve table → gap-note log.
+- [OSINT Industries CTF — Hidden Sunflowers (clip-to-field)](https://medium.com/@zetrocleirbag/the-hidden-sunflowers-osint-industries-ctf-writeup-ebf1b676cff0) | Hard | short-clip frame extract → watermark-handle read → public-profile open.
+- [OSINT Industries CTF — Hidden Sunflowers (profile-to-native)](https://medium.com/@zetrocleirbag/the-hidden-sunflowers-osint-industries-ctf-writeup-ebf1b676cff0) | Hard | island-bio cue → native-language search → candidate-field list.
+- [OSINT Industries CTF — Hidden Sunflowers (terrain-to-POI)](https://medium.com/@zetrocleirbag/the-hidden-sunflowers-osint-industries-ctf-writeup-ebf1b676cff0) | Hard | four-element terrain match → street-view walk → tourist-zone POI lock.
+- [OSINT Industries CTF — Hidden Sunflowers (format-lock)](https://medium.com/@zetrocleirbag/the-hidden-sunflowers-osint-industries-ctf-writeup-ebf1b676cff0) | Hard | raw-coords read → digit-rule format → rounding-verify.
+- [OSINT Industries CTF — set (repo-angle)](https://github.com/vrndr4/osint-ctf-writeup) | Hard | industry-event folder → challenge-row scan → method-per-row note.
+- [HackTheBox set (repo-angle)](https://github.com/vrndr4/osint-ctf-writeup) | Hard | platform-event folder → OSINT-row filter → chain-note per row.
+- [OhSINT — avatar EXIF (copyright-handle)](https://blog.carsonshaffer.me/tryhackme-ohsint-writeup-b9252af35bca) | Hard | image-download → metadata-dump → copyright-handle read → avatar-subject note.
+- [OhSINT — BSSID city (wireless-map)](https://blog.carsonshaffer.me/tryhackme-ohsint-writeup-b9252af35bca) | Hard | post-BSSID read → wardrive-map query → SSID-plus-city lock.
+- [OhSINT — email site (profile-pivot)](https://blog.carsonshaffer.me/tryhackme-ohsint-writeup-b9252af35bca) | Hard | handle-search → code-profile open → email-field read → site-note.
+- [OhSINT — EXIF dump (field-table)](https://github.com/mukundsoni07/tryhackme-walkthrough/blob/master/OhSINT/README.md) | Hard | full-metadata dump → GPS-plus-copyright table → города-verify (independent author).
+- [OhSINT — GPS maps (coordinate-plot)](https://github.com/mukundsoni07/tryhackme-walkthrough/blob/master/OhSINT/README.md) | Hard | GPS-degree read → decimal-convert → maps-plot → city lock (independent author).
+- [OhSINT — username platforms (handle-sweep)](https://github.com/DivyanshuProjects/CTF-TRYHACKME-HACKTHEBOX-writeup/blob/main/TryHackMe%20-%20OhSINT.md) | Hard | handle-search → platform-sweep → profile-pair confirm.
+- [OhSINT — GitHub email (repo-pivot)](https://github.com/DivyanshuProjects/CTF-TRYHACKME-HACKTHEBOX-writeup/blob/main/TryHackMe%20-%20OhSINT.md) | Hard | code-profile open → repo-scan → email-field lock.
+- [OhSINT — travel password (reuse-chain)](https://github.com/DivyanshuProjects/CTF-TRYHACKME-HACKTHEBOX-writeup/blob/main/TryHackMe%20-%20OhSINT.md) | Hard | social travel-post → prior-secret reuse → fictional-vault open (provided room only).
+- [OhSINT — WiGLE SSID (network-search)](https://github.com/DivyanshuProjects/CTF-TRYHACKME-HACKTHEBOX-writeup/blob/main/TryHackMe%20-%20OhSINT.md) | Hard | SSID-field search → network-record read → location-approx lock.
+- [OhSINT — avatar cat (profile-read)](https://ni5arga.com/blog/posts/OhSINT) | Hard | handle-search → microblog-profile open → avatar-subject read.
+- [OhSINT — BSSID London (map-link)](https://ni5arga.com/blog/posts/OhSINT) | Hard | BSSID-post find → advanced-search query → map-link city lock.
+- [OhSINT — SSID field (same-query)](https://ni5arga.com/blog/posts/OhSINT) | Hard | same-query row read → SSID-field lock.
+- [OhSINT — blog password (source-read)](https://ni5arga.com/blog/posts/OhSINT) | Hard | blog-source view → concealed-line read → secret lock (provided room only).
+- [OhSINT — blog holiday (author-archive)](https://ni5arga.com/blog/posts/OhSINT) | Hard | blog-author archive → travel-post read → destination lock.
+- [OhSINT — hidden-text secret (source-reveal)](https://github.com/Runarok/tryhackme-writeups/blob/main/OhSINT.md) | Hard | blog-source view → concealed-text reveal → secret-field lock (provided room only).
+- [OhSINT — BSSID city (second-method)](https://github.com/Runarok/tryhackme-writeups/blob/main/OhSINT.md) | Hard | advanced-network search → BSSID-row → city-plus-SSID lock (independent author).
+- [OhSINT — email holiday (profile-pair)](https://github.com/Runarok/tryhackme-writeups/blob/main/OhSINT.md) | Hard | code-profile people-scan → email-field → blog-holiday cross-read (independent author).
+- [OhSINT — WordPress trail (post-chain)](https://github.com/Runarok/tryhackme-writeups/blob/main/OhSINT.md) | Hard | blog-post walk → author-page pivot → hidden-row verify.
+- [OhSINT — update-drift (version-baseline)](https://infosecwriteups.com/ohsint-tryhackme-walkthrough-251dc6096f66) | Hard | room-update note → changed-field diff → re-baseline rule.
+- [OhSINT — attackbox path (environment-note)](https://infosecwriteups.com/ohsint-tryhackme-walkthrough-251dc6096f66) | Hard | alternate-file path → same-image verify → hash-match rule.
+- [OhSINT — handle profiles (search-pair)](https://github.com/achnouri/OhSINT-CTF-write-up) | Hard | handle-search → microblog-plus-code profiles → pair-confirm.
+- [OhSINT — file-type first (triage-order)](https://github.com/achnouri/OhSINT-CTF-write-up) | Hard | file-command → image-type confirm → metadata-tool order.
+- [OhSINT — SSID ethics (crowd-note)](https://github.com/achnouri/OhSINT-CTF-write-up) | Hard | crowd-network note → terms-check → passive-only rule.
+- [Sakura — username metadata (image-pivot)](https://medium.com/@divyanshurds.kumar/ctf-osint-write-up-sakura-room-expanded-in-depth-15c7ebf66b84) | Hard | image-metadata read → handle-field → platform-pivot.
+- [Sakura — email PGP (key-pivot)](https://medium.com/@divyanshurds.kumar/ctf-osint-write-up-sakura-room-expanded-in-depth-15c7ebf66b84) | Hard | key-artifact open → identity-string read → social-profile confirm.
+- [Sakura — crypto repo (chain-pivot)](https://medium.com/@divyanshurds.kumar/ctf-osint-write-up-sakura-room-expanded-in-depth-15c7ebf66b84) | Hard | repo-scan → address-field → explorer-tag verify.
+- [Sakura — paste WiFi (network-pivot)](https://medium.com/@divyanshurds.kumar/ctf-osint-write-up-sakura-room-expanded-in-depth-15c7ebf66b84) | Hard | paste-record read → network-ID extract → wardrive-map lock.
+- [Sakura — travel flight (geo-pivot)](https://medium.com/@divyanshurds.kumar/ctf-osint-write-up-sakura-room-expanded-in-depth-15c7ebf66b84) | Hard | flight-photo reverse-search → lake-feature match → layover-chain lock.
+- [Sakura — evidence checklist (method-angle)](https://medium.com/@divyanshurds.kumar/ctf-osint-write-up-sakura-room-expanded-in-depth-15c7ebf66b84) | Hard | per-flag evidence row → corroboration-rule → reproducibility log.
+- [Sakura — full walkthrough (second-method)](https://medium.com/@ibrareza2020/tryhackme-sakura-room-full-walkthrough-osint-e182e36bd9e9) | Hard | room-task queue → site-uptime workaround → step-log per flag (independent author).
+- [Sakura — username email (second-method)](https://medium.com/@ibrareza2020/tryhackme-sakura-room-full-walkthrough-osint-e182e36bd9e9) | Hard | metadata-handle → key-email chain → profile-pair lock (independent author).
+- [Sakura — crypto travel (second-method)](https://medium.com/@ibrareza2020/tryhackme-sakura-room-full-walkthrough-osint-e182e36bd9e9) | Hard | repo-address → explorer-trail → flight-photo cross-read (independent author).
+- [Sakura — paste network (second-method)](https://medium.com/@ibrareza2020/tryhackme-sakura-room-full-walkthrough-osint-e182e36bd9e9) | Hard | paste-text → network-ID → map-approx lock (independent author).
+- [scriptCTF 2025 — Insider (support-graph)](https://medium.com/@nikitha7390/scriptctf-osint-challenges-writeup-69a58d96737d) | Hard | support-roster open → page-source ID read → chat-server lookup → insider lock.
+- [scriptCTF 2025 — Insider 2 (leak-reuse)](https://medium.com/@nikitha7390/scriptctf-osint-challenges-writeup-69a58d96737d) | Hard | insider-handle → code-profile open → leaked-secret read → site-reuse lock.
+- [scriptCTF 2025 — Insider 3 (commit-trail)](https://medium.com/@nikitha7390/scriptctf-osint-challenges-writeup-69a58d96737d) | Hard | activity-feed scan → fresh-repo find → commit-walk → folder-flag lock.
+- [scriptCTF 2025 — Insider 4 (geo-stance)](https://medium.com/@nikitha7390/scriptctf-osint-challenges-writeup-69a58d96737d) | Hard | leaked-site clue → maps-walk → stance-match → address lock.
+- [scriptCTF 2025 — Insider 3 (repo-angle)](https://github.com/longhd05/CTF/blob/main/2025%20CTF/ScriptCTF%202025/OSINT/The%20Insider%203/WriteUp.md) | Hard | recent-activity scan → repo-open → folder-walk (independent author).
+- [scriptCTF 2025 — Insider 4 (repo-angle)](https://github.com/longhd05/CTF/blob/main/2025%20CTF/ScriptCTF%202025/OSINT/The%20Insider%204/WriteUp.md) | Hard | site-clue extract → locale-walk → stance-verify (independent author).
+- [ScriptCTF 2025 — Insider chain (cross-read)](https://medium.com/@alwingt.edu/osint-challenge-writeup-0cc8690d6d73) | Hard | external-guide cross-read → insider-order verify → method-compare note.
+- [BrunnerCTF 2025 — peak-view (summit-chain)](https://medium.com/@0xT4D/writeup-for-osint-tasks-brunnerctf-2025-31f87f4db70f) | Hard | summit-photo cues → trail-record search → viewpoint-match.
+- [BrunnerCTF 2025 — train-model (speed-table)](https://medium.com/@0xT4D/writeup-for-osint-tasks-brunnerctf-2025-31f87f4db70f) | Hard | video-frame freeze → model-plus-operator read → speed-table lookup.
+- [BrunnerCTF 2025 — lake-grid (micro-trial)](https://medium.com/@0xT4D/writeup-for-osint-tasks-brunnerctf-2025-31f87f4db70f) | Hard | lakeside-frame lock → building-pair stance → adjacent-square trials.
+- [BrunnerCTF 2025 — hotel-frame (venue-chain)](https://medium.com/@0xT4D/writeup-for-osint-tasks-brunnerctf-2025-31f87f4db70f) | Hard | interior-frame freeze → fixture-search → venue-lock → old-layer confirm.
+- [BrunnerCTF 2025 — Lovely Land (bridge-read)](https://medium.com/@alwingt.edu/osint-challenge-writeup-0cc8690d6d73) | Hard | bridge-crop search → AI-hint verify → span-name lock (independent author).
+- [BrunnerCTF 2025 — Train Mania (model-read)](https://medium.com/@alwingt.edu/osint-challenge-writeup-0cc8690d6d73) | Hard | frame-pair shortlist → logo-crop confirm → operator-model-speed chain (independent author).
+- [BrunnerCTF 2025 — Traditional Cake (square-sweep)](https://medium.com/@alwingt.edu/osint-challenge-writeup-0cc8690d6d73) | Hard | bench-frame lock → pavilion-hint pivot → nearby-square sweep (independent author).
+- [BrunnerCTF 2025 — LIT leg (event-bridge)](https://medium.com/@alwingt.edu/osint-challenge-writeup-0cc8690d6d73) | Hard | second-event OSINT row → method-reuse vs brunner set → gap-note.
+- [HTB Constellation — Discord snowflake (DM-time)](https://github.com/sdpslu/hackthebox-writeup/blob/main/Categories/Sherlocks/Constellation/README.md) | Hard | CDN-link parse → channel-ID read → snowflake-epoch convert → DM-start lock.
+- [HTB Constellation — file-ID (upload-time)](https://github.com/sdpslu/hackthebox-writeup/blob/main/Categories/Sherlocks/Constellation/README.md) | Hard | file-ID branch read → upload-epoch convert → send-time lock.
+- [HTB Constellation — Google params (query-time)](https://github.com/sdpslu/hackthebox-writeup/blob/main/Categories/Sherlocks/Constellation/README.md) | Hard | search-link split → typed-vs-final decode → session-order lock.
+- [HTB Constellation — threat-actor (profile-pivot)](https://github.com/sdpslu/hackthebox-writeup/blob/main/Categories/Sherlocks/Constellation/README.md) | Hard | metadata-identity string → career-profile search → corroboration lock.
+- [HTB Constellation — dual-search session (q-oq-order)](https://github.com/sdpslu/hackthebox-writeup/blob/main/Categories/Sherlocks/Constellation/README.md) | Hard | two search-links unfurl → typed-vs-final split → timestamp-order lock.
+- [HTB Constellation — PDF content (group-read)](https://github.com/sdpslu/hackthebox-writeup/blob/main/Categories/Sherlocks/Constellation/README.md) | Hard | PDF-body read → group-name line → suspect-name line.
+- [HTB Constellation — exiftool anomaly (date-flag)](https://github.com/sdpslu/hackthebox-writeup/blob/main/Categories/Sherlocks/Constellation/README.md) | Hard | metadata-dump → impossible-year read → forgery-flag lock.
+- [HTB Constellation — Discord unfurl (second-method)](https://dimitrisper.xyz/posts/writeups/constellation) | Hard | link-unfurl run → path-segment table → timestamp-pair lock (independent author).
+- [HTB Constellation — PDF metadata (anomaly-trio)](https://dimitrisper.xyz/posts/writeups/constellation) | Hard | metadata-dump → identity-plus-title-plus-producer read → impossible-date flag (independent author).
+- [HTB Constellation — Google decode (second-method)](https://dimitrisper.xyz/posts/writeups/constellation) | Hard | param-decode pass → query-token order → timeline-slot lock (independent author).
+- [HTB Constellation — actor OSINT (second-method)](https://dimitrisper.xyz/posts/writeups/constellation) | Hard | actor-string search → profile-match → second-source confirm (independent author).
+- [HTB Constellation — URL forensics (method-angle)](https://github.com/jon-brandy/hackthebox) | Hard | dual-link inventory → unfurl passes → timeline-assembly chain.
+- [HTB Constellation — timeline build (method-angle)](https://github.com/jon-brandy/hackthebox) | Hard | link-timestamps plus file-metadata → ordered-attack timeline → handoff-table.
+- [HTB Constellation — DFIR set (collection-angle)](https://github.com/abubakar-shahid/HackTheBox-Sherlocks-Writeups) | Hard | sherlock-index filter → threat-intel row → method-note chain.
+- [HTB Constellation — DFIR set (index-angle)](https://github.com/abubakar-shahid/HackTheBox-Sherlocks-Writeups/blob/main/README.md) | Hard | collection-README scan → URL-forensics tag → solve-order log.
+- [VishwaCTF 2025 — Stadium (reverse-lock)](https://thesaucese.github.io/vishwactf) | Hard | arena-crop reverse-search → venue-page match → fixture-confirm.
+- [VishwaCTF 2025 — Follow for Clues (edited-post)](https://thesaucese.github.io/vishwactf) | Hard | social-page open → edit-history read → hidden-line lock.
+- [VishwaCTF 2025 — Lecture Code (persona-chain)](https://thesaucese.github.io/vishwactf) | Hard | organizer-page pivot → persona-profile open → post-chain lock.
+- [VishwaCTF 2025 — Follow for Clues (second-method)](https://iamabhi747.github.io/vishwactf25-writeups/OSINT/osint) | Hard | clue-page open → post-description read → edit-diff lock (independent author).
+- [VishwaCTF 2025 — Stadium (second-method)](https://iamabhi747.github.io/vishwactf25-writeups/OSINT/osint) | Hard | venue-crop search → fixture-list match → name-lock (independent author).
+- [VishwaCTF 2025 — Lecture Code (second-method)](https://iamabhi747.github.io/vishwactf25-writeups/OSINT/osint) | Hard | persona-post walk → comment-thread read → code-line lock (independent author).
+- [VishwaCTF 2025 — Summit (guest-chain)](https://iamabhi747.github.io/vishwactf25-writeups/OSINT/osint) | Hard | event-poster read → date-place search → guest-record lock.
+- [VishwaCTF 2025 — Follow set (third-method)](https://hackmd.io/@f4n-n3r0/BJtp2JPsye) | Hard | multi-platform sweep → media-post open → description-line lock (independent author).
+- [VishwaCTF 2025 — Stadium set (third-method)](https://hackmd.io/@f4n-n3r0/BJtp2JPsye) | Hard | arena-Lens → ground-blog match → maps-keyword lock (independent author).
+- [VishwaCTF 2025 — Lecture roster (fork-chain)](https://hackmd.io/@f4n-n3r0/BJtp2JPsye) | Hard | roster-page pivot → code-fork open → final-commit read.
+- [VishwaCTF 2025 — Lecture comment (token-chain)](https://hackmd.io/@f4n-n3r0/BJtp2JPsye) | Hard | career-comment scan → token-string copy → local-decrypt lock.
+- [VishwaCTF 2025 — Summit event (cue-chain)](https://hackmd.io/@f4n-n3r0/BJtp2JPsye) | Hard | photo-cue extract → date-place search → event-name lock.
+- [VishwaCTF 2025 — Summit guest (record-chain)](https://hackmd.io/@f4n-n3r0/BJtp2JPsye) | Hard | event-name lock → venue-search → guest-record lock.
+- [VishwaCTF 2025 — heroes status (site-chain)](https://hackmd.io/@f4n-n3r0/BJtp2JPsye) | Hard | event-site status read → roster-page pivot → handle-queue lock.
+- [VishwaCTF 2026 — OSINT set](https://github.com/PratikHarke/VishwaCTF-2026-writeup/tree/main/osint) | Hard | edition-OSINT folder → challenge-row scan → chain-note per row.
+- [VishwaCTF 2026 — OSINT set (method-angle)](https://github.com/PratikHarke/VishwaCTF-2026-writeup/tree/main/osint) | Hard | real-world-technique tag → per-challenge method map → transfer-note.
+- [DawgCTF 2025 — GEOSINT runway (crop-search)](https://www.aristore.top/posts/DawgCTF2025) | Hard | runway-feature crop → reverse-search → arena-page lock → maps-stance confirm.
+- [DawgCTF 2025 — GEOSINT chall3 (phone-areacode)](https://www.aristore.top/posts/DawgCTF2025) | Hard | bank-crop reverse → article-photo match → franchise-phone read → areacode-capital lock.
+- [DawgCTF 2025 — GEOSINT chall3 (franchise-branch)](https://www.aristore.top/posts/DawgCTF2025) | Hard | adjacent-franchise cue → city-branch list → closed-branch isolate → coords lock.
+- [DawgCTF 2025 — GEOSINT chall4 (boulevard-walk)](https://www.aristore.top/posts/DawgCTF2025) | Hard | coastal-road reverse → promenade-name lock → streetview road-walk → coords lock.
+- [DawgCTF 2025 — GEOSINT chall5 (AI-assist)](https://www.aristore.top/posts/DawgCTF2025) | Hard | venue-photo AI-ask → aquarium-name lock → maps-page confirm.
+- [DawgCTF 2025 — GEOSINT chall7 (tilted-frame)](https://www.aristore.top/posts/DawgCTF2025) | Hard | decor-crop reverse → tilted-glass red-frame read → opposite-block walk → building lock.
+- [DawgCTF 2025 — GEOSINT chall8 (address-search)](https://www.aristore.top/posts/DawgCTF2025) | Hard | facade reverse-search → street-address read → maps-plus-streetview lock.
+- [DawgCTF 2025 — GEOSINT chall9 (observatory-park)](https://www.aristore.top/posts/DawgCTF2025) | Hard | night-view feature read → city-plus-mount lock → summit-park walk → coords lock.
+- [DawgCTF 2025 — GEOSINT chall11 (island-walk)](https://www.aristore.top/posts/DawgCTF2025) | Hard | house-photo search → island-name lock → streetview island-walk → station lock.
+- [DawgCTF 2025 — GEOSINT chall12 (station-reverse)](https://www.aristore.top/posts/DawgCTF2025) | Hard | station-crop reverse → stop-name lock → streetview-stance confirm.
+- [DawgCTF 2025 — Mystery Signal I (morse-chain)](https://www.aristore.top/posts/DawgCTF2025) | Hard | scanner-clip open → waveform-listen → morse-transcribe → decode-table lock.
+- [DawgCTF 2025 — Spectral Secrets (spectrogram-chain)](https://www.aristore.top/posts/DawgCTF2025) | Hard | audio-file open → spectrogram-view → hidden-text read.
+- [DawgCTF 2025 — DTMF trie (signal-note)](https://www.aristore.top/posts/DawgCTF2025) | Hard | dial-tone clip → tone-decode pass → number-format lock (signal-adjacent).
+- [DawgCTF 2026 — OSINT set (repo-angle)](https://github.com/spideyctf/DawgCTF-2026-Writeups) | Hard | edition-repo scan → OSINT-folder queue → category-note chain.
+- [DawgCTF 2026 — plane-spotting EXIF (time-anchor)](https://github.com/spideyctf/DawgCTF-2026-Writeups/tree/main/OSINT) | Hard | photo-time read → UTC-convert → replay-window open.
+- [DawgCTF 2026 — plane-spotting registry (hex-decode)](https://github.com/spideyctf/DawgCTF-2026-Writeups/tree/main/OSINT) | Hard | hex-token read → registry-decode → registration lock.
+- [DawgCTF 2026 — plane-spotting climb (trend-split)](https://github.com/spideyctf/DawgCTF-2026-Writeups/tree/main/OSINT) | Hard | adjacent-minute replay → altitude-trend read → departure-vs-arrival lock.
+- [DawgCTF 2026 — set (index-angle)](https://github.com/spideyctf/DawgCTF-2026-Writeups/blob/main/README.md) | Hard | readme category-row → OSINT-row filter → solve-order log.
+- [GreyCTF 2025 — Walk in Park (artifact-clean)](https://github.com/Lost-Kids-CTF/greyctf25-writeup) | Hard | sign-photo artifact-strip → reverse-search → portal-page match → text-format lock.
+- [GreyCTF 2025 — Banana Tree sign (road-chain)](https://github.com/Lost-Kids-CTF/greyctf25-writeup) | Hard | landmark-sign read → road-pair extract → intersection lock.
+- [GreyCTF 2025 — Banana Tree sweep (radius-chain)](https://github.com/Lost-Kids-CTF/greyctf25-writeup) | Hard | intersection fix → radius-sweep → satellite manual-match → church lock.
+- [GreyCTF 2025 — Red Flag Reconn (infra-read)](https://github.com/Lost-Kids-CTF/greyctf25-writeup) | Hard | flag-theme site → recon-surface scan → record-field lock.
+- [GreyCTF 2025 — Like Comment Subscribe (social-chain)](https://github.com/0necloud/CTF-Writeups/blob/main/Grey%20Cat%20The%20Flag%202025/README.md) | Hard | engagement-bait post → comment-graph walk → profile-flag lock.
+- [GreyCTF 2025 — Ezpz set (triage-angle)](https://github.com/0necloud/CTF-Writeups/blob/main/Grey%20Cat%20The%20Flag%202025/README.md) | Hard | qualifier-row scan → OSINT-row filter → solve-order log.
+- [GreyCTF 2025 — Walk in Park (archive-angle)](https://github.com/sajjadium/ctf-archives/blob/main/ctfs/GreyCatTheFlag/2025/osint/A_Walk_In_The_Park/README.md) | Hard | archive-challenge read → sign-rule note → format-rule lock.
+- [deadface 2025 — OSINT rows (triage-angle)](https://medium.com/@nukeofficial/deadface-ctf-2025-osint-be09aa51b6e0) | Hard | event-OSINT rows → per-challenge evidence log → method-note chain.
+- [deadface 2025 — solve log (order-angle)](https://medium.com/@nukeofficial/deadface-ctf-2025-osint-be09aa51b6e0) | Hard | solve-order list → OSINT-row isolate → technique-table note.
+- [deadface 2025 — technique table (compare-angle)](https://medium.com/@nukeofficial/deadface-ctf-2025-osint-be09aa51b6e0) | Hard | per-challenge method tags → cross-challenge compare → gap-note.
+- [deadface 2025 — Diss Track board (thread-chain)](https://github.com/t4mpr/ctf-writeups/blob/main/deadfaceCTF-2025-Writeups/README.md) | Hard | board-thread open → persona-exchange read → token-string isolate.
+- [deadface 2025 — Diss Track playlist (ID-resolve)](https://github.com/t4mpr/ctf-writeups/blob/main/deadfaceCTF-2025-Writeups/README.md) | Hard | token-ID paste → playlist-URL resolve → track-record lock (independent author).
+- [deadface 2025 — set stats (collection-angle)](https://github.com/t4mpr/ctf-writeups/blob/main/deadfaceCTF-2025-Writeups/README.md) | Hard | solve-table scan → OSINT-row isolate → skill-tag note.
+- [UIUCTF 2025 — Blue Sky trap (follower-graph)](https://0xdarkeagle.medium.com/uiuctf-2025-dc58015f02ea) | Hard | starter-profile open → follower-list walk → interaction-time filter → watcher-bio lock.
+- [UIUCTF 2025 — Bad Blood (search-sweep)](https://0xdarkeagle.medium.com/uiuctf-2025-dc58015f02ea) | Hard | platform-search sweep → post-time filter → decoy-vs-live split.
+- [UIUCTF 2025 — Aquarius geo (birthday-chain)](https://0xdarkeagle.medium.com/uiuctf-2025-dc58015f02ea) | Hard | microblog-birthday read → hometown-cue parse → post-analytics narrow.
+- [UIUCTF 2025 — Park Lens (venue-reverse)](https://0xdarkeagle.medium.com/uiuctf-2025-dc58015f02ea) | Hard | park-photo reverse-search → listing-match → analytics-confirm.
+- [UIUCTF 2025 — Blue Sky graph (repo-angle)](https://github.com/pr0f-an4xa/uiuctf-2025) | Hard | repo-OSINT folder → graph-walk note → bio-flag lock.
+- [UIUCTF 2025 — park (repo-angle)](https://github.com/pr0f-an4xa/uiuctf-2025/tree/main/OSINT) | Hard | repo-image task → reverse-search note → venue-lock.
+- [UIUCTF 2025 — Blue Sky follow-trap (second-method)](https://medium.com/@pr0fan4xa/uiuctf-2025-writeup-98f7426b56e4) | Hard | following-list walk → watcher-account isolate → bio-read lock (independent author).
+- [UIUCTF 2025 — park GEOINT (second-method)](https://medium.com/@pr0fan4xa/uiuctf-2025-writeup-98f7426b56e4) | Hard | image-download → reverse-search → match-rank lock (independent author).
+- [IrisCTF 2025 — Fuel Deal (sanction-trail)](https://github.com/juliancasaburi/irisctf-2025) | Hard | deal-record search → sanction-list cross-read → entity-lock.
+- [IrisCTF 2025 — Checking Out (amenity-chain)](https://github.com/juliancasaburi/irisctf-2025) | Hard | region-plus-amenity search → menu-item match → resort lock.
+- [IrisCTF 2025 — Sleuths Sweets (packaging-chain)](https://github.com/juliancasaburi/irisctf-2025) | Hard | wrapper reverse-search → chain-branch walk → outlet lock.
+- [IrisCTF 2025 — Not Eelaborate (dish-chain)](https://github.com/juliancasaburi/irisctf-2025) | Hard | blog-dish photo → area-restaurant list → image-sweep → venue lock.
+- [IrisCTF 2025 — Where's bobby 2 (trail-chain)](https://github.com/juliancasaburi/irisctf-2025) | Hard | persona-trail open → record-row pivot → location lock.
+- [IrisCTF 2025 — retry note (availability-chain)](https://github.com/juliancasaburi/irisctf-2025) | Hard | suspended-then-live diff → re-baseline rule → solve-order log.
+- [IrisCTF 2025 — checking-out set (writeup-angle)](https://github.com/bancsorin10/ctf_writeups/blob/main/iris_2025.md) | Hard | OSINT-row scan → winter-resort leg → format-clarify note.
+- [IrisCTF 2025 — set index (writeup-angle)](https://github.com/bancsorin10/ctf_writeups/blob/main/iris_2025.md) | Hard | multi-category rows → OSINT-row filter → solve-order log.
+- [IrisCTF 2025 — set (collection-angle)](https://github.com/kenma2023/IrisCTF-2025-Writeups) | Hard | collection-row scan → challenge-row queue → method-note chain.
+- [MIST 2025 — hotel name (search-chain)](https://osintteam.blog/osint-writeups-mist-cyber-drill-2025-2d1e398a4672) | Hard | picture-landmark read → name-search → maps-page lock.
+- [MIST 2025 — hotel review (account-chain)](https://osintteam.blog/osint-writeups-mist-cyber-drill-2025-2d1e398a4672) | Hard | maps-page open → review-list scan → persona-account read.
+- [MIST 2025 — handle match (repost-chain)](https://osintteam.blog/osint-writeups-mist-cyber-drill-2025-2d1e398a4672) | Hard | review-handle read → repost-list match → name-pair lock.
+- [MIST 2025 — handle avatar (image-chain)](https://osintteam.blog/osint-writeups-mist-cyber-drill-2025-2d1e398a4672) | Hard | avatar-image compare → second-platform open → profile-pair lock.
+- [MIST 2025 — QR matrix (reassemble-chain)](https://osintteam.blog/osint-writeups-mist-cyber-drill-2025-2d1e398a4672) | Hard | matrix-named pieces → grid-reassemble → link-open.
+- [MIST 2025 — profile-ID (link-chain)](https://osintteam.blog/osint-writeups-mist-cyber-drill-2025-2d1e398a4672) | Hard | QR-link open → profile-URL read → ID-field lock.
+- [MIST 2025 — venue words (grid-chain)](https://osintteam.blog/osint-writeups-mist-cyber-drill-2025-2d1e398a4672) | Hard | profile-text read → grid-square lookup → nearby-venue lock.
+- [MIST 2025 — question recovery (self-directed)](https://osintteam.blog/osint-writeups-mist-cyber-drill-2025-2d1e398a4672) | Hard | description-less board → question-first hunt → flag-second order.
+- [CRHC 2025 — OSINT 1 reverse (forest-chain)](https://osintteam.blog/crhc-ctf-2025-writeups-inferiorak-915c12e60a34) | Hard | forest-photo reverse-search → reserve-page match.
+- [CRHC 2025 — OSINT 1 truncate (format-chain)](https://osintteam.blog/crhc-ctf-2025-writeups-inferiorak-915c12e60a34) | Hard | coords-read → two-decimal truncate → format lock.
+- [CRHC 2025 — OSINT 2 convert (format-chain)](https://osintteam.blog/crhc-ctf-2025-writeups-inferiorak-915c12e60a34) | Hard | HEIC-photo convert → facility-cue read.
+- [CRHC 2025 — OSINT 2 org (site-chain)](https://osintteam.blog/crhc-ctf-2025-writeups-inferiorak-915c12e60a34) | Hard | facility-cue search → official-site lock.
+- [CRHC 2025 — metadata title (cipher-hint)](https://osintteam.blog/crhc-ctf-2025-writeups-inferiorak-915c12e60a34) | Hard | image-metadata dump → title-field read → cipher-family triage.
+- [CRHC 2025 — git history (commit-hunt)](https://osintteam.blog/crhc-ctf-2025-writeups-inferiorak-915c12e60a34) | Hard | log-list scan → add-file commit isolate → show-at-SHA lock.
+- [CRHC 2025 — space signal (radio-decode)](https://osintteam.blog/crhc-ctf-2025-writeups-part-2-inferiorak-2e62bd94dda4) | Hard | signal-file open → audio-feature read → decode-chain lock.
+- [CRHC 2025 — human check (bot-chain)](https://osintteam.blog/crhc-ctf-2025-writeups-part-2-inferiorak-2e62bd94dda4) | Hard | behaviour-cue read → profile-history walk → human-vs-bot lock.
+- [IMF 2025 — Sanity rules (channel-acrostic)](https://medium.com/@bridget4/imf-ctf-2025-70c92d531834) | Hard | rules-channel open → first-char read → line-order lock.
+- [IMF 2025 — Sevastopol sub (registry-chain)](https://medium.com/@bridget4/imf-ctf-2025-70c92d531834) | Hard | listening-post note → vessel-record search → class-match lock.
+- [IMF 2025 — officer roster (crew-chain)](https://medium.com/@bridget4/imf-ctf-2025-70c92d531834) | Hard | commander-name cue → roster-search → service-record lock.
+- [Spooky Geo — pano unwarp (projection-fix)](https://medium.com/@mohamedamenallahrouahi/writeup-spooky-ctf-geo-osint-75bde9b61602) | Hard | equirect-image open → pano-viewer unwrap → road-scene read.
+- [Spooky Geo — Wellingdorf sign (text-anchor)](https://medium.com/@mohamedamenallahrouahi/writeup-spooky-ctf-geo-osint-75bde9b61602) | Hard | tree-line pan → sign-crop zoom → district-search lock.
+- [Spooky Geo — JET triangle (brand-anchor)](https://medium.com/@mohamedamenallahrouahi/writeup-spooky-ctf-geo-osint-75bde9b61602) | Hard | brand-pylon spot → road-name search → station-area lock.
+- [Spooky Geo — stance match (perspective-lock)](https://medium.com/@mohamedamenallahrouahi/writeup-spooky-ctf-geo-osint-75bde9b61602) | Hard | curve-plus-block-plus-lot triple → streetview-stance → exact-spot lock.
+- [Spooky Geo — truncate format (coord-rule)](https://medium.com/@mohamedamenallahrouahi/writeup-spooky-ctf-geo-osint-75bde9b61602) | Hard | decimal-coords read → digit-truncate → separator-format lock.
+- [TISC 2025 — lake trio (crop-reverse)](https://file.go.gov.sg/tisc25-weijie.pdf) | Hard | lake-scene split → per-lake crop search → satellite-triangulate lock.
+- [TISC 2025 — publish solve (diff-chain)](https://file.go.gov.sg/tisc25-weijie.pdf) | Hard | publish-vs-solve diff → method-gap note → re-solve rule.
+- [BlitzCTF 2025 — Lost in UB (case-chain)](https://github.com/1nv1sibl3/BlitzCTF-2025-Challenge-Archive/blob/main/OSINT/Lost%20in%20UB/Writeup.md) | Hard | conversation-log read → clue-list build → detail-order lock.
+- [BlitzCTF 2025 — Lost in UB (graph-chain)](https://github.com/1nv1sibl3/BlitzCTF-2025-Challenge-Archive/blob/main/OSINT/Lost%20in%20UB/Writeup.md) | Hard | speaker-graph build → place-mention rank → location lock.
+- [BlitzCTF 2025 — Lost in UB (verify-chain)](https://github.com/1nv1sibl3/BlitzCTF-2025-Challenge-Archive/blob/main/OSINT/Lost%20in%20UB/Writeup.md) | Hard | candidate-place list → second-cue filter → single-lock rule.
+- [Cyber-Eto 2025 — Gate Keeper (HR-graph)](https://medium.com/@qaishammad/cyber-eto-2025-qualifications-writeups-64ad1a57319c) | Hard | company-page open → staff-account walk → HR-post read.
+- [Cyber-Eto 2025 — Buried Concrete (cert-chain)](https://medium.com/@qaishammad/cyber-eto-2025-qualifications-writeups-64ad1a57319c) | Hard | site-photo EXIF read → structure-match → certificate-number lock.
+- [CodefestCTF 2025 — JEE record (profile-score)](https://medium.com/@sh1v4ng/codefestctf-2025-osint-challenge-writeup-4234449af792) | Hard | persona-search → career-profile open → test-score read.
+- [CodefestCTF 2025 — roll record (doc-search)](https://medium.com/@sh1v4ng/codefestctf-2025-osint-challenge-writeup-4234449af792) | Hard | persona-plus-institute search → document-hit → roll-field lock.
+- [CodefestCTF 2025 — alias handle (platform-sweep)](https://medium.com/@sh1v4ng/codefestctf-2025-osint-challenge-writeup-4234449af792) | Hard | short-handle sweep → coding-profile match → persona-link lock.
+- [CodefestCTF 2025 — campus coords (gate-reverse)](https://medium.com/@sh1v4ng/codefestctf-2025-osint-challenge-writeup-4234449af792) | Hard | gate-photo reverse-search → campus-page match → coords-truncate lock.
+- [Securinets 2025 — venue words (grid-venue)](https://medium.com/@0xT4D/writeup-for-osint-tasks-securinets-friendly-ctf-2025-746bc1e1e3d3) | Hard | profile-text read → grid-square lookup → eatery-proximity lock.
+- [Securinets 2025 — handle X (search-pair)](https://medium.com/@0xT4D/writeup-for-osint-tasks-securinets-friendly-ctf-2025-746bc1e1e3d3) | Hard | handle-search → microblog-account match → bio-field lock.
+- [Securinets 2025 — discord sanity (channel-row)](https://medium.com/@0xT4D/writeup-for-osint-tasks-securinets-friendly-ctf-2025-746bc1e1e3d3) | Hard | server-channel scan → hidden-row open → sanity-line lock.
+- [Aviation History — mission log (archive-chain)](https://medium.com/@hadir3mr/aviation-history-them-ctf-2026-writeup-da3b03f92908) | Hard | recon-sortie date → mission-log search → sortie-number lock.
+- [Aviation History — pilot roster (crew-chain)](https://medium.com/@hadir3mr/aviation-history-them-ctf-2026-writeup-da3b03f92908) | Hard | sortie-number → crew-roster search → pilot-name lock.
+- [Aviation History — fragment report (damage-chain)](https://medium.com/@hadir3mr/aviation-history-them-ctf-2026-writeup-da3b03f92908) | Hard | post-flight report → damage-section read → fragment-spot lock.
+- [Aviation History — pass window (time-chain)](https://medium.com/@hadir3mr/aviation-history-them-ctf-2026-writeup-da3b03f92908) | Hard | flight-path log → pass-segment times → ISO-window lock.
+- [spartanCTF 2024 — Touch Base (curl-grep)](https://luisvazquez2.github.io/spartanCTF-2024/OSINT) | Hard | site-fetch → pattern-grep → embedded-line lock.
+- [spartanCTF 2024 — Evesdropper decode (charset-chain)](https://luisvazquez2.github.io/spartanCTF-2024/OSINT) | Hard | numeric-blob read → charset-decode → handle-string lock.
+- [spartanCTF 2024 — Evesdropper handle (profile-chain)](https://luisvazquez2.github.io/spartanCTF-2024/OSINT) | Hard | handle-string search → profile-site open → bio-field lock.
+- [spartanCTF 2024 — Recovery (hash-screen)](https://luisvazquez2.github.io/spartanCTF-2024/OSINT) | Hard | hash-string read → type-identify → offline-crack lock (provided only).
+- [spartanCTF 2024 — Hide and Seek (commit-hunt)](https://luisvazquez2.github.io/spartanCTF-2024/OSINT) | Hard | profile-link walk → repo-open → cleanup-commit read → diff lock.
+- [Keeber — registrant whois (record-chain)](https://github.com/Saqlain143/Osint-KeebarSecurityGroup) | Hard | startup-site open → domain-record query → registrant-field lock.
+- [Keeber — ex-employee graph (team-chain)](https://github.com/Saqlain143/Osint-KeebarSecurityGroup) | Hard | team-page history → oldest-snapshot open → roster-diff lock.
+- [Keeber — secret commit (token-chain)](https://github.com/Saqlain143/Osint-KeebarSecurityGroup) | Hard | secret-delete commit → pre-fix SHA read → token-type identify → API-verify lock.
+- [Keeber — vault spider (wordlist-chain)](https://github.com/Saqlain143/Osint-KeebarSecurityGroup) | Hard | vault-file find → site-spider wordlist → hash-extract → crack lock (provided only).
+- [Keeber — workplace chain (commute-chain)](https://github.com/Saqlain143/Osint-KeebarSecurityGroup) | Hard | social commute-posts → ferry-terminal search → hotel-list sweep → review lock.
+- [Keeber — phish identity (graph-chain)](https://github.com/Saqlain143/Osint-KeebarSecurityGroup) | Hard | PDF-attach read → email-lookup run → graph-transform → legacy-profile lock.
+- [Keeber — commit email (patch-chain)](https://github.com/Saqlain143/Osint-KeebarSecurityGroup) | Hard | staff-repo scan → off-domain address → patch-view lock.
+- [Keeber — vault reuse (wordlist-chain)](https://medium.com/@Mounttt/nahamcon-2022-ctf-keeber-1-2-3-5-e0bd0a3f683a) | Hard | public-text harvest → hint-format build → vault-crack lock (provided only).
+- [Keeber — review plant (venue-chain)](https://medium.com/@Mounttt/nahamcon-2022-ctf-keeber-1-2-3-5-e0bd0a3f683a) | Hard | staff-name search → review-site read → workplace lock.
+- [CIT-CTF 2025 — OSINT set (official)](https://github.com/ctf-cit/CIT-CTF-2025) | Hard | edition-OSINT folder → handle-row triage → profile-chain lock.
+- [CIT-CTF 2025 — domain set (official)](https://github.com/ctf-cit/CIT-CTF-2025) | Hard | edition-OSINT folder → domain-row triage → record-chain lock.
+- [MOCSCTF 2025 — ez-college (record-chain)](https://github.com/MOCSCTF/MOCSCTF2025-Writeup) | Hard | college-name search → institution-record match → field lock.
+- [MOCSCTF 2025 — ez-o3int (model-chain)](https://github.com/MOCSCTF/MOCSCTF2025-Writeup) | Hard | model-name cue → capability-pivot → answer-format lock.
+- [MOCSCTF 2025 — macau-threat-ops (threat-chain)](https://github.com/MOCSCTF/MOCSCTF2025-Writeup) | Hard | ops-keyword search → threat-record match → entity lock.
+- [MOCSCTF 2025 — wattergor-back-I (base-chain)](https://github.com/MOCSCTF/MOCSCTF2025-Writeup) | Hard | handle-trail open → profile-row pivot → sequel-hook lock.
+- [MOCSCTF 2025 — wattergor-back-II (sequel-chain)](https://github.com/MOCSCTF/MOCSCTF2025-Writeup) | Hard | part-one hook → second-trail open → final-entity lock.
+- [PatriotCTF 2025 — OSINT set (photo-chain)](https://github.com/BharathHonnappa/PatriotCTF-2025-Writeup) | Hard | edition-OSINT rows → venue-photo legs → viewpoint-match lock.
+- [PatriotCTF 2025 — OSINT set (imagery-chain)](https://github.com/BharathHonnappa/PatriotCTF-2025-Writeup) | Hard | edition-OSINT rows → satellite-view legs → grid-read lock.
+- [PatriotCTF 2025 — OSINT set (record-chain)](https://github.com/BharathHonnappa/PatriotCTF-2025-Writeup) | Hard | edition-OSINT rows → archive-record legs → field-read lock.
+- [PatriotCTF 2025 — OSINT set (graph-chain)](https://github.com/BharathHonnappa/PatriotCTF-2025-Writeup) | Hard | edition-OSINT rows → profile-graph legs → format-infer lock.
+- [DownUnderCTF 2025 — fat donke diss (phrase-track)](https://appl3tree.github.io/posts/DownUnderCTF-2025) | Hard | quoted-phrase search → audio-track hit → linked-video open.
+- [DownUnderCTF 2025 — fat donke diss (frame-time)](https://appl3tree.github.io/posts/DownUnderCTF-2025) | Hard | video-timeline scrub → timestamp-frame freeze → frame-text read.
+- [ShaktiCTF 2025 — lake vegetation (flora-chain)](https://appl3tree.github.io/posts/ShaktiCTF-2025/) | Hard | flora-cue read → region-hypothesis → quoted-phrase image search → lake lock.
+- [DownUnderCTF 2025 — set (index-angle)](https://siunam321.github.io/ctf/DownUnderCTF-2025) | Hard | event-index scan → OSINT-row isolate → solve-order log.
+- [DownUnderCTF 2025 — yippee flower (timeline-chain)](https://github.com/DownUnderCTF/Challenges_2025_Public/tree/main/osint/yippee) | Hard | hand-drawn motif read → species-search → photo-timeline lock.
+- [DownUnderCTF 2025 — yippee place (locale-chain)](https://github.com/DownUnderCTF/Challenges_2025_Public/tree/main/osint/yippee) | Hard | back-of-photo cue → locale-walk → place-name lock.
+- [DownUnderCTF 2025 — OSINT roster (5-name index)](https://github.com/DownUnderCTF/Challenges_2025_Public) | Hard | roster-read (four named rows plus yippee) → per-row solve queue → method-note chain.
+- [DownUnderCTF 2025 — OSINT set (official)](https://github.com/DownUnderCTF/Challenges_2025_Public) | Hard | official OSINT folder → challenge-row scan → solve-note per row.
+- [DownUnderCTF 2025 — set diff (official)](https://github.com/DownUnderCTF/Challenges_2025_Public) | Hard | publish-vs-solve diff → method-gap note → re-solve rule.
+- [L3akCTF 2025 — Fidget official (mill-sweep)](https://github.com/L3AK-TEAM/L3akCTF-2025-public) | Hard | official mill-registry note → Overpass-export rule → pin-walk rule.
+- [L3akCTF 2025 — grain official (pole-script)](https://github.com/L3AK-TEAM/L3akCTF-2025-public) | Hard | official pole-script note → district-rule → square-code rule.
+- [L3akCTF 2025 — OSINT set (triage-angle)](https://github.com/hphuc204/L3akCTF-2025-Writeup) | Hard | edition-row scan → OSINT-row filter → method-note chain.
+- [L3akCTF 2025 — set (index-angle)](https://github.com/kennedyjulius/L3akCTF-2025-CTF-Write-Up) | Hard | repo-row scan → challenge-row queue → solve-order log.
+- [L3akCTF 2026 — set (index-angle)](https://github.com/akyms/L3AKCTF-2026-WRITE-UP) | Hard | edition-row scan → analysis-plus-reasoning note → solution-order log.
+- [FGTE Osint — set (collection-angle)](https://github.com/Hexamora/CTF/tree/main/FGTE/Osint) | Hard | collection-OSINT folder → row scan → chain-note per row.
+- [FGTE Osint — set (method-angle)](https://github.com/Hexamora/CTF/tree/main/FGTE/Osint) | Hard | experience-archive note → method-per-row map → transfer-note.
+- [Hacktoria Geolocation — room set](https://github.com/Alfredo2501/Writeups-OSINT) | Hard | practice-room rows → geo-task filter → clue-chain note.
+- [Hacktoria Mixed — room set](https://github.com/Alfredo2501/Writeups-OSINT) | Hard | mixed-room rows → multi-hop legs → pivot-order note.
+- [Hacktoria OSINT — room set](https://github.com/Alfredo2501/Writeups-OSINT) | Hard | OSINT-room rows → persona-chain legs → evidence-row note.
+- [Hacktoria Cyber — room set](https://github.com/Alfredo2501/Writeups-OSINT) | Hard | cyber-room rows → recon-legs → tool-order note.
+- [OSINT collection — set (triage-angle)](https://github.com/n-mahry/OSINT-CTF-Writeups) | Hard | collection-row scan → reasoning-note per solve → method-log chain.
+- [OSINT collection — set (reason-angle)](https://github.com/n-mahry/OSINT-CTF-Writeups) | Hard | step-rationale rows → approach-compare → transfer-note.
+- [skrCTF set (repo-angle)](https://github.com/vrndr4/osint-ctf-writeup) | Hard | event-folder scan → find-it row → chain-note lock.
+- [TryHackMe set (repo-angle)](https://github.com/vrndr4/osint-ctf-writeup) | Hard | platform-folder scan → room-row filter → method-note chain.
+- [PatriotCTF 2024 — set (collection-angle)](https://github.com/thredeisacoder/CTF-Write-ups) | Hard | edition-row scan → OSINT-row filter → method-note chain.
+- [DEADFACE set (collection-angle)](https://github.com/thredeisacoder/CTF-Write-ups) | Hard | second-event rows → OSINT-row isolate → compare-note.
+- [Questcon set (collection-angle)](https://github.com/thredeisacoder/CTF-Write-ups) | Hard | third-event rows → OSINT-row isolate → gap-note.
+- [Huntress — Money trail (ledger-chain)](https://github.com/tTargiel/CTF-Writeup-Huntress-2025) | Hard | demand-address → explorer-trail → self-transfer decode.
+- [Huntress — Money sequel (cluster-chain)](https://github.com/tTargiel/CTF-Writeup-Huntress-2025) | Hard | second-address set → cluster-compare → flow-note lock.
+- [Null CTF 2025 — geo set](https://github.com/roberttk01/Null-CTF-2025) | Hard | edition-OSINT folder → geo-row isolate → chain-note lock.
+- [WhereIsIt — reflection crop (bridge-read)](https://vulnquest58.github.io/ctf/writeups/challenges/osint/whereisit/) | Hard | window-reflection crop → tower-shape read → bridge reverse-search.
+- [WhereIsIt — waterfront align (angle-chain)](https://vulnquest58.github.io/ctf/writeups/challenges/osint/whereisit/) | Hard | bridge-name lock → waterfront 3D-view → reflection-angle align → office-block lock.
+- [WhereIsIt — postal field (coord-chain)](https://vulnquest58.github.io/ctf/writeups/challenges/osint/whereisit/) | Hard | office-name lock → coords-read → postal-field verify.
+- [Satellite — orbital pass (TLE-chain)](https://vulnquest58.github.io/ctf/writeups/challenges/osint/satellite/) | Hard | TLE-set read → tracker-script coords → base-window pass lock.
+- [Satellite — vessel proximity (registry-chain)](https://vulnquest58.github.io/ctf/writeups/challenges/osint/satellite/) | Hard | pass-timestamp fix → AIS-history window query → closest-vessel rank.
+- [Satellite — base fix (coord-chain)](https://vulnquest58.github.io/ctf/writeups/challenges/osint/satellite/) | Hard | research-base search → open-data coords → identifier-field lock.
+- [HSCTF geomapping — first picture (street-setup)](https://ctftime.org/writeup/29026) | Hard | sea-plus-stop-plus-road triple → maps-setup match → streetview lock.
+- [HSCTF geomapping — second picture (flag-rail)](https://ctftime.org/writeup/29026) | Hard | flag-assume → rail-lookup → car-match → coords lock.
+- [UTCTF 2024 — OSINT 1 (social-doc)](https://ctftime.org/writeup/39083) | Hard | staff-bio read → social-profile pivot → channel-invite → doc-file lock.
+- [UTCTF 2024 — OSINT 1 (site-walk)](https://ctftime.org/writeup/38981) | Hard | corporate-site walk → team-section read → persona-shortlist lock.
+- [UTCTF 2024 — OSINT 1 (link-row)](https://ctftime.org/writeup/38979) | Hard | profile-link row → video-channel open → description-file lock.
+- [TCP1P 2024 — Investigator (paper-date)](https://ctftime.org/writeup/39562) | Hard | newspaper-image search → archive-edition match → date-field lock.
+- [IrisCTF 2025 — Not Eelaborate (area-list)](https://ctftime.org/writeup/39871) | Hard | park-area lock → dish-term list → restaurant-row scan.
+- [IrisCTF 2025 — Not Eelaborate (photo-match)](https://ctftime.org/writeup/39871) | Hard | listing-photo walk → dish-image match → venue-name lock.
+- [NahamCon 2025 — Mixed Signals (signal-row)](https://ctftime.org/writeup/40270) | Hard | team-row scan → signal-task isolate → method-note lock.
+- [TJCTF 2025 — Airport statement (acrostic-chain)](https://ctftime.org/writeup/40517) | Hard | statement-caps read → letter-join → code-system lock.
+- [TJCTF 2025 — Airport language (region-chain)](https://ctftime.org/writeup/40517) | Hard | signage-language narrow → Lens-plus-AI pass → airport-ID lookup.
+- [FortID 2025 — exam images (batch-chain)](https://ctftime.org/writeup/40679) | Hard | six-image queue → per-image question row → format-note lock.
+- [FortID 2025 — branch hub (director-chain)](https://ctftime.org/writeup/40679) | Hard | branch-photo reverse → hub-site open → director-field lock.
+- [FortID 2025 — UK branch (dork-chain)](https://ctftime.org/writeup/40679) | Hard | house-photo misdirect → company-plus-office dork → career-page address lock.
+- [FortID 2025 — Zagreb branch (miss-chain)](https://ctftime.org/writeup/40679) | Hard | reverse-miss note → dork pivot → address-verify lock.
+- [FortID 2025 — race graph (degree-chain)](https://ctftime.org/writeup/40679) | Hard | race-photo open → connection-degree profiles → face-search TLD → olympiad-dork lock.
+- [FortID 2025 — race admins (server-chain)](https://ctftime.org/writeup/40679) | Hard | server-admin list → staff cross-ref → race-site times lock.
+- [FortID 2025 — tournament gap (edition-chain)](https://ctftime.org/writeup/40679) | Hard | hint-letter read → stale-edition site → dork → winners-page → place-trial lock.
+- [UTCTF 2025 — words set (official)](https://github.com/utisss/UTCTF-25) | Hard | official words-row scan → board-text note → square-rule read.
+- [UTCTF 2025 — words firm (official)](https://github.com/utisss/UTCTF-25) | Hard | official firm-clip note → address-rule → stance-rule read.
+- [UTCTF 2025 — words vehicle (official)](https://github.com/utisss/UTCTF-25) | Hard | official vehicle-post note → school-sweep rule → square-rule read.
+- [BSides-CT 2025 — set (index-angle)](https://github.com/BSides-CT/2025-CTF-Writeups/blob/main/README.md) | Hard | edition-row scan → challenge-row queue → solve-order log.
+- [Searchlight — street-board (GIS-angle)](https://www.jalblas.com/blog/tryhackme-searchlight-imint-walkthrough) | Hard | board-text pair read → GIS-layer check → street-name lock (independent author).
+- [Searchlight — street-board (dork-angle)](https://github.com/wh04M1i/tryHackMe/blob/main/SearchlightIMINT.md) | Hard | board-text search → dork-narrow → stance-confirm (independent author).
+- [Searchlight — dork-first (engine-note)](https://github.com/wh04M1i/tryHackMe/blob/main/SearchlightIMINT.md) | Hard | clue-dork pass → result-rank read → reverse-search fallback.
+- [OhSINT — image triage (solver-note)](https://blog.carsonshaffer.me/tryhackme-ohsint-writeup-b9252af35bca) | Hard | solver-tool image pass → anomaly-scan → metadata-order lock.
+- [OhSINT — GitHub email (second-method)](https://ni5arga.com/blog/posts/OhSINT) | Hard | code-profile open → people-scan → email-field lock (independent author).
+- [OhSINT — avatar cat (third-method)](https://github.com/Runarok/tryhackme-writeups/blob/main/OhSINT.md) | Hard | microblog-profile open → avatar-subject read → answer lock.
+- [OhSINT — GPS city (third-method)](https://github.com/achnouri/OhSINT-CTF-write-up) | Hard | GPS-degree read → maps-plot → city lock.
+- [Sakura — alt-source (resilience-chain)](https://medium.com/@ibrareza2020/tryhackme-sakura-room-full-walkthrough-osint-e182e36bd9e9) | Hard | flaky-site note → alternate-source swap → step-retry lock.
+- [Cyber Apocalypse 2025 — Echoes split (carve-angle)](https://100gryphons.wordpress.com/htb-cyber-apocalypse-2025) | Hard | carving-crop isolate → archive-compare → inscription lock.
+- [Cyber Apocalypse 2025 — Whispers split (hill-angle)](https://100gryphons.wordpress.com/htb-cyber-apocalypse-2025) | Hard | hill-context isolate → listing-compare → site lock.
+- [DIVER 2025 — 36_years_ago official](https://github.com/diver-osint-ctf/writeups/tree/main/diver2025) | Hard | official decades-old solution → archive-month note → reason-rule read.
+- [DIVER 2025 — conclusion official](https://github.com/diver-osint-ctf/writeups/tree/main/diver2025) | Hard | official meta-chain solution → cross-leg note → synthesis-rule read.
+- [PatriotCTF 2025 — Password breach (wordlist-chain)](https://tmc222.medium.com/patriot-ctf-2025-challenge-writeups-4aff5aa64220) | Hard | persona-password hint → breach-wordlist build → offline-crack lock (provided only).
+- [Securinets 2025 — villa row (stance-chain)](https://medium.com/@0xT4D/writeup-for-osint-tasks-securinets-friendly-ctf-2025-746bc1e1e3d3) | Hard | bank-row photo → facing-branch read → street-stance lock.
+- [Securinets 2025 — villa review (plant-chain)](https://medium.com/@0xT4D/writeup-for-osint-tasks-securinets-friendly-ctf-2025-746bc1e1e3d3) | Hard | street-page open → review-scan → villa-name lock.
+- [Securinets 2025 — QR assemble (grid-chain)](https://medium.com/@0xT4D/writeup-for-osint-tasks-securinets-friendly-ctf-2025-746bc1e1e3d3) | Hard | matrix-named pieces → grid-reassemble → code-image lock.
+- [Securinets 2025 — QR profile (ID-chain)](https://medium.com/@0xT4D/writeup-for-osint-tasks-securinets-friendly-ctf-2025-746bc1e1e3d3) | Hard | scanned-link open → profile-URL read → ID-field lock.
+- [CodefestCTF 2025 — ghat photo (match-chain)](https://medium.com/@sh1v4ng/codefestctf-2025-osint-challenge-writeup-4234449af792) | Hard | riverside-photo search → step-match → venue lock.
+- [CodefestCTF 2025 — ghat stance (geometry-chain)](https://medium.com/@sh1v4ng/codefestctf-2025-osint-challenge-writeup-4234449af792) | Hard | step-geometry read → streetview-walk → coords-truncate lock.
+- [DIVER — air2air replay (collection-angle)](https://github.com/redeex-zy/diver-osint-writeups) | Hard | distant-craft row → frame-method note → registry-rule lock.
+- [DIVER — platform corridor (collection-angle)](https://github.com/redeex-zy/diver-osint-writeups) | Hard | corridor-row → stock-method note → sign-rule lock.
+- [DIVER — advertisement chain (collection-angle)](https://github.com/redeex-zy/diver-osint-writeups) | Hard | script-ad row → branch-method note → stance-rule lock.
+- [L3akCTF 2025 — sunny_day official](https://github.com/L3AK-TEAM/L3akCTF-2025-public) | Hard | official pano-landmark note → village-rule → walk-rule read.
+- [L3akCTF 2025 — mountain_view official](https://github.com/L3AK-TEAM/L3akCTF-2025-public) | Hard | official peak-sign note → road-curve rule → trial-rule read.
+- [L3akCTF 2025 — lost_locomotives official](https://github.com/L3AK-TEAM/L3akCTF-2025-public) | Hard | official plate-number note → rail-post rule → walk-rule read.
+- [L3akCTF 2025 — elephant_enclosure official](https://github.com/L3AK-TEAM/L3akCTF-2025-public) | Hard | official enclosure note → sector-map rule → viewpoint-rule read.
+- [HTB Constellation — producer pivot (infra-chain)](https://dimitrisper.xyz/posts/writeups/constellation) | Hard | producer-string read → tooling-search → actor-infra lock.
+- [FortID 2025 — textbook dork (record-chain)](https://ctftime.org/writeup/40679) | Hard | admin-name read → book-dork → edition-match lock.
+- [Keeber — email existence (checker-chain)](https://github.com/Saqlain143/Osint-KeebarSecurityGroup) | Hard | staff-address guess → existence-checker run → career-profile lock.
+- [Keeber — handle sweep (enum-chain)](https://github.com/Saqlain143/Osint-KeebarSecurityGroup) | Hard | second-handle read → username-sweep → account-pair lock.
+- [MTA CTF 2024 — avatar metadata (F12-strip miss)](https://h1n4mx0.github.io/posts/2024/08/mtactf/) | Hard | cover-image direct-tool pull → metadata compare vs stripped copy → handle lock.
+- [MTA CTF 2024 — photo city (AI-guess plus local-engine)](https://h1n4mx0.github.io/posts/2024/08/mtactf/) | Hard | AI-geo city guess → regional-engine building search → maps-stance confirm.
+- [MTA CTF 2024 — monument shadow-length (height-plus-coords)](https://h1n4mx0.github.io/posts/2024/08/mtactf/) | Hard | monument lock → height-plus-coords tool → shadow-length compute.
+- [MTA CTF 2024 — hidden photo (image-board map hunt)](https://h1n4mx0.github.io/posts/2024/08/mtactf/) | Hard | username image-board sweep → map-mode photo hunt → stance compare.
+- [Menina CyberSec CTF — snack-spot (place-profile read)](https://nmmorette.github.io/posts/2024/08/osint-ctf-menina-cyber-sec-and-hack-in-cariri/) | Hard | photo-cue place-profile search → address-field read → venue-name lock.
+- [Menina CyberSec CTF — history city (photo-plus-lore)](https://nmmorette.github.io/posts/2024/08/osint-ctf-menina-cyber-sec-and-hack-in-cariri/) | Hard | landmark photo-match → hacking-history cross-read → persona-name lock.
+- [Menina CyberSec CTF — photo handle (metadata-username)](https://nmmorette.github.io/posts/2024/08/osint-ctf-menina-cyber-sec-and-hack-in-cariri/) | Hard | image-metadata dump → username-field pivot → profile-search.
+- [Menina CyberSec CTF — match scoreboard (abbreviation-expand)](https://nmmorette.github.io/posts/2024/08/osint-ctf-menina-cyber-sec-and-hack-in-cariri/) | Hard | team-abbreviation expand → fixture search → date-plus-venue lock.
+- [Menina CyberSec CTF — review plant (comment-find)](https://nmmorette.github.io/posts/2024/08/osint-ctf-menina-cyber-sec-and-hack-in-cariri/) | Hard | place-review scan → persona-comment isolate → field lock.
+- [inCyber Forum 2025 — Sofia Santos GEOINT (bar-plus-festival)](https://medium.com/@deepwebdigger/geoint-challange-sofia-santos-incyber-forum-2025-69b54dacbd0b) | Hard | bar-name zoom → station-proximity lock → festival-film native-search → screening-list time math.
+- [TISC 2025 — Target Reference Point (orbit-geo manual sweep)](https://gnayihs.uy/ctf/tisc2025) | Hard | north-up rotate → reverse-search decoy kill → hemisphere-shadow bound → river-map manual sweep → char-count lake filter.
+- [Cyber Apocalypse 2025 — team-angle set (collection-cross-read)](https://twc1rcle.com/ctf/team/ctf_writeups/cyber_apocalypse_2025/osint) | Hard | per-challenge row scan → reverse-plus-report chains → format-rule log.
+- [DIVER 2025 — flight_from plus air2air (KAKITSUBATA replay)](https://zenn.dev/kn1cht/articles/diver-osint-ctf-2025-kakitsubata?locale=en) | Hard | heli-photo base guess → traffic-replay proximity pair → callsign-vs-registration split.
+- [DIVER 2025 — ATC audio (freq-plus-runway lock)](https://kichi2004.jp/posts/2025/06/diver-osint-ctf/diver-osint-ctf/) | Hard | GND-plus-DEP freq cue → runway-pair airport shortlist → playback proximity lock.
+- [DIVER 2025 — cyber_tornato set (airfield-guess)](https://zenn.dev/cyber_tornato/articles/cacda8212ece49) | Hard | heli-photo airfield guess → code-table verify → format lock.
+- [DIVER 2025 — 777ise set (timeboxed partial)](https://qiita.com/777ise/items/f322d9d1d29ed7b30133) | Hard | airframe-page base deduce → map-departure visual → partial-solve log.
+- [DAMCTF 2025 — More Sleuth (ADS-B ghost-hunt)](https://k3sero.github.io/posts/Mode-Sleuth-Damctf2025/) | Hard | radio-log batch decode → registry cross-check per craft → out-of-place craft isolate.
+- [NewstarCTF 2025 — sky-belong (registration-plus-route)](https://blog.csdn.net/ljf5946/article/details/153272413) | Hard | wing-registration search → flight-date filter → route-city trial → maker-field read.
+- [HNCTF — flight-night (replay terrain-match)](https://www.freebuf.com/articles/web/401314.html) | Hard | livery-plus-partial-registration fuzzy search → tracker replay → terrain-shape match → satellite verify.
+- [NewStar CTF 2025 — sky-belong second method (photo-time filter)](https://www.cnblogs.com/sbhglqy/p/19677307) | Hard | image-property maker read → registration keyword hunt → arrival-city route trial.
+- [WolvCTF 2025 — SeedeR set (AI-shortlist plus schedule-query)](https://seeder.hatenablog.com/entry/2025/03/24/225131) | Hard | warehouse-plus-tower AI shortlist → manual airport trials → date-query departure-code lock.
+- [Hacktoria Mirage at Sea — IMO resolve (hull-vs-signal)](https://chabiangulo.com/desafio-hacktoria-mirage-at-sea/) | Hard | hull-vs-signal mismatch note → IMO tracker resolve → flag-state read → port-call isolate → stopover fix.
+- [Bellingcat Strait Through — ship-track (photo-to-LOCODE)](https://medium.com/@Ronn13_OSINT/bellingcat-open-source-challenge-walkthrough-strait-through-bdba838a8736) | Hard | ship-photo reverse → fleet-record name lock → AIS time-window trace → port-code table read.
+- [Bellingcat Strait Through — second method (partial-IMO trials)](https://medium.com/@sertackansiz/solving-bellingcats-osint-challenge-strait-through-d985b0d1f56f) | Hard | partial-number dual-trial → script-name confirm → tracker port-log read.
+- [Bellingcat Maritime Mysteries — set (fleet-plus-code)](https://peterlauris.com/solving-bellingcats-maritime-mysteries-challenges/) | Hard | silhouette identifier resolve → native-engine port-log hunt → signal-to-weather-code group read.
+- [Bellingcat Terminal Difficulty — crane-count (harbour-angle)](https://medium.com/@Ronn13_OSINT/bellingcat-open-source-challenge-walkthrough-terminal-difficulty-d18f2cbc6ec0) | Hard | vegetation-plus-roof region guess → image-search port-city lock → museum-roof angle fix → terminal-map count read.
+- [Bellingcat Frozen Assets — sanctions-ship (multi-route correlate)](https://medium.com/@Ronn13_OSINT/bellingcat-open-source-challenge-walkthrough-frozen-assets-b57728738e70) | Hard | native-engine image pivot → satellite date re-image → sanctions-text identifier harvest → AIS day-fix → register prior-name trap.
+- [OSINT Industries Masked Dive — maritime stego-plus-graph](https://bexxtrexx.medium.com/osint-industries-operation-masked-dive-challenge-write-up-9ce4eaf6e625) | Hard | stock-photo reverse → archive-tool bundle find → literature-clue species decode → repo-commit secret recover → incident-phrase hunt → dimension-table read.
+- [THCon 2025 Vacation Hideout — stub (geoINT tag)](https://ctftime.org/writeup/40191) | Hard | challenge-tag row → author-blog cross-link → method-compare note.
+- [BSidesTLV 2025 FieldStream-X — SSTV-plus-RTTY](https://jctf.team/writeups/BSidesTLV-2025/FieldStream-X/) | Hard | audio-mode guess → image-decoder run → stereo-to-mono remix → teletype-decoder baud fix → shift-miss letter repair.
+- [Starpwn CTF 2025 — Visionspace radio set (spectrogram-first)](https://visionspace.com/tales-from-def-con-33-starpwn-ctf-2025/) | Hard | waveform spectrogram read → mode-duration match → auto-decoder run → soundtrack anomaly isolate.
+- [L3akCTF 2025 Strange Transmission — morse-plus-tail](https://thebusfactor-writeups.vercel.app/posts/2025-07-14-Strange-Transmission-writeup) | Hard | beep-rhythm morse decode → spectrogram tail-text read → two-layer combine.
+- [BlitzCTF Stratogreet — SSTV mission-date](https://an0nbil.github.io/posts/blitzctf-stratogreet/) | Hard | audio-mode guess → image-decoder run → mission-name search → launch-date format lock.
+- [BSidesTLV 2024 Covert Signal — story-cued mode](https://github.com/Spectral-Source/BSidesTLV-2024-CTF-Covert-Signal) | Hard | story-cue mode guess → decoder-tool run → call-time hint verify.
+- [CSI Linux CTF morse chain — spectrogram-to-paste](https://ediscoverychannel.com/2024/01/24/shaking-the-cobwebs-ctf-part-two-morse-code-and-more/) | Hard | spectrogram manual dot-dash → morse-table decode → hex-to-text redirect → encoded-paste unlock → lore-figure pivot.
+- [DawgCTF 2025 Mystery Signals — second method (capture-retry)](https://medium.com/@darktempest37/dawgctf-2025-7dc44f58618d) | Hard | ear-check morse → table decode → app-capture retry → signal-triage log.
+- [FlagFrenzy Transmission Received — SSTV-to-QR build](https://ctf-flagfrenzy.github.io/challenge/forensics/transmission-received/) | Hard | signal-build note → virtual-cable decode → QR-scan read.
+- [HTB Signals — space-SSTV fingerprint](https://k3sero.github.io/posts/Signals-Hackthebox/) | Hard | mode-fingerprint compare → station-mode hint → decoder play-run.
+- [Ctrl-Space Hamming Bird — chirp-plus-code](https://aleand.ro/2025/09/24/hamming-bird-ctrl-space-ctf/) | Hard | waterfall modulation guess → derived-frequency extract → frame-length symbol math → error-code trial decode.
+- [TISC 2025 pwo lake set — LLM-plus-swipe](https://medium.com/@thetrustypwo/tisc-2025-writeup-level-1-level-11-2-03a87c2ef568) | Hard | AI-region guess → map-swipe verify → lake-name read → multi-level log.
+- [Cyber Sentinel 2025 recap — censored-region satellite](https://vivhack.com/2025/06/17/cyber-sentinel-challenge-ctf-recap-25/) | Hard | dish-photo social search → AI-guess plus censored-region pivot → translated-news district lock.
+- [Maltego OSINT CTF second-place — one-hour triage](https://medium.com/@shizahidayet/second-place-at-the-maltego-osint-ctf-tools-and-takeaways-e35ec77d09e5) | Hard | tab-group triage → registry-plus-archive-plus-EXIF rotation → multi-engine reverse → imagery-tool verify.
+- [Wiz Cloud Needle — cert-to-subdomain fuzz](https://tresscross.blog/needle-in-a-haystack-wiz-cloud-ctf-september/) | Hard | repo-domain search → transparency-log wildcard harvest → nested-subdomain fuzz → client-gate bypass → docs-ID pivot.
+- [THM Industrial Intrusion — hex-subdomain plus TXT](https://appl3tree.github.io/posts/THM-Industrial-Intrusion-CTF/) | Hard | transparency-log hex decode → TXT-record dig → repo-dork find → key-verify.
+- [TAMUCTF 2025 transparent-subdomain set (cert-enum)](https://marshallprojects.net/blog/TAMU-CTF-2025-Writeups.html) | Hard | landing-hint read → cert-search subdomain enumerate → secret-page open.
+- [THM Industrial Intrusion second method — repo-to-record](https://medium.com/@santhossunthar/industrial-intrusion-ctf-by-tryhackme-1006e92e9488) | Hard | repo-dork compliance find → stage-subdomain walk → TXT-record dig → hex-decode → keyring verify.
+- [SunshineCTF 2022 crypto-history — cert-identifier find](https://gist.github.com/SalScotto/d855c77d07907f9768656e64a27b6887) | Hard | domain cert-history read → identifier-set find.
+- [THM Dev Diaries — staging-subdomain plus history](https://prosetesting.prose.sh/Dev%20Diaries) | Hard | transparency-log staging isolate → commit-diff secret hunt → dev-email read.
+- [idekCTF 2024 cjxol set — GeoGuessr-luck log](https://www.cjxol.com/posts/idekctf-2024-writeup/) | Hard | pano-geo legs → guide-plus-query toolkit → luck-log note.
+- [OSINT.UK Operation Constellation — star-map triangle](https://medium.com/@uzayrkader/osint-uk-community-ctf-write-up-challenge-4-operation-constellation-0ee14d2e79e9) | Hard | street reverse-plus-stance verify → USB-image GPS plot → dated-press dork fill → prose-landscape fit → star-map triangle → furniture radius-grid search.
+- [PsychCTF 2026 Overwritten — montage-history timestamp](https://medium.com/@hadir3mr/osint-writeup-overwritten-challenge-09a1ea507103) | Hard | landmark reverse city lock → montage-page author read → revision-history first-upload lock.
+- [OSINT.UK Operation Viaje — six-discipline set](https://medium.com/@uzayrkader/osint-uk-community-ctf-write-up-challenge-11-operation-viaje-108410d6d7a9) | Hard | place-name disambiguation → historic-image brand re-read → mural-plus-signature verify → archived-plugin-field grep → transit-map error correct.
+- [1337UP 2024 Trackdown — opposite-view stance](https://cryptocat.me/blog/ctf/2024/intigriti/osint/trackdown/) | Hard | storefront search → opposite-view stance match → spot-vs-subject split.
+- [DarkCTF Time Travel — satellite-date walk](https://ctftime.org/writeup/23858) | Hard | image-engine reverse → article-month bound → daily-imagery walk → exact-date lock.
+- [Australian OSINT Symposium CTF — transit-point read](https://www.osintcombine.com/post/australian-osint-symposium-capture-the-flag-walkthrough-part-iii) | Hard | brightness-boost sign read → language-ID lock → coverage-verify → lead-photo compare → stance confirm.
+- [THM Digital Footprint syswraith angle — archive-hunt](https://syswraith.com/blog/ctfs/digital-footprint) | Hard | solver-tool GPS read → dead-domain archive hunt → landmark-plus-lore pivot.
+- [HSCTF 8 geomapping2 — multi-view stance](https://ctftime.org/writeup/29067) | Hard | sign-plus-term search → dome-candidate kill → tower river-side stance match.
+- [CSAW 2024 Quals French set — news-plus-replay](https://gcc-ensibs.fr/p/csaw2024-qualifiers-osint/) | Hard | area-code city narrow → chain-match → record-owner read → plate-rule decode → news-triple ID lock → replay city fix.
+- [CSAW 2024 BertSec set — record-chain plus timezone](https://bertsec.com/2024/09/06/csaw-ctf-qualification-round-2024/) | Hard | plate-rule decode → borough narrow → listing match → build-year-plus-score-plus-owner chain → news-pair lock → log-timezone convert.
+- [CSAW 2024 tkaliiho replay — callsign-filter](https://zenn.dev/tkaliiho/articles/3018ddaddfa946) | Hard | callsign flight-date narrow → post parking-spot confirm → replay timestamp slide → filter city read.
+- [CSAW 2024 Sharkkcode set — history-plus-chart](https://sharkkcode.github.io/2024/09/13/CSAW-CTF-Qualification-Round-2024-Writeups/) | Hard | past-record domain-age trivia → news-pair triple-ID lock → history-chart timezone convert.
+- [THM Digital Footprint forged-EXIF angle — sign-flip rescue](https://ta1al.com/blog/digital-footprint-tryhackme-writeup/) | Hard | sign-flip latitude rescue → collection-hint decode → viewpoint-plus-lore pivot → doc-username single-post find.
+- [THM Geolocating Images jalblas angle — engine-order](https://www.jalblas.com/blog/tryhackme-geolocating-images-walkthrough/) | Hard | webcam-URL institution read → maps-turnaround stance → river-tower orientation → drive-side country cut → engine-rank rule.
+- [THM Geolocating Images repo angle — clue-family pass](https://github.com/josephmtakai/5h3ph3rd-TryHackMe-WriteUps/blob/main/Geolocating%20Images/README.md) | Hard | engine-rank rule → webcam-name pivot → language-plus-plate pass.
+- [THM Sakura a3r0id angle — source-to-lounge](https://github.com/a3r0id/TryHackMe-Sakura-Room-Writeup) | Hard | vector-source metadata read → operator-sweep profile pivot → key-repo email derive → deleted-repo commit leak → handle text-hunt → wireless-map dot lock → lounge-photo airport lock → island-map lake match.
+- [THM Sakura 1d8 angle — dork-to-lake](https://1d8.github.io/writeups/thm/sakurathmosint/) | Hard | source-username read → text-dork profile find → keyring email derive → mining-script wallet read → paste-site SSID hunt → city-criteria airport shortlist → lake-image match.
+- [THM Sakura infophreak angle — export-tag to runway](https://infophreak.com/tryhackme-room-writeup-sakura/) | Hard | export-tag metadata read → dork-sweep multi-profile → reverse-key email derive → forum deleted-content cross-read → wireless-map BSSID lock → monument-proximity airport read → lounge-pair trials.
+- [Bellingcat Beach starter angle — lagoon-keyword hunt](https://www.osintstarter.com/challenges/bellingcat/multispectral-viewpoints/take-you-to-the-beach/) | Hard | lagoon-shape keyword search → observatory-article match → Lens confirm → reef-shape maps verify.
+- [Bellingcat Globetrotters week1 set — valley-to-summit](https://medium.com/@shibaosint/bellingcat-challenges-bellingcat-globetrotters-e4e4b6558809) | Hard | sticker-text valley narrow → sun-angle orientation bound → terrain sweep → summit-tool read → species-plus-plumage zoo lock → script-OCR village walk → plate-format country cut → EXIF airfield-code read.
+- [Bellingcat Week1 eDiscovery angle — hotel-to-zoo](https://ediscoverychannel.com/2024/12/09/bellingcat-challenge-week-1-writeup/) | Hard | hotel-name valley lock → terrain align → zoo-map zone read → deblurred-sign translate → branch-maps lock → DMS-EXIF airfield read.
+- [Bellingcat Maritime week2 set — port-plus-code](https://ediscoverychannel.com/2024/12/16/bellingcat-challenge-week-2-writeup/) | Hard | hull-plus-bridge reverse port lock → silhouette identifier resolve → native-log port hunt → morse-to-weather-code math.
+- [Bellingcat Creek starter angle — bend-plus-bridge](https://www.osintstarter.com/challenges/bellingcat/natural-wonders/up-the-creek/) | Hard | oxbow-plus-bridge landmark read → Lens valley-article match → globe-mode bend verify.
+- [Bellingcat Stocked starter angle — crane-text port](https://www.osintstarter.com/challenges/bellingcat/maritime-mysteries/fully-stocked/) | Hard | hull-mark plus crane-text read → bridge reverse city lock → satellite terminal match → photographer cross-image verify.
+- [Bellingcat Urban set — sign-to-station](https://medium.com/@shibaosint/bellingcat-challenges-urban-exploration-6aabcceb447a) | Hard | shop-sign maps trials → alley-roof Lens plus caption cross-read → footbridge-road query sweep → jersey-plus-ad venue-date lock → livery-line stock-photo station match.
+- [Bellingcat 37-challenge collection — screenshot-steps](https://github.com/hb-d/bellingcat) | Hard | per-set folder triage → screenshot-step chain → cross-set method compare.
+- [Bellingcat Multispectral set — island-shape read](https://0ne-nine9.co.uk/bellingcat-osint-challenges-march-2025-multispectral-viewpoints-writeup-717fd58e2f94) | Hard | north-up island-shape read → Lens archipelago match → multi-band note.
+- [UMDCTF 2025 MindCrafters set — marker-to-mound](https://mindcrafters.xyz/writeups/umdctf-osint/) | Hard | tower-feature bridge lock → brick-row campus match → photosphere author pivot → label-plus-number address join → mound landmark search.
+- [UMDCTF 2025 0xSs0rZ set — format-trials](https://0xss0rz.gitbook.io/0xss0rz/ctf/write-up/umdctf-2025) | Hard | bridge-name lock → address-format trials → marker-street lock → mound-drive lock.
+- [TJCTF 2024 0xMr_Robot pair — handle-to-birthday-math](https://medium.com/@0xMr_Robot/tjctf-ctf-2024-osint-challenges-5b8424d0b386) | Hard | place-photo reverse single-word lock → handle-sweep → avatar-origin re-sweep → archive deleted-video find → birthday-delta math chain.
+- [UMDCTF 2025 Krypton set — listing-trials](https://krypton.ninja/ctfs/umdctf-2025-ctf-write-up/) | Hard | building-crop reverse bridge lock → listing-number house trials → wiki mound-page maps verify.
+- [THM OSINT room index — pedroaovieira queue](https://github.com/pedroaovieira/osint/blob/main/TryHackMe/README.md) | Hard | room-row triage → dorking-to-device order → advanced-room queue.
+- [CatSec THM OSINT index — room-row scan](https://github.com/catsecorg/CatSec-TryHackMe-WriteUps) | Hard | room-row scan → device-to-dorking order → starter-room queue.
+- [3xpyth0n THM index — folder-row scan](https://github.com/3xpyth0n/writeups) | Hard | folder-row scan → starter-plus-geo-plus-dorking queue → recon-note chain.
+- [Mrs OSINT Castle hawk angle — hotel-opposite stance](https://medium.com/@hawk101/writeup-mrs-osint-challenge-5-castle-4580e729a55a) | Hard | terrain-feature list → dual-engine castle-name lock → road-width filter → hotel-opposite stance match → coords lock.
+- [RTLxHA All Hail Google — park-to-calendar](https://ctftime.org/writeup/29510) | Hard | Lens park-scene lock → maps place-page verify → review-event pivot → calendar-share event find → raw-mail hidden-text read.
+- [PatriotCTF 2025 Waldo campus quartet — tile-to-facade](https://z3y4d-k4r1m.medium.com/patriotctf-2025-osint-all-four-wheres-legally-distinct-waldo-challenges-8abd62b5b174) | Hard | engine campus-region narrow → path-tile design match → lot-sign search plus Earth angle lock → pond-plus-lot layout match → facade-trio spacing sweep.
+- [Hacktoria Lost at Sea — debrief-password guesses](https://github.com/s1l1c0np1r4t3/Hacktoria-CTF-WriteUps/blob/main/Easy/LostAtSea.md) | Hard | debrief-fact password guess order → archive unlock → coords-as-password rule.
+- [Hacktoria GEOINT tag index — spuria queue](https://blog.spuria.app/tags/hacktoria/) | Hard | per-post method rows → valley-to-building plus wildfire-server plus train-window queue.
+- [Hacktoria Last Flight — museum-plus-registry](https://medium.com/@EchoIntel/how-i-solved-hacktorias-last-flight-ctf-challenge-8aff556e6148) | Hard | AI-geo shortlist plus barracks filter → spotter angle-match → window-count blotch read → AI-cluster GPS lock → airframe-history month pivot → code-table verify.
+- [Hacktoria Listeners — Monaco alcove stance](https://medium.com/@giladhayon/the-listeners-hacktoria-walkthrough-3febaa8d75f2) | Hard | luxury-coast cue bound → building-crop reverse listing match → chimney-count satellite verify → alcove street-level stance lock → facing-address rule.
+- [IrisCTF 2025 Not Eelaborate original — dish-to-district](https://emree-1.github.io/posts/irisctf2025-osint-not-elaborate/) | Hard | blog-date region cue plus park hypothesis → dish-name filename read → maps dish-sweep photo-match lock.
+- [KnightCTF 2025 index — quest-row isolate](https://www.kshackzone.com/ctfs/writeups/event-writeups/14/knightctf-2025) | Hard | quest-row isolate → rev-to-OSINT filter → solve-order log.
+- [Summer Camp 2020 geo — atlas date-slider](https://cryptokait.com/2020/05/13/summer-camp-2020-geo/) | Hard | title-waterbody hint read → ride-photo match → atlas date-slider change hunt → placeholder-vs-known split.
+- [NahamCon 2025 Taken to School log-IP row](https://github.com/thewhitecircle/ctf_writeups/blob/main/nahamcon_2025/osint.md) | Hard | log-IP harvest → reputation-sweep → breach-IOC cross-read → hash lock.
+- [NahamCon 2025 Taken to School IOC pivot](https://dudenation.github.io/posts/nahamcon-CTF/) | Hard | school-breach news search → incident-report appendix harvest → log-line match → hash lock.
+- [NahamCon 2025 Sending Mixed Signals — photo-to-tag](https://twc1rcle.com/ctf/team/ctf_writeups/nahamcon_2025/osint/SendingMixedSignals) | Hard | news-photo app-identify → open-source repo commit-email match → leaked-secret file read → release-tag date match.
+- [NahamCon 2025 Taken to School stub](https://ctftime.org/writeup/40271) | Hard | log-IP reputation sweep → malicious-IP isolate → hash lock.
+- [NahamCon 2025 team index — mission-plus-OSINT](https://twc1rcle.com/ctf/team/ctf_writeups/nahamcon_2025/) | Hard | mission-plus-OSINT row triage → per-challenge queue.
+- [NahamCon 2025 allthingsreversed set — journalism-plus-commits](https://allthingsreversed.io/20250526-nahamcon-2025.html) | Hard | journalism-plus-commit forensics → tag-timeline match.
+- [Mrs OSINT 5 cyber-jot angle — Earth orange-roof sweep](https://cyber-jot.com/mrs-osint-challenge-5/) | Hard | landmark-hint castle lock → Earth orange-roof sweep → manhole-cover stance fix → visitor-plus-year-plus-bridge record chain.
+- [Mrs OSINT 5 official page — seven-question queue](https://www.mrsosint.com/challenge-5-castle/) | Hard | challenge-brief triage → seven-question queue → stance-plus-record split.
+- [Mrs OSINT index — scenario-row triage](https://www.mrsosint.com/where-in-the-world-is-mrs-osint/) | Hard | scenario-row triage → storyline-order queue → ethics-note read.
+- [Mrs OSINT practice pair — arch-to-shop](https://cyber-jot.com/mrs-osint-practice-challenges/) | Hard | arch-name search → street-end stance fix → historical-image brand re-read → candy-shop hours pivot.
+- [Huntress 2023 Under the Bridge — pano-pin](https://infosecstreams.com/huntress2023/osint/Under-The-Bridge/) | Hard | pano-platform stance walk → bridge-scene lock → radius-pin rule.
+- [Cyber Apocalypse 2025 reze angle — per-challenge queue](https://reze.gitbook.io/bin/ctf-writeups/htb-cyber-apocalypse-2025/osint) | Hard | per-challenge solve queue → official-writeup cross-link → gap-note.
+- [Cyber Apocalypse 2025 Bird Nest sheet — desert-pin](https://www.1337sheets.com/p/the-mechanical-birds-nest) | Hard | desert-airfield read → secrecy-site hypothesis → pin-coords format lock.
+- [HTB University CTF 2024 thaysan index](https://ctf.thaysan.com/ctf-and-writeups/2024-or-htb-university-ctf) | Hard | category-row scan → challenge-row queue.
+- [Three Little Clues event-region chain](https://publication.osintambition.org/three-little-clues-writeup-osint-challenge-35121b2c0c64) | Hard | date-plus-collab region describe → event-site date match → collab-reel discount-post hunt → venue-words square read.
+- [n00bzCTF 2024 official writeups — organiser rows](https://github.com/n00bzunit3d/n00bzctf2024-official-writeups) | Hard | organiser per-challenge method rows → chain-order note.
+- [n00bzCTF 2024 EnchLolz set — seven-file queue](https://github.com/enchlolz/n00bzctf-24) | Hard | seven-file OSINT queue → gang-chain order → paste-archive legs.
+- [n00bzCTF 2024 Sn4ke_Ey3s set — site-plus-archive](https://snakeeyes1.netlify.app/posts/n00bzctf-writeups/) | Hard | tail-photo site sweep → team-site member hover → archive paste capture → prior-key reuse chain.
+- [n00bzCTF 2024 sa1181405 set — team-row scan](https://github.com/sa1181405/n00bz-writeups-2024) | Hard | team-row scan → gang-chain queue → solve-order log.
+- [n00bzCTF 2024 Gang 2 emboss angle — riddle-to-article](https://medium.com/@embossdotar/ctf-writeup-n00bzctf-2024-the-gang-2-10ddfddb086f) | Hard | riddle-to-article pivot → solve-ratio note → chain-order log.
+- [GreyCTF 2025 Sherlock Holmes set — code-to-route](https://sherlockholmes.is-a.dev/posts/ctfs/greyctf-2025-quals-writeups/) | Hard | road-code country cut → corridor sweep → church-design match → sign-EXIF handle hunt → story-address narrow → fitness-route park lock.
+- [DUCTF 2024 ouuan set — official cross-read](https://ouuan.moe/post/2024/07/ductf-2024) | Hard | image-search bridge lock → official-solutions cross-read → table-row queue.
+- [DUCTF 2024 Operation Decode set — billboard-to-hotel](https://www.operationdecode.com/downunder-ctf-2024/) | Hard | billboard-station lock → hotel-neighbour read → stance-tree match.
+- [DUCTF 2024 official challenges — table-queue](https://github.com/DownUnderCTF/Challenges_2024_Public) | Hard | challenge-table row scan → difficulty-plus-solve queue → author-note chain.
+- [DUCTF 2024 lecture_honorer set — viewer-plus-sweep](https://medium.com/@lecture_honorer/writeup-downunderctf-2024-part-1-6d468c6592e0) | Hard | metadata-viewer EXIF pass → billboard-area sweep → hotel-opposite name read → coords EXIF plot.
+- [DUCTF 2024 cityviews stub](https://ctftime.org/writeup/39326) | Hard | billboard-ID lock → building-from-view rule.
+- [DUCTF 2024 decoys stub](https://ctftime.org/writeup/39327) | Hard | sightings-density lock → corridor-sweep rule.
+- [Bellingcat Sticky starter angle — cross-plus-register](https://www.osintstarter.com/challenges/bellingcat/bellingcat-globetrotters/a-sticky-situation/) | Hard | sticker-text region narrow → summit-cross register read → peak-lake-town query → terrain verify.
+- [Bellingcat Street starter angle — plate-to-shop](https://www.osintstarter.com/challenges/bellingcat/urban-exploration/name-that-street/) | Hard | plate-code region table → brand-sign city narrow → aerial-plus-StreetView confirm.
+- [Bellingcat Dump starter angle — post-to-alley](https://www.osintstarter.com/challenges/bellingcat/urban-exploration/what-a-dump/) | Hard | logo-plus-text city hypothesis → graffiti-search miss log → social-post cross-read → dated-StreetView alley match.
+- [Bellingcat Hot Stuff starter angle — serial renumber-trace](https://www.osintstarter.com/challenges/bellingcat/natural-wonders/hot-stuff/) | Hard | livery-word fleet lock → spotter-photo serial read → serial-history renumber trace → latest-designation lock.
+- [Bellingcat Spot starter angle — species-trap](https://www.osintstarter.com/challenges/bellingcat/wild-lives/spot-the-location/) | Hard | coat-pattern species read → range-map country lock → backdrop-ignore rule.
+- [MidnightCTF 2026 Chine — postcode-to-park](https://camael.fr/en/writeups/where_was_chine/) | Hard | regional-engine image sweep → postcode-handle school-town pivot → twin-city hold → tool-miss log → fitness-route park-photo match.
+- [Taste of Influence Strava-ID chain — photo-match](https://colbynieva.com/writeups/a-taste-of-influence-part-2-3) | Hard | name-to-photo confirm → business-profile contact harvest → athlete-search photo-match → URL-ID read.
+- [Mrs OSINT 11 Bristol set — listing-to-route](https://cyber-jot.com/mrs-osint-challenge-11/) | Hard | plate-plus-architecture region guess → listing-photo match → file-path date cue → modify-time read → transit-site route list → historical brand re-read.
+- [Mrs OSINT 4 Boracay set — sign-to-shadow](https://cyber-jot.com/mrs-osint-challenge-4/) | Hard | sidewalk-plus-club island cue → van-word confirm → partial-sign search → opposite-side stance fix → shadow-length noon read → palm-climate water call.
+- [Mrs OSINT 10 rail-orthophoto — route-to-centroid](https://cyber-jot.com/mrs-osint-challenge-10/) | Hard | train-livery route read → user-photo route trace → Earth centroid match → road-plus-intersection read → stripe-purpose identify.
+- [Mrs OSINT 13 airport-crop — video-to-walkway](https://cyber-jot.com/mrs-osint-challenge-13/) | Hard | vibe-plus-crop keyword search → social-match location miss → video walkway-name lock → maps walkway coords read.
+- [Mrs OSINT 2 jackdaw angle — arch-to-hours](https://wanderingjackdaw.bearblog.dev/walkthrough-for-challenge-2-by-mrs-osint/) | Hard | arch-text search → 3D-mode stance coords → wiki district-chain read → proximity-shop menu verify → hours-field lock.
+- [Mrs OSINT 12 Dubai-plus-river — sail-to-tug](https://cyber-jot.com/mrs-osint-challenge-12/) | Hard | sail-search hotel lock → menu-setting restaurant hunt → map-photo user-image confirm → fleet-site boat match → spec-sheet river read → Earth facing-angle lock.
+- [Mrs OSINT 9 monochrome-site — reverse-to-mooring](https://cyber-jot.com/mrs-osint-challenge-9/) | Hard | filter-resilient reverse lock → Earth view match → moored-ship record pivot → coords-format lock.
+- [Mrs OSINT 7 Guam decoy-pair — hint-split test](https://cyber-jot.com/mrs-osint-challenge-7/) | Hard | vibe-region shortlist → gazebo-photo match → coord-hint split test → ocean-colour decoy kill → statue-plus-fence stance lock.
+- [DIVER 2024 ciffelia full-board — thirty-row triage](https://blog.ciffelia.com/article/diverctf-2024) | Hard | thirty-row triage → geo-plus-transport-plus-history queue → poster-keyword sponsor hunt → corridor-model pylon sweep.
+- [DIVER 2024 L00ck3r set — lot-plus-winner](https://medium.com/@L00ck3r/diverctf-osint-writeup-2024-7589d131809b) | Hard | lot-number rule read → venue-photo match → winner-name lock.
+- [DIVER 2024 hayao team set — row-scan log](https://www.hayao0819.com/blog/posts/20240611/) | Hard | team-row scan → intro-plus-geo queue → solve-order log.
+- [TsukuCTF 2025 mizore set — banner-to-gym](https://qiita.com/mizore_fuyu/items/5549165a2b4be1b3acdf) | Hard | banner-microtext shop-count sweep → stance-branch match → channel-text translate → district-search gym hunt.
+- [TsukuCTF 2025 horik braille set — table-to-address](https://horik.hatenablog.com/entry/2025/05/12/141243) | Hard | plaque-tactile table decode → monument search → StreetView plaque verify → Lens town lock → shop-row sweep → post-text gym-address pivot.
+- [TsukuCTF 2025 oregano set — keyword-to-branch](https://zenn.dev/oregano_zenn/articles/41d4e0ee394720) | Hard | keyword-shop AI confirm → real-knowledge building lock → branch-by-branch outlet sweep → sign-plus-banner outlet fix.
+- [Bellingcat Camouflage starter angle — stripe-to-keeper](https://www.osintstarter.com/challenges/bellingcat/wild-lives/camouflage/) | Hard | coat-stripe subspecies read → holding-list narrow → photographer-credit pivot → facial-stripe match lock.
+- [IrisCTF 2025 Checking Out emree angle — dish-to-chair](https://emree-1.github.io/posts/irisctf2025-osint-checking-out-of-winter/) | Hard | region-plus-amenity-plus-dish resort shortlist → architecture-match lock → interior-StreetView chair match.
+- [IrisCTF 2025 official challenges — table-queue](https://github.com/IrisSec/IrisCTF-2025-Challenges) | Hard | OSINT-table row scan → author-plus-solve queue → category-unlock note.
+- [IrisCTF 2025 Cyb3r_Fr0g fuel set — pole-to-pump](https://medium.com/@Cyb3r_Fr0g/iris-ctf-2025-write-up-2565debb1020) | Hard | unit-plus-drive-side country cut → pole-number route search → station-row stance confirm.
+- [IrisCTF 2025 official OSINT board — seven-brief rows](https://2025.irisc.tf/challenges-category-Open-Source+Intelligence.html) | Hard | seven-challenge brief rows → disclaimer-format rules → no-contact scope note.
+- [VishwaCTF 2025 3r0th3r set — arena-to-guest](https://3r0th3r-cc.github.io/2025/03/11/VishwaCTF-2025-Writeup/index.html) | Hard | arena-crop lock → profile-repo fork read → poster-timestamp event search → guest-record pivot.
+- [VishwaCTF 2025 official repo — organiser rows](https://github.com/cybercell-viit/vishwactf25-writeups) | Hard | organiser per-challenge rows → solve-order log.
+- [VishwaCTF 2025 L0n3_W0lf stadium angle — crop-to-stance](https://medium.com/@kishanjaisoorya16/vishwactf-25-8f3ac09cfa3d) | Hard | ground-photo Lens lock → blog-keyword match → maps-keyword stance verify.
+- [HTB Sherlock Jinkies OSINT-element — share-to-paste](https://mwalkowski.com/post/sherlock-jinkies/) | Hard | share-enum folder read → secret-file strings hunt → hash-compare password verify → browser-history exfil-site lock → table size-filter signature hunt.
+- [UIUCTF 2024 Odin SoMeSINT set — bio-to-activity](https://odintheprotector.github.io/2024/07/01/UIUCTF-OSINT-writeup.html) | Hard | handle-search profile open → bio-link thread walk → skill-endorser pivot → follow-gated activity read.
+- [UIUCTF 2024 Weakest Link kevin angle — contact-to-playlist](https://kevin.fish/writeups/11ade1fe6eaaf1a864f60291a6ca3764) | Hard | contact-info audio-profile open → empty-profile follow → friend-activity playlist read.
+- [UIUCTF 2024 z4rr1t set — engine-swap note](https://github.com/z4rr1t/writeups/blob/main/uiuCTF/README.md) | Hard | engine-swap search note → bio-link chain → activity-read lock.
+- [UIUCTF 2024 cyberCypher set — screen-scan pivot](https://rehanmumtaz.medium.com/uiu-24-ctf-osint-walkthrough-ca6202920758) | Hard | screen-scan search pivot → endorsement-profile open → follower dead-end log → desktop-only feature note.
+- [UIUCTF 2024 HexSpidey set — handle-to-activity](https://hexspidey.medium.com/uiuctf-24-osint-challenges-writeup-a0504096c266) | Hard | handle-search profile open → bio-link pivot → endorser-profile read → follow-activity playlist lock.
+- [UIUCTF 2024 EnchLolz set — five-row queue](https://github.com/EnchLolz/UIUCTF-2024) | Hard | five-row OSINT queue → suite-plus-geo legs → solve-order log.
+- [UIUCTF 2024 UIU-Chan suite stub](https://ctftime.org/writeup/39304) | Hard | engine-swap handle find → bio-link chain → follow-gated activity read.
+- [WolvCTF 2024 Redditor stub nightxade](https://ctftime.org/writeup/38938) | Hard | handle-search profile open → top-post read.
+- [WolvCTF 2024 Redditor stub second author](https://ctftime.org/writeup/38818) | Hard | simple-search profile open → post-read lock.
+- [WolvCTF 2024 margheritaviola category queue](https://margheritaviola.com/category/ctf-writeup/wolvctf-2024/) | Hard | category-row scan → OSINT-row filter → per-post method note.
+- [WolvCTF 2024 WOLPHV IV photo-map](https://github.com/vjz3r/CTF-WRITEUP/blob/main/WolvCTF%202024%20-%20OSINT/WOLPHV%20IV%3A%20d4wgbyte262.md) | Hard | chat-cue photo-site search → map-section coords read → station-proximity cross-ref → house lock.
+- [WolvCTF 2024 krauq set — handle-to-member](https://ctf.krauq.com/wolvctf-2024) | Hard | handle-search profile open → team-site member row → solve-order log.
+- [DIVER 2025 yutoraion SITREP — AI-plus-grid-history](https://zenn.dev/yutoraion/articles/b21c7dc7d80743) | Hard | AI-assisted triage log → script-read grid-date lock → Earth-history month verify → recon-row queue.
+- [OSINT Combine Deception w3w leg — words-to-year](https://www.osintcombine.com/post/the-art-of-deception-osint-capture-the-flag-walkthrough-part-ii) | Hard | words-to-place tool guess → museum-site search → artwork-year verify.
+- [4T$ CTF geo triptych — metadata-first concat](https://dcharm.pages.dev/CTF/4T$-CTF) | Hard | metadata-first rule → per-photo reverse lock → first-word concat rule → grid-site word read.
+- [DIVER 2025 CTF-WU-RU naval set — bay-to-dock](https://medium.com/@ctf-wu/writeup-diver-osint-ctf-2025-4ea5ddf98fe3) | Hard | fleet-cue bay lock → native-image dock search → blog dock-name verify → cursive-script grid read → Earth time-travel verify.
+- [PatriotCTF 2024 whale-tw set — keyword-to-directory](https://blog.whale-tw.com/2024/09/21/patriotctf2024/) | Hard | campus-keyword statue search → multi-solver order log → device-model wiki read → directory-walk fee-field verify.
+- [PatriotCTF 2024 official challenges — table-queue](https://github.com/MasonCompetitiveCyber/PatriotCTF2024) | Hard | OSINT-table row scan → author-plus-category queue → challenge-brief rows.
+- [PatriotCTF 2024 barrettotte folder — per-row triage](https://github.com/barrettotte/cyber-archive/tree/master/ctf/patriot-ctf-2024/osint/solved) | Hard | per-challenge folder triage → solve-note per row.
+- [PatriotCTF 2024 night-school folder — photo-to-site](https://github.com/barrettotte/cyber-archive/tree/master/ctf/patriot-ctf-2024/osint/solved/night-school) | Hard | campus-photo lock → site-page verify → statue-name read.
+- [DawgCTF 2025 MindCrafters set — sign-to-station](https://mindcrafters.xyz/writeups/dawgctf-geosint/) | Hard | logo-team lock → sign-phrase article pivot → skyline-rapid lock → ship-recognition venue lock → banner-text venue confirm → brick-address lock → office-crop transit-article match.
+- [DawgCTF 2025 yocchin set — motif-to-island](https://yocchin.hatenablog.com/entry/2025/04/22/083133) | Hard | motif-crop Lens lock → bank-article square stance → waterfront-pano match → submarine-hall venue lock → decor-blog photo match → guide-text ropeway stance → island-hut photo match.
+- [DawgCTF Identifications WiFi-CLLI — SSID-to-exchange](https://github.com/cieran/writeups/blob/main/DawgCTF/misc/Identifications.md) | Hard | niche-SSID maps hunt → cross-road confirm → StreetView building match → ZIP-switch-list code read.
+- [deadface 2025 Crippa set — cue-to-playlist](https://levelup.gitconnected.com/deadface-ctf-writeup-83315eb50459) | Hard | board-thread music-cue read → song-title playlist resolve → description-line lock.
+- [deadface 2025 shivang set — five-folder triage](https://github.com/shivang1209-dot/CTF-Writeup/tree/main/DeadFaceCTF'25) | Hard | five-OSINT folder triage → playlist-plus-account-plus-geo queue → solve-order log.
+- [deadface 2024 ryo_a full-OSINT sweep — thread-to-photo](https://zenn.dev/ryo_a/articles/247f5cf3861af0) | Hard | forum-thread scan → challenge-row queue → EXIF-plus-photo geo legs → story-order log.
+- [deadface 2024 CaptureAmerica set — photo-to-scan](https://captureamerica.github.io/writeups/post/deadface_ctf_2024/) | Hard | forum-photo city-zip read → scan-format media pivot → solve-order log.
+- [deadface 2024 0xSs0rZ set — thesis-to-award](https://0xss0rz.gitbook.io/0xss0rz/ctf/write-up/deadface-ctf-2024) | Hard | public-figure thesis-year pivot → award-date read → background-password chain.
+- [L3akCTF 2024 ar-lacroix set — light-to-lane](https://blog.ar-lacroix.fr/posts/2024/05/l3akctf-geosint-write-ups/) | Hard | traffic-light locale ID → company-sign search → lane-count Overpass filter → coastal-turn narrow.
+- [L3akCTF 2024 GeoOsint pano-platform](https://b0ra9.github.io/posts/GeoOsint1/) | Hard | pano-link platform solve → reverse-search lock → coords-format read.
+- [L3akCTF 2024 yocchin set — bridge-to-field](https://yocchin.hatenablog.com/entry/2024/05/28/101504) | Hard | bridge-crop Lens lock → river-walk stance match → field-stance lock.
+- [L3akCTF 2024 rstacks set — first-CTF log](https://github.com/rstacks/L3akCTF2024-writeup) | Hard | first-CTF solve log → gameplay-plus-geo rows → attempt-note chain.
+- [L3akCTF 2024 official repo — tree-queue](https://github.com/L3AK-TEAM/L3akCTF-2024-public) | Hard | challenge-tree row scan → solution-script rows → build-plus-dist note.
+- [L3akCTF 2024 Kashmir54 full-geo set — number-to-lane](https://kashmir54.github.io/ctfs/L3akCTF2024/) | Hard | bridge-crop Lens lock → ambulance-number country cut → eatery-Lens maps lock → phone-sign company hunt → arrow-sign country cut → lane-style road walk.
+- [L3akCTF 2024 Geosint1 original — river-plus-plot](https://github.com/hemiol14/writeups/blob/master/CTFs/L3akCTF2024/Geosint1.md) | Hard | bridge-crop Lens lock → river-road walk → green-plot stance match.
+- [L3akCTF 2024 Geosint4 original — video-to-eatery](https://github.com/hemiol14/writeups/blob/master/CTFs/L3akCTF2024/Geosint4.md) | Hard | region-hint road-video search → drive-through video watch → eatery-name maps lock.
+- [DUCTF 2025 bobbedbob set — hill-to-prison](https://blog.bobbedbob.io/cybersecurity/2025/07/20/ductf-25.html) | Hard | hill-crop Lens lock → name-collision state fix → island-plus-area article match → prison-keyword maps lock.
+- [DUCTF 2025 yippee busfactor angle — doc-to-caption](https://thebusfactor-writeups.vercel.app/posts/2025-07-24-yippee-writeup) | Hard | safety-doc sign match → emblem state lock → hill-crop Lens lock → tourism-caption beach confirm.
+- [DUCTF 2025 yippee TraceX0 angle — engine-trials](https://medium.com/@TraceX0/yippee-osint-ductf25-ba2a888edd07) | Hard | multi-engine hill-crop trials → beach-name image co-search → exact-match lock.
+- [DUCTF 2025 mmr346 set — duplicate-to-flower](https://mmr346.hatenablog.com/entry/2025/07/20/232119) | Hard | duplicate-photo uploader pivot → handle-match app check → state-flower region lock → chickens-plus-grannie legs.
+- [DUCTF 2025 fat-donke voidbenders angle — track-to-frame](https://voidbenderswriteups.hashnode.dev/downunderctf-2025-fat-donke-diss) | Hard | track-search video open → timestamp-frame text read.
+- [DUCTF 2025 WheeledCord set — folder-triage](https://github.com/WheeledCord/DownUnderCTF-2025-Writeup) | Hard | per-challenge folder triage → solve-note per row.
+- [DUCTF 2025 Love GranniE Saan angle — duplicate-to-alias](https://saanrhyne.com/blog/posts/grannie-writeup/) | Hard | country-duplicate city disambiguation → listing-alias hunt → name-variant trials.
+- [TJCTF 2025 official challenges — yaml-queue](https://github.com/TJCSec/tjctf-2025-challenges) | Hard | challenge-yaml row scan → osint-row isolate → asset-plus-server note.
+- [THCon 2024 eight-step OSINT epic — tower-to-EXIF-trap](https://blog.ar-lacroix.fr/posts/2024/04/toulouse-hacking-convention-2024-osint/) | Hard | tower-ID open-data triangulation → OSM building sweep → node-history handle pivot → desk-photo QR instance hop → tag-filtered meeting-notes carrier profile → GPX pause transfer-point lock → market-photo reverse stance → EXIF-trap hotel-photo rule.
+- [THCon 2024 OSINT epic French version — tour-à-piège](https://blog.ar-lacroix.fr/fr/posts/2024/04/toulouse-hacking-convention-2024-osint/) | Hard | tower-data triangulation → node-history pivot → meeting-notes profile → GPX-pause lock → market-stance verify.
+- [UTCTF 2025 st98 words angle — mascot-to-satellite](https://nanimokangaeteinai.hateblo.jp/entry/2025/03/17/222056) | Hard | mascot-logo campus lock → satellite-only no-streetview sweep → grid-word precision complaint log.
+- [UTCTF 2025 Number Champion distance-oracle — elo-to-trilateration](https://www.ctfiot.com/232193.html) | Hard | elo-farm matchmaking loop → coords-probe distance read → shrink-step trilateration script.
+- [UTCTF 2026 W3W2 shop-sign — sign-to-words](https://osintteam.blog/utctf-2026-writeups-inferiorak-f1bd9631febd) | Hard | sign-crop Lens lock → angle-match stance verify → coords-to-words read.
+- [THM Google Dorking jameskaois angle — crawler-to-operator](https://jameskaois.com/posts/tryhackme-google-dorking-room-walkthrough/) | Hard | crawler-index model → robots-plus-sitemap read → operator-table drills.
+- [THM Google Dorking jawstar angle — traversal-to-permission](https://jawstar.medium.com/google-dorking-tryhackme-writeup-0d7c824bb7a6) | Hard | crawler-traversal model → permission-file read → operator-narrow demos.
+- [THM Shodan kevinovitz angle — filter-to-dork](https://kevinovitz.github.io/TryHackMe_Writeups/shodan/shodan/) | Hard | filter-table drills → monitor-page read → dork-example screenshot lock.
+- [THM Shodan Corlis angle — ASN-to-screenshot](https://medium.com/@corlissS/tryhackme-shodan-io-thm-affb255f176e) | Hard | filter-command drills → ASN-product pivot → city-popularity read → screenshot-dork lock.
+- [THM Google Dorking waleed angle — index-to-exposure](https://medium.com/@walidsalah231911/tryhackme-write-up-google-dorking-0de214cb09b0) | Hard | index-vs-live model → permission-file field table → operator-plus-exposure drills.
+- [THM Google Dorking danschwarz angle — scrape-to-sitemap](https://daniel-schwarzentraub.medium.com/tryhackme-walk-through-room-google-dorking-e3509c17bd19) | Hard | crawler-scrape term drills → robots-path rule → sitemap-structure read → operator-table drills.
+- [Bellingcat week1 epinard angle — silhouette-to-hemisphere](https://www.epinardscaramel.eu/bellingcat-osint-challenge-w1/) | Hard | peak-silhouette tool trial → summit-tune limit note → metadata-tool hemisphere trap fix → airfield-code lock.
+- [Independence Day CTF 2024 geo AI-first — miss-to-guess](https://medium.com/@sunya22839/independence-day-ctf-2024-5db1c239815c) | Hard | engine-miss dork fail log → tool-guide pivot → AI-guess trial queue.
+- [Picarta batch-pipeline method — API-to-map](https://www.securityartwork.es/2024/06/18/geolocation-through-artificial-intelligence-osint/) | Hard | AI-classify API loop → base64-plus-JSON store → map-marker render → error-rate caution.
+- [pearlCTF 2025 SeedeR set — angle-to-snapshot](https://seeder.hatenablog.com/entry/2025/03/09/154949) | Hard | angle-match region sweep → handle-to-post pivot → car-Lens fleet lock → maps pointer stance → archive snapshot deleted-row compare.
+- [BYUCTF 2025 Universal-ty official — radius-to-campus](https://github.com/BYU-CSA/BYUCTF-2025/tree/main/osint/universalty) | Hard | day-trip radius rule → campus-map match → school-name lock.
+- [BYUCTF 2025 Under the Overpass official — embassy-to-camera](https://github.com/BYU-CSA/BYUCTF-2025/tree/main/osint/under_the_overpass) | Hard | Overpass embassy query → dentist-adjacency lock → surveillance-radius count.
+- [BYUCTF 2025 official repo — table-queue](https://github.com/BYU-CSA/BYUCTF-2025) | Hard | OSINT-table row scan → challenge-brief rows → solve-order log.
+- [BYUCTF 2025 Universal-ty ch1se angle — negative-to-blog](https://ch1se.medium.com/universal-ty-byuctf-2025-osint-challenge-18d8b0ccc434) | Hard | EXIF-negative log → AI-miss discard → crop-reverse blog match → maps angle verify.
+- [KalmarCTF 2025 st98 OSINT angle — lens-to-ranking](https://nanimokangaeteinai.hateblo.jp/entry/2025/03/10/041721) | Hard | featureless-building Lens lock → ranking-list cross-check → city-name lock.
+- [LA CTF 2025 Danger Searching sign-trail — river-to-trailhead](https://hyungin0505.tistory.com/102) | Hard | river-first guess miss log → keyword search trailhead lock → plus-code tile rule.
+- [404CTF 2022 dawn-exchange street-hash — tower-to-hash](https://finxol.io/posts/writeup-404ctf-osint-aube-d-un-echange/) | Hard | EXIF-negative log → sunrise-facing rule → tower-list photo match → district-viewpoint pivot → hill-side Earth walk → street-format hash.
+- [HeroCTF v5 official OSINT tables — chain-plus-agency](https://github.com/HeroCTF/HeroCTF_v5) | Hard | arrest-chain row scan → agency-quartet queue → pirate-row note.
+- [hugocls CTF collection — event-row filter](https://github.com/hugocls/ctfs-writeups) | Hard | event-row scan → OSINT-row filter → solve-order log.
+- [tham-le CTF collection — event-row chain](https://github.com/tham-le/CTF-Writeups) | Hard | event-row scan → OSINT-row filter → chain-note per row.
+- [SwampCTF 2024 t0rn4d0 set — unit-to-opposite](https://t0rn4d0.medium.com/swamp-ctf-2024-writeup-ba43e45a1c96) | Hard | unit-note distance read → EXIF latlong plus chat-assist convert → mailbox-town plus hotel-opposite stance.
+- [HeroCTF v5 avan set — scan-to-fitness](https://avan.sh/posts/hero-ctf-v5/) | Hard | chain block-scan funder read → commit-trail name find → handle-sweep app miss log → fitness-link account pivot.
+- [HeroCTF v5 meashiri set — quartet-plus-pirate](https://meashiri.github.io/ctf-writeups/posts/202305-heroctf/) | Hard | agency-quartet row scan → pirate-row note → solve-order log.
+- [HeroCTF v5 Kaiziron set — chain-queue](https://github.com/Kaiziron/heroctf-v5) | Hard | arrest-chain solve rows → agency-plus-pirate queue.
+- [HeroCTF v5 chain-funder graph — threaded converge](https://0xswitch.fr/CTF/heroctf-v5-blockchain-osint-1-2) | Hard | threaded block-scan → fan-out funder converge → single-funder lock.
+- [HeroCTF 2021 Transfer tx-explorer — hash-to-receiver](https://floatingbrij.medium.com/transfer-write-up-heroctf-7166bea55206) | Hard | hash-to-explorer search → sender-plus-receiver read → receiver-address lock.
+- [HeroCTF v3 Transfer second method — explorer-destination](https://beatbybit.net/en/ctfwriteups/2021/heroctf-v3/transfer/) | Hard | explorer hash search → destination-address lock.
+- [HeroCTF v3 Transfer third method — type-to-field](https://github.com/yulyachert/HeroCTF_v3-writeups/blob/master/Transfer.md) | Hard | hash-type guess → explorer site open → address-field lock.
+- [idekCTF NMPZ 17-pano country-code — clue-to-letter](http://www.kronbergbuehlertal.com/blog/geo.html) | Hard | peak-silhouette place lock → script-plus-dome city read → sign-text town search → bollard-stripe country cut → letter-plus-population flag math.
+- [idekCTF 2022 Crime-3 archive-acrostic — comment-to-poem](https://blog.bkisc.com/blog/fazect/idekctf2022_osintcrime3/) | Hard | maps-comment email read → deleted-post archive capture → code-search poem read → letter-chain lock.
+- [n00bzCTF 2024 Gang 2 stub third author](https://ctftime.org/writeup/39380) | Hard | article-riddle pivot → chain-order note.
+- [n00bzCTF 2024 Pastebin yun angle — link-to-capture](https://yun.ng/c/ctf/2024-n00b-ctf/osint/pastebin) | Hard | archive-link capture → deleted-content flag read.
+- [n00bzCTF 2024 Tail yun angle — photo-to-hub](https://yun.ng/c/ctf/2024-n00b-ctf/osint/tail) | Hard | tail-photo airline read → hub-code lock.
+- [n00bzCTF 2024 Gang sakouk angle — site-to-quote](https://sakouk.me/writeups/2024/n00bzCTF/the_gang.html) | Hard | team-site search → member-tab profile open → quote-flag read.
+- [n00bzCTF 2024 Leila set — flower-to-member](https://medium.com/@leila9823/n00bzctf-2024-writeup-c56923686903) | Hard | flower-tail airline lock → hub-code read → team-site member sweep.
+- [n00bzCTF Gang 1-4 Centinels chain — tab-to-tracker](https://centinels.gitbook.io/home/writeups/n00bzctf/osint-the-gang-1-4) | Hard | member-tab profile open → article-acrostic handle pivot → prior-year key-IV reuse → chat-hint airport-statue coords → flight-tracker schedule read.
+- [Automotive CTF Japan fleet-photo angle — page-to-model](https://blog.hamayanhamayan.com/entry/2024/09/10/222143) | Hard | contest-page social-link walk → fleet-photo post find → model-search lock.
+- [CyCTF 2024 Old Friend multi-POI — constraint-to-record](https://github.com/0xHunterr/The-Nen-Book/blob/main/Writeups/CyCTF%202024%20Quals%202024/Old%20Friend%20OSINT%20Challenge%20CyCTF%202024%20Quals%20Writeup.md) | Hard | building-reverse city hypothesis → park-plus-river-plus-ATM-plus-wash constraint sweep → satellite row-walk → StreetView building-row match → record-dork email read.
+- [CyCTF 2024 Old Friend second method — sweep-plus-detour](https://osintteam.blog/cyctf-2024-quals-old-friend-osint-challenge-writeup-ac74266142b0) | Hard | constraint-sweep building match → university-detour miss log → row-walk confirm.
+- [PatriotCTF 2023 JustKhal set — BSSID-to-decay](https://github.com/JustKhal/El-Khabi-PatriotCTF-2023-Writeup) | Hard | BSSID-map SSID read → event-plus-craft wiki pivot → decay-row rank lock.
+- [PatriotCTF 2023 D_C4ptain set — row-isolate](https://d-c4ptain.github.io/posts/PatriotCTF-2023-writeup/) | Hard | category-row scan → OSINT-row isolate → solve-order log.
+- [PatriotCTF 2023 official repo — table-queue](https://github.com/MasonCompetitiveCyber/PatriotCTF2023/) | Hard | OSINT-table row scan → author-plus-brief rows → challenge-queue note.
+- [PatriotCTF 2023 xenon index — row-filter](https://xenon-2.gitbook.io/writeups/ctf-writeups/ctf-writeups/patriotctf-2023) | Hard | challenge-row scan → category-row filter → solve-order log.
+- [DIVER 2026 sa2taka container-plus-grid — code-to-callsign](https://blog.sa2taka.com/post/diver-osint-ctf-2026-writeup/) | Hard | ISO-code split → carrier-tracker ship-name read → registry IMO verify → zone-letter island lock → event callsign ship hunt → operator-record IMO fix.
+- [DIVER 2026 DUO container angle — digit-to-ship](https://zenn.dev/duo_family/articles/96880a6fb75bfb?locale=en) | Hard | check-digit code verify → carrier-tracker ship read → IMO lock.
+- [DIVER 2026 PretendNotToBe mega-set — fourteen-row log](https://medium.com/@PretendNotToBe/diver-osint-ctf-2026-writeup-pretendnottobe-f116136ff51b) | Hard | fourteen-row solve log → carrier-tracker IMO read → category-queue note.
+- [DIVER 2026 HUIT container angle — page-to-registry](https://zenn.dev/huitgroup/articles/writeup_diver_osint_2026) | Hard | carrier-page ship-name read → registry IMO lock.
+- [DIVER 2026 yocchin container angle — query-to-leg](https://yocchin.hatenablog.com/entry/2026/07/27/074525) | Hard | code-read tracker query → recent-leg ship lock → registry-field verify.
+- [DIVER 2026 kn1cht set — credit-queue](https://zenn.dev/kn1cht/articles/diver-osint-ctf-2026-kn1cht) | Hard | category-row scan → solver-credit queue → challenge-note chain.
+- [DIVER 2026 ciffelia Wani-Hackase set — demo-to-trail](https://blog.ciffelia.com/article/diverctf-2026) | Hard | demo-question row scan → house-plus-telelens-plus-air2air2 queue → trail-log chain.
+- [DIVER 2026 tan set — team-to-official](https://tan.hatenadiary.jp/entry/2026/07/31/writeup-diver-osint-ctf-2026) | Hard | team-row scan → intro-plus-geo queue → official-writeup cross-link.
+- [SWIMMER 2026 beginner-CTF set — frame-to-handle](https://medium.com/@PretendNotToBe/swimmer-osint-ctf-writeup-0f1117102507) | Hard | patrol-video drop-point map read → satellite-date answer rule → handle-history prior-ID hunt.
+- [DIVER 2026 official writeups — edition-queue](https://github.com/diver-osint-ctf/writeups/tree/main/diver2026) | Hard | edition-folder row scan → challenge-row queue → method-note chain.
+- [VishwaCTF 2023 Blockblaster third method — subtitle-to-delta](https://ctftime.org/writeup/36721) | Hard | subtitle-transcribe dialogue search → comment-thread box-office math → director-filmography delta lock.
+- [VishwaCTF 2023 official writeups — organiser rows](https://github.com/CybercellVIIT/VishwaCTF-23_Official_Writeups) | Hard | organiser per-challenge rows → solve-order log.
+- [VishwaCTF 2023 Blockblaster CBC row — row-scan](https://github.com/CBC-MIT/CTF-Writeups/blob/main/VishwaCTF2k23/Blockblaster/README.md) | Hard | challenge-row scan → method-note lock.
+- [VishwaCTF 2023 BITSkrieg set — team-to-breach](https://github.com/bitskriegofficial/VishwaCTF_2023_Writeups) | Hard | team-row scan → breach-row isolate → solve-order log.
+- [VishwaCTF 2023 Privacy Breach third method — page-to-email](https://ctftime.org/writeup/36670) | Hard | offender-site search → page-walk image-email read → domain-field lock.
+- [VishwaCTF 2023 Privacy Breach fourth method — bottom-row domain](https://footpics4sale.github.io/writeups/CTF/VishwaCTF2023/OSINT-privacy-breach.html) | Hard | offender-list bottom-row read → domain-field lock.
+- [VishwaCTF 2023 fs0ciety set — team-to-link](https://github.com/klsgit-wgcs/vishwactf-2023) | Hard | team-row scan → category-row filter → writeup-link queue.
+- [Sofia Santos Exercise 004 geo — analysis-to-pin](https://www.osintstarter.com/challenges/sofia-santos/sofia-santos-osint-exercise-004/) | Hard | image-analysis reverse-search lock → maps pinpoint verify.
+- [Sofia Santos Exercise 006 image-verify — archive-to-debunk](https://www.osintstarter.com/challenges/sofia-santos/sofia-santos-osint-exercise-006/) | Hard | reverse-search archive cross-check → misinfo-debunk rule.
+- [Sofia Santos Exercise 008 event-trace — search-to-detail](https://www.osintstarter.com/challenges/sofia-santos/sofia-santos-osint-exercise-008/) | Hard | image-search translation pivot → event-detail uncover.
+- [Sofia Santos Exercise 018 historic-route — research-to-math](https://www.osintstarter.com/challenges/sofia-santos/sofia-santos-osint-exercise-018/) | Hard | web-research route verify → distance-speed math check.
+- [Sofia Santos Exercise 021 geo — analysis-to-maps](https://www.osintstarter.com/challenges/sofia-santos/sofia-santos-osint-exercise-021/) | Hard | geolocation image-analysis lock → maps verify.
+- [Sofia Santos Exercise 023 search-image — trace-to-verify](https://www.osintstarter.com/challenges/sofia-santos/sofia-santos-osint-exercise-023/) | Hard | search-plus-image analysis lock → digital-trace verify.
+- [Sofia Santos Exercise 027 web-image — research-to-trace](https://www.osintstarter.com/challenges/sofia-santos/sofia-santos-osint-exercise-027/) | Hard | web-search image-analysis lock → research-trace verify.
+- [Sofia Santos Exercise 031 wildlife-trace — history-to-place](https://www.osintstarter.com/challenges/sofia-santos/sofia-santos-osint-exercise-031/) | Hard | image-analysis history trace → location-history lock.
+- [Hacktoria Deep in the Forest bird-song — frame-to-recordist](https://blog.spuria.app/writeups/deep-in-the-forest-hacktoria-algonquin/) | Hard | frame-dead-end log → audio-archive recording match → recordist-spot maps verify.
+- [Hacktoria Fire smoke-plume house — operator-to-press](https://blog.spuria.app/writeups/fire-hacktoria-izegem/) | Hard | wrong-country miss log → search-operator narrow → press-photo house-number lock.
+- [Hacktoria Blurred Fuel Station timing — sweep-to-upload](https://blog.spuria.app/writeups/under-the-blur-a-subway-chicago-bp/) | Hard | blur-read logo lock → candidate-station sweep → van-livery engine rule-out → upload-time read.
+- [Hacktoria Private WiFi II pub-WiFi — trap-to-wall](https://blog.spuria.app/writeups/private-wifi-ii-the-walrus-london/) | Hard | blurred-photo pub lock → advert-trap discard → wall-note password read.
+- [Hacktoria Raptor Reserve one-word — island-to-attachment](https://blog.spuria.app/writeups/raptor-reserve/) | Hard | island-name lock → empty-frame email-attachment hunt.
+- [Hacktoria 132kV Iceland pano — voltage-to-source](https://blog.spuria.app/writeups/132kv-berufjordur-iceland-panorama/) | Hard | voltage-query location lock → non-Google pano-source rule.
+- [Hacktoria Angle of Ascent takeoff-second — scale-to-gate](https://blog.spuria.app/writeups/angle-of-ascent-billund-klm-takeoff/) | Hard | runway-marking scale math → airport lock → aerial-archive timestamp read → flight-plus-gate lock.
+- [Hacktoria Norway Farmhouse GeoCLIP — prior-to-building](https://blog.spuria.app/writeups/geoclip-streetclip-hacktoria-norway/) | Hard | model-prior valley narrow → building-level verify → shortcut-miss log.
+- [Hacktoria Corrupted poem-quad — constraint-to-town](https://blog.spuria.app/writeups/corrupted-ossana/) | Hard | constraint-poem town lock → black-square pointer rule.
+- [Hacktoria Wild Fire incident-ID — URL-trap-to-server](https://blog.spuria.app/writeups/aspen-acres-fire-v3/) | Hard | URL incident-number trap note → FeatureServer ID query → zone-map verify.
+- [Hacktoria Train Window deduction — read-to-discard](https://blog.spuria.app/writeups/okcheon-gyeongbu-line/) | Hard | thirty-second country read → tool-hallucination discard → data-sparse verify.
+- [KnightCTF 2025 Hidden Quest PSTU angle — row-isolate](https://www.kshackzone.com/ctfs/writeups/PSTU_MILON/45/knightctf-2025/osint/the-hidden-quest) | Hard | quest-row isolate → OSINT-row filter → solve-order log.
+- [KnightCTF 2025 Hidden Quest Noman angle — row-note](https://www.kshackzone.com/ctfs/writeups/NomanProdhan/46/knightctf-2025/osint/the-hidden-quest) | Hard | quest-row isolate → OSINT-row filter → method-note chain.
+- [DIVER 2025 louvre Slavetomints angle — MAC-to-SSID](https://slavetomints.com/posts/diver-osint-ctf-2025-louvre/) | Hard | MAC-list SSID lock → attachment-cue verify.
+- [DIVER 2025 document Slavetomints angle — property-to-title](https://slavetomints.com/posts/diver-osint-ctf-2025-document/) | Hard | PDF-property author read → schedule-title match.
+- [DIVER 2025 engineer Slavetomints angle — handle-to-employer](https://slavetomints.com/posts/diver-osint-ctf-2025-00-engineer/) | Hard | handle-search profile open → homepage-link employer read.
+- [DIVER 2025 hidden_service Slavetomints angle — paper-to-service](https://slavetomints.com/posts/diver-osint-ctf-2025-hidden-service/) | Hard | paper-photo onion-link read → service-open verify.
+- [DIVER 2025 Afghanistan Slavetomints angle — photo-to-context](https://slavetomints.com/posts/diver-osint-ctf-25-afghanistan/) | Hard | soldiers-photo scene lock → event-context verify.
+- [VishwaCTF 2025 Stadium Slavetomints angle — crop-to-keyword](https://slavetomints.com/posts/vishwactf-2025-stadium/) | Hard | arena-crop reverse lock → ground-blog match → maps-keyword verify.
+- [VishwaCTF 2025 Follow Slavetomints angle — page-to-diff](https://slavetomints.com/posts/vishwactf-2025-follow-for-clues/) | Hard | clue-page open → post-description read → edit-diff lock.
+- [1337UP Live 2024 Socials Slavetomints angle — row-to-post](https://slavetomints.com/posts/1337up-live-2024-socials/) | Hard | social-row scan → profile-plus-post pivot → solve-order log.
+- [1337UP Live 2024 Trackdown2 Slavetomints angle — view-to-venue](https://slavetomints.com/posts/1337up-live-2024-trackdown2/) | Hard | city-view reverse lock → viewpoint-venue match.
+- [1337UP Live 2024 Trackdown Slavetomints angle — plaza-to-stance](https://slavetomints.com/posts/1337up-live-2024-trackdown/) | Hard | plaza-view reverse lock → cafe-stance match.
+- [NahamCon 2025 Diephho set — category-row isolate](https://github.com/Diephho/NahamConCTF2025-Writeups) | Hard | category-row scan → OSINT-row isolate → solve-order log.
+- [CSAW 2025 Quals official repo — tree-queue](https://github.com/osirislab/CSAW-CTF-2025-Quals-Public) | Hard | challenge-tree row scan → OSINT-row isolate → category-queue note.
+- [CSAW 2025 Finals official repo — tree-queue](https://github.com/osirislab/CSAW-CTF-2025-Finals-Public) | Hard | challenge-tree row scan → OSINT-row isolate → category-queue note.
+- [SwampCTF 2024 Hidden Snack margheritaviola angle — blur-to-opposite](https://margheritaviola.com/ctf-writeup/swampctf-2024-osint-hidden-snack-stop-writeup/) | Hard | blurred-photo mailbox-town read → hotel search → opposite-stance shop lock.
+- [SwampCTF 2024 Lost in Space margheritaviola angle — reverse-to-unit](https://margheritaviola.com/ctf-writeup/swampctf-2024-osint-lost-in-space-writeup/) | Hard | satellite reverse craft lock → wiki distance-unit read.
+- [TexSAW Sherlock margheritaviola angle — jumble-to-read](https://margheritaviola.com/ctf-writeup/texsaw2024-osint-sherlock-writeup/) | Hard | quiz-app jumble note → answer-order read.
+- [WolvCTF 2024 WOLPHV II margheritaviola angle — page-to-pause](https://margheritaviola.com/ctf-writeup/wolvctf-osint-wolphv-ii-infiltrate-writeup/) | Hard | social-search group find → video-pause invite decode.
+- [WolvCTF 2024 WOLPHV I margheritaviola angle — report-to-post](https://margheritaviola.com/ctf-writeup/wolvctf-osint-wolphv-i-reconnaissance-writeup/) | Hard | group-report article pivot → post-trail read.
+- [WolvCTF 2024 Redditor margheritaviola angle — search-to-top](https://margheritaviola.com/ctf-writeup/wolvctf-osint-redditor-writeup/) | Hard | handle-search profile open → top-post flag read.
+- [DUCTF 2025 Love GranniE voidbenders angle — bridge-to-article](https://voidbenderswriteups.hashnode.dev/down-under-ctf-love-grannie) | Hard | bridge reverse station lock → heritage-article alias read.
+- [SnakeCTF 2025 NoSig k3sero angle — signal-triage](https://k3sero.github.io/posts/NoSig-SnakeCTF2025Finals/) | Hard | signal-capture triage → mode-hypothesis narrow → decode-chain lock.
+- [SnakeCTF 2025 GeoGuessitUdine k3sero angle — pano-narrow](https://k3sero.github.io/posts/GeoGuessitUdine-SnakeCTF2025/) | Hard | pano-clue country narrow → town-walk stance lock.
+- [SnakeCTF 2025 GeoGuessitFVG k3sero angle — region-walk](https://k3sero.github.io/posts/GeoGuessitFVG-SnakeCTF2025/) | Hard | region-cue narrow → road-walk stance lock.
+- [NNCTF 2025 Run Forest Run 2 k3sero angle — route-trace](https://k3sero.github.io/posts/Run-Forest-Run-2-NNCTF2025/) | Hard | run-route clue read → trace-to-place lock.
+- [NNCTF 2025 Run Forest Run 1 k3sero angle — route-read](https://k3sero.github.io/posts/Run-Forest-Run-1-NNCTF2025/) | Hard | route-clue read → place-match lock.
+- [TJCTF 2025 linkedout-recon k3sero angle — profile-to-graph](https://k3sero.github.io/posts/linkedout-recon-TJCTF2025/) | Hard | career-profile search → employment-graph walk → persona-field lock.
+- [UMDCTF 2025 Blueprint k3sero angle — mound-to-drive](https://k3sero.github.io/posts/The-Blueprint-UMDCTF2025/) | Hard | mound-scene lock → address-drive read.
+- [UMassCTF 2025 Pentium-4 k3sero angle — hardware-clue chain](https://k3sero.github.io/posts/Attack-of-Pentium-4-UmassCTF2025/) | Hard | hardware-cue triage → clue-chain lock.
+- [UMassCTF 2025 Multiplayer k3sero angle — lobby-trace](https://k3sero.github.io/posts/Multiplayer-UmassCTF2025/) | Hard | lobby-clue read → session-trace lock.
+- [THCon 2025 Randsomware Hospital k3sero angle — case-compile](https://k3sero.github.io/posts/Randsomware-Hospital-THCON2025/) | Hard | case-row compile → threat-record match → entity lock.
+- [Hackademics Forum Viejas Raices k3sero angle — roots-trace](https://k3sero.github.io/posts/Viejas_raices-HackademicsForum2025/) | Hard | roots-clue read → archive-trace lock.
+- [Hackademics Forum Nuevas Raices k3sero angle — roots-chain](https://k3sero.github.io/posts/Nuevas_raices-HackademicsForum2025/) | Hard | roots-clue chain → record-match lock.

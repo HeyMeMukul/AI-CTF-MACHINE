@@ -1,0 +1,44 @@
+{
+ "id": "imported-windows-artifacts",
+ "domain": "forensics",
+ "title": "Windows artifact forensics",
+ "signals": [
+  "NTUSER.DAT/SAM/SYSTEM/SOFTWARE",
+  ".pf prefetch",
+  ".evtx",
+  "UsrClass.dat",
+  "browser History",
+  "USB device"
+ ],
+ "preconditions": [
+  "Windows image or hive copies",
+  "Eric Zimmerman tools / regripper / Hindsight available"
+ ],
+ "steps": [
+  "Identify hives and artifacts: `NTUSER.DAT`, `UsrClass.dat`, SAM/SYSTEM/SOFTWARE, `.pf`, `.evtx`, browser DBs, `$MFT`.",
+  "Registry: `RECmd` or `regripper -f NTUSER.DAT -r ntuser`; check Run keys, UserAssist, RecentDocs, USBSTOR, ShellBags.",
+  "Execution: `PECmd` for prefetch, `AmcacheParser`/`AppCompatCacheParser` for program execution, `JLECmd`/`LECmd` for jump lists.",
+  "Event logs: `EvtxECmd`/`hayabusa` for logons, service installs, PowerShell, and USB; browser: `Hindsight` for history/downloads.",
+  "Merge timestamps into a timeline (UTC) and correlate the artifact that answers the challenge question."
+ ],
+ "falsifier": "The image is not Windows, the hives are encrypted/corrupt, or no user artifact exists for the asked event.",
+ "pitfalls": [
+  "locked hives (use copies + .LOG1/.LOG2)",
+  "local vs UTC",
+  "system vs user hive",
+  "deleted-user hives",
+  "timestamp precision"
+ ],
+ "sources": [
+  "https://github.com/mukul975/Anthropic-Cybersecurity-Skills/tree/main/skills/analyzing-windows-registry-for-artifacts"
+ ],
+ "fixtures": [],
+ "verified_by": "source:Anthropic Cybersecurity Skills",
+ "last_verified": "2026-10-20",
+ "verified": false,
+ "verification": "source",
+ "license": "Apache-2.0",
+ "ctf_domains": [
+  "forensics"
+ ]
+}

@@ -1,0 +1,42 @@
+{
+ "id": "imported-insecure-defaults",
+ "domain": "web-ctf",
+ "title": "Insecure defaults / secrets sweep",
+ "signals": [
+  "source/config dump",
+  "login form",
+  "JWT/cookie secret",
+  "debug flag",
+  "CORS `*`"
+ ],
+ "preconditions": [
+  "source or config accessible",
+  "authorized challenge target"
+ ],
+ "steps": [
+  "Grep for `admin:admin`, `changeme`, `password`, `SECRET_KEY`, `DEBUG=True`, `ALLOWED_HOSTS=*`, `CORS_ORIGIN_ALLOW_ALL`.",
+  "Check `.env`, `config.*`, `docker-compose`, `settings.py`, `application.properties`, and example files.",
+  "Try the default credential once; inspect JWT/cookie signing secrets and `kid`/`jku` config.",
+  "Verify whether the default is actually active in the running service, not just present in a sample file."
+ ],
+ "falsifier": "Secrets are rotated, debug is off, and default credentials are rejected by the live service.",
+ "pitfalls": [
+  "example/test files",
+  "env overrides",
+  "rate limits",
+  "fake secrets as decoys"
+ ],
+ "sources": [
+  "https://github.com/trailofbits/skills/tree/main/plugins/insecure-defaults/skills/insecure-defaults"
+ ],
+ "fixtures": [],
+ "verified_by": "source:Trail of Bits",
+ "last_verified": "2026-10-20",
+ "verified": false,
+ "verification": "source",
+ "license": "CC-BY-SA-4.0",
+ "ctf_domains": [
+  "web-ctf",
+  "forensics"
+ ]
+}

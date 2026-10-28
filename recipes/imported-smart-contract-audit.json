@@ -1,0 +1,42 @@
+{
+ "id": "imported-smart-contract-audit",
+ "domain": "blockchain",
+ "title": "Smart-contract CTF audit loop",
+ "signals": [
+  "Solidity/Foundry project",
+  "win condition",
+  "proxy/upgrade",
+  "external call",
+  "oracle/price"
+ ],
+ "preconditions": [
+  "contracts compile",
+  "test/fork environment available"
+ ],
+ "steps": [
+  "`forge build` and `forge test -vvv`; read the win condition and the constructor/initializer state.",
+  "Run `slither .` and `myth analyze` for a quick map; do not trust them as proof.",
+  "Check access control, reentrancy, delegatecall/proxy storage, integer rounding, oracle manipulation, signature replay, and initialization.",
+  "Write a failing Foundry test that demonstrates the win condition, then minimize it; use `cast`/anvil fork for live-state checks."
+ ],
+ "falsifier": "No external call/value path, access control is correct, and the win condition is unreachable from the attacker role.",
+ "pitfalls": [
+  "proxy storage layout",
+  "token decimals",
+  "test-only backdoors",
+  "fork block drift",
+  "gas limits"
+ ],
+ "sources": [
+  "https://github.com/trailofbits/skills/tree/main/plugins/building-secure-contracts/skills/secure-workflow-guide"
+ ],
+ "fixtures": [],
+ "verified_by": "source:Trail of Bits",
+ "last_verified": "2026-10-20",
+ "verified": false,
+ "verification": "source",
+ "license": "CC-BY-SA-4.0",
+ "ctf_domains": [
+  "blockchain"
+ ]
+}

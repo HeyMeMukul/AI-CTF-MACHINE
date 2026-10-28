@@ -1,0 +1,19 @@
+{
+  "id": "crypto-caesar-brute",
+  "domain": "crypto",
+  "title": "Caesar / ROT brute force",
+  "signals": ["alphabetic text only", "readable but shifted", "no binary", "short ciphertext"],
+  "preconditions": ["monoalphabetic shift", "plaintext is natural language or a known flag pattern"],
+  "steps": [
+    "print all 26 shifts",
+    "score each shift for the expected marker or English words",
+    "confirm the candidate by re-shifting it back to the original"
+  ],
+  "falsifier": "no shift produces readable text or the expected marker; the cipher is not a simple shift",
+  "pitfalls": ["mixed case must be preserved", "ROT13 is a special case", "a shift can look plausible on short text"],
+  "sources": ["https://en.wikipedia.org/wiki/Caesar_cipher"],
+  "fixtures": ["caesar"],
+  "verified_by": "engine:selftest",
+  "last_verified": "2026-10-20",
+  "verified": true
+}
